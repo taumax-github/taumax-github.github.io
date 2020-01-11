@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta name="copyright" content="Copyright XSERVER Inc." />
+<meta name="robots" content="noindex,nofollow,noarchive" />
+<title>とあるITエンジニアの知識整理</title>
+<link rel="stylesheet" href="../../style.css">
+
+</head>
+<body>
+
+<div id="base">
+  <div id="container">
+  <!-- /header -->
+    <dl id="contents"> 
+      <dt>同一生成元ポリシー(SOP：Same-Origin Policy)</dt>
+      <dd>
+        <p>
+        工事中...<br>
+        情報処理試験のセキュリティスペシャリスト（現：情報処理安全確保支援士）の<a href="https://www.jitec.ipa.go.jp/1_04hanni_sukiru/mondai_kaitou_2016h28.html#28haru" target="_blank">平成28年秋　午後Ⅱ問2</a>でも出題されています。<br>
+        まずWebにおける「オリジン」を理解する必要があります。<br>
+
+        <embed src="../Origin.html" width="1100" height="450"></embed>
+
+        <dt style="padding-left:1em">
+          SOAとCORS
+        </dt>
+        <dd>
+          現在のWebブラウザでは、標準で<a href="../SOP/SOP.html">同一生成元ポリシー(SOP：Same-Origin Policy)</a>という情報の悪用の防止策が適用されています。<br>
+          （詳しくは<a href="https://tools.ietf.org/html/rfc6454" target="_blank">RFC6454</a>をご覧ください。）
+          セキュリティの観点で生まれた考え方なのですが、Webサービスを提供する際、他のWebサービスを利用できないので利便性を損ねるという側面もあります。<br>
+          そこで、異なるオリジンのサーバーにある選択されたリソースへのアクセスを許可することができる仕組みとして、オリジン間リソース共有(CORS：Cross-Origin Resource Sharing)が誕生しました。<br>
+          facebookの「いいね」を設置できるのもCORSのおかげです。<br>
+        </dd>
+        <dt style="padding-left:1em">
+          参考サイト
+        </dt>
+        <dd>
+          1. <a href="https://www.w3.org/TR/cors/" target="_blank">Cross-Origin Resource Sharing</a><br>
+          2. <a href="http://www.tohoho-web.com/ex/cors.html" target="_blank">CORS(Cross-Origin Resource Sharing)</a><br>
+          3. <a href="http://www.tohoho-web.com/ex/same-origin-policy.html" target="_blank">同一生成元ポリシー(Same-Origin Policy)</a><br>
+          4. <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank">Cross-origin resource sharing</a><br>
+        <dt style="padding-left:1em">
+          参考書
+        </dt>
+        <dd>
+          1. <a href="https://www.amazon.co.jp/dp/4822239268/" target="_blank">絶対わかる情報処理安全確保支援士 2017年春版</a><br>
+          　※上記1.の2018年度版は<a href="https://www.amazon.co.jp/dp/4822257835" target="_blank">こちら（絶対わかる情報処理安全確保支援士 2018年春版）</a><br>
+          <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15327927%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F18968200%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=18968200&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7835%2F9784822257835.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7835%2F9784822257835.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15327927%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F18968200%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  >絶対わかる情報処理安全確保支援士　2018年春版 [ 濱野谷 芳枝 ]</a><br><span >価格：2700円（税込、送料無料)</span> <span style="color:#BBB">(2019/7/28時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15327927%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F18968200%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0"></a><a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15327927%2F%3Fscid%3Daf_pc_bbtn&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F18968200%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ==" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff !important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;">楽天で購入</div></a></div></td><tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+        </dd>
+        </p>
+      </dd>
+    </dl>
+    <div id="message">
+      <a href="http://www.xdomain.ne.jp/" target="_blank">Xdomain・サイトトップページ</a>
+    </div>
+    <div id="footer">
+      <address>Copyright &copy; XSERVER Inc. All Rights Reserved.</address>
+    </div>
+  <!--//container--></div>
+<!--//base--></div>
+
+</body>
+</html>
