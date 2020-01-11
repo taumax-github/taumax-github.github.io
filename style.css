@@ -29,7 +29,7 @@ body {
 #container #header {
   width : 1080px ;
   height : 52px ;
-  background : url(default_page.png) 0 0 no-repeat ;
+  <!-- background : url(default_page.png) 0 0 no-repeat ; -->
 }
 
 #container #header a {
