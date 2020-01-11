@@ -1,0 +1,1314 @@
+<hr />
+<p>title: Code Smell とリファクタリング技法について調べてみた
+tags: codesmell リファクタリング
+</p>
+<h1 id="codesmell">Code Smellとは？</h1>
+<p>以前（2019年8月頃）、CSD (Certified Scrum Developer) 研修を受講しました。非常にためになる研修で、その研修の中でCode Smellというものについて学びました。
+Code Smellとは、ソースコードにリファクタリングすべき問題が存在することを示す何らかの兆候のことです。
+ペアプロでTDDで開発を行い、開発したコードからCode Smellを嗅ぎ取ったらリファクタリングして取り除く。という開発の流れを教わりました。
+研修受講後、このCode Smellについてもっと知りたいと思ってググったりしたのですが、日本語で解説しているサイトはまだ少ないと感じました。
+英語で解説しているサイトが多く、その中でも以下のサイトがCode Smellとリファクタリングの技法について体系的にまとめていると思いました。</p>
+<ul>
+<li><a href="https://sourcemaking.com/refactoring/smells">Code Smells (SourceMaking)</a></li>
+</ul>
+<p>このサイトでは、以下5つの大分類を元に、それに関連するCode Smellを紹介しています。</p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#bloaters">Bloaters</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#object-orientation-abusers">Object-Orientation-Abusers</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#change-preventers">Change-Preventers</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#dispensables">Dispensables</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#couplers">Couplers</a></li>
+</ul>
+<p>ここから先は、このページをベースに、各Code Smellを翻訳したものを記載しています。このページだけだとよくわからないこともあったので、その場合は別のページと組み合わせたものを記載しています。
+Code Smellを解消するために参考となるリファクタリング技法や、その他参考になりそうな概念もこの記事の最後の方に記載しているので合わせて見てください。</p>
+
+書籍としてはこの辺りが参考になると思います。
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F3502d28e297130d7893c47fbe1000ac8%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F18752311%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea662e.a3c33d12.18ea662f.a56a6fcd/?me_id=1278256&item_id=18752311&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Frakutenkobo-ebooks%2Fcabinet%2F4582%2F2000007974582.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Frakutenkobo-ebooks%2Fcabinet%2F4582%2F2000007974582.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F3502d28e297130d7893c47fbe1000ac8%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F18752311%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  >リファクタリング 既存のコードを安全に改善する（第2版）【電子書籍】[ MartinFowler ]</a><br><span >価格：4840円</span> <span style="color:#BBB">(2020/1/10時点)</span></p></td><tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td>
+    <td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16085666%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F19803391%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=19803391&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F4546%2F9784274224546.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F4546%2F9784274224546.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16085666%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F19803391%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  >リファクタリング（第2版） 既存のコードを安全に改善する [ Martin Fowler 著 ]</a><br><span >価格：4840円（税込、送料無料)</span> <span style="color:#BBB">(2020/1/10時点)</span></p></td><tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td>
+    <td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F6121689%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F13224794%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=13224794&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F6839%2F9784798116839.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F6839%2F9784798116839.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F6121689%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F13224794%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  >レガシーコード改善ガイド 保守開発のためのリファクタリング （Object　oriented　selection） [ マイケル・C．フェザーズ ]</a><br><span >価格：4620円（税込、送料無料)</span> <span style="color:#BBB">(2020/1/10時点)</span></p></td><tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td>
+  </tr>
+</table>
+
+<h1 id="bloaters">Bloaters</h1>
+<p><a href="https://sourcemaking.com/refactoring/smells/bloaters">Bloaters（膨れ上がったコード）</a>：
+作業が困難になってしまうほど巨大になりすぎてしまったコード、メソッド、およびクラスのこと。
+通常、これらのCode Smellはすぐには現れず、プログラムに改修を積み重ねること（そして特に誰もそれらを根絶する努力をしないとき）で現れます。</p>
+<h2 id="longmethod">Long Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/long-method">Long Method（長すぎるメソッド）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+メソッドの行数が多すぎる状態。一般に、1メソッドの行数が10行を超える場合、短くすることができないかを考える必要があります。</p>
+<p><strong><em>問題の理由</em></strong>
+メソッドには常に何かしらの処理が追加され続けますが、処理が削除されるということはめったにありません。コードは読むよりも書く方が簡単なので、この Code Smell は、メソッドが異常なほど大きくなるまで気付かれないままです。
+精神的には、既存のメソッドに処理を追加するよりも新しいメソッドを作成する方が難しく感じられます。たった2行の処理を追加するためだけに新しいメソッドを1つ追加するのが難しい場合などです。このようにして既存のメソッドに追加されたコードがスパゲッティコードの始まりになります。</p>
+<p><strong><em>対処</em></strong>
+経験則として、メソッド内の何かにコメントする必要があると感じた場合、このコードをメソッド内から抽出して新しいメソッドを作成する必要があります。説明が必要な場合は、1行であっても別の方法に分割することができます。また、メソッドにわかりやすい名前が付けられている場合、コードを調べてその機能を確認する必要はありません。</p>
+<ul>
+<li><p>メソッド本体の長さを短くするには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を使用します。</p></li>
+<li><p>ローカル変数とパラメーターがメソッドの抽出に干渉する場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-temp-with-query">Replace Temp with Query</a>」、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-parameter-object">Introduce Parameter Object</a>」、または「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#preserve-whole-object">Preserve Whole Object</a>」を使用します。</p></li>
+<li><p>上記のレシピがどれも役に立たない場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-method-with-method-object">Replace Method with Method Object</a>」を適用してメソッド全体を別のオブジェクトに移動してみてください。</p></li>
+<li><p>条件演算子（3項演算子）とループは、コードを別のメソッドに移動できる良い手がかりです。3項演算子の場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#decompose-conditional">Decompose Conditional</a>」を使用します。ループが邪魔な場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を試してください。</p></li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>オブジェクト指向プログラミングにおいて、メソッドが短い方がそのクラスの寿命は長くなります。メソッドが長くなるとそれを理解することが難しくなり、メンテナンスも困難になります。</li>
+<li>さらに、メソッドが長くなるとコードの重複を発見するのが難しくなります。</li>
+</ul>
+<p><strong><em>Performance</em></strong>
+リファクタリングによってメソッドが増えることがあります。
+多くの人は、メソッドが増えると処理性能に影響があると主張します。しかしほとんどの場合、処理性能に与える影響はごくわずかです。
+さらに、明確で理解可能なコードが得られたので、コードが再構築され、必要に応じて実際のパフォーマンスを向上させるための真に効果的な方法を見つける可能性が高くなります。</p>
+<h2 id="largeclass">Large Class</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/large-class">Large Class（巨大なクラス）</a>：</p>
+<p><strong><em>兆候と症状</em></strong>
+多くのフィールド、メソッド、コード行数を持つクラス。</p>
+<p><strong><em>問題の理由</em></strong>
+通常、クラスは最初は小さいものから始まります。しかし、時間の経過と共にプログラムは成長し、肥大化していきます。
+Code Smell の一つである Long Method の場合もそうですが、プログラマーは通常、その機能の新しいクラスを作成するよりも、既存のクラスに新しい機能を配置する方が負担が少ないと考えます。</p>
+<p><strong><em>対処</em></strong>
+クラスがあまりにも多くの機能を持ってしまっている場合、それを分割することを考えてください。</p>
+<ul>
+<li>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-class">Extract Class</a>」は、大きなクラスの動作の一部を別のコンポーネントに分割できる場合に役立ちます。</li>
+<li>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-subclass">Extract Subclass</a>」は、大きなクラスの一部を異なる方法で実装できる場合や、まれに使用される場合に役立ちます。</li>
+<li>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-interface">Extract Interface</a>」は、利用可能な操作と動作のリストを保持する必要がある場合に役立ちます。</li>
+<li>大きなクラスがグラフィカルインターフェイスを担当している場合、そのデータと動作の一部を別のドメインオブジェクトに移動しようとする場合があります。その際、一部のデータのコピーを2か所に保存し、データの一貫性を保つ必要がある場合があります。「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-observed-data">Duplicate Observed Data</a>」はこれを行う方法を提供します。</li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>これらのクラスのリファクタリングにより、開発者はクラスの多数の属性を覚える必要がなくなります。</li>
+<li>多くの場合、大きなクラスをパーツに分割すると、コードと機能の重複を避けられます。</li>
+</ul>
+<h2 id="primitiveobsession">Primitive Obsession</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/primitive-obsession">Primitive Obsession（基本データ型への執着）</a>：</p>
+<p><strong><em>兆候と症状</em></strong></p>
+<ul>
+<li>単純なタスク（通貨、範囲、電話番号用の特別な文字列など）に小さなクラスを作る代わりにプリミティブ型（intやlongなど）を使用する。</li>
+<li>コーディング情報への定数の使用（管理者権限を持つユーザーを参照するための定数USER<em>ADMIN</em>ROLE = 1など）。</li>
+<li>データ配列で使用するフィールド名としての文字列定数の使用。</li>
+</ul>
+<p><strong><em>問題の理由</em></strong>
+他のほとんどのCode Smell同様、Primitive Obsessionは弱さの瞬間に生まれます。
+例えば、クラス内にプリミティブフィールドを作成するような行為です。プリミティブフィールドの作成は、新しいクラスを作成するよりもはるかに簡単です。フィールドが必要になるたびにプリミティブフィールドが追加されます。追加を繰り返した結果、クラスは巨大で扱いにくくなっていきます。</p>
+<p>プリミティブは、型に”似せる”ためにもよく使用されます。個別のデータ型の代わりに、いくつかのエンティティの許容値のリストを形成する一連の数値または文字列を定数で宣言します。これらの定数には、わかりやすい名前を付けることができます。これは広く普及してしまっているやり方です。</p>
+<p>プリミティブ型を使用した別の質の悪い例は、フィールドシミュレーションです。多様なデータの大規模な配列をクラスに含め、このデータを取得するための配列インデックスとして、クラスで指定した文字列定数が使用されます。</p>
+<p><strong><em>対処</em></strong>
+さまざまなプリミティブフィールドがある場合、それらのいくつかを論理的に独自のクラスにグループ化できる場合があります。さらに、このデータに関連付けられた振る舞いもそのクラスに移動するとより良いです。このタスクでは、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-data-value-with-object">Replace Data Value with Object</a>」を試してください。</p>
+<ul>
+<li><p>プリミティブフィールドの値がメソッド引数で使用されている場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-parameter-object">Introduce Parameter Object</a>」または「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#preserve-whole-object">Preserve Whole Object</a>」を試してみましょう。</p></li>
+<li><p>複雑なデータが変数でコーディングされている場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-type-code-with-class">Replace Type Code with Class</a>」, 「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-type-code-with-subclasses">Replace Type Code with Subclasses</a>」または「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-type-code-with-statestrategy">Replace Type Code with State/Strategy</a>」を試してみましょう。</p></li>
+<li><p>1つの配列に複数の型が含まれている場合は「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-array-with-object">Replace Array with Object</a>」を使用します。</p></li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>プリミティブの代わりにオブジェクトを使用することで、コードがより柔軟になります。</li>
+<li>コードが理解しやすくなり、プログラムの構成が改善されます。特定のデータに対する操作が分散せず、同じ場所にあります。定数の意味と、それらが配列内にある意図について推測する必要がなくなります。</li>
+<li>重複コードの発見が容易になります。</li>
+</ul>
+<h2 id="longparameterlist">Long Parameter List</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/long-parameter-list">Long Parameter List（長すぎるパラメータリスト）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+メソッドの3つまたは4つ以上のパラメーター。</p>
+<p><strong><em>問題の理由</em></strong>
+Long Parameter Listは、いくつかの種類のアルゴリズムが単一のメソッドに統合された後に発生する場合があります。実行されるアルゴリズムとその方法を制御するために、Long Parameter Listが作成されている場合があります。</p>
+<p>Long parameter listsは、クラスを互いに独立させる努力の副産物でもあります。たとえば、メソッドに必要な特定のオブジェクトを生成するコードをメソッド内部から呼び出し元に移動した場合、生成されたオブジェクトは引数としてメソッドに渡されます。これにより、元のクラスはオブジェクト間の関係を認識しなくなり、依存関係が減少します。ただし、このようなオブジェクトがいくつも作成された場合、各オブジェクトには独自のパラメーターが必要になります。つまり、パラメーターリストが長くなります。
+そのようなリストを理解することは難しく、それらが長くなるにつれて矛盾し、使いにくくなります。Long parameter listsの代わりに、メソッドは自オブジェクトのデータを使用できます。現在のオブジェクトに必要なデータがすべて含まれていない場合は、必要なデータを取得する別オブジェクトをメソッドパラメーターとして渡すことができます。</p>
+<p><strong><em>対処</em></strong>
+パラメーターに渡される値を確認します。引数の一部が別のオブジェクトのメソッド呼び出しの結果である場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-parameter-with-method-call">Replace Parameter with Method Call</a>」を使用します。このリファクタリングによって作成されたオブジェクトは、対象のクラスのフィールドに配置するか、メソッドパラメーターとして渡すことができます。</p>
+<ul>
+<li><p>別のオブジェクトから受け取ったデータのグループをパラメーターとして渡す代わりに、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#preserve-whole-object">Preserve Whole Object</a>」を使用して、オブジェクト自体をメソッドに渡します。</p></li>
+<li><p>関係のないデータ要素が複数ある場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-parameter-object">Introduce Parameter Object</a>」を介してそれらを単一のパラメータオブジェクトにマージできる場合があります。</p></li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>コードが読みやすく、短くなる。</li>
+<li>リファクタリングすることでコードの重複に気づくきっかけになる。</li>
+</ul>
+<h2 id="dataclumps">Data Clumps</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/data-clumps">Data Clumps（データの塊）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+同一の変数グループ（データベースに接続するためのパラメーターなど）がコードの異なる部分に散らばっている場合があります。このData Clumpsは、独自のクラスに変換する必要があります。</p>
+<p><strong><em>問題の理由</em></strong>
+多くの場合、これらのデータグループは、不十分なプログラム構造またはコピペプログラミングが原因です。
+一部のデータがData Clumpsであるかどうかを確認したい場合は、データ値の1つを削除し、他の値が依然として意味をなすかどうかを確認します。意味をなさなくなった場合は、その変数グループをオブジェクトにまとめる必要があることを示す良い兆候です。</p>
+<p><strong><em>対処</em></strong>
+繰り返しデータがクラスのフィールドで構成される場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-class">Extract Class</a>」を使用してフィールドを独自のクラスに移動します。
+メソッドのパラメーターで同じデータの塊が渡される場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-parameter-object">Introduce Parameter Object</a>」を使用してそれらをクラスとして設定します。
+一部のデータが他のメソッドに渡される場合、個々のフィールドだけではなく、データオブジェクト全体をメソッドに渡すことを検討してください。「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#preserve-whole-object">Preserve Whole Object</a>」がこれに役立ちます。
+これらのフィールドで使用されるコードを見てください。このコードをデータクラスに移動することをお勧めします。</p>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>ソースコードが理解しやすくなります。また、コードの構成が改善されます。特定のデータに対する操作は、コード全体で無計画に行われるのではなく、単一の場所に収集されるようになりました。</li>
+<li>コードのサイズを小さくすることができます。</li>
+</ul>
+<h1 id="objectorientationabusers">Object-Orientation Abusers</h1>
+<p><a href="https://sourcemaking.com/refactoring/smells/oo-abusers">Object-Orientation Abusers（オブジェクト指向の乱用）</a>
+オブジェクト指向プログラミングの原則を不完全、不正確に適用することで発生するCode Smellです。</p>
+<h2 id="switchstatements">Switch Statements</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/switch-statements">Switch Statements</a></p>
+<p><strong><em>兆候と症状</em></strong>
+複雑なswitch文またはif文の連続がこのCode Smellの兆候です。</p>
+<p><strong><em>問題の理由</em></strong>
+switch/case演算子の比較的まれな使用は、オブジェクト指向コードの特徴の1つです。多くの場合、同じようなswitch文はプログラム内のさまざまな場所に散在します。新しい条件が追加されたら、すべてのスイッチコードを見つけて変更する必要があります。
+経験則として、switch文が使われている場所ではポリモルフィズムを検討する必要があります。</p>
+<p><strong><em>対処</em></strong></p>
+<ul>
+<li><p>switch文を分離して適切なクラスに配置するには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」が必要になる場合があります。</p></li>
+<li><p>プログラムのランタイムモードが切り替えられるときなどにように、switch文がtype codeに基づいている場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-type-code-with-subclasses">Replace Type Code with Subclasses</a>」か、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-type-code-with-statestrategy">Replace Type Code with State/Strategy</a>」を使用します。</p></li>
+<li><p>継承構造を指定した後、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a>」を使用します。</p></li>
+<li><p>演算子にあまり多くの条件がなく、それらがすべて異なるパラメーターで同じメソッドを呼び出す場合、ポリモルフィズムはでは問題を解決できません。この場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-parameter-with-explicit-methods">Replace Parameter with Explicit Methods</a>」の手法でそのメソッドを複数の小さなメソッドに分割し、それに応じてswitch文を変更できます。</p></li>
+<li><p>条件オプションの1つがnullの場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-null-object">Introduce Null Object</a>」を使用します。</p></li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>ソースコードの構成を改善することができます。</li>
+</ul>
+<p><strong><em>When to Ignore</em></strong>
+以下のような場合はswitch文をリファクタリングする必要はありません。</p>
+<ul>
+<li>switch文がシンプルなものである場合。</li>
+<li>GoFのデザインパターンである <a href="https://sourcemaking.com/design_patterns/factory_method">Factory Method</a> や <a href="https://sourcemaking.com/design_patterns/abstract_factory">Abstract Factory</a> パターンを実装する場合。</li>
+</ul>
+<h2 id="temporaryfield">Temporary Field</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/temporary-field">Temporary Field</a></p>
+<p><strong><em>兆候と症状</em></strong>
+Temporary fieldsは、特定の状況下でのみ値を取得します（したがって、オブジェクトに必要です）。これらの状況以外では、それらは空です。</p>
+<p>※Temporary Fieldに関しては<a href="https://blog.ploeh.dk/2015/09/18/temporary-field-code-smell/">この記事</a>の方が私はわかりやすかったので、兆候と症状のところはこの記事をベースに書いてみます。</p>
+<pre><code class="java:Estimator language-java:Estimator">public class Estimator
+{
+    private readonly TimeSpan defaultEstimate;
+    private IReadOnlyCollection&lt;TimeSpan&gt; durations;
+    private TimeSpan average;
+    private TimeSpan standardDeviation;
+
+    public Estimator(TimeSpan defaultEstimate)
+    {
+        this.defaultEstimate = defaultEstimate;
+    }
+
+    public TimeSpan CalculateEstimate(
+        IReadOnlyCollection&lt;TimeSpan&gt; durations)
+    {
+        if (durations == null)
+            throw new ArgumentNullException(nameof(durations));
+
+        if (durations.Count == 0)
+            return this.defaultEstimate;
+
+        this.durations = durations;
+        this.CalculateAverage();
+        this.CalculateStandardDeviation();
+
+        var margin = TimeSpan.FromTicks(this.standardDeviation.Ticks * 3);
+        return this.average + margin;
+    }
+
+    private void CalculateAverage()
+    {
+        this.average =
+            TimeSpan.FromTicks(
+                (long)this.durations.Average(ts =&gt; ts.Ticks));
+    }
+
+    private void CalculateStandardDeviation()
+    {
+        var variance =
+            this.durations.Average(ts =&gt; 
+                Math.Pow(
+                    (ts - this.average).Ticks,
+                    2));
+        this.standardDeviation = 
+            TimeSpan.FromTicks((long)Math.Sqrt(variance));
+    }
+}
+</code></pre>
+<p>上記EstimatorクラスのCalculateEstimateメソッド内でdurationsというフィールドを使用してます。同時に、CalculateAverageメソッド内ではaverageを使用しており、CalculateStandardDeviationメソッド内ではstandardDeviationを使用しています。これらのメソッドはCalculateEstimateメソッドで呼ばれているため、CalculateEstimateは、明示的にdurationsを使用し、さらに暗黙的にaverage, standardDeviationフィールドも使用しています。
+averageとstandardDeviationはdurationsに依存しています。さらに、standardDeviationはaverageに依存しています。
+ここで、CalculateEstimateメソッド内の処理の順番を以下のように変更したらどうなるでしょうか？</p>
+<pre><code class="java:変更前 language-java:変更前">this.durations = durations;
+this.CalculateAverage();
+this.CalculateStandardDeviation();
+</code></pre>
+<pre><code class="java:変更後 language-java:変更後">this.durations = durations;
+this.CalculateStandardDeviation();
+this.CalculateAverage();
+</code></pre>
+<p>コンパイルは通ります。CalculateEstimateを実行してもExceptionは発生しません。しかし、想定外の結果になります。
+このコードは理解しにくいだけではなく、脆弱です（処理の順番を入れ替えただけで破綻します）。さらに、スレッドセーフでもありません。</p>
+<p><strong><em>問題の理由</em></strong>
+多くの場合、Temporary fieldsは、大量の入力を必要とするアルゴリズムで使用するために作成されます。そのため、プログラマーはメソッド内に多数のパラメーターを作成する代わりに、クラスの中にこのデータのフィールドを作成することにします。これらのフィールドはアルゴリズムでのみ使用され、それ以外では使用されません。
+この種のコードは理解するのが難しいです。オブジェクトフィールドにデータが表示されるはずですが、何らかの理由でほとんど常に空です。
+（フィールドに値を設定するメソッドが実行されるまではnullが設定されている）</p>
+<p><strong><em>対処</em></strong>
+Temporary fieldとそれらを操作するすべてのコードは、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-class">Extract Class</a>」を介して別のクラスに入れることができます。つまり、メソッドオブジェクトを作成して、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-method-with-method-object">Replace Method with Method Object</a>」を実施します。</p>
+<p>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-null-object">Introduce Null Object</a>」を導入し、Temporary fieldの値の存在を確認するために使用された条件コードをそこに統合します。</p>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>コードが明確になり、コードの構成が改善されます。</li>
+</ul>
+<h2 id="refusedbequest">Refused Bequest</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/refused-bequest">Refused Bequest（接続拒否）</a>：</p>
+<p><strong><em>兆候と症状</em></strong>
+サブクラスがその親から継承したメソッドとプロパティの一部のみを使用する場合、クラス階層は歪んでいます。不要なメソッドは単純に未使用になるか、再定義されて例外が発生します。</p>
+<p><strong><em>問題の理由</em></strong>
+コードを再利用したいというだけの理由でスーパークラスを作成した場合にこのCode Smellが発生します。スーパークラスとサブクラスの間には何の関連性もありません。</p>
+<p><strong><em>対処</em></strong>
+継承に意味がなく、サブクラスにスーパークラスとの共通点がまったくない場合は、継承を削除して、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-inheritance-with-delegation">Replace Inheritance with Delegation</a>」の技法を用います。
+継承が適切な場合は、サブクラスの不要なフィールドとメソッドを取り除きます。サブクラスに必要なすべてのフィールドとメソッドを親クラスから抽出し、それらを新しいサブクラスに入れ、両方のクラスをそれから継承するように設定します（<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-superclass">Extract Superclass</a>）。</p>
+<p>※参考：<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#リスコフの置換原則">リスコフの置換原則</a></p>
+<p><strong><em>効果</em></strong>
+コードが明確になり、クラス設計を改善します。
+DogクラスがChairクラスから継承される理由を不思議に思う必要はもうありません（両方とも4本の脚を持っていますが）。</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/671189a1-85a0-e46c-f297-058518bd8c93.png" alt="image.png" /></p>
+<h2 id="alternativeclasseswithdifferentinterfaces">Alternative Classes with Different Interfaces</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></p>
+<p><strong><em>兆候と症状</em></strong>
+異なるメソッド名を有する2つのクラスが同じ機能を実装しているような状況。</p>
+<p><strong><em>問題の理由</em></strong>
+一方のクラスを作成したプログラマは、機能的に同等のクラスが既に存在することをおそらく知らなかったでしょう。</p>
+<p><strong><em>対処</em></strong>
+各クラスの共通部分をインターフェースとして抽出してみてください：</p>
+<ul>
+<li>すべてのクラスでメソッド名が同じになるように「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#rename-method">Rename Method</a>」を適用します。</li>
+<li>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#add-parameter">Add Parameter</a>」、および「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#parameterize-method">Parameterize Method</a>」により、メソッドのシグネチャ（メソッド名、引数の数、引数の型、引数の順番）と実装を同じにします。</li>
+<li>クラスの機能の一部のみが重複している場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-superclass">Extract Superclass</a>」を使用してみてください。この場合、既存のクラスはサブクラスになります。</li>
+<li>使用するリファクタリング方法を決定して実装した後、クラスの1つを削除できる場合があります。</li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>不要な重複コードを排除することができます。</li>
+<li>コードの可読性が上がり、理解しやすくなります。まったく同じ機能を実現するクラスが2つある理由を推測する必要がなくなります。</li>
+</ul>
+<h1 id="changepreventers">Change Preventers</h1>
+<p><a href="https://sourcemaking.com/refactoring/smells/change-preventers">Change Preventers（変更を妨げるもの）</a>：
+これらのCode Smellは、コードのある場所で何かを変更すると、他の場所でも多くの変更を行う必要があることを意味します。
+プログラム開発ははるかに複雑になり、コストがかかるものになってしまいます。</p>
+<h2 id="divergentchange">Divergent Change</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/divergent-change">Divergent Change（変更の発散）</a></p>
+<p>※Divergent Changeは、<a href="https://sourcemaking.com/refactoring/smells/shotgun-surgery">Shotgun Surgery</a>という別のCode Smellと似ていますが、Divergent ChangeとShotgun Surgeryは真逆のものです。
+Divergent Changeは1つのクラスに多くの変更が加えられることです。Shotgun Surgeryは一つの変更が複数クラスに対して同時に行われることを指します。</p>
+<p><strong><em>兆候と症状</em></strong>
+クラスに変更を加えると、多くの無関係なメソッドを変更する必要があります。たとえば、新しい製品タイプを追加する場合、製品の検索、表示、注文の方法を変更する必要があります。</p>
+<p><strong><em>問題の理由</em></strong>
+このように修正箇所が発散する原因は、多くの場合、不十分なプログラム構造またはコピペプログラミングによるものです。</p>
+<p><strong><em>対処</em></strong></p>
+<ul>
+<li><p>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-class">Extract Class</a>」を使ってクラスの振る舞いを別クラスに分割します。</p></li>
+<li><p>異なるクラスが同じ振る舞いを持っている場合、継承を利用してクラスを統合します（「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-superclass">Extract Superclass</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-subclass">Extract Subclass</a>」）。</p></li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>コード構成の改善</li>
+<li>重複コードの削減</li>
+</ul>
+<h2 id="shotgunsurgery">Shotgun Surgery</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/shotgun-surgery">Shotgun Surgery（変更の分散）</a></p>
+<p>※Shotgun Surgeryは、<a href="https://sourcemaking.com/refactoring/smells/divergent-change">Divergent Change</a>という別のCode Smellと似ていますが、Shotgun SurgeryとDivergent Changeは真逆のものです。
+Divergent Changeは1つのクラスに多くの変更が加えられることです。Shotgun Surgeryは一つの変更が複数クラスに対して同時に行われることを指します。</p>
+<p><strong><em>兆候と症状</em></strong>
+変更を行う際、多くの異なるクラスに多くの小さな変更を加える必要がある場合。</p>
+<p><strong><em>問題の理由</em></strong>
+単一の責任が多数のクラスに分割されたことが原因です。これは、<a href="https://sourcemaking.com/refactoring/smells/divergent-change">Divergent Change</a>を熱心に適用した後に発生する可能性があります。</p>
+<p><strong><em>対処</em></strong>
+「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-field">Move Field</a>」を使用して、既存の様々なクラスに分散した振る舞いを、単一のクラスに移動します。これに適したクラスがない場合は、新しいクラスを作成してください。</p>
+<p>コードを同じクラスに移動して元のクラスをほとんど空のままにした場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inline-class">Inline Class</a>」を介してこれらの冗長なクラスを削除してみてください。</p>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>コード構成の改善</li>
+<li>コード重複の削減</li>
+<li>メンテナンス性の向上</li>
+</ul>
+<h2 id="parallelinheritancehierarchies">Parallel Inheritance Hierarchies</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/parallel-inheritance-hierarchies">Parallel Inheritance Hierarchies（パラレル継承）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+クラスのサブクラスを作成するたびに、別のクラスのサブクラスを作成する必要がある場合。</p>
+<p>※正直この説明だけだとどういう状況なのかがよくわからなかった。
+<a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Parallel_hierarchies_problem">このサイト</a>の方がわかりやすかったのでこちらをベースに訳してみました。</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/a4e5eb3d-44ee-4ed4-918e-b12ea0ce1c0b.png" alt="image.png" /></p>
+<p><a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Parallel_hierarchies_problem">このサイト</a>より抜粋</p>
+<p>どうやら似たような継承関係を持つクラスが複数あるような状況で、新たなクラスを追加するともう一方の方にもクラスを追加する必要があるような状況らしい。</p>
+<p>上の図で言うと、VehicleクラスがOperatorクラスを保有している（フィールドがある）ような状況で、Vehicleのサブクラスに新しいクラスを追加したいような場合にOperatorも追加しないといけないような状況のことを言っているらしい。</p>
+<p>対処法も違うやり方が掲載されているのでご紹介</p>
+<h4 id="deferidentificationofstatevariablespattern">Defer identification of state variables pattern</h4>
+<p><a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Defer_identification_of_state_variables_pattern">Defer identification of state variables pattern（状態変数の識別延期パターン）</a></p>
+<p>状態変数（図1でいうPoint）をサブクラスに識別させるパターン。
+（サブクラスでの定義をDefer identification：遅延識別と言っている）
+スーパークラスでアクセッサをabstractで定義しておいて、サブクラスでOverrideすることで、柔軟な設計ができるようになる。</p>
+<p><strong><em>【図1】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/9c77541a-fb0e-3936-bfa9-53140004f813.png" alt="image.png" />
+<a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Defer_identification_of_state_variables_pattern">このサイト</a>より抜粋</p>
+<p><strong><em>【図2】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/74cad662-fde8-17ae-49ee-5e44bc03bcb4.png" alt="image.png" />
+<a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Defer_identification_of_state_variables_pattern">このサイト</a>より抜粋</p>
+<h4 id="intelligentchildrenpattern">Intelligent children pattern</h4>
+<p><a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Intelligent_children_pattern">Intelligent children pattern</a></p>
+<p>Defer identification of state variables のより具体的な話。
+スーパークラス同士をコンポジットさせるのではなく、サブクラス同士をコンポジットさせるパターン。</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/fe4bd8f3-625f-75b6-db92-0c14e6274e8a.png" alt="image.png" />
+<a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Intelligent_children_pattern">このサイト</a>より抜粋</p>
+<p>スーパークラスにOperatorを返すアクセッサをAbstractで定義しておいて、サブクラスでOperatorのサブクラスを返すようにOverrideすることで実現する。</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/7a62f3f1-4e97-3734-148a-e4ef4203712e.png" alt="image.png" />
+<a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Intelligent_children_pattern">このサイト</a>より抜粋</p>
+<p><strong><em>問題の理由</em></strong>
+階層が小さければ問題は発生しにくいですが、新しいクラスが追加されると、変更を加えることがだんだん難しくなります。</p>
+<p><strong><em>対処</em></strong>
+※対処は<a href="https://sourcemaking.com/refactoring/smells/parallel-inheritance-hierarchies">元のサイト(sourcemaking)</a>を訳しています。
+上で紹介した「Intelligent children pattern」とは別の対処方法の話です。</p>
+<p>2つの手順でParallel Inheritance Hierarchiesを排除できます。まず、ある階層のインスタンスが別の階層のインスタンスを参照するようにします。次に、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-field">Move Field</a>」を使用して、参照先クラスの階層を削除します。</p>
+<p><strong><em>【リファクタリング前】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/229db98c-2fb6-2277-0c61-81f767ad4e0c.png" alt="image.png" />
+<a href="https://refactoring.guru/smells/parallel-inheritance-hierarchies">このサイト</a>より抜粋</p>
+<p><strong><em>【リファクタリング後】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/824b621c-d0d1-d8ae-2df4-b9c46118e5d5.png" alt="image.png" />
+<a href="https://refactoring.guru/smells/parallel-inheritance-hierarchies">このサイト</a>より抜粋</p>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>重複コードの排除</li>
+<li>コード構成の改善</li>
+</ul>
+<p><strong><em>When to Ignore</em></strong>
+Parallel Inheritance Hierarchiesは、プログラムアーキテクチャでさらに大きな混乱を避けるための方法の一つです。階層の重複を排除しようとしても醜いコードが生成される場合は、すべての変更を元に戻し、そのコードに慣れてください。</p>
+<h1 id="dispensables">Dispensables</h1>
+<p><a href="https://sourcemaking.com/refactoring/smells/dispensables">Dispensables</a>
+Dispensablesとは、コードをきれいで効率的で理解しやすくする上で必要のないもののことです。</p>
+<h2 id="comments">Comments</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/comments">Comments（コメント）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+メソッドが説明コメントで埋め尽くされている状態。</p>
+<p><strong><em>問題の理由</em></strong>
+コメントは通常、プログラム作成者が自分のコードが直感的でも明白でもないことに気付いたときに、それを改善する目的で記載されます。そのような場合、コメントは、改善されるべき臭いのするコードに消臭剤を撒いて臭いを隠すようなものです。</p>
+<p>もっともよいコメントはメソッドやクラスに良い名前を付けることです。</p>
+<p>コメントがないと理解できないようなソースコードは、コメントが不要になるようにコード構造を変更してみてください。</p>
+<p><strong><em>対処</em></strong></p>
+<ul>
+<li><p>コメントが複雑な式を説明することを目的としている場合、式は「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-variable">Extract Variable</a>」を使用して理解可能な部分式に分割する必要があります。</p></li>
+<li><p>コメントがコードのセクションを説明している場合、このセクションは「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を介して別メソッドとして抽出できます。新しいメソッドの名前はコメントを参考にしましょう。</p></li>
+<li><p>メソッドがすでに抽出されているが、メソッドが何をするのかを説明するためにコメントが必要な場合は、メソッド名をわかりやすいものにします。これには「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#rename-method">Rename Method</a>」を使用します。</p></li>
+<li><p>システムが機能するために必要な状態に関するルールをアサートする必要がある場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-assertion">Introduce Assertion</a>」を使用します。</p></li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>コードがより直感的で明確になります。</li>
+</ul>
+<p><strong><em>When to Ignore</em></strong>
+時としてコメントは有用なものです。</p>
+<ul>
+<li>特定の方法で実装されている理由を説明するとき。</li>
+<li>複雑なアルゴリズムを説明するとき（アルゴリズムを簡素化する他のすべての方法が試され、不足しているとき）。</li>
+</ul>
+<h2 id="duplicatecode">Duplicate Code</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/duplicate-code">Duplicate Code（重複コード）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+ほとんど同じようなコードが見られる場合</p>
+<p><strong><em>問題の理由</em></strong>
+通常、コードの重複は、複数のプログラマーが同じプログラムの異なる部分を同時に操作しているときに発生します。彼らはさまざまなタスクに取り組んでいるので、同僚が似たようなコードを既に書いていることに気付いていない可能性があります。</p>
+<p>コードの特定の部分が異なって見えるが実際には同じジョブを実行する場合のように、より微妙な重複もあります。このような重複は、見つけて修正するのが難しい場合があります。</p>
+<p>意図的に重複させている場合もあります。納期に追われているようなときで、既存のコードが”ほぼ正しく”要件を満たせる場合、初心者のプログラマーは、関連するコードをコピーして貼り付ける誘惑に抵抗できないかもしれません。また、場合によっては、単にプログラマーが整理するのをさぼるようなこともあります。</p>
+<p><strong><em>対処</em></strong>
+同じクラスの2つ以上のメソッドで重複コードが見つかった場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を使用して新しいメソッドを作成し、両方の場所でその新しいメソッドを呼び出します。</p>
+<ul>
+<li><p>2つの同階層のサブクラスで重複コードを見つけた場合：</p></li>
+<li><p>両方のクラスに「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を用いて、抽出したメソッドに対して「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#pull-up-field">Pull Up Field</a>」で使用されているフィールドを抽出します。</p></li>
+<li><p>重複コードがコンストラクタの内部に存在する場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#pull-up-constructor-body">Pull Up Constructor Body</a>」を適用します。</p></li>
+<li><p>重複コードが似ているが完全には一致しない場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#form-template-method">Form Template Method</a>」を適用します。</p></li>
+<li><p>2つのメソッドが同じことを別のアルゴリズムで実現している場合、最適なアルゴリズムを選択し、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#substitute-algorithm">Substitute Algorithm</a>」を適用します。</p></li>
+<li><p>重複コードが異なる二つのクラスで見つかった場合：</p></li>
+<li><p>対象のクラスが階層の一部ではない場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-superclass">Extract Superclass</a>」を適用して新しいスーパークラスを一つ作り、そのスーパークラスに重複コードを持たせます。</p></li>
+<li><p>スーパークラスを作るのが難しい場合は、一方のクラスから「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-class">Extract Class</a>」を使用してクラスを抽出し、もう一方のクラスは抽出したコンポーネントを使用します。</p></li>
+<li><p>多数の条件式が存在し、同じコードを実行する（条件のみが異なる）場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#consolidate-conditional-expression">Consolidate Conditional Expression</a>」を使用してこれらの演算子を単一の条件にマージし、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を使用して、条件を簡単な別のメソッドに配置し、分かりやすいメソッド名を付けます。</p></li>
+<li><p>条件式のすべての分岐で同じコードが実行される場合：「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#consolidate-duplicate-conditional-fragments">Consolidate Duplicate Conditional Fragments</a>」を使用して、条件ツリーの外側に同じコードを配置します。</p></li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>重複コードをマージすることでコードの構造が簡潔になり、コードを短くすることができる。</li>
+<li>簡潔さ＋短さ＝単純化が容易で、サポートが安価なコード。</li>
+</ul>
+<h2 id="lazyclass">Lazy Class</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/lazy-class">Lazy Class（怠け者クラス）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+クラスを理解して維持するには、常に時間とコストがかかります。したがって、時間とコストをかける価値のないクラスは削除する必要があります。</p>
+<p><strong><em>問題の理由</em></strong>
+おそらく、最初のうちはクラスはちゃんと機能するように設計されていました。しかし、いくつかのリファクタリングの後、クラスは途方もなく小さくなりました。</p>
+<p>あるいは、決して成し遂げられなかった将来の開発作業をサポートするために設計されたのかもしれません。</p>
+<p><strong><em>対処</em></strong>
+ほとんど役に立たないコンポーネントには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inline-class">Inline Class</a>」を行う必要があります。
+関数が少ないサブクラスの場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#collapse-hierarchy">Collapse Hierarchy</a>」を試してください。</p>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>コードサイズを小さくすることができる。</li>
+<li>メンテナンス性の向上。</li>
+</ul>
+<h2 id="dataclass">Data Class</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/data-class">Data Class（データクラス）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+データクラスは、フィールドとそれらへのアクセッサメソッド(getter/setter)のみを含むクラスを指します。これらは、他のクラスで使用される単なるデータのコンテナです。これらのクラスには追加機能は含まれておらず、所有するデータを独立して操作することはできません。</p>
+<p><strong><em>問題の理由</em></strong>
+新しく作成されたクラスに含まれるパブリックフィールドの数が少ないことは普通のことです（getter/setterが少数の場合もあります）。しかし、オブジェクトの真の力は、オブジェクト内のデータに動作タイプや操作を含めることができることです。</p>
+<p><strong><em>対処</em></strong></p>
+<ul>
+<li><p>クラスにパブリックフィールドが含まれる場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#encapsulate-field">Encapsulate Field</a>」を使用して直接アクセスできないようにし、getter/setterを介してのみデータにアクセスできるようにしましょう。</p></li>
+<li><p>コレクション（配列など）に格納されているデータには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#encapsulate-collection">Encapsulate Collection</a>」を使用します。</p></li>
+<li><p>データクラスを使用しているクライアントコードを確認します。その中に、データクラス自体に配置されるべき機能があった場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を使用して、その機能をデータクラスに移行します。</p></li>
+</ul>
+<p>よく考え抜かれたメソッドでクラスがいっぱいになったら、クラスデータへの過度に広範なアクセスを可能にするデータアクセスの古いメソッドを削除することができます。これには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#remove-setting-method">Remove Setting Method</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#hide-method">Hide Method</a>」が役立つ場合があります。</p>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>コードが理解しやすくなり、構成が改善されます。特定のデータに対する操作は、コード全体で無計画に行われるのではなく、単一の場所に収集されるようになりますた。</li>
+<li>クライアントコードの重複を見つけるのに役立ちます。</li>
+</ul>
+<h2 id="deadcode">Dead Code</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/dead-code">Dead Code（到達不能コード）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+使用されない変数、パラメーター、フィールド、メソッド、またはクラス。</p>
+<p><strong><em>問題の理由</em></strong>
+ソフトウェアの要件が変更されたり、修正が加えられたりすると、古いコードをクリーンアップする時間がありませんでした。
+このようなコードは、分岐の1つが（エラーまたは他の状況により）到達不能になったときに、複雑な条件で見つかる可能性もあります。</p>
+<p><strong><em>対処</em></strong>
+Dead Codeを見つける最も簡単な方法は、優れたIDEを使用することです。
+未使用のコードや不要なファイルを削除します。
+クラスが不要な場合で、サブクラスまたはスーパークラスは使用される場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inline-class">Inline Class</a>」または「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#collapse-hierarchy">Collapse Hierarchy</a>」を適用できます。
+不要なパラメーターを削除するには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#remove-parameter">Remove Parameter</a>」を使用します。</p>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>コードサイズの削減</li>
+</ul>
+<h2 id="speculativegenerality">Speculative Generality</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/speculative-generality">Speculative Generality</a></p>
+<p><strong><em>兆候と症状</em></strong>
+未使用のクラス、メソッド、フィールド、またはパラメーターの存在。</p>
+<p><strong><em>問題の理由</em></strong>
+実装されない将来の機能をサポートするために、念のためにコードが作成されることがあります。その結果、コードの理解とサポートが難しくなります。</p>
+<p><strong><em>対処</em></strong>
+使用されていない抽象クラスを削除するには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#collapse-hierarchy">Collapse Hierarchy</a>」を試してください。</p>
+<ul>
+<li>不要な委譲処理は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inline-class">Inline Class</a>」を介して排除しましょう。</li>
+<li>未使用のメソッドは「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inline-method">Inline Method</a>」を使用して取り除きます。</li>
+<li>使用されていないパラメーターを持つメソッドは、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#remove-parameter">Remove Parameter</a>」の助けを借りて見てください。</li>
+<li>未使用のフィールドは単純に削除できます。</li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>コードがスリムになります。</li>
+</ul>
+<p><strong><em>When to Ignore</em></strong>
+フレームワークを開発している場合、フレームワークのユーザーがその機能を必要とする限り、フレームワーク自体で使用されていない機能を作成することは非常に合理的です。
+要素を削除する前に、それらがテストクラスで使用されていないことも確認してください。これは、テストクラスが対象クラスから内部情報を取得したり、テスト関連の特別なアクションの実行に必要な場合に発生します。</p>
+<h1 id="couplers">Couplers</h1>
+<p>このグループのすべてのCode Smellは、クラス同士の結合度が高くなったり、結合を<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>に置き換え過ぎた場合に何が起こるかを示しています。</p>
+<h2 id="featureenvy">Feature Envy</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/feature-envy">Feature Envy（機能の横恋慕）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+自クラス内のデータよりも、別オブジェクトのデータに頻繁にアクセスするメソッド。</p>
+<p><strong><em>問題の理由</em></strong>
+このCode Smellは、フィールドがデータクラスに移動された後に発生する場合があります。この場合、データの操作もこのクラスに移動できます。</p>
+<p><strong><em>対処</em></strong>
+基本的なルールとして、同時に変化するようなものは同じ場所に保管する必要があります。通常、データとこのデータを使用する機能は一緒に変更されます（ただし、例外はあります）。</p>
+<ul>
+<li>メソッドを明らかに別の場所に移動する必要がある場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」を使用します。</li>
+<li>メソッドの一部のみが別オブジェクトのデータにアクセスする場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を使用して問題の部分を移動します。</li>
+<li>メソッドが他のいくつかのクラスの機能を使用する場合、まず、最も頻繁に使用するデータがどのクラスのものなのかを判別します。次に、判別したクラスにそのメソッドを移動します。または、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を使用して、メソッドを複数の部分に分割し、異なるクラスの異なる場所に配置します。</li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>重複コードの削減（データを操作するコードが適切な場所に配置されていれば）</li>
+<li>コード構成の改善（データを処理するメソッドがデータの近くに配置されていれば）</li>
+</ul>
+<p><strong><em>When to Ignore</em></strong>
+動作は、データを保持するクラスとそれに関連する振る舞いを意図的に分離している場合があります。こうすることで、動作を動的に変更できるという利点が得られます。
+詳細は<a href="https://sourcemaking.com/design_patterns/strategy">Strategy Design Pattern</a>や<a href="https://sourcemaking.com/design_patterns/visitor">Visitor Design Pattern</a>、および他のデザインパターンを参照してください。</p>
+<h2 id="inappropriateintimacy">Inappropriate Intimacy</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/inappropriate-intimacy">Inappropriate Intimacy（不適切な関係）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+別のクラスの内部フィールドとメソッドを使用するクラス。</p>
+<p><strong><em>問題の理由</em></strong>
+一緒に行動することが多いクラスに注意してください。優れたクラスは、お互いのことをできる限り知らないようにする必要があります。このようなクラスは、保守と再利用が簡単です。</p>
+<p><strong><em>対処</em></strong>
+最も簡単な解決策は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-field">Move Field</a>」を使用して、クラスの一部を、それを使用しているクラスに移動することです。しかし、これは移動前のクラスが本当にその部品を必要としない場合にのみ機能します。</p>
+<ul>
+<li>別の解決策は、クラスに「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-class">Extract Class</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#hide-delegate">Hide Delegate</a>」を適用して、コードの関係を適切にすることです。</li>
+<li>クラスが相互に依存している場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#change-bidirectional-association-to-unidirectional">Change Bidirectional Association to Unidirectional</a>」を適用する必要があります。</li>
+<li>この”親密性”がサブクラスとスーパークラスの間にある場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-delegation-with-inheritance">Replace Delegation with Inheritance</a>」を検討してください。</li>
+</ul>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>コード構成の改善</li>
+<li>コードの保守性を再利用性の向上</li>
+</ul>
+<h2 id="messagechains">Message Chains</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/message-chains">Message Chains（メッセージの連鎖）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+<code>$ a-&gt; b（）-&gt; c（）-&gt; d（）</code>というような一連のメソッド呼び出し</p>
+<p><strong><em>問題の理由</em></strong>
+Message Chainsは、クライアントが別のオブジェクトを要求し、そのオブジェクトがさらに別のオブジェクトを要求したときなどに発生します。このような関係の変更には、クライアントの変更が必要です。</p>
+<p><strong><em>対処</em></strong>
+Message Chainsを削除するには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#hide-delegate">Hide Delegate</a>」を使用します。</p>
+<p>Message Chainsの終端のオブジェクトが使用されている理由を考える方が良い場合があります。おそらく、この機能に「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を使用し、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」を使用してチェーンの先頭に移動するのが理にかなっています。</p>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>クラス間の依存関係を減らすことができます。</li>
+<li>コードのバルクを削減できます。</li>
+</ul>
+<p><strong><em>When to Ignore</em></strong>
+<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#hide-delegate">Hide Delegate</a>しすぎた結果、実際に処理が行われる場所の確認が難しくなることがあります。言い方を変えると、Middle ManのCode Smellも避けてください。</p>
+<h2 id="middleman">Middle Man</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/middle-man">Middle Man（仲介人）</a></p>
+<p><strong><em>兆候と症状</em></strong>
+他クラスのメソッドを呼び出すだけのクラスがあるとしたら、そのクラスの存在意義は何でしょうか？</p>
+<p><strong><em>問題の理由</em></strong>
+このCode Smellは、別のCode SmellであるMessage Chainsを熱心に排除した結果である可能性があります。</p>
+<p>別の可能性としては、クラスの有用な処理が他のクラスに徐々に移動された結果である可能性があります。クラスは、<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>以外の処理を行わない抜け殻として残存しています。</p>
+<p><strong><em>対処</em></strong>
+クラスのメソッドが行っていることのほとんどが別のクラスへの処理の<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>である場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#remove-middle-man">Remove Middle Man</a>」を行いましょう。</p>
+<p><strong><em>効果</em></strong></p>
+<ul>
+<li>Less bulky code.</li>
+</ul>
+<h2 id="incompletelibraryclass">Incomplete Library Class</h2>
+<p><a href="https://sourcemaking.com/refactoring/smells/incomplete-library-class">Incomplete Library Class</a></p>
+<p><strong><em>兆候と症状</em></strong>
+遅かれ早かれ、<a href="https://en.wikipedia.org/wiki/Library_(computing)">Library</a>はユーザーのニーズを満たすことをやめます。ライブラリは読み取り専用であるため、問題の唯一の解決策であるライブラリの変更は、多くの場合不可能です。</p>
+<p><strong><em>問題の理由</em></strong>
+ライブラリの作成者は、必要な機能を提供していないか、それらの実装を拒否しています。</p>
+<p><strong><em>対処</em></strong></p>
+<ul>
+<li>ライブラリクラスにメソッドを導入するには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-foreign-method">Introduce Foreign Method</a>」を使用します。</li>
+<li>クラスライブラリの大きな変更には、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-local-extension">Introduce Local Extension</a>」を使用します。</li>
+</ul>
+<p><strong><em>効果</em></strong>
+コードの重複を削減します（独自のライブラリをゼロから作成する代わりに、既存のライブラリを流用できます）。</p>
+<p><strong><em>When to Ignore</em></strong>
+ライブラリコードが変更された場合、拡張ライブラリに対して追加の作業が発生する可能性があります。</p>
+<h1 id="">関連するリファクタリング技法</h1>
+<h1 id="composingmethods">Composing Methods</h1>
+<p><a href="https://sourcemaking.com/refactoring/composing-methods">Composing Methods</a></p>
+<h2 id="extractmethod">Extract Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/extract-method">Extract Method</a>
+まとまった処理をメソッドとして切り出すこと。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-method">Long Method</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#comments">Comments</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#feature-envy">Feature Envy</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#message-chains">Message Chains</a></li>
+</ul>
+<h2 id="inlinemethod">Inline Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/inline-method">Inline Method</a></p>
+<p>メソッドがメソッドを呼び出すような関係になっていてそれが可読性を阻害しているようであればメソッドのインライン化を検討しましょう。</p>
+<pre><code class="java:リファクタリング前 language-java:リファクタリング前">class PizzaDelivery {
+  // ...
+  int getRating() {
+    return moreThanFiveLateDeliveries() ? 2 : 1;
+  }
+  boolean moreThanFiveLateDeliveries() {
+    return numberOfLateDeliveries &gt; 5;
+  }
+}
+</code></pre>
+<pre><code class="java:リファクタリング後 language-java:リファクタリング後">class PizzaDelivery {
+  // ...
+  int getRating() {
+    return numberOfLateDeliveries &gt; 5 ? 2 : 1;
+  }
+}
+</code></pre>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#speculative-generality">Speculative Generality</a></li>
+</ul>
+<h2 id="extractvariable">Extract Variable</h2>
+<p><a href="https://sourcemaking.com/refactoring/extract-variable">Extract Variable</a>
+複雑で理解が難しい処理がある場合、処理を細かく分割し、わかりやすい変数名を付けるようにしましょう。</p>
+<pre><code class="java:リファクタリング前 language-java:リファクタリング前">void renderBanner() {
+  if ((platform.toUpperCase().indexOf("MAC") &gt; -1) &amp;&amp;
+       (browser.toUpperCase().indexOf("IE") &gt; -1) &amp;&amp;
+        wasInitialized() &amp;&amp; resize &gt; 0 )
+  {
+    // do something
+  }
+}
+</code></pre>
+<pre><code class="java:リファクタリング後 language-java:リファクタリング後">void renderBanner() {
+  final boolean isMacOs = platform.toUpperCase().indexOf("MAC") &gt; -1;
+  final boolean isIE = browser.toUpperCase().indexOf("IE") &gt; -1;
+  final boolean wasResized = resize &gt; 0;
+
+  if (isMacOs &amp;&amp; isIE &amp;&amp; wasInitialized() &amp;&amp; wasResized) {
+    // do something
+  }
+}
+</code></pre>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#comments">Comments</a></li>
+</ul>
+<h2 id="inlinetemp">Inline Temp</h2>
+<p><a href="https://sourcemaking.com/refactoring/inline-temp">Inline Temp</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="replacetempwithquery">Replace Temp with Query</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-temp-with-query">Replace Temp with Query</a>
+変数の初期化を別のメソッドとして切り出すこと。
+わかりやすいメソッド名をつけることで、変数の意図を明確にできます。また、コードの重複を排除できる。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-method">Long Method</a></li>
+</ul>
+<h2 id="splittemporaryvariable">Split Temporary Variable</h2>
+<p><a href="https://sourcemaking.com/refactoring/split-temporary-variable">Split Temporary Variable</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="removeassignmentstoparameters">Remove Assignments to Parameters</h2>
+<p><a href="https://sourcemaking.com/refactoring/remove-assignments-to-parameters">Remove Assignments to Parameters</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="replacemethodwithmethodobject">Replace Method with Method Object</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-method-with-method-object">Replace Method with Method Object</a>
+関連する変数と処理をクラスとして抽出すること。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-method">Long Method</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#temporary-field">Temporary Field</a></li>
+</ul>
+<h2 id="substitutealgorithm">Substitute Algorithm</h2>
+<p><a href="https://sourcemaking.com/refactoring/substitute-algorithm">Substitute Algorithm（アルゴリズムの置き換え）</a>
+メソッドのシグニチャは変えずに本体となるアルゴリズムを新しいものに置き換えましょう。</p>
+<pre><code class="java:リファクタリング前 language-java:リファクタリング前">String foundPerson(String[] people){
+  for (int i = 0; i &lt; people.length; i++) {
+    if (people[i].equals("Don")){
+      return "Don";
+    }
+    if (people[i].equals("John")){
+      return "John";
+    }
+    if (people[i].equals("Kent")){
+      return "Kent";
+    }
+  }
+  return "";
+}
+</code></pre>
+<pre><code class="java:リファクタリング後 language-java:リファクタリング後">String foundPerson(String[] people){
+  List candidates =
+    Arrays.asList(new String[] {"Don", "John", "Kent"});
+  for (int i=0; i &lt; people.length; i++) {
+    if (candidates.contains(people[i])) {
+      return people[i];
+    }
+  }
+  return "";
+}
+</code></pre>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
+</ul>
+<h1 id="movingfeaturesbetweenobjects">Moving Features between Objects</h1>
+<p><a href="https://sourcemaking.com/refactoring/moving-features-between-objects">Moving Features between Objects</a></p>
+<h2 id="movemethod">Move Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/move-method">Move Method</a>
+あるクラス内のメソッドが自クラスよりも他クラスから呼び出されることの方が多い場合、そのメソッドを最も使用頻度が高いクラスに移動しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#shotgun-surgery">Shotgun Surgery</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#parallel-inheritance-hierarchies">Parallel Inheritance Hierarchies</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#feature-envy">Feature Envy</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#message-chains">Message Chains</a></li>
+</ul>
+<h2 id="movefield">Move Field</h2>
+<p><a href="https://sourcemaking.com/refactoring/move-field">Move Field</a>
+クラス内のフィールドが自クラスよりも他クラスから使われることが多い場合、そのフィールドを使用頻度が高いクラスに移動し、参照先を移動先クラスに変更しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#shotgun-surgery">Shotgun Surgery</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#parallel-inheritance-hierarchies">Parallel Inheritance Hierarchies</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+</ul>
+<h2 id="extractclass">Extract Class</h2>
+<p><a href="https://sourcemaking.com/refactoring/extract-class">Extract Class</a>
+1つのクラスに複数の責任を持たせるとコードが複雑になることがあります。その場合は、新しいクラスを作成し、関連する機能を担当するフィールドとメソッドをその中に配置します。</p>
+<p>このリファクタリング方法は、<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#単一責任の原則">単一責任の原則</a>を守るのに役立ちます。<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#単一責任の原則">単一責任の原則</a>を守ることでクラスはより明確で理解しやすいものになります。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#large-class">Large Class</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-clumps">Data Clumps</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#temporary-field">Temporary Field</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#divergent-change">Divergent Change</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+</ul>
+<h2 id="inlineclass">Inline Class</h2>
+<p><a href="https://sourcemaking.com/refactoring/inline-class">Inline Class</a></p>
+<p>ほとんど何もせず、何の責任もなく、責任が追加される計画もないようなクラスは、その機能を既存の適切なクラスに移動しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#shotgun-surgery">Shotgun Surgery</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#lazy-class">Lazy Class</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#dead-code">Dead Code</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#speculative-generality">Speculative Generality</a></li>
+</ul>
+<h2 id="hidedelegate">Hide Delegate</h2>
+<p><a href="https://sourcemaking.com/refactoring/hide-delegate">Hide Delegate</a></p>
+<p>オブジェクトAを介してオブジェクトBを取得したのち、オブジェクトBのメソッドを呼び出しているような場合、クラスAに新しいメソッドを追加し、そのメソッドがオブジェクトBのメソッドを呼び出すような形にしましょう（＝<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>）。こうすることで、クライアントはオブジェクトBの詳細について知る必要がなくなり、依存性を排除できます。</p>
+<p>AとBは下の図でいうと、</p>
+<ul>
+<li>A：Person</li>
+<li>B：Department</li>
+</ul>
+<p><strong><em>【リファクタリング前】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/59e434cf-9746-f932-9181-11ca4b54bad1.png" alt="image.png" />
+<a href="https://sourcemaking.com/refactoring/hide-delegate">このページ</a>より抜粋</p>
+<p><strong><em>【リファクタリング後】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/dba6fe95-9808-9108-bb7c-22b5a8e9203e.png" alt="image.png" />
+<a href="https://sourcemaking.com/refactoring/hide-delegate">このページ</a>より抜粋</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#message-chains">Message Chains</a></li>
+</ul>
+<h2 id="removemiddleman">Remove Middle Man</h2>
+<p><a href="https://sourcemaking.com/refactoring/remove-middle-man">Remove Middle Man</a>
+多くのメソッドが行っていることが他クラスへの処理の委譲である場合、それらのメソッドを削除し、クライアントクラスから直接、委譲先のメソッドを呼び出すようにしましょう。</p>
+<p><strong><em>【リファクタリング前】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/aa7abfe7-9c8b-d6cf-576d-b91da060c4d9.png" alt="image.png" />
+<a href="https://sourcemaking.com/refactoring/remove-middle-man">このページ</a>より抜粋</p>
+<p><strong><em>【リファクタリング後】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/d63364a1-925b-226e-5e73-e31983ccaf93.png" alt="image.png" />
+<a href="https://sourcemaking.com/refactoring/remove-middle-man">このページ</a>より抜粋</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#middle-man">Middle Man</a></li>
+</ul>
+<h2 id="introduceforeignmethod">Introduce Foreign Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/introduce-foreign-method">Introduce Foreign Method</a></p>
+<p>ライブラリ内のユーティリティクラスには必要なメソッドが含まれておらず、そのクラスにはメソッドを追加することもできません。
+その場合、クライアントクラスにメソッドを追加し、ユーティリティクラスのオブジェクトを引数として渡します。</p>
+<pre><code class="java:リファクタリング前 language-java:リファクタリング前">class Report {
+  // ...
+  void sendReport() {
+    Date nextDay = new Date(previousEnd.getYear(),
+      previousEnd.getMonth(), previousEnd.getDate() + 1);
+    // ...
+  }
+}
+</code></pre>
+<pre><code class="java:リファクタリング後 language-java:リファクタリング後">class Report {
+  // ...
+  void sendReport() {
+    Date newStart = nextDay(previousEnd);
+    // ...
+  }
+  private static Date nextDay(Date arg) {
+    return new Date(arg.getYear(), arg.getMonth(), arg.getDate() + 1);
+  }
+}
+</code></pre>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#incomplete-library-class">Incomplete Library Class</a></li>
+</ul>
+<h2 id="introducelocalextension">Introduce Local Extension</h2>
+<p><a href="https://sourcemaking.com/refactoring/introduce-local-extension">Introduce Local Extension</a></p>
+<p>ライブラリのユーティリティクラスには、必要なメソッドが含まれていません。ただし、これらのメソッドをクラスに追加することはできません。
+メソッドを含む新しいクラスを作成し、それをユーティリティクラスの子またはラッパーにします。</p>
+<p><strong><em>【リファクタリング前】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/768b4d68-20fb-68bd-3529-3a8d418308da.png" alt="image.png" /></p>
+<p><strong><em>【リファクタリング後】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/3941be8f-1392-3500-f30a-bd7c006ae430.png" alt="image.png" /></p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#incomplete-library-class">Incomplete Library Class</a></li>
+</ul>
+<h1 id="organizingdata">Organizing Data</h1>
+<p><a href="https://sourcemaking.com/refactoring/organizing-data">Organizing Data</a></p>
+<h2 id="selfencapsulatefield">Self Encapsulate Field</h2>
+<p><a href="https://sourcemaking.com/refactoring/self-encapsulate-field">Self Encapsulate Field</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="replacedatavaluewithobject">Replace Data Value with Object</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-data-value-with-object">Replace Data Value with Object</a>
+プリミティブ型で定義されたデータフィールドとその振る舞いを別の新しいクラスとして切り出し、それを元のクラスに保有させます。</p>
+<p>※参考：ValueObject
+Replace Data Value with Objectを理解するためにDDDのValueObjectが参考になると思ったので、ValueObjectを解説しているサイトのリンクを張っておきます。</p>
+<ul>
+<li><a href="https://qiita.com/little_hand_s/items/f8c0d0858c895afed7e2">DDD基礎解説：エンティティ、バリューオブジェクトってなんなんだ</a></li>
+<li><a href="https://qiita.com/okuramasafumi/items/03ef332704cf6a2350f8">バリューオブジェクトの私的まとめ</a></li>
+<li><a href="https://qiita.com/ikemo/items/8df668b3efd38026a416">オブジェクト指向の理解にはValue Objectを作る習慣から</a></li>
+</ul>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+</ul>
+<h2 id="changevaluetoreference">Change Value to Reference</h2>
+<p><a href="https://sourcemaking.com/refactoring/change-value-to-reference">Change Value to Reference</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="changereferencetovalue">Change Reference to Value</h2>
+<p><a href="https://sourcemaking.com/refactoring/change-reference-to-value">Change Reference to Value</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="replacearraywithobject">Replace Array with Object</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-array-with-object">Replace Array with Object</a>：</p>
+<p>様々なデータ型が1つの配列に含まれている場合、配列をオブジェクトに変換し、型が異なるデータは別のフィールドに持たせましょう。</p>
+<pre><code class="java:リファクタリング前 language-java:リファクタリング前">String[] row = new String[2];
+row[0] = "Liverpool";
+row[1] = "15";
+</code></pre>
+<pre><code class="java:リファクタリング後 language-java:リファクタリング後">Performance row = new Performance();
+row.setName("Liverpool");
+row.setWins("15");
+</code></pre>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+</ul>
+<h2 id="duplicateobserveddata">Duplicate Observed Data</h2>
+<p><a href="https://sourcemaking.com/refactoring/duplicate-observed-data">Duplicate Observed Data</a>
+GUIを担当するクラスにドメイン（＝業務）に関するデータが含まれているような場合、データを別のクラスに分離し、ドメインクラスとGUI間の接続と同期を確保することをお勧めします。
+こうすることで、プレゼンテーションレイヤーとビジネスロジックを分離することができ、プログラムを理解しやすくすることができます。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#large-class">Large Class</a></li>
+</ul>
+<h2 id="changeunidirectionalassociationtobidirectional">Change Unidirectional Association to Bidirectional</h2>
+<p><a href="https://sourcemaking.com/refactoring/change-unidirectional-association-to-bidirectional">Change Unidirectional Association to Bidirectional</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="changebidirectionalassociationtounidirectional">Change Bidirectional Association to Unidirectional</h2>
+<p><a href="https://sourcemaking.com/refactoring/change-bidirectional-association-to-unidirectional">Change Bidirectional Association to Unidirectional</a>
+クラス同士が相互に依存しているが、一方のクラスは他方の機能を使用していない場合、未使用の関連を削除します。</p>
+<p><strong><em>【リファクタリング前】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/16483fda-edb9-1851-943e-793d418ea182.png" alt="image.png" />
+<a href="https://sourcemaking.com/refactoring/change-bidirectional-association-to-unidirectional">このページ</a>より抜粋</p>
+<p><strong><em>【リファクタリング後】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/b75b634f-3b4f-fb15-1fd2-9fadc342ca66.png" alt="image.png" />
+<a href="https://sourcemaking.com/refactoring/change-bidirectional-association-to-unidirectional">このページ</a>より抜粋</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+</ul>
+<h2 id="replacemagicnumberwithsymbolicconstant">Replace Magic Number with Symbolic Constant</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-magic-number-with-symbolic-constant">Replace Magic Number with Symbolic Constant</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="encapsulatefield">Encapsulate Field</h2>
+<p><a href="https://sourcemaking.com/refactoring/encapsulate-field">Encapsulate Field</a>
+publicなフィールドはprivateに変更してsetter/getterからのアクセスのみを許可するようにしましょう。
+カプセル化はオブジェクト指向の基本です。
+データに対して必要な処理（値のチェックなど）をsetter/getterに任せることで、データを利用する側ではその正当性を意識する必要がなくなります。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
+</ul>
+<h2 id="encapsulatecollection">Encapsulate Collection</h2>
+<p><a href="https://sourcemaking.com/refactoring/encapsulate-collection">Encapsulate Collection</a>
+ListやSetなどのようなCollectionをカプセル化する場合、getterはread onlyなオブジェクトを返すようにしましょう。
+また、Collectionに要素を追加するためのaddメソッドやdeleteメソッドを用意しましょう。</p>
+<p>※なぜこんなことをする必要があるのかわからない人はimmutableという概念について知っておきましょう。参考になりそうなサイトのリンクを下に張っておきます。</p>
+<p><a href="https://sourcemaking.com/refactoring/encapsulate-collection">このページ</a>では、immutableにするためにgetCourcesメソッドはUnmodifiableSetをreturnしています。UnmodifiableSetにaddやdeleteメソッドで要素を追加・削除しようとすると、実行時エラー（UnsuportedOperationException）になります。</p>
+<p><a href="https://www.amazon.co.jp/dp/4621303252">Effective Java</a> という本の中では、<a href="https://hageyahhoo.hatenablog.com/entry/20090911/1252638495">defensive copy</a>というやり方が紹介されています。
+これは、上で紹介したUnmodifiableSetをreturnするのではなく、以下のようにして、参照先の異なるオブジェクトをreturnする手法です。
+これであれば、呼び出し元でaddやdeleteメソッドを呼び出すことが可能であり、かつ、オブジェクトの参照先が異なるので元データに影響を与えることもありません。</p>
+<pre><code class="java:Sample.java language-java:Sample.java">class Test {
+    private Set&lt;String&gt; setTest = new HashSet&lt;&gt;();
+    public Set getCources() {
+        return new Set(setTest);
+    }
+}
+</code></pre>
+<p>【immutableの参考】</p>
+<ul>
+<li><a href="https://techblog.imagemagic.jp/2018/07/09/immutable%E3%81%A8%E3%81%84%E3%81%86%E6%A6%82%E5%BF%B5%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">Immutableという概念について</a></li>
+<li><a href="https://hageyahhoo.hatenablog.com/entry/20090910/1252572314">immutable object</a></li>
+<li><a href="https://hageyahhoo.hatenablog.com/entry/20090911/1252638495">defensive copy</a></li>
+</ul>
+<p>ちなみに、Javaでimmutable objectの一番身近な例はStringです。</p>
+<ul>
+<li><a href="https://qiita.com/makotoo2/items/fc3a617882916f9775f5">ミュータブルな型とイミュータブルな型の相違を知ろう</a></li>
+</ul>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
+</ul>
+<h2 id="replacetypecodewithclass">Replace Type Code with Class</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-type-code-with-class">Replace Type Code with Class</a>
+クラスにType Code（※）が含まれていて、かつそれがプログラムの振る舞いに何も影響を与えないのであれば、それをクラスとして切り出し、それを値として使うのではなくオブジェクトとして扱いましょう。
+（Enumを使うときれいにはまりそうですね）</p>
+<p>※Type Codeについて
+Type Codeは個別のデータ型ではありません。エンティティに登録できる値が一連の数字または文字列に制限されているような場合に発生します。多くの場合、これらの特定の数字と文字列には定数を介してわかりやすい名前が付けられています。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+</ul>
+<h2 id="replacetypecodewithsubclasses">Replace Type Code with Subclasses</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-type-code-with-subclasses">Replace Type Code with Subclasses</a>
+プログラムの振る舞いに直接影響を与えるType Codeが存在する場合、各値をサブクラスとして切り出し、関連する振る舞いをサブクラスに移動します。そして、条件分岐などでコントロールしていた部分をポリモルフィズムで実現するように書き換えましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
+</ul>
+<h2 id="replacetypecodewithstatestrategy">Replace Type Code with State/Strategy</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-type-code-with-state-strategy">Replace Type Code with State/Strategy</a>
+クラスの中にType Codeがあり、それがプログラムの振る舞いに影響を与えるような場合で、サブクラスとして切り出すのが難しい場合、Type Codeを状態を表すオブジェクト(state object)に置き換えます。フィールドの値をType Codeに置き換える必要がある場合、別の状態オブジェクトをクラスに注入します。</p>
+<p>※GoFのデザインパターンのStateパターンの話だと理解しました。
+参考</p>
+<ul>
+<li><a href="http://www.ie.u-ryukyu.ac.jp/~e085739/java.it.21.html">State パターン (状態を表すオブジェクトを用意し, 内包するその状態オブジェクトを切り替えることにより, 処理内容 (振る舞い) を変えられるようにする)</a></li>
+</ul>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
+</ul>
+<h2 id="replacesubclasswithfields">Replace Subclass with Fields</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-subclass-with-fields">Replace Subclass with Fields</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h1 id="simplifyingconditionalexpressions">Simplifying Conditional Expressions</h1>
+<p><a href="https://sourcemaking.com/refactoring/simplifying-conditional-expressions">Simplifying Conditional Expressions</a></p>
+<h2 id="decomposeconditional">Decompose Conditional</h2>
+<p><a href="https://sourcemaking.com/refactoring/decompose-conditional">Decompose Conditional（条件文の分解）</a>
+複雑な分岐条件をメソッドとして切り出すこと。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-method">Long Method</a></li>
+</ul>
+<h2 id="consolidateconditionalexpression">Consolidate Conditional Expression</h2>
+<p><a href="https://sourcemaking.com/refactoring/consolidate-conditional-expression">Consolidate Conditional Expression</a>
+複数の異なる条件分岐で同じ結果を返すような処理は一つの条件に統合しましょう。</p>
+<pre><code class="java:リファクタリング前 language-java:リファクタリング前">double disabilityAmount() {
+  if (seniority &lt; 2) {
+    return 0;
+  }
+  if (monthsDisabled &gt; 12) {
+    return 0;
+  }
+  if (isPartTime) {
+    return 0;
+  }
+}
+</code></pre>
+<pre><code class="java:リファクタリング後 language-java:リファクタリング後">double disabilityAmount() {
+  if (isNotEligableForDisability()) {
+    return 0;
+  }
+}
+</code></pre>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
+</ul>
+<h2 id="consolidateduplicateconditionalfragments">Consolidate Duplicate Conditional Fragments</h2>
+<p><a href="https://sourcemaking.com/refactoring/consolidate-duplicate-conditional-fragments">Consolidate Duplicate Conditional Fragments</a>
+条件分岐内で重複コードが存在する場合はその処理を条件分岐の外に配置しましょう。</p>
+<pre><code class="java:リファクタリング前 language-java:リファクタリング前">if (isSpecialDeal()) {
+  total = price * 0.95;
+  send();
+}
+else {
+  total = price * 0.98;
+  send();
+}
+</code></pre>
+<pre><code class="java:リファクタリング後 language-java:リファクタリング後">if (isSpecialDeal()) {
+  total = price * 0.95;
+}
+else {
+  total = price * 0.98;
+}
+send();
+</code></pre>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
+</ul>
+<h2 id="removecontrolflag">Remove Control Flag</h2>
+<p><a href="https://sourcemaking.com/refactoring/remove-control-flag">Remove Control Flag</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="replacenestedconditionalwithguardclauses">Replace Nested Conditional with Guard Clauses</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-nested-conditional-with-guard-clauses">Replace Nested Conditional with Guard Clauses</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="replaceconditionalwithpolymorphism">Replace Conditional with Polymorphism</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a>
+switch文で条件を指定しながら処理を振り分けるような処理は、処理に対応するサブクラスを作成して呼び出し元はポリモルフィズムで実現することを検討しましょう（※）。</p>
+<p>※Effective Java で”戦略enumパターン”という名前で紹介されていた技法も参考になると思われるので、それに関する記事をご紹介</p>
+<ul>
+<li><a href="https://amachang.hatenablog.com/entry/20100225/1267114471">Effective Java 読書会 8 日目 「それ enum で出来るよ」</a>
+　⇒「switch 文の代わりに固有メソッド」と「戦略 enum」のところ</li>
+<li><a href="https://qiita.com/jver/items/f3485f4fd9c47625d7a4">Effective Java：Enum編</a></li>
+</ul>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
+</ul>
+<h2 id="introducenullobject">Introduce Null Object</h2>
+<p><a href="https://sourcemaking.com/refactoring/introduce-null-object">Introduce Null Object</a>
+あるメソッドがnullを返すようなことがある場合、呼び出し元でnullチェックを行う必要があります。
+nullの代わりにデフォルトの振る舞いを実装したオブジェクトを返すことを検討しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#temporary-field">Temporary Field</a></li>
+</ul>
+<h2 id="introduceassertion">Introduce Assertion</h2>
+<p><a href="https://sourcemaking.com/refactoring/introduce-assertion">Introduce Assertion</a>
+コードが正しく動作するのに必要な前提条件がある場合、assert()を使用して事前チェックするようにしましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#comments">Comments</a></li>
+</ul>
+<h1 id="simplifyingmethodcalls">Simplifying Method Calls</h1>
+<p><a href="https://sourcemaking.com/refactoring/simplifying-method-calls">Simplifying Method Calls</a></p>
+<h2 id="renamemethod">Rename Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/rename-method">Rename Method</a>
+どのような処理を行ってくれるのかがわかるようなメソッド名を付けるように心がけましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#comments">Comments</a></li>
+</ul>
+<h2 id="addparameter">Add Parameter</h2>
+<p><a href="https://sourcemaking.com/refactoring/add-parameter">Add Parameter</a>
+処理を行うのに必要なデータが足りない場合は引数で渡すようにしましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
+</ul>
+<h2 id="removeparameter">Remove Parameter</h2>
+<p><a href="https://sourcemaking.com/refactoring/remove-parameter">Remove Parameter</a>
+メソッド本体で使われていないようなパラメータは削除しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#dead-code">Dead Code</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#speculative-generality">Speculative Generality</a></li>
+</ul>
+<h2 id="separatequeryfrommodifier">Separate Query from Modifier</h2>
+<p><a href="https://sourcemaking.com/refactoring/separate-query-from-modifier">Separate Query from Modifier</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="parameterizemethod">Parameterize Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/parameterize-method">Parameterize Method</a>
+似たような処理を行うメソッドが複数存在するような場合はメソッドの統合を検討しましょう。
+例えば、5%値を上昇させるメソッドと、10%値を上昇させる2つのメソッドが存在する場合、上昇させる値（ここでは5や10）を引数で受け取る一つのメソッドに統合する場合がこれに当たります。</p>
+<p><strong><em>【リファクタリング前】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/c91c1c66-7882-c7dd-b5cf-149230823c5c.png" alt="image.png" />
+<a href="https://sourcemaking.com/refactoring/parameterize-method">このページ</a>より抜粋</p>
+<p><strong><em>【リファクタリング後】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/ad230dc7-b0e0-a7a6-d1fd-cfa58c4f1236.png" alt="image.png" />
+<a href="https://sourcemaking.com/refactoring/parameterize-method">このページ</a>より抜粋</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
+</ul>
+<h2 id="replaceparameterwithexplicitmethods">Replace Parameter with Explicit Methods</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-parameter-with-explicit-methods">Replace Parameter with Explicit Methods</a>
+メソッド内が複数の処理に分割され、各処理は条件に応じて実行されるような場合、各処理を行うメソッドを作り、それを呼び出すことを検討しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
+</ul>
+<h2 id="preservewholeobject">Preserve Whole Object</h2>
+<p><a href="https://sourcemaking.com/refactoring/preserve-whole-object">Preserve Whole Object</a>
+メソッドの引数をばらばらに渡すのではなく、一つのオブジェクトにまとめて渡す。
+引数となるオブジェクトにわかりやすい名前を付けることでコードが読みやすくなる。
+また、引数が増えた場合でも、オブジェクトにデータを追加するだけでよくなり、呼び出し側の影響を少なくすることができる。</p>
+<pre><code class="java:リファクタリング前 language-java:リファクタリング前">int low = daysTempRange.getLow();
+int high = daysTempRange.getHigh();
+boolean withinPlan = plan.withinRange(low, high);
+</code></pre>
+<pre><code class="java:リファクタリング後 language-java:リファクタリング後">boolean withinPlan = plan.withinRange(daysTempRange);
+</code></pre>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-method">Long Method</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-parameter-list">Long Parameter List</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-clumps">Data Clumps</a></li>
+</ul>
+<h2 id="replaceparameterwithmethodcall">Replace Parameter with Method Call</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-parameter-with-method-call">Replace Parameter with Method Call</a>
+引数として値を渡す際、事前に何かしらの処理が必要なのであれば、引数ではなくメソッドの中で処理してしまうことで引数を減らすことを検討しましょう。</p>
+<pre><code class="java:リファクタリング前 language-java:リファクタリング前">int basePrice = quantity * itemPrice;
+double seasonDiscount = this.getSeasonalDiscount();
+double fees = this.getFees();
+double finalPrice = discountedPrice(basePrice, seasonDiscount, fees);
+</code></pre>
+<pre><code class="java:リファクタリング後 language-java:リファクタリング後">int basePrice = quantity * itemPrice;
+double finalPrice = discountedPrice(basePrice);
+</code></pre>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-parameter-list">Long Parameter List</a></li>
+</ul>
+<h2 id="introduceparameterobject">Introduce Parameter Object</h2>
+<p><a href="https://sourcemaking.com/refactoring/introduce-parameter-object">Introduce Parameter Object</a>
+パラメータオブジェクトの導入。
+関連する値を1つのオブジェクトにまとめることでコードが読みやすくする。
+開始日時と終了日時を期間というクラスにまとめるなど。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-method">Long Method</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-parameter-list">Long Parameter List</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-clumps">Data Clumps</a></li>
+</ul>
+<h2 id="removesettingmethod">Remove Setting Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/remove-setting-method">Remove Setting Method</a></p>
+<p>データクラス内のデータがインスタンス生成時にのみ設定される場合、setterは必要ないので削除しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
+</ul>
+<h2 id="hidemethod">Hide Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/hide-method">Hide Method</a></p>
+<p>自クラス内やサブクラスでのみ使用され、他クラスからは使用されないメソッドの可視性はprivateかprotectedにしましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
+</ul>
+<h2 id="replaceconstructorwithfactorymethod">Replace Constructor with Factory Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-constructor-with-factory-method">Replace Constructor with Factory Method</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="replaceerrorcodewithexception">Replace Error Code with Exception</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-error-code-with-exception">Replace Error Code with Exception</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="replaceexceptionwithtest">Replace Exception with Test</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-exception-with-test">Replace Exception with Test</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h1 id="dealingwithgeneralisation">Dealing with Generalisation</h1>
+<p><a href="https://sourcemaking.com/refactoring/dealing-with-generalisation">Dealing with Generalisation</a></p>
+<h2 id="pullupfield">Pull Up Field</h2>
+<p><a href="https://sourcemaking.com/refactoring/pull-up-field">Pull Up Field</a>
+2つのクラスに同じフィールドが存在する場合はそのフィールドをスーパークラスに移動しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
+</ul>
+<h2 id="pullupmethod">Pull Up Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/pull-up-method">Pull Up Method</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="pullupconstructorbody">Pull Up Constructor Body</h2>
+<p><a href="https://sourcemaking.com/refactoring/pull-up-constructor-body">Pull Up Constructor Body</a>
+ほとんど同一のコードがコンストラクタに存在する場合、スーパークラスにコンストラクタを定義してサブクラスの重複コードをスーパークラスに移動し、サブクラスのコンストラクタからスーパークラスのコンストラクタを呼び出すようにしましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
+</ul>
+<h2 id="pushdownmethod">Push Down Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/push-down-method">Push Down Method</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="pushdownfield">Push Down Field</h2>
+<p><a href="https://sourcemaking.com/refactoring/push-down-field">Push Down Field</a>
+※関連するCode Smellがなかったためリンクのみ。</p>
+<h2 id="extractsubclass">Extract Subclass</h2>
+<p><a href="https://sourcemaking.com/refactoring/extract-subclass">Extract Subclass</a></p>
+<p>特定の場合にのみ使用される機能がクラスにある場合、サブクラスを作成してその機能を使用します。</p>
+<p>注意すべき点として、サブクラスを作ることが必ずしもコードの複雑性を回避する手段になるとは限りません。継承は使いどころを間違えると大変なことになるのでコンポジションを使うべきところと明確に分けて考えましょう。</p>
+<p>※継承とコンポジションの違いについてはこの辺が参考になると思います。</p>
+<ul>
+<li><a href="http://4geek.net/difference-between-inheritance-and-composition/">継承とコンポジションをどう使い分けるか</a></li>
+<li><a href="https://qiita.com/mikamikuh@github/items/1cdcd8b25a2e23f10525">Effective Java 16章「継承よりコンポジションを選ぶ」</a></li>
+<li><a href="https://www.thekingsmuseum.info/entry/2015/09/16/003849">【Effective Java】項目１６：継承よりコンポジションを選ぶ</a></li>
+<li><a href="https://postd.cc/why-composition-is-often-better-than-inheritance/">クラスの「継承」より「合成」がよい理由とは？ゲーム開発におけるコードのフレキシビリティと可読性の向上</a></li>
+</ul>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#large-class">Large Class</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#divergent-change">Divergent Change</a></li>
+</ul>
+<h2 id="extractsuperclass">Extract Superclass</h2>
+<p><a href="https://sourcemaking.com/refactoring/extract-superclass">Extract Superclass</a>
+2つのクラスの共通部分（フィールドやメソッド）をスーパークラスとして再定義しましょう。</p>
+<p>※継承は必ずしも最適解ではありません。使いどころを間違えるとクラス設計がいびつなものになってしまいます。
+先の項目にも書いた継承を使うべきか<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>を使うべきかをきちんと判断した上で継承を使うようにしましょう。</p>
+<p>・・・例えば、ゲームのスーパーマリオに出てくるファイアーマリオを実装する場合、普通のマリオをスーパークラスにしてファイアーマリオをそのサブクラスとして実装するのはおそらく違和感ないです。ファイヤーマリオの実装はおそらく「火を吐く」という部分だけを実装すれば済むでしょう。
+しかし、クッパを普通のマリオやファイアーマリオのサブクラスとして実装するのはおそらく後々厄介なことになります。
+確かにクッパはジャンプをするし、火も吐くのでマリオとの共通部分が多く、もしかしたらマリオを継承することで実装を減らせるかもしれません。
+しかし、マリオの実装を変えるとクッパの振る舞いに影響を与えかねません。
+スーパークラスとサブクラスは結びつきが強いため、実装を変更するとお互いの振る舞いに影響を与えることがあります。本当に継承を使うのが適切なのかを考えてから継承を使うようにしましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#refused-bequest">Refused Bequest</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#divergent-change">Divergent Change</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
+</ul>
+<h2 id="extractinterface">Extract Interface</h2>
+<p><a href="https://sourcemaking.com/refactoring/extract-interface">Extract Interface</a></p>
+<p>リンク先の英語をほぼ理解できなかったのですが、、、雰囲気的に以下のようなことを言っていると思いました。</p>
+<p>この技法はコードの重複を排除するようなものではありません。
+状況によって役割・振る舞いが違う場合にこの技法は有用です。
+（例えば、DB接続する機能があったとして、ローカル環境ではStub、結合テスト環境では実際にDB接続するクラスとして振舞ってほしいような状況のことを言っているのかなと想像しました）</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#large-class">Large Class</a></li>
+</ul>
+<h2 id="collapsehierarchy">Collapse Hierarchy</h2>
+<p><a href="https://sourcemaking.com/refactoring/collapse-hierarchy">Collapse Hierarchy</a>
+サブクラスとスーパークラスにほとんど差がないようであればスーパークラスに統合しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#lazy-class">Lazy Class</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#dead-code">Dead Code</a></li>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#speculative-generality">Speculative Generality</a></li>
+</ul>
+<h2 id="formtemplatemethod">Form Template Method</h2>
+<p><a href="https://sourcemaking.com/refactoring/form-template-method">Form Template Method</a>
+サブクラスに似たようなステップ、順序で実行するアルゴリズムが実装されている場合、アルゴリズムの構造および同一ステップをスーパークラスに移動し、異なるステップの実装をサブクラスから排除します。</p>
+<p><strong><em>【リファクタリング前】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/f7cbb09d-398f-072d-c55c-086bbab95a37.png" width=60% />
+<a href="https://sourcemaking.com/refactoring/form-template-method">このページ</a>より抜粋</p>
+<p><strong><em>【リファクタリング後】</em></strong>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/000a19e2-8c2d-e213-afb9-5cfc9c4cf91b.png" width=60% />
+<a href="https://sourcemaking.com/refactoring/form-template-method">このページ</a>より抜粋</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
+</ul>
+<h2 id="replaceinheritancewithdelegation">Replace Inheritance with Delegation</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-inheritance-with-delegation">Replace Inheritance with Delegation</a>
+スーパークラスの一部しか使っていないようなサブクラスがある場合、（あるいは、スーパークラスのデータをサブクラスに引き継ぐのが不適切な場合）
+サブクラスとして定義したクラスをスーパークラスのフィールドとして定義し、サブクラスのメソッドをスーパークラスに<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>しましょう。さらに、継承関係を排除しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#refused-bequest">Refused Bequest</a></li>
+</ul>
+<h2 id="replacedelegationwithinheritance">Replace Delegation with Inheritance</h2>
+<p><a href="https://sourcemaking.com/refactoring/replace-delegation-with-inheritance">Replace Delegation with Inheritance</a>
+他クラスのメソッドを呼び出すだけのシンプルなメソッド（<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>）を多く実装しているような場合、委譲を継承に置き換えることを検討しましょう。</p>
+<p><strong><em>関連するCode Smell</em></strong></p>
+<ul>
+<li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+</ul>
+<h1 id="-1">予備知識</h1>
+<h2 id="delegate">委譲(delegate)</h2>
+<p>委譲と継承の違いはこれを見ればわかると思います。</p>
+<ul>
+<li><a href="https://tomosoft.jp/design/?p=3444">Javaによる委譲によるクラス継承とAdapterパターン例</a>
+　⇒「委譲によるクラス継承とは」のところ</li>
+</ul>
+<p>※余談：転送と委譲について
+正確に言うと、上で紹介したサイトで委譲と言っているのは厳密には「転送」と言います。コンポジット＋転送です。でも世の中のほとんどの人はこの「転送」を委譲(delegate)と呼んでいます。</p>
+<p>参考：</p>
+<ul>
+<li><a href="https://qiita.com/jesus_isao/items/4b6b7846ccf5eb46b1bc">プログラマーを惑わせる３種類の委譲(委譲・Delegation／転送・Forwarding／.NET Delegates)</a></li>
+</ul>
+<h3 id="-2">その他の委譲の参考</h3>
+<ul>
+<li><a href="https://codezine.jp/article/detail/3710">【第5回】委譲</a></li>
+<li><a href="https://gihyo.jp/dev/serial/01/practical-programming-with-processing/0017">第17回　継承と委譲</a></li>
+<li><a href="https://qiita.com/tonluqclml/items/c0110098722763caa556">君の継承の使い方は間違っている</a></li>
+</ul>
+<h2 id="-3">単一責任の原則</h2>
+<p><a href="https://qiita.com/gomi_ningen/items/02c42e2487d035f9c3c8">単一責任の原則（SRP）</a></p>
+<h2 id="-4">リスコフの置換原則</h2>
+<p>親子関係にあるクラス構造において、親が実現できていることは子でも必ず実現されてなければならない。という原則。</p>
+<p>参考</p>
+<ul>
+<li><a href="https://nagise.hatenablog.jp/entry/20171203/1512307671">Java Generics Hell - リスコフの置換原則</a></li>
+<li><a href="http://marupeke296.com/OOD_No7_LiskovSubstitutionPrinciple.html">その７ 親の決まりを子が破っちゃいけない原則 ： LSP</a></li>
+<li><a href="https://qiita.com/yuu341/items/1a45048950f3b5b76bdc">リスコフの置換原則とその違反を実例を踏まえて解説</a></li>
+<li><a href="https://note.com/erukiti/n/n88b8ed99f1e1">よくわかるSOLID原則3: L（リスコフの置換原則）</a></li>
+<li><a href="https://ja.wikipedia.org/wiki/%E3%83%AA%E3%82%B9%E3%82%B3%E3%83%95%E3%81%AE%E7%BD%AE%E6%8F%9B%E5%8E%9F%E5%89%87">リスコフの置換原則</a></li>
+</ul>
+<h1 id="codesmell-1">その他Code Smellに関する参考</h1>
+<ul>
+<li><a href="https://so-zou.jp/software/tech/programming/tech/refactoring/code-smell.htm">コードの臭い - リファクタリングの必要性を示す兆候</a></li>
+</ul>
