@@ -1,26 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア,Java,リファクタリング,Code Smell">
+  
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/print.css" media="print">
+  
+    <title>とあるITエンジニアの知識整理</title>
+    <script src="js/openclose.js"></script>
+  
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <style>
+      .menu1 a {background-position: -10px -10px;}
+      .menu2 a {background-position: -10px -130px;}
+      .menu3 a {background-position: -10px -250px;}
+      .menu4 a {background-position: -10px -370px;}
+      .menu5 a {background-position: -10px -490px;}
+    </style>
+    <![endif]-->
+  </head>
 
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
-<meta name="copyright" content="Copyright XSERVER Inc." />
-<meta name="robots" content="noindex,nofollow,noarchive" />
-<title>とあるITエンジニアの知識整理</title>
-<link rel="stylesheet" href="../../style.css">
-
-</head>
 <body>
 
 <div id="base">
   <div id="container">
   <!-- /header -->
     <dl id="contents"> 
-      <dt>同一生成元ポリシー(SOP：Same-Origin Policy)</dt>
+      <dt>オリジン間リソース共有(CORS：Cross-Origin Resource Sharing)</dt>
       <dd>
         <p>
         工事中...<br>
@@ -40,12 +57,60 @@
           facebookの「いいね」を設置できるのもCORSのおかげです。<br>
         </dd>
         <dt style="padding-left:1em">
+          Access-Control-Allow-Origin
+        </dt>
+        <dd>
+          Webサーバーが明示的にクロスオリジンを許可する場合には、レスポンスにAccess-Control-Allow-Originヘッダを付加します。<br>
+          その際、「Access-Control-Allow-Origin:*」と記載すると、攻撃者のサイトを含むすべてのサイトにクロスオリジンが許可されます。<br>
+          XMLHttpRequest(XHR)を使用するとクロスオリジンリクエストが可能になります。これは、JavaScriptを使用してサーバと通信するAPIの一種です。<br>
+          基本的にXMLHttpRequestでは、同一生成元ポリシによってクロスオリジンリクエストが制限されます。<br>
+          しかし、XMLHttpRequest Level 2ではクロスオリジンリクエストが可能になりました。<br>
+          現在使われているWebブラウザの殆どはXMLHttpRequest Level 2を実装しています。（参考書1 P266-267）<br>
+          <p>プロキシサーバーを経由して情報を持ち出す流れ</p>
+          上記を利用すると、不正なサイトが社内Webサーバーから情報を取得することが可能となってしまいます。<br>
+          その際の流れは以下のようになっています。<br>
+          <img src="CORS_pathproxy.png" width=70%>
+          <p>
+            (1)社内のWebブラウザが、攻撃者のサイトにアクセスしてHTTPリクエストを送信します。<br>
+          </p>
+          <p>
+            (2)攻撃者のサイトには、不正なJavaScriptが置かれています。JavaScriptには、XMLHttpRequest(XHR)を使って、Webブラウザに社内Webサーバを攻撃させるコードが書かれています。<br>
+            攻撃コードには、社内Webサーバでbashの脆弱性を突いて実効させるOSコマンドが記載されています。<br>
+          </p>
+          <p>
+            (3)Webブラウザ上で不正なJavaScriptが実行されると、bashの脆弱性を突く攻撃コードが、社内WebサーバにHTTPリクエストとして送信されます。<br>
+          <p>
+            (4)社内WebサーバのCGIを利用したWebアプリケーションは、HTTPリクエストを受け取ってbashを呼び出します。<br>
+            その呼び出し時に、攻撃者が指定したOSコマンドが実行されます。<br>
+          </p>
+          <p>
+            (5)攻撃者が指定したOSコマンドには、社内Webサーバの情報を集めるコマンドと、集めた情報をプロキシ経由で攻撃者のサイトに送るコマンドが書かれています。<br>
+            それらが社内Webサーバ上で実行され、情報が持ち出されます。<br>
+          </p>
+          <dt style="padding-left:2em">
+            攻撃が成立する条件
+          </dt>
+          <dd>
+            条件１<br>
+            攻撃者が社内Webサーバのアドレスを知ることができ、その情報を(2)の攻撃コードに組込むことができること<br>
+          </dd>
+          <dd>
+            条件２<br>
+            社内Webサーバにおいて、CGIを利用したWebアプリケーションプログラムが、bashを呼び出すこと<br>
+          </dd>
+          <dd>
+            条件３<br>
+            (4)のHTTPレスポンスヘッダとしてAccess-Control-Allow-Originが付加されていること<br>
+          </dd>
+          <p>
+        </dd>
+        <dt style="padding-left:1em">
           参考サイト
         </dt>
         <dd>
           1. <a href="https://www.w3.org/TR/cors/" target="_blank">Cross-Origin Resource Sharing</a><br>
           2. <a href="http://www.tohoho-web.com/ex/cors.html" target="_blank">CORS(Cross-Origin Resource Sharing)</a><br>
-          3. <a href="http://www.tohoho-web.com/ex/same-origin-policy.html" target="_blank">同一生成元ポリシー(Same-Origin Policy)</a><br>
+          3. <a href="https://at-virtual.net/securecoding/access-control-allow-originはどれほど脆弱なのか脆弱なcors設定して/" target="_blank">オリジン間リソース共有 (CORS)</a><br>
           4. <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank">Cross-origin resource sharing</a><br>
         <dt style="padding-left:1em">
           参考書
