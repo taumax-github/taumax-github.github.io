@@ -1,7 +1,4 @@
-<hr />
-<p>title: Code Smell とリファクタリング技法について調べてみた
-tags: codesmell リファクタリング
-</p>
+<title>Code Smell とリファクタリング技法について調べてみた</title>
 <h1 id="codesmell">Code Smellとは？</h1>
 <p>以前（2019年8月頃）、CSD (Certified Scrum Developer) 研修を受講しました。非常にためになる研修で、その研修の中でCode Smellというものについて学びました。
 Code Smellとは、ソースコードにリファクタリングすべき問題が存在することを示す何らかの兆候のことです。
@@ -69,10 +66,10 @@ Code Smell の一つである Long Method の場合もそうですが、プロ�
 <p><strong><em>対処</em></strong>
 クラスがあまりにも多くの機能を持ってしまっている場合、それを分割することを考えてください。</p>
 <ul>
-<li>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-class">Extract Class</a>」は、大きなクラスの動作の一部を別のコンポーネントに分割できる場合に役立ちます。</li>
-<li>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-subclass">Extract Subclass</a>」は、大きなクラスの一部を異なる方法で実装できる場合や、まれに使用される場合に役立ちます。</li>
-<li>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-interface">Extract Interface</a>」は、利用可能な操作と動作のリストを保持する必要がある場合に役立ちます。</li>
-<li>大きなクラスがグラフィカルインターフェイスを担当している場合、そのデータと動作の一部を別のドメインオブジェクトに移動しようとする場合があります。その際、一部のデータのコピーを2か所に保存し、データの一貫性を保つ必要がある場合があります。「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-observed-data">Duplicate Observed Data</a>」はこれを行う方法を提供します。</li>
+  <li>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-class">Extract Class</a>」は、大きなクラスの動作の一部を別のコンポーネントに分割できる場合に役立ちます。</li>
+  <li>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-subclass">Extract Subclass</a>」は、大きなクラスの一部を異なる方法で実装できる場合や、まれに使用される場合に役立ちます。</li>
+  <li>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-interface">Extract Interface</a>」は、利用可能な操作と動作のリストを保持する必要がある場合に役立ちます。</li>
+  <li>大きなクラスがグラフィカルインターフェイスを担当している場合、そのデータと動作の一部を別のドメインオブジェクトに移動しようとする場合があります。その際、一部のデータのコピーを2か所に保存し、データの一貫性を保つ必要がある場合があります。「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-observed-data">Duplicate Observed Data</a>」はこれを行う方法を提供します。</li>
 </ul>
 <p><strong><em>効果</em></strong></p>
 <ul>
@@ -174,26 +171,25 @@ switch/case演算子の比較的まれな使用は、オブジェクト指向コ
 <p><strong><em>兆候と症状</em></strong>
 Temporary fieldsは、特定の状況下でのみ値を取得します（したがって、オブジェクトに必要です）。これらの状況以外では、それらは空です。</p>
 <p>※Temporary Fieldに関しては<a href="https://blog.ploeh.dk/2015/09/18/temporary-field-code-smell/">この記事</a>の方が私はわかりやすかったので、兆候と症状のところはこの記事をベースに書いてみます。</p>
-<pre><code class="java:Estimator language-java:Estimator">public class Estimator
-{
-    private readonly TimeSpan defaultEstimate;
-    private IReadOnlyCollection&lt;TimeSpan&gt; durations;
-    private TimeSpan average;
-    private TimeSpan standardDeviation;
+<pre>
+  <code class="java:Estimator language-java:Estimator">
+    public class Estimator {
+      private readonly TimeSpan defaultEstimate;
+      private IReadOnlyCollection&lt;TimeSpan&gt; durations;
+      private TimeSpan average;
+      private TimeSpan standardDeviation;
 
-    public Estimator(TimeSpan defaultEstimate)
-    {
-        this.defaultEstimate = defaultEstimate;
-    }
+      public Estimator(TimeSpan defaultEstimate) {
+          this.defaultEstimate = defaultEstimate;
+      }
 
-    public TimeSpan CalculateEstimate(
-        IReadOnlyCollection&lt;TimeSpan&gt; durations)
-    {
+      public TimeSpan CalculateEstimate(
+        IReadOnlyCollection&lt;TimeSpan&gt; durations) {
         if (durations == null)
-            throw new ArgumentNullException(nameof(durations));
+          throw new ArgumentNullException(nameof(durations));
 
         if (durations.Count == 0)
-            return this.defaultEstimate;
+          return this.defaultEstimate;
 
         this.durations = durations;
         this.CalculateAverage();
@@ -201,17 +197,15 @@ Temporary fieldsは、特定の状況下でのみ値を取得します（した�
 
         var margin = TimeSpan.FromTicks(this.standardDeviation.Ticks * 3);
         return this.average + margin;
-    }
+      }
 
-    private void CalculateAverage()
-    {
+      private void CalculateAverage() {
         this.average =
             TimeSpan.FromTicks(
                 (long)this.durations.Average(ts =&gt; ts.Ticks));
-    }
+      }
 
-    private void CalculateStandardDeviation()
-    {
+      private void CalculateStandardDeviation() {
         var variance =
             this.durations.Average(ts =&gt; 
                 Math.Pow(
@@ -219,9 +213,10 @@ Temporary fieldsは、特定の状況下でのみ値を取得します（した�
                     2));
         this.standardDeviation = 
             TimeSpan.FromTicks((long)Math.Sqrt(variance));
+      }
     }
-}
-</code></pre>
+  </code>
+</pre>
 <p>上記EstimatorクラスのCalculateEstimateメソッド内でdurationsというフィールドを使用してます。同時に、CalculateAverageメソッド内ではaverageを使用しており、CalculateStandardDeviationメソッド内ではstandardDeviationを使用しています。これらのメソッドはCalculateEstimateメソッドで呼ばれているため、CalculateEstimateは、明示的にdurationsを使用し、さらに暗黙的にaverage, standardDeviationフィールドも使用しています。
 averageとstandardDeviationはdurationsに依存しています。さらに、standardDeviationはaverageに依存しています。
 ここで、CalculateEstimateメソッド内の処理の順番を以下のように変更したらどうなるでしょうか？</p>
@@ -689,32 +684,38 @@ Message Chainsを削除するには、「<a href="https://qiita.com/taumax/items
 <h2 id="substitutealgorithm">Substitute Algorithm</h2>
 <p><a href="https://sourcemaking.com/refactoring/substitute-algorithm">Substitute Algorithm（アルゴリズムの置き換え）</a>
 メソッドのシグニチャは変えずに本体となるアルゴリズムを新しいものに置き換えましょう。</p>
-<pre><code class="java:リファクタリング前 language-java:リファクタリング前">String foundPerson(String[] people){
-  for (int i = 0; i &lt; people.length; i++) {
-    if (people[i].equals("Don")){
-      return "Don";
+<pre>
+  <code class="java:リファクタリング前 language-java:リファクタリング前">
+    String foundPerson(String[] people){
+      for (int i = 0; i &lt; people.length; i++) {
+        if (people[i].equals("Don")){
+          return "Don";
+        }
+        if (people[i].equals("John")){
+          return "John";
+        }
+        if (people[i].equals("Kent")){
+          return "Kent";
+        }
+      }
+      return "";
     }
-    if (people[i].equals("John")){
-      return "John";
+  </code>
+</pre>
+<pre>
+  <code class="java:リファクタリング後 language-java:リファクタリング後">
+    String foundPerson(String[] people) {
+      List candidates =
+        Arrays.asList(new String[] {"Don", "John", "Kent"});
+      for (int i=0; i &lt; people.length; i++) {
+        if (candidates.contains(people[i])) {
+          return people[i];
+        }
+      }
+      return "";
     }
-    if (people[i].equals("Kent")){
-      return "Kent";
-    }
-  }
-  return "";
-}
-</code></pre>
-<pre><code class="java:リファクタリング後 language-java:リファクタリング後">String foundPerson(String[] people){
-  List candidates =
-    Arrays.asList(new String[] {"Don", "John", "Kent"});
-  for (int i=0; i &lt; people.length; i++) {
-    if (candidates.contains(people[i])) {
-      return people[i];
-    }
-  }
-  return "";
-}
-</code></pre>
+  </code>
+</pre>
 <p><strong><em>関連するCode Smell</em></strong></p>
 <ul>
   <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
