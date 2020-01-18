@@ -33,7 +33,7 @@
     <script src="js/openclose.js"></script>
   </head>
 
-<body class="company">
+<html>
 
 <div id="container">
 
@@ -83,36 +83,27 @@
 
 <section class="box">
 
-<h2 class="title"><p class="sitename"></p></h2>
+<h2 class="title"><p class="sitename_bfr"></p></h2>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-
-<meta http-equiv="Content-Style-Type" content="text/css" />
-<meta http-equiv="Content-Script-Type" content="text/javascript" />
-<meta name="robots" content="noindex,nofollow,noarchive" />
-<meta name="keywords" content="IT,エンジニア,Java,リファクタリング,Code Smell">
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
+<body class="company">
   <h3>Code Smellは<a href="./contents/development/refactoring/codesmells.html">移動しました。</a></h3>
-</body>
-<!--メニュー開閉ボタン-->
-<div id="menubar_hdr" class="close"></div>
 
-<!--メニューの開閉処理条件設定　800px以下-->
-<script>
-if (OCwindowWidth() <= 800) {
-	open_close("menubar_hdr", "menubar-s");
-}
-</script>
-<footer>
-  <small>Copyright&copy; <a href="index.html">SAMPLE SITE</a> All Rights Reserved.</small>
-  <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
-</footer>
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+
+  <!--メニューの開閉処理条件設定　800px以下-->
+  <script>
+  if (OCwindowWidth() <= 800) {
+    open_close("menubar_hdr", "menubar-s");
+  }
+  </script>
+  <footer>
+    <small>
+      <a href="index.html">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.
+    </small>
+    <span class="pr">
+      <a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a>
+    </span>
+  </footer>
+</body>
+</html>
