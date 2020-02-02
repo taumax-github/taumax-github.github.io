@@ -11,8 +11,6 @@
 
 /*全体の設定
 ---------------------------------------------------------------------------*/
-p.sitename_bfr:before{content:"とあるＩＴエンジニアの知識整理";}
-p.sitename_aft:after{content:"とあるＩＴエンジニアの知識整理";}
 
 body,html {width: 100%;height: 100%;}
 body {
