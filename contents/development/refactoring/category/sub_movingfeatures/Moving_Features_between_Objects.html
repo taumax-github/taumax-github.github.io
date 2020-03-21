@@ -14,9 +14,9 @@
     <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
     <meta name="keywords" content="IT,エンジニア">
 
-    <link rel="stylesheet" href="../../../css/style.css">
-    <link rel="stylesheet" href="../../../css/print.css" media="print">
-    <script src="../../../js/openclose.js"></script>
+    <link rel="stylesheet" href="../../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../../css/print.css" media="print">
+    <script src="../../../../../js/openclose.js"></script>
 
     <title>とあるＩＴエンジニアの知識整理</title>
     
@@ -45,7 +45,7 @@
   <!--PC用（801px以上端末）で表示させるブロック-->
   <header class="pc">
     <h1 class="logo">
-      <a href="https://nailmaru.github.io/"><img src="../../../images/logo.png" alt="TOP"></a>
+      <a href="https://nailmaru.github.io/"><img src="../../../../../images/logo.png" alt="TOP"></a>
     </h1>
 
     <!--PC用（801px以上端末）メニュー-->
@@ -55,15 +55,15 @@
       </ul>
     </nav>
     <ul class="icon">
-      <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
-      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
     </ul>
   </header><!--/.pc-->
 
   <!--小さな端末用（800px以下端末）で表示させるブロック-->
   <header class="sh">
     <h1 class="logo">
-      <a href="https://nailmaru.github.io/"><img src="../../../images/logo.png" alt="SAMPLE SITE"></a>
+      <a href="https://nailmaru.github.io/"><img src="../../../../../images/logo.png" alt="SAMPLE SITE"></a>
     </h1>
 
     <!--小さな端末用（800px以下端末）メニュー-->
@@ -72,8 +72,8 @@
         <ul><li class="menuimg menu1"><a href="https://nailmaru.github.io/"><span>Home</span></a></li></ul>
       </nav>
       <ul class="icon">
-        <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
-        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+        <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
       </ul>
     </div><!--/#menubar-s-->
   </header><!--/.sh-->
@@ -146,34 +146,135 @@
             </td>
           </tr>
         </table>
-
+        
         <h1 id="">関連するリファクタリング技法</h1>
-        <h2 id="composingmethods">Composing Methods</h2>
-        <p><a href="https://sourcemaking.com/refactoring/composing-methods">Composing Methods</a></p>
-        <p><a href="category/Composing_methods.html">Composing Methods</a></p>
 
         <h1 id="movingfeaturesbetweenobjects">Moving Features between Objects</h1>
         <p><a href="https://sourcemaking.com/refactoring/moving-features-between-objects">Moving Features between Objects</a></p>
-        <p><a href="category/Moving_Features_between_Objects.html">Moving Features between Objects</a></p>
-
-        <h1 id="organizingdata">Organizing Data</h1>
-        <p><a href="https://sourcemaking.com/refactoring/organizing-data">Organizing Data</a></p>
-        <p><a href="category/Organizing_Data.html">Organizing Data</a></p>
-
-        <h1 id="simplifyingconditionalexpressions">Simplifying Conditional Expressions</h1>
-        <p><a href="https://sourcemaking.com/refactoring/simplifying-conditional-expressions">Simplifying Conditional Expressions</a></p>
-        <p><a href="category/Simplifying_Conditional_Expressions.html">Simplifying Conditional Expressions</a></p>
-
-        <h1 id="simplifyingmethodcalls">Simplifying Method Calls</h1>
-        <p><a href="https://sourcemaking.com/refactoring/simplifying-method-calls">Simplifying Method Calls</a></p>
-        <p><a href="category/Simplifying_Method_Calls.html">Simplifying Method Calls</a></p>
-
-        <h1 id="dealingwithgeneralisation">Dealing with Generalisation</h1>
-        <p><a href="https://sourcemaking.com/refactoring/dealing-with-generalisation">Dealing with Generalisation</a></p>
-        <p><a href="category/Dealing_with_Generalisation.html">Dealing with Generalisation</a></p>
-
-        <h1 id="-1">予備知識</h1>
-        <p><a href="category/予備知識.html">予備知識</a></p>
+        <h2 id="movemethod">Move Method</h2>
+        <p><a href="https://sourcemaking.com/refactoring/move-method">Move Method</a>
+        あるクラス内のメソッドが自クラスよりも他クラスから呼び出されることの方が多い場合、そのメソッドを最も使用頻度が高いクラスに移動しましょう。</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#shotgun-surgery">Shotgun Surgery</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#parallel-inheritance-hierarchies">Parallel Inheritance Hierarchies</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#feature-envy">Feature Envy</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#message-chains">Message Chains</a></li>
+        </ul>
+        <h2 id="movefield">Move Field</h2>
+        <p><a href="https://sourcemaking.com/refactoring/move-field">Move Field</a>
+        クラス内のフィールドが自クラスよりも他クラスから使われることが多い場合、そのフィールドを使用頻度が高いクラスに移動し、参照先を移動先クラスに変更しましょう。</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#shotgun-surgery">Shotgun Surgery</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#parallel-inheritance-hierarchies">Parallel Inheritance Hierarchies</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+        </ul>
+        <h2 id="extractclass">Extract Class</h2>
+        <p><a href="https://sourcemaking.com/refactoring/extract-class">Extract Class</a>
+        1つのクラスに複数の責任を持たせるとコードが複雑になることがあります。その場合は、新しいクラスを作成し、関連する機能を担当するフィールドとメソッドをその中に配置します。</p>
+        <p>このリファクタリング方法は、<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#単一責任の原則">単一責任の原則</a>を守るのに役立ちます。<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#単一責任の原則">単一責任の原則</a>を守ることでクラスはより明確で理解しやすいものになります。</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#large-class">Large Class</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-clumps">Data Clumps</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#temporary-field">Temporary Field</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#divergent-change">Divergent Change</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+        </ul>
+        <h2 id="inlineclass">Inline Class</h2>
+        <p><a href="https://sourcemaking.com/refactoring/inline-class">Inline Class</a></p>
+        <p>ほとんど何もせず、何の責任もなく、責任が追加される計画もないようなクラスは、その機能を既存の適切なクラスに移動しましょう。</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#shotgun-surgery">Shotgun Surgery</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#lazy-class">Lazy Class</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#dead-code">Dead Code</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#speculative-generality">Speculative Generality</a></li>
+        </ul>
+        <h2 id="hidedelegate">Hide Delegate</h2>
+        <p><a href="https://sourcemaking.com/refactoring/hide-delegate">Hide Delegate</a></p>
+        <p>オブジェクトAを介してオブジェクトBを取得したのち、オブジェクトBのメソッドを呼び出しているような場合、クラスAに新しいメソッドを追加し、そのメソッドがオブジェクトBのメソッドを呼び出すような形にしましょう（＝<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>）。こうすることで、クライアントはオブジェクトBの詳細について知る必要がなくなり、依存性を排除できます。</p>
+        <p>AとBは下の図でいうと、</p>
+        <ul>
+          <li>A：Person</li>
+          <li>B：Department</li>
+        </ul>
+        <p><strong><em>【リファクタリング前】</em></strong>
+        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/59e434cf-9746-f932-9181-11ca4b54bad1.png" alt="image.png" />
+        <a href="https://sourcemaking.com/refactoring/hide-delegate">このページ</a>より抜粋</p>
+        <p><strong><em>【リファクタリング後】</em></strong>
+        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/dba6fe95-9808-9108-bb7c-22b5a8e9203e.png" alt="image.png" />
+        <a href="https://sourcemaking.com/refactoring/hide-delegate">このページ</a>より抜粋</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#message-chains">Message Chains</a></li>
+        </ul>
+        <h2 id="removemiddleman">Remove Middle Man</h2>
+        <p><a href="https://sourcemaking.com/refactoring/remove-middle-man">Remove Middle Man</a>
+        多くのメソッドが行っていることが他クラスへの処理の委譲である場合、それらのメソッドを削除し、クライアントクラスから直接、委譲先のメソッドを呼び出すようにしましょう。</p>
+        <p><strong><em>【リファクタリング前】</em></strong>
+        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/aa7abfe7-9c8b-d6cf-576d-b91da060c4d9.png" alt="image.png" />
+        <a href="https://sourcemaking.com/refactoring/remove-middle-man">このページ</a>より抜粋</p>
+        <p><strong><em>【リファクタリング後】</em></strong>
+        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/d63364a1-925b-226e-5e73-e31983ccaf93.png" alt="image.png" />
+        <a href="https://sourcemaking.com/refactoring/remove-middle-man">このページ</a>より抜粋</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#middle-man">Middle Man</a></li>
+        </ul>
+        <h2 id="introduceforeignmethod">Introduce Foreign Method</h2>
+        <p><a href="https://sourcemaking.com/refactoring/introduce-foreign-method">Introduce Foreign Method</a></p>
+        <p>ライブラリ内のユーティリティクラスには必要なメソッドが含まれておらず、そのクラスにはメソッドを追加することもできません。
+        その場合、クライアントクラスにメソッドを追加し、ユーティリティクラスのオブジェクトを引数として渡します。</p>
+        <pre>
+          <code class="java:リファクタリング前 language-java:リファクタリング前">
+            class Report {
+              // ...
+              void sendReport() {
+                Date nextDay = new Date(previousEnd.getYear(),
+                  previousEnd.getMonth(), previousEnd.getDate() + 1);
+                // ...
+              }
+            }
+          </code>
+        </pre>
+        <pre>
+          <code class="java:リファクタリング後 language-java:リファクタリング後">
+            class Report {
+              // ...
+              void sendReport() {
+                Date newStart = nextDay(previousEnd);
+                // ...
+              }
+              private static Date nextDay(Date arg) {
+                return new Date(arg.getYear(), arg.getMonth(), arg.getDate() + 1);
+              }
+            }
+          </code>
+        </pre>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#incomplete-library-class">Incomplete Library Class</a></li>
+        </ul>
+        <h2 id="introducelocalextension">Introduce Local Extension</h2>
+        <p><a href="https://sourcemaking.com/refactoring/introduce-local-extension">Introduce Local Extension</a></p>
+        <p>ライブラリのユーティリティクラスには、必要なメソッドが含まれていません。ただし、これらのメソッドをクラスに追加することはできません。
+        メソッドを含む新しいクラスを作成し、それをユーティリティクラスの子またはラッパーにします。</p>
+        <p><strong><em>【リファクタリング前】</em></strong>
+        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/768b4d68-20fb-68bd-3529-3a8d418308da.png" alt="image.png" /></p>
+        <p><strong><em>【リファクタリング後】</em></strong>
+        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/3941be8f-1392-3500-f30a-bd7c006ae430.png" alt="image.png" /></p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#incomplete-library-class">Incomplete Library Class</a></li>
+        </ul>
 
       </section><!-- section class="box" -->
 

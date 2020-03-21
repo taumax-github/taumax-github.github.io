@@ -14,9 +14,9 @@
     <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
     <meta name="keywords" content="IT,エンジニア">
 
-    <link rel="stylesheet" href="../../../css/style.css">
-    <link rel="stylesheet" href="../../../css/print.css" media="print">
-    <script src="../../../js/openclose.js"></script>
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../css/print.css" media="print">
+    <script src="../../../../js/openclose.js"></script>
 
     <title>とあるＩＴエンジニアの知識整理</title>
     
@@ -45,7 +45,7 @@
   <!--PC用（801px以上端末）で表示させるブロック-->
   <header class="pc">
     <h1 class="logo">
-      <a href="https://nailmaru.github.io/"><img src="../../../images/logo.png" alt="TOP"></a>
+      <a href="https://nailmaru.github.io/"><img src="../../../../images/logo.png" alt="TOP"></a>
     </h1>
 
     <!--PC用（801px以上端末）メニュー-->
@@ -55,15 +55,15 @@
       </ul>
     </nav>
     <ul class="icon">
-      <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
-      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
     </ul>
   </header><!--/.pc-->
 
   <!--小さな端末用（800px以下端末）で表示させるブロック-->
   <header class="sh">
     <h1 class="logo">
-      <a href="https://nailmaru.github.io/"><img src="../../../images/logo.png" alt="SAMPLE SITE"></a>
+      <a href="https://nailmaru.github.io/"><img src="../../../../images/logo.png" alt="SAMPLE SITE"></a>
     </h1>
 
     <!--小さな端末用（800px以下端末）メニュー-->
@@ -72,8 +72,8 @@
         <ul><li class="menuimg menu1"><a href="https://nailmaru.github.io/"><span>Home</span></a></li></ul>
       </nav>
       <ul class="icon">
-        <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
-        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+        <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
       </ul>
     </div><!--/#menubar-s-->
   </header><!--/.sh-->
@@ -146,34 +146,44 @@
             </td>
           </tr>
         </table>
-
+        
         <h1 id="">関連するリファクタリング技法</h1>
-        <h2 id="composingmethods">Composing Methods</h2>
-        <p><a href="https://sourcemaking.com/refactoring/composing-methods">Composing Methods</a></p>
-        <p><a href="category/Composing_methods.html">Composing Methods</a></p>
-
-        <h1 id="movingfeaturesbetweenobjects">Moving Features between Objects</h1>
-        <p><a href="https://sourcemaking.com/refactoring/moving-features-between-objects">Moving Features between Objects</a></p>
-        <p><a href="category/Moving_Features_between_Objects.html">Moving Features between Objects</a></p>
-
-        <h1 id="organizingdata">Organizing Data</h1>
-        <p><a href="https://sourcemaking.com/refactoring/organizing-data">Organizing Data</a></p>
-        <p><a href="category/Organizing_Data.html">Organizing Data</a></p>
-
-        <h1 id="simplifyingconditionalexpressions">Simplifying Conditional Expressions</h1>
-        <p><a href="https://sourcemaking.com/refactoring/simplifying-conditional-expressions">Simplifying Conditional Expressions</a></p>
-        <p><a href="category/Simplifying_Conditional_Expressions.html">Simplifying Conditional Expressions</a></p>
-
-        <h1 id="simplifyingmethodcalls">Simplifying Method Calls</h1>
-        <p><a href="https://sourcemaking.com/refactoring/simplifying-method-calls">Simplifying Method Calls</a></p>
-        <p><a href="category/Simplifying_Method_Calls.html">Simplifying Method Calls</a></p>
-
-        <h1 id="dealingwithgeneralisation">Dealing with Generalisation</h1>
-        <p><a href="https://sourcemaking.com/refactoring/dealing-with-generalisation">Dealing with Generalisation</a></p>
-        <p><a href="category/Dealing_with_Generalisation.html">Dealing with Generalisation</a></p>
 
         <h1 id="-1">予備知識</h1>
-        <p><a href="category/予備知識.html">予備知識</a></p>
+        <h2 id="delegate">委譲(delegate)</h2>
+        <p>委譲と継承の違いはこれを見ればわかると思います。</p>
+        <ul>
+          <li><a href="https://tomosoft.jp/design/?p=3444">Javaによる委譲によるクラス継承とAdapterパターン例</a>
+            　⇒「委譲によるクラス継承とは」のところ</li>
+        </ul>
+        <p>※余談：転送と委譲について
+        正確に言うと、上で紹介したサイトで委譲と言っているのは厳密には「転送」と言います。コンポジット＋転送です。でも世の中のほとんどの人はこの「転送」を委譲(delegate)と呼んでいます。</p>
+        <p>参考：</p>
+        <ul>
+          <li><a href="https://qiita.com/jesus_isao/items/4b6b7846ccf5eb46b1bc">プログラマーを惑わせる３種類の委譲(委譲・Delegation／転送・Forwarding／.NET Delegates)</a></li>
+        </ul>
+        <h3 id="-2">その他の委譲の参考</h3>
+        <ul>
+          <li><a href="https://codezine.jp/article/detail/3710">【第5回】委譲</a></li>
+          <li><a href="https://gihyo.jp/dev/serial/01/practical-programming-with-processing/0017">第17回　継承と委譲</a></li>
+          <li><a href="https://qiita.com/tonluqclml/items/c0110098722763caa556">君の継承の使い方は間違っている</a></li>
+        </ul>
+        <h2 id="-3">単一責任の原則</h2>
+        <p><a href="https://qiita.com/gomi_ningen/items/02c42e2487d035f9c3c8">単一責任の原則（SRP）</a></p>
+        <h2 id="-4">リスコフの置換原則</h2>
+        <p>親子関係にあるクラス構造において、親が実現できていることは子でも必ず実現されてなければならない。という原則。</p>
+        <p>参考</p>
+        <ul>
+          <li><a href="https://nagise.hatenablog.jp/entry/20171203/1512307671">Java Generics Hell - リスコフの置換原則</a></li>
+          <li><a href="http://marupeke296.com/OOD_No7_LiskovSubstitutionPrinciple.html">その７ 親の決まりを子が破っちゃいけない原則 ： LSP</a></li>
+          <li><a href="https://qiita.com/yuu341/items/1a45048950f3b5b76bdc">リスコフの置換原則とその違反を実例を踏まえて解説</a></li>
+          <li><a href="https://note.com/erukiti/n/n88b8ed99f1e1">よくわかるSOLID原則3: L（リスコフの置換原則）</a></li>
+          <li><a href="https://ja.wikipedia.org/wiki/%E3%83%AA%E3%82%B9%E3%82%B3%E3%83%95%E3%81%AE%E7%BD%AE%E6%8F%9B%E5%8E%9F%E5%89%87">リスコフの置換原則</a></li>
+        </ul>
+        <h1 id="codesmell-1">その他Code Smellに関する参考</h1>
+        <ul>
+          <li><a href="https://so-zou.jp/software/tech/programming/tech/refactoring/code-smell.htm">コードの臭い - リファクタリングの必要性を示す兆候</a></li>
+        </ul>
 
       </section><!-- section class="box" -->
 

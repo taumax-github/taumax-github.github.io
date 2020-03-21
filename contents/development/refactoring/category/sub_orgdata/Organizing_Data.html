@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../../css/print.css" media="print">
+    <script src="../../../../../js/openclose.js"></script>
+
+    <title>とあるＩＴエンジニアの知識整理</title>
+    
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <style>
+      .menu1 a {background-position: -10px -10px;}
+      .menu2 a {background-position: -10px -130px;}
+      .menu3 a {background-position: -10px -250px;}
+      .menu4 a {background-position: -10px -370px;}
+      .menu5 a {background-position: -10px -490px;}
+    </style>
+    <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156501005-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-156501005-1');
+    </script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://nailmaru.github.io/"><img src="../../../../../images/logo.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul>
+        <li class="menuimg menu1"><a href="https://nailmaru.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <h1 class="logo">
+      <a href="https://nailmaru.github.io/"><img src="../../../../../images/logo.png" alt="SAMPLE SITE"></a>
+    </h1>
+
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <nav>
+        <ul><li class="menuimg menu1"><a href="https://nailmaru.github.io/"><span>Home</span></a></li></ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+
+        <h2 class="title">リファクタリング技法</h2>
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <!-- はてぶボタン -->
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        <!-- はてぶボタン
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        -->
+        <p>ここでは<a href="../codesmell/Codesmells.html">Code Smell</a>を解消するために参考となるリファクタリング技法や、その他参考になりそうな概念を紹介していこうと思います。</p>
+        
+        <p>リファクタリングに関してはこの辺りの書籍が参考になると思います。</p>
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <!-- リファクタリング（第2版） 既存のコードを安全に改善する [ Martin Fowler 著 ] -->
+            <td>
+              <div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;">
+                <table>
+                  <tr>
+                    <td style="width:128px">
+                      <a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16085666%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F19803391%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  >
+                        <img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=19803391&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F4546%2F9784274224546.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F4546%2F9784274224546.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]">
+                      </a>
+                    </td>
+                    <td style="vertical-align:top;width:136px;">
+                      <p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word">
+                        <a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F16085666%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F19803391%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  >
+                          <font color=black>リファクタリング（第2版） 既存のコードを安全に改善する [ Martin Fowler 著 ]</font>
+                        </a><br>
+                        <span ><font color=black>価格：4840円（税込、送料無料)</font></span>
+                        <span style="color:#BBB">(2020/1/10時点)</span>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p>
+            </td>
+            <!-- レガシーコード改善ガイド 保守開発のためのリファクタリング （Object　oriented　selection） [ マイケル・C．フェザーズ ] -->
+            <td>
+              <div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;">
+                <table>
+                  <tr>
+                    <td style="width:128px">
+                      <a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F6121689%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F13224794%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  >
+                        <img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=13224794&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F6839%2F9784798116839.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F6839%2F9784798116839.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]">
+                      </a>
+                    </td>
+                    <td style="vertical-align:top;width:136px;">
+                      <p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word">
+                        <a href="https://hb.afl.rakuten.co.jp/hgc/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F6121689%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Fbook%2Fi%2F13224794%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><font color=black>レガシーコード改善ガイド 保守開発のためのリファクタリング （Object　oriented　selection） [ マイケル・C．フェザーズ ]</font>
+                        </a><br>
+                        <span ><font color=black>価格：4620円（税込、送料無料)</font></span>
+                        <span style="color:#BBB">(2020/1/10時点)</span>
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </div><br>
+              <p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p>
+            </td>
+          </tr>
+        </table>
+        
+        <h1 id="">関連するリファクタリング技法</h1>
+
+        <h1 id="organizingdata">Organizing Data</h1>
+        <p><a href="https://sourcemaking.com/refactoring/organizing-data">Organizing Data</a></p>
+        <h2 id="selfencapsulatefield">Self Encapsulate Field</h2>
+        <p><a href="https://sourcemaking.com/refactoring/self-encapsulate-field">Self Encapsulate Field</a>
+        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <h2 id="replacedatavaluewithobject">Replace Data Value with Object</h2>
+        <p><a href="https://sourcemaking.com/refactoring/replace-data-value-with-object">Replace Data Value with Object</a>
+        プリミティブ型で定義されたデータフィールドとその振る舞いを別の新しいクラスとして切り出し、それを元のクラスに保有させます。</p>
+        <p>※参考：ValueObject
+        Replace Data Value with Objectを理解するためにDDDのValueObjectが参考になると思ったので、ValueObjectを解説しているサイトのリンクを張っておきます。</p>
+        <ul>
+          <li><a href="https://qiita.com/little_hand_s/items/f8c0d0858c895afed7e2">DDD基礎解説：エンティティ、バリューオブジェクトってなんなんだ</a></li>
+          <li><a href="https://qiita.com/okuramasafumi/items/03ef332704cf6a2350f8">バリューオブジェクトの私的まとめ</a></li>
+          <li><a href="https://qiita.com/ikemo/items/8df668b3efd38026a416">オブジェクト指向の理解にはValue Objectを作る習慣から</a></li>
+        </ul>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+        </ul>
+        <h2 id="changevaluetoreference">Change Value to Reference</h2>
+        <p><a href="https://sourcemaking.com/refactoring/change-value-to-reference">Change Value to Reference</a>
+        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <h2 id="changereferencetovalue">Change Reference to Value</h2>
+        <p><a href="https://sourcemaking.com/refactoring/change-reference-to-value">Change Reference to Value</a>
+        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <h2 id="replacearraywithobject">Replace Array with Object</h2>
+        <p><a href="https://sourcemaking.com/refactoring/replace-array-with-object">Replace Array with Object</a>：</p>
+        <p>様々なデータ型が1つの配列に含まれている場合、配列をオブジェクトに変換し、型が異なるデータは別のフィールドに持たせましょう。</p>
+        <pre>
+          <code class="java:リファクタリング前 language-java:リファクタリング前">
+            String[] row = new String[2];
+            row[0] = "Liverpool";
+            row[1] = "15";
+          </code>
+        </pre>
+        <pre>
+          <code class="java:リファクタリング後 language-java:リファクタリング後">
+            Performance row = new Performance();
+            row.setName("Liverpool");
+            row.setWins("15");
+          </code>
+        </pre>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+        </ul>
+        <h2 id="duplicateobserveddata">Duplicate Observed Data</h2>
+        <p><a href="https://sourcemaking.com/refactoring/duplicate-observed-data">Duplicate Observed Data</a>
+        GUIを担当するクラスにドメイン（＝業務）に関するデータが含まれているような場合、データを別のクラスに分離し、ドメインクラスとGUI間の接続と同期を確保することをお勧めします。
+        こうすることで、プレゼンテーションレイヤーとビジネスロジックを分離することができ、プログラムを理解しやすくすることができます。</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#large-class">Large Class</a></li>
+        </ul>
+        <h2 id="changeunidirectionalassociationtobidirectional">Change Unidirectional Association to Bidirectional</h2>
+        <p><a href="https://sourcemaking.com/refactoring/change-unidirectional-association-to-bidirectional">Change Unidirectional Association to Bidirectional</a>
+        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <h2 id="changebidirectionalassociationtounidirectional">Change Bidirectional Association to Unidirectional</h2>
+        <p><a href="https://sourcemaking.com/refactoring/change-bidirectional-association-to-unidirectional">Change Bidirectional Association to Unidirectional</a>
+        クラス同士が相互に依存しているが、一方のクラスは他方の機能を使用していない場合、未使用の関連を削除します。</p>
+        <p><strong><em>【リファクタリング前】</em></strong>
+        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/16483fda-edb9-1851-943e-793d418ea182.png" alt="image.png" />
+        <a href="https://sourcemaking.com/refactoring/change-bidirectional-association-to-unidirectional">このページ</a>より抜粋</p>
+        <p><strong><em>【リファクタリング後】</em></strong>
+        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/b75b634f-3b4f-fb15-1fd2-9fadc342ca66.png" alt="image.png" />
+        <a href="https://sourcemaking.com/refactoring/change-bidirectional-association-to-unidirectional">このページ</a>より抜粋</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+        </ul>
+        <h2 id="replacemagicnumberwithsymbolicconstant">Replace Magic Number with Symbolic Constant</h2>
+        <p><a href="https://sourcemaking.com/refactoring/replace-magic-number-with-symbolic-constant">Replace Magic Number with Symbolic Constant</a>
+        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <h2 id="encapsulatefield">Encapsulate Field</h2>
+        <p><a href="https://sourcemaking.com/refactoring/encapsulate-field">Encapsulate Field</a>
+        publicなフィールドはprivateに変更してsetter/getterからのアクセスのみを許可するようにしましょう。
+        カプセル化はオブジェクト指向の基本です。
+        データに対して必要な処理（値のチェックなど）をsetter/getterに任せることで、データを利用する側ではその正当性を意識する必要がなくなります。</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
+        </ul>
+        <h2 id="encapsulatecollection">Encapsulate Collection</h2>
+        <p><a href="https://sourcemaking.com/refactoring/encapsulate-collection">Encapsulate Collection</a>
+        ListやSetなどのようなCollectionをカプセル化する場合、getterはread onlyなオブジェクトを返すようにしましょう。
+        また、Collectionに要素を追加するためのaddメソッドやdeleteメソッドを用意しましょう。</p>
+        <p>※なぜこんなことをする必要があるのかわからない人はimmutableという概念について知っておきましょう。参考になりそうなサイトのリンクを下に張っておきます。</p>
+        <p><a href="https://sourcemaking.com/refactoring/encapsulate-collection">このページ</a>では、immutableにするためにgetCourcesメソッドはUnmodifiableSetをreturnしています。UnmodifiableSetにaddやdeleteメソッドで要素を追加・削除しようとすると、実行時エラー（UnsuportedOperationException）になります。</p>
+        <p><a href="https://www.amazon.co.jp/dp/4621303252">Effective Java</a> という本の中では、<a href="https://hageyahhoo.hatenablog.com/entry/20090911/1252638495">defensive copy</a>というやり方が紹介されています。
+        これは、上で紹介したUnmodifiableSetをreturnするのではなく、以下のようにして、参照先の異なるオブジェクトをreturnする手法です。
+        これであれば、呼び出し元でaddやdeleteメソッドを呼び出すことが可能であり、かつ、オブジェクトの参照先が異なるので元データに影響を与えることもありません。</p>
+        <pre>
+          <code class="java:Sample.java language-java:Sample.java">
+            class Test {
+              private Set&lt;String&gt; setTest = new HashSet&lt;&gt;();
+              public Set getCources() {
+                  return new Set(setTest);
+              }
+            }
+          </code>
+        </pre>
+        <p>【immutableの参考】</p>
+        <ul>
+          <li><a href="https://techblog.imagemagic.jp/2018/07/09/immutable%E3%81%A8%E3%81%84%E3%81%86%E6%A6%82%E5%BF%B5%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">Immutableという概念について</a></li>
+          <li><a href="https://hageyahhoo.hatenablog.com/entry/20090910/1252572314">immutable object</a></li>
+          <li><a href="https://hageyahhoo.hatenablog.com/entry/20090911/1252638495">defensive copy</a></li>
+        </ul>
+        <p>ちなみに、Javaでimmutable objectの一番身近な例はStringです。</p>
+        <ul>
+          <li><a href="https://qiita.com/makotoo2/items/fc3a617882916f9775f5">ミュータブルな型とイミュータブルな型の相違を知ろう</a></li>
+        </ul>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
+        </ul>
+        <h2 id="replacetypecodewithclass">Replace Type Code with Class</h2>
+        <p><a href="https://sourcemaking.com/refactoring/replace-type-code-with-class">Replace Type Code with Class</a>
+        クラスにType Code（※）が含まれていて、かつそれがプログラムの振る舞いに何も影響を与えないのであれば、それをクラスとして切り出し、それを値として使うのではなくオブジェクトとして扱いましょう。
+        （Enumを使うときれいにはまりそうですね）</p>
+        <p>※Type Codeについて
+        Type Codeは個別のデータ型ではありません。エンティティに登録できる値が一連の数字または文字列に制限されているような場合に発生します。多くの場合、これらの特定の数字と文字列には定数を介してわかりやすい名前が付けられています。</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+        </ul>
+        <h2 id="replacetypecodewithsubclasses">Replace Type Code with Subclasses</h2>
+        <p><a href="https://sourcemaking.com/refactoring/replace-type-code-with-subclasses">Replace Type Code with Subclasses</a>
+        プログラムの振る舞いに直接影響を与えるType Codeが存在する場合、各値をサブクラスとして切り出し、関連する振る舞いをサブクラスに移動します。そして、条件分岐などでコントロールしていた部分をポリモルフィズムで実現するように書き換えましょう。</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
+        </ul>
+        <h2 id="replacetypecodewithstatestrategy">Replace Type Code with State/Strategy</h2>
+        <p><a href="https://sourcemaking.com/refactoring/replace-type-code-with-state-strategy">Replace Type Code with State/Strategy</a>
+        クラスの中にType Codeがあり、それがプログラムの振る舞いに影響を与えるような場合で、サブクラスとして切り出すのが難しい場合、Type Codeを状態を表すオブジェクト(state object)に置き換えます。フィールドの値をType Codeに置き換える必要がある場合、別の状態オブジェクトをクラスに注入します。</p>
+        <p>※GoFのデザインパターンのStateパターンの話だと理解しました。
+        参考</p>
+        <ul>
+          <li><a href="http://www.ie.u-ryukyu.ac.jp/~e085739/java.it.21.html">State パターン (状態を表すオブジェクトを用意し, 内包するその状態オブジェクトを切り替えることにより, 処理内容 (振る舞い) を変えられるようにする)</a></li>
+        </ul>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
+        </ul>
+        <h2 id="replacesubclasswithfields">Replace Subclass with Fields</h2>
+        <p><a href="https://sourcemaking.com/refactoring/replace-subclass-with-fields">Replace Subclass with Fields</a>
+        ※関連するCode Smellがなかったためリンクのみ。</p>
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://nailmaru.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>

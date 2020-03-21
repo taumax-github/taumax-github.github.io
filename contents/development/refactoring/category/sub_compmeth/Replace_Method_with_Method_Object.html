@@ -14,9 +14,9 @@
     <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
     <meta name="keywords" content="IT,エンジニア">
 
-    <link rel="stylesheet" href="../../../css/style.css">
-    <link rel="stylesheet" href="../../../css/print.css" media="print">
-    <script src="../../../js/openclose.js"></script>
+    <link rel="stylesheet" href="../../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../../css/print.css" media="print">
+    <script src="../../../../../js/openclose.js"></script>
 
     <title>とあるＩＴエンジニアの知識整理</title>
     
@@ -45,7 +45,7 @@
   <!--PC用（801px以上端末）で表示させるブロック-->
   <header class="pc">
     <h1 class="logo">
-      <a href="https://nailmaru.github.io/"><img src="../../../images/logo.png" alt="TOP"></a>
+      <a href="https://nailmaru.github.io/"><img src="../../../../../images/logo.png" alt="TOP"></a>
     </h1>
 
     <!--PC用（801px以上端末）メニュー-->
@@ -55,15 +55,15 @@
       </ul>
     </nav>
     <ul class="icon">
-      <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
-      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
     </ul>
   </header><!--/.pc-->
 
   <!--小さな端末用（800px以下端末）で表示させるブロック-->
   <header class="sh">
     <h1 class="logo">
-      <a href="https://nailmaru.github.io/"><img src="../../../images/logo.png" alt="SAMPLE SITE"></a>
+      <a href="https://nailmaru.github.io/"><img src="../../../../../images/logo.png" alt="SAMPLE SITE"></a>
     </h1>
 
     <!--小さな端末用（800px以下端末）メニュー-->
@@ -72,8 +72,8 @@
         <ul><li class="menuimg menu1"><a href="https://nailmaru.github.io/"><span>Home</span></a></li></ul>
       </nav>
       <ul class="icon">
-        <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
-        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+        <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
       </ul>
     </div><!--/#menubar-s-->
   </header><!--/.sh-->
@@ -146,35 +146,19 @@
             </td>
           </tr>
         </table>
-
+        
         <h1 id="">関連するリファクタリング技法</h1>
         <h2 id="composingmethods">Composing Methods</h2>
         <p><a href="https://sourcemaking.com/refactoring/composing-methods">Composing Methods</a></p>
-        <p><a href="category/Composing_methods.html">Composing Methods</a></p>
 
-        <h1 id="movingfeaturesbetweenobjects">Moving Features between Objects</h1>
-        <p><a href="https://sourcemaking.com/refactoring/moving-features-between-objects">Moving Features between Objects</a></p>
-        <p><a href="category/Moving_Features_between_Objects.html">Moving Features between Objects</a></p>
-
-        <h1 id="organizingdata">Organizing Data</h1>
-        <p><a href="https://sourcemaking.com/refactoring/organizing-data">Organizing Data</a></p>
-        <p><a href="category/Organizing_Data.html">Organizing Data</a></p>
-
-        <h1 id="simplifyingconditionalexpressions">Simplifying Conditional Expressions</h1>
-        <p><a href="https://sourcemaking.com/refactoring/simplifying-conditional-expressions">Simplifying Conditional Expressions</a></p>
-        <p><a href="category/Simplifying_Conditional_Expressions.html">Simplifying Conditional Expressions</a></p>
-
-        <h1 id="simplifyingmethodcalls">Simplifying Method Calls</h1>
-        <p><a href="https://sourcemaking.com/refactoring/simplifying-method-calls">Simplifying Method Calls</a></p>
-        <p><a href="category/Simplifying_Method_Calls.html">Simplifying Method Calls</a></p>
-
-        <h1 id="dealingwithgeneralisation">Dealing with Generalisation</h1>
-        <p><a href="https://sourcemaking.com/refactoring/dealing-with-generalisation">Dealing with Generalisation</a></p>
-        <p><a href="category/Dealing_with_Generalisation.html">Dealing with Generalisation</a></p>
-
-        <h1 id="-1">予備知識</h1>
-        <p><a href="category/予備知識.html">予備知識</a></p>
-
+        <h2 id="replacemethodwithmethodobject">Replace Method with Method Object</h2>
+        <p><a href="https://sourcemaking.com/refactoring/replace-method-with-method-object">Replace Method with Method Object</a>
+        関連する変数と処理をクラスとして抽出すること。</p>
+        <p><strong><em>関連するCode Smell</em></strong></p>
+        <ul>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-method">Long Method</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#temporary-field">Temporary Field</a></li>
+        </ul>
       </section><!-- section class="box" -->
 
       <footer>
