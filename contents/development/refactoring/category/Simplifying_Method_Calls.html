@@ -146,138 +146,67 @@
             </td>
           </tr>
         </table>
-        
+
         <h1 id="">関連するリファクタリング技法</h1>
 
         <h1 id="simplifyingmethodcalls">Simplifying Method Calls</h1>
         <p><a href="https://sourcemaking.com/refactoring/simplifying-method-calls">Simplifying Method Calls</a></p>
+
         <h2 id="renamemethod">Rename Method</h2>
-        <p><a href="https://sourcemaking.com/refactoring/rename-method">Rename Method</a>
-        どのような処理を行ってくれるのかがわかるようなメソッド名を付けるように心がけましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#comments">Comments</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/rename-method">Rename Method</a></p>
+        <p><a href="sub_simplmethcall/Rename_Method.html">Rename Method</a></p>
+
         <h2 id="addparameter">Add Parameter</h2>
-        <p><a href="https://sourcemaking.com/refactoring/add-parameter">Add Parameter</a>
-        処理を行うのに必要なデータが足りない場合は引数で渡すようにしましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/add-parameter">Add Parameter</a></p>
+        <p><a href="sub_simplmethcall/Add_Parameter.html">Add Parameter</a></p>
+
         <h2 id="removeparameter">Remove Parameter</h2>
-        <p><a href="https://sourcemaking.com/refactoring/remove-parameter">Remove Parameter</a>
-        メソッド本体で使われていないようなパラメータは削除しましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#dead-code">Dead Code</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#speculative-generality">Speculative Generality</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/remove-parameter">Remove Parameter</a></p>
+        <p><a href="sub_simplmethcall/Remove_Parameter.html">Remove Parameter</a></p>
+
         <h2 id="separatequeryfrommodifier">Separate Query from Modifier</h2>
-        <p><a href="https://sourcemaking.com/refactoring/separate-query-from-modifier">Separate Query from Modifier</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <p><a href="https://sourcemaking.com/refactoring/separate-query-from-modifier">Separate Query from Modifier</a></p>
+        <p><a href="sub_simplmethcall/Separate_Query_from_Modifier.html">Separate Query from Modifier</a></p>
+
         <h2 id="parameterizemethod">Parameterize Method</h2>
-        <p><a href="https://sourcemaking.com/refactoring/parameterize-method">Parameterize Method</a>
-        似たような処理を行うメソッドが複数存在するような場合はメソッドの統合を検討しましょう。
-        例えば、5%値を上昇させるメソッドと、10%値を上昇させる2つのメソッドが存在する場合、上昇させる値（ここでは5や10）を引数で受け取る一つのメソッドに統合する場合がこれに当たります。</p>
-        <p><strong><em>【リファクタリング前】</em></strong>
-        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/c91c1c66-7882-c7dd-b5cf-149230823c5c.png" alt="image.png" />
-        <a href="https://sourcemaking.com/refactoring/parameterize-method">このページ</a>より抜粋</p>
-        <p><strong><em>【リファクタリング後】</em></strong>
-        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/ad230dc7-b0e0-a7a6-d1fd-cfa58c4f1236.png" alt="image.png" />
-        <a href="https://sourcemaking.com/refactoring/parameterize-method">このページ</a>より抜粋</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/parameterize-method">Parameterize Method</a></p>
+        <p><a href="sub_simplmethcall/Parameterize_Method.html">Parameterize Method</a></p>
+
         <h2 id="replaceparameterwithexplicitmethods">Replace Parameter with Explicit Methods</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-parameter-with-explicit-methods">Replace Parameter with Explicit Methods</a>
-        メソッド内が複数の処理に分割され、各処理は条件に応じて実行されるような場合、各処理を行うメソッドを作り、それを呼び出すことを検討しましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/replace-parameter-with-explicit-methods">Replace Parameter with Explicit Methods</a></p>
+        <p><a href="sub_simplmethcall/Replace_Parameter_with_Explicit_Methods.html">Replace Parameter with Explicit Methods</a></p>
+
         <h2 id="preservewholeobject">Preserve Whole Object</h2>
-        <p><a href="https://sourcemaking.com/refactoring/preserve-whole-object">Preserve Whole Object</a>
-        メソッドの引数をばらばらに渡すのではなく、一つのオブジェクトにまとめて渡す。
-        引数となるオブジェクトにわかりやすい名前を付けることでコードが読みやすくなる。
-        また、引数が増えた場合でも、オブジェクトにデータを追加するだけでよくなり、呼び出し側の影響を少なくすることができる。</p>
-        <pre>
-          <code class="java:リファクタリング前 language-java:リファクタリング前">
-            int low = daysTempRange.getLow();
-            int high = daysTempRange.getHigh();
-            boolean withinPlan = plan.withinRange(low, high);
-          </code>
-        </pre>
-        <pre>
-          <code class="java:リファクタリング後 language-java:リファクタリング後">
-            boolean withinPlan = plan.withinRange(daysTempRange);
-          </code>
-        </pre>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-method">Long Method</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-parameter-list">Long Parameter List</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-clumps">Data Clumps</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/preserve-whole-object">Preserve Whole Object</a></p>
+        <p><a href="sub_simplmethcall/Preserve_Whole_Object.html">Preserve Whole Object</a></p>
+
         <h2 id="replaceparameterwithmethodcall">Replace Parameter with Method Call</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-parameter-with-method-call">Replace Parameter with Method Call</a>
-        引数として値を渡す際、事前に何かしらの処理が必要なのであれば、引数ではなくメソッドの中で処理してしまうことで引数を減らすことを検討しましょう。</p>
-        <pre>
-          <code class="java:リファクタリング前 language-java:リファクタリング前">
-            int basePrice = quantity * itemPrice;
-            double seasonDiscount = this.getSeasonalDiscount();
-            double fees = this.getFees();
-            double finalPrice = discountedPrice(basePrice, seasonDiscount, fees);
-          </code>
-        </pre>
-        <pre>
-          <code class="java:リファクタリング後 language-java:リファクタリング後">
-            int basePrice = quantity * itemPrice;
-            double finalPrice = discountedPrice(basePrice);
-          </code>
-        </pre>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-parameter-list">Long Parameter List</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/replace-parameter-with-method-call">Replace Parameter with Method Call</a></p>
+        <p><a href="sub_simplmethcall/Replace_Parameter_with_Method_Call.html">Replace Parameter with Method Call</a></p>
+
         <h2 id="introduceparameterobject">Introduce Parameter Object</h2>
-        <p><a href="https://sourcemaking.com/refactoring/introduce-parameter-object">Introduce Parameter Object</a>
-        パラメータオブジェクトの導入。
-        関連する値を1つのオブジェクトにまとめることでコードが読みやすくする。
-        開始日時と終了日時を期間というクラスにまとめるなど。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-method">Long Method</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-parameter-list">Long Parameter List</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-clumps">Data Clumps</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/introduce-parameter-object">Introduce Parameter Object</a></p>
+        <p><a href="sub_simplmethcall/Introduce_Parameter_Object.html">Introduce Parameter Object</a></p>
+
         <h2 id="removesettingmethod">Remove Setting Method</h2>
         <p><a href="https://sourcemaking.com/refactoring/remove-setting-method">Remove Setting Method</a></p>
-        <p>データクラス内のデータがインスタンス生成時にのみ設定される場合、setterは必要ないので削除しましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
-        </ul>
+        <p><a href="sub_simplmethcall/Remove_Setting_Method.html">Remove Setting Method</a></p>
+
         <h2 id="hidemethod">Hide Method</h2>
         <p><a href="https://sourcemaking.com/refactoring/hide-method">Hide Method</a></p>
-        <p>自クラス内やサブクラスでのみ使用され、他クラスからは使用されないメソッドの可視性はprivateかprotectedにしましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
-        </ul>
+        <p><a href="sub_simplmethcall/Hide_Method.html">Hide Method</a></p>
+
         <h2 id="replaceconstructorwithfactorymethod">Replace Constructor with Factory Method</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-constructor-with-factory-method">Replace Constructor with Factory Method</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <p><a href="https://sourcemaking.com/refactoring/replace-constructor-with-factory-method">Replace Constructor with Factory Method</a></p>
+        <p><a href="sub_simplmethcall/Replace_Constructor_with_Factory_Method.html">Replace Constructor with Factory Method</a></p>
+
         <h2 id="replaceerrorcodewithexception">Replace Error Code with Exception</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-error-code-with-exception">Replace Error Code with Exception</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <p><a href="https://sourcemaking.com/refactoring/replace-error-code-with-exception">Replace Error Code with Exception</a></p>
+        <p><a href="sub_simplmethcall/Replace_Error_Code_with_Exception.html">Replace Error Code with Exception</a></p>
+
         <h2 id="replaceexceptionwithtest">Replace Exception with Test</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-exception-with-test">Replace Exception with Test</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <p><a href="https://sourcemaking.com/refactoring/replace-exception-with-test">Replace Exception with Test</a></p>
+        <p><a href="sub_simplmethcall/Replace_Exception_with_Test.html">Replace Exception with Test</a></p>
       </section><!-- section class="box" -->
 
       <footer>

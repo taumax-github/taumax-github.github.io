@@ -149,110 +149,22 @@
         
         <h1 id="">関連するリファクタリング技法</h1>
 
-        <h1 id="simplifyingconditionalexpressions">Simplifying Conditional Expressions</h1>
-        <p><a href="https://sourcemaking.com/refactoring/simplifying-conditional-expressions">Simplifying Conditional Expressions</a></p>
-        <h2 id="decomposeconditional">Decompose Conditional</h2>
-        <p><a href="https://sourcemaking.com/refactoring/decompose-conditional">Decompose Conditional（条件文の分解）</a>
-        複雑な分岐条件をメソッドとして切り出すこと。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#long-method">Long Method</a></li>
-        </ul>
-        <h2 id="consolidateconditionalexpression">Consolidate Conditional Expression</h2>
-        <p><a href="https://sourcemaking.com/refactoring/consolidate-conditional-expression">Consolidate Conditional Expression</a>
-        複数の異なる条件分岐で同じ結果を返すような処理は一つの条件に統合しましょう。</p>
-        <pre>
-          <code class="java:リファクタリング前 language-java:リファクタリング前">
-            double disabilityAmount() {
-              if (seniority &lt; 2) {
-                return 0;
-              }
-              if (monthsDisabled &gt; 12) {
-                return 0;
-              }
-              if (isPartTime) {
-                return 0;
-              }
-            }
-          </code>
-        </pre>
-        <pre>
-          <code class="java:リファクタリング後 language-java:リファクタリング後">
-            double disabilityAmount() {
-              if (isNotEligableForDisability()) {
-                return 0;
-              }
-            }
-          </code>
-        </pre>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
-        </ul>
-        <h2 id="consolidateduplicateconditionalfragments">Consolidate Duplicate Conditional Fragments</h2>
-        <p><a href="https://sourcemaking.com/refactoring/consolidate-duplicate-conditional-fragments">Consolidate Duplicate Conditional Fragments</a>
-        条件分岐内で重複コードが存在する場合はその処理を条件分岐の外に配置しましょう。</p>
-        <pre>
-          <code class="java:リファクタリング前 language-java:リファクタリング前">
-            if (isSpecialDeal()) {
-              total = price * 0.95;
-              send();
-            } else {
-              total = price * 0.98;
-              send();
-            }
-          </code>
-        </pre>
-        <pre>
-          <code class="java:リファクタリング後 language-java:リファクタリング後">
-            if (isSpecialDeal()) {
-              total = price * 0.95;
-            } else {
-              total = price * 0.98;
-            }
-            send();
-          </code>
-        </pre>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
-        </ul>
-        <h2 id="removecontrolflag">Remove Control Flag</h2>
-        <p><a href="https://sourcemaking.com/refactoring/remove-control-flag">Remove Control Flag</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
-        <h2 id="replacenestedconditionalwithguardclauses">Replace Nested Conditional with Guard Clauses</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-nested-conditional-with-guard-clauses">Replace Nested Conditional with Guard Clauses</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
-        <h2 id="replaceconditionalwithpolymorphism">Replace Conditional with Polymorphism</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a>
-        switch文で条件を指定しながら処理を振り分けるような処理は、処理に対応するサブクラスを作成して呼び出し元はポリモルフィズムで実現することを検討しましょう（※）。</p>
-        <p>※Effective Java で”戦略enumパターン”という名前で紹介されていた技法も参考になると思われるので、それに関する記事をご紹介</p>
-        <ul>
-          <li>
-            <a href="https://amachang.hatenablog.com/entry/20100225/1267114471">Effective Java 読書会 8 日目 「それ enum で出来るよ」</a>
-            　⇒「switch 文の代わりに固有メソッド」と「戦略 enum」のところ
-          </li>
-          <li><a href="https://qiita.com/jver/items/f3485f4fd9c47625d7a4">Effective Java：Enum編</a></li>
-        </ul>
+        <h1 id="movingfeaturesbetweenobjects">Moving Features between Objects</h1>
+        <p><a href="https://sourcemaking.com/refactoring/moving-features-between-objects">Moving Features between Objects</a></p>
+
+        <h2 id="movemethod">Move Method</h2>
+        <p><a href="https://sourcemaking.com/refactoring/move-method">Move Method</a>
+        あるクラス内のメソッドが自クラスよりも他クラスから呼び出されることの方が多い場合、そのメソッドを最も使用頻度が高いクラスに移動しましょう。</p>
         <p><strong><em>関連するCode Smell</em></strong></p>
         <ul>
           <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
-        </ul>
-        <h2 id="introducenullobject">Introduce Null Object</h2>
-        <p><a href="https://sourcemaking.com/refactoring/introduce-null-object">Introduce Null Object</a>
-        あるメソッドがnullを返すようなことがある場合、呼び出し元でnullチェックを行う必要があります。
-        nullの代わりにデフォルトの振る舞いを実装したオブジェクトを返すことを検討しましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#temporary-field">Temporary Field</a></li>
-        </ul>
-        <h2 id="introduceassertion">Introduce Assertion</h2>
-        <p><a href="https://sourcemaking.com/refactoring/introduce-assertion">Introduce Assertion</a>
-        コードが正しく動作するのに必要な前提条件がある場合、assert()を使用して事前チェックするようにしましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#comments">Comments</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#shotgun-surgery">Shotgun Surgery</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#parallel-inheritance-hierarchies">Parallel Inheritance Hierarchies</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#feature-envy">Feature Envy</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
+          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#message-chains">Message Chains</a></li>
         </ul>
       </section><!-- section class="box" -->
 

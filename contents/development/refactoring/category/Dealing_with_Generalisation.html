@@ -151,109 +151,54 @@
 
         <h1 id="dealingwithgeneralisation">Dealing with Generalisation</h1>
         <p><a href="https://sourcemaking.com/refactoring/dealing-with-generalisation">Dealing with Generalisation</a></p>
+
         <h2 id="pullupfield">Pull Up Field</h2>
-        <p><a href="https://sourcemaking.com/refactoring/pull-up-field">Pull Up Field</a>
-        2つのクラスに同じフィールドが存在する場合はそのフィールドをスーパークラスに移動しましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/pull-up-field">Pull Up Field</a></p>
+        <p><a href="sub_dealgeneral/Pull Up_Field.html">Pull Up Field</a></p>
+
         <h2 id="pullupmethod">Pull Up Method</h2>
-        <p><a href="https://sourcemaking.com/refactoring/pull-up-method">Pull Up Method</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <p><a href="https://sourcemaking.com/refactoring/pull-up-method">Pull Up Method</a></p>
+        <p><a href="sub_dealgeneral/Pull_Up_Method.html">Pull Up Method</a></p>
+
         <h2 id="pullupconstructorbody">Pull Up Constructor Body</h2>
-        <p><a href="https://sourcemaking.com/refactoring/pull-up-constructor-body">Pull Up Constructor Body</a>
-        ほとんど同一のコードがコンストラクタに存在する場合、スーパークラスにコンストラクタを定義してサブクラスの重複コードをスーパークラスに移動し、サブクラスのコンストラクタからスーパークラスのコンストラクタを呼び出すようにしましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/pull-up-constructor-body">Pull Up Constructor Body</a></p>
+        <p><a href="sub_dealgeneral/Pull_Up_Constructor_Body.html">Pull Up Constructor Body</a></p>
+
         <h2 id="pushdownmethod">Push Down Method</h2>
-        <p><a href="https://sourcemaking.com/refactoring/push-down-method">Push Down Method</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <p><a href="https://sourcemaking.com/refactoring/push-down-method">Push Down Method</a></p>
+        <p><a href="sub_dealgeneral/Push_Down_Method.html">Push Down Method</a></p>
+
         <h2 id="pushdownfield">Push Down Field</h2>
-        <p><a href="https://sourcemaking.com/refactoring/push-down-field">Push Down Field</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
+        <p><a href="https://sourcemaking.com/refactoring/push-down-field">Push Down Field</a></p>
+        <p><a href="sub_dealgeneral/Push_Down_Field.html">Push Down Field</a></p>
+
         <h2 id="extractsubclass">Extract Subclass</h2>
         <p><a href="https://sourcemaking.com/refactoring/extract-subclass">Extract Subclass</a></p>
-        <p>特定の場合にのみ使用される機能がクラスにある場合、サブクラスを作成してその機能を使用します。</p>
-        <p>注意すべき点として、サブクラスを作ることが必ずしもコードの複雑性を回避する手段になるとは限りません。継承は使いどころを間違えると大変なことになるのでコンポジションを使うべきところと明確に分けて考えましょう。</p>
-        <p>※継承とコンポジションの違いについてはこの辺が参考になると思います。</p>
-        <ul>
-          <li><a href="http://4geek.net/difference-between-inheritance-and-composition/">継承とコンポジションをどう使い分けるか</a></li>
-          <li><a href="https://qiita.com/mikamikuh@github/items/1cdcd8b25a2e23f10525">Effective Java 16章「継承よりコンポジションを選ぶ」</a></li>
-          <li><a href="https://www.thekingsmuseum.info/entry/2015/09/16/003849">【Effective Java】項目１６：継承よりコンポジションを選ぶ</a></li>
-          <li><a href="https://postd.cc/why-composition-is-often-better-than-inheritance/">クラスの「継承」より「合成」がよい理由とは？ゲーム開発におけるコードのフレキシビリティと可読性の向上</a></li>
-        </ul>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#large-class">Large Class</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#divergent-change">Divergent Change</a></li>
-        </ul>
+        <p><a href="sub_dealgeneral/Extract_Subclass.html">Extract Subclass</a></p>
+
         <h2 id="extractsuperclass">Extract Superclass</h2>
-        <p><a href="https://sourcemaking.com/refactoring/extract-superclass">Extract Superclass</a>
-        2つのクラスの共通部分（フィールドやメソッド）をスーパークラスとして再定義しましょう。</p>
-        <p>※継承は必ずしも最適解ではありません。使いどころを間違えるとクラス設計がいびつなものになってしまいます。
-        先の項目にも書いた継承を使うべきか<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>を使うべきかをきちんと判断した上で継承を使うようにしましょう。</p>
-        <p>・・・例えば、ゲームのスーパーマリオに出てくるファイアーマリオを実装する場合、普通のマリオをスーパークラスにしてファイアーマリオをそのサブクラスとして実装するのはおそらく違和感ないです。ファイヤーマリオの実装はおそらく「火を吐く」という部分だけを実装すれば済むでしょう。
-        しかし、クッパを普通のマリオやファイアーマリオのサブクラスとして実装するのはおそらく後々厄介なことになります。
-        確かにクッパはジャンプをするし、火も吐くのでマリオとの共通部分が多く、もしかしたらマリオを継承することで実装を減らせるかもしれません。
-        しかし、マリオの実装を変えるとクッパの振る舞いに影響を与えかねません。
-        スーパークラスとサブクラスは結びつきが強いため、実装を変更するとお互いの振る舞いに影響を与えることがあります。本当に継承を使うのが適切なのかを考えてから継承を使うようにしましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#refused-bequest">Refused Bequest</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#alternative-classes-with-different-interfaces">Alternative Classes with Different Interfaces</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#divergent-change">Divergent Change</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/extract-superclass">Extract Superclass</a></p>
+        <p><a href="sub_dealgeneral/Extract_Superclass.html">Extract Superclass</a></p>
+
         <h2 id="extractinterface">Extract Interface</h2>
         <p><a href="https://sourcemaking.com/refactoring/extract-interface">Extract Interface</a></p>
-        <p>リンク先の英語をほぼ理解できなかったのですが、、、雰囲気的に以下のようなことを言っていると思いました。</p>
-        <p>この技法はコードの重複を排除するようなものではありません。
-        状況によって役割・振る舞いが違う場合にこの技法は有用です。
-        （例えば、DB接続する機能があったとして、ローカル環境ではStub、結合テスト環境では実際にDB接続するクラスとして振舞ってほしいような状況のことを言っているのかなと想像しました）</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#large-class">Large Class</a></li>
-        </ul>
+        <p><a href="sub_dealgeneral/Extract_Interface.html">Extract Interface</a></p>
+
         <h2 id="collapsehierarchy">Collapse Hierarchy</h2>
-        <p><a href="https://sourcemaking.com/refactoring/collapse-hierarchy">Collapse Hierarchy</a>
-        サブクラスとスーパークラスにほとんど差がないようであればスーパークラスに統合しましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#lazy-class">Lazy Class</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#dead-code">Dead Code</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#speculative-generality">Speculative Generality</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/collapse-hierarchy">Collapse Hierarchy</a></p>
+        <p><a href="sub_dealgeneral/Collapse_Hierarchy.html">Collapse Hierarchy</a></p>
+
         <h2 id="formtemplatemethod">Form Template Method</h2>
-        <p><a href="https://sourcemaking.com/refactoring/form-template-method">Form Template Method</a>
-        サブクラスに似たようなステップ、順序で実行するアルゴリズムが実装されている場合、アルゴリズムの構造および同一ステップをスーパークラスに移動し、異なるステップの実装をサブクラスから排除します。</p>
-        <p><strong><em>【リファクタリング前】</em></strong>
-        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/f7cbb09d-398f-072d-c55c-086bbab95a37.png" width=60% />
-        <a href="https://sourcemaking.com/refactoring/form-template-method">このページ</a>より抜粋</p>
-        <p><strong><em>【リファクタリング後】</em></strong>
-        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/000a19e2-8c2d-e213-afb9-5cfc9c4cf91b.png" width=60% />
-        <a href="https://sourcemaking.com/refactoring/form-template-method">このページ</a>より抜粋</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#duplicate-code">Duplicate Code</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/form-template-method">Form Template Method</a></p>
+        <p><a href="sub_dealgeneral/Form_Template_Method.html">Form Template Method</a></p>
+
         <h2 id="replaceinheritancewithdelegation">Replace Inheritance with Delegation</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-inheritance-with-delegation">Replace Inheritance with Delegation</a>
-        スーパークラスの一部しか使っていないようなサブクラスがある場合、（あるいは、スーパークラスのデータをサブクラスに引き継ぐのが不適切な場合）
-        サブクラスとして定義したクラスをスーパークラスのフィールドとして定義し、サブクラスのメソッドをスーパークラスに<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>しましょう。さらに、継承関係を排除しましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#refused-bequest">Refused Bequest</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/replace-inheritance-with-delegation">Replace Inheritance with Delegation</a></p>
+        <p><a href="sub_dealgeneral/Replace_Inheritance_with_Delegation.html">Replace Inheritance with Delegation</a></p>
+
         <h2 id="replacedelegationwithinheritance">Replace Delegation with Inheritance</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-delegation-with-inheritance">Replace Delegation with Inheritance</a>
-        他クラスのメソッドを呼び出すだけのシンプルなメソッド（<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#委譲delegate">委譲(delegate)</a>）を多く実装しているような場合、委譲を継承に置き換えることを検討しましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
-        </ul>
+        <p><a href="https://sourcemaking.com/refactoring/replace-delegation-with-inheritance">Replace Delegation with Inheritance</a></p>
+        <p><a href="sub_dealgeneral/Replace_Delegation_with_Inheritance.html">Replace Delegation with Inheritance</a></p>
       </section><!-- section class="box" -->
 
       <footer>

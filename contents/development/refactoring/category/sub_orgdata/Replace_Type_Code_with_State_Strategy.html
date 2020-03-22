@@ -151,137 +151,7 @@
 
         <h1 id="organizingdata">Organizing Data</h1>
         <p><a href="https://sourcemaking.com/refactoring/organizing-data">Organizing Data</a></p>
-        <h2 id="selfencapsulatefield">Self Encapsulate Field</h2>
-        <p><a href="https://sourcemaking.com/refactoring/self-encapsulate-field">Self Encapsulate Field</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
-        <h2 id="replacedatavaluewithobject">Replace Data Value with Object</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-data-value-with-object">Replace Data Value with Object</a>
-        プリミティブ型で定義されたデータフィールドとその振る舞いを別の新しいクラスとして切り出し、それを元のクラスに保有させます。</p>
-        <p>※参考：ValueObject
-        Replace Data Value with Objectを理解するためにDDDのValueObjectが参考になると思ったので、ValueObjectを解説しているサイトのリンクを張っておきます。</p>
-        <ul>
-          <li><a href="https://qiita.com/little_hand_s/items/f8c0d0858c895afed7e2">DDD基礎解説：エンティティ、バリューオブジェクトってなんなんだ</a></li>
-          <li><a href="https://qiita.com/okuramasafumi/items/03ef332704cf6a2350f8">バリューオブジェクトの私的まとめ</a></li>
-          <li><a href="https://qiita.com/ikemo/items/8df668b3efd38026a416">オブジェクト指向の理解にはValue Objectを作る習慣から</a></li>
-        </ul>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
-        </ul>
-        <h2 id="changevaluetoreference">Change Value to Reference</h2>
-        <p><a href="https://sourcemaking.com/refactoring/change-value-to-reference">Change Value to Reference</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
-        <h2 id="changereferencetovalue">Change Reference to Value</h2>
-        <p><a href="https://sourcemaking.com/refactoring/change-reference-to-value">Change Reference to Value</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
-        <h2 id="replacearraywithobject">Replace Array with Object</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-array-with-object">Replace Array with Object</a>：</p>
-        <p>様々なデータ型が1つの配列に含まれている場合、配列をオブジェクトに変換し、型が異なるデータは別のフィールドに持たせましょう。</p>
-        <pre>
-          <code class="java:リファクタリング前 language-java:リファクタリング前">
-            String[] row = new String[2];
-            row[0] = "Liverpool";
-            row[1] = "15";
-          </code>
-        </pre>
-        <pre>
-          <code class="java:リファクタリング後 language-java:リファクタリング後">
-            Performance row = new Performance();
-            row.setName("Liverpool");
-            row.setWins("15");
-          </code>
-        </pre>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
-        </ul>
-        <h2 id="duplicateobserveddata">Duplicate Observed Data</h2>
-        <p><a href="https://sourcemaking.com/refactoring/duplicate-observed-data">Duplicate Observed Data</a>
-        GUIを担当するクラスにドメイン（＝業務）に関するデータが含まれているような場合、データを別のクラスに分離し、ドメインクラスとGUI間の接続と同期を確保することをお勧めします。
-        こうすることで、プレゼンテーションレイヤーとビジネスロジックを分離することができ、プログラムを理解しやすくすることができます。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#large-class">Large Class</a></li>
-        </ul>
-        <h2 id="changeunidirectionalassociationtobidirectional">Change Unidirectional Association to Bidirectional</h2>
-        <p><a href="https://sourcemaking.com/refactoring/change-unidirectional-association-to-bidirectional">Change Unidirectional Association to Bidirectional</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
-        <h2 id="changebidirectionalassociationtounidirectional">Change Bidirectional Association to Unidirectional</h2>
-        <p><a href="https://sourcemaking.com/refactoring/change-bidirectional-association-to-unidirectional">Change Bidirectional Association to Unidirectional</a>
-        クラス同士が相互に依存しているが、一方のクラスは他方の機能を使用していない場合、未使用の関連を削除します。</p>
-        <p><strong><em>【リファクタリング前】</em></strong>
-        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/16483fda-edb9-1851-943e-793d418ea182.png" alt="image.png" />
-        <a href="https://sourcemaking.com/refactoring/change-bidirectional-association-to-unidirectional">このページ</a>より抜粋</p>
-        <p><strong><em>【リファクタリング後】</em></strong>
-        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/b75b634f-3b4f-fb15-1fd2-9fadc342ca66.png" alt="image.png" />
-        <a href="https://sourcemaking.com/refactoring/change-bidirectional-association-to-unidirectional">このページ</a>より抜粋</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#inappropriate-intimacy">Inappropriate Intimacy</a></li>
-        </ul>
-        <h2 id="replacemagicnumberwithsymbolicconstant">Replace Magic Number with Symbolic Constant</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-magic-number-with-symbolic-constant">Replace Magic Number with Symbolic Constant</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
-        <h2 id="encapsulatefield">Encapsulate Field</h2>
-        <p><a href="https://sourcemaking.com/refactoring/encapsulate-field">Encapsulate Field</a>
-        publicなフィールドはprivateに変更してsetter/getterからのアクセスのみを許可するようにしましょう。
-        カプセル化はオブジェクト指向の基本です。
-        データに対して必要な処理（値のチェックなど）をsetter/getterに任せることで、データを利用する側ではその正当性を意識する必要がなくなります。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
-        </ul>
-        <h2 id="encapsulatecollection">Encapsulate Collection</h2>
-        <p><a href="https://sourcemaking.com/refactoring/encapsulate-collection">Encapsulate Collection</a>
-        ListやSetなどのようなCollectionをカプセル化する場合、getterはread onlyなオブジェクトを返すようにしましょう。
-        また、Collectionに要素を追加するためのaddメソッドやdeleteメソッドを用意しましょう。</p>
-        <p>※なぜこんなことをする必要があるのかわからない人はimmutableという概念について知っておきましょう。参考になりそうなサイトのリンクを下に張っておきます。</p>
-        <p><a href="https://sourcemaking.com/refactoring/encapsulate-collection">このページ</a>では、immutableにするためにgetCourcesメソッドはUnmodifiableSetをreturnしています。UnmodifiableSetにaddやdeleteメソッドで要素を追加・削除しようとすると、実行時エラー（UnsuportedOperationException）になります。</p>
-        <p><a href="https://www.amazon.co.jp/dp/4621303252">Effective Java</a> という本の中では、<a href="https://hageyahhoo.hatenablog.com/entry/20090911/1252638495">defensive copy</a>というやり方が紹介されています。
-        これは、上で紹介したUnmodifiableSetをreturnするのではなく、以下のようにして、参照先の異なるオブジェクトをreturnする手法です。
-        これであれば、呼び出し元でaddやdeleteメソッドを呼び出すことが可能であり、かつ、オブジェクトの参照先が異なるので元データに影響を与えることもありません。</p>
-        <pre>
-          <code class="java:Sample.java language-java:Sample.java">
-            class Test {
-              private Set&lt;String&gt; setTest = new HashSet&lt;&gt;();
-              public Set getCources() {
-                  return new Set(setTest);
-              }
-            }
-          </code>
-        </pre>
-        <p>【immutableの参考】</p>
-        <ul>
-          <li><a href="https://techblog.imagemagic.jp/2018/07/09/immutable%E3%81%A8%E3%81%84%E3%81%86%E6%A6%82%E5%BF%B5%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">Immutableという概念について</a></li>
-          <li><a href="https://hageyahhoo.hatenablog.com/entry/20090910/1252572314">immutable object</a></li>
-          <li><a href="https://hageyahhoo.hatenablog.com/entry/20090911/1252638495">defensive copy</a></li>
-        </ul>
-        <p>ちなみに、Javaでimmutable objectの一番身近な例はStringです。</p>
-        <ul>
-          <li><a href="https://qiita.com/makotoo2/items/fc3a617882916f9775f5">ミュータブルな型とイミュータブルな型の相違を知ろう</a></li>
-        </ul>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#data-class">Data Class</a></li>
-        </ul>
-        <h2 id="replacetypecodewithclass">Replace Type Code with Class</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-type-code-with-class">Replace Type Code with Class</a>
-        クラスにType Code（※）が含まれていて、かつそれがプログラムの振る舞いに何も影響を与えないのであれば、それをクラスとして切り出し、それを値として使うのではなくオブジェクトとして扱いましょう。
-        （Enumを使うときれいにはまりそうですね）</p>
-        <p>※Type Codeについて
-        Type Codeは個別のデータ型ではありません。エンティティに登録できる値が一連の数字または文字列に制限されているような場合に発生します。多くの場合、これらの特定の数字と文字列には定数を介してわかりやすい名前が付けられています。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
-        </ul>
-        <h2 id="replacetypecodewithsubclasses">Replace Type Code with Subclasses</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-type-code-with-subclasses">Replace Type Code with Subclasses</a>
-        プログラムの振る舞いに直接影響を与えるType Codeが存在する場合、各値をサブクラスとして切り出し、関連する振る舞いをサブクラスに移動します。そして、条件分岐などでコントロールしていた部分をポリモルフィズムで実現するように書き換えましょう。</p>
-        <p><strong><em>関連するCode Smell</em></strong></p>
-        <ul>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
-          <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
-        </ul>
+
         <h2 id="replacetypecodewithstatestrategy">Replace Type Code with State/Strategy</h2>
         <p><a href="https://sourcemaking.com/refactoring/replace-type-code-with-state-strategy">Replace Type Code with State/Strategy</a>
         クラスの中にType Codeがあり、それがプログラムの振る舞いに影響を与えるような場合で、サブクラスとして切り出すのが難しい場合、Type Codeを状態を表すオブジェクト(state object)に置き換えます。フィールドの値をType Codeに置き換える必要がある場合、別の状態オブジェクトをクラスに注入します。</p>
@@ -295,9 +165,6 @@
           <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#primitive-obsession">Primitive Obsession</a></li>
           <li><a href="https://qiita.com/taumax/items/f192b16676f78fa04849#switch-statements">Switch Statements</a></li>
         </ul>
-        <h2 id="replacesubclasswithfields">Replace Subclass with Fields</h2>
-        <p><a href="https://sourcemaking.com/refactoring/replace-subclass-with-fields">Replace Subclass with Fields</a>
-        ※関連するCode Smellがなかったためリンクのみ。</p>
       </section><!-- section class="box" -->
 
       <footer>
