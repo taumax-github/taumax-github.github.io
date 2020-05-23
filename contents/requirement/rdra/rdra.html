@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+
 <html lang="ja">
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
@@ -10,14 +12,14 @@
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
-    <meta name="keywords" content="IT,エンジニア,Java,リファクタリング,Code Smell">
-  
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/print.css" media="print">
-  
-    <title>システム開発知識が集うサイト</title>
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/print.css" media="print">
     <script src="js/openclose.js"></script>
-  
+
+    <title>とあるＩＴエンジニアの知識整理</title>
+    
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -29,25 +31,610 @@
       .menu5 a {background-position: -10px -490px;}
     </style>
     <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
   </head>
 
-<body>
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../images/logo.png" alt="TOP"></a>
+    </h1>
 
-<div id="base">
-  <div id="container">
-  <!-- /header -->
-    <dl id="contents"> 
-      <dt>RDRA</dt>
-      <dd>
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul>
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+    <nav>
+      <ul>
+        <font size="2">
+          <li>・<a href="#rdra_overview">RDRA概要</a></li>
+          <li>・<a href="#goals_requirements">要件定義の目標</a></li>
+          <li>・<a href="#requirements_problems">要件定義にまつわる問題</a></li>
+          <li>・<a href="#basic_diagram">基本ダイアグラム</a></li>
+          <li>・<a href="#relationship_diagram">関係ダイアグラム</a></li>
+          <li>・<a href="#about_rdra">イベント本編</a></li>
+          <li>・<a href="#relartionship_requirements">各種要求と関係</a></li>
+          <li>・<a href="#reference_books">要件定義で参考になる本</a></li>
+          <li>・<a href="#commit_communication">合意形成とコミュニケーション</a></li>
+          <li>・<a href="#diagrams">各種ダイアグラム</a></li>
+          <li>・<a href="#requirement_elements">要件定義の構成要素</a></li>
+          <li>・<a href="#context_diagram">コンテキスト図</a></li>
+          <li>・<a href="#model_integrity">モデルの整合性</a></li>
+          <li>・<a href="#statechange">状態遷移について</a></li>
+          <li>・<a href="#qa">QA</a></li>
+          <li>・<a href="#references">参考資料集</a></li>
+        </font>
+      </ul>
+    </nav>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../images/logo.png" alt="SAMPLE SITE"></a>
+    </h1>
+
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <nav>
+        <ul><li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li></ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+    <nav>
+      <ul>
+        <font size="2">
+          <li><a href="#rdra_overview">RDRA概要</a></li>
+          <li><a href="#goals_requirements">要件定義の目標</a></li>
+          <li><a href="#requirements_problems">要件定義にまつわる問題</a></li>
+          <li><a href="#basic_diagram">基本ダイアグラム</a></li>
+          <li><a href="#relationship_diagram">関係ダイアグラム</a></li>
+          <li><a href="#about_rdra">イベント本編</a></li>
+          <li><a href="#relartionship_requirements">各種要求と関係</a></li>
+          <li><a href="#reference_books">要件定義で参考になる本</a></li>
+          <li><a href="#commit_communication">合意形成とコミュニケーション</a></li>
+          <li><a href="#diagrams">各種ダイアグラム</a></li>
+          <li><a href="#requirement_elements">要件定義の構成要素</a></li>
+          <li><a href="#context_diagram">コンテキスト図</a></li>
+          <li><a href="#model_integrity">モデルの整合性</a></li>
+          <li><a href="#statechange">状態遷移について</a></li>
+          <li><a href="#qa">QA</a></li>
+          <li><a href="#references">参考資料集</a></li>
+        </font>
+      </ul>
+    </nav>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <!-- はてぶボタン -->
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        <!-- はてぶボタン
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        -->
+
+        <h2 class="title">勝手にＲＤＲＡを語る夕べで語られたことまとめ</h2>
+
+        <h3 class="title">◆「勝手にRDRAを語る夕べ」というイベントとこの記事について</h3>
+
         <p>
-          <a href="https://www.amazon.co.jp/dp/B07D25W3HF" target="_blank">モデルベース要件定義テクニック</a>
-          <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea662e.a3c33d12.18ea662f.a56a6fcd/?me_id=1278256&item_id=17462820&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Frakutenkobo-ebooks%2Fcabinet%2F8589%2F2000006428589.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Frakutenkobo-ebooks%2Fcabinet%2F8589%2F2000006428589.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  >モデルベース要件定義テクニック【電子書籍】[ 神崎善司 ]</a><br><span >価格：2527円</span> <span style="color:#BBB">(2019/7/28時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0"></a><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F%3Fscid%3Daf_pc_bbtn&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ==" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff !important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;">楽天で購入</div></a></div></td><tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
-          <a href="https://www.amazon.co.jp/dp/B07STQZFBX" target="_blank">RDRA2.0 ハンドブック: 軽く柔軟で精度の高い要件定義のモデリング手法 Kindle版</a>
+          connpassに「<a href="https://kataruyube.connpass.com/" target="_blank">語る夕べ</a>」というグループがあります。2018/07/18に「<a href="https://kataruyube.connpass.com/event/92197/" target="_blank">勝手にRDRAを語る夕べ</a>」というイベントが開催され、RDRA（ラドラ）という要件定義の手法について語る会が開催されました。<br>
+          この記事は、そのイベントに私が参加した際のメモと、別の参加者がtwitterで呟いたことをまとめたものです。<br>
+          ある程度RDRAを知っている人に対して語る会なので、いきなりこの記事を読んでもよくわからないと思います。<br>
+          「◆参考資料」に記載した資料がRDRAをちゃんと整理して説明しています。RDRAを提唱している神崎さんの資料です。整理された情報が欲しい人はその資料を見て下さい。<br>
+          この記事は、その資料を見た後で見ると、為になるところが少しはあるかもしれない。。。という記事です。<br>
         </p>
-      </dd>
-    </dl>
-  <!--//container--></div>
-<!--//base--></div>
 
-</body>
+        <h3 class="title">◆参考資料</h3>
+
+        <p>
+          本はこちら<br>
+          <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea662e.a3c33d12.18ea662f.a56a6fcd/?me_id=1278256&item_id=17462820&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Frakutenkobo-ebooks%2Fcabinet%2F8589%2F2000006428589.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Frakutenkobo-ebooks%2Fcabinet%2F8589%2F2000006428589.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  >モデルベース要件定義テクニック【電子書籍】[ 神崎善司 ]</a><br><span >価格：2527円</span> <span style="color:#BBB">(2019/7/28時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0"></a><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F%3Fscid%3Daf_pc_bbtn&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ==" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff !important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;">楽天で購入</div></a></div></td><tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+        </p>
+
+        <p>
+          ・<a href="http://k-method.jp/index.html" target="_blank">RDRA（ラドラ）：Relationship Driven Requirement Analysys</a><br>
+          ・<a href="https://www.slideshare.net/zenjikanzaki/rdra4-bp-study" target="_blank">モデルベース要件定義　at BPStudy（発表資料）</a><br>
+        </p>
+
+        <span id="rdra_overview"></span>
+        <h2 class="title">◆前提知識（ＲＤＲＡ概要）</h2>
+        <p>
+          「前提知識（RDRA概要）」の章はイベント関係なく私が個人的にまとめたものです。<br>
+          RDRA（ラドラ）：Relationship Driven Requirement Analysys<br>
+          リレーションシップ駆動要件分析<br>
+        </p>
+
+        <span id="goals_requirements"></span>
+        <h3 class="title">要件定義の目標</h3>
+
+        <p>
+          明確なコンセプトに基づいて各要件が適切に洗い出された要件定義は、次の3つの特性を兼ね備えている。<br>
+          ・網羅性：コンセプトの具現に必要な要件がもれ、重複なく示されている。<br>
+          ・整合性：各要件が基本コンセプトおよび他の要件と整合したものになっている。<br>
+          ・表現力：それぞれの要件がわかりやすく表現されている。<br>
+        </p>
+
+        <span id="requirements_problems"></span>
+        <h3 class="title">要件定義にまつわる問題</h3>
+        <p>
+          要件定義で多く見られる事象<br>
+          ・全体像が見えてこない。<br>
+          ・顧客と打ち合わせをリードできない。<br>
+          ・まとまらない会議<br>
+          ・シーズ中心<br>
+          ・議論がすぐ袋小路に入る<br>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/899c7b06-fbfa-0170-77c9-9e05c27e5e3c.png" alt="image.png" /><br>
+        </p>
+
+        <p>
+          リレーションシップ駆動要件分析(RDRA)<br>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/e16c1ff0-ff68-b58b-d3c9-883a85aa948d.png" alt="image.png" /><br>
+        </p>
+        <p>
+          要件定義を4つの領域に分解して捉える。<br>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/2d5a0d27-1fcd-32b1-b605-21c13dbd7212.png" alt="image.png" /><br>
+        </p>
+
+        <p>
+          上記4領域を、モデルを使って整理していく。<br>
+          領域ごとに対応する基本ダイアグラムがある。<br>
+        </p>
+
+        <span id="basic_diagram"></span>
+        <h3 class="title">基本ダイアグラム</h3>
+        <p>
+          網羅性を担保するために、基本ダイアグラムを使用する。<br>
+        </p>
+
+        <h4 class="title">1. システム価値</h4>
+        <p>
+          システムは誰にとってどのような価値があるのかを要求として明らかにする。<br>
+          使用するモデル：コンテキストモデルなど<br>
+          <br>
+          コンテキストモデルの例<br>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/be487321-26ab-73a9-0771-9ae01d2c9f4f.png" alt="image.png" /><br>
+        </p>
+
+        <h4 class="title">2. システムの外部環境</h4>
+        <p>
+          システムの価値を実現するための業務や利用シーンを明らかにし、システム境界を決める前提を明確にする。<br>
+          使用するモデル：業務フローなど<br>
+          <br>
+          業務フローの例<br>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/518b7161-08fd-d470-9420-8519d897f8e0.png" alt="image.png" /><br>
+        </p>
+
+        <h4 class="title">3. システム境界</h4>
+        <p>
+          システムと外部環境との境界に位置する部分を捉え、それを表現します。<br>
+          人が関わる部分はユースケースと画面・帳票モデルでシステム境界を表します。<br>
+          外部システムに関わる部分はイベントモデルとプロトコルモデルでシステム境界を表します。<br>
+          使用するモデル：ユースケース図など<br>
+          <br>
+          ユースケース図の例<br>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/c50ebd21-4f0c-1808-0612-f72c44522951.png" alt="image.png" /><br>
+        </p>
+
+        <h4 class="title">4. システム</h4>
+        <p>
+          システム内部構造に関係する要件として、データモデルまたはドメインモデル、機能モデル、ビジネスルールを明らかにします。<br>
+          <br>
+          ビジネスルール<br>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/94ad4eaf-bb25-5c38-543b-d3bf4aba8de1.png" alt="image.png" /><br>
+        </p>
+
+        <span id="relationship_diagram"></span>
+        <h3 class="title">関係ダイアグラム</h3>
+        <p>
+          基本ダイアグラムで整理したモデルを連結したダイアグラム（関係ダイアグラム）を作成することで、要件の整合性が取れているかを確認する。<br>
+          各ビューの間で要件に不整合が生じていないことを確認するため、基本ダイアグラムのモデル要素を1つの図に混在させて書いたもの。<br>
+          整合性を確認するために、関係ダイアグラムを使用する。<br>
+        </p>
+
+        <h4 class="title">1.システム外部環境の関係ダイアグラム</h4>
+        <p>
+          業務フロー＆ユースケース<br>
+          利用シーン＆ユースケース<br>
+        </p>
+
+        <h4 class="title">2.システム境界の関係ダイアグラム</h4>
+        <p>
+          ユースケース＆画面・帳票<br>
+        </p>
+
+        <h4 class="title">3.システムに関する関係ダイアグラム</h4>
+
+        <h5 class="title">機能複合モデル</h5>
+        <p>
+          機能を中心に、画面、ユースケース、データ、ドメインを結びつけ、全体としての整合性をチェックします。<br>
+          トレーサビリティチェック<br>
+          上記のような関係ダイアグラムを利用することで、システムの各部分が別の部分に正しく対応づいていること（トレーサビリティ）のチェックに役立てることができます。<br>
+          下図のノートと吹き出しが各ダイアグラム間の関係性について着目するポイント<br>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/f40820a8-6bc1-5cd2-988e-470c5e7fa4ba.png" alt="image.png" /><br>
+        </p>
+
+        <br><br>
+        <hr />
+
+        <span id="about_rdra"></span>
+        <h2 class="title">◆ＲＤＲＡについて（イベントの内容）</h2>
+
+        <p>
+          ここからがイベントの内容<br>
+          今回の語る夕べはRDRAと近いテクニックを比較して理解を深めるという形式でした。<br>
+          本になっているのはRDRA 1.0<br>
+          今年（2018年）になってRDRA 2.0 という考え方を出した。<br>
+          RDRA 1.0ではシステム要求がRDRAの範囲で一部業務要求まで見ている感じだったのだけれど、2.0では軸足が業務要求に移ってきた。<br>
+          RDRA 1.0では、網羅性が取れる点が大きなメリットでした。2.0では業務要求なので網羅性はあまり言わなくなりました。業務の網羅性は取れないですから。<br>
+        </p>
+
+        <h3 class="title">要望、要求、要件について</h3>
+        <p>
+          ・要望、要求、要件を定義している<br>
+          「要望」という言葉はみんなが好き勝手に定義しているのでブレやすい。<br>
+          人によって要望、要求、要件の定義が異なる。<br>
+          <a href="http://d.hatena.ne.jp/mkoszk/20101218/1292654009" target="_blank">参考</a><br>
+          　⇒いろんな人が好き勝手言ってる言葉。<br>
+        </p>
+
+        <p>
+          本では以下のように定義している。<br>
+          ・要望：ヒアリングしたものをそのまま記録
+          ・要求：要望は矛盾や重複があるので整理して構造化。構造化は木構造で整理することが多い。<br>
+          ・要件：最終的に実施するもの<br>
+        </p>
+        <p>
+          ・RDRAでは、ヒアリングした項目を構造化したものを要求とし、要求の中からシステムで実現されなければならないことを要件と定義しています。<br>
+          ・RDRAでは要望・要求・要件をモデル化します。モデル化する際には、木構造や、複雑な場合は関係図（要求や要件間の関係を図にする）を使用します。<br>
+          例えばこういうもの<br>
+          <a href="https://tech.nikkeibp.co.jp/it/article/Watcher/20071009/283860/" target="_blank">「要求分析ツリー」を使って要求の構造をとらえる</a> ｜ 日経 xTECH（クロステック）<br>
+        </p>
+
+        <h4 class="title">要求工学における要望、要求、要件</h4>
+        <p>
+          ・要求工学では、要望、要求、要件で分けない。要求で統一している。<br>
+          要求工学では要望・要求・要件を『ほにゃらら要求』という（英語では全部requirementなので）のですが、事業要求・業務要求・システム要求といった言葉が近い概念として対応します。<br>
+        </p>
+
+        <h4 class="title">共通フレーム2007の定義</h4>
+        <p>
+          共通フレーム2007における要望、要求、要件の関係<br>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/3ecc0c7c-7d6a-8018-87a6-1ffb99b13cda.png" alt="image.png" /><br>
+          <a href="http://d.hatena.ne.jp/mkoszk/20101223/p2" target="_blank">共通フレーム2007における要望、要求、要件の関係</a>より抜粋<br>
+        </p>
+
+        <span id="relartionship_requirements"></span>
+        <h3 class="title">ステークホルダー要求とその他の要求との関係</h3>
+        <p>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/635ef691-8cf9-b68f-6dd6-1f80c291c21a.png" alt="image.png" /><br>
+          <a href="http://d.hatena.ne.jp/mkoszk/20110214/p1" target="_blank">ステークホルダー要求とその他の要求との関係</a>より抜粋<br>
+        </p>
+
+        <p>
+          ・お客様に業務の話を聞きに行ったとしても、お客様はシステムの問題を語り続けるかもしれません。<br>
+          だから、ステークホルダー要求は業務、システム、ソフトウェアそれぞれにあります。<br>
+          ・RDRAで言う要望、要求、要件は上の図で言うステークホルダー要求。<br>
+          ステークホルダーが喋ったことを構造化しようと言っている。<br>
+          ステークホルダー要求、事業要求、業務要求はシステム化する上でのインプット。<br>
+          システム要求、ソフトウェア要求はその結果。アウトプット。<br>
+        </p>
+        <p>
+          ・To-BeとAs-Isの差分を要求と捉える人と(XDDP)、<br>
+          To-Beそのものを要求と捉える人の2種類がいる(USDM)。<br>
+          テストエンジニアにとって要求というと清水吉男さんのXDDPやUSDMで言うところの“要求”の定義に馴染みが深い人が多いのですが、RDRAの要求はちょっと違います。<br>
+          RDRAでは、ヒアリングして差分は聞くが、メインはAs-Is あるべき姿をモデル化する（P38 1.3.5の図1-10）<br>
+        </p>
+
+        <span id="reference_books"></span>
+        <h3 class="title">要件定義で参考になる本</h3>
+        <p>
+          ・要求の専門家　←要求工学系。アカデミックに近い文脈。<br>
+          ・要求エンジニア<br>
+          ・開発者向けの本　←RDRAはここ。要件定義をやったことのない開発者向けの本。<br>
+        </p>
+
+        <span id="commit_communication"></span>
+        <h3 class="title">合意形成とコミュニケーション</h3>
+        <p>
+          仕様に近いものをモデルで表現している。<br>
+          ・RDRAでは、お客様が語った『問題』や『夢』をヒアリングしてあるべき姿をモデル化します。<br>
+          そのため、神崎さんは「合意形成」や「コミュニケーション」に興味があります。To-Beモデルです。<br>
+          清水さんのUSDMではAs-Isとの差や『仕様を導くための要求』に重きを置いています<br>
+          お客さんと会話しやすいモデルとしにくいモデルがある。<br>
+          価値と業務は顧客と会話しやすい。<br>
+        </p>
+        <p>
+          <table border="1" cellpadding="0" cellspacing="0" bordercolor="#008855">
+          <th bgcolor="midnightblue">RDRAで言う・・・</th><th bgcolor="midnightblue">左をREBOK（要求工学）で言うと・・・</th>
+          <tr>
+            <td bgcolor="black">網羅性</td><td bgcolor="black">完全性に近い。業務の世界で網羅性を言うと破綻する。<br>⇒スコープを決める。システムは限られたスコープの中で網羅性を求める。</td>
+          </tr>
+          <tr>
+            <td bgcolor="black">整合性</td><td bgcolor="black">追跡可能性</td>
+          </tr>
+          <tr>
+            <td bgcolor="black">表現力</td><td bgcolor="black">要求の専門家は気にしない。</td>
+          </tr>
+          </table>
+        </p>
+        <p>
+          RDRAの言葉は要求の専門家が使う言語とずれていてもやもやする。<br>
+        </p>
+        <p>
+          RDRAに書かれている、システム開発の困りごと。<br>
+          ・全体像が見えてこない<br>
+          ・コンセプトが不在、不十分<br>
+          ・会議をファシリテートできない<br>
+          ・顧客をリードできない<br>
+          <font color=red>
+            →開発者の立ち位置で書かれている本だということがわかる。
+            書かれている困りごとは「開発者の困りごと」。
+            顧客サイドならこういう表現にはならない。
+          </font><br>
+        </p>
+
+        <span id="diagrams"></span>
+        <h3 class="title">要望ダイアグラム、機能要求ダイアグラム、非機能要求ダイアグラム</h3>
+        <p>
+          ・要望ダイアグラムでは、ヒアリングしたものを『そのまま』整理します。ヒアリングしたことを要約してはいけません。<br>
+          ・機能要求ダイアグラムと非機能要求ダイアグラムでは、要望を重複を排除するなどしながら綺麗に整理します。<br>
+          ・機能要件ダイアグラムと非機能要件ダイアグラムでは、プロジェクトでやることを確定します。<br>
+          これをベースライン設定といいます。神崎さんは、システム実現可能性まで考慮していそうです。<br>
+        </p>
+
+        <h4 class="title">リッチピクチャ</h4>
+        <p>
+        ・RDRAの要求ダイアグラム（P172 図4-3）はリッチピクチャに似ている。<br>
+        リッチピクチャ<br>
+        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/71f6a26d-6138-2a04-853c-b23917b6b965.png" alt="image.png" /><br>
+        <a href="https://www.ipa.go.jp/files/000005375.pdf" target="_blank">要求工学知識体系(REBOK)概説</a>より抜粋</p><br>
+        <p>
+          ・漫画と吹き出しを用いて、どのような意見があるのかを俯瞰する絵<br>
+          ・直感的な現状把握を行うことが目的である。<br>
+          ・公式なテクニックや定まった形式はない。<br>
+          ・ステークホルダの意見、世界観、問題意識を把握することに意義がある。<br>
+          ・発言者の位置にも意味があり、描き手の意図が反映される。<br>
+          ・近い、遠い、中央、周辺<br>
+        </p>
+
+        <span id="requirement_elements"></span>
+        <h3 class="title">要件定義の構成要素</h3>
+        <p>
+          ここがRDRAで一番な重要ポイント<br>
+          価値、環境、境界、システム内部(P52)<br>
+          おそらくBSCの戦略マップを参考にしたのだと思われる。<br>
+        </p>
+        <p>
+          <table border="1" cellpadding="0" cellspacing="0" bordercolor="#008855">
+          <th bgcolor="midnightblue">要求工学の分類</th><th bgcolor="midnightblue">RDRAにおける構成要素</th><th bgcolor="midnightblue">システムを使って生み出す価値</th>
+          <tr>
+            <td bgcolor="black">ビジネス要求</td><td bgcolor="black">システム外部環境</td><td bgcolor="black">システムを取り巻く環境</td>
+          </tr>
+          <tr>
+            <td bgcolor="black">システム要求</td><td bgcolor="black">システム境界</td><td bgcolor="black">システムとユーザーの接点</td>
+          </tr>
+          <tr>
+            <td bgcolor="black">ソフトウェア要求</td><td bgcolor="black">システム内部</td><td bgcolor="black">システムそのもの</td>
+          </tr>
+          </table>
+        </p>
+        <p>
+          RDRAというと、モデル化に目が行きがちだけれど、そっちは別の所で学べば良くて、それよりも『要件定義の4つの構成要素』が大切。<br>
+          ４つとは<br>
+          ・システムを使って生み出す価値<br>
+          ・システムを取り巻く環境<br>
+          ・システムとの接点<br>
+          ・システムそのもの<br>
+          この４つをモデルを使って繋いでいく。<br>
+        </p>
+
+        <h4 class="title">オニオンモデル</h4>
+        <p>
+          RDRAにおける構成要素がオニオンモデルに似ているという話<br>
+          <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/c32bb7fc-bbb1-fe8c-db7a-907638137fe4.png" alt="image.png" /><br>
+          <a href="https://www.ipa.go.jp/files/000005375.pdf" target="_blank">要求工学知識体系(REBOK)概説</a>より抜粋<br>
+        </p>
+        <p>
+          |オニオンモデル|RDRAで言う|
+          |---|---|
+          |社会・環境、顧客、企業|システム価値|
+          |業務・ユーザ|システム外部|
+          |業務・ユーザとITシステムの間|システム境界|
+          |ITシステム、ソフトウェア|システム|
+        </p>
+        <p>
+          ・神崎さんのアプローチは、『ヒアリングした言葉を“要件定義の４つの構造モデル”に当てはめる』方式。<br>
+          要求工学では『モデルを元にしてヒアリングをしていく』方式。<br>
+          ・システム境界の代表的なものは、ユースケースと画面・帳票です。外部インターフェースも含まれます。<br>
+          書籍に「システムとの接点になる視点。業務フローもしくは独立した作業内でシステムを使うところがシステム境界となる」とありますので。<br>
+          ・RDRAでは外部開発環境重視といいます。私の解釈では業務要求を重視するという意味です。要求工学では当たり前の話です。<br>
+          なぜ当たり前の事がRDRAの特長となっているかというと、要求獲得工程に絡めるようになってきた開発者はシステム化をすぐに考えてしまうからです。<br>
+          ・業務に関心が無い開発者がいます。そういう人はお客様が業務要求についてお話しされていても<br>
+          『それは良いです。どういうシステムが欲しいのですか』とやってしまう。RDRAでは、そういう人に対して業務要求の重要さを説く。<br>
+          ・RDRAでは、アイデアをモデルに反映して議論を積み上げて合意形成し徐々に形にしていきます。<br>
+          ・お客様によっては「議論（ディスカッション）しましょう」というと受け入れてもらえない事があります。そういう時にはレビューしてくださいと言うとうまくいく事があります。<br>
+          『お客様との議論』が受け入れられない現場がある理由は、『情報は伝えた。オマエら専門家なんだから答えを持ってこい』という（一緒にプロジェクトをやらない）お客様が少なからずいるから。<br>
+          そういうお客様でもレビューはしてくださる。同じ内容なんだけどね。
+        </p>
+
+        <span id="context_diagram"></span>
+        <h3 class="title">コンテキスト図</h3>
+        <p>
+          RDRAでいうコンテキスト図（P169 4.4.3）はおそらくDFDのレベル0<br>
+          要求工学では、ゴール指向アプローチ（CAOSとか）があるが、あまりうまくいかない。<br>
+          目的から決めましょうというアプローチはまず無理。<br>
+          ・要求を獲得する時に教科書通りに『目的はなんですか？』と初っ端に聞くのは悪手です。<br>
+          『何をどう実現するか？』といった手段を先にお客様に話し尽くしてもらって、その後、ゴール（目的）をまとめる。詳しい方法はリザルトチェーンを勉強してね。<br>
+        </p>
+
+        <a href="http://www.fujitsu.com/jp/group/fri/column/news/200803/2008-3-2.html" target="_blank">合意形成手法「リザルトチェイン」適用事例</a><br>
+
+        <p>
+          ・RDRAでは要求がシステムに網羅的に反映されていることを確認することを重視します。<br>
+          何故なら（オブジェクト指向を勉強した実践経験が少ない）開発者にはTo-Beモデルの素晴らしさに引っ張られて、お客様の要求を蔑ろにしてしまう人がいるから。<br>
+          オブジェクト指向一本やりの人が要件定義を作ろうとすると、To-Beモデルに走る。<br>
+          　⇒顧客の要求が入らない。作ったTo-Beを顧客に押し付けようとする。<br>
+        </p>
+        <p>
+          ・基本ダイアグラムは、いろいろな情報が抜け落ちている<br>
+          インフラ系は落ちている。<br>
+          場所系の話。業務はどこでやるのか？<br>
+          RDRAではシステムの運用について語っていない。<br>
+          システム運用とか、移行のラフスケッチがない状態では見積もれないはずなのだが。。。<br>
+        </p>
+
+        <span id="model_integrity"></span>
+        <h3 class="title">モデルの整合性</h3>
+        <p>
+          これがRDRAの売りの一つ。<br>
+          ドキュメントフロー／トレーサビリティマップ<br>
+          ドキュメント間のフロー<br>
+          何のために作るのか、何がインプットになるのか。<br>
+          ステークホルダー要求つまり、システムが生み出す価値からシステムまでのトレーサビリティを重視しているのがRDRAです。<br>
+          ・ドキュメント間の関係性を図示してまとめることはとても大切です。書かなくてはならないドキュメント一覧はあってもそのフローが書かれていない事が多いから<br>
+          ・モデル間もドキュメントフローと同じように、モデル間のトレーサビリティが取れる関係線を描き全体像を明らかにすること。<br>
+        </p>
+        <p>
+          整合性記述レベル（P108, 図2-30）<br>
+          最初に作成したモデルと後で作成したモデルでは精度が変わってしまう（時間の経過とともに見直しが必要になってくる）。<br>
+          このため、古い情報を新しい情報と同じ精度に挙げていく必要がある。<br>
+        </p>
+
+        <h4 class="title">T字形テクニック</h4>
+        <p>
+          ①全体を浅く掘る。<br>
+          ②1ヶ所を深くする。<br>
+          ③深くしたところを横に広げる<br>
+        </p>
+        <p>
+          浅く全部やって、「ここだ！」って所を深掘りして、それを横展開しろってこと。<br>
+          「 時間の経過とともにバラバラ（粒度が）になる。」とはなにか？<br>
+          （そこで）T字形テクニック<br>
+          最初は浅く全部やれ。<br>
+          深くやるところを見つけて掘り下げてから横展開しろ。<br>
+          補足：T字形テクニックを使うと、領域ごとのばらつきが発生しやすい。<br>
+        </p>
+
+        <span id="statechange"></span>
+        <h3 class="title">状態遷移について</h3>
+        <p>
+          書籍の中に「プロトコルモデル」というものがあるが、参加者も主催者も「よくわからん」と言っていた。<br>
+          使用しているUMLは状態遷移図なのでそこから状態遷移の話になった。<br>
+          ・業務シナリオテストを作る時に、業務の状態遷移とシステムの状態遷移を抑えて置くとビシバシバグが見つかります。<br>
+          ・業務シナリオテストでは、バグを指摘するのではなく仕様通りであっても、『この業務シナリオを通らないなら使えねーんだよ』って問題を指摘する。<br>
+          ・炎上プロジェクトの火消しに行ったときに、状態遷移の仕様が定義されていないことがあった。<br>
+          案の定、プログラムでは、沢山の条件のアンドで分岐していた。<br>
+          全部を作り直せなかったのでしようしょと開発者へのヒアリングで状態遷移図を描いてテストして火消しした。<br>
+          ・業務の状態を保持するのにデータベースを使います。<br>
+          業務要件定義の段階で正しく分析できていれば、素直な実装ができます。<br>
+          分析を端折っため、ある業務の状態を表現するのに、３つのテーブルにばらけてある７つの項目が必要でした。<br>
+        </p>
+
+        <h4 class="title">プロトコル状態マシン</h4>
+        <p>
+          <a href="https://t.co/2hAdf1PQUS" target="_blank">参考</a><br>
+          業務に使えるかはわからないけど、知識があると抜けているかどうかがわかる。<br>
+          例えば<br>
+          ・業務の状態遷移<br>
+          ・リソース系の状態遷移<br>
+          ・イベント系の状態遷移<br>
+        </p>
+        <p>
+          主催者が経験した例<br>
+          業務の状態遷移がないがゆえに状態の持ち方がひどいプロジェクトがあった。<br>
+          7項目の and 条件で状態が決まるようになっていて、～～日付が null だと1つの状態だったり・・・。<br>
+        </p>
+
+        <span id="qa"></span>
+        <h3 class="title">QA</h3>
+        <dl>
+          <dt>
+            Q. 環境→ステークホルダ要求→システム要求→ソフトウェア要求のなかでどこまでトレーサビリティを取るべきか？
+          </dt>
+          <dd>
+            A. ステークホルダ要求までのトレーサビリティを重視しており、モデルの選択もトレーサビリティのとりやすさも重視している(と理解している。)
+          </dd>
+          <dt>
+            Q. 要求のゴールをどう決めるのかが見当たらない
+          </dt>
+          <dd>
+            A. 書いてないです。
+          </dd>
+          <dt>
+            Q. 要求エンジニア向けの書籍でおすすめのものは？
+          </dt>
+          <dd>
+            A. 要求向けでなくIT戦略(CIO)向けの本。システム投資をどうするか？など目的や価値判断の本。チェックリストなどがあるが、逆に言うとそれを作れば良い(ゴールとなる)
+          </dd>
+          <dt>
+            Q. 事業要件とのトレーサビリティをRDRAではどのように取りますか？
+          </dt>
+          <dd>
+            A. RDRAは事業要件、別の言い方をすると、経営戦略やIT戦略との整合性は明示的には書かれていません。
+            それらもステークホルダー要求として取り扱っていると解釈できます。
+          </dd>
+        </dl>
+
+        <span id="references"></span>
+        <h2 class="title">◆参考資料集</h2>
+        <p>
+          本はこちら<br>
+          <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:504px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:240px"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea662e.a3c33d12.18ea662f.a56a6fcd/?me_id=1278256&item_id=17462820&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Frakutenkobo-ebooks%2Fcabinet%2F8589%2F2000006428589.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Frakutenkobo-ebooks%2Fcabinet%2F8589%2F2000006428589.jpg%3F_ex%3D240x240&s=240x240&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:248px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  >モデルベース要件定義テクニック【電子書籍】[ 神崎善司 ]</a><br><span >価格：2527円</span> <span style="color:#BBB">(2019/7/28時点)</span></p><div style="margin:10px;"><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ%3D%3D" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><img src="https://static.affiliate.rakuten.co.jp/makelink/rl.svg" style="float:left;max-height:27px;width:auto;margin-top:0"></a><a href="https://hb.afl.rakuten.co.jp/hgc/18ea662e.a3c33d12.18ea662f.a56a6fcd/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Frakutenkobo-ebooks%2F419299084d1a3efaac3b932e598477d6%2F%3Fscid%3Daf_pc_bbtn&m=http%3A%2F%2Fm.rakuten.co.jp%2Frakutenkobo-ebooks%2Fi%2F17462820%2F%3Fscid%3Daf_pc_bbtn&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIyNDB4MjQwIiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxfQ==" target="_blank" rel="nofollow noopener noreferrer" style="word-wrap:break-word;"  ><div style="float:right;width:41%;height:27px;background-color:#bf0000;color:#fff !important;font-size:12px;font-weight:500;line-height:27px;margin-left:1px;padding: 0 12px;border-radius:16px;cursor:pointer;text-align:center;">楽天で購入</div></a></div></td><tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+          ・<a href="http://k-method.jp/index.html" target="_blank">RDRA（ラドラ）：Relationship Driven Requirement Analysys</a><br>
+          ・<a href="https://www.slideshare.net/zenjikanzaki/rdra4-bp-study" target="_blank">モデルベース要件定義　at BPStudy（発表資料）</a><br>
+          ・<a href="https://tech.nikkeibp.co.jp/it/article/Watcher/20071009/283860/" target="_blank">「要求分析ツリー」を使って要求の構より抜粋造をとらえる</a><br>
+          ・<a href="https://www.ipa.go.jp/files/000005375.pdf" target="_blank">要求工学知識体系(REBOK)概説</a><br>
+          ・<a href="http://www.fujitsu.com/jp/group/fri/column/news/200803/2008-3-2.html" target="_blank">合意形成手法「リザルトチェイン」適用事例</a><br>
+          ・<a href="https://t.co/2hAdf1PQUS" target="_blank">UModel におけるダイアグラム</a><br>
+          ・<a href="https://codezine.jp/article/detail/5647" target="_blank">「要件定義」の4つの構造と依存関係に着目した実践手法</a><br>
+          ・<a href="http://www.amazon.co.jp/exec/obidos/ASIN/0471042994/" target="_blank">JAD(Joint Application Development)</a><br>
+        </p>
+
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/" target="_blank">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
 </html>
