@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <!-- twitter投稿用の設定 -->
+    <meta name="twitter:card" content="summary" /> <!--カード種類：summary か summary_large_image-->
+    <meta name="twitter:site" content="@taumax_" /> <!--ユーザー名-->
+    <meta property="og:url" content="https://taumax-github.github.io/contents/requirement/rdra/rdra.html" /> <!--記事のURL-->
+    <meta property="og:title" content="ＲＤＲＡ" /> <!--記事のタイトル-->
+    <meta property="og:description" content="勝手にＲＤＲＡを語る夕べで語られたことまとめ" /> <!--記事の要約（ディスクリプション）-->
+    <meta property="og:image" content="https://taumax-github.github.io/images/logo.png" /> <!--画像のURL-->
+
+    <!-- favicon設定
+    <link rel="icon"       href="../../../images/favicon.ico">
+    -->
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/print.css" media="print">
+    <script src="../../../js/openclose.js"></script>
+
+    <title>とあるＩＴエンジニアの知識整理</title>
+    
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <style>
+      .menu1 a {background-position: -10px -10px;}
+      .menu2 a {background-position: -10px -130px;}
+      .menu3 a {background-position: -10px -250px;}
+      .menu4 a {background-position: -10px -370px;}
+      .menu5 a {background-position: -10px -490px;}
+    </style>
+    <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../images/logo.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul>
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+    <nav>
+      <ul>
+        <font size="2">
+          <li>・<a href="#firstly">はじめに</a></li>
+          <li>・<a href="#rdra_overview">RDRA概要</a></li>
+          <li>・<a href="#goals_requirements">要件定義の目標</a></li>
+          <li>・<a href="#requirements_problems">要件定義にまつわる問題</a></li>
+          <li>・<a href="#basic_diagram">基本ダイアグラム</a></li>
+          <li>・<a href="#relationship_diagram">関係ダイアグラム</a></li>
+          <li>・<a href="#about_rdra">イベント本編</a></li>
+          <li>・<a href="#relartionship_requirements">各種要求と関係</a></li>
+          <li>・<a href="#reference_books">要件定義で参考になる本</a></li>
+          <li>・<a href="#commit_communication">合意形成とコミュニケーション</a></li>
+          <li>・<a href="#diagrams">各種ダイアグラム</a></li>
+          <li>・<a href="#requirement_elements">要件定義の構成要素</a></li>
+          <li>・<a href="#context_diagram">コンテキスト図</a></li>
+          <li>・<a href="#model_integrity">モデルの整合性</a></li>
+          <li>・<a href="#statechange">状態遷移について</a></li>
+          <li>・<a href="#qa">QA</a></li>
+          <li>・<a href="#references">参考資料集</a></li>
+        </font>
+      </ul>
+    </nav>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <h1 class="logo">
+        <a href="https://taumax-github.github.io/"><img src="../../../images/logo.png" alt="SAMPLE SITE"></a>
+      </h1>
+      <nav>
+        <ul><li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li></ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/marukugi" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+      <nav>
+        <ul>
+          <font size="2">
+            <li><a href="#firstly">はじめに</a></li>
+            <li><a href="#rdra_overview">RDRA概要</a></li>
+            <li><a href="#goals_requirements">要件定義の目標</a></li>
+            <li><a href="#requirements_problems">要件定義にまつわる問題</a></li>
+            <li><a href="#basic_diagram">基本ダイアグラム</a></li>
+            <li><a href="#relationship_diagram">関係ダイアグラム</a></li>
+            <li><a href="#about_rdra">イベント本編</a></li>
+            <li><a href="#relartionship_requirements">各種要求と関係</a></li>
+            <li><a href="#reference_books">要件定義で参考になる本</a></li>
+            <li><a href="#commit_communication">合意形成とコミュニケーション</a></li>
+            <li><a href="#diagrams">各種ダイアグラム</a></li>
+            <li><a href="#requirement_elements">要件定義の構成要素</a></li>
+            <li><a href="#context_diagram">コンテキスト図</a></li>
+            <li><a href="#model_integrity">モデルの整合性</a></li>
+            <li><a href="#statechange">状態遷移について</a></li>
+            <li><a href="#qa">QA</a></li>
+            <li><a href="#references">参考資料集</a></li>
+          </font>
+        </ul>
+      </nav>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <!-- はてぶボタン -->
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        <!-- はてぶボタン
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        -->
+
+
+        <h1 id="">はじめに</h1>
+        当日の動画(youtube)
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/kkyIWJcY0_o" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <h1 id="java14">Java14 の新機能を軽く</h1>
+        <p>きしださんの発表</p>
+        <h2 id="-1">資料の場所</h2>
+
+        <iframe width="560" height="800" src="https://speakerdeck.com/player/f2741f71682e4a13bc13866587ff8e39" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <h2 class="title">内容</h2>
+        <p>
+          2020/3/17にリリースされたJava14の機能を紹介。
+          16個のJEPsが取り込まれた。
+          LTPではない。次のLTSは2021年9月予定のJava 17
+        </p>
+        <p>【言語】</p>
+        <p>
+          <table border="1" cellpadding="0" cellspacing="0" bordercolor="gray">
+            <tr>
+              <th bgcolor="midnightblue">JEP（※1）</th><th bgcolor="midnightblue">概要</th>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">359</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/359" target="_blank">Records (Preview)</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">305</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/305" target="_blank">Pattern Matching for instanceof (Preview)</a>（※2）</td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">368</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/368" target="_blank">Text Blocks (Second Preview)</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">361</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/361" target="_blank">Switch Expressions (Standard)</a></td>
+            </tr>
+          </table>
+
+        <br><br>
+
+        <p>【GC】</p>
+        <p>
+          <table border="1" cellpadding="0" cellspacing="0" bordercolor="gray">
+            <tr>
+              <th bgcolor="midnightblue">JEP（※1）</th><th bgcolor="midnightblue">概要</th>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">364</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/364" target="_blank">ZGC on macOS</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">365</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/365" target="_blank">ZGC on Windows</a>（※2）</td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">345</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/345" target="_blank">NUMA-Aware Memory Allocation for G1</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">363</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/363" target="_blank">Remove the Concurrent Mark Sweep (CMS) Garbage Collector</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">366</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/366" target="_blank">Deprecate the ParallelScavenge + SerialOld GC Combination</a></td>
+            </tr>
+          </table>
+        </p>
+
+        <br><br>
+
+        <p>【ライブラリ】</p>
+        <p>
+          <table border="1" cellpadding="0" cellspacing="0" bordercolor="gray">
+            <tr>
+              <th bgcolor="midnightblue">JEP（※1）</th><th bgcolor="midnightblue">概要</th>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">358</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/358" target="_blank">Helpful NullPointerExceptions</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">349</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/349" target="_blank">JFR Event Streaming</a>（※2）</td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">370</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/370" target="_blank">Foreign-Memory Access API (Incubator)</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">352</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/352" target="_blank">Non-Volatile Mapped Byte Buffers</a></td>
+            </tr>
+          </table>
+
+        <p>【ツール】</p>
+        <p>
+          <table border="1" cellpadding="0" cellspacing="0" bordercolor="gray">
+            <tr>
+              <th bgcolor="midnightblue">JEP（※1）</th><th bgcolor="midnightblue">概要</th>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">343</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/343" target="_blank">Packaging Tool (Incubator)</a>（※3）</td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">367</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/367" target="_blank">Remove the Pack200 Tools and API</a></td>
+            </tr>
+          </table>
+
+        <p>【JDK】</p>
+        <p>
+          <table border="1" cellpadding="0" cellspacing="0" bordercolor="gray">
+            <tr>
+              <th bgcolor="midnightblue">JEP（※1）</th><th bgcolor="midnightblue">概要</th>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">362</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/362" target="_blank">Deprecate the Solaris and SPARC Ports</a></td>
+            </tr>
+          </table>
+        </p>
+
+        <p>公式は<a href="https://openjdk.java.net/projects/jdk/14/" target="_blank">こちら</a></p>
+
+        <p>※1 JEP
+        JDK Enhancement Proposalsの略。
+        JDKに対する変更の提案を管理する番号。</p>
+
+        <p>参考：https://www.slideshare.net/AyaEbata/jsrjepjbs
+        JEPの目次：https://openjdk.java.net/jeps/0</p>
+
+        <p>※2 <a href="https://openjdk.java.net/jeps/12">Preview</a>
+        プレビュー版のこと。
+        機能としては保証されているが、どのように使うべきかは議論の余地があるもの。開発者が実際に使ってみて、フィードバックを受けて今後もJava SEの基本機能として提供し続けるかどうかが決まる。</p>
+
+        <p>※3 <a href="https://openjdk.java.net/jeps/11" target="_blank">Incubator</a>
+        開発者からのフィードバックを得るために、Java SEに含めた実験的なAPI。</p>
+
+        <p>参考：https://xtech.nikkei.com/it/atcl/column/15/120700278/080700044/</p>
+
+        <h2 class="title">試用機能について</h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/3910ff49-8df1-cb6a-80f7-75b175c08f27.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=8" target="_blank">資料より抜粋</a></p>
+        <p>今回ご紹介するもの</p>
+        <p>
+          <table border="1" cellpadding="0" cellspacing="0" bordercolor="gray">
+            <tr>
+              <th bgcolor="midnightblue">JEP（※1）</th><th bgcolor="midnightblue">概要</th>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">359</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/359" target="_blank">Records (Preview)</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">305</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/305" target="_blank">Pattern Matching for instanceof (Preview)</a>（※2）</td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">368</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/368" target="_blank">Text Blocks (Second Preview)</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">361</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/361" target="_blank">Switch Expressions (Standard)</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">358</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/358" target="_blank">Helpful NullPointerExceptions</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">349</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/349" target="_blank">JFR Event Streaming</a>（※2）</td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">370</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/370" target="_blank">Foreign-Memory Access API (Incubator)</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">352</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/352" target="_blank">Non-Volatile Mapped Byte Buffers</a></td>
+            </tr>
+            <tr>
+              <td bgcolor="black" align="right">343</td><td  bgcolor="black"><a href="https://openjdk.java.net/jeps/343" target="_blank">Packaging Tool (Incubator)</a>（※3）</td>
+            </tr>
+          </table>
+
+        <h2 id="textblockssecondpreviewhttpsopenjdkjavanetjeps368"><a href="https://openjdk.java.net/jeps/368">Text Blocks (Second Preview)</a></h2>
+        <p>ダブルクォート３つで囲むことで複数行のテキストを書くことができるようになった。</p>
+        <script src="https://gist.github.com/taumax-github/e8314e6cef7f408bdd09cccb874f672d.js"></script>
+
+        <p>まだPreview。15でStandardになる予定。
+        <a href="https://openjdk.java.net/jeps/378">JEP 378</a>参照</p>
+        <h2 id="switchexpressionsstandardhttpsopenjdkjavanetjeps361"><a href="https://openjdk.java.net/jeps/361">Switch Expressions (Standard)</a></h2>
+        <p>Switchステートメントとしてだけでなく式として使える。</p>
+        <script src="https://gist.github.com/taumax-github/77a838baf32d4823efccce218e6d3f8b.js"></script>
+
+        <p>Java 12でPreviewとして導入され、Java 13で少し変更が入って今回のJava 14で標準化された。</p>
+        <ul>
+        <li>caseに複数のラベルを使用できるようになった。</li>
+        <li>ラムダ式のようなアローが使え、breakが不要になった。</li>
+        </ul>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/4a5f33c7-b39f-3476-63f4-c580e45668bc.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=17">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/b9543666-e1f6-b661-238a-80ac295fc1e6.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=18">資料より抜粋</a></p>
+        <p>アロー形式で値を返す場合は<code>yield</code>を使う</p>
+        <script src="https://gist.github.com/taumax-github/361b7215d4ffc3adf271652d47cadbda.js"></script>
+
+        <h3 id="twitter">twitterの反応</h3>
+        <ul>
+        <li>Switch Satementは簡易なFactoryとしてつかえそう</li>
+        <li>JDK14のswitch式便利で、わかりやすいね。</li>
+        <li>caseでアロー形式使えるように。switch「式」になった。</li>
+        <li>λに、直接、return含むswitch書くと怒られてたのが、式になって怒られなくなるねー。</li>
+        </ul>
+        <h2 id="recordspreviewhttpsopenjdkjavanetjeps359"><a href="https://openjdk.java.net/jeps/359">Records (Preview)</a></h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/07756cda-4c1f-bae1-7abd-fc13ea026a62.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=22">資料より抜粋</a></p>
+        <script src="https://gist.github.com/taumax-github/5fa36bf3f38c43538876931b4435f443.js"></script>
+
+        <script src="https://gist.github.com/taumax-github/be751009f17a48120d2e3331b432688f.js"></script>
+
+        <p>Objectメソッドのバイトコード（下記の例はequalsメソッド）
+        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/9710bc44-230f-6b3c-cc48-248657a4c5a7.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=24">資料より抜粋</a></p>
+        <p>Invoke Dynamicにより、コンパイル時ではなく実行時に処理コードが生成されるようになっている。このため、もし将来のバージョンでより最適な実装に変わったとしても、古いバージョンでコンパイルされたコードも新しい実装で動くようになっている。</p>
+        <p>次のバージョンでは<code>Sealed Classes</code>（※）というものが導入される予定。</p>
+        <ul>
+        <li>継承するクラスを限定できる（インターフェースでもよい）。</li>
+        <li>Switch式でdefaultが不要になる。</li>
+        </ul>
+        <p>※<a href="https://openjdk.java.net/jeps/360">JEP 360: Sealed Classes (Preview)</a></p>
+        <script src="https://gist.github.com/taumax-github/05ff84325c8b23107412365cbd362257.js"></script>
+
+        <h3 id="twitter-1">twitterの反応</h3>
+        <ul>
+        <li>入れものクラスを作る時にRecordは良いなー</li>
+        <li>Record、kotlinでdata classよく使うからJavaでも使えて嬉しい</li>
+        </ul>
+        <h2 id="patternmatchingforinstanceofpreviewhttpsopenjdkjavanetjeps305"><a href="https://openjdk.java.net/jeps/305">Pattern Matching for instanceof (Preview)</a></h2>
+        <p>Kotlinのスマートキャストのような機能</p>
+        <p>これまでのinstanceof</p>
+
+        <script src="https://gist.github.com/taumax-github/8e3e285c3b0060edafbea7b53aa02143.js"></script>
+
+        <p>Pattern Matching for instanceof</p>
+        <script src="https://gist.github.com/taumax-github/e06994f1ce2d4cb2244093912f3aec7b.js"></script>
+
+        <p>今後追加される機能</p>
+        <h3 id="patternwithswitch">Pattern with switch</h3>
+        <p>switchでパターンマッチを使う</p>
+        <script src="https://gist.github.com/taumax-github/8823e621d0ad2e48bc532e11bee3f219.js"></script>
+
+        <h3 id="deconstruction">Deconstruction</h3>
+        <p>レコードの分解</p>
+        <script src="https://gist.github.com/taumax-github/2cdad48cb0f9e74ea6db9cf5ff5e3d25.js"></script>
+
+        <h3 id="twitter-2">twitterの反応</h3>
+        <ul>
+        <li>PatternMatching for instance-of。  パターンマッチングというよりまだ今はKotlinのスマートキャストみたいな感じ。今、普通にキャストしたほうがバイトコードが短くなる</li>
+        <li>Java14ではinstanceofのチェックを通った後はcastが不要になる。コンパイルって賢くなったねぇ　</li>
+        <li>Scalaの文法を知ってると、知っているものの違う書き方バージョンが紹介されているみたいな気持ちになる。Javaも使いやすくなっているしやってみたい</li>
+        </ul>
+        <h2 id="-4">【ライブラリ】</h2>
+        <h2 id="helpfulnullpointerexceptionshttpsopenjdkjavanetjeps358"><a href="https://openjdk.java.net/jeps/358">Helpful NullPointerExceptions</a></h2>
+        <p><code>-XX:+ShowCodeDetailsInExceptionMessages</code>
+        将来のバージョンではデフォルトに
+        JShellの場合は<code>-R-XX:+ShowCodeDetailsInExceptionMessages</code></p>
+        <h3 id="twitter-3">twitterの反応</h3>
+        <ul>
+        <li>メッセージが親切になって皆がもっとNullPointerException大好きになるらしい</li>
+        <li>Helpful NPE結構ナイスかも</li>
+        </ul>
+        <h2 id="jfreventstreaminghttpsopenjdkjavanetjeps349"><a href="https://openjdk.java.net/jeps/349">JFR Event Streaming</a></h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/30c3577b-23b5-ba59-77da-b01e4219555b.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=39">資料より抜粋</a></p>
+        <p>イベントとして処理できるようになったので監視に使いやすくなった。</p>
+        <script src="https://gist.github.com/taumax-github/723e7fb1a239ab115d3e6bcf0d27f24e.js"></script>
+
+        <h3 id="twitter-4">twitterの反応</h3>
+        <ul>
+        <li>JFR Event Streamingは興味深い機能ですね。いろいろ応用が効きそう。</li>
+        <li>Foreign Memory Access API。Java ヒープ外のメモリを扱う。GCの影響を排除する。</li>
+        </ul>
+        <h2 id="foreignmemoryaccessapiincubatorhttpsopenjdkjavanetjeps370"><a href="https://openjdk.java.net/jeps/370">Foreign-Memory Access API (Incubator)</a></h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/d73bc1e9-6d06-be67-7388-99781f1627af.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=42">資料より抜粋</a></p>
+        <script src="https://gist.github.com/taumax-github/1a6a82f6036721f63b774e3ceed5cd10.js"></script>
+
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/99447d06-bcc4-8124-d7cd-e85049e6872d.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=43">資料より抜粋</a></p>
+        <h2 id="-5">【ツール】</h2>
+        <h2 id="packagingtoolincubatorhttpsopenjdkjavanetjeps343"><a href="https://openjdk.java.net/jeps/343">Packaging Tool (Incubator)</a></h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/11ec592f-d05d-c327-62c5-1926ff93789b.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=45">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/d73c9e2f-e0bd-546c-7a54-b9954e13ba07.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=46">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/8735aa86-7482-372e-f57c-2481820209d8.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=47">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/21f113c5-7d62-3be8-9aa1-5e01cd9006a8.png" alt="image.png" />
+        <a href="https://speakerdeck.com/kishida/breaf-introduction-of-java-14?slide=48">資料より抜粋</a></p>
+        <p>・Java14 カスタムランタイムの作成：
+        <code>jlink --add-modules 'jdeps --print-module-deps App.class' --output myrt</code></p>
+        <p>・カスタムランタイムを使ったパッケージの作成：
+        <code>jpackage --name myapp_min --input target --main-jar app.jar --main-class App --runtime-image myrt</code></p>
+        <h3 id="twitter-5">twitterの反応</h3>
+        <ul>
+        <li>なに？rpmでパッケージングできるとな！？リリース楽になりそう！</li>
+        <li>jpackageはjlinkと合わせて使うのがおすすめ</li>
+        </ul>
+        <h2 id="-6">参考資料</h2>
+        <ul>
+        <li><a href="https://qiita.com/nowokay/items/ec85d97a7cecaaac8123">Java 14新機能まとめ</a></li>
+        <li><a href="https://qiita.com/taumax/items/4208d5cdbb786b76a5ed">Java 14で最低限押さえておきたい新機能をEclipseで使ってみた</a></li>
+        </ul>
+
+
+        <h1 id="ide2020">IDE起点で2020年代の開発環境を眺めてみる</h1>
+        <p>いろふさんの発表</p>
+        <h2 id="-7">資料の場所</h2>
+        <iframe width="560" height="500" src="https://speakerdeck.com/player/9300dd65a02444f19699758fcf957b91" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <h2 id="ide">IDEに期待すること</h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/a0cabbe2-3af6-04fb-f641-50f6766624d0.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=23">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/ca68f2eb-b53c-d1c6-41de-2a04f323ca80.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=24">資料より抜粋</a></p>
+        <h2 id="ide-1">IDEの位置づけ</h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/0a68504e-f19c-34aa-72f8-70c8c57efcea.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=31">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/cbaf05ca-1a8e-de37-9938-c5dc90b46a96.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=33">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/0a3eef3f-dd88-25a5-4f3d-6fe81bad4d53.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=34">資料より抜粋</a></p>
+        <h3 id="twitter-6">twitterの反応</h3>
+        <ul>
+        <li>「開発のツールは開発を邪魔するものであってはならない」ってすごくわかる。</li>
+        </ul>
+        <h2 id="ide-2">IDEとビルドツール</h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/569b48b0-f41a-a69f-4d2d-cc162d5048c0.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=37">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/20964c12-98bc-d3e1-6dc1-4667f1ad2a21.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=38">資料より抜粋</a></p>
+        <ul>
+        <li>IDEはコーディング支援のため、ビルドツールと近いビルド
+        をする。</li>
+        <li>あくまでコーディングを助けるものであり、それ以上ではない。</li>
+        </ul>
+        <h3 id="-8">位置付けから役割が決まる</h3>
+        <ul>
+        <li>開発者がコードを書くのを助けるためだけのものはIDE担わせる</li>
+        <li>それ以外はビルドツールに担わせる</li>
+        <li>同じ役割を分散させない</li>
+        </ul>
+        <h3 id="ide-3">IDEとビルドツール</h3>
+        <ul>
+        <li>ビルドツールに依存させる</li>
+        <li>ビルドツールができることはビルドツールにやらせる</li>
+        <li>特にアプリケーションに影響を与えるものはIDEに設定してはいけない</li>
+        </ul>
+        <p>例: JDKのバージョン、ライブラリ管理、ソースフォルダの構成</p>
+        <h3 id="twitter-7">twitterの反応</h3>
+        <ul>
+        <li>ああ、このモデル図、バージョン管理、IDE、ビルドサーバとかの関係はわかりやすい〜</li>
+        <li>Eclipseのビルドパスにポチポチとクラスライブラリのjarを追加するとかイマドキやってられんからね。IDEがビルドツールに依存するという立て付けが理想的だと思う。そうあってほしい。</li>
+        <li>ビルドツールに依存はともかくIDEに依存はダメだよねっって感じ</li>
+        <li>xmlツライしyamlでbuild出来るツールとかないかな</li>
+        <li>開発者がコードを書くのを助けるものはIDE。たとえば、スペース表示非表示とかビルドツール設定に書くのはちがうよね。</li>
+        <li>アプリケーションに影響を与えるものはIDEに設定してはいけない。IDEの設定で動かなくなるとか意味がわからない。IDEは開発者の方を向いたものだけまとめる。</li>
+        </ul>
+        <h2 id="idejdk">IDEとJDK</h2>
+        <h3 id="idejdk-1">IDEから使う三種類のJDK</h3>
+        <h4 id="ide-4">IDE自身が使うもの</h4>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/20f95c80-4c1a-179a-a6ad-3a1c98680fe1.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=44">資料より抜粋</a></p>
+        <h4 id="-9">作る時に使うもの</h4>
+        <ul>
+        <li>IDEがビルドするときに使う</li>
+        <li>主にJCLの補完や検査に影響</li>
+        <li>実行時に使われたりする</li>
+        <li>使われなかったりする</li>
+        </ul>
+        <h4 id="-10">ビルドツールが使うもの</h4>
+        <ul>
+        <li>IDEからビルドツールを使用するときに指定するJDK</li>
+        <li>三種類の中だと一番重要</li>
+        <li>IDEバンドルのものは基本的に使わない</li>
+        </ul>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/290ab62b-29e1-8ecb-6f01-ffd3e4960654.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=48">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/1c20c36a-cf73-9173-9017-adcd5695ff68.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=49">資料より抜粋</a></p>
+        <h4 id="-11">ここを抑える理由</h4>
+        <ul>
+        <li>異なるJDKを使う可能性があることを知っていると、何か意図しない動作をした時に「ここかな？」と思える。</li>
+        <li>特にJDK群雄割拠時代なので。（申し訳程度の2020年感）</li>
+        </ul>
+        <h2 id="-12">こまごましたこと</h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/eac3295e-9e07-aaab-d20e-cd6f3ffbd8dc.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=52">資料より抜粋</a></p>
+        <h3 id="twitter-8">twitterの反応</h3>
+        <ul>
+        <li>せっかくIDEが警告を出してくれてるのにそれを残したままコミットしないで欲しい</li>
+        </ul>
+        <h2 id="-13">まとめ</h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/f99cdb19-f161-2aac-7f60-f3dd03b2ac0f.png" alt="image.png" />
+        <a href="https://speakerdeck.com/irof/ideqi-dian-de2020nian-dai-falsekai-fa-huan-jing-wotiao-metemiru?slide=58">資料より抜粋</a></p>
+        <h3 id="twitter-9">twitterの反応</h3>
+        <ul>
+        <li>「フォーマッタ切り離してくれないかなぁ」</li>
+        <li>確かにIDEに依存しないフォーマッタ欲しい</li>
+        <li>VSCodeが使っているLanguage Serverは良い機能 &gt; コードフォーマットや文法チェック、補完</li>
+        </ul>
+
+
+        <h1 id="jakartaeemicroprofile">Jakarta EE/Microprofileを利用したクラウド・ネイティブ・アプリの開発</h1>
+        <h2 id="-14">資料の場所</h2>
+
+        <iframe src="//www.slideshare.net/slideshow/embed_code/key/9VK6dlq73w06M9" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/tyoshio2002/jakarta-ee-microproile-update-jjug-2020-may" title="Jakarta EE Microproile Update JJUG 2020 May" target="_blank">Jakarta EE Microproile Update JJUG 2020 May</a> </strong> from <strong><a href="https://www.slideshare.net/tyoshio2002" target="_blank">Yoshio Terada</a></strong> </div>
+
+        <h2 id="-15">本編</h2>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/b2b586ac-cea5-021b-103b-333a5b49a498.png" alt="image.png" />
+        <a href="https://www.slideshare.net/tyoshio2002/jakarta-ee-microproile-update-jjug-2020-may">資料より抜粋</a></p>
+        <p>J2EE → Java EE → Jakarta EE</p>
+        <p>J2EE: J2EE 1.2 〜 J2EE 1.4
+        Java EE: Java EE 5 〜 Java EE 8
+        Jakarta EE: Jakarta EE 8 〜</p>
+        <p>JavaEE5-8 xml地獄からの脱却。J2EEアプリを開発しやすくした。CDI（DIコンテナの標準化） </p>
+        <p>JavaEE テストツール tckを使って高額のお金を払ってテストを通さないとJavaEEアプリケーションサーバーを名乗れなかったが、それもEclipseファウンデーションに寄贈されたので新興のAPサーバーベンダーもJavaEEアプリケーションサーバーに参入し易くなった。</p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/f96c62cc-88d8-e720-d758-866fa38e7a51.png" alt="image.png" />
+        <a href="https://www.slideshare.net/tyoshio2002/jakarta-ee-microproile-update-jjug-2020-may">資料より抜粋</a></p>
+        <p>Jakarta EE9のリリースは2020/6/12
+        Jakarta EE 9 が2020年6月12日にリリース予定。一番大きな変更はパッケージ名の変更 javax.* → jakarta.* </p>
+        <p>JakartaEE 9 来月の2020/06/12にリリース
+        javax.<em>名前空間（パッケージ）がjakarta.</em>に変わる。
+        JAXBの巻き取り、JavaSE8,11対応、EJB4.0(Pruning,削除など), Java Activation Frameworkの追加（メール対応）</p>
+        <p>Jakarta EE 9 (2020/06/12)
+        一番大きな変更はパッケージ名の変更
+        　・javax→jakarta.*
+        その他
+        　・Java SE8, 11 対応
+        　・EJB4.0(Pruning, 削除など）
+        　・Java Activation Framework</p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/08a8e411-db64-1d58-e209-042a9f2f4b57.png" alt="image.png" />
+        <a href="https://www.slideshare.net/tyoshio2002/jakarta-ee-microproile-update-jjug-2020-may">資料より抜粋</a></p>
+        <p>Eclipse Microprofileのコミュニティ。Oracle, IBM, Red Hat,Payara, Microsoft,hazelcastなどの企業に加えて、LIC, SOUJavaというコミュニティも参加している</p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/46563f1a-1ee3-d4c4-9316-61a29ddecb63.png" alt="image.png" />
+        <a href="https://www.slideshare.net/tyoshio2002/jakarta-ee-microproile-update-jjug-2020-may">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/c7c5be54-c910-1b2f-e095-94fcbcda0d83.png" alt="image.png" />
+        <a href="https://www.slideshare.net/tyoshio2002/jakarta-ee-microproile-update-jjug-2020-may">資料より抜粋</a></p>
+        <p>Eclipse MicroProfile 3.3 Feb2020リリース、GraphQL 1.0が追加された</p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/90118b35-e952-55f1-4824-858564e2dec3.png" alt="image.png" />
+        <a href="https://www.slideshare.net/tyoshio2002/jakarta-ee-microproile-update-jjug-2020-may">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/2fbd7626-2c7e-c09d-fd50-8813a14e4f69.png" alt="image.png" />
+        <a href="https://www.slideshare.net/tyoshio2002/jakarta-ee-microproile-update-jjug-2020-may">資料より抜粋</a></p>
+        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/29871f7b-b83a-7747-56d3-7f546049ebf1.png" alt="image.png" />
+        <a href="https://www.slideshare.net/tyoshio2002/jakarta-ee-microproile-update-jjug-2020-may">資料より抜粋</a></p>
+        <p><a href="https://start.microprofile.io/">MicroProfile Starter</a></p>
+        <h3 id="twitter-10">twitterの反応</h3>
+        <ul>
+        <li>Javaのバージョンアップの速さにしろ、MicroProfileにしろ、Helidon、Quarksとか新しいフレームワークも出てきて、Java界隈はここ数年大変革期なので情報を追うのが大変</li>
+        <li>APサーバーを使っているSIerにとってはjavax.<em>で定着・普及していたクラスライブラリの資産をjakarta.</em>に洗い替えるという人柱仕様だからね。これはやっぱりでかい。これで、こけたらJakartaEEという言葉の求心力が下がってしまう気がする。</li>
+        </ul>
+
+
+
+
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/" target="_blank">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>
