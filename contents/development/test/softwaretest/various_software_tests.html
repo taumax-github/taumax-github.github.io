@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ソフトウェアテストについていろいろ調べてみた" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../css/print.css" media="print">
+    <script src="../../../../js/openclose.js"></script>
+
+    <title>ソフトウェアテストについて</title>
+    
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <style>
+      .menu1 a {background-position: -10px -10px;}
+      .menu2 a {background-position: -10px -130px;}
+      .menu3 a {background-position: -10px -250px;}
+      .menu4 a {background-position: -10px -370px;}
+      .menu5 a {background-position: -10px -490px;}
+    </style>
+    <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-6668125234301483" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul>
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://togetter.com/id/taumax_" target="_blank"><img src="../../../../images/icon_togetter.png" alt="togetter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+    </h1>
+
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <nav>
+        <ul><li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li></ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://togetter.com/id/taumax_" target="_blank"><img src="../../../../images/icon_togetter.png" alt="togetter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <!-- はてぶボタン -->
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        <!-- はてぶボタン
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        -->
+
+        <h2 class="title">ソフトウェアテストについていろいろ調べたことを書いた記事</h2>
+
+<h3 class="title">はじめに</h3>
+<p>
+  2019/07/18に、<a href="https://d-cube.connpass.com/event/135315/" target="_blank">BizReach QA Meetup</a>というイベントに参加しました。
+  （イベントの参加レポートは<a href="https://qiita.com/taumax/items/7004c2d267609c28f9ae" target="_blank">こちら</a>）
+  そのイベントで、ブロッコリーさんという方が、自分が開催した新人向け研修の内容を発表しており、それを聞いて私は「この研修、自分も受けてみたい！」と思いました。
+  受けてみたいと思ったポイントは、2日間でテストに関する知識を体系的に学べそうだなと思った点です。しかし実際にその研修を受けるわけにもいかない。じゃあ自分で調べてみるか！と思い立って書いたのがこの記事です。
+  基本的には<a href="https://speakerdeck.com/nihonbuson/bizreach-qa-meetup" target="_blank">ブロッコリーさんのスライド</a>に書いてあるカリキュラムに沿っていろいろ調べています。しかし、私はあくまでテストについて知りたかったので、以下については割愛しています。
+  ・モブワーク<br>
+  ・ソフトスキル<br>
+  ・見やすいコード<br>
+  ・クラス設計<br>
+  ・読みやすいコード<br>
+  ・テストケース名の大切さ<br>
+  ・レガシーコード<br>
+  ・リファクタリング<br>
+  ・Code Smell<br>
+  ・TDD<br>
+  TDDはテストというよりはプログラムの設計手法と私は解釈しているので、これについては書いていません。
+  当記事で取り上げた一つ一つの項目について、それぞれを深く解説しているサイトはよく見るのですが、全体を説明しているサイトはあまり見かけなかったので、広く浅くのイメージで当記事を書いています。深く知りたい方は項目ごとに参考資料へのリンクをつけていますのでそちらを参照してください。
+</p>
+
+<h3 class="title">本題</h3>
+<p>
+  ここからが本題です。
+</p>
+
+<h3 class="title">品質とは</h3>
+
+<p>
+  言われてみれば、品質ってなんですかね？
+  バグがないこと（少ないこと）でしょうか・・・？
+  偉い人たちはこんな風に考えるらしいです。
+</p>
+<blockquote style="background-color:#333333">
+  <p>
+    ソフトウェア工学の分野で名高い人たちも、「品質」とは何かについて述べています。<br>
+    ・クロスビー氏(Philip B. Crosby)の定義：<br>
+    品質は「要求」に対する適合である<br>
+    ・ワンバーグ氏(Gerald M. Weinberg)の定義：<br>
+    品質は誰かにとっての価値である<br>
+    ・ケイパース氏(Capers Jones)の定義：<br>
+    ソフトウェアを完全に停止させたり、容認できないような結果を出す欠陥が全くないこと<br>
+    ・バリー氏(Barry W. Boehm)の定義：<br>
+    顧客満足度、移植性、保守性、強度、そして使いやすさが高いレベルで達成されていること<br>
+    ・ワッツ氏(Watts S. Humphrey)の定義：<br>
+    使いやすさ、要求への適合度、信頼性、保守性において、卓越したレベルを達成すること
+  </p>
+</blockquote>
+
+<p>
+  これを見ていて思ったことがあります。ソフトウェア開発で品質というと、私はまずテストを最初に連想します。しかし、テストというのはあくまで品質を<font color=red>確認するための手段の一つにすぎない</font>のかなと思いました。
+  ソフトウェア開発活動全体（管理、要件定義～テスト）が品質活動そのもので、テストはその中のあくまで一つ。作ったものが要求を満たしているか確認する手段の一つに過ぎないのかなと。
+</p>
+
+<h3 class="title">参考資料</h3>
+
+<p>
+・<a href="https://aimnext.co.jp/note/%E5%93%81%E8%B3%AA/%E5%93%81%E8%B3%AA%E3%81%A8%E3%81%AF/" target="_blank">品質を見直そう(1)　品質とは</a><br>
+・<a href="https://webrage.jp/techblog/external_quality_inner_quality/" target="_blank">外部品質、内部品質とは？ソフトウェア品質特性について</a><br>
+・<a href="http://www.rsch.tuis.ac.jp/~tamaki/software_engineering/Chap_05.pdf" target="_blank">※リンク切れ</a><br>
+</p>
+
+<h2 class="title">テストの目的</h2>
+<p>
+<a href="http://jstqb.jp/dl/JSTQB-SyllabusFoundation_Version2011.J02.pdf#page=14" target="_blank">テスト技術者資格制度の資料</a>では、テストには以下のような目的があるとされています。
+</p>
+<p>
+  <strong>目的１：欠陥を摘出する。</strong><br>
+  開発でのテスト(コンポーネントテスト、統合テスト、システムテストなど)では、なるべく多くの故障をたたきだし、ソフトウェア中の欠陥を特定して修正することを主目的とする。
+</p>
+<p>
+  <strong>目的２：対象ソフトウェアの品質レベルが十分であることを確認する。</strong><br>
+  受け入れテストの場合、システムが期待通りに動作し、要件に合致することの確認が目的となる。
+  運用テストでは信頼性や可用性などのシステム特性をチェックするのが主目的である。 
+</p>
+<p>
+  <strong>目的３：意志決定のための情報を示す。</strong><br>
+  また、別のケースでは、ソフトウェアの品質をチェックし(欠陥の修正は目的とはしない)、所定の時期にソフトウェアをリリースすればどんなリスクがあるかという情報をステークホルダ(利害関係者)に提供することもある。
+</p>
+<p>
+  <strong>目的４：欠陥の作りこみを防ぐ。</strong><br>
+  保守テストでは、ソフトウェアの変更時に、新たに欠陥が混入していないかチェックするテストも実施することが多い。
+</p>
+<h3>参考資料</h3>
+<p>
+  ・<a href="http://jstqb.jp/dl/JSTQB-SyllabusFoundation_Version2011.J02.pdf#page=14" target="_blank">テスト技術者資格制度 Foundation Level シラバス 日本語版</a><br>
+  ・<a href="https://speakerdeck.com/nihonbuson/jjug-ccc-2019-spring?slide=13" target="_blank">テストエンジニアが教える JUnitを書き始める前に考えるべきテスト</a><br>
+</p>
+
+<h2 class="title">テストの7原則</h2>
+<h3>テストの7原則とは？</h3>
+<p>
+  テストの7原則とは、JSTQB（日本ソフトウェアテスト資格認定委員会）と言うソフトウェアテストに関する組織で規定されているものです。
+  これまで50年以上にわたり、ソフトウェアのテストに関する様々な原則が提唱されてきました。それらをガイドラインとして規定したものです。ソフトウェアのテストに関するこれまでの叡智の結晶と言ってよいものと思っています。
+</p>
+
+<h3>実際の内容</h3>
+<p>
+  各原則の名前と概要を以下に記載します。
+  詳しい記載は<a href="http://jstqb.jp/dl/JSTQB-SyllabusFoundation_Ver%20sion2018.J01.pdf" target="_blank">JSTQBのシラバス</a>の「1.3 テストの 7 原則」を参照してください。
+</p>
+
+<h4>原則1.テストは欠陥があることは示せるが、欠陥がないことは示せない</h4>
+<p>
+  テストを実施してバグが発生した部分には確かにバグがあったということは示せる。
+  しかし、いくらテストをしてもバグがない事は示せないという話です。
+  <a href="http://d.hatena.ne.jp/keyword/%B0%AD%CB%E2%A4%CE%BE%DA%CC%C0" target="_blank">悪魔の証明</a>に似ていると思います。
+</p>
+
+<h4>原則2.全数テストは不可能</h4>
+<p>
+  すべてのパターンを網羅的にテストすることは、テストケース数が膨大な量になり非現実的という話です。（単純なソフトウェアを除く）
+  リスクを考慮して適切なテスト技法を選択しましょう。
+</p>
+
+<h4>原則3.早期テストで時間とコストを節約</h4>
+<p>
+  バグを検知するタイミングが、ソフトウェア開発工程の前工程であればあるほどテストにかかる時間を低減できます。
+</p>
+
+<h4>原則4.欠陥の偏在</h4>
+<p>
+  バグはシステムの全体に均等に散らばっているのではなく、特定の少数のモジュールに集中しています。
+</p>
+
+<h4>原則5.殺虫剤のパラドックスにご用心</h4>
+<p>
+  同じテストを何度も繰り返すと新しい欠陥を見つけられなくなります。
+  同じ殺虫剤を繰返し使用すると耐性ができて効果が低減するのに似ているのでこの名前になっています。
+</p>
+
+<h4>原則6.テストは状況次第</h4>
+<p>
+  状況が異なればテストの方法も変わります。
+  安全性が重要な医療系のソフトウェアとECサイトではテストの方法が異なります。
+  アジャイルプロジェクトとシーケンシャルライフサイクルプロジェクトでは、テストの実行方法が異なります。
+</p>
+
+<h4>原則7.「バグゼロ」の落とし穴</h4>
+<p>
+  原則1と原則2の話もありますが、それだけではありません。
+  大量の欠陥を検出して修正するだけでシステムを正しく構築できると期待することも誤った思い込みである。
+  例えば、指定された要件すべてを徹底的にテストし、検出した欠陥すべてを修正しても、使いにくいシステム、ユーザーのニーズや期待を満たさないシステム、またはその他の競合システムに比べて劣るシステムが構築されることがある。
+</p>
+
+<h3>参考資料</h3>
+<p>
+・<a href="http://jstqb.jp/dl/JSTQB-SyllabusFoundation_Ver%20sion2018.J01.pdf" target="_blank">JSTQBのシラバス</a><br>
+　⇒1.3 テストの 7 原則
+</p>
+<p>
+・7つの原則を一つ一つ丁寧に考察しているブログ（秋山さんのブログです）<br>
+原則１：<a href="https://note.mu/akiyama924/n/ne92b6ece48a1" target="_blank">テストは欠陥があることは示せるが、欠陥がないことは示せない</a><br>
+原則２：<a href="https://note.mu/akiyama924/n/n01bedac15083" target="_blank">全数テストは不可能</a><br>
+原則３：<a href="https://note.mu/akiyama924/n/n7c464a00c3b4" target="_blank">早期テストで時間とコストを節約</a><br>
+原則４：<a href="https://note.mu/akiyama924/n/n79b902f69ddf" target="_blank">欠陥の偏在</a><br>
+原則５：<a href="https://note.mu/akiyama924/n/nc006015de2d2" target="_blank">殺虫剤のパラドックスにご用心</a><br>
+原則６：<a href="https://note.com/akiyama924/n/n9ff13d639627" target="_blank">テストは状況次第</a><br>
+原則７：<a href="https://note.com/akiyama924/n/n59a30e23edc7" target="_blank">「バグゼロ」の落とし穴</a><br>
+</p>
+
+<p>
+  ・最近の事例から考察した記事<br>
+  <a href="http://nihonbuson.hatenadiary.jp/entry/2019/07/07/123000" target="_blank">7payの会見から学ぶソフトウェアテストの7原則</a></p>
+<p>
+  基礎知識としてこのあたりが参考になると思います。<br>
+  ・<a href="https://webrage.jp/techblog/7_principles_of_software_testing/" target="_blank">テスト担当者なら絶対に覚えておきたい『ソフトウェアテストの7原則』</a><br>
+  ・<a href="https://qiita.com/NagaokaKenichi/items/b5d5d0b141e816991133" target="_blank">ソフトウェアテストの7原則について経験と照らし合わせて考えてみる</a><br>
+  ・<a href="https://www.digitalhearts.com/dh-blog/system_test/" target="_blank">システムテストの観点と七原則</a><br>
+  ・<a href="https://appkitbox.com/knowledge/test/20121112-8" target="_blank">ソフトウェアテストの基礎：ソフトウェアテストの7原則</a><br>
+</p>
+
+<h2 class="title">Vモデル、Wモデル</h2>
+<h3>Vモデル</h3>
+<p>下図のように、ウォーターフォールモデルの工程を、開発工程とテスト工程を横に並べたものです。</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/84b02ec2-e028-bc7e-dd26-087cadcaf44a.png" alt="image.png" /></p>
+<h4>Vモデルの利点</h4>
+<p>V モデルとは、開発工程とテスト工程の対応関係をはっきりと表したモデルのため、各工程で何のテストを行うかが分かりやすいという利点があります。開発工程とテスト工程の対応関係が曖昧な場合、テストによる品質の保証が難しいため、ソフトウェア開発を行う場合は開発工程とテスト工程を明確にしておくことが重要です。そうすることで、どの段階でどの部分を、どれくらいの細かさでテストするのかが明確になり、テスト工程をよりスムースに進めることができるのです。</p>
+<h3>Wモデル</h3>
+<p>W字モデルは、開発の上流工程からテスト設計を開始し、開発プロセスとテストプロセスを同時併行に進めるプロセスモデルです。</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/4a1213dd-c282-49ec-b565-a45ae1a1722d.png" alt="image.png" /></p>
+<h4>Wモデルの利点</h4>
+<p>伝統的なソフトウェア開発ではソフトウェアテストを、要求－設計－実装などの開発作業が終了した後に行うものと規定し、開発プロセスとテストプロセスの関係はVモデルの形で考えてきた。しかし、同時に誤りやバグを持ち越して後工程で修正するのは大幅なコスト高となるため、早期にデバッグすべきだという指摘も古くからなされていた。
+この問題を解決する方法として、テスト計画とテスト設計を上流工程に移して、要求定義や設計工程、実装工程と同時に行うプロセスが提案された。V字型の開発プロセスと並行にV字型のテストプロセスを配置した図で示されることから「Wモデル」という。
+テストの7原則の原則3を狙ったものなんだと思っています。</p>
+<h3>参考資料</h3>
+<p>
+・<a href="https://www.valtes.co.jp/qbookplus/700" target="_blank">テストはいつ行っているの？ソフトウェア開発の流れとテスト工程</a><br>
+・<a href="https://www.itmedia.co.jp/im/articles/1111/07/news202.html" target="_blank">Wモデル（だぶりゅーもでる）</a><br>
+・<a href="https://webrage.jp/techblog/w_shaped_model/" target="_blank">W字モデルとは？</a></p><br>
+
+<h2 class="title">テスト観点</h2>
+<h3>テスト観点とは？</h3>
+<p>
+「テスト観点」は<a href="http://jstqb.jp/dl/JSTQB-glossary.V2.3.J02.pdf" target="_blank">JSTQBの用語集</a>には出てこない用語です。<a href="http://qualab.jp/materials/VSTeP.130510.color.pdf" target="_blank">VSTeP</a>にちょっと出てきたのでこれを抜粋。
+</p>
+<blockquote style="background-color:#333333">
+  <p>
+    この「何をテストすればいいか」を“テスト観点” と呼ぶ
+  </p>
+</blockquote>
+<p>大まかにはわかりますけどちょっと大まかすぎますね・・・。
+もうちょっと具体的に知りたいと思ったので探してみたら、<a href="https://www.qbook.jp/qptestview/description" target="_blank">このサイト</a>で以下のような説明を見つけました。</p>
+<blockquote style="background-color:#333333">
+  <p>
+  ソフトウェアのテスト観点とは、ソフトウェアが正しく動作するかを確認するための項目、着眼点、発想の仕方といった、いわばテストを行う上での「切り口」のようなものです。<br>
+  ～中略～<br>
+  また、テスト観点は画面単位での確認項目だけでなく、同時にたくさんの処理を行った場合に誤動作を起こしたり、処理速度が著しく遅くならないかといった、システム全体に関わるテスト観点もあります。
+  </p>
+</blockquote>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/c2768e73-11f6-3965-43c8-51deca4bffc0.png" alt="image.png" />
+<a href="https://www.qbook.jp/qptestview/description" target="_blank"><br>
+このサイトの図</a>を抜粋</p>
+
+<br><br>
+<h3>テスト観点をどうやって洗い出すのか？</h3>
+<p>先ほどの説明でテスト観点というものはちょっとわかった気がします。しかし、これらの観点をどうやったら漏れなく洗い出せるのでしょうか？
+一つ参考になりそうなものを見つけましたので抜粋してみます。<br>
+<a href="https://www.ipa.go.jp/files/000005144.pdf" target="_blank">高信頼化ソフトウェアのための開発手法ガイドブック</a><br>
+　⇒6.2　テスト観点とテストアーキテクチャ設計</p>
+
+<h4>テスト観点の 4 つのタイプ</h4>
+<p>代表企業10社のテストの現状を分析した結果、テスト観点は以下4つのタイプに分類できるようです。</p>
+
+<h5>テスト観点1：基本構造を組み立てるもの</h5>
+<p>「～する」という動詞で表現されるものでソフトウェアに対する「入力トリガー」から見つけ出します。具体的には「登録する」、「照会する」、「検索する」などを探します。テスト観点 1 は、機能そのものにあたります。</p>
+
+<h5>テスト観点2：基本構造から派生構造を作り出すもの</h5>
+<p>テストデータや機能のバリエーションを増やすために、それらを修飾する形容詞や副詞で表現されるものです。ソフトウェアの「異常を誘発するための要因」を挙げます。例えば「大量の・少量の」、「連続して・飛び飛びに」、「素早く・ゆっくりと」、「超過して・不足して」といったものがテスト観点 2 にあたります。</p>
+
+<h5>テスト観点3：組み合わせ</h5>
+<p>「集合、関係、組み合わせ」を示すものです。このテスト観点は、ソフトウェアというよりもシステム全体としてのテスト観点となります。例としては、「エンド・ツー・エンド型で」、「同時に組み合わせて」、「連結・連動中に」などです。</p>
+
+<h5>テスト観点4：期待結果の網羅性の観点</h5>
+<p>「どうなる」という期待結果の属性を表すものです。テスト観点 1、2、3 は、見つけ出したテスト観点自体をさらに整理・分解してテストを詳細化することが可能です。例えば「登録する」という観点に対して、様々な登録方法を見つけることで分解することができます。
+ところがテスト観点4 は結果系の観点なので、例えば「出力の読みやすさ」という観点を見つけたときに、それを「文字の大きさ」、「文字の種類」、「文字の配置」と分解してもそこから直接にテスト設計することはできません。</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/33f7b706-202c-25bc-b010-53c82e4bd051.png" alt="image.png" />
+<a href="https://www.ipa.go.jp/files/000005144.pdf" target="_blank"><br>
+資料の151 page</a>より抜粋</p>
+
+<p>
+この分類を意識しながらテスト対象のシステムではどんな観点が必要なのかを洗い出していくイメージですかね。
+しかし抽象的ですね・・・。
+もう少し具体的なところが知りたかったので調べていたところ、VSTePの資料に記載がありました。<br>
+<a href="http://qualab.jp/materials/VSTeP.130510.color.pdf" target="_blank">VSTePの資料</a><br>
+　⇒「NGT: テスト観点とは何か」(23 page)より</p>
+<blockquote style="background-color:#333333">
+  <p>
+    テストには、様々な「観点」が必要だと言われている<br>
+    – 例）Ostrandの4つのビュー<br>
+    » ユーザビュー、仕様ビュー、設計・実装ビュー、バグビュー<br>
+    – 例）Myersの14のシステムテスト・カテゴリ<br>
+    » ボリューム、ストレス、効率、ストレージ、信頼性、構成、互換性、設置、回復、操作性、セキュリティ、サービス性、文書、手続き<br>
+    – 例）ISO/IEC 9126(ISO/IEC 25000s)の品質特性<br>
+    » 機能性、信頼性、使用性、効率性、保守性、移植性<br>
+  </p>
+  <p>
+    テスト観点とは、テスト対象のテストすべき側面や、テスト対象の範囲やつくり、テスト対象が達成すべき性質である<br>
+  </p>
+</blockquote>
+<p>これをもうちょっと掘ってみました。</p>
+<h4>Ostrandの4つのビュー</h4>
+<p>「User-view（ユーザー視点）」、「Spec-view（仕様視点）」、「Fault-view（バグ視点）」、「Design-view（設計・実装視点）」</p>
+
+<p>
+  例えば、データ登録機能のテストを行う場合。<br>
+  <strong>User-view（ユーザー視点）</strong>では、実際のユーザーの動きを想定した、正しいデータの入力をした場合、間違ったデータを入力した場合などをテストします。<br>
+  <strong>Spec-view（仕様視点）</strong>では、求められている仕様をきちんと満たしているか、正しい動きをするのかをテストします。<br>
+  <strong>Fault-view（バグ視点）</strong>では、入力途中で通信が切れた場合や、異なる形式のデータが送られてきた場合など、考えられるバグや、わざとバグが起こりそうなことをテストします。<br>
+  <strong>Design-view（設計・実装視点）</strong>では、設計の構造自体にバグはないか、動作していても脆弱な実装になっていないか、などをテストします。<br>
+</p>
+<p>参考：<a href="https://webrage.jp/techblog/software_testing_point_of_view/" target="_blank">テスト観点～概要と具体的な観点～</a></p>
+
+<h4>Myersの14のシステムテスト・カテゴリ</h4>
+<p>
+  <a href="http://qualab.jp/materials/VSTeP.130510.color.pdf" target="_blank">VSTePの資料</a>では以下のように分類されています。<br>
+  ボリューム、ストレス、効率、ストレージ、信頼性、構成、互換性、設置、回復、操作性、セキュリティ、サービス性、文書、手続き
+</p>
+<p>
+  Myersさんが書いた「ソフトウェア・テストの技法 第2版」という本が手元にあり、その128 page ～138 page にも、システムテスト・カテゴリについて記載があったので抜粋してみました。<br>
+  <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F4099774%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=11887513&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7649%2F76490329.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7649%2F76490329.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F4099774%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >ソフトウェア・テストの技法第2版 [ グレンフォード・J．マイアーズ ]</a><br><span >価格：3520円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+  この本では15個に分類されているのですが、おそらくVSTePの分類と同じものだと思います。<br>
+  以下15の観点をテスト設計の際に調べる必要があるとされています。<br>
+  （「システムテストの目的は、そのプログラムが目的仕様にあっていないことを示すこと」というスタンスで書かれています）
+</p>
+
+<strong>①. 機能部分テスト(facility testing)</strong><br>
+<p>仕様書に書かれていることが満たされているかを調べるもの。</p>
+
+<strong>②. 大容量テスト(volume testing)</strong><br>
+<p>プログラムに大量データを扱わせるテスト。
+大容量テストの目的は、プログラムがその目的仕様書で指定されたデータ量を扱うことができないことを示すこと。</p>
+
+<strong>③. ストレステスト(stress testing)</strong><br>
+<p>プログラムに重い負荷または力を書けるテスト。重い負荷とは、短い時間に最大容量のデータ。</p>
+
+<strong>④. 有用度テスト(usability testing)</strong>
+<p>
+<ol>
+  <li>各ユーザ・インタフェイスは、エンド・ユーザの知識・教育的背景・環境面からの圧力にあわせて作られているか</li>
+  <li>プログラムの出力は意味のあるもので、濫用されず。”コンピュータのちんぷんかんぷんなおしゃべり”を避けた、等々のものであるか。</li>
+  <li>エラー診断書（たとえばエラー・メッセージ）は、単刀直入であること。</li>
+  <li>ユーザ・インタフェイスの全セットは、すべてかなりの”概念上の統一性”をしめているか。そこに存在する一貫性と、構文・規約・意味・形式・スタイル・略号の統一など</li>
+  <li>正確さが重要であるところ（たとえば、オンライン銀行システム）で、入力に十分な冗長性をもたせてあるか</li>
+  <li>システムは、過度にオプションや使われそうにないオプションを含んでいないか。</li>
+  <li>システムは、すべての入力に対してある種の即答を返しているか</li>
+  <li>プログラムは使いやすいか。</li>
+</ol>
+</p>
+
+<strong>⑤. 秘密保護テスト(security testing)</strong><br>
+<p>秘密保護テストは、プログラムの秘密保護に対するチェックをくつがえすテスト・ケースを準備する過程。</p>
+
+<strong>⑥. 効率テスト(performance testing)</strong><br>
+<p>ある実働負荷と構成条件のもとでの応答時間や出力処理といった性質がその効率目標を示さないことを示すようなものでなければならない。</p>
+
+<strong>⑦. 記憶域テスト(storage testing)</strong><br>
+<p>場合のよっては、プログラムは記憶域についての目的使用が定められている。たとえば、プログラムで使用する主記憶域と2次記憶の量と、必要な一時的なファイルの大きさについてである。テスト・ケースは、このような記憶域の目的仕様がみたされていないことをしめすようなものである。</p>
+
+<strong>⑧. 構成テスト(configuration testing)</strong><br>
+<p>オペレーティング・システム、データ・ベース管理システム、メッセージ交換プログラムと言ったものは、いろいろな種類のハードウェア構成をサポートしている。可能な構成の組合せがあまりにも多くて、それぞれについてプログラムをテストすることができないことがあるが、少なくとも各型式のハードウェア機器と最小・最大に構成でプログラムをテストしなければならない。</p>
+
+<strong>⑨. 互換性／構成／変換テスト(conpatibility/configuration/conversion testing)</strong><br>
+<p>開発されるプログラムの大部分は、完全に新規なものは少ない。これらは、不十分なシステムに対する書き換えであることが多い。そんな場合、プログラムは、既存のシステムとの互換性と変換手順にかんする目的仕様をもつことが多い。この場合も、これらの目的でプログラムをテストするときは、テスト・ケースの方針は、互換性を持つという目標が満たされていないこと、変換手順が働かないことをしめすことである。</p>
+
+<strong>⑩. 設置テスト(installability testing)</strong><br>
+<p>ある種のソフトウェア・システムでは、複雑な導入手順がいる。導入手順をテストすることはシステムテストの過程では重要な部分である。</p>
+
+<strong>⑪. 信頼性テスト(reliability testing)</strong><br>
+<p>プログラムの目的仕様書に、信頼性について特別な記述があれば、特別な信頼性テストが行われる。</p>
+
+<strong>⑫. 回復テスト(recovery testing)</strong><br>
+<p>プログラミング・エラー、ハードウェアの故障、データ・エラーからどのようにシステムを回復させるかについて述べたもの。システム・テストの1つの目的は、これらの回復機能が正しく働かないことをしめすことである。</p>
+
+<strong>⑬. サービス性テスト(serviceability testing)</strong><br>
+<p>
+  プログラムは、サービス性つまり保守能力の性質についても目的仕様をもっている。この種の目的仕様もすべてテストしなければならない。
+  ・このシステムによってもたらされるほじょサービス機能（たとえば、記憶域のダンプ・プログラム、診断プログラム）
+  ・あるはっきりした問題をデバッグするための平均時間、維持のための手続
+  ・内部文書の文書の質
+  など
+</p>
+
+<strong>⑭. 文書テスト(documentation testing)</strong><br>
+<p>システム・テストは、ユーザの書いた文書の正確さも調べる。これを行う基本的な方法は、ユーザ文書を、これまで述べてきた1～13のシステム・テスト・ケースの表現を決めるのに使うことである。たとえば、あるストレス・テストをおこなうとき、ユーザ文書をそのテスト・ケースを書くための指針として使う。</p>
+
+<strong>⑮. 手続きテスト(procedure testing)</strong><br>
+<p>多くのプログラムは、人手による手続きをふくんだ、大きな完全には自動化されないシステムの一部分になっている。たとえば、データベース管理者は、データベース・システムのバックアップと復元のための操作を文書化すべきである。もし、可能なら、そのデータベースの管理に関係しない人物がその操作をテストすべきである。</p>
+
+<h4>ISO/IEC 9126(ISO/IEC 25000s)の品質特性</h4>
+<p>次の「品質特性」の章参照。</p>
+<h3>参考資料</h3>
+<p>
+・<a href="https://www.qbook.jp/qptestview/description" target="_blank">テスト観点とは</a><br>
+・<a href="https://www.facebook.com/666101650178276/posts/952846604837111/" target="_blank">ソフトウェアテストの知恵袋</a><br>
+・<a href="https://webrage.jp/techblog/software_testing_point_of_view/" target="_blank">テスト観点～概要と具体的な観点～</a><br>
+・<a href="http://qualab.jp/materials/VSTeP.130510.color.pdf" target="_blank">テスト観点に基づくテスト開発方法論 VSTePの概要</a><br>
+・<a href="https://www.ipa.go.jp/files/000005144.pdf" target="_blank">高信頼化ソフトウェアのための開発手法ガイドブック</a></p><br>
+  <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F4099774%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=11887513&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7649%2F76490329.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7649%2F76490329.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F4099774%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >ソフトウェア・テストの技法第2版 [ グレンフォード・J．マイアーズ ]</a><br><span >価格：3520円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+
+<h2 class="title">品質特性</h2>
+<p>品質特性とは、ISO/IEC 9126（ソフトウェア製品の評価　品質特性とその適用に関するガイドライン）という規格で定義されている、ソフトウェアの品質の指標を分類して体系的にまとめたものです。機能性・信頼性・使用性・効率性・保守性・移植性の6つの品質特性があり、さらにその中で合計21の副特性に細分化されます。</p>
+
+<h3>6つの品質特性</h3>
+<table border="2" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>品質特性</th><th>説明</th>
+  </tr>
+  <tr>
+    <td>機能性<br>(functionality)</td><td>ソフトウェアを指定された条件のもとで動作するとき、要求されている仕様を満たす能力のこと。</td>
+  </tr>
+  <tr>
+    <td>信頼性<br>(Reliability)</td><td>ソフトウェアを指定された条件のもとで動作するとき、達成水準を維持し続ける能力のこと。誤作動時の復旧や、障害に対する許容性をあらわす場合もある。<td>
+  </tr>
+  <tr>
+    <td>使用性<br>(Usability)</td><td>ソフトウェアを指定された条件のもとで動作するとき、利用者が理解、習得、利用がスムーズにおこなえる能力こと。いわゆる「使い勝手」や「使いやすさ」、「操作性」のこと。</td>
+  </tr>
+  <tr>
+    <td>効率性<br>(Efficiency)</td><td>与えられたリソースに対して、適切な性能を発揮する能力のこと。たとえば、決められた処理時間の中でいかに早く、数多くの処理ができるか、などがあります。</td>
+  </tr>
+  <tr>
+    <td>保守性<br>(Maintainability)</td><td>できたソフトウェアの修正のしやすさの能力のこと。作った本人しか理解できないプログラムでは、改修が発生した際に多くのコストがかかってしまいます。これは利用者には直接は関係しない特性のように見えますが、最終的なサービスリリースまでにかかるコストの軽減は、利用者へのメリットにつながることが多くあります。</td>
+  </tr>
+  <tr>
+    <td>移植性<br>(Portability)</td><td>別な環境へ移すことになった際に、容易に移せる能力のこと。サーバーの移行や、使うフレームワークが変更になった場合などに重要になってくる。</td>
+  </tr>
+</table>
+
+<br>
+<h3>品質副特性</h3>
+<h4>機能性(functionality)の品質副特性</h4>
+<table border="2" cellpadding="0" cellspacing="0">
+  <tr>
+<th>品質副特性</th><th>説明</th><th>例</th>
+  </tr>
+  <tr>
+    <td>合目的性<br>(suitability)</td><td>ソフトウェアがユーザの目的に合致している機能を提供するか</td><td>預金者が過去１年間の取引内容を照会できること。</td>
+  </tr>
+  <tr>
+    <td>正確性<br>(accuracy)</td><td>ソフトウェアが必要な正確さで結果をもたらす能力を表します。 画面や帳票でユーザに提供する計算結果が正しいだけでなく、必要とされる精度で計算されているかも含まれます。</td><td>取引金額の計算は、1 円未満切り捨てで計算すること。</td>
+  </tr>
+  <tr>
+    <td>相互運用性<br>(interoperability)</td><td>相互接続性や、そのままインターオペラビリティと呼ばれることもあり、ソフトウェアが指定された他のシステムとやりとりをできる能力を表します。 非機能要求としては、データ転送や処理の依頼など他システムとの必要なやりとりが示されます。 相互接続では、Web サービスなど取り決められた通信プロトコルで直接やりとりをするのから、DAT などのメディアを介してやりとりするのまで考えられますが、要求の実現方法が選択できる場合は要求では指定しません。</td><td>外部の決済システムと Web サービスを介して、必要な決済ができること。</td>
+  </tr>
+  <tr>
+    <td>機密性<br>(security)</td><td>ソフトウェアが関係のない人に使用されたり、機能を実行する権限のない人に実行されたりしない能力を表します。 非機能要求としては、必要なセキュリティポリシーやセキュリティ強度が示されます。 インターネットを使ったシステムが多くなり、最近は特に要求が厳しくなっています。</td><td>・預金者本人以外が、口座の情報や取引履歴を参照できないこと。<br>・運用担当者が、DB に保管されている情報を参照して預金者を識別できないこと。</td>
+  </tr>
+  <tr>
+    <td>標準適合性<br>(compliance)</td><td>機能性に関する法規、業界標準、規格にソフトウェアが沿っているかを表します。</td><td>-</td>
+  </tr>
+</table>
+
+<br><br>
+<h4>信頼性(Reliability)の品質副特性</h4>
+<table border="2" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>品質副特性</th><th>説明</th><th>例</th>
+  </tr>
+  <tr>
+    <td>成熟性<br>(maturity)</td><td>障害が発生した時にソフトウェアが故障 (機能停止) しない能力を表します。 非機能要求では、単位として MTBF (平均故障間隔) が多く用いられます。 MTBF は、故障から次の故障までの時間を表します。</td><td>MTBF は、8000 時間以上であること。</td>
+  </tr>
+  <tr>
+    <td>障害許容性<br>(fault tolerance)</td><td>障害が起きてもソフトウェアが機能を提供し続ける能力を表します。 フェールセーフ機能も含まれます。</td><td>各コンポーネントは多重化され、いずれかのコンポーネントに障害が起きてもサービスを 24 時間提供できること。</td>
+  </tr>
+  <tr>
+    <td>回復性<br>(recoverability)</td><td>障害が発生した後にソフトウェアの機能が正常に復帰する能力を表します。 非機能要求では、MTTR (平均復旧時間) が多く用いられます。　MTTR は、1 回の修理にかかる平均時間です。</td><td>DB との接続エラーが発生した場合、再接続し 10 分以内に復帰すること。</td>
+  </tr>
+  <tr>
+    <td>標準適合性<br>(compliance)</td><td>信頼性に関する法規、業界標準、規格にソフトウェアが沿っているかを表します。 信頼性に関する適法性は、ソフトウェアだけでなく、システム全体としてセキュリティもあわせて策定された業界標準が多くあります。 例は、「品質副特性：セキュリティ」の例を参照してください。</td><td>-</td>
+  </tr>
+</table>
+
+<br><br>
+<h4>使用性(Usability)の品質副特性</h4>
+<table border="2" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>品質副特性</th><th>説明</th><th>例</th>
+  </tr>
+  <tr>
+    <td>理解性<br>(understandability)</td><td>ソフトウェアの使用法をユーザが理解しやすいかを表します。</td><td>・パソコンやインターネットの初心者である預金者が理解できること。<br>・社内標準ソフトである経費管理システムと同じ操作性であること。</td>
+  </tr>
+  <tr>
+    <td>習得性<br>(learnability)</td><td>ユーザがソフトウェアの使い方を学習しやすいかを表します。</td><td>ユーザが学習しやすいように、チュートリアルを提供すること。</td>
+  </tr>
+  <tr>
+    <td>運用性<br>(operability)</td><td>ユーザがソフトウェアを使う時のユーザインターフェイスの使いやすさを表します。</td><td>・ユーザの作業の順序にあわせて、次に必要な機能が連続して実行できること。<br>・ユーザが中止したい時にいつでも実行を中止できること。<br>・すべてのメニューおよびツールバーに、ツールチップで短い説明を表示すること。</td>
+  </tr>
+  <tr>
+    <td>魅力性<br>(attractiveness)</td><td>ソフトウェアがユーザにとって魅力があるかを表します。 ユーザを引きつけるような画面の色彩や特異なユーザインターフェイスなどの要求が含まれます。</td><td>ユーザインターフェイスのスキンが定義でき、ユーザが自由に取り替えられること。</td>
+  </tr>
+  <tr>
+    <td>標準適合性<br>(compliance)</td><td>使用性に関する法規、業界標準、規格にソフトウェアが沿っているかを表します。 この非機能要求には、ウインドウシステムや GUI のスタイルガイドが含まれます。</td><td>GUI は、サン・マイクロシステムズの「Java Look and Feel Design Guidelines 2nd Edition」に準拠していること。</td>
+  </tr>
+</table>
+
+<br><br>
+<h4>効率性(Efficiency)の品質副特性</h4>
+<table border="2" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>品質副特性</th><th>説明</th><th>例</th>
+  </tr>
+  <tr>
+    <td>時間効率性<br>(time behaviour)</td><td>指定された条件下で、ソフトウェアが適切な応答時間、処理時間、スループットで機能を実行する能力を表します。</td><td>・注文の確定は、ユーザが選択してから 10 秒以内で完了すること。<br>・外部の決済システムへのデータ転送は、20 分以内に終了すること。</td>
+  </tr>
+  <tr>
+    <td>資源効率性<br>(resource behaviour)</td><td>指定された条件下で、ソフトウェアがメモリやハードディスクなどのコンピュータ資源を適切に利用しているかを表します。</td><td>最大でもメモリ 32M バイト、HDD 128M バイトまで有効に使用すること。</td>
+  </tr>
+  <tr>
+    <td>標準適合性<br>(compliance)</td><td>効率性に関する法規、業界標準、規格にソフトウェアが沿っているかを表します。</td><td>-</td>
+  </tr>
+</table>
+
+<br><br>
+<h4>保守性(Maintainability)の品質副特性</h4>
+<table border="2" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>品質副特性</th><th>説明</th><th>例</th>
+  </tr>
+  <tr>
+    <td>解析性<br>(analyzability)</td><td>ソフトウェアに障害が発生した時に、その原因を判別し、修正の必要な箇所を特定しやすいかを表します。</td><td>・運用者に対して障害監視機能を提供すること。<br>・アプリケーションサーバや DBMS の障害エラー、プログラムの例外を稼働ログに残し、障害の内容や箇所が特定できること。</td>
+  </tr>
+  <tr>
+    <td>変更性<br>(changeability)</td><td>稼働後の変更要求など、やらなければならない修正をソフトウェアにできるかを表します。 修正内容は未知ですので、ソフトウェアが変更を受け入れられるようなプログラミング言語、構造、アーキテクチャになっていることが要求されます。</td><td>・コンポーネントベースで実現され、修正にかかるコストおよび期間が現行システムの 70% 以下であること。<br>・技術者の多い Java で記述されること。</td>
+  </tr>
+  <tr>
+    <td>安定性<br>(stability)</td><td>ソフトウェアを修正した時に、影響が予想外の箇所に及ばないことを表します。</td><td>コンポーネントベースで実現され、コンポーネントの修正が他のコンポーネントに及ぼす影響が最小限であること。</td>
+  </tr>
+  <tr>
+    <td>試験性<br>(testability)</td><td>ソフトウェアを修正した時にテストがしやすいかを表します。</td><td>市販あるいはオープンソースのテスティングツールで、システムテストを自動化できること。</td>
+  </tr>
+  <tr>
+    <td>標準適合性<br>(compliance)</td><td>保守性に関する法規、業界標準、規格にソフトウェアが沿っているかを表します。 保守性に関する適法性は、ベンダーからの開発者向けのガイドラインが要求されるケースが多いです。</td><td>マイクロソフト「ASP ガイドライン」の保守性に関するガイドラインに準拠していること。</td>
+  </tr>
+</table>
+
+<br><br>
+<h4>移植性(Portability)の品質副特性</h4>
+<table border="2" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>品質副特性</th><th>説明</th><th>例</th>
+  </tr>
+  <tr>
+    <td>環境適応性<br>(adaptability)</td><td>ソフトウェアを別の環境へ移す時の手間を表します。</td><td>リコンパイル無しに Windows から Linux へ移行できること。</td>
+  </tr>
+  <tr>
+    <td>設置性<br>(installability)</td><td>ソフトウェアを指定された環境へインストールする時のやりやすさを表します。</td><td>・クライアントソフトウェアは、顧客自身がインストールできるように、専用の対話型インストーラを用意すること。<br>・サーバソフトウェアは、運用担当者が 3 時間以内にインストールできること。</td>
+  </tr>
+  <tr>
+    <td>共存性<br>(co-existence)</td><td>ソフトウェアを同じ環境で他のソフトウェアと共存できることを表します。 後から他のソフトをインストールしたために正常に動かないということは、みなさんもご経験があると思います。</td><td>MS Office2003 のインストールされた環境で、共に正常に稼働すること。</td>
+  </tr>
+  <tr>
+    <td>置換性<br>(replaceability)</td><td>互換性と呼ばれることもあり、同じ環境で、同じ目的を持った他のソフトウェアと置き換えられる能力を表します。 「品質副特性：インストールのしやすさ」とよく似ていますが、古いバージョンや他の製品とそのソフトウェアを置き換える場合の要求である点が異なります。</td><td>・古いバージョンをアンインストールせずに新しいバージョンをインストールできること。<br>・Ａ社の製品ａと置き換えられ、製品ａのデータファイルをそのまま読み書きできること。</td>
+  </tr>
+  <tr>
+    <td>標準適合性<br>(compliance)</td><td>可搬性に関する法規、業界標準、規格にソフトウェアが沿っているかを表します。 可搬性に関するガイドラインは、例 39 や例 40のように稼働環境である OS などのベンダーで用意されている場合があります。</td><td>・マイクロソフトの「Windows Server 2003 アプリケーション仕様書」に準拠し、Certified for Windows ロゴを取得できること。<br>・ソフトウェアは、サン・マイクロシステムズの「100% Pure Java Cookbook」に準拠し、100 % Pure Java ロゴを取得できること。</td>
+  </tr>
+</table>
+
+<br><br>
+<h3>参考資料</h3>
+<p>このサイトがわかりやすいかな<br>
+・<a href="https://www.ogis-ri.co.jp/otc/hiroba/technical/JavaPress_ISO9126/" target="_blank">非機能要求とISO9126</a><br>
+・<a href="http://etc9.hatenablog.com/entry/20121129/1356526435" target="_blank">ソフトウェアの品質特性モデル JIS X 0129-1(ISO/IEC9126)</a><br>
+・<a href="https://webrage.jp/techblog/external_quality_inner_quality/" target="_blank">外部品質、内部品質とは？ソフトウェア品質特性について</a><br>
+・<a href="https://akademeia.info/index.php?%A5%BD%A5%D5%A5%C8%A5%A6%A5%A7%A5%A2%A4%CE%C9%CA%BC%C1" target="_blank">ソフトウェアの品質</a></p><br>
+
+<h2 class="title">テストレベル</h2>
+
+<p><a href="http://jstqb.jp/dl/JSTQB-glossary.V2.3.J02.pdf" target="_blank">JSTQBの用語集</a>での定義：</p>
+<blockquote style="background-color:#333333">
+  <p>テストレベル（test level）： 系統的にまとめ、管理していくテストの活動のグループ。各テストレベルはプロジェクトの特定の責務と対応付けができる。テストレベルの例には、コンポーネントテスト、統合テスト、システムテスト、受け入れテストがある。</p>
+</blockquote>
+<p>・・・ソフトウェア開発の工程と捉えればだいたい合ってそうだけど、コンポーネントテスト？ってなんだ？？</p>
+<p><a href="http://jstqb.jp/dl/JSTQB-glossary.V2.3.J02.pdf" target="_blank">JSTQBの用語集</a>での定義：</p>
+<blockquote style="background-color:#333333">
+  <p>コンポーネントテスト（component testing）： 個々のソフトウェアコンポーネントのテスト。</p>
+</blockquote>
+<p>・・・よくわからん。
+<a href="https://akademeia.info/index.php?%A5%B3%A5%F3%A5%DD%A1%BC%A5%CD%A5%F3%A5%C8%A5%C6%A5%B9%A5%C8" target="_blank">このサイト</a>によると、「JSTQBでは単体テストはコンポーネントテストに含まれる。」らしい。へー。
+<a href="http://kazuya-fuwa.hatenablog.com/entry/2017/01/03/133710" target="_blank">このサイト</a>では、「分離してテストが可能な単位の欠陥を摘出し、正しく作動することを検証するテスト。」とあります。
+あまり深く考えずにクラス単体テストと捉えればいいんですかね。</p>
+
+<h3>参考資料</h3>
+<p>
+・<a href="http://jstqb.jp/dl/JSTQB-glossary.V2.3.J02.pdf" target="_blank">JSTQBの用語集</a><br>
+※上のJSTQBの用語集はバージョンあがるとリンク切れるので、大もとのサイトのリンクも張っておきます。<br>
+<a href="http://jstqb.jp/syllabus.html#glossary_download" target="_blank">大もとのサイト</a>
+</p>
+
+<p>
+・<a href="https://www.valtes.co.jp/qbookplus/1794" target="_blank">ソフトウェアテストの種類とは？テストレベル別にテスト対象、実施内容を解説</a><br>
+・<a href="https://mkoszk.hatenablog.jp/entry/20110103/p1" target="_blank">２．ソフトウェアライフサイクルを通じてのテスト（２）</a><br>
+・<a href="https://scrapbox.io/JSTQB-FL/2.2.1_%E3%82%B3%E3%83%B3%E3%83%9D%E3%83%BC%E3%83%8D%E3%83%B3%E3%83%88%E3%83%86%E3%82%B9%E3%83%88" target="_blank">2.2.1 コンポーネントテスト</a><br>
+・<a href="http://kazuya-fuwa.hatenablog.com/entry/2017/01/03/133710" target="_blank">JSTQB 2章 ソフトウェアサイクルを通じてのテスト</a><br>
+・<a href="https://akademeia.info/index.php?%A5%B3%A5%F3%A5%DD%A1%BC%A5%CD%A5%F3%A5%C8%A5%C6%A5%B9%A5%C8" target="_blank">コンポーネントテスト</a></p><br>
+
+<h2 class="title">Checking と Testing</h2>
+<p>Checking と Testingについては、<a href="https://www.infoq.com/jp/news/2009/12/testing-or-checking/" target="_blank">あなたがやっているのはテスティングかチェッキングか？</a>というサイトでは以下のように説明されています。</p>
+
+<blockquote style="background-color:#333333">
+  <p>
+    チェッキング（チェックすること）とは、すでにある信念を確認するという動機から実施するものです。チェッキングは確認、検証、妥当性確認というプロセスになります。すでにそれが正しいと信じているときに、チェッキングによってその信念を確認します。コードを変更してもこれまで同じようにすべて動作することを確かめたいときに、私たちはチェックします。
+  </p>
+  <p>
+    テスティング（テストすること）とは、新しい情報を見つけるという動機から実施するものです。テスティングは探索、発見、究明、学習というプロセスになります。評価するつもりで、あるいは想定外の問題を見つけるつもりで、製品を設定して、動かし、観察するときに、私たちはテストします。
+  </p>
+</blockquote>
+
+<p><a href="https://www.developsense.com/blog/2009/08/testing-vs-checking/" target="_blank">Michael Boltonという方のブログ</a>では以下のように書かれています。</p>
+
+<blockquote style="background-color:#333333">
+  <p>
+    Checking is something that we do
+    with the motivation of confirming
+    existing beliefs
+    • Checking is a process of
+    confirmation, verification,
+    and validation. When we already believe
+    something to be true, we verify our belief by
+    checking
+    • Checking is a highly automatable process
+  </p>
+  <p>
+    <strong>Checking Is Confirmation</strong><br>
+    Checking is something that we do with the motivation of confirming existing beliefs. Checking is a process of confirmation, verification, and validation. When we already believe something to be true, we verify our belief by checking. We check when we’ve made a change to the code and we want to make sure that everything that worked before still works. When we have an assumption that’s important, we check to make sure the assumption holds. Excellent programmers do a lot of checking as they write and modify their code, creating automated routines that they run frequently to check to make sure that the code hasn’t broken. Checking is focused on making sure that the program doesn’t fail.
+  </p>
+  <p>
+    <strong>Testing Is Exploration and Learning</strong><br>
+    Testing is something that we do with the motivation of finding new information. Testing is a process of exploration, discovery, investigation, and learning. When we configure, operate, and observe a product with the intention of evaluating it, or with the intention of recognizing a problem that we hadn’t anticipated, we’re testing. We’re testing when we’re trying to find out about the extents and limitations of the product and its design, and when we’re largely driven by questions that haven’t been answered or even asked before. As James Bach and I say in our Rapid Software Testing classes, testing is focused on “learning sufficiently everything that matters about how the program works and about how it might not work.”
+  </p>
+</blockquote>
+
+<p>
+自分の理解<br>
+・Checking：既存の振る舞いを壊していないか、仕様通りの動きをしているかを確認する。
+自動テストで自動化できそうな範囲のもの。<br>
+・Testing：・・・正直よくわからん。探索的テストをイメージしたけどそういうことでいいのか？
+ちょっとググってたら、<a href="http://nihonbuson.hatenadiary.jp/entry/2015/10/22/004024" target="_blank">このページ</a>で和田さんがソフトウェアテストの技法を元にTestingについて説明していた（TestingとChecking（和田さん）のところ）。<br>
+【Myersの14のシステムテスト・カテゴリ】のところでも書きましたが、「ソフトウェア・テストの技法 第2版」という本は持っているので本棚から引っ張り出してみた。(6 page)</p>
+  <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F4099774%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=11887513&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7649%2F76490329.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7649%2F76490329.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F4099774%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >ソフトウェア・テストの技法第2版 [ グレンフォード・J．マイアーズ ]</a><br><span >価格：3520円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+
+<blockquote style="background-color:#333333">
+  <p>
+    プログラムをテストするときは、そのプログラムになんらかの価値を付加することになる。テストによって価値を付加するとは、プログラムの品質・信頼性を向上させることである。プログラムの信頼性を向上させるとは、エラーをみつけ、それをとりのぞくことである。
+    だから、テストとは、プログラムが作動することをしめすものではなく、むしろ、プログラムはエラーを含んでいるという仮定のもとでテストをはじめるべきである。そして、できるかぎり多くのエラーをみつけるためにプログラムをテストするのである。
+    <strong>テストとは、エラーをみつけるつもりでプログラムを実行する過程である。</strong>
+  </p>
+</blockquote>
+
+<h3>参考資料</h3>
+<p>
+・<a href="https://qiita.com/ledsun/items/b6c22afe321ac3052182" target="_blank">プログラマーも手動テストしようぜ 〜 忍者式テストのすすめ 〜</a><br>
+・<a href="http://jasst.jp/symposium/jasst14tohoku/pdf/S1.pdf" target="_blank">テスト、設計、自動化と。</a><br>
+・<a href="http://nihonbuson.hatenadiary.jp/entry/2015/10/22/004024" target="_blank">『クックパッドにおけるテストエンジニアのあり方』参加レポート</a><br>
+・<a href="https://www.developsense.com/blog/2009/08/testing-vs-checking/" target="_blank">Blog: Testing vs. Checking</a><br>
+・<a href="https://www.infoq.com/jp/news/2009/12/testing-or-checking/" target="_blank">あなたがやっているのはテスティングかチェッキングか？</a></p><br>
+  <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F4099774%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=11887513&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7649%2F76490329.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F7649%2F76490329.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F4099774%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >ソフトウェア・テストの技法第2版 [ グレンフォード・J．マイアーズ ]</a><br><span >価格：3520円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+
+<h2 class="title">Validation と Verification（勝手に追加）</h2>
+<p>ブロッコリーさんの資料にはない項目ですが、Checking と Testing の中で出てきたので勝手に追加しました。
+「ソフトウェアテストの教科書―品質を決定づけるテスト工程の基本と実践」という本では以下のように記載されています。(10page)<br></p>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11516496%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=15705850&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F5818%2F9784797365818.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F5818%2F9784797365818.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11516496%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >ソフトウェアテストの教科書 品質を決定づけるテスト工程の基本と実践 [ 石原一宏 ]</a><br><span >価格：2750円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+
+<blockquote style="background-color:#333333">
+  <p>
+    <strong>Verification（検証）</strong><br>
+    開発仕様書（ソフトウェアの設計図）のとおりにソフトウェアが作成されているかを確認することです。Verificationを行う場合は、ソフトウェアを実際に動作させます。開発仕様書は開発工程ごとに作成されるので、Verificationも開発工程毎に行います。
+  </p>
+  <p>
+    <strong>Validation（妥当性確認）</strong><br>
+    ユーザーの要求どおりにソフトウェアが作成されているかを確認することです。Validationでは、ソフトウェアを動作させるだけでなく、開発仕様書の妥当性チェックも行います。
+  </p>
+  <p>
+    ～中略～<br>
+    一般的に、開発者はソフトウェアを作るという立場上、開発仕様書を重視して製品を見ます。それに対してテスト担当者は、Verification and Validation の視点をもってテストを行うことが必要です。そのためにも、テスト対象のソフトウェアに対して、常に「ユーザーの要求は何か」、「ユーザーにとって問題にならないか」といった疑問を持つようにしましょう。
+  </p>
+</blockquote>
+
+<p><a href="http://sachaaaann.hatenablog.com/entry/2015/05/27/080011" target="_blank">このブログ</a>では以下のように説明されています。</p>
+
+<blockquote style="background-color:#333333">
+  <p>
+    ２つの単語違いについてまとめます。<br>
+    ① "verify" <br>
+    詳細なテストや調査によって、それが正しいかを検証すること<br>
+    ② "validate"<br>
+    ある一定の規格・基準に沿っているか、顧客の要求に合っているかを検証すること
+    作った機械が正しく動くかテストをして検証するのは "verify" で、そのテスト方法が有効かも含めて一定の規格を満たしているかをチェックするのは "validate" になります。
+    "verify" は下流工程で、"validate" は上流工程で使われるというイメージで良いかと思います。
+  </p>
+</blockquote>
+
+<p><a href="http://www.pmjuken.com/pmbok/verify%E6%A4%9C%E8%A8%BC%E3%81%99%E3%82%8B%E3%81%A8validate%E5%A6%A5%E5%BD%93%E6%80%A7%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B/" target="_blank">このサイト</a>での説明は以下の通り。</p>
+
+<blockquote style="background-color:#333333">
+  <p>PMBOKガイド第5版に以下の様に名詞形で説明されている。</p>
+  <p><strong>Verification (検証)</strong><br>
+  プロダクト、サービス、システムなどが規制、要求、仕様、指定された条件などに適合しているかどうかを評価するプロセス。内部プロセスである場合が多い。</p>
+  <p><strong>Validation(妥当性確認)</strong><br>
+  プロダクト、サービス、システムなどが顧客や特定のステークホルダーのニーズを満たしているということを確認すること。外部顧客による受け入れと適合性に関連することが多い。</p>
+</blockquote>
+
+<h3 class="title">参考資料</h3>
+<p>
+・<a href="http://sachaaaann.hatenablog.com/entry/2015/05/27/080011" target="_blank">VerifyとValidateの違い （verification と validation）</a><br>
+・<a href="http://www.pmjuken.com/pmbok/verify%E6%A4%9C%E8%A8%BC%E3%81%99%E3%82%8B%E3%81%A8validate%E5%A6%A5%E5%BD%93%E6%80%A7%E7%A2%BA%E8%AA%8D%E3%81%99%E3%82%8B/" target="_blank">Verify(検証する)とValidate(妥当性確認する)</a></p><br>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11516496%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=15705850&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F5818%2F9784797365818.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F5818%2F9784797365818.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11516496%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >ソフトウェアテストの教科書 品質を決定づけるテスト工程の基本と実践 [ 石原一宏 ]</a><br><span >価格：2750円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+
+<h2 class="title">テスト設計の目的</h2>
+
+<h3 class="title">テスト設計</h3>
+<p>目的の前に、そもそもテスト設計って何？と思ったので調べてみました。
+「ソフトウェアテストの教科書―品質を決定づけるテスト工程の基本と実践」という本の 52pageでは以下のように記載されています。</p>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11516496%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=15705850&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F5818%2F9784797365818.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F5818%2F9784797365818.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11516496%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >ソフトウェアテストの教科書 品質を決定づけるテスト工程の基本と実践 [ 石原一宏 ]</a><br><span >価格：2750円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+
+<blockquote style="background-color:#333333">
+  <p><strong>テスト設計</strong><br>
+  そのテスト工程で実施すべきテストの種類や目的、テスト対象機能、使用するテスト技法、テストの入力・出力に何を使用するかなどを定める。また、テスト実施に必要な機材や合否判定基準などをより具体的に定める。</p>
+</blockquote>
+
+<p>調べてる途中でテスト計画とごっちゃになって混乱したので一緒に整理。（同じ本より抜粋）</p>
+
+<blockquote style="background-color:#333333">
+  <p><strong>テスト計画</strong><br>
+  テスト工程の目的と範囲を明確にし、どのようなアプローチでテストするのかを検討する。テストに必要な設備や環境、人員といったリソースの調達やスケジュールなども定める。</p>
+</blockquote>
+
+<p><a href="http://jstqb.jp/dl/JSTQB-glossary.V2.3.J02.pdf" target="_blank">JSTQBの用語集</a>には以下のように記載されています。</p>
+<blockquote style="background-color:#333333">
+  <p>
+    <strong>テスト設計（test design）：</strong><br>
+    (1) test design specification を参照のこと。<br>
+    (2) 概略的なテスト目的を具体的なテスト条件とテストケースに変換するプロセス。<br>
+  </p>
+</blockquote>
+<p>テストケースを作成するプロセスをテスト設計と言っているみたいですね。
+関連する用語も抜粋しておきます。</p>
+
+<blockquote style="background-color:#333333">
+  <p>・テスト設計仕様（test design specification）： テストアイテムのテスト条件（カバレッジアイテム）、詳細なテストアプローチ、及び、関連する高位レベルテストケースを記述したドキュメント。[After IEEE829] test specification も参照のこと。</p>
+  <p>・テスト仕様書（test specification）： テスト設計仕様、テストケース仕様、テスト手順仕様からなるドキュメント。</p>
+  <p>・テストアイテム（test item）： テストを実施する個々の要素。通常、一つのテスト対象に対し、多数のテストアイテムがある。test object も参照のこと。</p>
+  <p>・テスト対象（test object）： テストすべきコンポーネント又はシステム。test item も参照のこと。</p>
+  <p>・テストアイテム（test item）： テストを実施する個々の要素。通常、一つのテスト対象に対し、多数のテストアイテムがある。test object も参照のこと。</p>
+  <p>・テスト条件（test condition）： コンポーネントやシステムのアイテムやイベントで、テストケースにより検証できるもの。たとえば、機能、トランザクション、フィーチャ、品質の属性、構造要素など。</p>
+  <p>・カバレッジアイテム（coverage item）： テストカバレッジの基礎となる実体や属性。たとえば、同値分割やステートメント。</p>
+  <p>・テストアプローチ（test approach）： 特定のプロジェクトのためのテスト戦略を実現化したもの。この中には、（テスト実施）プロジェクトのゴールと評価済みリスクに基づいて決めた決定事項、テストプロセスの開始ポイント、適用するテスト設計技法、テスト終了基準、実施するテストタイプを含む。</p>
+</blockquote>
+
+<h3>テスト設計の目的</h3>
+<p>
+  「テスト設計の目的」についてばしっ！っと答えてくれるものは中々見つからなかったが、これは参考になると思った。<br>
+  <a href="https://note.mu/yumotsuyo/n/n6e6df16b1d52" target="_blank">ソフトウェアテストにまつわるよくある疑問　テスト設計をするってどういうこと？</a><br>
+  　⇒テストを設計することとは？
+</p>
+
+<blockquote style="background-color:#333333">
+  <p>テストを設計することとは、テスト対象について書かれている仕様書や設計書から、テストケースをテスト目的に沿って抽出することです。抽出するためには、単純に右から左に流すのではなく様々な工夫が必要であり、それこそがテストにも設計が必要な理由となります。</p>
+</blockquote>
+
+<h3>テスト設計をする上で必要そうな考え</h3>
+<p>以前<a href="https://qiita.com/taumax/items/68e8636ea9878e0f4821" target="_blank">この記事</a>に書いた、<strong>【テスト対象となるシステムをどのように認識するか】</strong>がテスト設計する上で必要な考えだと感じたので転記。</p>
+
+<ul>
+  <li><strong>・目的－手段の階層構造、または目的－機能－手段の階層構造で認識する</strong><br>
+    <p>
+      機能階層でシステムを表現する
+      要求工学のゴール指向アプローチでよく用いられる
+    <p>
+  </li>
+  <li><strong>・システム全体の能力をそれを構成する個々の部分の相互作用で認識する</strong><br>
+    <p>
+      上位システムを下位システムの相互作用に分解し、その個々の下位システムをさらにその下位に分解していく。
+      機能は複数のサブ機能で構成されていると認識する
+      機能一覧表、機能階層図としてシステムを表現する
+    </p>
+  </li>
+  <li><strong>・データの流れ、データの変換過程として認識する</strong><br>
+    <p>
+      システムを入力から出力への変換変換と認識する
+      複数ステップを踏んで変換する場合、データの流れとして認識する
+      通称「バケツリレー」と言う場合には、この見方をしている
+      データフロー図でシステムを表現する
+    </p>
+  </li>
+  <li><strong>・刺激－反応のモデルとして認識する</strong><br>
+    <p>
+      リクエスト－レスポンスするものとして認識する
+      トリガーによって、どのような反応をするのかに興味がある
+      状態遷移でもイベントが関係するが、この刺激－反応モデルは、状態に関心を持っていない
+      ユースケース仕様書などでシステムを表現する
+    </p>
+  </li>
+  <li><strong>・状態の変化として認識する</strong><br>
+    <p>
+      状態が変化するもの、遷移するものとして認識する
+      状態遷移図、状態遷移表としてシステムを表現する
+    </p>
+  </li>
+  <li><strong>・写像、関数として認識する</strong><br>
+    <p>
+      入力と出力の対応関係とみなす。
+      マトリクスを用いた表現が多い
+      テスト技法の同値分割を使用する場合は、この見方をしている
+    </p>
+  </li>
+  <li><strong>・論理の集合として認識する</strong><br>
+    <p>
+      ルールが集まったものとして認識する
+      ビジネスルールの集合としてシステムを認識する
+      デシジョンテーブルとしてシステムを表現する
+    </p>
+  </li>
+  <li><strong>・手順、手続き、イベントの連鎖として認識する</strong><br>
+    <p>
+      データの流れとは異なり、イベントの連鎖や実行順序に関心がある
+      ユースケース仕様書や、システムシナリオなどでシステムを表現する
+    </p>
+  </li>
+  <li><strong>・静的な構造として認識する</strong><br>
+    <p>
+      クラス（補集合なし）、セット（補集合あり）としてシステムを表現する
+    </p>
+  </li>
+</ul>
+
+<h3>参考資料</h3>
+<p>
+  ・<a href="https://note.mu/yumotsuyo/n/n6e6df16b1d52" target="_blank">ソフトウェアテストにまつわるよくある疑問　テスト設計をするってどういうこと？</a><br>
+  ・<a href="https://qiita.com/taumax/items/68e8636ea9878e0f4821" target="_blank">ゆもつよメソッドを語る夕べで語られたことまとめ</a><br>
+  　※自分の記事です<br>
+  ・<a href="http://jstqb.jp/dl/JSTQB-glossary.V2.3.J02.pdf" target="_blank">JSTQBの用語集</a><br>
+  <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11516496%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=15705850&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F5818%2F9784797365818.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F5818%2F9784797365818.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11516496%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >ソフトウェアテストの教科書 品質を決定づけるテスト工程の基本と実践 [ 石原一宏 ]</a><br><span >価格：2750円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+</p>
+
+<h2 class="title">テスト設計の紹介</h2>
+<p>
+  これを解説しているサイトは腐るほどあると思うので、ここはリンクを張るだけにしておこうかと思います。
+</p>
+
+<h3>同値分割</h3>
+<p>
+  ・<a href="https://www.itmedia.co.jp/im/articles/1111/07/news178.html" target="_blank">同値分割（どうちぶんかつ）</a><br>
+  ・<a href="https://qiita.com/softest/items/648d8bb4021cd1256b02" target="_blank">同値分割・境界値分析の解説</a><br>
+</p>
+
+<h3>境界値分析</h3>
+<p>
+  ・<a href="https://www.itmedia.co.jp/im/articles/1111/07/news148.html" target="_blank">境界値分析（きょうかいちぶんせき）</a><br>
+  ・<a href="https://qiita.com/softest/items/648d8bb4021cd1256b02" target="_blank">同値分割・境界値分析の解説</a><br>
+</p>
+
+<h3>状態遷移</h3>
+<p>
+  ・<a href="https://qiita.com/kenji-yokoi/items/24bfb143f672335e4ec9" target="_blank">より良いシステム開発のために、状態遷移設計のことを知ってほしい</a><br>
+  ・<a href="https://gihyo.jp/dev/serial/01/test_up/0004" target="_blank">「状態遷移図」と「状態遷移表」で見えるもの</a><br>
+  ・<a href="https://www.valtes.co.jp/qbookplus/827" target="_blank">テストを変える2つのコツ「状態遷移図」と「状態遷移表」</a><br>
+</p>
+
+<h3>デシジョンテーブル</h3>
+<p>
+  ・<a href="https://softest.jp/?p=72" target="_blank">デシジョンテーブルの解説</a><br>
+  ・<a href="http://gihyo.jp/dev/serial/01/test_up/0005" target="_blank">仕様整理に「デシジョンテーブル」を使ってみよう</a><br>
+  ・<a href="https://webrage.jp/techblog/decision_table_testing/" target="_blank">入力データや入力条件の組み合わせを考える「デシジョンテーブルテスト」</a><br>
+</p>
+
+<h3>CFD(Cause Flow Diagram)</h3>
+<p>
+・<a href="http://jasst.jp/symposium/jasst12kansai/pdf/A2-3.pdf" target="_blank">ソフトウェアテストの本質を振り返る</a> の13 page目<br>
+・<a href="http://jasst.jp/archives/jasst04/pdf/B1ch.pdf" target="_blank">テスト技法「CFD」実践ワークショップ ワークショップの取り組み～ 現場での実践を目指して ～</a><br>
+・<a href="https://softest.jp/?p=100" target="_blank">CFD法の流れ図の見つけ方</a><br>
+</p>
+
+<h3>その他テスト設計</h3>
+<p>逆にこれだけだと物足りない気がしたので追加</p>
+<p>
+<a href="https://www.digitalhearts.com/dh-blog/test_design/" target="_blank">テスト設計技法</a><br>
+このサイトのこの辺は押さえておきたい<br>
+・ホワイトボックステスト設計技法<br>
+　 - ステートメントテスト<br>
+　 - ブランチテスト<br>
+・経験ベースのテスト設計技法<br>
+　 - エラー推測<br>
+　 - 探索的テスト<br>
+</p>
+<p>
+  カバレッジについて<br>
+  ・<a href="https://qiita.com/bremen/items/8b6542467d2a0066e5af" target="_blank">ホワイトボックステストにおけるカバレッジ（C0/C1/C2/MCC）について</a><br>
+  ・<a href="http://replication.hatenablog.com/entry/2016/05/26/071409" target="_blank">ソフトウェアテストにおけるカバレッジ(C0/C1/C2)</a><br>
+  ・<a href="https://viblo.asia/p/テストカバレッジの概念の紹介c0c1c2-3P0lPmLo5ox" target="_blank">テストカバレッジの概念の紹介（C0/C1/C2）</a><br>
+</p>
+<p>
+  とにかくいろんな手法を知りたければまずここから<br>
+  ・<a href="https://thinkit.co.jp/article/15366" target="_blank">テスト設計技法を活用する</a>
+</p>
+<p>
+  あとはこれも<br>
+  ・<a href="https://appkitbox.com/knowledge/category/test" target="_blank">AppTest</a><br>
+  　 - <a href="https://appkitbox.com/knowledge/test/20130115-17" target="_blank">テスト設計技法の紹介(1)：技法の種類と分類</a><br>
+  　 - <a href="https://appkitbox.com/knowledge/test/20130123-126" target="_blank">テスト設計技法の紹介(2)：削減型・標的型のブラックボックス型技法</a><br>
+  　 - <a href="https://appkitbox.com/knowledge/test/20130912-134" target="_blank">テスト設計技法の紹介(3)：網羅型のブラックボックス型技法</a><br>
+</p>
+
+<h3>参考資料</h3>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11516496%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=15705850&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F5818%2F9784797365818.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F5818%2F9784797365818.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F11516496%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >ソフトウェアテストの教科書 品質を決定づけるテスト工程の基本と実践 [ 石原一宏 ]</a><br><span >価格：2750円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+
+<h2 class="title">ハイレベルテストケースとローレベルテストケース</h2>
+<p><a href="http://jstqb.jp/dl/JSTQB-glossary.V2.3.J02.pdf" target="_blank">ソフトウェアテスト標準用語集</a>より抜粋</p>
+
+<blockquote style="background-color:#333333">
+  <p>高位レベルテストケース（high level test case）： 具体的な（実行レベルの）入力値や予測結果を使
+  わないテストケース。論理演算子は使用するが、値のインスタンスは未定義や使用不可であるといった
+  状態にある。low level test case も参照のこと。</p>
+  <p>低位レベルテストケース（low level test case）： 入力データと期待結果が具体的（実装レベル）なテ
+  ストケース。高位レベルのテストケースからの論理演算子は、論理演算子に相当する実際の値に置き
+  36
+  換えられる。high level test case も参照のこと。</p>
+</blockquote>
+
+<p>
+このサイトが具体例も一緒にかかれていてわかりやすいです。<br>
+・<a href="http://specwrite.co.jp/2018/04/24/1-%E3%83%8F%E3%82%A4%E3%83%AC%E3%83%99%E3%83%AB%E3%83%86%E3%82%B9%E3%83%88%E3%82%B1%E3%83%BC%E3%82%B9%E3%81%A8%E3%83%AD%E3%83%BC%E3%83%AC%E3%83%99%E3%83%AB%E3%83%86%E3%82%B9%E3%83%88%E3%82%B1%E3%83%BC/" target="_blank">1.ハイレベルテストケースとローレベルテストケース</a><br>
+・<a href="http://specwrite.co.jp/2018/04/24/3-%e3%83%8f%e3%82%a4%e3%83%ac%e3%83%99%e3%83%ab%e3%83%86%e3%82%b9%e3%83%88%e3%82%b1%e3%83%bc%e3%82%b9%e3%81%ae%e6%9b%b8%e3%81%8d%e6%96%b9%e3%81%a8%e4%bd%9c%e3%82%8a%e6%96%b9/" target="_blank">3.ハイレベルテストケースの書き方と作り方</a><br>
+・<a href="http://blog.amateur-factory.jp/?eid=1444288" target="_blank">テストケースの表現と粒度（マニアック編～ISTQB（JSTQB）の情報から考える）</a></p><br>
+
+<h3>何のために？</h3>
+<p>ローレベルテストケースはテスト実施のために必要なものだと推測できますが、ハイレベルテストケースはなんのためにあるのか？</p>
+<p><a href="http://mhlyc.hatenablog.com/entry/2018/10/14/122952" target="_blank">テスト条件とは何かの解説ぽい記事</a>が参考になると思います。</p>
+<p>テスト観点からテストケースに落とすに当たって、いきなりローレベルテストケースを作ると、そもそもどういうことをテストしたいのかという点について認識相違が発生しやすいから一旦ハイレベルテストケースに落として認識を合わせてからローレベルテストケースに落としておきましょう。ってことですかね。</p>
+<h3>参考資料</h3>
+<p>
+・<a href="http://specwrite.co.jp/2018/04/24/1-%E3%83%8F%E3%82%A4%E3%83%AC%E3%83%99%E3%83%AB%E3%83%86%E3%82%B9%E3%83%88%E3%82%B1%E3%83%BC%E3%82%B9%E3%81%A8%E3%83%AD%E3%83%BC%E3%83%AC%E3%83%99%E3%83%AB%E3%83%86%E3%82%B9%E3%83%88%E3%82%B1%E3%83%BC/" target="_blank">1.ハイレベルテストケースとローレベルテストケース</a><br>
+・<a href="http://specwrite.co.jp/2018/04/24/3-%e3%83%8f%e3%82%a4%e3%83%ac%e3%83%99%e3%83%ab%e3%83%86%e3%82%b9%e3%83%88%e3%82%b1%e3%83%bc%e3%82%b9%e3%81%ae%e6%9b%b8%e3%81%8d%e6%96%b9%e3%81%a8%e4%bd%9c%e3%82%8a%e6%96%b9/" target="_blank">3.ハイレベルテストケースの書き方と作り方</a><br>
+・<a href="http://blog.amateur-factory.jp/?eid=1444288" target="_blank">テストケースの表現と粒度（マニアック編～ISTQB（JSTQB）の情報から考える）</a><br>
+・<a href="http://mhlyc.hatenablog.com/entry/2018/10/14/122952" target="_blank">テスト条件とは何かの解説ぽい記事</a><br>
+・<a href="http://jstqb.jp/dl/JSTQB-glossary.V2.3.J02.pdf" target="_blank">ソフトウェアテスト標準用語集</a></p><br>
+
+<h2 class="title">自動テストのピラミッド</h2>
+<p>以前読んだ「初めての自動テスト ―Webシステムのための自動テスト基礎」という本の中の説明をベースに書いてみます。</p>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15111165%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=18757309&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F8161%2F9784873118161.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F8161%2F9784873118161.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15111165%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >初めての自動テスト Webシステムのための自動テスト基礎 [ Jonathan Rasmusson ]</a><br><span >価格：3080円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+
+<h3>テストのピラミッド</h3>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/d44ec35f-89e5-afab-9d16-e8eba8d166c7.png" alt="image.png" /></p>
+
+<table border="2" cellpadding="0" cellspacing="0">
+  <tr>
+    <th>層によるテストの分類</th><th>特徴</th><th>メリット</th><th>デメリット</th>
+  </tr>
+  <tr>
+    <td>UIテスト</td><td>アプリケーションをUI層からテストする</td><td>UI～サービス～ロジックまで、システムをエンドツーエンドで動かすことができる。アーキテクチャのすべての層を通過し、すべてが繋がっていることを保障する。</td><td>・UIテストは遅く、不安定で壊れやすい傾向にある（不安定なテストについては後述）。<br>・素早い反復型の開発において他の何よりも重要である「フィードバックとスピード」にUIテストは適していない(P85)<br>・UIテストは「何らかの問題がある」ことを見つけるのには適していますが、「どこに問題があるか」について明らかにするのには全く向いていません。(P86)</td>
+  </tr>
+  <tr>
+    <td>統合テスト</td><td>UIを通過せず、一層下にあるサービス層をテストする。（WebサービスとAPIのテスト）</td><td>・複数の層がつながって動いていることを確認する機能を持ったまま、UIの壊れやすさにも影響されない強みを得ている。<br>・統合テストはUIテストの堅牢性とユニットテストの機動性のバランスを取ってくれます(P55)</td><td>・結合テストの唯一の欠点は、それほど詳細でない事です。「何か」が壊れていることはわかっても「どこ」が壊れているかまでは、わかりません。</td>
+  </tr>
+  <tr>
+    <td>ユニットテスト</td><td>正確さ、スピード、カバレッジにおいて頼りになるのはユニットテスト</td><td>・ユニットテストは非常に高速で正確。また、失敗した時にはどの部分がうまくいかなかったのかを厳密に教えてくれます。<br>・素早く反復を繰り返す開発では極めて重要な存在であり、ユニットテストを書かないということはあてずっぽうで開発を進めるような事です。</td><td>・このスピードと正確さに対する唯一の欠点は結合部分にあります。ユニットテストは「全体が繋がっているか」という観点では、見落としをすることがあります。</td>
+  </tr>
+</table>
+
+<br><br>
+<h3>親指の法則 P10</h3>
+<ol>
+<li>UIよりもユニットテストを優先すること。</li>
+<li>ユニットテストで埋められない部分を結合テストでカバーすること。</li>
+<li>UIテストは限定的に使うこと。</li>
+</ol>
+<p>
+  ・新しいテストを追加するときには、常に「ユニットテストでカバーできないか」を最初に確認しよう。<br>
+  ・常に、テストをできる限りピラミッドの下の層に入れること。<br>
+  ・すべてを自動化しようとしないこと。代わりに、過不足なく自動化しよう。<br>
+</p>
+
+<p>アンチパターン：逆ピラミッド又はアイスクリームコーン P138<br>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/0577ff9c-f615-a000-5ac7-58dc6ce1e17d.png" alt="image.png" /></p><br>
+<p>どうすればいいか？<br>
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/eefe8bc1-b300-0a89-cfdf-64bde63c23b4.png" alt="image.png" /></p><br>
+
+<h3>不安定なテスト</h3>
+<p>
+  信頼性を持ってテストできないテストのこと。 P140<br>
+  100回のうち99回成功するようなテストは不安定なテスト。
+  このテストが時々失敗するとそのたびに手を止め、テストを再実行し、成功を祈る必要がある。
+  全くの時間の無駄でしょう。
+  不安定になるのはテストその者だけとは限りません。テストに関わる周辺のものすべてが不安定さの原因になります。
+</p>
+
+<p>不安定なテスト⇒不安定なテスト結果<br>
+  テスト結果が不安定になるのは、一般的にはテストのせいだけではありません。原因はどこにでもあります。
+  多くの場合、最も疑わしいのはテスト対象のシステムですし、もちろんテスト環境も怪しいものです。
+  その他にも可能性は考えられます。
+</p>
+
+<p>
+  不安定なテストに立ち向かうための3つの手法 P141, 142<br>
+  ・テストを書き直す<br>
+  ・テストをピラミッドの下の層へ移動させる<br>
+  ・価値のないテストとみなし、テストを止める<br>
+</p>
+
+<p>Google の言う Flaky Tests も不安定なテストのことだと思っています。<br>
+<a href="https://speakerdeck.com/nihonbuson/flakytests?slide=21" target="_blank">Flakyとその判別方法の解説</a></p>
+
+<h3>参考資料</h3>
+<p>
+・<a href="https://notta55.hatenablog.com/entry/2015/05/03/161631" target="_blank">アジャイルテストの4象限とテスト自動化のピラミッド</a><br>
+・<a href="https://speakerdeck.com/nihonbuson/flakytests?slide=21" target="_blank">Flakyとその判別方法の解説</a></p><br>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15111165%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=18757309&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F8161%2F9784873118161.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F8161%2F9784873118161.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15111165%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >初めての自動テスト Webシステムのための自動テスト基礎 [ Jonathan Rasmusson ]</a><br><span >価格：3080円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+
+<h2 class="title">自動テストの8原則</h2>
+<p>詳細はこちらを見て下さい。
+テスト自動化研究会<a href="https://sites.google.com/site/testautomationresearch/test_automation_principle" target="_blank">テスト自動化の8原則</a></p>
+
+<h3>1. 手動テストはなくならない</h3>
+<p>ユーザビリティテストなど、そもそも自動化できないテストタイプが存在する。
+システムに対してはじめて実行されるテストはテストケース自体の成熟度の観点から、手動で実施したほうがテスト実行の品質が高いケースが多い。
+また、自動化がうまく進行している機能テストの残り数％など、テストを自動化するコストとベネフィットが釣り合わないケースもある。これらの事情によって、手動で実施されるテストが無くなることはない。</p>
+
+<h3>2. 手動でおこなって効果のないテストを自動化しても無駄である</h3>
+<p>そもそも、テストプロセス（e.g.テスト分析、テスト設計、テスト実装、報告）、特にテスト分析、テスト設計が適切に行われていないテストは、優秀なテスターが手動でテストを実施したところで、テストに期待される動作の保証やバグの検出といった効果を発揮しない。いわんや、自動テストにおいておや、である。</p>
+
+<h3>3. 自動テストは書いたことしかテストしない</h3>
+<p>人間による手動テストは、テストケースの記述に対して驚くほど広範な要素を暗黙的にテストしている。これに対し、操作、合否判定を厳密に記述する必要がある自動テストにおいては、おのずと視野は「記述された様に」限定される。ユーザ名とパスワードを入力してログインする、といったテストが自動化されていたとして、その自動テストは仮にログイン画面に表示されているロゴが競合他社のものであったとしても、それに気づくことはない。</p>
+
+<h3>4. テスト自動化の効用はコスト削減だけではない</h3>
+<p>もし、テスト自動化によってなんらかのコストが削減できるとしたら、十分に成熟しているテストケースが既に存在しており、そのテストは今後何度も実行される予定があり、自動テストの開発を円滑に進めるための準備が完了している場合と、テストの手順が同じで、テストすべきデータが膨大に存在する場合の「テスト実行」のコストである。テスト自動化には、繰り返し型開発におけるセーフティネットとしての役割や、バグ修正日数の低減、影響範囲レビュープロセスの代替、といった、開発アクティビティへの効用も存在するため、冒頭にあげたひどく限定された局面を狙うより勝ち目があるかもしれない。</p>
+
+<h3>5. 自動テストシステムの開発は継続的におこなうものである</h3>
+<p>テスト自動化に関わる苦労を10とすると、自動テストシステムが完成するまでが3、残りの7は運用に関するコストである。テスト対象の変化への追従、テストケース、テストタイプ自体の追加、変更に対する適応、といった、今あるものが継続的に効果を発揮するための活動はもとより、自動テストのターンアラウンドタイムの向上、信頼性の向上、などなど、システムの価値を向上させていくための活動など、やるべきことは多岐に亘る。テスト自動化システムの提供はプロジェクトというよりサービスとしてとらえるべきである。</p>
+
+<h3>6. 自動化検討はプロジェクト初期から</h3>
+<p>自動化を考慮せず「出来上がってしまった」システムに対して自動テストを書いていくことは、よくあるテスト自動化エンジニアの苦行のひとつである。自動テストシステムがシステムをよりよく操作、判定できるように、ひいてはセーフティネットを最適なコストで構築するためにはシステム側で最初から検討して設計に織り込んでおく必要がある。また、繰り返し実行されるテストが予めわかっているなら、自動化を前提として、テスト計画を策定すれば効果的である。</p>
+
+<h3>7. 自動テストで新種のバグが見つかることは稀である</h3>
+<p>運用に乗った自動テストは基本的に「枯れた」テストケースを対象とするため、ほとんどの種類のバグはテストケースを枯らす過程、あるいは自動テストを実装する過程で既に人間によって発見されているはずである。多くの運用に乗った自動テストの意義は「一度動いたはずの機能がうっかり壊れる」ことを最速で発見することにある。ただし、手順が同じでデータの種類が膨大なテストを自動化する場合、ファジング、テストパターンを有機的に生成できるAPIレイヤのテスト、ブラウザやRDBなどのバージョンアップの影響を受けていないことを確認するテストなど、いくつかの例外もある。</p>
+
+<h3>8. テスト結果分析という新たなタスクが生まれる</h3>
+<p>マニュアルテストでバグが発見された場合、その再現手順は明らかであるから人間はある程度の最適化ののち、即座にバグ登録を行う。しかし、自動テストがFAILEDを出してきた場合、何が起きたのかを改めて人間が確認する必要がある。これが1日数件ならまだかわいいものであるが、自動テストが無事？拡大した結果、数万件のテストケースに対して数千件のFAILEDが検出されたとしよう。それを種類ごとに仕分ける作業だけでも憂鬱である。自動テストが拡大した結果、テスト結果分析のコストがそれに伴ってリニアに伸びないような施策、例えばコールスタックやAPIコール履歴などから、ある程度自動的にFAILEDを仕分ける機構などを検討する必要がある。</p>
+
+<h3>参考資料</h3>
+<p>
+  ・<a href="https://thinkit.co.jp/article/14064" target="_blank">開発者としての「テスト自動化」の基礎</a><br>
+  ・<a href="https://sites.google.com/site/testautomationresearch/test_automation_principle" target="_blank">テスト自動化研究会</a><br>
+</p>
+
+<h2 class="title">E2Eテストとは</h2>
+<p>E2Eというのは、「End to End（エンドツーエンド）」の略で、「端から端までテストしましょう」という意味です。
+Webサイトならブラウザを操作して行うテストのことですね。
+自動テストのピラミッドのところで書いた通り、壊れやすいなどのデメリットがあります。
+JJUG CCC 2019 Spring の発表で「品質と自動化コストの損益分岐点みたいなものが存在するはずだからそれを見極める必要がある」ということを言っている発表があった。（資料は<a href="https://www.slideshare.net/DaikiKawanuma/sicicd" target="_blank">こちら</a>）こういう考え方が必要なんだと思う。コストなどのデメリットをちゃんと把握した上で自動化する／しないを見極めるという考え方。</p>
+<p>
+  <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/cb6d518a-17f7-81c9-9b86-fb39deee1c66.png" width=500><br>
+  <a href="https://www.slideshare.net/DaikiKawanuma/sicicd" target="_blank">JJUGの発表資料</a>より抜粋
+</p>
+
+<h3>参考資料</h3>
+<p>
+  ・<a href="https://qiita.com/mt0m/items/7e18d8802843d9f60d28" target="_blank">E2Eテストの導入から学んだこと</a><br>
+  ・<a href="https://www.slideshare.net/DaikiKawanuma/sicicd" target="_blank">SI現場のテスト自動化への挑戦〜フルコンテナ構成のCI/CD環境〜</a><br>
+</p>
+
+<h2 class="title">探索的テスト（勝手に追加）</h2>
+<p>先に書いた「初めての自動テスト ―Webシステムのための自動テスト基礎」という本の中で以下のような記載(16 page)があります。</p>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15111165%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=18757309&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F8161%2F9784873118161.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F8161%2F9784873118161.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15111165%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >初めての自動テスト Webシステムのための自動テスト基礎 [ Jonathan Rasmusson ]</a><br><span >価格：3080円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+
+<blockquote style="background-color:#333333">
+  <p>
+    自動テストによって再テストに費やす時間が削減できたら、探索的テストに多くの時間を費やしましょう。<br>
+    ～中略～<br>
+    自動テストでは見つからない問題を見つけられる点で、探索的テストは強力な技術です。<br>
+    自動テストは、人がより多くの探索的テストを行えるようにしてくれる手段でもあります。<br>
+  </p>
+</blockquote>
+
+<p>しかし私が探索的テストについてあまりよく知らないのでここで整理してみたいと思いました。</p>
+<p><a href="https://en.wikipedia.org/wiki/Exploratory_testing" target="_blank">wiki</a>によると、探索的テストという言葉は1984年からあったんですね。へー。</p>
+<p><a href="http://jstqb.jp/dl/JSTQB-glossary.V2.3.J02.pdf" target="_blank">ソフトウェアテスト標準用語集</a>より</p>
+
+<blockquote style="background-color:#333333">
+  <p>探索的テスト（exploratory testing）： 非公式なテスト設計技法の一つ。テストを実施する過程で、テスト担当者がテスト実施情報を活用しながらテスト設計をコントロールし、積極的に質の高い新しいテストケースを設計する。[After Bach]</p>
+</blockquote>
+
+<p><a href="https://www.slideshare.net/tosikawa/wacate-56868585" target="_blank">こんな資料</a>もありまして。これから抜粋してみます。</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/34cff208-34ba-4e85-c46d-41f9560c622a.png" width=500>
+<a href="https://www.slideshare.net/tosikawa/wacate-56868585" target="_blank">資料</a>より抜粋</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/8dfcdbd2-59ab-4c05-456e-5a550f315d76.png" width=500>
+<a href="https://www.slideshare.net/tosikawa/wacate-56868585" target="_blank">資料</a>より抜粋</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/3894a45a-82a6-da4a-265f-646b460cbe72.png" width=500>
+<a href="https://www.slideshare.net/tosikawa/wacate-56868585" target="_blank">資料</a>より抜粋</p>
+<p>アドホックテストとの違いがよくわかっていなかったのですが、テスト設計をするかしないかがポイントなんですかね？上記の引用部分から見ると、テスト対象について学習⇒テスト設計⇒テスト実施を繰り返すのがポイントなんですかね。</p>
+<p><a href="http://jasst.jp/symposium/jasst18tokyo/pdf/E2.pdf" target="_blank">やってみよう！探索的テスト～ハイクオリティな妄想の高速ループ～</a><br>
+　⇒「探索的テストとは･･･」のところより引用</p>
+
+<blockquote style="background-color:#333333">
+  <p>「対象を動かしながら、テスト設計～実行～フィードバッ
+  クを行っていく（ハイクオリティな妄想のループ）対話型
+  のソフトウェアテスト」だと思っています。</p>
+</blockquote>
+
+<h3>参考資料</h3>
+<p>
+  ・<a href="https://en.wikipedia.org/wiki/Exploratory_testing" target="_blank">Exploratory testing</a><br>
+  　⇒右クリック→日本語に翻訳<br>
+  ・<a href="http://jstqb.jp/dl/JSTQB-glossary.V2.3.J02.pdf" target="_blank">ソフトウェアテスト標準用語集</a><br>
+  ・<a href="https://www.slideshare.net/tosikawa/wacate-56868585" target="_blank">探索的テストはじめの一歩</a><br>
+  ・<a href="http://jasst.jp/symposium/jasst18tokyo/pdf/E2.pdf" target="_blank">やってみよう！探索的テスト～ハイクオリティな妄想の高速ループ～</a><br>
+  <table border="0" cellpadding="0" cellspacing="0"><tr><td><div style="border:1px solid #95a5a6;border-radius:.75rem;background-color:#FFFFFF;width:280px;margin:0px;padding:5px;text-align:center;overflow:hidden;"><table><tr><td style="width:128px"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15111165%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  ><img src="https://hbb.afl.rakuten.co.jp/hgb/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?me_id=1213310&item_id=18757309&m=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F8161%2F9784873118161.jpg%3F_ex%3D80x80&pc=https%3A%2F%2Fthumbnail.image.rakuten.co.jp%2F%400_mall%2Fbook%2Fcabinet%2F8161%2F9784873118161.jpg%3F_ex%3D128x128&s=128x128&t=picttext" border="0" style="margin:2px" alt="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]" title="[商品価格に関しましては、リンクが作成された時点と現時点で情報が変更されている場合がございます。]"></a></td><td style="vertical-align:top;width:136px;"><p style="font-size:12px;line-height:1.4em;text-align:left;margin:0px;padding:2px 6px;word-wrap:break-word"><a href="https://hb.afl.rakuten.co.jp/ichiba/18ea5a9d.088b85e7.18ea5a9e.373b04d2/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F15111165%2F&link_type=picttext&ut=eyJwYWdlIjoiaXRlbSIsInR5cGUiOiJwaWN0dGV4dCIsInNpemUiOiIxMjh4MTI4IiwibmFtIjoxLCJuYW1wIjoicmlnaHQiLCJjb20iOjEsImNvbXAiOiJkb3duIiwicHJpY2UiOjEsImJvciI6MSwiY29sIjoxLCJiYnRuIjoxLCJwcm9kIjowfQ%3D%3D" target="_blank" rel="nofollow sponsored noopener" style="word-wrap:break-word;"  >初めての自動テスト Webシステムのための自動テスト基礎 [ Jonathan Rasmusson ]</a><br><span >価格：3080円（税込、送料無料)</span> <span style="color:#BBB">(2020/5/31時点)</span></p></td></tr></table></div><br><p style="color:#000000;font-size:12px;line-height:1.4em;margin:5px;word-wrap:break-word"></p></td></tr></table>
+</p>
+
+<h3>その他参考</h3>
+<p>
+  ・<a href="https://www.valtes.co.jp/qbookplus/1158" target="_blank">品質をワンランク上げる！テストケースのない「探索的テスト」</a><br>
+  ・<a href="http://no-plan.hatenablog.jp/entry/2018/03/04/181655" target="_blank">探索的テストとそうでないテストのJSTQB的まとめ</a><br>
+  ・<a href="https://surumegohan.hatenablog.com/entry/20180225/1519564207" target="_blank">探索的テストはベテランがやるものだと思ってた</a><br>
+</p>
+
+<h3 class="title">探索的テストの参考資料</h3>
+<p>
+  ・<a href="http://jasst.jp/symposium/jasst14kyushu/pdf/S3.pdf" target="_blank">探索的テストってなんですか？</a><br>
+  ・<a href="https://www.slideshare.net/goyoki/ss-34292539" target="_blank">探索的テスト入門</a><br>
+  ・<a href="http://no-plan.hatenablog.jp/entry/2018/03/04/181655" target="_blank">探索的テストとそうでないテストのJSTQB的まとめ</a><br>
+  ・<a href="https://ja.atlassian.com/continuous-delivery/software-testing/types-of-software-testing" target="_blank">テストの中の探索的テストの位置づけ</a><br>
+  ・<a href="https://www.know-net.co.jp/blog/tech_wg/?p=32" target="_blank">探索的テストとは</a><br>
+  ・<a href="http://no-plan.hatenablog.jp/entry/2018/03/04/181655" target="_blank">探索的テストとそうでないテストのJSTQB的まとめ</a><br>
+  ・<a href="https://en.wikipedia.org/wiki/Exploratory_testing" target="_blank">Exploratory testing</a><br>
+  　⇒右クリック→日本語に翻訳<br>
+  ・<a href="http://nemorine.hateblo.jp/entry/2016/03/25/175224" target="_blank">探索的テストの文献一覧</a><br>
+</p>
+<p>以上。</p>
+
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/" target="_blank">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+
+</html>
