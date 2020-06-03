@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../css/print.css" media="print">
+    <script src="../../../../js/openclose.js"></script>
+
+    <title>とあるＩＴエンジニアの知識整理</title>
+    
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <style>
+      .menu1 a {background-position: -10px -10px;}
+      .menu2 a {background-position: -10px -130px;}
+      .menu3 a {background-position: -10px -250px;}
+      .menu4 a {background-position: -10px -370px;}
+      .menu5 a {background-position: -10px -490px;}
+    </style>
+    <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul>
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://togetter.com/id/taumax_" target="_blank"><img src="../../../../images/icon_togetter.png" alt="togetter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+    </h1>
+
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <nav>
+        <ul><li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li></ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://togetter.com/id/taumax_" target="_blank"><img src="../../../../images/icon_togetter.png" alt="togetter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <!-- はてぶボタン -->
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        <!-- はてぶボタン
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        -->
+
+
+
+<hr />
+<p>title: Java 14で最低限押さえておきたい新機能をEclipseで使ってみた
+tags: Java java14 JDK14 JDK Eclipse
+author: taumax</p>
+<h2>slide: false</h2>
+<h1>はじめに</h1>
+<p>2020/3/17にJava 14がリリースされました。
+以下の機能が追加されたようです。
+下の表の「本記事の対象」列に〇がついているものを少し触ってみたので後で紹介します。</p>
+<p>|JEP（※1） | 概要|本記事の対象|
+|---|---|---|
+|305 | <a href="https://openjdk.java.net/jeps/305">Pattern Matching for instanceof (Preview)</a>（※2）|〇|
+|343 | <a href="https://openjdk.java.net/jeps/343">Packaging Tool (Incubator)</a>（※3）|×|
+|345 | <a href="https://openjdk.java.net/jeps/345">NUMA-Aware Memory Allocation for G1</a>|×|
+|349 | <a href="https://openjdk.java.net/jeps/349">JFR Event Streaming</a>|×|
+|352 | <a href="https://openjdk.java.net/jeps/352">Non-Volatile Mapped Byte Buffers</a>|×|
+|358 | <a href="https://openjdk.java.net/jeps/358">Helpful NullPointerExceptions</a>|〇|
+|359 | <a href="https://openjdk.java.net/jeps/359">Records (Preview)</a>|〇|
+|361 | <a href="https://openjdk.java.net/jeps/361">Switch Expressions (Standard)</a>|〇|
+|362 | <a href="https://openjdk.java.net/jeps/362">Deprecate the Solaris and SPARC Ports</a>|×|
+|363 | <a href="https://openjdk.java.net/jeps/363">Remove the Concurrent Mark Sweep (CMS) Garbage Collector</a>|×|
+|364 | <a href="https://openjdk.java.net/jeps/364">ZGC on macOS</a>|×|
+|365 | <a href="https://openjdk.java.net/jeps/365">ZGC on Windows</a>|×|
+|366 | <a href="https://openjdk.java.net/jeps/366">Deprecate the ParallelScavenge + SerialOld GC Combination</a>|×|
+|367 | <a href="https://openjdk.java.net/jeps/367">Remove the Pack200 Tools and API</a>|×|
+|368 | <a href="https://openjdk.java.net/jeps/368">Text Blocks (Second Preview)</a>|〇|
+|370 | <a href="https://openjdk.java.net/jeps/370">Foreign-Memory Access API (Incubator)</a> |×|</p>
+<p>公式は<a href="https://openjdk.java.net/projects/jdk/14/">こちら</a></p>
+<p>※1 JEP
+JDK Enhancement Proposalsの略。
+JDKに対する変更の提案を管理する番号。</p>
+<p>参考：https://www.slideshare.net/AyaEbata/jsrjepjbs
+JEPの目次：https://openjdk.java.net/jeps/0</p>
+<p>※2 <a href="https://openjdk.java.net/jeps/12">Preview</a>
+プレビュー版のこと。
+機能としては保証されているが、どのように使うべきかは議論の余地があるもの。開発者が実際に使ってみて、フィードバックを受けて今後もJava SEの基本機能として提供し続けるかどうかが決まる。</p>
+<p>※3 <a href="https://openjdk.java.net/jeps/11">Incubator</a>
+開発者からのフィードバックを得るために、Java SEに含めた実験的なAPI。</p>
+<p>参考：https://xtech.nikkei.com/it/atcl/column/15/120700278/080700044/</p>
+<h1>Java 14をEclipseで使えるようにするための設定</h1>
+<p>私はEclipse使いなので、JDK 14のインストールとEclipseの設定から始めます。</p>
+<h2>JDKダウンロード</h2>
+<p>以下のサイトからJDK14をダウンロードします。
+https://www.oracle.com/java/technologies/javase-downloads.html</p>
+<h2>Eclipseインストール</h2>
+<p>Eclipseの最新版をインストールします。
+https://www.eclipse.org/eclipseide/</p>
+<h2>EclipseでJDK14を扱えるようにする</h2>
+<p>EclipseでJDK14を扱えるようにする手順は以下の通り。</p>
+<p>①Eclipse Marketplaceを選択
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/7300f1f4-40fc-c3d9-2f1b-191eedf93132.png" width=500></p>
+<p>②Java 14 Support for Eclipse をインストール
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/b2e8345e-2084-bca2-5dcc-f15f3e076091.png" width=400></p>
+<p>※こういったEclipse本体やプラグインのリリース情報は公式のtwitterからも流れてくるので興味ある方はフォローすることをお勧めします。</p>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">🌟 Here is the new me! Eclipse IDE 2020-03! 🌟<br><br>Many improvements for users to leverage in many places<br>📰 <a href="https://t.co/tEp3O53CvA">https://t.co/tEp3O53CvA</a> and <a href="https://t.co/lQsBQecjUb">https://t.co/lQsBQecjUb</a> !<br><br>☕ Support for JDK 14 is also released today, at <a href="https://t.co/bqDu2awnjL">https://t.co/bqDu2awnjL</a><br><br>🙏 Thanks to my contributors!</p>&mdash; 🌒 Eclipse Java IDE (@EclipseJavaIDE) <a href="https://twitter.com/EclipseJavaIDE/status/1240287756586278912?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p><br></p>
+<p>③Compiler compliance levelを14に設定
+※Java 14 Support for Eclipse をインストールしないと14が選択肢に出ません。
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/e5bb6890-4639-2652-4049-2901dd72b406.png" width=500></p>
+<p>④Installed JREに、インストールしたJDK14を設定
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/ad47b305-5b1e-bdb5-ccac-79b36a6070f0.png" width=500></p>
+<p>⑤Execution emvironmentにJDK14を設定
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/448b4c4c-cd4b-7403-730f-bc83f3e09c50.png" width=500></p>
+<p>⑥今回はプレビューの機能も使うので、プレビューを有効化します。
+<img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/0f0681f5-d7d2-d3b2-7ddf-4a23c794698d.png" width=500></p>
+<p>これでJava 14を使ったJavaアプリケーションをEclipseで開発・実行できるようになります。</p>
+<h1>Java 14の新機能を触ってみる</h1>
+<p>早速触ってみました。</p>
+<h2><a href="https://openjdk.java.net/jeps/305">JEP 305：Pattern Matching for instanceof (Preview)</a></h2>
+<p>まずはJEP 305のPattern Matching for instanceofです。
+instanceof と同時に変数を定義できるようになりました。
+実際の書き方の例は以下の通りです。
+前半がこれまでの書き方、後半がPattern Matching for instanceofを使用した書き方になっています。</p>
+<p>まずはこれまでの書き方。</p>
+<pre><code class="java:NotPatternMatchingTest.java language-java:NotPatternMatchingTest.java">public class NotPatternMatchingTest {
+    public static void main(String... args) {
+        patternMatch("literal");
+        patternMatch(1);
+
+    }
+
+    private static void patternMatch(Object obj) {
+        // これまでの書き方
+        if (obj instanceof String) {
+            String str = (String) obj;
+            System.out.println("No Pattern Matching:" + str);
+        } else if (obj instanceof Integer) {
+            Integer inte = (Integer) obj;
+            System.out.println("No Pattern Matching:" + inte);
+        }
+    }
+}</code></pre>
+<p>これがPattern Matching for instanceof を使用した書き方。</p>
+<pre><code class="java:PatternMatchingTest.java language-java:PatternMatchingTest.java">public class PatternMatchingTest {
+    public static void main(String... args) {
+        patternMatch("literal");
+        patternMatch(1);
+    }
+
+    // previewなのでSuppressWarningsでワーニング抑止
+    @SuppressWarnings("preview")
+    private static void patternMatch(Object obj) {
+        // Pattern Matching for instanceof
+        if (obj instanceof String str) {
+            System.out.println("Pattern Matching:" + str);
+        } else if (obj instanceof Integer inte) {
+            System.out.println("Pattern Matching:" + inte);
+        }
+    }
+}</code></pre>
+<p>switch文での使用はJava 15以降に持ち越しになっているようです。
+http://openjdk.java.net/jeps/8213076</p>
+<h2><a href="https://openjdk.java.net/jeps/358">JEP 358：Helpful NullPointerExceptions</a></h2>
+<p>NullPointerExceptionが発生した場合のメッセージが詳細になり、原因を特定しやすくなりました。
+<code>-XX:+ShowCodeDetailsInExceptionMessages</code>オプションをつけて実行することで、詳細なメッセージを得ることができます。
+以下のサンプルコードで実験してみました。</p>
+<pre><code class="java:HelpfulNullPo.java language-java:HelpfulNullPo.java">public class HelpfulNullPo {
+    public static void main(String... args) {
+        String str = null;
+        str.length();
+    }
+}</code></pre>
+<p><code>-XX:+ShowCodeDetailsInExceptionMessages</code>オプションを付けずに実行した結果がこちら。</p>
+<pre><code class=":実行結果（オプションなし） language-:実行結果（オプションなし）">Exception in thread "main" java.lang.NullPointerException
+    at test.HelpfulNullPo.main(HelpfulNullPo.java:6)</code></pre>
+<p><code>-XX:+ShowCodeDetailsInExceptionMessages</code>オプションをつけて実行した結果がこちら。</p>
+<p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/e40836f4-2ea9-aa3e-7d99-794032919d52.png" width=500></p>
+<pre><code class=":実行結果（オプション有） language-:実行結果（オプション有）">Exception in thread "main" java.lang.NullPointerException: Cannot invoke "String.length()" because "str" is null
+    at test.HelpfulNullPo.main(HelpfulNullPo.java:6)</code></pre>
+<p>NullPointerExceptionの原因特定がしやすくなっています。</p>
+<p>なお、JShellの場合は<code>-R-XX:+ShowCodeDetailsInExceptionMessages</code>という指定になります。</p>
+<h2><a href="https://openjdk.java.net/jeps/359">JEP 359：Records (Preview)</a></h2>
+<p>データ保持用のクラスとしてrecordという機能がpreviewとして入りました。
+以下のように書くだけでデータ保持用のクラスを作ることができます。
+（<code>record Person(String name, int age) {}</code>の部分）</p>
+<pre><code class="java:RecordTest.java language-java:RecordTest.java">@SuppressWarnings("preview")
+record Person(String name, int age) {}
+
+public class RecordTest {
+    public static void main(String... args) {
+        Person person = new Person("taumax", 13);
+        System.out.println("name:" + person.name());
+        System.out.println("age:" + person.age());
+        System.out.println(person);
+    }
+}</code></pre>
+<pre><code class=":実行結果 language-:実行結果">name:taumax
+age:13
+Person[name=taumax, age=13]</code></pre>
+<p>インスタンス生成後に値を変更することはできないようです。
+厳密には違いますが、イメージ的にはイミュータブルなJavaBeansを簡単に作ることができるようになったという感覚ですかね。</p>
+<h2><a href="https://openjdk.java.net/jeps/361">JEP 361：Switch Expressions (Standard)</a></h2>
+<p>Switch文がアロー<code>-&gt;</code>を使って書けるようになり、かなり読みやすくなりました。また、breakの記載も不要になっています。
+Switch ExpressionsはJava 12でプレビューとして導入されたものですが、今回のJava 14で正式機能として導入されます。
+実際の書き方の例は以下の通りです。
+前半がこれまでの書き方、後半がSwitch Expressionsを使用した書き方になっています。</p>
+<p>まずはこれまでのswitch文</p>
+<pre><code class="java:OldSwitchExpressions language-java:OldSwitchExpressions">public class OldSwitchExpressions {
+    public static void main(String... args) {
+        for (Week day : Week.values()) {
+            oldSwitch1(day);
+        }
+    }
+
+    // これまでのswitch文
+    private static void oldSwitch1(Week day) {
+        System.out.print("old:");
+        switch (day) {
+            case MONDAY, FRIDAY, SUNDAY:
+                System.out.println(6);
+                break;
+            case TUESDAY:
+                System.out.println(7);
+                break;
+            case THURSDAY, SATURDAY:
+                System.out.println(8);
+                break;
+            case WEDNESDAY:
+                System.out.println(9);
+                break;
+        }
+    }
+
+    private enum Week {
+        SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
+        THURSDAY, FRIDAY, SATURDAY
+    }
+}</code></pre>
+<p>これがSwitch Expressions</p>
+<pre><code class="java:SwitchExpressions language-java:SwitchExpressions">public class SwitchExpressions {
+    public static void main(String... args) {
+        for (Week day : Week.values()) {
+            newSwitch1(day);
+        }
+    }
+
+    // 新しいswitch文
+    private static void newSwitch1(Week day) {
+        System.out.print("new:");
+        switch (day) {
+            case MONDAY, FRIDAY, SUNDAY -&gt; System.out.println(6);
+            case TUESDAY                -&gt; System.out.println(7);
+            case THURSDAY, SATURDAY     -&gt; System.out.println(8);
+            case WEDNESDAY              -&gt; System.out.println(9);
+        }
+    }
+
+    private enum Week {
+        SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
+        THURSDAY, FRIDAY, SATURDAY
+    }
+}</code></pre>
+<p>アロー<code>-&gt;</code>を使い、breakがなくなったことでかなり可読性が高くなったことがわかります。</p>
+<p>また、switch文の実行結果をそのまま変数に代入することができるようになりました。
+実際の書き方の例は以下の通りです。
+前半がこれまでの書き方、後半がSwitch Expressionsを使用した書き方になっています。</p>
+<pre><code class="java:OldSwitchExpressions2 language-java:OldSwitchExpressions2">public class OldSwitchExpressions2 {
+    public static void main(String... args) {
+        for (Week day : Week.values()) {
+            oldSwitch2(day);
+        }
+    }
+
+    // これまでのswitch文
+    private static void oldSwitch2(Week day) {
+        System.out.print("old:");
+        int numLetters;
+        switch (day) {
+            case MONDAY, FRIDAY, SUNDAY:
+                numLetters = 6;
+                break;
+            case TUESDAY:
+                numLetters = 7;
+                break;
+            case THURSDAY, SATURDAY:
+                numLetters = 8;
+                break;
+            case WEDNESDAY:
+                numLetters = 9;
+                break;
+            default:
+                throw new IllegalStateException("Wat: " + day);
+        }
+        System.out.println(numLetters);
+    }
+
+    private enum Week {
+        SUNDAY, MONDAY, TUESDAY, WEDNESDAY,  
+        THURSDAY, FRIDAY, SATURDAY
+    }
+}</code></pre>
+<p>これがSwitch Expressionsを使用した書き方。</p>
+<pre><code class="java:SwitchExpressions2 language-java:SwitchExpressions2">public class SwitchExpressions2 {
+    public static void main(String... args) {
+        for (Week day : Week.values()) {
+            newSwitch2(day);
+        }
+    }
+
+    // 新しいswitch文
+    private static void newSwitch2(Week day) {
+        System.out.print("new:");
+        int numLetters = switch (day) {
+            case MONDAY, FRIDAY, SUNDAY -&gt; 6;
+            case TUESDAY                -&gt; 7;
+            case THURSDAY, SATURDAY     -&gt; 8;
+            case WEDNESDAY              -&gt; 9;
+        };
+        System.out.println(numLetters);
+    }
+
+    private enum Week {
+        SUNDAY, MONDAY, TUESDAY, WEDNESDAY,  
+        THURSDAY, FRIDAY, SATURDAY
+    }
+}</code></pre>
+<p>これの効果は一目瞭然ですね。素らしい！</p>
+<h2><a href="https://openjdk.java.net/jeps/368">JEP 368：Text Blocks (Second Preview)</a></h2>
+<p>改行などを含んだ文字列を定義できるようになりました。
+文字列を定義する場合の<code>"</code>ではなく<code>"""</code>で囲みます。
+開始の<code>"""</code>のあとには文字列を続けることができません。</p>
+<pre><code class="java:TextBlocks language-java:TextBlocks">public class TextBlocks {
+    @SuppressWarnings("preview")
+    public static void main(String... args) {
+        // これまでは改行をエスケープする必要があった。
+        String str1 = "I have a pen.\n"
+                + "I don't have a pen.";
+        System.out.println(str1);
+
+        // エスケープしなくても改行してくれる。
+        String str2 = """
+                I have a pen.
+                I don't have a pen.
+                """;
+        System.out.println(str2);
+
+        // 改行したくない場合は「\」を付ける。
+        String str3 = """
+                I have a pen.\
+                I don't have a pen.\
+                """;
+        System.out.println(str3);
+
+        // 文字列に変数を埋め込む場合
+        String str4 = """
+                Hello %s.
+                """.formatted("taumax");
+        System.out.println(str4);
+    }
+}</code></pre>
+<pre><code class=":実行結果 language-:実行結果">I have a pen.
+I don't have a pen.
+
+I have a pen.
+I don't have a pen.
+
+
+I have a pen.I don't have a pen.
+
+Hello taumax.</code></pre>
+<p>以上。</p>
+<h1>参考</h1>
+<p>・<a href="https://forest.watch.impress.co.jp/docs/news/1241637.html">Oracle、「Java 14」を発表 ～Recordクラスがプレビュー導入、switch式が正式機能に</a>
+・<a href="https://news.mynavi.jp/article/20200320-999787/">Java 14がリリース</a></p>
+
+
+
+
+
+
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>
