@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <!-- twitter投稿用の設定 -->
+    <meta name="twitter:card" content="summary" /> <!--カード種類：summary か summary_large_image-->
+    <meta name="twitter:site" content="@taumax_" /> <!--ユーザー名-->
+    <meta property="og:title" content="要件定義・仕様化・実装の継ぎ目をなくすCCSR開発手法" /> <!--記事のタイトル-->
+    <meta property="og:description" content="要件定義・仕様化・実装の継ぎ目をなくすCCSR開発手法 の発表資料とtwitterのまとめ" /> <!--記事の要約（ディスクリプション）-->
+    <meta property="og:image" content="https://taumax-github.github.io/images/icon_twitter_card.png" /> <!--画像のURL-->
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/print.css" media="print">
+    <script src="../../js/openclose.js"></script>
+
+    <title>ふりかえりの手法をたくさん学ぼう</title>
+    
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <style>
+      .menu1 a {background-position: -10px -10px;}
+      .menu2 a {background-position: -10px -130px;}
+      .menu3 a {background-position: -10px -250px;}
+      .menu4 a {background-position: -10px -370px;}
+      .menu5 a {background-position: -10px -490px;}
+    </style>
+    <![endif]-->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <style>
+      header.pc {
+        position: fixed;	/*スクロールしても固定表示させる指定*/
+        left: 0px;
+        top:0px;
+        z-index: 100;
+        width: 180px;		/*幅*/
+        height: 100%;		/*高さ*/
+        border-right: 1px solid #fff;	/*右側の線の幅、線種、色（古いブラウザ用）*/
+        border-right: 1px solid rgba(255,255,255,0.3);	/*右側の線の幅、線種、色。255,255,255は白の事で0.3は色が30%出た状態の事。*/
+        transition: 0s;	/*hove時に１秒かけて動く*/
+      }
+      /*マウスオン時のheaderブロック*/
+      header.pc:hover {
+        width: 190px;	/*幅*/
+        overflow: auto;	/*ウィンドウの高さよりコンテンツが増えた場合に切れないように自動でスクロールバーを出す設定*/
+        background-color: #000;	/*背景色（古いブラウザ用）*/
+        background-color: rgba(0,0,0,0.7);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
+      }
+    </style>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul>
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://togetter.com/id/taumax_" target="_blank"><img src="../../images/icon_togetter.png" alt="togetter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+    <ul>
+      <li>・<a href="#firstly">はじめに</a></li>
+      <li>・<a href="#cheat_sheet">チートシート</a></li>
+      <li>・<a href="#movie">動画</a></li>
+      <li>・<a href="#how_to_search">振り返り手法の調べ方</a></li>
+      <li>・<a href="#zou_sakana_outo">象、死んだ魚、嘔吐</a></li>
+      <li>・<a href="#shanikamaeru">斜に構える、構えないを繰り返す</a></li>
+      <li>・<a href="#radar">Happiness Radar</a></li>
+      <li>・<a href="#s_starfish">Small Starfish</a></li>
+      <li>・<a href="#door">Happiness Door</a></li>
+      <li>・<a href="#ondokei">温度計</a></li>
+      <li>・<a href="#color">カラーコードドット</a></li>
+      <li>・<a href="#fractaru">フラクタル</a></li>
+      <li>・<a href="#555">555</a></li>
+      <li>・<a href="#story_story">story of a story</a></li>
+      <li>・<a href="#effort_and_pain">effort & pain</a></li>
+      <li>・<a href="#yaminabe">闇鍋</a></li>
+      <li>・<a href="#vsm">VSM</a></li>
+
+      音声だけでも可能
+      <li>・<a href="#taiwa">対話による学びの抽出</a></li>
+      <li>・<a href="#q_wa">質問の輪</a></li>
+
+      お絵かき系
+      <li>・<a href="#netsukikyu">熱気球・スピードカー・帆船</a></li>
+
+      一人でできる
+      <li>・<a href="#ywt">YWT</a></li>
+      <li>・<a href="#orid">ORID</a></li>
+
+      短時間でできる
+      <li>・<a href="#good_and_new">Good & New</a></li>
+      <li>・<a href="#kotsu">一人でも振り返りを続けるコツ</a></li>
+      <li>・<a href="#kpt_as_art">KPT as ART</a></li>
+
+      KPTに飽きたら
+      <li>・<a href="#kansha">360度感謝</a></li>
+      <li>・<a href="#thanks">サンクスカード</a></li>
+      <li>・<a href="#kudos_wall">kudos wall</a></li>
+
+      何かをやめる
+      <li>・<a href="#ssc">SSC</a></li>
+      <li>・<a href="#starfish">Starfish</a></li>
+      <li>・<a href="#f_up_items">Following up on Action Items</a></li>
+
+      ﾁｰﾄｼｰﾄ以外
+      <li>・<a href="#daily_hassle">デイリーハッスル</a></li>
+
+      <li>・<a href="#sankou">参考</a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+    </h1>
+
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <nav>
+        <ul><li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li></ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://togetter.com/id/taumax_" target="_blank"><img src="../../images/icon_togetter.png" alt="togetter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+      <ul>
+        <li>・<a href="#firstly">はじめに</a></li>
+        <li>・<a href="#cheat_sheet">チートシート</a></li>
+        <li>・<a href="#movie">動画</a></li>
+        <li>・<a href="#how_to_search">振り返り手法の調べ方</a></li>
+        <li>・<a href="#zou_sakana_outo">象、死んだ魚、嘔吐</a></li>
+        <li>・<a href="#shanikamaeru">斜に構える、構えないを繰り返す</a></li>
+        <li>・<a href="#radar">Happiness Radar</a></li>
+        <li>・<a href="#s_starfish">Small Starfish</a></li>
+        <li>・<a href="#door">Happiness Door</a></li>
+        <li>・<a href="#ondokei">温度計</a></li>
+        <li>・<a href="#color">カラーコードドット</a></li>
+        <li>・<a href="#fractaru">フラクタル</a></li>
+        <li>・<a href="#555">555</a></li>
+        <li>・<a href="#story_story">story of a story</a></li>
+        <li>・<a href="#effort_and_pain">effort & pain</a></li>
+        <li>・<a href="#yaminabe">闇鍋</a></li>
+        <li>・<a href="#vsm">VSM</a></li>
+  
+        音声だけでも可能
+        <li>・<a href="#taiwa">対話による学びの抽出</a></li>
+        <li>・<a href="#q_wa">質問の輪</a></li>
+  
+        お絵かき系
+        <li>・<a href="#netsukikyu">熱気球・スピードカー・帆船</a></li>
+  
+        一人でできる
+        <li>・<a href="#ywt">YWT</a></li>
+        <li>・<a href="#orid">ORID</a></li>
+  
+        短時間でできる
+        <li>・<a href="#good_and_new">Good & New</a></li>
+        <li>・<a href="#kotsu">一人でも振り返りを続けるコツ</a></li>
+        <li>・<a href="#kpt_as_art">KPT as ART</a></li>
+  
+        KPTに飽きたら
+        <li>・<a href="#kansha">360度感謝</a></li>
+        <li>・<a href="#thanks">サンクスカード</a></li>
+        <li>・<a href="#kudos_wall">kudos wall</a></li>
+  
+        何かをやめる
+        <li>・<a href="#ssc">SSC</a></li>
+        <li>・<a href="#starfish">Starfish</a></li>
+        <li>・<a href="#f_up_items">Following up on Action Items</a></li>
+  
+        ﾁｰﾄｼｰﾄ以外
+        <li>・<a href="#daily_hassle">デイリーハッスル</a></li>
+  
+        <li>・<a href="#sankou">参考</a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <!-- はてぶボタン -->
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        <!-- はてぶボタン
+        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+        -->
+
+        <div id="firstly"></div>
+        <h2 class="title">ふりかえりの手法をたくさん学ぼう</h2>
+
+        <h3 class="title">はじめに</h3>
+        <p>
+          2020年10月5日、<a href="https://retrospective.connpass.com/event/190518/" target="_blanck">ふりかえりの手法をたくさん学ぼう</a>というイベントが開催されました。<br>
+          <a href="https://qiita.com/viva_tweet_x/items/b06f56ce83038fc2bb8f" target="_blank">ふりかえりチートシート</a>という振り返り手法集から、twitterからの質問などをベースにその手法の実践方法などを紹介するイベントでした。<br>
+          イベント内では11種類の振り返りの手法が紹介されていました。私は当日イベントには参加出来なかったのですが、youtubeで公開されている動画を見たところ、かなり面白く、実際に使ってみたいと思えるような手法が紹介されていたので記事に纏めて理解を深めてみようと思ってこの記事を書いてみました。<br>
+          twitter のタグはこちらです：<a href="https://twitter.com/search?q=%23%E3%81%B5%E3%82%8A%E3%81%8B%E3%81%88%E3%82%8A%E5%AE%9F%E8%B7%B5%E4%BC%9A" target="_blank">#ふりかえり実践会</a><br>
+        </p>
+
+        <div id="cheat_sheet"></div>
+        <h3 class="title">ふりかえりチートシート</h3>
+        <p>
+          <a href="https://qiita.com/viva_tweet_x/items/b06f56ce83038fc2bb8f" target="_blank">ふりかえりを拡張する「ふりかえりチートシート」</a><br>
+          <a href="https://hurikaeri.booth.pm/items/1711909" target="_blank">（DL版）ふりかえりチートシート</a><br>
+        </p>
+
+        <div id="movie"></div>
+        <h3 class="title">公開されている動画</h3>
+        <p>
+          <iframe width="600" height="500" src="https://www.youtube.com/embed/HKwoXq9lb8M" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+
+        <div id="how_to_search"></div>
+        <h3 class="title">振り返り手法の調べ方</h3>
+        <p>
+          動画時間：1時間14分00秒辺り<br>
+        </p>
+        <ul style="list-style-type: square;padding-left: 40px;">
+          <li>
+            振り返りチートシート→日本語で一番手法が書かれているのはこれ<br>
+            <a href="https://qiita.com/viva_tweet_x/items/b06f56ce83038fc2bb8f" target="_blank">ふりかえりを拡張する「ふりかえりチートシート」</a><br>
+            <a href="https://hurikaeri.booth.pm/items/1711909" target="_blank">（DL版）ふりかえりチートシート</a><br>
+          </li>
+          <li>
+            <a href="https://www.funretrospectives.com/" target="_blank">Fun Retrospectives</a>
+          </li>
+          <li>
+            <a href="https://randomretros.com/" target="_blank">Random Retrospectives</a><br>
+            クリックするとランダムに手法が出てくる。普段なかなか見ない手法も出てくるので、やってみると面白い。<br>
+          </li>
+          <li>
+            <a href="https://retrospectivewiki.org/index.php?title=Agile_Retrospective_Resource_Wiki" target="_blank">Agile Retrospective Resource Wiki</a><br>
+            最近あんまり更新なさそうだが、7 thinking hatとか、手法単品で効果を発揮するものが多く紹介されている。変わり種を知りたい人におすすめ。<br>
+          </li>
+        </ul>
+
+        <br>
+        <p>
+          書籍
+        </p>
+        <ul style="list-style-type: square;padding-left: 40px;">
+          <li>
+            アジャイルレトロスペクティブズ：40ぐらいの手法が紹介されている。<br>
+            <a target="_blank"  href="https://www.amazon.co.jp/gp/product/4274066983/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=4274066983&linkCode=as2&tag=sagamax-22&linkId=8adfc3de70c80986c8cacaa461ba8fd0"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=4274066983&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a><img src="//ir-jp.amazon-adsystem.com/e/ir?t=sagamax-22&l=am2&o=9&a=4274066983" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+          <li>
+            これだけ！　ＫＰＴ<br>
+            <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B00EVHZPS0/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B00EVHZPS0&linkCode=as2&tag=sagamax-22&linkId=e6aa6c16333202806200c5f478433a48"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B00EVHZPS0&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a><img src="//ir-jp.amazon-adsystem.com/e/ir?t=sagamax-22&l=am2&o=9&a=B00EVHZPS0" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+          </li>
+          <li>
+            ふりかえり読本：60ぐらいの手法が紹介されている。<br>
+            <a href="https://booth.pm/ja/search/%E3%81%B5%E3%82%8A%E3%81%8B%E3%81%88%E3%82%8A%E8%AA%AD%E6%9C%AC" target="_blank">ふりかえり読本</a>
+          </li>
+        </ul>
+
+        <br>
+        <div id="zou_sakana_outo"></div>
+        <h3 class="title">象、死んだ魚、嘔吐</h3>
+        <p>
+          動画時間：22分15秒辺り<br>
+          象、死んだ魚、嘔吐は悪いことの象徴。チームでうまく行ってないことをさらけ出しましょうという手法<br>
+        </p>
+
+        <ul style="list-style-type: square;padding-left: 40px;">
+          <li>
+            象：凄く大きい、見えているけど、みんな見ないふりをしている課題・問題。表層化しているけど大きすぎてみようとしていない。これが何かをみんなで話していく。<br>
+          </li>
+          <li>
+            死んだ魚：放っておくと腐っていく。そういう問題。放置しておくとまずいことになる問題ってなんだろう？ということを話し合う。<br>
+          </li>
+          <li>
+            嘔吐：自分の胸の中に隠していて、吐き出せなかったこと。これをこの場で嘔吐する。<br>
+          </li>
+        </ul>
+
+        <br>
+        <strong>どういう場でやるといいか</strong>
+        <p>
+          チームの関係性がまだできていないときにやると意外と良かったりする。<br>
+        </p>
+
+        <strong>なぜ？</strong>
+        <p>
+          自分の心の中に秘めているものとか、当たり前だけど、言えない問題が結構ある。関係性ができていないからこれ言っちゃっていいのかな。パートナー関係、上下関係、契約関係、主従関係がある状態でなかなか言い出せないことをこの場で吐き出してもらう。お互いが考えていることとか不安に思っていることが表層化する。<br>
+          順番は気にせず、付箋に書いたり対話するだけでもいい。やばめの問題や小さめの問題まで色々出てくる。<br>
+          出てきた後どうするかは皆さん次第。課題が出てきた後は、問題解決系の手法をやればいい。<br>
+        </p>
+
+        <div id="shanikamaeru"></div>
+        <h3 class="title">斜に構える、構えないを繰り返す</h3>
+        <p>
+          動画時間：26分15秒辺り<br>
+        </p>
+        <ul style="list-style-type: square;padding-left: 40px;">
+          <li>斜に構える：物事をちょっとうがった見方をする。<br></li>
+          <li>構えない：素直に見る。<br></li>
+        </ul>
+        <p>
+          いわゆるロールプレイをする振り返り。<br>
+          何か一つの出来事や、チームの今の状況とか、何かテーマに対して、まずは斜に構えてみる。<br>
+          　・これちょっと微妙じゃない<br>
+          　・っていうけどさ、こういうこともあるよね<br>
+          ・・・など。斜に構えて、皮肉っぽくいろいろ言ってみる。<br>
+          その後、逆に斜に構えないで、誉めまくるとか、ここいいよねとか<br>
+          これを何度か繰り返すといろいろな視点が出てくる。<br>
+          普段は皆どちらかに偏っている（中庸の人もいるかもしれないが、多少どちらかにポイントが振られている）。<br>
+          普段と違う自分が出せる。自分に気づける。何より、面白い。「あなたこういうこと言うんだねｗｗｗ」みたいな。<br>
+          何か問題が出てきた時とか、テーマトークをするときに使いやすい手法。<br>
+          視点を切り替えたり視座を変えたりするのは、問題を解決するのに重要なやり方なので、良さそう。<br>
+        </p>
+
+        <div id="radar"></div>
+        <h3 class="title">Happiness Radar（ハピネスレーダー）</h3>
+        <p>
+          動画時間：37分30秒辺り<br>
+          感情の上下を時系列のタイムライン上に表現してみる。月曜日から金曜日までのタイムライン（横軸がT（時間））があった時に、お互いの感情、ハッピーだったかサッドだったかを上下で曲線を引いてみる。<br>
+          線を引いて表現することもあればニコニコマーク・むっとしている顔・泣いている顔の三段階で付箋を貼る場所を分けて、この日に何があったかを付箋で張っていく。<br>
+          感情、ハッピーかどうかを可視化することで、話のネタにする、振り返りのテーマの一つにする。ものによっては問題が表層化してくる。<br>
+        </p>
+        
+        <strong>使いどころ</strong>
+        <p>
+          最初の場づくり、又は、KPTの前、今週何やったかを話す場で使う。<br>
+          ここ何かみんな下向きになってるけど、何があったっけ？という話がしやすくなる。<br>
+        </p>
+
+        <strong>QA</strong>
+        <p>
+          動画時間：43分10秒辺り<br>
+          Q：ハピネスレーダーはYWTのYの代わりに使えるのかな<br>
+          A：その通り。Yはいわゆるタイムラインとか、やったことは何か。手法は組み合わせることができる。<br>
+          YWTのYの代わりにタイムラインを使うとか、story of a storyを使うとか、ハピネスレーダー使うとか、<br>
+          時系列順に出してみてからじゃあそこから分かったことって何よとかいう使い方もできる。<br>
+          そうやって組み合わせることもできる。<br>
+        </p>
+
+        <div id="s_starfish"></div>
+        <h3 class="title">Small Starfish（スモールスターフィッシュ）</h3>
+        <p>
+          動画時間：40分30秒辺り<br>
+          小さなヒトデ<br>
+          スターフィッシュというアクテビティもあれば、スモールスターフィッシュというアクテビティもある。<br>
+          中央から三角形に線が出ているヒトデ。<br>
+          三角形で話すこと：keep, more of, less ofの三つ<br>
+        </p>
+
+        <ul style="list-style-type: square;padding-left: 40px;">
+          <li>
+            keep：続けたいこと。ここ良かったねとか、Goodの意味合いのものでもいい。<br>
+          </li>
+          <li>
+            more of：keepから派生。もっとこうするといいよね<br>
+          </li>
+          <li>
+            less of：出すのがなかなか難しいが、今、過剰にやっていないか。ちょっとやめてみようよとか、やる時間減らしてみようよとか。<br>
+          </li>
+        </ul>
+
+        <p>
+          最初にkeepを出してから、more of, less of を出してみるというやり方でもいいし、最初からkeep, more of, less ofを出してみるやり方でもいい。<br>
+          アクションの候補、アイディアを出してみるのに有効。良いことしか考えない。<br>
+          プロブレムがない。more of, less ofの文脈の中でプロブレムっぽいものができることもあるが、発想の仕方がプラス方面からの発想になるので、<br>
+          プロブレムに対しても前向きな意見が出やすい。<br>
+          チームのいいところを伸ばしていきたい、モチベーションをガンガン上げていきたい場合に使ってみるとよい。<br>
+        </p>
+
+        <div id="door"></div>
+        <h3 class="title">Happiness Door（ハピネスドア）</h3>
+        <p>
+          動画時間：43分50秒辺り<br>
+          マネジメント3.0のプラクティスの一つ。<br>
+          元々想定されている使い方：研修とか仕事場とか必ず通る帰りのドアに、3～4段階マークを張る。晴・曇り・雨・雷とか。<br>
+          そのマークに、今日一日どうだったみたいなフィードバックを普選に書いてドアに貼って帰る。<br>
+          フィードバックは書かなくてもいい。何も書かずに付箋だけ、四段階のうちこれというのを張る。<br>
+          振り返りをするときに、一番最後に使うこともできる。<br>
+          最初の場づくりにも使える。今週どうだった。ハピネスドアで気持ちを表してみる。今回曇りが多いけどどうだったのかなとかを話してみる。<br>
+          そういう話のきっかけに使える。<br>
+          さくっとやれてさくっとフィードバックがもらえるのがいい。<br>
+        </p>
+
+        <strong>手法のやり方</strong>
+        <p>
+          今までのアクションを付箋とかで並べて、
+        </p>
+        <ul style="list-style-type: square;padding-left: 40px;">
+          <li>
+            Dropped：やったけどやらなくなっちゃったもの。<br>
+          </li>
+          <li>
+            Added：追加されたもの。<br>
+          </li>
+          <li>
+            Pending：保留中のもの、途中で止まってるもの。<br>
+          </li>
+          <li>
+            Doing：今やってるもの。<br>
+          </li>
+        </ul>
+
+        <p>
+          4分類ぐらいで今までのアクションを見返して、やり続けてるけど不必要だよねという話ができる。<br>
+          分類した後は自由。Dropedのやつを追加でやらないといけないよねって話し合いをしてもいいし、<br>
+          Doingばかりであれば、ちょっとやりすぎじゃない？我々無駄なことやってない？みたいに立ち止まる事のきっかけにも使える。<br>
+          長期的な振り返りの一貫として使うといい。それかフラクタルな振り返り。<br>
+          1～3カ月ぐらい。1週間スプリントでやっている方であれば、1カ月～2, 3カ月に一度、今までのアクションどうだったかなっていうのを見返すといい。<br>
+          その中でアクションを整理して、注力すべき課題って何だったかなとか、チームがどう変わったかの成長の記録として使うこともできる。<br>
+        </p>
+
+        <div id="ondokei"></div>
+        <h3 class="title">温度計</h3>
+        <p>
+          動画時間：52分35秒辺り<br>
+          水銀の温度計のイメージ。上から下までメモリがある温度計。<br>
+          振り返りを終了するためのアクテビティ。振り返りの温度を下げていって振り返りを終了する。<br>
+          <a href="https://amzn.to/34KskPK" target="_blank">アジャイルレトロスペクティブズ</a>の116ページ目にある。<br>
+          五つの質問に一つずつ答えて行きましょうというもの。<br>
+        </p>
+          <ul style="list-style-type: square;padding-left: 40px;">
+            <li>
+              感謝：この振り返りを通してお互いへの感謝を言い合う。<br>
+            </li>
+            <li>
+              気付き・学び：この振り返りの中で気付いたもの何かありますかという話をする。<br>
+            </li>
+            <li>
+              パズル・興味：ちょっとよくわからなかったけど興味が出たもの、詳しくはわからなかったけど興味があるものを話し合う。<br>
+            </li>
+            <li>
+              提案付き苦情：ここはこうした方がいい、やり方変えた方がいい。具体的な提案を付けて苦情を出してください。<br>
+            </li>
+            <li>
+              希望・願望：今後の振り返りで今後チームでこういうことしたいね<br>
+            </li>
+          </ul>
+        <p>
+          一つずつ質問を繰り返しながら、徐々に振り返りの場を静めていって、はいお終い。という感じ。<br>
+        </p>
+
+        <strong>使いどころ</strong>
+        <p>
+          振り返りを終了する際に使える。<br>
+          ワークショップで時間があるときに最後に使うこともできる。<br>
+          今回のワークショップをやってみて、お互いワークショップのチームの中で頑張ってくれたから感謝を具体的にしあいましょう。<br>
+          ワークショップの中で気付き、わからなかったけど興味があること、ワークショップのフィードバックだったり、ワークショップの進め方に対しての提案をしてもらって、チームでこういうことを持ち帰ってやりたいねとか、明日からこれやりたいんだよねとかの希望を言ってもらう。<br>
+          そんな感じでクロージングする。<br>
+        </p>
+
+        <div id="color"></div>
+        <h3 class="title">カラーコードドット</h3>
+        <p>
+          動画時間：1時間16分25秒辺り<br>
+          ドットシール（赤、黄色みたいな丸いシール）<br>
+          他の手法との組み合わせでできる。タイムラインで事実・出来事を洗い出した後、ドットシールで感情を表す。<br>
+          感情：赤信号、青信号などの信号の色などを自分たちで定義。感情の偏りを見てみる。<br>
+          書籍：<a href="https://amzn.to/34KskPK" target="_blank">アジャイルレトロスペクティブズ</a>の第五章60 page<br>
+          感情の偏りを色で分類して、色のドットのシールが多ければ多いほどその感情が強い。<br>
+          10個ぐらいドットシールを渡して、感情の強さに合わせてシールを張ってもらう。<br>
+          強い感情はチームの次のアクションにつながりやすい。感情があるからこそ次の原動力につながりやすい。<br>
+        </p>
+
+        <div id="fractaru"></div>
+        <h3 class="title">フラクタル</h3>
+        <p>
+          動画時間：1時間18分45秒辺り<br>
+          これは手法ではなくフレームワーク。<br>
+          参考記事：<a href="https://qiita.com/viva_tweet_x/items/bde2ad37167c595b5f7e" target="_blank">カンファレンス・研修などの学びをふりかえるフレームワークの提案：フラクタル</a><br>
+          フラクタルに振り返りをしましょうという考え方。<br>
+          カンファレンスに参加した、イベントに行ってきた、研修に参加した、といったときに、どういう風に振り返りをすると効果的で学びを活かせるかというのを考えたやり方。<br>
+          例えば、アジャイル関係のカンファレンスに行ったとして、たくさんあるセッションに参加したり、セッションの合間に他の人と話したりする。<br>
+          こういった、自分にとってのイベントはたくさんある。そのイベント毎に振り返りをする。<br>
+          イベント毎に振り返った結果を、振り返るだけではなく、アウトプットする。<br>
+          イベント毎にこういうことあったよね。twitterでもブログでも何でもいい。振り返りとアウトプットを両方やる。<br>
+          それをやった後、イベント毎の次は一日毎に振り返る。一日毎に全体を通してこういう学び、気付きがあったなというのを出す。<br>
+          これをイベントの日ごとにやる。3日間のイベントなら、day1, day2, day3で振り返りをする。日ごとにもまとめる。<br>
+          振り返りとアウトプットに綿密な関係がある。<br>
+          振り返っていることを他の人に見せらせるようにするために言語化、構造化、抽象化が頭の中で何度も行われる。<br>
+          　→振り返りを効果的に行うことができる。<br>
+          一日毎の振り返りをし終わったら、イベント全体で振り返る。<br>
+          全体を通してどうだったか。イベント全体を通してもアウトプットする。<br>
+          小さく振り返るのと中くらいで振り返るのと大きく振り返るのを繰り返してやるやり方。<br>
+          <img src="img/fractar.png"><br>
+          図は<a href="https://qiita.com/viva_tweet_x/items/bde2ad37167c595b5f7e" target="_blank">カンファレンス・研修などの学びをふりかえるフレームワークの提案：フラクタル</a>より抜粋<br>
+          
+          <br>
+          アウトプットと振り返りは強制ではない。<br>
+          無理しなくていい。自分が出来るところを振り返る。辛くなったらアウトプットとかしなくてもいい。義務感を持つと続かないので。<br>
+          イベントで振り返ることもできるし、チームの振り返りにも活かせる。<br>
+          一日毎、一週間毎、一か月、三カ月、六カ月、一年ごとという形で、徐々に期間を大きくしながら振り返りをすることによって、長期的なアクションから短期的なアクションまでバランスよく出せる。<br>
+          フレームワークなので、中身の手法は自由。<br>
+          イベント毎にYWTで振り返り、日毎の振り返りや全体の学びはFun Done Learnでやるみたいな感じで、手法を変えてやることもできる。<br>
+        </p>
+
+        <div id="555"></div>
+        <h3 class="title">555（triple nickels） / envelope（封筒）</h3>
+        <p>
+          動画時間：1時間24分00秒辺り<br>
+          nickels：ニッケル効果から来ている。<br>
+          envelopeというやり方にも似ている。<br>
+          やり方：グループに分かれる。<br>
+          8人を4人4人で分けて、4人で振り返りを行う（アイディア、やりたいことを出す）。<br>
+          4人(Aグループ)で書き終えた付箋やホワイトボードにBグループが行き、BグループのところにはAグループが行く。<br>
+          Aグループが書いていたものに上書きする形でBグループがアイディアを出していく。Aグループのアイディアにプラスアルファしていく。<br>
+          書籍(<a href="https://amzn.to/34KskPK" target="_blank">アジャイルレトロスペクティブズ</a>)のやり方は、A4用紙に一人一人アイディアを書いて、隣の人に渡してどんどん肉付けしていくやり方。<br>
+          アイディアを出すやり方、アイディアを発散させるやり方。<br>
+        </p>
+
+        <div id="story_story"></div>
+        <h3 class="title">story of a story</h3>
+        <p>
+          動画時間：1時間26分35秒辺り<br>
+          元ネタは、Fun Retrospectivesに書いてある。<br>
+          イメージとしては、タイムラインに近い。<br>
+          時系列順に何があったかを話していく。<br>
+          ホワイトボード一面に左下から右上に曲がりくねった道を書く。これが自分たちがたどってきた道。<br>
+          その道の合間に何があったかをみんなで思い出していく。<br>
+        </p>
+
+        <strong>思い出していく時のポイント</strong>
+        <p>
+          コミュニケーションやコラボレーションに注力するとよい。<br>
+          こういうことあったよね、などの事実を出すのはもちろんやるが、事実やkeep、problemを話してもいい。<br>
+          事実の横に、このチームの中でどういうコミュニケーションがあったか。<br>
+          誰と誰がペアプロしたとか。ここでのタスクの受け渡しが凄くうまくいった／うまくいかなかった。<br>
+          その中から次のアイディアにつながるネタが出てくる。というやり方。<br>
+          タイムラインは時系列上に左から右へ流れていくのが主流だが、<br>
+          story of a storyだと、道の上で何があったか、グラフィカルに絵をかきながらやるので、<br>
+          インスピレーションが刺激されやすいという利点がある。<br>
+        </p>
+
+        <strong>QA</strong>
+        <p>
+          Q：ちょっと難しそう？タイムラインの方が淡々としている。<br>
+          A：タイムラインの方がわかりやすいと言えばわかりやすい。タイムラインは時系列上にどんなことがあったかという事実と感情を出すやり方。<br>
+          story of a storyは質問が多い。<br>
+          事実を出してみましょう→keepを考えてみましょう。事実の上にkeepを出していく→避けるべきことを書いていく→コミュニケーション・コラボレーションでうまくいったこと、微妙だったことを書いてみましょう。<br>
+          付箋を色分けしながら書いていくと、道の上にいろいろと自分たちがたどってきた道が出来上がる。<br>
+          30～40分ぐらいかけるとよい。<br>
+        </p>
+
+        <div id="effort_and_pain"></div>
+        <h3 class="title">effort & pain(gain)</h3>
+        <p>
+          動画時間：1時間35分55秒辺り<br>
+          出展：<a href="https://www.funretrospectives.com/effort-and-pain/" target="_blank">fun Retrospectives</a><br>
+          アイディアを絞り込むための軸、2軸を作る。X軸Y軸。
+        </p>
+          <ul style="list-style-type: square;padding-left: 40px;">
+            <li>
+              effort：アイディアを実行するために必要な労力・努力
+            </li>
+            <li>
+              pain：どれだけチーム、自分にとっての痛みを解消してくれるか。
+              アイディアを2軸で分類して、そのうえでeffortが最も少なく、painが最も大きく解消できるものを
+              集中的に具体化していく。
+            </li>
+            <li>
+              gain：painは日本人的には痛みを解消してくれるというとマイナス的に捕らえてしまう人もいるので、「どんなものが得られるか」という問いにすると、結果はそんなに変わらないが、アイディアの出方が多少変わる。視点が変わるので。gainがより得られやすいもの。problemの解消というよりは、keepのプラスアルファみたいな意見が出やすくなる。
+            </li>
+          </ul>
+
+        <div id="yaminabe"></div>
+        <h3 class="title">闇鍋</h3>
+        <p>
+          動画時間：1時間37分50秒辺り<br>
+          振り返りに話したいネタ・テーマをみんなでボックスに入れる。ボックスの中から引いたものを片っ端から話していく。<br>
+          振り返りのテーマを決めるのにやりやすい。楽しく振り返りを行うことができる。<br>
+        </p>
+
+        <strong>どういうときに使う？</strong><br>
+        <p>
+          KPTに飽きたら使うといいかも。<br>
+          同じ手法をやり続けてその手法に飽きることは皆あると思う。そういうときは、別の手法をやってみてもいい。<br>
+          しかし、闇鍋みたいに、振り返りのテーマを決めるということって意外とやらない。いきなりKPTやったりする。テーマを決める練習も兼ねて一緒くたに話してみる。<br>
+        </p>
+
+        <strong>闇鍋の効果</strong><br>
+        <p>
+          声の大きさを無視できる。すべてのアイディアが平等な状態でボックスから引かれるので、チームの中で上下関係が生まれてしまっているようなチームだと使いやすいと思う。<br>
+        </p>
+
+        <div id="vsm"></div>
+        <h3 class="title">バリューストリームマップ(VSM)</h3>
+        <p>
+          動画時間：1時間47分00秒辺り<br>
+          振り返りの手法としても使えるので振り返りチートシートに載せている。<br>
+          Value Stream(VS)：価値の流れ<br>
+          　→ソフトウェア開発なら：機能とか要件が生まれてからリリースされて顧客に届くまで。<br>
+          VSにおいて、どんな要素、工程、プロセスがあるかを明らかにして、ボトルネックを解消するのがVSM。<br>
+          ボトルネックを出すために、リードタイムとプロセスタイムを出す。<br>
+        </p>
+
+        <ul style="list-style-type: square;padding-left: 40px;">
+          <li>
+            リードタイム：実際に工程が開始してから終了するまでの時間<br>
+          </li>
+          <li>
+            プロセスタイム：工程の中でかかった時間<br>
+          </li>
+        </ul>
+
+        <br>
+        <p>
+          ものによっては、リードタイムとプロセスタイムに乖離が発生する。<br>
+          　→乖離が発生＝工程の中で待ちが発生している<br>
+          　→待ちが発生している＝無駄な部分<br>
+          乖離が激しい部分やVSの中で何度もぐるぐるしているもの、手戻りが発生しやすいもの、VSをする中でどれだけ手戻りしているかという手戻り率を出したりする。<br>
+          手戻り率が、リリースするまで（＝VSが最後に流れるまで）、かなりクリティカルになっているのであれば、そこを取り除くためにどんなアクションを取るか。<br>
+          という、問題点を洗い出すために行うやり方がVSM。<br>
+          振り返りチートシートに乗せた意図としては、フラクタルな振り返りという文脈で、長期間：3カ月、6カ月、1年に一度ぐらいはVSMしてほしい。<br>
+          自分たちの価値を生み出してからリリースするまでの流れ、承認フローとかは結構無駄になっていることが多いので、そうところを見直して、あたらしいVSに直す。自分たちのプロセス全体を見直すということをやってほしい。<br>
+          振り返りの中でやってもいいし、一日がかりになってしまうことも多いので、振り返りとはまた別にイベントとしてチームでやってみるのも良い。<br>
+        </p>
+
+        <h2 class="title">音声だけでもできそうなもの</h2>
+
+        <div id="taiwa"></div>
+        <h3 class="title">対話による学びの抽出</h3>
+        <p>
+          動画時間：1時間41分35秒辺り<br>
+          問いかけを投げ合う。
+          例えば音声で、一週間の振り返りをするというときに、今週どんなことあった？どんな学び・気付きがあったかな？皆で話して、学びを言い合う。
+        </p>
+
+        <div id="q_wa"></div>
+        <h3 class="title">質問の輪</h3>
+        <p>
+          動画時間：1時間42分35秒辺り<br>
+          オフラインでみんなで円陣を組んでいる状態を想像して、
+          自分の左手の人に対して問いかける
+          「あなたは次のイテレーションでどんなことをすると良いと思いますか？どんなことをしたいですか？」
+          問いかけられた人
+          「私はこんなことをするといいと思います。」
+          次の左の人に同じ質問をする
+          「あなたは次のイテレーションでどんなことをすると良いと思いますか？どんなことをしたいですか？」
+          前の人に意見を聞いたうえで、自分の意見を言う。さっき○○さんはこういうことを言ったんだけど、私はここはこうした方がいいと思う。的な。
+          自分の意見を前の人の意見に上被せしながらどんどん意見を具体化していく手法。
+          輪を2～3週すると、凄く具体的かつ実行可能なアクションになりやすい。
+          対話・音声だけでもできるか、もちろん可視化した方がいい。文章やホワイトボードツールでも可しかしながらやると効率が上がる。
+          言葉だけでもできる。
+        </p>
+
+        <h2 class="title">ホワイトボードツールを使うとよりやりやすいもの</h2>
+        <p>
+          お絵かき系。
+        </p>
+
+        <div id="netsukikyu"></div>
+        <h3 class="title">熱気球・スピードカー・帆船</h3>
+        <p>
+          動画時間：1時間44分35秒辺り<br>
+          チームを気球というメタファーに置き換えて、自分たちをより上に加速させる、持ち上げてくれたものって何だったかという質問をする。
+          逆に、自分たちの上昇を妨げた、お荷物になっているものは何かを話す。
+          メタファーを通じて、お絵かきをしながら皆でどんどん書いていくと、普段のKPTと同じことができるが、
+          絵を描くことによってインスピレーションが刺激される。クリエイティビティが発揮されやすくなる。
+          汚い絵でもいいからみんなで書いてみる。色を塗ったり、遊びながら振り返ると楽しいアイディアが出てくる。
+        </p>
+
+        <h2 class="title">個人で使える振り返り手法</h2>
+        <div id="ywt"></div>
+        <h3 class="title">YWT</h3>
+        <p>
+          動画時間：29分00秒辺り<br>
+        </p>
+        <ul style="list-style-type: square;padding-left: 40px;">
+          <li>Y:やったこと</li>
+          <li>W:わかったこと</li>
+          <li>T:次にやること</li>
+        </ul>
+        <p>
+          個人で使えるけどみんな知ってるだろうから略<br>
+          参考：<a href="https://www.kikakulabo.com/tpl-ywt/" target="_blank">経験を振り返って次に活かすフレームワークYWT</a>
+        </p>
+
+        <div id="orid"></div>
+        <h3 class="title">ORID（オーリッド）</h3>
+        <p>
+          動画時間：29分10秒辺り<br>
+          学びとかをどんどん自分の中で深めていく。振り返りの中でも「リフレクション：内省」と呼ばれるものに特化した手法。<br>
+        </p>
+        <ul style="list-style-type: square;padding-left: 40px;">
+          <li>
+            O：Objective Question：事実を出す　今日何やったかな、どんなチャレンジしたかな、どんなことを意識したかな<br>
+          </li>
+          <li>
+            R：Reflective Question：感情　先に上げた事実に対して、自分がどう思ったか、こういうことがあって嬉しかった、凄く悲しく感じた、これ暇だったな<br>
+          </li>
+          <li>
+            I：Interpretative Question：OとRに対して、学び、気付きを抽出する<br>
+          </li>
+          <li>
+            D：Decision Question：決定　学んだことから次の行動にどう生かすか、次の行動をどうするか<br>
+          </li>
+        </ul>
+        <p>
+          YWTに比べると重い。YWTは1, 2分でできるのに対してORIDは5分ぐらいかかる。YWTと比べると深い示唆が得られる。<br>
+          普段の浅い振り返りだと気付けなかった部分に対してどんどん考えを深化させていくやりかた。普段の振り返りが浅いなと思っている人におすすめ。学びの場に使える振り返りなので、研修の後とかカンファレンスの後にもおすすめ。<br>
+        </p>
+
+        <h2 class="title">毎日振り返りをするときに短期間でできる振り返りのおすすめ</h2>
+        <div id="good_and_new"></div>
+        <h3 class="title">Good & New</h3>
+        <p>
+          動画時間：1時間31分20秒辺り<br>
+          その名の通り、良かったことと、新しい気付き、新しく得たものという観点で振り返る。
+          凄く単純。
+          良い所に着目する。自分のいいところを探すのが得意じゃない人ほど、1%でもいいからちょっと変化を考えてみるとか、
+          次の振り返りでGoodとNewが出るように一日動いてみるとか、意識しやすくなる。
+          毎日3～5分でできるので、書いてみるといいとおもう。
+        </p>
+
+        <div id="kotsu"></div>
+        <h3 class="title">一人でも振り返りを続けるコツ</h3>
+        <p>
+          動画時間：1時間32分30秒辺り<br>
+        </p>
+        <ul>
+          <ol>
+            １：週間化する、ルーティンにする、毎日同じ時間にやるようにする。
+            会社に通う電車を降りてから会社に着くまで・・・とか。
+            振り返りをやらなきゃという義務感のような意識が薄れやすくなるので良い。
+          </ol>
+          <ol>
+            ２：見える場所にアクション・付箋を置いておく。
+            アクションを実行されるまで見えるところに置いておく。ディスプレイの下に張り付けるとか。
+          　→強制的に動きやすくなる。
+          </ol>
+          <ol>
+            ３：無理しない。これが一番。毎日やらなきゃっていう、義務感みたいなものを考えるとつらくなる。
+          </ol>
+        </ul>
+
+        <div id="kpt_as_art"></div>
+        <h3 class="title">KPT as ART</h3>
+        <p>
+          以下動画（過去イベントの動画）参照<br>
+          <iframe width="600" height="500" src="https://www.youtube.com/embed/lQLUTxYTgpQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
+
+        <h2 class="title">いつもKPTでやっててマンネリ化してる時</h2>
+        <p>
+          感謝から始めてみるのは一つの手。感謝をお互い言いあうことで、良い所を見つける→お互いのことを知るということにつながる。→関係性を高める。
+          いろんな場面で、振り返り以外でも使える。
+        </p>
+
+        <div id="kansha"></div>
+        <h3 class="title">360度感謝、感謝</h3>
+        <p>
+          動画時間：32分55秒辺り<br>
+          いろんな人、自分からすべての人、チームの周りの人たちに対して一人ひとり、「○○さんここはすごく助かったよ」という感じで感謝をしあう。全方位でお互いに感謝をしあう。<br>
+          振り返りに慣れていない人が、最初に「よし、振り返りをやってみよう！」という場合に有効に作用する。<br>
+          <a href="https://amzn.to/34KskPK" target="_blank">アジャイルレトロスペクティブズ</a>には「感謝」が振り返りを終了するアクティビティとして紹介されていた。<br>
+          いわゆる場づくりとして使える。感謝も360度感謝も。<br>
+          感謝から始めると、場が凄く前向きな、ポジティブな場になりやすい。プロジェクトが終わった後に感謝を表明してからお互いの話しやすい、アイディアを言いやすい状態を作ってから振り返りの中身に入るとか。<br>
+          っていうことをすると、場づくりで感謝を言うのと言わないのとでは、結構アイディアの出方とか、お互いの発言の気の使いように如実に差が出る。<br>
+          360度感謝は振り返りの最初にやってもいいし、最後にやってもいい。KPT＋感謝でもいいと思う。<br>
+        </p>
+
+        <div id="thanks"></div>
+        <h3 class="title">サンクスカード</h3>
+        <p>
+          360度感謝、感謝に合わせて使う。<br>
+          以下動画（過去イベントの動画）の18分20秒辺り<br>
+          <iframe width="600" height="500" src="https://www.youtube.com/embed/lQLUTxYTgpQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          ・サンクスカード。感謝系のアクテビティ<br>
+          感謝のカードを付箋とかに貼って、次の日読む。誉めるのが目的ではなく、協力を促す目的で人を誉める。
+        </p>
+
+        <div id="kudos_wall"></div>
+        <h3 class="title">kudos wall</h3>
+        <p>
+          動画時間：36分25秒辺り<br>
+          ・kudos wall：感謝の壁。マネジメント3.0であったもの。感謝を感じたらペタペタはる。<br>
+          チームによっては、kudoが多かった人を皆で拍手しましょうとか。そんな感じで盛り上げる。<br>
+          ※kudos：称賛<br>
+        </p>
+
+        <h2 class="title">うまく何かを停止させたい</h2>
+        <p>
+          badなことをやってたりとか、どうにも悪い習慣がついているときに、そこに気づかせてもらえるようなアクティビティ。
+        </p>
+
+        <div id="ssc"></div>
+        <h3 class="title">Stop Start Continue(SSC)</h3>
+        <p>
+          動画時間：47分15秒辺り<br>
+          日本だとKPTが一番浸透しているが、世界だとSSCが一番浸透しているはず。<br>
+          <ul style="list-style-type: square;padding-left: 40px;">
+            <li>
+              Stop：やめること、やめたほうがいいこと<br>
+            </li>
+            <li>
+              Start：これからやったほうがいいこと<br>
+            </li>
+            <li>
+              Continue：続けること<br>
+            </li>
+          </ul>
+        </p>
+
+        <div id="starfish"></div>
+        <h3 class="title">Starfish（スターフィッシュ）</h3>
+        <p>
+          動画時間：47分50秒辺り<br>
+          Small Starfishはkeep, more of, less ofの三角形だったが、Starfishでは五角形になる。keep, more of, less of, Stop, Start.<br>
+          keepを軸にStop, Startを出してもいいし、Stop, Startを直接出してもいい。<br>
+        </p>
+
+        <strong>考えるときのポイント</strong>
+        <p>
+          Stopとかless ofみたいな「止める」っていうのはなかなか出づらい。<br>
+          それらが出やすくするためには、「まずはStop考えてみましょう。」といった形で、最初にStop系のことを考えさせると割と出やすくなる。<br>
+          最初にkeepとか、プラスアルファのことを考えてしまうと、止めるという方向に思考のスイッチが行きづらくなる。<br>
+          やめさせたい、何か止めた方がよさそうだな、皆アクションがパンパンになってるなみたいなのがあれば、<br>
+          まずは、止めた方がいいこと、やることを減らすことから考えてみようぜ、という問いかけをしてから、<br>
+          プラスでやりたいことがあれば考えてみようか。という風にファシリテートしてみるのはあり。<br>
+        </p>
+
+        <div id="f_up_items"></div>
+        <h3 class="title">Following up on Action Items</h3>
+        <p>
+          動画時間：49分40秒辺り<br>
+          今までやったアクションってどうでした？を考えるやり方。<br>
+          チームでありがちなのは、振り返りの中でアクションがどんどん積み重なっていって、やることがめちゃくちゃ増えてるような状況。<br>
+          そうなってしまったチームにとって、過去やったアクションって、どうなってた？結果的にどこが変わった？というように、過去のアクションを見返す、フォローアップするのがFollowing up on Action Items.<br>
+        </p>
+
+        <h2 class="title">チートシートに乗ってないやつでいいやつ</h2>
+
+        <div id="daily_hassle"></div>
+        <h3 class="title">デイリーハッスル</h3>
+        <p>
+          動画時間：1時間51分30秒辺り<br>
+          最近やって楽しかったもの。<br>
+          元ネタはXP祭り2020でLTがあったらしい。<br>
+          振り返りに心理学を用いるといいよね。<br>
+          一日の仕事・生活をしていく中で、日々、自覚はできてないけど感じているストレスがある。<br>
+          言葉にしようと思うと出てくる、ちょっとしたイラっとしたこととか。<br>
+          　→これをデイリーハッスルというらしい。<br>
+          日々のデイリーハッスルを「今日のデイリーハッスルなんだった？」を聞いてやったのが楽しかった。<br>
+          デイリーハッスルというパワーワード。一回やると頭に残る。他の手法やっててもハッスルが出てくる。<br>
+          ストレスに感じたことを皆で吐き出そうよという感じのものなので、日々これだけストレス感じているんだなと気づくこともできるし、<br>
+          君、これがストレスだったの？ということに気付くこともできる。<br>
+          割と愚痴大会になりやすいので、ポジティブ面の振り返りと併用するのが良い。<br>
+          ※ハッスル：面倒なこと、口論、イライラさせることという意味<br>
+          hustle：ハッスルする、元気<br>
+          hassle：口論、面倒、困ったこと<br>
+          最初の場づくり、アイスブレイク代わりに使ってもいいし、KPTにワンエッセンスとして使ってもいい。<br>
+        </p>
+
+        <div id="sankou"></div>
+        <h3 class="title">参考</h3>
+        <p>
+          qiitaの記事:<a href="https://qiita.com/98lerr/items/423a3e8ee44e118091bf" target="_blank">「ふりかえりの手法をたくさん学ぼう」で紹介された手法まとめ</a><br>
+        </p>
+
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>
