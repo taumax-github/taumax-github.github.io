@@ -62,7 +62,7 @@
 
   <!--PC用（801px以上端末）メニュー-->
   <nav id="menubar">
-    <ul>
+    <ul class="none">
       <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
     </ul>
   </nav>
@@ -100,152 +100,147 @@
 </header><!--/.sh-->
 
 <div id="contents">
-
 <div id="main">
-
 <span id="pagetop"></span>
-
 <section class="box">
+
+<!-- tweetボタン -->
+<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<!-- はてぶボタン -->
+<a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+<!-- はてぶボタン
+<a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+-->
 
 <h2 class="title">システム開発知識が集うサイト</h2>
 
 <dd>
   <p>
     これまで経験したプロジェクトや資格・独学の勉強で身に付けた知識を整理するために作ったサイトです。<br>
-    <!-- tweetボタン -->
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    <!-- はてぶボタン -->
-    <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    <!-- はてぶボタン
-    <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-    -->
+    最近ロマサガRSというゲームにハマっており、そのサイトも運営しています（<a href="https://taumax-github.github.io/sagamax/" target="_blank">リンク</a>）。<br>
   </p>
   <p>
-    <dt>・企画</dt><br>
-    <dt>・プロジェクトマネジメント</dt><br>
-    <dt>・<a href="./contents/requirement/requirement.html">要件定義</a></dt>
-    <dt>・<a href="./contents/agile/retrospective.html">アジャイル</a></dt>
-    <dt>・設計</dt>
-    <dt>・製造</dt>
-    <dd>
-      <li><a href="contents/development/CodeSmell_Refactoring.html">Code Smellとリファクタリング技法</a></li>
-      <li><a href="contents/development/java/java.html">Java</a></li>
-    </dd><br>
-    <dt>・データベース</dt>
-      <li><a href="contents/development/database/database.html">Database関連</a></li>
-    <dd>・RDB</dd>
-    <dd style="padding-left:2em">
-    - Oracle<br>
-    - DB2
-    </dd>
-    <dd style="padding-left:3em">
-      - SQLJ<br>
-      - Stored Procedure<br>
-      - User Defined Function<br>
-    </dd>
-    <dd style="padding-left:2em">
-    - derby<br>
-    </dd>
-    <dd style="padding-left:3em">
-      - IJ<br>
-      - Runコマンド<br>
-      - Import<br>
-    </dd>
-    <dd>・SQL</dd>
-    <dd style="padding-left:2em">
-    - 静的SQL<br>
-    - 動的SQL<br>
-    </dd>
-    <dd>・NoSQL</dd>
-    <dd style="padding-left:2em">
-    - Cassandra<br>
-    - XMLDB<br>
-    </dd>
-    <dt>・テスト</dt>
-      <li><a href="contents/development/test/test.html">ソフトウェアテスト</a></li>
-    <dt>・移行</dt>
-  
-    <dt>・セキュリティ</dt>
-    <dd>
-    ・<a href="./contents/security/csrf/csrf.html">クロスサイトリクエストフォージェリ(CSRF)</a><br>
-    ・<a href="./contents/security/cors/cors.html">オリジン間リソース共有(CORS：Cross-Origin Resource Sharing)</a><br>
-    ・<a href="./contents/security/sop/sop.html">同一生成元ポリシー(SOP：Same-Origin Policy)</a><br>
-    ・<a href="./contents/security/cvss/cvss.html">CVSS</a><br>
-    </dd>
+    <br>
+    <h3 class="title">要件定義</h3>
+    <ul>
+      <li><a href="./contents/requirement/requirement.html">要件定義</a></li>
+      <li>ICONIX</li>
+    </ul>
 
     <br>
-    <dt>・設計・製造技術</dt>
-    <dd>・Android</dd>
-    <dd style="padding-left:2em">
-    - Manifest<br>
-    - Intent<br>
-    - クラス図<br>
-    - ライフサイクル（状態遷移図）
-    </dd>
-    <dd>
-    ・TDD/BDD<br>
-    ・DDD<br>
-    ・CQRS<br>
-    ・ペアプログラミング<br>
-    ・モブプログラミング<br>
-    ・アジャイル<br>
-    ・リアクティブプログラミング
-    </dd>
-    <dd style="padding-left:2em">
-    - クラス図
-    </dd>
-    <dd>
-    ・マイクロサービスアーキテクチャ<br>
-    ・サーバレスアーキテクチャ<br>
-    ・Docker<br>
-    ・Kubernetes<br>
-    ・UML<br>
-    ・データモデル<br>
-    ・ICONIX<br>
-    ・リーダブルコード<br>
-    ・Effective Java<br>
-    ・DevOps<br>
-    ・SRE<br>
-    ・CI/CD<br>
-    <dd style="padding-left:2em">
-    - 自動テスト
-    </dd>
-    </dd>
+    <h3 class="title">開発手法</h3>
+    <ul>
+      <li><a href="./contents/agile/retrospective.html">アジャイル</a></li>
+    </ul>
+
+    <br>
+    <h3 class="title">アーキテクチャ</h3>
+    <ul>
+      <li>マイクロサービスアーキテクチャ</li>
+      <li>サーバレスアーキテクチャ</li>
+    </ul>
+
+    <br>
+    <h3 class="title">設計、製造技術</h3>
+    <h4 class="title">アプリ</h4>
+    <ul>
+      <li>TDD/BDD</li>
+      <li>DDD</li>
+      <li>CQRS</li>
+      <li>ペアプログラミング</li>
+      <li>モブプログラミング</li>
+      <li>リアクティブプログラミング</li>
+      <li>UML</li>
+      <li>DevOps</li>
+      <li>SRE</li>
+      <li>CI/CD</li>
+      <li>DevOps</li>
+      <li>SRE</li>
+    </ul>
+
+    <br>
+    <h4 class="title">言語、プログラミング</h4>
+    <ul>
+      <li><a href="contents/development/CodeSmell_Refactoring.html">Code Smellとリファクタリング技法</a></li>
+      <li><a href="contents/development/java/java.html">Java</a></li>
+      <li>Effective Java</li>
+      <li>リーダブルコード</li>
+      <li>Kotlin</li>
+      <li>VBA</li>
+      <li>JavaScript</li>
+      <li>Python</li>
+      <li>SQL</li>
+        <dd style="padding-left:2em">
+        - 静的SQL<br>
+        - 動的SQL<br>
+        </dd>
+    </ul>
+
+    <br>
+    <h4 class="title">データベース</h4>
+    <ul>
+      <li><a href="contents/development/database/database.html">Database関連</a></li>
+      <li>Oracle</li>
+      <li>DB2</li>
+        <dd style="padding-left:3em">
+          - SQLJ<br>
+          - Stored Procedure<br>
+          - User Defined Function<br>
+        </dd>
+      <li>postgres</li>
+      <li>NoSQL</li>
+        <dd style="padding-left:2em">
+        - Cassandra<br>
+        - XMLDB<br>
+        </dd>
+    </ul>
+
+    <h4 class="title">インフラ</h4>
+    <ul>
+      <li>Linux</li>
+      <li>Ansible</li>
+      <li>Docker</li>
+      <li>Kubernetes</li>
+    </ul>
+      
+    <br>
+    <h3 class="title">テスト</h3>
+    <ul>
+      <li><a href="contents/development/test/test.html">ソフトウェアテスト</a></li>
+    </ul>
   
     <br>
-    <dt>・言語</dt>
-    <dd>
-    ・Java<br>
-    ・Kotlin<br>
-    ・VBA<br>
-    ・JavaScript
-    </dd>
+    <h3 class="title">セキュリティ</h3>
+    <ul>
+      <li><a href="./contents/security/csrf/csrf.html">クロスサイトリクエストフォージェリ(CSRF)</a></li>
+      <li><a href="./contents/security/cors/cors.html">オリジン間リソース共有(CORS：Cross-Origin Resource Sharing)</a></li>
+      <li><a href="./contents/security/sop/sop.html">同一生成元ポリシー(SOP：Same-Origin Policy)</a></li>
+      <li><a href="./contents/security/cvss/cvss.html">CVSS</a></li>
+    </ul>
+
     <br>
     <br>
-  
+    <h3 class="title">取得した資格から得た知識を整理する</h3>
+    <h4 class="title">情報処理試験</h4>
+    <ul>
+      <li>プロジェクトマネージャ</li>
+      <li>システムアーキテクト</li>
+      <li>データベーススペシャリスト</li>
+      <li>ネットワークスペシャリスト</li>
+      <li>
+        情報処理安全確保支援士<br>
+        ※資格を持っているだけで支援士として登録はしていません
+      </li>
+    </ul>
+
     <br>
-    <dt>・情報処理試験</dt>
-    <dd>・ITストラテジスト（勉強中）<br>
-    ・プロジェクトマネージャ（取得済）<br>
-    ・システムアーキテクト（取得済）<br>
-    ・データベーススペシャリスト（取得済）<br>
-    ・ネットワークスペシャリスト（取得済）<br>
-    ・情報処理安全確保支援士（取得済）<br>
-    ・エンベデッドスペシャリスト（未取得）<br>
-    ・ITサービスマネージャ（未取得）<br>
-    ・システム監査（未取得）
-    </dd>
-    <dt>・ベンダー資格</dt>
-    <dd>
-    ・OCJP-Gold SE7（取得済）<br>
-    ・OCJP-Gold SE8（取得済）<br>
-    ・Oracle-Gold 11g（取得済）<br>
-    ・DB2 Advanced Expert（取得済）
-    </dd><br>
-    <dt>・その他</dt>
-    <dd>
-    ・簿記（未取得）
-    </dd>
+    <h4 class="title">ベンダー資格</h4>
+    <ul>
+      <li>OCJP-Gold SE7</li>
+      <li>OCJP-Gold SE8</li>
+      <li>Oracle-Gold 11g</li>
+      <li>DB2 Advanced Expert</li>
+    </ul>
   </p>
 </dd>
   

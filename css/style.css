@@ -45,8 +45,29 @@ h3 {
 	font-weight: normal;
 }
 
-ul {list-style-type: none;}
-img {border: none;max-width: 100%;height: auto;vertical-align: middle;}
+/*ul.disc,olタグ
+---------------------------------------------------------------------------*/
+
+ul.none {
+	list-style-type: none;
+	padding: 0 0px 0px 0px;
+}
+
+ul {
+	list-style: disc;
+	padding: 0 20px 20px 45px;
+}
+
+ol {
+	padding: 0 20px 20px 45px;
+}
+
+img {
+	border: none;
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
 
 table {
 	border-collapse:collapse;
@@ -262,7 +283,7 @@ header .icon_middle li {
 }
 /*アイコン画像の設定*/
 header .icon_middle img {
-	width: 50%;		/*画像の幅*/
+	width: 60%;		/*画像の幅*/
 }
 
 /*mainブロック
@@ -549,16 +570,6 @@ p.check a {color: #fff;}
 	border-radius: 2px;
 	margin: 0px 5px;
 	vertical-align: text-top;
-}
-
-/*ul.disc,olタグ
----------------------------------------------------------------------------*/
-ul.disc {
-	list-style: disc;
-	padding: 0 20px 20px 45px;
-}
-ol {
-	padding: 0 20px 20px 45px;
 }
 
 /*box
