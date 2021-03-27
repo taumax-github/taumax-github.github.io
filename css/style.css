@@ -50,16 +50,21 @@ h3 {
 
 ul.none {
 	list-style-type: none;
-	padding: 0 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 }
 
 ul {
 	list-style: disc;
-	padding: 0 20px 20px 45px;
+	padding: 0px 20px 20px 45px;
+}
+
+ul.indent_no {
+	list-style: disc;
+	padding: 0px 0px 0px 20px;
 }
 
 ol {
-	padding: 0 20px 20px 45px;
+	padding: 0px 20px 20px 45px;
 }
 
 img {
