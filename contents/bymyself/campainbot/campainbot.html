@@ -113,8 +113,9 @@
         -->
 
       <br><br>
-      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">タイトル考え中</a> > ロマサガRSリマインダー</p>
+      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">タイトル考え中</a> > キャンペーン対象キャラ通知bot</p>
 
+      <br>
       <div id="summary"></div>
       <h3 class="title">キャンペーン対象キャラ通知bot</h3>
       <p>
@@ -143,7 +144,7 @@
 
         <br>
         対象キャラの画像を拾ってきてそれらを合成して↓以下のような1枚の画像に合成している。<br>
-        <img src="img/composition.jpg" width="500"><br>
+        <img src="img/composition.jpg" width="800"><br>
         
         決まった文字や画像を呟くだけのbotなら以下の記事参照。<br>
         <li><a href="https://qiita.com/taumax/items/73ad47eaba64943a9c41" target="_blank">TweepyとcronでTwitterボットを作ってみた話</a></li>
@@ -151,17 +152,52 @@
 
       pythonソースコード(bot)<br>
       <script src="https://gist.github.com/taumax-github/4e8e8777ddba736872e7e7090258ac10.js"></script>
+      <!--
+      <script src="https://gist-it.appspot.com/https://github.com/taumax-github/sagamax_bot_python/blob/main/ikusei_charas/ikuseiCharas.py"></script>
+      -->
       もうちょいコードの詳細を解説した方がいい気がしてきた。。。
 
       <br><br>
       <div id="whatilearn"></div>
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
       <h4 class="title">画像に日本語を埋め込めない</h4>
-      <h4 class="title">妙な色の画像を生み出してしまう</h4>
-      <img src="img/bgr.jpg" width="300">
-      <img src="img/rgb.jpg" width="300"><br>
       <p>
+        pythonで画像編集する場合、OpenCVというライブラリを使うのがスタンダードっぽい。<br>
+        OpenCVで日本語テキストを表示させようとすると文字化けしてうまくいかない（opencvの仕様）。<br>
+        PillowとOpenCVを併用した（※）。<br>
+        大まかな処理の流れ。<br>
       </p>
+      <ul>
+        <li>画像ファイル読み込み(Pillow)</li>
+        <li>読み込んだ画像上部を黒四角で塗りつぶし(Pillow)</li>
+        <li>塗りつぶし部分に日本語テキストを表示(Pillow)</li>
+        <li>画像サイズを調整(OpenCV)</li>
+        <li>各画像を1つに連結(OpenCV)</li>
+      </ul>
+      <p>
+          ※全部Pillowでやればよかったんだろうけど、書いた当時はよくわかってなかった。この併用が次の問題につながる。
+      </p>
+
+      <h4 class="title">妙な色の画像を生み出してしまう</h4>
+      <p>
+        <img src="img/bgr.jpg" width="300">
+        <img src="img/rgb.jpg" width="300"><br>
+        Pillowでは色の順番はRGB（赤、緑、青）を前提としている。<br>
+        OpenCVは色の順番はBGR（青、緑、赤）。<br>
+        Pillow で読み込んだ画像を OpenCV に渡す際に赤と青が逆転した結果こうなった。<br>
+        Pillow から OpenCV に渡す際に RGB から BGR に変換することで対処。293行目の「readDot = cv2.cvtColor(readDot, cv2.COLOR_RGB2BGR)」。
+      </p>
+
+      <br>
+      参考
+      <ul>
+        <li><a href="https://note.nkmk.me/python-opencv-bgr-rgb-cvtcolor/" target="_blank">Python, OpenCVでBGRとRGBを変換するcvtColor</a></li>
+        <li><a href="https://www.tech-teacher.jp/blog/python-opencv/" target="_blank">画像処理をマスターしよう！PythonでOpenCVを使う方法を紹介！</a></li>
+        <li><a href="https://note.nkmk.me/python-pillow-basic/" target="_blank">Pythonの画像処理ライブラリPillow(PIL)の使い方</a></li>
+        <li><a href="https://deecode.net/?p=1314" target="_blank">[Python] OpenCVでは日本語テキストを描画できない – PIL/pillowでテキスト表示</a></li>
+        <li><a href="https://axa.biopapyrus.jp/ia/opencv/puttext.html" target="_blank">画像にテキストを書き込む方法</a></li>
+        <li><a href="https://qiita.com/SKYS/items/cbde3775e2143cad7455" target="_blank">Python OpenCV の cv2.imread 及び cv2.imwrite で日本語を含むファイルパスを取り扱う際の問題への対処について</a></li>
+      </ul>
   </section><!-- section class="box" -->
 
     <footer>
