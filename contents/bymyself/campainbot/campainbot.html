@@ -155,7 +155,9 @@
       <!--
       <script src="https://gist-it.appspot.com/https://github.com/taumax-github/sagamax_bot_python/blob/main/ikusei_charas/ikuseiCharas.py"></script>
       -->
-      もうちょいコードの詳細を解説した方がいい気がしてきた。。。
+      もうちょいコードの詳細を解説した方がいい気がしてきた。。。<br>
+      GitHubから画像ファイル読み込み⇒上部を黒四角で塗りつぶし⇒塗りつぶした部分に日本語を書く（キャラ名）⇒画像サイズを調整（揃えないとエラーで結合できない）⇒横方向に連結（端数に白い画像を連結）⇒縦方向に連結<br>
+      ややこしいけど、Pillow は、開発が停止したPILをForkしたもの。インストール時は pip install pillow で、コードの import は PIL.<br>
 
       <br><br>
       <div id="whatilearn"></div>
@@ -175,7 +177,7 @@
         <li>各画像を1つに連結(OpenCV)</li>
       </ul>
       <p>
-          ※全部Pillowでやればよかったんだろうけど、書いた当時はよくわかってなかった。この併用が次の問題につながる。
+        ※全部Pillowでやればよかったんだろうけど、書いた当時はよくわかってなかった。この併用が次の問題につながる。
       </p>
 
       <h4 class="title">妙な色の画像を生み出してしまう</h4>
@@ -198,6 +200,11 @@
         <li><a href="https://axa.biopapyrus.jp/ia/opencv/puttext.html" target="_blank">画像にテキストを書き込む方法</a></li>
         <li><a href="https://qiita.com/SKYS/items/cbde3775e2143cad7455" target="_blank">Python OpenCV の cv2.imread 及び cv2.imwrite で日本語を含むファイルパスを取り扱う際の問題への対処について</a></li>
       </ul>
+
+
+      <h4 class="title">日本語フォントが入ってない</h4>
+      <h4 class="title">【未解決】並び順制御</h4>
+
   </section><!-- section class="box" -->
 
     <footer>
