@@ -187,7 +187,8 @@
         Pillowでは色の順番はRGB（赤、緑、青）を前提としている。<br>
         OpenCVは色の順番はBGR（青、緑、赤）。<br>
         Pillow で読み込んだ画像を OpenCV に渡す際に赤と青が逆転した結果こうなった。<br>
-        Pillow から OpenCV に渡す際に RGB から BGR に変換することで対処。293行目の「readDot = cv2.cvtColor(readDot, cv2.COLOR_RGB2BGR)」。
+        Pillow から OpenCV に渡す際に RGB から BGR に変換することで対処。293行目の「readDot = cv2.cvtColor(readDot, cv2.COLOR_RGB2BGR)」。<br>
+        Numpyの役割が不明確<br>
       </p>
 
       <br>
