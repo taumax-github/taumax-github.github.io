@@ -119,12 +119,16 @@ a:hover {
 #container {
 	/* position: fixed; */
 	width: 100%;
-	height: 100%;
+	height: auto;
 }
 /*defaultbodyの背景画像指定*/
 .defaultbody #container {
 	background: url(../images/1.jpg) no-repeat center center;	/*背景画像（※IE8以下の古いブラウザ用）*/
 	background: url(../images/1.jpg) no-repeat center center / cover;	/*背景画像*/
+	background-repeat: repeat;
+	background-attachment: fixed;
+	background-position: center bottom;
+	/* no-repeat:center center / cover;*/    /*背景画像*/
 }
 /*works.htmlの背景画像指定*/
 .works #container {
@@ -200,7 +204,8 @@ header.pc p {
 	position: relative;
 }
 #menubar li a {
-	display:  block;text-decoration: none;
+	display:  block;
+	text-decoration: none;
 	border-bottom: 1px solid #fff;	/*下線の幅、線種、色（古いブラウザ用）*/
 	border-bottom: 1px solid rgba(255,255,255,0.3);	/*下線の幅、線種、色。255,255,255は白の事で0.3は色が30%出た状態の事。*/
 	width: auto;	/*幅*/
@@ -331,6 +336,7 @@ header .icon_middle img {
 	border-left: 3px solid #c1bc9e;	/*左の線の幅、線種、色*/
 	padding-left: 20px;				/*線と文字の間の余白*/
 }
+
 /*h2タグにclass="title"をつけたタイプ。大見出し。*/
 #main h2.title {
 	font-family: 'Poiret One';	/*冒頭のgoogle fontsの指定*/
@@ -338,10 +344,12 @@ header .icon_middle img {
 	margin-bottom: 40px;		/*見出しの下に空けるスペース*/
 	border-bottom: 1px solid #c1bc9e;	/*下線の幅、線種、色*/
 }
+
 #main h2.title::first-letter {
 	border-left: none;
 	padding-left: 0;
 }
+
 /*h2タグにclass="title"をつけたタイプ内にあるspanタグ*/
 #main h2.title span {
 	display: block;
@@ -349,6 +357,7 @@ header .icon_middle img {
 	float: right;		/*右に回り込み*/
 	margin-top: 60px;	/*上に空ける余白。上下のバランスをここでとります。*/
 }
+
 /*h3タグ*/
 #main h3 {
 	clear: both;
@@ -550,7 +559,11 @@ p.check a {color: #fff;}
 }
 /*設定*/
 .nav-fix-pos-pagetop a {
-	display: block;text-decoration: none;text-align: center;z-index: 100;position: fixed;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	z-index: 100;
+	position: fixed;
 	width: 40px;		/*ボタンの幅*/
 	line-height: 40px;	/*ボタンの高さ*/
 	bottom: 20px;		/*ウィンドウの下から20pxの場所に配置*/

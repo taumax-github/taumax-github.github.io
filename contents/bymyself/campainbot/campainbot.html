@@ -215,15 +215,22 @@
 
       <br>
       <h4 class="title">日本語フォントが入ってない</h4>
-      ローカルで動いたプログラムを linux 環境に持って行って動かしたら、画像に書き込んだ日本語が文字化けした。<br>
-      <a href="https://beyondjapan.com/blog/2017/01/japanese-gothic-fonts-on-linux/" target="_blank">このサイト</a>を参考に、「yum install ipa-gothic-fonts ipa-pgothic-fonts」コマンドで日本語フォントをインストールして、使用するフォントをプログラムで指定する（18行目）ことで解消した。<br>
+      <p>
+        ローカルで動いたプログラムを linux 環境に持って行って動かしたら、画像に書き込んだ日本語が文字化けした。<br>
+        <a href="https://beyondjapan.com/blog/2017/01/japanese-gothic-fonts-on-linux/" target="_blank">このサイト</a>を参考に、「yum install ipa-gothic-fonts ipa-pgothic-fonts」コマンドで日本語フォントをインストールして、使用するフォントをプログラムで指定する（18行目）ことで解消した。<br>
+      </p>
+
+      <br>
+      参考
+      <ul>
+        <li><a href="https://beyondjapan.com/blog/2017/01/japanese-gothic-fonts-on-linux/" target="_blank">CentOSでもWindowsでも使える！ 日本語フォント（ゴシック編）</a></li>
+      </ul>
 
       <!--
       <br>
       <h4 class="title">【未解決】並び順制御</h4>
       -->
-
-  </section><!-- section class="box" -->
+    </section><!-- section class="box" -->
 
     <footer>
       <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
@@ -240,10 +247,11 @@
 
   <!--メニュー開閉ボタン-->
   <div id="menubar_hdr" class="close"></div>
-    <!--メニューの開閉処理条件設定　800px以下-->
-    <script>
-      if (OCwindowWidth() <= 800) {
-        open_close("menubar_hdr", "menubar-s");
-      }
-    </script>
+
+  <!--メニューの開閉処理条件設定　800px以下-->
+  <script>
+    if (OCwindowWidth() <= 800) {
+      open_close("menubar_hdr", "menubar-s");
+    }
+  </script>
 </html>
