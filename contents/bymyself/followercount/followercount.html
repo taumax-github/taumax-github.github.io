@@ -103,7 +103,7 @@
     <div id="main">
       <span id="pagetop"></span>
       <section class="box">
-        <h2 class="title">キャンペーン対象キャラ通知bot</h2>
+        <h2 class="title">公式アカウントのフォロワー数変化(Goで書いた)</h2>
         <!-- tweetボタン -->
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <!-- はてぶボタン -->
@@ -113,21 +113,21 @@
         -->
 
       <br><br>
-      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">タイトル考え中</a> > キャンペーン対象キャラ通知bot</p>
+      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">タイトル考え中</a> > 公式アカウントのフォロワー数変化(Goで書いた)</p>
 
       <br>
       <div id="summary"></div>
-      <h3 class="title">キャンペーン対象キャラ通知bot</h3>
+      <h3 class="title">公式アカウントのフォロワー数変化(Goで書いた)</h3>
       <p>
-        ゲームイベントの対象キャラを判断するロジックがわかり辛過ぎるから作ってみたbot。<br>
+        ゲームの公式アカウントのフォロワー数に応じてプレゼントがあるキャンペーン。<br>
       </p>
 
       <br><br>
       <div id="whatimade"></div>
       <h3 class="title">作ったもの（実際に稼働したときのツイート）</h3>
       <p>
-        DBに登録したイベント情報（開始日時と終了日時）をお知らせしてくれるbot<br>
-        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今2022/06/23 11:04<br>【陽】属性の技・術を持つキャラだよ！<br>画像を添付するからそれで確認してね！ <a href="https://t.co/b4Z54aRYxI">pic.twitter.com/b4Z54aRYxI</a></p>&mdash; ロマサガRS 育成応援キャンペーン情報(sagamax_bot2) (@sagamax_bot2) <a href="https://twitter.com/sagamax_bot2/status/1539791527761031168?ref_src=twsrc%5Etfw">June 23, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        毎朝フォロワー数を通知してくれるbot<br>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今2021-12-07 08:00<br>ロマサガ公式垢のフォロワー数をカウントするbotです。<br>現在の <a href="https://twitter.com/romasaga_rs?ref_src=twsrc%5Etfw">@romasaga_rs</a> のフォロワー数は225,178人。<br>あと24,822人でSSポール！<br>21,22,23,24万で海外版の着せ替え衣装も貰えます！<a href="https://twitter.com/romasaga_rs?ref_src=twsrc%5Etfw">@romasaga_rs</a> のフォローお願いします！<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a><a href="https://twitter.com/hashtag/%E6%96%B0%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#新ロマサガRS</a><a href="https://twitter.com/hashtag/%E5%85%AC%E5%BC%8F%E3%83%95%E3%82%A9%E3%83%AD%E3%83%AF%E3%83%BC%E6%95%B0?src=hash&amp;ref_src=twsrc%5Etfw">#公式フォロワー数</a> <a href="https://t.co/976eRmJ8pt">pic.twitter.com/976eRmJ8pt</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1467992275322273793?ref_src=twsrc%5Etfw">December 6, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </p>
 
       <br><br>
@@ -136,69 +136,71 @@
       <p>
         <img src="img/whole_image.jpg" width="800"><br>
 
-        <br>
-        イベント情報をDBに登録する作業は手動だが、それさえやってしまえば、イベントキャンペーンの対象キャラを毎日お知らせしてくれる。<br>
-        ↓GitHub上に以下のようなキャラクタの画像を全キャラ分格納しているので、<br>
-        <img src="https://github.com/taumax-github/sagamax/blob/gh-pages/contents/image_files/romasagars/dots/t260g.jpg?raw=true"><br>
-        その際、対象キャラの名前を画像に書き、各画像のサイズを合わせたうえで合成している（サイズが揃ってないとエラーになる）。<br>
-
-        <br>
-        対象キャラの画像を拾ってきてそれらを合成して↓以下のような1枚の画像に合成している。<br>
-        <img src="img/composition.jpg" width="800"><br>
-        
-        決まった文字や画像を呟くだけのbotなら以下の記事参照。<br>
-        <li><a href="https://qiita.com/taumax/items/73ad47eaba64943a9c41" target="_blank">TweepyとcronでTwitterボットを作ってみた話</a></li>
+      Go ソースコード(bot)<br>
       </p>
 
-      pythonソースコード(bot)<br>
-      <script src="https://gist.github.com/taumax-github/4e8e8777ddba736872e7e7090258ac10.js"></script>
-      <!--
-      <script src="https://gist-it.appspot.com/https://github.com/taumax-github/sagamax_bot_python/blob/main/ikusei_charas/ikuseiCharas.py"></script>
-      -->
-      もうちょいコードの詳細を解説した方がいい気がしてきた。。。<br>
-      GitHubから画像ファイル読み込み⇒上部を黒四角で塗りつぶし⇒塗りつぶした部分に日本語を書く（キャラ名）⇒画像サイズを調整（揃えないとエラーで結合できない）⇒横方向に連結（端数に白い画像を連結）⇒縦方向に連結<br>
-      ややこしいけど、Pillow は、開発が停止したPILをForkしたもの。インストール時は pip install pillow で、コードの import は PIL.<br>
-      黒四角で塗りつぶす処理は、<a href="https://hashikake.com/eyecatch-maker" target="_blank">こちら</a>の「画像の中に四角形を描く」の部分を参考にした。<br>
+      <br>
+      主処理<br>
+      <script src="https://gist.github.com/taumax-github/a52cb94cacb991d7722320c76685a58f.js"></script>
 
+      <br>
+      DBとのコネクション生成（抜粋） ※上記42行目の呼び出し先<br>
+      <script src="https://gist.github.com/taumax-github/e3da90e16ea98eee809d06c73e8bc41d.js"></script>
 
       <br><br>
       <div id="whatilearn"></div>
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
-      <h4 class="title">画像に日本語を埋め込めない</h4>
       <p>
-        pythonで画像編集する場合、OpenCVというライブラリを使うのがスタンダードっぽい。<br>
-        OpenCVで日本語テキストを表示させようとすると文字化けしてうまくいかない（opencvの仕様）。<br>
-        PillowとOpenCVを併用した（※）。<br>
-        大まかな処理の流れ。<br>
-      </p>
-      <ul>
-        <li>画像ファイル読み込み(Pillow)</li>
-        <li>読み込んだ画像上部を黒四角で塗りつぶし(Pillow)</li>
-        <li>塗りつぶし部分に日本語テキストを表示(Pillow)</li>
-        <li>画像サイズを調整(OpenCV)</li>
-        <li>各画像を1つに連結(OpenCV)</li>
-      </ul>
-      <p>
-        ※全部Pillowでやればよかったんだろうけど、書いた当時はよくわかってなかった。この併用が次の問題につながる。
+        エラーで詰まったとかはあんまりないんだけど、これまで python で書いてた twitter bot の Go 版ができた。<br>
+        Go はコンテナと相性がいいんだなという学びはあるんだけど、それに気づくのはまだ先の話。。。<br>
       </p>
 
-      <h4 class="title">妙な色の画像を生み出してしまう</h4>
+      <h4 class="title">tweet するためのライブラリ</h4>
       <p>
-        <img src="img/bgr.jpg" width="300">
-        <img src="img/rgb.jpg" width="300"><br>
-        Pillowでは色の順番はRGB（赤、緑、青）を前提としている。<br>
-        OpenCVは色の順番はBGR（青、緑、赤）。<br>
-        Pillow で読み込んだ画像を OpenCV に渡す際に赤と青が逆転した結果こうなった。<br>
-        Pillow から OpenCV に渡す際に RGB から BGR に変換することで対処。293行目の「readDot = cv2.cvtColor(readDot, cv2.COLOR_RGB2BGR)」。<br>
-        Numpy というライブラリをインポートしているが、これは OpenCV が画像を NumPy の配列として扱っているため、 OpenCV に渡す前に290行目の np.array(readDot) でNumPy の配列に変換している。<br>
-        Pillow, Numpy, OpenCV の違いがよくわからなくなってきたが、凄く雑にまとめると<br>
+        <a href="https://github.com/ChimeraCoder/anaconda" target="_blank">anaconda</a> というライブラリを使ってツイートするプログラム。<br>
+        TweetPublicAccount 関数の中でツイート用のインスタンス生成し、変数 api に格納（33行目）。67行目でツイート実行。<br>
+        画像をツイートしたい場合は45～55行目。ツイート実行の前に api.UploadMedia で画像を upload する必要があるが、引数の型が base64String なので画像を base64エンコードしている。<br>
+        そのあと、 url.Values{} の "media_ids" に格納。複数ある場合はカンマ区切りで設定。<br>
+
+        <br>
+        参考
         <ul>
-          <li>Pillow：一番お手軽に使用できる画像処理ライブラリ。</li>
-          <li>Numpy： Pillow＋Numpy で Pillow 単体よりはもうちょっと複雑なことができる。</li>
-          <li>OpenCV： OpenCV＋Numpy の組み合わせが一番いろいろな事ができる。顔認識もできるらしいが、環境構築がちょっと面倒。</li>
+          <li><a href="https://github.com/ChimeraCoder/anaconda" target="_blank">ChimeraCoder/anaconda</a></li>
+          <li><a href="https://www.mtioutput.com/entry/go-tweet-pic" target="_blank">【Go言語/Twitter】anacondaを利用して画像付きツイートをするプログラム</a></li>
+          <li><a href="https://www.mtioutput.com/entry/golang-auto-tweet" target="_blank">【Go言語/Twitter】引数の文字列をツイートするプログラム</a></li>
+          <li><a href="https://qiita.com/dahiyu/items/7ffd6ee0b2afa0ea46bd" target="_blank">Go言語でTwitterAPIを利用する(anacondaの利用)</a></li>
+          <li><a href="https://www.kokoja-hourehore.com/2656/" target="_blank">【Go】TwitterAppでツイートするプログラムを作った</a></li>
+          <li><a href="https://kwmt27.net/index.php/2013/09/29/golang-base64-encode-decode/" target="_blank">#golang 画像ファイルをbase64 encode/decode するには</a></li>
         </ul>
-        というイメージ。<a href="https://note.nkmk.me/python-image-processing-pillow-numpy-opencv/" target="_blank">参考</a><br>
-        コンテナ化した際、 OpenCV が使えるようにするためにひと手間加える必要があったので実際準備に多少手間がかかってる。やりたいこと次第でもっと手間は増えると思われる。<br>
+      </p>
+
+      <h4 class="title">グラフ生成するためのライブラリ</h4>
+      <p>
+        <a href="https://pkg.go.dev/gonum.org/v1/plot" target="_blank">plot</a> というライブラリを使って画像生成。<br>
+        上記ソースの82行目 createGraph() 関数の中。90行目で呼び出している getData() 関数で2週間分のデータを取得。<br>
+        93行～113行目の処理で縦軸・横軸の設定、115～120行目でグラフの見栄えを調整。<br>
+        124～133行目でグラフを生成。<br>
+
+        <br>
+        参考
+        <ul>
+          <li><a href="https://pkg.go.dev/gonum.org/v1/plot#example-Axis-LabelsPosition" target="_blank">gonum.org/v1/plot</a></li>
+          <li><a href="https://text.baldanders.info/golang/chart-with-golang/" target="_blank">Go 言語でもグラフを描きたい！</a></li>
+          <li><a href="https://qiita.com/RuyPKG/items/0a569953e9e24870f527" target="_blank">Go言語で折れ線グラフや棒グラフを描く</a></li>
+        </ul>
+      </p>
+
+      <h4 class="title">postgres DB接続のためのライブラリ</h4>
+      <p>
+        <a href="https://pkg.go.dev/github.com/lib/pq" target="_blank">pq</a> というライブラリを使って postgres DB 接続。ライブラリは import するだけで、コード上使用するのは <a href="https://pkg.go.dev/database/sql" target="_blank">database/sql</a> という標準ライブラリ。<br>
+        専用のパッケージを import （16行目の _ "github.com/lib/pq" ）して connection 生成(42行目)してあげればあとはSQL文字列を実行するだけ。<br>
+        136行目の getData() 関数、141行目の insData() 関数が実装例。<br>
+
+        <br>
+        参考
+        <ul>
+          <li><a href="https://qiita.com/hiro9/items/e6e41ec822a7077c3568" target="_blank">Go PostgreSQLにつないでみる</a></li>
+        </ul>
       </p>
 
       <br>
@@ -210,18 +212,7 @@
         <li><a href="https://deecode.net/?p=1314" target="_blank">[Python] OpenCVでは日本語テキストを描画できない – PIL/pillowでテキスト表示</a></li>
         <li><a href="https://axa.biopapyrus.jp/ia/opencv/puttext.html" target="_blank">画像にテキストを書き込む方法</a></li>
         <li><a href="https://qiita.com/SKYS/items/cbde3775e2143cad7455" target="_blank">Python OpenCV の cv2.imread 及び cv2.imwrite で日本語を含むファイルパスを取り扱う際の問題への対処について</a></li>
-        <li><a href="https://hashikake.com/eyecatch-maker" target="_blank">Pythonで画像にテキストを入れて複数のアイキャッチを一括で作るプログラム</a></li>
       </ul>
-
-      <br>
-      <h4 class="title">日本語フォントが入ってない</h4>
-      ローカルで動いたプログラムを linux 環境に持って行って動かしたら、画像に書き込んだ日本語が文字化けした。<br>
-      <a href="https://beyondjapan.com/blog/2017/01/japanese-gothic-fonts-on-linux/" target="_blank">このサイト</a>を参考に、「yum install ipa-gothic-fonts ipa-pgothic-fonts」コマンドで日本語フォントをインストールして、使用するフォントをプログラムで指定する（18行目）ことで解消した。<br>
-
-      <!--
-      <br>
-      <h4 class="title">【未解決】並び順制御</h4>
-      -->
 
   </section><!-- section class="box" -->
 
