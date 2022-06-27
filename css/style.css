@@ -121,6 +121,7 @@ a:hover {
 	width: 100%;
 	height: auto;
 }
+
 /*defaultbodyの背景画像指定*/
 .defaultbody #container {
 	background: url(../images/1.jpg) no-repeat center center;	/*背景画像（※IE8以下の古いブラウザ用）*/
@@ -376,6 +377,20 @@ header .icon_middle img {
 	margin-top: -5px;
 }
 
+.code {
+	background-color: #eee;
+	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);
+	padding: 2em;
+	color: #000;			/*文字色*/
+}
+
+.codetitle {
+	border-top: 0px solid #aaa;
+	background-color: #aaa;
+	padding: 0em;
+	color: #000;			/*文字色*/
+}
+
 #main h2 + p,
 #main h3 + p {
 	margin-top: -10px;
@@ -389,6 +404,15 @@ header .icon_middle img {
 #main h4 {
 	clear: both;
 	margin-bottom: 15px;	/*見出しの下に空けるスペース*/
+	font-size: 20px;		/*文字サイズ*/
+	color: #c1bc9e;			/*文字色*/
+}
+
+/*h4タグ*/
+#main h5 {
+	padding: 1em;
+	clear: both;
+	margin-bottom: 5px;	/*見出しの下に空けるスペース*/
 	font-size: 20px;		/*文字サイズ*/
 	color: #c1bc9e;			/*文字色*/
 }

@@ -133,13 +133,15 @@
       <br><br>
       <div id="mechanism"></div>
       <h3 class="title">どんな仕組み？</h3>
+      <h4 class="title">対応前</h4>
       <p>
-        対応前<br>
         <img src="img/bfr_scheduler.png" width="800"><br><br>
         1つ1つのプログラムは別ファイルになっており、それを cron でキックしていた。<br>
+      </p>
 
-        <br><br>
-        対応後<br>
+      <br><br>
+      <h4 class="title">対応後</h4>
+      <p>
         親となるプログラムを作り、そこで稼働時間の設定を行い、時間になったら動くような仕掛けを作った。<br>
         <img src="img/aft_scheduler.png" width="800"><br>
 
@@ -163,91 +165,126 @@
         <li><a href="https://kakakakakku.hatenablog.com/entry/2017/08/13/122359" target="_blank">Golang でジョブのスケジューリング実行ができる JobRunner を試した</a></li>
       </ul>
 
-    <br><br>
+      <br><br>
       <div id="whatilearn"></div>
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
       <p>
         Go は割とすんなり行けた。<br>
-        Go の場合<br>
-        scheduler.go<br>
-        　　┗XXX1.go<br>
-        　　┗XXX2.go<br>
-        　⇒scheduler.go で XXX1.go, XXX2.go を import してしまえばいい感じに呼び出してくれる。何か間違えていたらコンパイルエラーで教えてくれる。<br>
+      </p>
+      <div class="codetitle">Go の場合</div>
+      <div class="code">
+        .<br>
+        ├── scheduler.go<br>
+        └── XXX<br>
+        　　　　└──XXX1.go<br>
+      </div>
+      <p>
+        　⇒scheduler.go で XXX1.go を import してしまえばいい感じに呼び出してくれる。何か間違えていたらコンパイルエラーで教えてくれる。<br>
+      </p>
 
-        <br>
+      <p>
         python はちょっと苦戦。<br>
         今までは1つのファイルに全ての処理を書いていたが、 scheduler.py から違うディレクトリにある python プログラムを呼び出す必要があり、その場合の書き方がわからない。<br>
+      </p>
 
-        <br>
-        python の場合<br>
-        scheduler.py<br>
-        　　┗YYY1.py<br>
-        　　┗YYY2.py<br>
-        　⇒scheduler.py で YYY1.py, YYY2.py を import するだけだとうまくいかない。<br>
-
-        <br>
-        python で別ディレクトリのモジュールを呼び出す場合、以下3つのやり方がある。<br>
-        <ul>
-          <li>絶対インポート／相対インポート</li>
-          <li>sys.path.append で対象ファイルのパスを追加</li>
-          <li>環境変数 PYTHONPATH を設定</li>
-          <li>.pthファイルを作成</li>
-        </ul>
-
-        <br>
-        <h4 class="title">絶対インポート／相対インポート</h4>
-        呼び出したいモジュールの相対パスを指定して import する方法。<br>
-        例1：以下のような階層構造で main.py から lib_a.py を import する場合。<br>
-        絶対インポート<br>
+      <br>
+      <div class="codetitle">python の場合</div>
+      <div class="code">
         .<br>
-        ├── lib<br>
-        │   ├── liba<br>
-        │   │   └── lib_a.py<br>
-        │   └── libb<br>
-        │       └── lib_b.py<br>
-        └── main.py<br>
-        from lib.liba.lib_a import aaa<br>
-        aaa.funcA()<br>
-
-        相対インポート<br>
-        lib_a から、一つ上の階層にある libb を指定したい<br>
-        ..libb.lib_b import bbb<br>
-        bbb.funcB()<br>
+        ├── scheduler.py<br>
+        └── YYY<br>
+        　　　　└──YYY1.py<br>
+      </div>
+      <p>
+        　⇒scheduler.py で YYY1.py を import するだけだとうまくいかない。<br>
 
         <br>
-        <h4 class="title">sys.path.append で対象ファイルのパスを追加</h4>
+        python で別ディレクトリのモジュールを呼び出す場合、以下4つのやり方がある。<br>
+      </p>
+      <ul>
+        <li>絶対インポート／相対インポート</li>
+        <li>sys.path.append で対象ファイルのパスを追加</li>
+        <li>環境変数 PYTHONPATH を設定</li>
+        <li>.pthファイルを作成</li>
+      </ul>
+
+      <br>
+      <h4 class="title">絶対インポート／相対インポート</h4>
+      <p>
+        呼び出したいモジュールの相対パスを指定して import する方法。<br>
+        例：以下のような階層構造の場合。<br>
+
+        <div class="codetitle">階層構造</div>
+        <div class="code">
+          .<br>
+          ├── main.py<br>
+          └── lib<br>
+          　　　├── liba<br>
+          　　　│　　　└── lib_a.py<br>
+          　　　└── libb<br>
+          　　　　　　　└── lib_b.py<br>
+        </div>
+      </p>
+
+      <br>
+      <h5 class="title">絶対インポート</h5>
+      <p style="padding-left: 2.5em;">
+        main.py から lib_a.py を import したい。<br>
+        <div class="codetitle">main.py</div>
+        <div class="code">
+          from lib.liba.lib_a import aaa<br>
+          aaa.funcA()<br>
+        </div>
+      </p>
+
+      <h5 class="title">相対インポート</h5>
+      <p style="padding-left: 2.5em;">
+        lib_a から、一つ上の階層にある libb を指定したい<br>
+        <div class="codetitle">lib_a.py</div>
+        <div class="code">
+          ..libb.lib_b import bbb<br>
+          bbb.funcB()<br>
+        </div>
+      </p>
+
+      <br>
+      <h4 class="title">sys.path.append で対象ファイルのパスを追加</h4>
+      <p>
         python が import したモジュールを検索するパスは、標準ライブラリのsysモジュールのsys.pathに格納されている。<br>
         sys.path は sys.path.append([対象パスの文字列]) で追加できるので、 import 前にこれを実行すれば別ディレクトリでも import 可能。<br>
         sys.path.append('lib.liba.lib_a')<br>
         from lib_a import aaa<br>
         sys.path.append('..libb.lib_b')<br>
         from lib_b import bbb<br>
+      </p>
 
-        <br>
-        <h4 class="title">環境変数 PYTHONPATH を設定</h4>
+      <br>
+      <h4 class="title">環境変数 PYTHONPATH を設定</h4>
+      <p>
         環境変数 PYTHONPATH に読み込んでほしいモジュールのパスを追加すると読み込んでくれるようになる。<br>
+      </p>
 
-        <br>
-        <h4 class="title">.pthファイルを作成</h4>
+      <br>
+      <h4 class="title">.pthファイルを作成</h4>
+      <p>
         site-packages .pthファイルを作成してそこに対象モジュールのパスを書くと読み込んでくれる。<br>
-
-        <br><br>
-        参考
-        <ul>
-          <li><a href="https://docs.python.org/ja/3/using/cmdline.html?highlight=pythonpath#envvar-PYTHONPATH" target="_blank">1. コマンドラインと環境 1.2. 環境変数</a></li>
-          <li><a href="https://ja.stackoverflow.com/questions/12174/pythonpath%E3%81%A8%E3%81%AF" target="_blank">PYTHONPATHとは</a></li>
-          <li><a href="https://note.com/data_crazy/n/n9a53770ccd04" target="_blank">Pythonプログラムを外部から呼び出す方法</a></li>
-          <li><a href="https://note.nkmk.me/python-import-module-search-path/" target="_blank">Pythonでimportの対象ディレクトリのパスを確認・追加（sys.pathなど）Pythonでimportの対象ディレクトリのパスを確認・追加（sys.pathなど）</a></li>
-          <li><a href="https://teratail.com/questions/65319" target="_blank">Pythonで他のディレクトリからプログラムをimportするやり方</a></li>
-          <li><a href="https://ja.stackoverflow.com/questions/39007/python%E3%81%A7import%E4%BB%95%E7%B5%84%E3%81%BF%E3%81%8C%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E3%81%A7%E3%81%99-%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%82%E5%87%BA%E3%81%BE%E3%81%99importerror-no-module-named-config" target="_blank">Pythonでimport仕組みがよくわからないです。エラーも出ますImportError: No module named 'config'</a></li>
-          <li><a href="https://lightgauge.net/language/python/add-module-path" target="_blank">Pythonで独自モジュールのディレクトリパスを通す方法</a></li>
-          <li><a href="https://qiita.com/papi_tokei/items/bc34d798dc7a6d49df30" target="_blank">Pythonインポート周り徹底理解への道Pythonインポート周り徹底理解への道</a></li>
-        </ul>
-
       </p>
 
       <br><br>
-    </section><!-- section class="box" -->
+      参考
+      <ul>
+        <li><a href="https://docs.python.org/ja/3/using/cmdline.html?highlight=pythonpath#envvar-PYTHONPATH" target="_blank">1. コマンドラインと環境 1.2. 環境変数</a></li>
+        <li><a href="https://ja.stackoverflow.com/questions/12174/pythonpath%E3%81%A8%E3%81%AF" target="_blank">PYTHONPATHとは</a></li>
+        <li><a href="https://note.com/data_crazy/n/n9a53770ccd04" target="_blank">Pythonプログラムを外部から呼び出す方法</a></li>
+        <li><a href="https://note.nkmk.me/python-import-module-search-path/" target="_blank">Pythonでimportの対象ディレクトリのパスを確認・追加（sys.pathなど）Pythonでimportの対象ディレクトリのパスを確認・追加（sys.pathなど）</a></li>
+        <li><a href="https://teratail.com/questions/65319" target="_blank">Pythonで他のディレクトリからプログラムをimportするやり方</a></li>
+        <li><a href="https://ja.stackoverflow.com/questions/39007/python%E3%81%A7import%E4%BB%95%E7%B5%84%E3%81%BF%E3%81%8C%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%89%E3%81%AA%E3%81%84%E3%81%A7%E3%81%99-%E3%82%A8%E3%83%A9%E3%83%BC%E3%82%82%E5%87%BA%E3%81%BE%E3%81%99importerror-no-module-named-config" target="_blank">Pythonでimport仕組みがよくわからないです。エラーも出ますImportError: No module named 'config'</a></li>
+        <li><a href="https://lightgauge.net/language/python/add-module-path" target="_blank">Pythonで独自モジュールのディレクトリパスを通す方法</a></li>
+        <li><a href="https://qiita.com/papi_tokei/items/bc34d798dc7a6d49df30" target="_blank">Pythonインポート周り徹底理解への道Pythonインポート周り徹底理解への道</a></li>
+      </ul>
+
+      <br><br>
+      </section><!-- section class="box" -->
 
     <footer>
       <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
