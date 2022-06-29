@@ -161,8 +161,8 @@
       アーキテクチャーの違い。<br>
       python で pyinstaller を使って軽量なコンテナイメージを作ろうとした際、最初は Alpine を使おうとしていた（コンテナ化したのは Go が先で Go は Alpine を使っていたから）。<br>
       コンテナに乗せる前に python のコードを build する必要があるが、 python が入っていないと build できないため、 GitLab のパイプラインで使用するイメージは python:3.10 を使って、出来上がった成果物を alpine で動かそうとしていた。<br>
-      <a href="https://hub.docker.com/_/python" target="_blank">python:3.10 は debian系統</a>なので、そこで生成した成果物を Alpine で動かそうとしても動かない。<br>
-      python:<version>-alpine のイメージもあるが、debian も使ってみたかったので、ベースイメージを Alpine から debian に変更することでうまく動くようになった。<br>
+      <a href="https://hub.docker.com/_/python" target="_blank">python:3.10 は debian形式</a>なので、そこで生成した成果物を Alpine で動かそうとしても動かない。<br>
+      python:&ltversion&gt-alpine のイメージもあるが、debian も使ってみたかったので、ベースイメージを Alpine から debian に変更することでうまく動くようになった。<br>
 
     <font color="yellow">パイプライン自体は割とすんなり動いたけど一つ一つのコマンドの理解が追い付いていない部分があるので後日ちゃんと追いたい</font>
 

@@ -168,7 +168,7 @@
         <br>
         python にも <a href="https://pyinstaller.org/en/stable/" target="_blank">PyInstaller</a> というモノがあり、これを使えばバイナリ化することは可能。しかし Go build と違って PyInstaller は python の標準機能ではない。また、クロスコンパイルはできない（これをちゃんと理解していなかったので自動リリース機能構築の際にはまった）。<br>
         PyInstaller を使ってバイナリファイルを生成し、実行環境を python:3.10 から debian:11.3 に変更（※）した結果、イメージのサイズは 1.59GB から 63.4MB に減少。<br>
-        ※ alpine を使えばもっと軽量化できたと思います。 debian にしたのには深い意味はありません。違う系統のモノにした方が勉強になることがあるかも？と思った程度です。<br>
+        ※ alpine を使えばもっと軽量化できたと思います。 debian にしたのには深い意味はありません。違う形式のモノにした方が勉強になることがあるかも？と思った程度です。<br>
       </p>
 
       参考<br>
@@ -358,8 +358,9 @@
         RUN apt-get update && apt-get upgrade -y<br>
         RUN apt-get install -y libgl1-mesa-dev<br>
       </div>
-      <font color="yellow">libgl1-mesa-dev が何者なのか等々もうちょっと深堀したい。</font>
+      <font color="yellow">libgl1-mesa-dev が何者なのか等々もうちょっと深堀したい。</font><br>
 
+      <br>
       参考<br>
       <ul>
         <li><a href="https://qiita.com/sky11fur/items/1aa385251030a09830a3" target="_blank">Cannot import cv2 module.</a></li>
