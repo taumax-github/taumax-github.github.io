@@ -280,15 +280,97 @@
 
       <br><br>
       <h4 class="title">コンテナからホストのDBにアクセス</h4>
-      <h4 class="title">設定の外部ファイル化(json, .env)</h4>
-      <h4 class="title">none root</h4>
-      <h4 class="title">突然timezoneがUTCになってbotの稼働時間が9時間ずれた話</h4>
-      <h4 class="title">firewallの設定変えたような</h4>
-      <h4 class="title">PythonでOpenCVを使用する場合に必要なライブラリをinstall</h4>
-      <h4 class="title">DockerfileにENTRYPOINT</h4>
+      <img src="img/postgres_access.png" width="300"><br>
+      コンテナから postgres にアクセスしようとすると以下のエラーが発生して接続できない<br>
+      <div class="code">
+          Traceback (most recent call last):<br>
+          File "/pythonscheduler.py", line 27, in <module><br>
+            schedule.run_pending()<br>
+          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 780, in run_pending<br>
+            default_scheduler.run_pending()<br>
+          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 100, in run_pending<br>
+            self._run_job(job)<br>
+          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 172, in _run_job<br>
+            ret = job.run()<br>
+          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 661, in run<br>
+            ret = self.job_func()<br>
+          File "/account_info/record_account_info.py", line 16, in recordAccInfo<br>
+            conn = psycopg2.connect(<br>
+          File "/usr/local/lib/python3.10/site-packages/psycopg2/__init__.py", line 122, in connect<br>
+            conn = _connect(dsn, connection_factory=connection_factory, **kwasync)<br>
+        psycopg2.OperationalError: could not connect to server: Connection refused<br>
+                Is the server running on host "localhost" (127.0.0.1) and accepting<br>
+                TCP/IP connections on port 5432?<br>
+        could not connect to server: Network is unreachable<br>
+                Is the server running on host "localhost" (::1) and accepting<br>
+                TCP/IP connections on port 5432?<br>
+      </div>
 
-      <p>
-      </p>
+      <br><br>
+      postgres には 「pg_hba.conf」 というファイルがあり、アクセス可能な ipアドレスのリストが書かれている。ここに<br>
+      <div class="code">
+        # host    all             all             127.0.0.1/32            trust<br>
+        host    all             all             0.0.0.0/0            trust<br>
+      </div>
+
+      <br>
+      また、「postgresql.conf」の listen_addresses を「'localhost'」から「'*'」に変更<br>
+      <div class="code">
+        listen_addresses = '*'		# what IP address(es) to listen on;
+        # comma-separated list of addresses;
+        # defaults to 'localhost'; use '*' for all
+        # (change requires restart)
+        #port = 5432				# (change requires restart)
+        max_connections = 100			# (change requires restart)
+      </div>
+      元々 localhost からのアクセスのみを許可していたが、どこからでもアクセスできるようにした<font color="yellow">（雑すぎひん？）</font><br>
+
+      この後 postgres を再起動したらOK<br>
+      <div class="code">
+        systemctl restart postgresql-9.5.service<br>
+        systemctl status postgresql-9.5.service<br>
+      </div>
+
+      参考<br>
+      <ul>
+        <li><a href="https://gist.github.com/toenobu/5026188d73b69046248c8792962a7b22" target="_blank">Dockerコンテナのアプリからhost側にあるPostgresqlに接続したい</a></li>
+        <li><a href="https://qiita.com/Blue2012/items/6f13b0b1e7341bc19c4a" target="_blank">DockerコンテナからホストのPostgreSQL DBにアクセスする</a></li>
+      </ul>
+
+      <br><br>
+      <h4 class="title">PythonでOpenCVを使用する場合に必要なライブラリをinstall</h4>
+      コンテナ起動時に以下のエラーが発生<br>
+      <div class="code">
+        Traceback (most recent call last):
+        File "/pythonscheduler.py", line 3, in <module>
+          from ikusei_charas import ikuseiCharas
+        File "/ikusei_charas/ikuseiCharas.py", line 7, in <module>
+          import cv2
+        File "/usr/local/lib/python3.10/site-packages/cv2/__init__.py", line 8, in <module>
+          from .cv2 import *
+        ImportError: libGL.so.1: cannot open shared object file: No such file or directory
+      </div>
+
+      OpenCV を動かすにあたって必要なモジュール (libgl1-mesa-dev) が入っていないらしい（<a href="https://qiita.com/sky11fur/items/1aa385251030a09830a3" target="_blank">参考記事</a>）。<br>
+      <br>
+      Dockerfile に以下記述追加<br>
+      <div class="code">
+        RUN apt-get update && apt-get upgrade -y<br>
+        RUN apt-get install -y libgl1-mesa-dev<br>
+      </div>
+      <font color="yellow">libgl1-mesa-dev が何者なのか等々もうちょっと深堀したい。</font>
+
+      参考<br>
+      <ul>
+        <li><a href="https://qiita.com/sky11fur/items/1aa385251030a09830a3" target="_blank">Cannot import cv2 module.</a></li>
+        <li><a href="https://agency-star.co.jp/column/opengl" target="_blank">OpenGLとは？OpenGLの基礎をわかりやすく解説！OpenGLのメリットは？導入手順とバージョン確認の方法も確認</a></li>
+        <li><a href="https://cocoinit23.com/docker-opencv-importerror-libgl-so-1-cannot-open-shared-object-file/" target="_blank">DockerのOpenCVでImportError: libGL.so.1: cannot open shared object file</a></li>
+        <li><a href="https://packages.debian.org/ja/stretch/libgl1-mesa-dev" target="_blank">free implementation of the OpenGL API -- GLX development files</a></li>
+      </ul>
+
+      <br><br>
+      <h4 class="title">non root</h4>
+
       </section><!-- section class="box" -->
 
     <footer>
