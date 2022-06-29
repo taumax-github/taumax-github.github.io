@@ -154,23 +154,63 @@
       <div id="whatilearn"></div>
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
       <h4 class="title">python のbot を詰め込んだ Docker が起動しない</h4>
-      発生したエラー
+      <p>
+        発生したエラー
+      </p>
       <div class="code">
         standard_init_linux.go:228: exec user process caused: no such file or directory
       </div>
-      アーキテクチャーの違い。<br>
-      python で pyinstaller を使って軽量なコンテナイメージを作ろうとした際、最初は Alpine を使おうとしていた（コンテナ化したのは Go が先で Go は Alpine を使っていたから）。<br>
-      コンテナに乗せる前に python のコードを build する必要があるが、 python が入っていないと build できないため、 GitLab のパイプラインで使用するイメージは python:3.10 を使って、出来上がった成果物を alpine で動かそうとしていた。<br>
-      <a href="https://hub.docker.com/_/python" target="_blank">python:3.10 は debian形式</a>なので、そこで生成した成果物を Alpine で動かそうとしても動かない。<br>
-      python:&ltversion&gt-alpine のイメージもあるが、debian も使ってみたかったので、ベースイメージを Alpine から debian に変更することでうまく動くようになった。<br>
+      <p>
+        アーキテクチャーの違い。<br>
+        python で pyinstaller を使って軽量なコンテナイメージを作ろうとした際、最初は Alpine を使おうとしていた（コンテナ化したのは Go が先で Go は Alpine を使っていたから）。<br>
+        コンテナに乗せる前に python のコードを build する必要があるが、 python が入っていないと build できないため、 GitLab のパイプラインで使用するイメージは python:3.10 を使って、出来上がった成果物を alpine で動かそうとしていた。<br>
+        <a href="https://hub.docker.com/_/python" target="_blank">python:3.10 は debian形式</a>なので、そこで生成した成果物を Alpine で動かそうとしても動かない。<br>
+        python:&ltversion&gt-alpine のイメージもあるが、debian も使ってみたかったので、ベースイメージを Alpine から debian に変更することでうまく動くようになった。<br>
 
-    <font color="yellow">パイプライン自体は割とすんなり動いたけど一つ一つのコマンドの理解が追い付いていない部分があるので後日ちゃんと追いたい</font>
+        <font color="yellow">パイプライン自体は割とすんなり動いたけど一つ一つのコマンドの理解が追い付いていない部分があるので後日ちゃんと追いたい</font>
 
-      <br>
-      python<br>
-      <img src="img/stage_python.png" width="400"><br>
+        <br>
+        python<br>
+        <img src="img/stage_python.png" width="400"><br>
+      </p>
 
       <h4 class="title">設定の外部ファイル化(json, .env)</h4>
+      <p>
+        手動でリリースしていたのでパスワードとかコードに直書きしていたが、 GitLab で管理するなら外部ファイル化しないとまずいので対応<br>
+        twitter API の認証情報とか postgres の接続情報などを外部ファイル化した。 Go, python 共通で使うものなので json で保存。 postgres の接続情報は Java でも使っているが、既に property ファイル化していたため、そこは property のままにしている（json にした方が良いかな・・・）<br>
+        json ファイルは手動で linux サーバに配置している。<br>
+        また、json ファイルの格納場所はローカルと linux で異なるので、格納場所を環境変数で設定するようにした。<br>
+      </p>
+
+      <h5 class="title">Go で</h5>
+      <p style="padding-left: 2.5em;">
+        <a href="https://github.com/joho/godotenv" target="_blank">godotenv</a> というライブラリを使用している。 .env 形式のファイルを読み込んで環境変数を設定してくれるもの。<br>
+        .env ファイルの中はこんな感じ<br>
+      </p>
+      <div class="codetitle">.env</div>
+      <div class="code">
+        [環境変数名]="[設定値]"<br>
+        [環境変数名]="[設定値]"<br>
+      </div>
+
+      <br>
+      <div class="codetitle">Go のコード</div>
+      <div class="code">
+        godotenv.Load("[読み込みたい.envファイルのパス]")
+      </div>
+      <p style="padding-left: 2.5em;">
+        これで.env ファイルに記載している環境変数が設定される。<br>
+        「val := os.Getenv("[環境変数名]")」で環境変数に設定された値を取得できる。今回の場合はこれで json ファイルのフルパスが取得できるので、 os.ReadFile(val) で json を読み込むことができる。<br>
+        json の読み込みは Go の標準の 「encoding/json」の json.Unmarshal() でOK
+      </p>
+
+      <h5 class="title">python で</h5>
+      <p style="padding-left: 2.5em;">
+        <a href="https://pypi.org/project/python-dotenv/" target="_blank">python-dotenv</a> という外部ライブラリを使用。Go の godotenv と使い方は同じで、 .env ファイルを読み込んで環境変数を設定してくれる。<br>
+        os.getenv("[環境変数名]")) で環境変数を読み込めるので、　jsonFile = open(str(os.getenv("[環境変数名]")), "r", encoding="utf-8") でファイルを開き、 json.load(jsonFile) で json 読み込み。これは python の標準ライブラリ。<br>
+      </p>
+
+
       <h4 class="title">突然timezoneがUTCになってbotの稼働時間が9時間ずれた話</h4>
       <h4 class="title">firewallの設定変えたような</h4>
       </section><!-- section class="box" -->
