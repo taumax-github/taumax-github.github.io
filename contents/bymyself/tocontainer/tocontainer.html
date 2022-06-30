@@ -194,6 +194,55 @@
       </ul>
 
       <br><br>
+      <h4 class="title">python バイナリ化したらエラー</h4>
+      <p>
+        Pyinstaller でバイナリ化したらコンテナ起動時に以下エラー発生。<br>
+        <div class="code">
+          &lturlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)&gt<br>
+            Traceback (most recent call last):<br>
+              File "pythonscheduler.py", line 56, in &ltmodule&gt<br>
+              File "schedule/__init__.py", line 780, in run_pending<br>
+              File "schedule/__init__.py", line 100, in run_pending<br>
+              File "schedule/__init__.py", line 172, in _run_job<br>
+              File "schedule/__init__.py", line 661, in run<br>
+              File "regularly_check/dailyCheck.py", line 461, in dailyRemind<br>
+              File "regularly_check/dailyCheck.py", line 248, in tweetContentsControl<br>
+              File "regularly_check/dailyCheck.py", line 83, in event_info<br>
+              File "tweepy/api.py", line 3493, in media_upload<br>
+              File "imghdr.py", line 16, in what<br>
+            FileNotFoundError: [Errno 2] No such file or directory: 'regularly_check/img/events/jusei_btl.png'<br>
+            [7] Failed to execute script 'pythonscheduler' due to unhandled exception!<br>
+        </div>
+
+        <br>
+        <a href="https://end0tknr.hateblo.jp/entry/20210312/1615498434" target="_blank">このサイト</a>を参考に以下のコードを追加<br>
+        <div class="code">
+          import ssl<br>
+          ssl._create_default_https_context = ssl._create_unverified_context<br>
+        </div>
+
+        これで一応動くようにはなったけど、セキュリティ上はよくなさそう（<a href="https://shnsprk.com/entry/2015/12/06/100000" target="_blank">参考</a>）。<br>
+        アクセスしてるのは自分の GitHub と twitter なので大丈夫だとは思うが、以下の対応の方が良さそうなので今度試してみる（<a href="https://jorublog.site/program_error/python-pip-error/" target="_blank">参考</a>）。<br>
+        <div class="code">
+          pip install --upgrade pip<br>
+          pip install --upgrade certifi<br>
+        </div>
+
+        <br>
+        これでもダメなら以下。<br>
+        <div class="code">
+          pip install --upgrade requests<br>
+        </div>
+      </p>
+
+      参考<br>
+      <ul>
+        <li><a href="https://shnsprk.com/entry/2015/12/06/100000" target="_blank">SSL証明書が正しくないサイトに対してPythonでアクセスする</a></li>
+        <li><a href="https://jorublog.site/program_error/python-pip-error/" target="_blank">[python] Requestsモジュール使用時に”urlopen error [SSL: CERTIFICATE_VERIFY_FAILED]”となるエラーの解決法</a></li>
+        <li><a href="https://qiita.com/SakaDKyo/items/89e80201843c681f6e87" target="_blank">【python3】python3系でurllibのエラーが出た時の対処</a></li>
+      </ul>
+
+      <br><br>
       <h4 class="title">apt？yum？？apk？？？</h4>
       <p>
         コンテナ化するにあたり、パッケージをインストールする際のコマンドが apt だったり yum だったり apk だったりして何が何だかわからず超混乱した。<br>
