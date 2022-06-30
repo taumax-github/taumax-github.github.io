@@ -400,17 +400,23 @@ header .icon_middle img {
 	margin-top: -5px;
 }
 
-.code {
+div .code {
+	margin: 0 0 0 1em;	/* 上右下左） */
+	padding: 0 0 0 2em; /* 上右下左） */
+	line-height: 1.5;
+	overflow: auto;
+	white-space: nowrap;
+	flex-wrap: nowrap;
 	background-color: #eee;
 	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);
-	padding: 2em;
 	color: #000;			/*文字色*/
 }
 
-.codetitle {
-	border-top: 0px solid #aaa;
+div .codetitle {
+	margin: 0 0 0 1em;	/* 上右下左） */
+	padding: 0 0 0 1em; /* 上右下左） */
+	border-top: 0px solid #fff;
 	background-color: #aaa;
-	padding: 0em;
 	color: #000;			/*文字色*/
 }
 
