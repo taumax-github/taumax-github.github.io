@@ -231,8 +231,25 @@
 
       <h4 class="title">crt, key, cer？</h4>
       ssl.confに以下を記載したけどなんだっけ？<br>
-      ・CSR：Certificate Signing Request　SSLサーバー証明書を発行するための証明書署名要求のこと<br>
-      この後さくらインターネットでSSLサーバ証明書の契約をしてhttps化していくが、その契約の際に必要。<br>
+      <div class="code">
+        SSLCertificateFile /etc/httpd/conf/ssl.crt/server.crt<br>
+        SSLCertificateKeyFile /etc/httpd/conf/ssl.key/server.key<br>
+        SSLCertificateChainFile /etc/httpd/conf/ssl.crt/internal.cer<br>
+        ServerName sagamax.cyou:443<br>
+      </div>
+
+      <font color="yellow">ServerName？？？</font><br>
+
+      <h4 class="title">server.key</h4>
+      まず server.key ですが、これは 以下のコマンドで生成した秘密鍵です。<br>
+      <div class="code">
+        openssl genrsa -des3 -out server.key 2048
+      </div>
+      この秘密鍵からCSRというものを生成し、CSRを認証局(CA)に提示することでSSLサーバ証明書を発行してもらいます。<br>
+      CSRとは「Certificate Signing Request」の略で、認証局に対し、SSLサーバ証明書への署名を申請するためのものです。CSR には「公開鍵」とその所有者情報、及び申請者が対応する秘密鍵を持っていることを示すために申請者の署名が記載されています。<br>
+      <a href="https://xtrust.jp/support/faq/faq08/a001/" target="_blank">↑この説明はここから引用</a><br>
+
+      CSR生成コマンドは以下<br>
       <div class="codetitle">
         openssl req -new -key ssl.key/server.key -out ssl.csr/server.csr<br>
       </div>
@@ -259,11 +276,12 @@
         An optional company name []:<br>
       </div>
 
-      <a href="https://ssl.sakura.ad.jp/?utm_source=vps&utm_medium=cp&_gl=1*k2y12d*_gcl_aw*R0NMLjE2NTY2NDIyMjQuQ2p3S0NBandrX1dWQmhCWkVpd0FVSFFDbVVlWlM5VDM3amJCeDloVlp1ZGdiT2Zjdmo1UTdxa0VWaXl0ZnF0Z2tWcktDeW80QVhsZjN4b0NSa2dRQXZEX0J3RQ..&_ga=2.78727837.806813287.1656562159-1386032874.1655857253&_gac=1.90852968.1656642224.CjwKCAjwk_WVBhBZEiwAUHQCmUeZS9T37jbBx9hVZudgbOfcvj5Q7qkEViytfqtgkVrKCyo4AXlf3xoCRkgQAvD_BwE" target="_blank">SSL証明書を購入</a>する。特にこだわりはないので一番安いやつにした。<br>
+      <br>
+      <a href="https://ssl.sakura.ad.jp/?utm_source=vps&utm_medium=cp&_gl=1*k2y12d*_gcl_aw*R0NMLjE2NTY2NDIyMjQuQ2p3S0NBandrX1dWQmhCWkVpd0FVSFFDbVVlWlM5VDM3amJCeDloVlp1ZGdiT2Zjdmo1UTdxa0VWaXl0ZnF0Z2tWcktDeW80QVhsZjN4b0NSa2dRQXZEX0J3RQ..&_ga=2.78727837.806813287.1656562159-1386032874.1655857253&_gac=1.90852968.1656642224.CjwKCAjwk_WVBhBZEiwAUHQCmUeZS9T37jbBx9hVZudgbOfcvj5Q7qkEViytfqtgkVrKCyo4AXlf3xoCRkgQAvD_BwE" target="_blank">リンク先でSSL証明書を申し込む</a>。特にこだわりはないので一番安いやつにした。<br>
 
       暫くすると利用開始までの手順が記載されたメールが届く。<br>
       <img src="img/process.png"><br>
-      さらに暫くすると認証ファイルのアップロードのお願いメールが届く。<br>
+      さらに暫くすると認証ファイルのアップロードのお願いメールが届く。認証ファイルは、対象のサーバーが存在するか（厳密にはドメインが存在するか）を認証局が確認するためのものです。<br>
       認証ファイルのアップロードの手順：<a href="https://help.sakura.ad.jp/ssl/2331/?article_anchor=js-nav-1" target="_blank">ファイル認証の手続きをしたい</a><br>
       管理画面から認証ファイル( xxx.txt )をダウンロードして、自分のサーバの所定のフォルダに認証ファイルを配置します。<br>
       <div class="code">
@@ -277,11 +295,27 @@
       <br>
       <img src="img/server.png"><br>
 
-      サーバにサーバー証明書と中間証明書を配置します。<br>
+      サーバにサーバー証明書(server.crt)と中間証明書(internal.cer)を配置します。<br>
+      中間証明書は、SSLサーバ証明書を発行する認証局が自身の正当性を証明するためのものです。<br>
       <div class="code">
         /etc/httpd/conf/ssl.crt/internal.cer<br>
         /etc/httpd/conf/ssl.crt/server.crt<br>
       </div>
+
+      <br>
+      中間証明<br>
+      <ul>
+        <li><a href="https://e-words.jp/w/%E4%B8%AD%E9%96%93CA.html" target="_blank">中間CA 【intermediate certificate authority】 中間認証局</a></li>
+        <li><a href="https://www.f5.com/ja_jp/services/resources/glossary/intermediate-certificate" target="_blank">中間証明書</a></li>
+        <li><a href="https://www.itra.co.jp/webmedia/points_of_ssl_ca_certification.html" target="_blank">中間証明書とは？SSL中間CA証明書の必要性やエラー・確認方法を紹介</a></li>
+        <li><a href="https://ssl.sakura.ad.jp/column/difference-in-ssl/" target="_blank">サーバー証明書／中間CA証明書／ルート証明書の違いとは？</a></li>
+      </ul>
+      CSR<br>
+      <ul>
+        <li><a href="https://xtrust.jp/support/faq/faq08/a001/" target="_blank">申込時に用意しなくてはいけないCSRファイルとは何でしょうか？</a></li>
+      </ul>
+
+      <br>
       /etc/httpd/conf.d/ssl.confにもSSLCertificateFile, SSLCertificateKeyFile, SSLCertificateChainFile と ServerName を設定。<br>
       <div class="code">
         SSLCertificateFile /etc/httpd/conf/ssl.crt/server.crt<br>
@@ -289,6 +323,8 @@
         SSLCertificateChainFile /etc/httpd/conf/ssl.crt/internal.cer<br>
         ServerName sagamax.cyou:443<br>
       </div>
+
+      <font color="yellow">ServerName？？？ドメイン認証型？？？</font>
 
       <br><br>
       ログも出力されるようになった。<br>
@@ -302,7 +338,51 @@
 
       <br>
       <img src="img/https_connection.png"><br>
-      
+      図はネスペの剣から作成<br>
+      「共通鍵の元になるデータの送信」は、共通鍵を生成するためのもの。共通鍵そのものを送るのではなく、共通鍵を生成するための元ネタを送ることで鍵漏洩のリスクを軽減するためのもので、 DH（Diffie-Hellman）法というやり方で共通鍵を生成する。DH法のアルゴリズム自体はややこしいので省略するが、ざっくり言うと、クライアントとサーバがそれぞれ生成した別々の乱数をお互いに送り、それをもとに共通の値を生成してそれを共通鍵暗号方式の鍵として使用する方式のこと。<br>
+      デジタル署名の技術を使って公開鍵を共有する。<br>
+
+      クライアント認証はオプションです。/etc/httpd/conf.d/ssl.conf は以下の通りデフォルトはコメントアウトされているので、自分で設定を変えない限りクライアント認証は実施されません。<br>
+      <div class="code">
+        #   Client Authentication (Type):<br>
+        #   Client certificate verification type and depth.  Types are<br>
+        #   none, optional, require and optional_no_ca.  Depth is a<br>
+        #   number which specifies how deeply to verify the certificate<br>
+        #   issuer chain before deciding the certificate is not valid.<br>
+        #SSLVerifyClient require<br>
+        #SSLVerifyDepth  10<br>
+      </div>
+
+      <br>
+      参考<br>
+      デジタル署名<br>
+      <ul>
+        <li><a href="https://biz.moneyforward.com/contract/basic/799/" target="_blank">デジタル署名とは？仕組みからわかりやすく解説</a></li>
+        <li><a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.digicert.co.jp/welcome/pdf/wp_ssl_negotiation.pdf" target="_blank">SSL を理解するための基礎ネゴシエーション</a></li>
+      </ul>
+      DH法<br>
+      <ul>
+        <li><a href="https://it-trend.jp/encryption/article/64-0055" target="_blank">DH（Diffie-Hellman）法とは？仕組みや問題点をわかりやすく解説！</a></li>
+        <li><a href="https://ja.wikipedia.org/wiki/%E3%83%87%E3%82%A3%E3%83%95%E3%82%A3%E3%83%BC%E3%83%BB%E3%83%98%E3%83%AB%E3%83%9E%E3%83%B3%E9%8D%B5%E5%85%B1%E6%9C%89" target="_blank">ディフィー・ヘルマン鍵共有</a></li>
+      </ul>
+      クライアント認証<br>
+      <ul>
+        <li><a href="https://nanbu.marune205.net/2021/12/apache2-client-cert-setting.html" target="_blank">Apache2 Webサーバでクライアント認証</a></li>
+        <li><a href="https://milestone-of-se.nesuke.com/nw-basic/tls/https-structure/" target="_blank">【図解】https(SSL/TLS)の仕組みとシーケンス,パケット構造 〜暗号化の範囲, Encrypted Alert, ヘッダやレイヤについて～</a></li>
+      </ul>
+      SSL通信のシーケンス<br>
+      <ul>
+        <li><a href="https://milestone-of-se.nesuke.com/sv-advanced/digicert/client-cert/" target="_blank">【図解】クライアント証明書(https,eap-tls)の仕組み ~シーケンス,クライアント認証,メリット~</a></li>
+        <li><a href="https://milestone-of-se.nesuke.com/nw-basic/tls/https-structure/" target="_blank">【図解】https(SSL/TLS)の仕組みとシーケンス,パケット構造 〜暗号化の範囲, Encrypted Alert, ヘッダやレイヤについて～</a></li>
+        <li><a href="https://www.purpledice.jp/apache%E3%81%AEhttps%E5%8C%96http-over-ssl-tls/" target="_blank">Apache|秘密鍵や公開鍵を生成しHTTPSを有効化</a></li>
+        <li><a href="https://milestone-of-se.nesuke.com/sv-advanced/digicert/public-private-key/" target="_blank">【図解】公開鍵・秘密鍵の仕組みを分かりやすく ～公開鍵暗号方式の身近で具体的な利用例やメリット～</a></li>
+        <li><a href="https://atmarkit.itmedia.co.jp/ait/articles/1704/13/news030.html" target="_blank">第2回　HTTPSの詳細</a></li>
+        <li><a href="https://medicalfields.jp/blog/apache/ssl%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%BD%A2%E5%BC%8F%E3%81%A8%E4%BD%9C%E6%88%90%E6%96%B9%E6%B3%95%E3%81%BE%E3%81%A8%E3%82%81/" target="_blank">SSL証明書のファイル形式と作成方法まとめ</a></li>
+        <li><a href="https://qiita.com/kunichiko/items/12cbccaadcbf41c72735" target="_blank">RSA鍵、証明書のファイルフォーマットについて</a></li>
+        <li><a href="https://www.ssl-concier.com/news/topics/164" target="_blank">【用語明解】証明書の申請で登場する各種ファイルの見分け方</a></li>
+        <li><a href="https://tooljp.com/windows/chigai/html/Cipher/PEM-CRT-CER-CERT-KEY-DER-CSR.html" target="_blank">RSA における拡張子の違い | PEM, CRT, CER, CERT, KEY, DER, CSR</a></li>
+        <li><a href="https://rms.ne.jp/sslserver/install/certificate-installation-apache-html/" target="_blank">Apache confファイルと証明書インストール</a></li>
+      </ul>
 
       <br>
       参考<br>
