@@ -218,13 +218,91 @@
       443 portを複数プロセスがlistenしていると起きるみたい。<br>
       /etc/httpd/conf.d/ssl.confに「Listen 443 https」とあるのでssl.confをどかしてみた。<br>
       ・・・が、うまく動かず、最終的には、ssl.confの「Listen 443 https」を復活させ、「vhost.conf」を消した。<br>
-      ssl.confにもSSLCertificateFile, SSLCertificateKeyFile, SSLCertificateChainFile と ServerName を設定。<br>
-      ・SSLCertificateFile /etc/httpd/conf/ssl.crt/server.crt<br>
-      ・SSLCertificateKeyFile /etc/httpd/conf/ssl.key/server.key<br>
-      ・SSLCertificateChainFile /etc/httpd/conf/ssl.crt/internal.cer<br>
-      ・ServerName sagamax.cyou:443<br>
-      
+
+      <h4 class="title">ApacheのVirtualHost</h4>
+      1台のサーバーで複数のドメインを管理する技術（<a href="https://qiita.com/monaky/items/b5f589e59ee002a1d355" target="_blank">参考</a>）<br>
+      　⇒そんなことがしたいわけではないので vhost.conf を消したのは正解。<br>
+      <img src="img/conf.png"><br>
+      httpd.conf （apache が読み込む設定ファイル）に「IncludeOptional conf.d/*.conf」を（たぶん自分で昔）追記している。conf.d 配下には複数ファイルがおいてあり、その中に ssl.conf と vhost.conf の両方が置いてあったため、apache起動時は両方の設定が読み込まれる。<br>
+      両方のファイルでListen 443としていたので、「(98)Address already in use: AH00072: make_sock: could not bind to address 0.0.0.0:443」というエラーが吐かれていて、vhost.confを消したことで解消された。<br>
+      vhost.conf は<a href="https://qiita.com/yoshizaki_91/items/e6f39a5bfb99900b44b2" target="_blank">この記事</a>を見て作成したものだったが理解しないまま作ったので混乱していた。<br>
+
+
+
+      <h4 class="title">crt, key, cer？</h4>
+      ssl.confに以下を記載したけどなんだっけ？<br>
+      ・CSR：Certificate Signing Request　SSLサーバー証明書を発行するための証明書署名要求のこと<br>
+      この後さくらインターネットでSSLサーバ証明書の契約をしてhttps化していくが、その契約の際に必要。<br>
+      <div class="codetitle">
+        openssl req -new -key ssl.key/server.key -out ssl.csr/server.csr<br>
+      </div>
+      <div class="code">
+        Enter pass phrase for ssl.key/server.key:<br>
+        You are about to be asked to enter information that will be incorporated<br>
+        into your certificate request.<br>
+        What you are about to enter is what is called a Distinguished Name or a DN.<br>
+        There are quite a few fields but you can leave some blank<br>
+        For some fields there will be a default value,<br>
+        If you enter '.', the field will be left blank.<br>
+        -----<br>
+        Country Name (2 letter code) [XX]:JP<br>
+        State or Province Name (full name) []:Tokyo<br>
+        Locality Name (eg, city) [Default City]:Adachi-ku<br>
+        Organization Name (eg, company) [Default Company Ltd]:sagamax<br>
+        Organizational Unit Name (eg, section) []:<br>
+        Common Name (eg, your name or your server's hostname) []:sagamax.cyou<br>
+        Email Address []:flo_pekoe_psyche@yahoo.co.jp<br>
+        
+        Please enter the following 'extra' attributes<br>
+        to be sent with your certificate request<br>
+        A challenge password []:<br>
+        An optional company name []:<br>
+      </div>
+
+      <a href="https://ssl.sakura.ad.jp/?utm_source=vps&utm_medium=cp&_gl=1*k2y12d*_gcl_aw*R0NMLjE2NTY2NDIyMjQuQ2p3S0NBandrX1dWQmhCWkVpd0FVSFFDbVVlWlM5VDM3amJCeDloVlp1ZGdiT2Zjdmo1UTdxa0VWaXl0ZnF0Z2tWcktDeW80QVhsZjN4b0NSa2dRQXZEX0J3RQ..&_ga=2.78727837.806813287.1656562159-1386032874.1655857253&_gac=1.90852968.1656642224.CjwKCAjwk_WVBhBZEiwAUHQCmUeZS9T37jbBx9hVZudgbOfcvj5Q7qkEViytfqtgkVrKCyo4AXlf3xoCRkgQAvD_BwE" target="_blank">SSL証明書を購入</a>する。特にこだわりはないので一番安いやつにした。<br>
+
+      暫くすると利用開始までの手順が記載されたメールが届く。<br>
+      <img src="img/process.png"><br>
+      さらに暫くすると認証ファイルのアップロードのお願いメールが届く。<br>
+      認証ファイルのアップロードの手順：<a href="https://help.sakura.ad.jp/ssl/2331/?article_anchor=js-nav-1" target="_blank">ファイル認証の手続きをしたい</a><br>
+      管理画面から認証ファイル( xxx.txt )をダウンロードして、自分のサーバの所定のフォルダに認証ファイルを配置します。<br>
+      <div class="code">
+        /var/www/html/.well-known/pki-validation/xxx.txt
+      </div>
+      「/var/www/html/」は DocumentRoot で、apacheのデフォルトはここです。httpd.conf に記載されています。<br>
+      http://example.com/.well-known/pki-validation/xxx.txt にアクセスして認証ファイルが見れることを確認したら暫く待ちます。<br>
+      無事認証されたら「SSLサーバ証明書発行のお知らせ」というメールが届き、サーバ証明書(server.srt)がダウンロードできるようになります（サーバが存在するかを確認するため数分時間がかかる私の場合は30分ぐらいでした）。<br>
+      <img src="img/dl_sert.png"><br>
+
+      <br>
+      <img src="img/server.png"><br>
+
+      サーバにサーバー証明書と中間証明書を配置します。<br>
+      <div class="code">
+        /etc/httpd/conf/ssl.crt/internal.cer<br>
+        /etc/httpd/conf/ssl.crt/server.crt<br>
+      </div>
+      /etc/httpd/conf.d/ssl.confにもSSLCertificateFile, SSLCertificateKeyFile, SSLCertificateChainFile と ServerName を設定。<br>
+      <div class="code">
+        SSLCertificateFile /etc/httpd/conf/ssl.crt/server.crt<br>
+        SSLCertificateKeyFile /etc/httpd/conf/ssl.key/server.key<br>
+        SSLCertificateChainFile /etc/httpd/conf/ssl.crt/internal.cer<br>
+        ServerName sagamax.cyou:443<br>
+      </div>
+
+      <br><br>
       ログも出力されるようになった。<br>
+      httpd再起動<br>
+      <div class="code">
+        service httpd restart
+      </div>
+
+      <br><br>
+      <img src="img/regist_ssl.png"><br>
+
+      <br>
+      <img src="img/https_connection.png"><br>
+      
 
       <br>
       参考<br>
