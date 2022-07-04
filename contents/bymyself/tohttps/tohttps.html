@@ -239,6 +239,7 @@
       </div>
 
       <font color="yellow">ServerName？？？</font><br>
+      　⇒<a href="http://adminweb.s25.xrea.com/apache/ini/index3.html" target="_blank">サーバ名とポート番号(ServerName, Listen)</a>
 
       <h4 class="title">server.key</h4>
       まず server.key ですが、これは 以下のコマンドで生成した秘密鍵です。<br>
@@ -313,6 +314,9 @@
       CSR<br>
       <ul>
         <li><a href="https://xtrust.jp/support/faq/faq08/a001/" target="_blank">申込時に用意しなくてはいけないCSRファイルとは何でしょうか？</a></li>
+        <li><a href="https://knowledge.digicert.com/ja/jp/solution/SOT0026.html" target="_blank">[CertCentral]CSR生成について</a></li>
+        <li><a href="https://jp.globalsign.com/support/cert-management/distinguish-name.html" target="_blank">ディスティングイッシュネームとは何ですか</a></li>
+        <li><a href="https://jp.globalsign.com/support/ssl/certificates/about-csr.html" target="_blank">CSRについて教えてください</a></li>
       </ul>
 
       <br>
@@ -324,10 +328,15 @@
         ServerName sagamax.cyou:443<br>
       </div>
 
-      <font color="yellow">ServerName？？？ドメイン認証型？？？</font>
+      <font color="yellow">ServerName？？？ドメイン認証型？？？</font><br>
+      　⇒<a href="https://qeee.jp/magazine/articles/4900" target="_blank">ここがわかりやすい</a><br>
+      　⇒<a href="https://jp.globalsign.com/ssl/about/" target="_blank">ここもまあ</a><br>
 
       <br><br>
-      ログも出力されるようになった。<br>
+      ブラウザの鍵マークからキーチェーンを確認できる。<br>
+      <img src="img/key_chain.png"><br>
+
+      <br><br>
       httpd再起動<br>
       <div class="code">
         service httpd restart
@@ -353,12 +362,23 @@
         #SSLVerifyDepth  10<br>
       </div>
 
+      <br><br>
+      認証局のデジタル署名付きの公開鍵を公開鍵証明書といい、「証明書」という単語が出てきたら大抵がこの公開鍵証明書を指します。<br>
+      <a href="https://microsoftou.com/role-of-ca/" target="_blank">ここから引用</a><br>
+
+      <br><br>
+      認証局が発行する「ルート証明書」は、パソコンやスマートフォンなどの端末内に保存されており、サーバーから送られてくる証明書（サーバー証明書と中間CA証明書）が、ルート証明書に関連付けられた証明書（認証局が発行した証明書）であるかを検証します。<br>
+      <a href="https://ssl.sakura.ad.jp/column/ssl/" target="_blank">ここから引用</a>
+
       <br>
       参考<br>
       デジタル署名<br>
       <ul>
         <li><a href="https://biz.moneyforward.com/contract/basic/799/" target="_blank">デジタル署名とは？仕組みからわかりやすく解説</a></li>
         <li><a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.digicert.co.jp/welcome/pdf/wp_ssl_negotiation.pdf" target="_blank">SSL を理解するための基礎ネゴシエーション</a></li>
+        <li><a href="https://microsoftou.com/role-of-ca/" target="_blank">認証局（CA）の役割　～PKI基礎②～</a></li>
+        <li><a href="https://www.gleas.jp/news/column/certificate-chain/#:~:text=%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3%E3%81%A8%E3%81%AF%E3%80%81%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%80%81%E3%82%B5%E3%83%BC%E3%83%90%E3%81%AA%E3%81%A9%E3%81%AE%E8%A8%BC%E6%98%8E,%E3%81%8C%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3%E3%81%A7%E3%81%99%E3%80%82" target="_blank">証明書チェーンとは</a></li>
+        <li><a href="https://ssl.sakura.ad.jp/column/difference-in-ssl/" target="_blank">サーバー証明書／中間CA証明書／ルート証明書の違いとは？</a></li>
       </ul>
       DH法<br>
       <ul>
@@ -369,6 +389,17 @@
       <ul>
         <li><a href="https://nanbu.marune205.net/2021/12/apache2-client-cert-setting.html" target="_blank">Apache2 Webサーバでクライアント認証</a></li>
         <li><a href="https://milestone-of-se.nesuke.com/nw-basic/tls/https-structure/" target="_blank">【図解】https(SSL/TLS)の仕組みとシーケンス,パケット構造 〜暗号化の範囲, Encrypted Alert, ヘッダやレイヤについて～</a></li>
+      </ul>
+      デジタル署名<br>
+      <ul>
+        <li><a href="https://www.ipa.go.jp/security/pki/024.html" target="_blank">2.4  デジタル署名</a></li>
+        <li><a href="https://it-trend.jp/electronic-signature/article/263-109" target="_blank">電子署名とデジタル署名の違いとは？仕組みや役割など詳しく解説！</a></li>
+        <li><a href="https://www.itra.co.jp/webmedia/points_of_ssl_ca_certification.html" target="_blank">中間証明書とは？SSL中間CA証明書の必要性やエラー・確認方法を紹介</a></li>
+        <li><a href="https://qeee.jp/magazine/articles/4900" target="_blank">【比較8選】SSL証明書の選び方とおすすめ証明書を徹底解説！</a></li>
+        <li><a href="https://jp.globalsign.com/ssl/about/" target="_blank">SSLサーバ証明書の種類</a></li>
+        <li><a href="https://rms.ne.jp/sslserver/description/publickeycryptography/" target="_blank">公開鍵暗号</a></li>
+        <li><a href="https://www.infraexpert.com/study/sslserver1.html" target="_blank">SSLサーバ証明書とは</a></li>
+        <li><a href="https://qiita.com/kunichiko/items/12cbccaadcbf41c72735" target="_blank">RSA鍵、証明書のファイルフォーマットについて</a></li>
       </ul>
       SSL通信のシーケンス<br>
       <ul>
@@ -382,6 +413,7 @@
         <li><a href="https://www.ssl-concier.com/news/topics/164" target="_blank">【用語明解】証明書の申請で登場する各種ファイルの見分け方</a></li>
         <li><a href="https://tooljp.com/windows/chigai/html/Cipher/PEM-CRT-CER-CERT-KEY-DER-CSR.html" target="_blank">RSA における拡張子の違い | PEM, CRT, CER, CERT, KEY, DER, CSR</a></li>
         <li><a href="https://rms.ne.jp/sslserver/install/certificate-installation-apache-html/" target="_blank">Apache confファイルと証明書インストール</a></li>
+        <li><a href="https://ssl.sakura.ad.jp/column/ssl/" target="_blank">SSLって何？意味や仕組みをわかりやすく解説！</a></li>
       </ul>
 
       <br>
