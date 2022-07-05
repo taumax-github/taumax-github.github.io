@@ -209,6 +209,62 @@
         os.getenv("[環境変数名]")) で環境変数を読み込めるので、　jsonFile = open(str(os.getenv("[環境変数名]")), "r", encoding="utf-8") でファイルを開き、 json.load(jsonFile) で json 読み込み。これは python の標準ライブラリ。<br>
       </p>
 
+      <br><br>
+      <h4 class="title">DOCKER_HOST: tcp://docker:2375って何？</h4>
+      <a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">参考</a>GitLab の CI/CD の中で dockerコマンドを実行するために Docker in Docker という技術を使っている。<br>
+      <img src="img/dind.png"><br>
+      DOCKER_HOST は docker デーモンの URL を指定します。Docker クライアントでは、デフォルトは unix:///var/run/docker.sock です。<br>
+      下記の構成を取った場合のserverのエンドポイントは（非SSLの場合）tcp://docker:2375 なので、DOCKER_HOST を tcp://docker:2375 とすることでServerに対してdockerコマンドを発行している。<br>
+      <img src="img/dind_pipeline.png"><br>
+
+      <br><br>
+      <h4 class="title">ssh 関係コマンド</h4>
+      <ul>
+        <li>eval "$(ssh-agent)"：ssh-agentの起動。<a href="https://qiita.com/Yarimizu14/items/6a4bab703d67ea766ddc" target="_blank">「ssh-agent bash」でも起動できる</a>がこれだと環境変数を設定する必要があって面倒らしい（<a href="https://www.server-memo.net/server-setting/ssh/ssh-agent.html" target="_blank">参考</a>）</li>
+        <li>ssh-add "$ID_RSA_DEPLOY"：秘密鍵をssh-agentに登録</li>
+        <li>- mkdir ~/.ssh/ && chmod 0700 ~/.ssh<br>
+        - ssh-keyscan -p$PORT -H sagamax.cyou > ~/.ssh/known_hosts<br>
+        　⇒これいる？と思ったけどおそらく「Are you sure you want to continue connecting (yes/no)?」を聞かれないようにするためか。<br>
+        ssh-keyscan コマンドは複数のホストのsshの公開鍵を収集するためのコマンド。これで収集した公開鍵を known_hosts に登録することで yes/no を聞かれないようにしている。</li>
+      </ul>
+
+      <br>
+      <font color="yellow">ssh終了コマンド実行してなくない？ssh-agent -k</font>
+
+      <br><br>
+      ssh<br>
+      <ul>
+        <li><a href="http://www.yosbits.com/opensonar/rest/man/freebsd/man/ja/man1/ssh-keyscan.1.html?l=ja" target="_blank">SSH-KEYSCAN(1)</a></li>
+        <li><a href="https://laboradian.com/how-to-use-ssh-agent/" target="_blank">【SSH】ssh-agent の使い方</a></li>
+        <li><a href="https://www.server-memo.net/server-setting/ssh/ssh-agent.html" target="_blank">ssh-agentを使って公開鍵認証方式のsshパスワード入力を省略する方法</a></li>
+        <li><a href="https://qiita.com/suzuki-koya/items/af4b511d40b6362da60a" target="_blank">SSHについて調べてみた</a></li>
+        <li><a href="https://qiita.com/miyuki_samitani/items/1f6f024acfdca0516d61" target="_blank">ssh-keyscan コマンドがあるらしい</a></li>
+        <li><a href="https://qiita.com/Yarimizu14/items/6a4bab703d67ea766ddc" target="_blank">【SSH】ssh-agentの使い方を整理する</a></li>
+        <li><a href="https://www.web-dev-qa-db-ja.com/ja/ssh/gitlab-ci%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%ABssh%E7%B5%8C%E7%94%B1%E3%81%A7%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4/959937633/" target="_blank">Gitlab CI-リモートサーバーにSSH経由でデプロイ</a></li>
+        <li><a href="https://tutorialmore.com/questions-374957.htm" target="_blank">deployment - Gitlab CI：SSH経由でリモートサーバーにデプロイする</a></li>
+        <li><a href="https://qiita.com/fukasawah/items/9c257f0bc2dfe1d6823f" target="_blank">GitLab Runnerで任意のSSH接続を行いたい</a></li>
+      </ul>
+      eval<br>
+      <ul>
+        <li><a href="https://bunjava.com/shell_eval/" target="_blank">【シェルスクリプト】【備忘録】evalとは？</a></li>
+        <li><a href="https://digirakuda.org/blog/2018/12/05/post-417/" target="_blank">変数に格納したコマンドを実行する</a></li>
+      </ul>
+      Gitlab<br>
+      <ul>
+        <li><a href="https://qiita.com/wqwq/items/d50792a826499a7db861" target="_blank">【Gitlab/CI/CD】Cloud Run の 自動デプロイ ~gitlab~</a></li>
+      </ul>
+      Docker<br>
+      <ul>
+        <li><a href="https://gitlab.com/gitlab-org/gitlab-runner/-/issues/25344#note_323941341" target="_blank">OSX - Gitlab-runner "error during connect: Get http://docker:2375/v1.40/containers/json: dial tcp: lookup docker on 192.168.65.1:53: no such host""</a></li>
+        <li><a href="https://til.swfz.io/entries/docker_host/" target="_blank">DOCKER_HOSTを指定してVM外からdockerを操作できるようにする</a></li>
+        <li><a href="https://docs.docker.jp/compose/reference/envvars.html" target="_blank">Compose CLI 環境変数</a></li>
+        <li><a href="https://www.yasunaga-lab.bio.kyutech.ac.jp/EosJ/index.php/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%AE%E4%B8%AD%E3%81%AEDocker%E3%81%AB%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%8B%E3%82%89%E6%8E%A5%E7%B6%9A%E3%81%99%E3%82%8B" target="_blank">リモートサーバーの中のDockerにローカルから接続する</a></li>
+        <li><a href="https://esakat.github.io/esakat-blog/posts/docker-in-docker/" target="_blank">Dockerコンテナ内からDockerを使うことについて</a></li>
+        <li><a href="https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-workflow-with-docker-executor" target="_blank">Use Docker to build Docker images</a></li>
+        <li><a href="https://docs.gitlab.com/ee/ci/services/#how-docker-integration-works" target="_blank">Services</a></li>
+        <li><a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">GitLab の CI/CD で Docker in Docker</a></li>
+      </ul>
+
 
       <h4 class="title">突然timezoneがUTCになってbotの稼働時間が9時間ずれた話</h4>
       </section><!-- section class="box" -->
