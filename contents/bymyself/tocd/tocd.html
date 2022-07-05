@@ -211,7 +211,18 @@
 
       <br><br>
       <h4 class="title">DOCKER_HOST: tcp://docker:2375って何？</h4>
-      <a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">参考</a>GitLab の CI/CD の中で dockerコマンドを実行するために Docker in Docker という技術を使っている。<br>
+      <img src="img/docker_cli.png"><br>
+      図は<a href="https://www.ogis-ri.co.jp/otc/hiroba/technical/docker/part6.html" target="_blank">さわって理解する Docker 入門</a>から引用<br>
+      Docker Engine は主に以下の３つのコンポーネントで構成されています。
+      <ol>
+        <li>Docker CLI</li>
+        <li>Docker Engine API</li>
+        <li>Dockerデーモン</li>
+      </ol>
+      上の図のように、Docker CLI が Dockerホストの中にあるか外にあるかによって、Dockerデーモンとの通信方式は異なります。<br>
+
+      <br>
+      GitLab の CI/CD の中で dockerコマンドを実行するために Docker in Docker という技術を使っている（<a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">参考</a>）。<br>
       <img src="img/dind.png"><br>
       DOCKER_HOST は docker デーモンの URL を指定します。Docker クライアントでは、デフォルトは unix:///var/run/docker.sock です。<br>
       下記の構成を取った場合のserverのエンドポイントは（非SSLの場合）tcp://docker:2375 なので、DOCKER_HOST を tcp://docker:2375 とすることでServerに対してdockerコマンドを発行している。<br>
@@ -220,7 +231,7 @@
       <br><br>
       <h4 class="title">ssh 関係コマンド</h4>
       <ul>
-        <li>eval "$(ssh-agent)"：ssh-agentの起動。<a href="https://qiita.com/Yarimizu14/items/6a4bab703d67ea766ddc" target="_blank">「ssh-agent bash」でも起動できる</a>がこれだと環境変数を設定する必要があって面倒らしい（<a href="https://www.server-memo.net/server-setting/ssh/ssh-agent.html" target="_blank">参考</a>）</li>
+        <li>eval "$(ssh-agent)"：ssh-agentの起動。<a href="https://qiita.com/Yarimizu14/items/6a4bab703d67ea766ddc" target="_blank">「ssh-agent bash」でも起動できる</a>がこれだと環境変数を設定する必要があって面倒（<a href="https://www.server-memo.net/server-setting/ssh/ssh-agent.html" target="_blank">参考</a>）。eval "$(ssh-agent)" であれば、 ssh-agent を実行して出力された結果を実行してくれるので楽。</li>
         <li>ssh-add "$ID_RSA_DEPLOY"：秘密鍵をssh-agentに登録</li>
         <li>- mkdir ~/.ssh/ && chmod 0700 ~/.ssh<br>
         - ssh-keyscan -p$PORT -H sagamax.cyou > ~/.ssh/known_hosts<br>
@@ -252,6 +263,7 @@
       Gitlab<br>
       <ul>
         <li><a href="https://qiita.com/wqwq/items/d50792a826499a7db861" target="_blank">【Gitlab/CI/CD】Cloud Run の 自動デプロイ ~gitlab~</a></li>
+        <li><a href="https://www.ted027.com/post/gitlabci-services-host/" target="_blank">GitLab-CIでservicesのコンテナに対してアクセスする</a></li>
       </ul>
       Docker<br>
       <ul>
@@ -263,6 +275,7 @@
         <li><a href="https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-workflow-with-docker-executor" target="_blank">Use Docker to build Docker images</a></li>
         <li><a href="https://docs.gitlab.com/ee/ci/services/#how-docker-integration-works" target="_blank">Services</a></li>
         <li><a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">GitLab の CI/CD で Docker in Docker</a></li>
+        <li><a href="https://www.ogis-ri.co.jp/otc/hiroba/technical/docker/part6.html" target="_blank">さわって理解する Docker 入門</a></li>
       </ul>
 
 
