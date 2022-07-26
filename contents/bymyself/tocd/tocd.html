@@ -62,7 +62,6 @@
     <nav>
       <ul class="indent_no">
         <li><a href="#summary">概要</a></li>
-        <li><a href="#whatimade">作成物</a></li>
         <li><a href="#mechanism">仕組み</a></li>
         <li><a href="#whatilearn">学び</a></li>
       </ul>
@@ -88,7 +87,6 @@
       <nav>
         <ul class="indent_no">
           <li><a href="#summary">概要</a></li>
-          <li><a href="#whatimade">作成物</a></li>
           <li><a href="#mechanism">仕組み</a></li>
           <li><a href="#whatilearn">学び</a></li>
         </ul>
@@ -102,14 +100,11 @@
     <div id="main">
       <span id="pagetop"></span>
       <section class="box">
-        <h2 class="title">コンテナ化</h2>
+        <h2 class="title">自動リリース</h2>
         <!-- tweetボタン -->
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <!-- はてぶボタン -->
         <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-        <!-- はてぶボタン
-        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-        -->
 
       <br><br>
       <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">タイトル考え中</a> > 自動リリース</p>
@@ -117,36 +112,37 @@
       <div id="summary"></div>
       <h3 class="title">自動リリース</h3>
       <p>
-        新しく配属されたプロジェクトで Docker や GitLab で自動リリース機能構築(CD)など、これまで触れたことのない技術が大量にあったので、それらを使用することで少しでも早くその技術になれ、使いこなせるようになりたかった。<br>
-        なので今後コンテナ化、GitLab で CD 機能を構築していくが、その前に cron から脱却し、各言語のスケジューラを使用することでコンテナ化したときの移植性を高めたい。<br>
-        稼働時間を変えたいとか、新しく bot を作った時の稼働タイミングの設定を各アプリで行うことで、ローカルで設定したものを GitLab に push してしまえば後は勝手にリリースされて時間になったら bot が稼働するという状態を目指したい。<br>
-      </p>
-
-      <br>
-      <div id="whatimade"></div>
-      <h3 class="title">作ったもの（実際に稼働したときのツイート）</h3>
-      <p>
-        内容は対応前後で変化なし。<br>
+        ローカルのPCで作成したプログラムを手動でサーバーに配置していたが、手間を省くためにGitLabにpushしたらデプロイは自動で行ってくれる仕組みを構築した。<br>
       </p>
 
       <br><br>
       <div id="mechanism"></div>
       <h3 class="title">どんな仕組み？</h3>
       <p>
-        <img src="img/image.png" width="800"><br>
-        GitHub を GitLab に移植するのが面倒なので今はこうなってる。
+        <img src="img/image.png" width="700"><br>
+        自分の作業は上図の①のgit pushのみ。②～④は GitLabが自動的にやってくれる。<br>
+        GitLabは、.gitlab-ci.ymlに記載したコマンドを自動的に実行してくれる。実際の.gitlab-ci.ymlは以下のようになっている。<br>
 
-        <br><br>
-        .gitlab-ci.yml(Go)<br>
+        <br>
+        <h4 class="title">.gitlab-ci.yml(Go)</h4>
         <script src="https://gist.github.com/taumax-github/a38a329ca1f21abbaedbc342bc1f3322.js"></script>
+        Goのbuild、docker build、ssh接続、docker pushすべての作業を1ステージで行っている。<br>
+        GitLabのパイプラインはこんな風になる。<br>
+        <img src="img/stage_go.png" width="400"><br>
 
         <br>
-        .gitlab-ci.yml(python)<br>
+        <h4 class="title">.gitlab-ci.yml(python)</h4>
         <script src="https://gist.github.com/taumax-github/4cbd3a0754604e2cc7d37b57feec44f7.js"></script>
+        pythonのbuildを行ってartifactsに保存するステージと、docker build、ssh接続、docker pushするステージの2ステージに分けている。分けた理由は後述。<br>
+        GitLabのパイプラインはこんな風になる。<br>
+        <img src="img/stage_python.png" width="400"><br>
 
         <br>
-        .gitlab-ci.yml(Java)<br>
+        <h4 class="title">.gitlab-ci.yml(Java)</h4>
         <script src="https://gist.github.com/taumax-github/d7e8512dee8cf19a094231bfe14bdef3.js"></script>
+        warファイルを生成してartifactsに保存するステージと、ssh接続してwarファイルを所定のディレクトリに格納するステージの2ステージに分けている。<br>
+        GitLabのパイプラインはこんな風になる。<br>
+        <img src="img/stage_web.png" width="400"><br>
       </p>
 
       <br><br>
@@ -154,34 +150,26 @@
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
       <h4 class="title">python のbot を詰め込んだ Docker が起動しない</h4>
       <p>
-        発生したエラー
+        pythonの自動リリースは、最初は1ステージでbuild⇒docker push⇒ssh接続⇒docker pullすべて行おうとしていたが、以下のエラーが発生した。<br>
       </p>
       <div class="code">
-        standard_init_linux.go:228: exec user process caused: no such file or directory
+        standard_init_linux.go:228: exec user process caused: exec format error
       </div>
       <p>
-        アーキテクチャーの違い。<br>
-        python で pyinstaller を使って軽量なコンテナイメージを作ろうとした際、最初は Alpine を使おうとしていた（コンテナ化したのは Go が先で Go は Alpine を使っていたから）。<br>
-        コンテナに乗せる前に python のコードを build する必要があるが、 python が入っていないと build できないため、 GitLab のパイプラインで使用するイメージは python:3.10 を使って、出来上がった成果物を alpine で動かそうとしていた。<br>
-        <a href="https://hub.docker.com/_/python" target="_blank">python:3.10 は debian形式</a>なので、そこで生成した成果物を Alpine で動かそうとしても動かない。<br>
-        python:&ltversion&gt-alpine のイメージもあるが、debian も使ってみたかったので、ベースイメージを Alpine から debian に変更することでうまく動くようになった。<br>
-
-        <font color="yellow">パイプライン自体は割とすんなり動いたけど一つ一つのコマンドの理解が追い付いていない部分があるので後日ちゃんと追いたい</font>
-
-        <br>
-        python<br>
-        <img src="img/stage_python.png" width="400"><br>
+        このエラーの原因はアーキテクチャーの違い（<a href="https://atsushinotes.com/standard_init_linux-go228-exec-user-process-caused-exec-format-error/" target="_blank">参考</a>）。<br>
+        python で pyinstaller を使って軽量なコンテナイメージを作ろうとした際、最初は Alpine を使おうとしていた。コンテナに乗せる前に python のコードを build する必要があるが、 python が入っていないと build できないため、 GitLab のパイプラインで使用するイメージは python:3.10 を使って、出来上がった成果物を alpine で動かそうとしていた。<a href="https://hub.docker.com/_/python" target="_blank">python:3.10 は debian形式</a>なので、そこで生成した成果物を Alpine で動かそうとしても動かない。<br>
+        alpine のイメージある（python:&ltversion&gt-alpine）が、debian も使ってみたかったので、ベースイメージを Alpine から debian に変更することでうまく動くようになった。<br>
       </p>
 
       <h4 class="title">設定の外部ファイル化(json, .env)</h4>
       <p>
-        手動でリリースしていたのでパスワードとかコードに直書きしていたが、 GitLab で管理するなら外部ファイル化しないとまずいので対応<br>
-        twitter API の認証情報とか postgres の接続情報などを外部ファイル化した。 Go, python 共通で使うものなので json で保存。 postgres の接続情報は Java でも使っているが、既に property ファイル化していたため、そこは property のままにしている（json にした方が良いかな・・・）<br>
-        json ファイルは手動で linux サーバに配置している。<br>
+        自動リリース前は手動でリリースしていたのでパスワードとかコードに直書きしていた。GitLab で管理するなら外部ファイル化しないとまずいので対応。<br>
+        twitter API の認証情報とか postgres の接続情報などを外部ファイル化した。 Go, python 共通で使うものなので json で保存。 postgres の接続情報は Java でも使っているが、既に property ファイル化していたため、Goとpythonはjson、Javaは property ファイルのままにしている（json にした方が良いかな・・・）。<br>
+        json ファイルは手動で linux サーバに配置している。これは初回のみの作業。<br>
         また、json ファイルの格納場所はローカルと linux で異なるので、格納場所を環境変数で設定するようにした。<br>
       </p>
 
-      <h5 class="title">Go で</h5>
+      <h5 class="title">Go の場合</h5>
       <p style="padding-left: 2.5em;">
         <a href="https://github.com/joho/godotenv" target="_blank">godotenv</a> というライブラリを使用している。 .env 形式のファイルを読み込んで環境変数を設定してくれるもの。<br>
         .env ファイルの中はこんな感じ<br>
@@ -203,7 +191,7 @@
         json の読み込みは Go の標準の 「encoding/json」の json.Unmarshal() でOK
       </p>
 
-      <h5 class="title">python で</h5>
+      <h5 class="title">python の場合</h5>
       <p style="padding-left: 2.5em;">
         <a href="https://pypi.org/project/python-dotenv/" target="_blank">python-dotenv</a> という外部ライブラリを使用。Go の godotenv と使い方は同じで、 .env ファイルを読み込んで環境変数を設定してくれる。<br>
         os.getenv("[環境変数名]")) で環境変数を読み込めるので、　jsonFile = open(str(os.getenv("[環境変数名]")), "r", encoding="utf-8") でファイルを開き、 json.load(jsonFile) で json 読み込み。これは python の標準ライブラリ。<br>
@@ -211,22 +199,40 @@
 
       <br><br>
       <h4 class="title">DOCKER_HOST: tcp://docker:2375って何？</h4>
-      <img src="img/docker_cli.png"><br>
-      図は<a href="https://www.ogis-ri.co.jp/otc/hiroba/technical/docker/part6.html" target="_blank">さわって理解する Docker 入門</a>から引用<br>
-      Docker Engine は主に以下の３つのコンポーネントで構成されています。
-      <ol>
-        <li>Docker CLI</li>
-        <li>Docker Engine API</li>
-        <li>Dockerデーモン</li>
-      </ol>
-      上の図のように、Docker CLI が Dockerホストの中にあるか外にあるかによって、Dockerデーモンとの通信方式は異なります。<br>
+      <p>
+        docker push ⇒ ssh接続 ⇒ docker pull するステージで以下の記載があるが、<font color="yellow">どこかのHP</font>に書いてあるコードをそのまま使用していたため、なぜこれが必要なのかがわかっていなかったので今回それを整理。<br>
+        <div class="code">
+          variables:<br>
+          DOCKER_HOST: tcp://docker:2375<br>
+          DOCKER_TLS_CERTDIR: ''<br>
+        </div>
+      </p>
 
       <br>
-      GitLab の CI/CD の中で dockerコマンドを実行するために Docker in Docker という技術を使っている（<a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">参考</a>）。<br>
-      <img src="img/dind.png"><br>
-      DOCKER_HOST は docker デーモンの URL を指定します。Docker クライアントでは、デフォルトは unix:///var/run/docker.sock です。<br>
-      下記の構成を取った場合のserverのエンドポイントは（非SSLの場合）tcp://docker:2375 なので、DOCKER_HOST を tcp://docker:2375 とすることでServerに対してdockerコマンドを発行している。<br>
-      <img src="img/dind_pipeline.png"><br>
+      <p>
+        以下、整理した内容<br>
+        GitLab の CI/CD の中で dockerコマンドを実行するには、いくつか方法があるが、今回使用したものは Docker in Docker(dind とよく呼ばれている)の構成になっている（<a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">参考</a>）。<br>
+        dind とはDockerコンテナ内にDockerを用意する技術の事で、dockerが入れ子構造の状態になっています。<br>
+        <img src="img/dind.png"><br>
+        ※図は<a href="https://esakat.github.io/esakat-blog/posts/docker-in-docker/" target="_blank">Dockerコンテナ内からDockerを使うことについて</a>から引用<br>
+
+        <br>
+        Docker Engine は下の図のように、主に以下の３つのコンポーネントで構成されており、Docker CLI が Dockerホストの中にあるか外にあるかによって、Dockerデーモンとの通信方式は異なります。<br>
+      </p>
+        <ol style="padding-left: 4em;">
+          <li>Docker CLI</li>
+          <li>Docker Engine API</li>
+          <li>Dockerデーモン</li>
+        </ol>
+      <p>
+        <img src="img/docker_cli.png"><br>
+        ※図は<a href="https://www.ogis-ri.co.jp/otc/hiroba/technical/docker/part6.html" target="_blank">さわって理解する Docker 入門</a>から引用<br>
+
+        <br>
+        gitlab-ci.ymlに記載したDOCKER_HOST は docker デーモンの URL を指定します。Docker クライアントでは、デフォルトは unix:///var/run/docker.sock です。<br>
+        下記の構成を取った場合のserverのエンドポイントは（非SSLの場合）tcp://docker:2375 なので、DOCKER_HOST を tcp://docker:2375 とすることでServerに対してdockerコマンドを発行している。<br>
+        <img src="img/dind_pipeline.png"><br>
+      </p>
 
       <br><br>
       <h4 class="title">ssh 関係コマンド</h4>
