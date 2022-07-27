@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/print.css" media="print">
     <script src="../../../js/openclose.js"></script>
+    <script src="../../../js/gist-embed.min.js"></script>
 
     <title>自動リリース</title>
     
@@ -212,7 +213,7 @@
       <p>
         以下、整理した内容<br>
         GitLab の CI/CD の中で dockerコマンドを実行するには、いくつか方法があるが、今回使用したものは Docker in Docker(dind とよく呼ばれている)の構成になっている（<a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">参考</a>）。<br>
-        dind とはDockerコンテナ内にDockerを用意する技術の事で、dockerが入れ子構造の状態になっています。<br>
+        dind とはDockerコンテナ内にDockerを用意する技術の事で、下図のようにdockerが入れ子状態になっています。<br>
         <img src="img/dind.png"><br>
         ※図は<a href="https://esakat.github.io/esakat-blog/posts/docker-in-docker/" target="_blank">Dockerコンテナ内からDockerを使うことについて</a>から引用<br>
 
@@ -220,9 +221,9 @@
         Docker Engine は下の図のように、主に以下の３つのコンポーネントで構成されており、Docker CLI が Dockerホストの中にあるか外にあるかによって、Dockerデーモンとの通信方式は異なります。<br>
       </p>
         <ol style="padding-left: 4em;">
-          <li>Docker CLI</li>
-          <li>Docker Engine API</li>
-          <li>Dockerデーモン</li>
+          <li>Docker CLI：docker run や docker build などの Dockerコマンドを実行するコマンドラインツールです</li>
+          <li>Docker Engine API：プログラム（クライアント）とデーモンとの間での通信方法を定義し、何をなすべきかを指示する。</li>
+          <li>Dockerデーモン：Docker Engine API が呼び出されるのを待ち受けています。</li>
         </ol>
       <p>
         <img src="img/docker_cli.png"><br>
@@ -230,6 +231,7 @@
 
         <br>
         gitlab-ci.ymlに記載したDOCKER_HOST は docker デーモンの URL を指定します。Docker クライアントでは、デフォルトは unix:///var/run/docker.sock です。<br>
+        <code data-gist-id="a38a329ca1f21abbaedbc342bc1f3322" data-gist-line="9-10"></code>
         下記の構成を取った場合のserverのエンドポイントは（非SSLの場合）tcp://docker:2375 なので、DOCKER_HOST を tcp://docker:2375 とすることでServerに対してdockerコマンドを発行している。<br>
         <img src="img/dind_pipeline.png"><br>
       </p>
@@ -283,6 +285,7 @@
         <li><a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">GitLab の CI/CD で Docker in Docker</a></li>
         <li><a href="https://www.ogis-ri.co.jp/otc/hiroba/technical/docker/part6.html" target="_blank">さわって理解する Docker 入門</a></li>
         <li><a href="https://zenn.dev/ryoatsuta/articles/64dcc2e2b4e0cf" target="_blank">Docker Engineとは何か</a></li>
+        <li><a href="https://qiita.com/doz13189/items/9ee8fda335605567b832" target="_blank">Docker Engine API について</a></li>
       </ul>
 
 
