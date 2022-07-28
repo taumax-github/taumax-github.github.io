@@ -108,7 +108,7 @@
         <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 
       <br><br>
-      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">タイトル考え中</a> > 自動リリース</p>
+      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > 自動リリース</p>
 
       <div id="summary"></div>
       <h3 class="title">自動リリース</h3>
@@ -202,11 +202,7 @@
       <h4 class="title">DOCKER_HOST: tcp://docker:2375って何？</h4>
       <p>
         docker push ⇒ ssh接続 ⇒ docker pull するステージで以下の記載があるが、<font color="yellow">どこかのHP</font>に書いてあるコードをそのまま使用していたため、なぜこれが必要なのかがわかっていなかったので今回それを整理。<br>
-        <div class="code">
-          variables:<br>
-          DOCKER_HOST: tcp://docker:2375<br>
-          DOCKER_TLS_CERTDIR: ''<br>
-        </div>
+        <code data-gist-id="a38a329ca1f21abbaedbc342bc1f3322" data-gist-line="8-10"></code>
       </p>
 
       <br>
@@ -231,19 +227,20 @@
 
         <br>
         gitlab-ci.ymlに記載したDOCKER_HOST は docker デーモンの URL を指定します。Docker クライアントでは、デフォルトは unix:///var/run/docker.sock です。<br>
-        <code data-gist-id="a38a329ca1f21abbaedbc342bc1f3322" data-gist-line="9-10"></code>
+        <code data-gist-id="a38a329ca1f21abbaedbc342bc1f3322" data-gist-line="8-10"></code>
         下記の構成を取った場合のserverのエンドポイントは（非SSLの場合）tcp://docker:2375 なので、DOCKER_HOST を tcp://docker:2375 とすることでServerに対してdockerコマンドを発行している。<br>
         <img src="img/dind_pipeline.png"><br>
       </p>
 
       <br><br>
       <h4 class="title">ssh 関係コマンド</h4>
+      <code data-gist-id="a38a329ca1f21abbaedbc342bc1f3322" data-gist-line="32-42"></code>
       <ul>
         <li>eval "$(ssh-agent)"：ssh-agentの起動。<a href="https://qiita.com/Yarimizu14/items/6a4bab703d67ea766ddc" target="_blank">「ssh-agent bash」でも起動できる</a>がこれだと環境変数を設定する必要があって面倒（<a href="https://www.server-memo.net/server-setting/ssh/ssh-agent.html" target="_blank">参考</a>）。eval "$(ssh-agent)" であれば、 ssh-agent を実行して出力された結果を実行してくれるので楽。</li>
         <li>ssh-add "$ID_RSA_DEPLOY"：秘密鍵をssh-agentに登録</li>
         <li>- mkdir ~/.ssh/ && chmod 0700 ~/.ssh<br>
         - ssh-keyscan -p$PORT -H sagamax.cyou > ~/.ssh/known_hosts<br>
-        　⇒これいる？と思ったけどおそらく「Are you sure you want to continue connecting (yes/no)?」を聞かれないようにするためか。<br>
+        　⇒これいる？と思ったけど、おそらく「Are you sure you want to continue connecting (yes/no)?」を聞かれないようにするため。<br>
         ssh-keyscan コマンドは複数のホストのsshの公開鍵を収集するためのコマンド。これで収集した公開鍵を known_hosts に登録することで yes/no を聞かれないようにしている。</li>
       </ul>
 

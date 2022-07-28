@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/print.css" media="print">
     <script src="../../../js/openclose.js"></script>
+    <script src="../../../js/gist-embed.min.js"></script>
 
     <title>キャンペーン対象キャラ通知bot</title>
     
@@ -107,12 +108,9 @@
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <!-- はてぶボタン -->
         <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-        <!-- はてぶボタン
-        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-        -->
 
       <br><br>
-      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">タイトル考え中</a> > キャンペーン対象キャラ通知bot</p>
+      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > キャンペーン対象キャラ通知bot</p>
 
       <br>
       <div id="summary"></div>
@@ -155,7 +153,14 @@
       <script src="https://gist-it.appspot.com/https://github.com/taumax-github/sagamax_bot_python/blob/main/ikusei_charas/ikuseiCharas.py"></script>
       -->
       もうちょいコードの詳細を解説した方がいい気がしてきた。。。<br>
-      GitHubから画像ファイル読み込み⇒上部を黒四角で塗りつぶし⇒塗りつぶした部分に日本語を書く（キャラ名）⇒画像サイズを調整（揃えないとエラーで結合できない）⇒横方向に連結（端数に白い画像を連結）⇒縦方向に連結<br>
+      <ol>
+        <li>GitHubから画像ファイル読み込み</li>
+        <li>画像上部を黒四角で塗りつぶし</li>
+        <li>塗りつぶした部分に日本語を書く（キャラ名）</li>
+        <li>画像サイズを調整（揃えないとエラーで結合できない）</li>
+        <li>横方向に連結（端数に白い画像を連結）
+        <li>縦方向に連結</li>
+      </ol>
       ややこしいけど、Pillow は、開発が停止したPILをForkしたもの。インストール時は pip install pillow で、コードの import は PIL.<br>
       黒四角で塗りつぶす処理は、<a href="https://hashikake.com/eyecatch-maker" target="_blank">こちら</a>の「画像の中に四角形を描く」の部分を参考にした。<br>
 
@@ -188,8 +193,13 @@
         Pillowでは色の順番はRGB（赤、緑、青）を前提としている。<br>
         OpenCVは色の順番はBGR（青、緑、赤）。<br>
         Pillow で読み込んだ画像を OpenCV に渡す際に赤と青が逆転した結果こうなった。<br>
-        Pillow から OpenCV に渡す際に RGB から BGR に変換することで対処。293行目の「readDot = cv2.cvtColor(readDot, cv2.COLOR_RGB2BGR)」。<br>
-        Numpy というライブラリをインポートしているが、これは OpenCV が画像を NumPy の配列として扱っているため、 OpenCV に渡す前に290行目の np.array(readDot) でNumPy の配列に変換している。<br>
+        Pillow から OpenCV に渡す際に RGB から BGR に変換することで対処（下記コード参照）。<br>
+        <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="291-293"></code>
+
+        Numpy というライブラリをインポートしている。<br>
+        <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="1-5"></code>
+        これは OpenCV が画像を NumPy の配列として扱っているため、 OpenCV に渡す前に np.array(readDot) でNumPy の配列に変換している。<br>
+        <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="287-292"></code>
         Pillow, Numpy, OpenCV の違いがよくわからなくなってきたが、凄く雑にまとめると<br>
         <ul>
           <li>Pillow：一番お手軽に使用できる画像処理ライブラリ。</li>
@@ -216,7 +226,16 @@
       <h4 class="title">日本語フォントが入ってない</h4>
       <p>
         ローカルで動いたプログラムを linux 環境に持って行って動かしたら、画像に書き込んだ日本語が文字化けした。<br>
-        <a href="https://beyondjapan.com/blog/2017/01/japanese-gothic-fonts-on-linux/" target="_blank">このサイト</a>を参考に、「yum install ipa-gothic-fonts ipa-pgothic-fonts」コマンドで日本語フォントをインストールして、使用するフォントをプログラムで指定する（18行目）ことで解消した。<br>
+        <a href="https://beyondjapan.com/blog/2017/01/japanese-gothic-fonts-on-linux/" target="_blank">このサイト</a>を参考に、下記コマンドで日本語フォントをインストールして、使用するフォントをプログラムで指定する（18行目）ことで解消した。<br>
+        <div class="codetitle">実行コマンド</div>
+          <div class="code">
+          yum install ipa-gothic-fonts ipa-pgothic-fonts
+        </div>
+
+        <br>
+        <font color="yellow">実行コマンドが古い（下のコードとかみ合ってない）</font><br>
+        フォントの指定箇所<br>
+        <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="17-20"></code>
       </p>
 
       <br>

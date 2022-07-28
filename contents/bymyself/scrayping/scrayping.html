@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/print.css" media="print">
     <script src="../../../js/openclose.js"></script>
+    <script src="../../../js/gist-embed.min.js"></script>
 
     <title>twitterのスクレイピングbot</title>
     
@@ -107,12 +108,9 @@
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <!-- はてぶボタン -->
         <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-        <!-- はてぶボタン
-        <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-        -->
 
       <br><br>
-      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">タイトル考え中</a> > twitterのスクレイピングbot</p>
+      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > twitterのスクレイピングbot</p>
 
       <div id="summary"></div>
       <h3 class="title">twitterのスクレイピングbot</h3>
@@ -163,13 +161,43 @@
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
       <p>
         timezone関係。以下のようなエラーが発生した。<br>
+      </p>
 
-        <script src="https://gist.github.com/taumax-github/a90d7e386e43135e36973d33343eb3fd.js"></script>
+        <div class="codetitle">エラー内容</div>
+        <div class="code">
+          Traceback (most recent call last):<br>
+            File "/pythonscheduler.py", line 32, in &ltmodule&gt<br>
+            schedule.run_pending()<br>
+          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 780, in run_pending<br>
+            default_scheduler.run_pending()<br>
+          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 100, in run_pending<br>
+            self._run_job(job)<br>
+          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 172, in _run_job<br>
+            ret = job.run()<br>
+          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 661, in run<br>
+            ret = self.job_func()<br>
+          File "/artist_rt/SagaRsPictures.py", line 296, in searchArt<br>
+            searchKoushikiPic(api)<br>
+          File "/artist_rt/SagaRsPictures.py", line 38, in searchKoushikiPic<br>
+            if dt_now_bfr > result.created_at.astimezone(datetime.timezone(datetime.timedelta(hours=DIFF_JST_FROM_UTC))):<br>
+          TypeError: can't compare offset-naive and offset-aware datetimes<br>
+        </div>
 
-        can't compare offset-naive and offset-aware datetimes ？？？何言ってんの？？？だったんだけど、どうやらpythonのdatetimeオブジェクト（日時=日付と時刻を扱う）とtimeオブジェクト（時刻を扱う）はnaiveとawareの2種類に分類されるらしい。<br>
-        ざっくり言うと、aware：timezone付きのオブジェクト、naive：timezone無しのオブジェクト。<br>
+      <br>
+      <p>
+        can't compare offset-naive and offset-aware datetimes ？？？何言ってんの？？？だったんだけど、どうやらpythonのdatetimeオブジェクト（日時=日付と時刻を扱う）とtimeオブジェクト（時刻を扱う）は<font color="yellow">naive</font>と<font color="yellow">aware</font>の2種類に分類されるらしい。<br>
+        ざっくり言うと、
+        <ul>
+          <li>naive：timezone無しのオブジェクト</li>
+          <li>aware：timezone付きのオブジェクト</li>
+        </ul>
+      </p>
+      <p>
         先に乗せたpythonコードの189行目、今は「datetime.datetime.now(JST)」となっているが、以前は「datetime.datetime.now()」となっていたのでnaiveなオブジェクトだった。<br>
+        <code data-gist-id="d29226ea9c744cf13a747ef110c12bd8" data-gist-line="186-189"></code>
+        
         同コードの28行目の「if dt_now_bfr > result.created_at + datetime.timedelta(hours=DIFF_JST_FROM_UTC)」でtwitter apiで取得したツイート時刻(UTCが指定されているのでaware)とdatetime.datetime.now()の10分前(native)を比較しようとしているが、pythonの仕様でawareとnativeは比較できないのでエラーになっていた。ということらしい。<br>
+        <code data-gist-id="d29226ea9c744cf13a747ef110c12bd8" data-gist-line="26-29"></code>
         「datetime.datetime.now()」の前に「JST = timezone(timedelta(hours=+9), 'JST')」でJSTのtimezoneを生成し、それをnowの引数に渡す（dt_now = datetime.datetime.now(JST)）ことでawareなオブジェクトにして対処した。<br>
 
         <br><br>
