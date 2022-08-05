@@ -226,14 +226,13 @@
       <h4 class="title">日本語フォントが入ってない</h4>
       <p>
         ローカルで動いたプログラムを linux 環境に持って行って動かしたら、画像に書き込んだ日本語が文字化けした。<br>
-        <a href="https://beyondjapan.com/blog/2017/01/japanese-gothic-fonts-on-linux/" target="_blank">このサイト</a>を参考に、下記コマンドで日本語フォントをインストールして、使用するフォントをプログラムで指定する（18行目）ことで解消した。<br>
+        下記コマンドで日本語フォントをインストールして、使用するフォントをプログラムで指定することで解消した。<br>
         <div class="codetitle">実行コマンド</div>
           <div class="code">
-          yum install ipa-gothic-fonts ipa-pgothic-fonts
+            apt install 'fonts-takao-*'
         </div>
 
         <br>
-        <font color="yellow">実行コマンドが古い（下のコードとかみ合ってない）</font><br>
         フォントの指定箇所<br>
         <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="17-20"></code>
       </p>
@@ -241,6 +240,7 @@
       <br>
       参考
       <ul>
+        <li><a href="https://linuxfan.info/ubuntu-18-04-change-ja-font" target="_blank">Ubuntu 18.04 LTSの日本語フォントを変更する！【詳細解説】</a></li>
         <li><a href="https://beyondjapan.com/blog/2017/01/japanese-gothic-fonts-on-linux/" target="_blank">CentOSでもWindowsでも使える！ 日本語フォント（ゴシック編）</a></li>
       </ul>
 

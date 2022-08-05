@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/print.css" media="print">
     <script src="../../../js/openclose.js"></script>
+    <script src="../../../js/gist-embed.min.js"></script>
 
     <title>ロマサガRSイベントリマインダーbot</title>
     
@@ -140,6 +141,8 @@
 
       pythonソースコード(bot)<br>
       <script src="https://gist.github.com/taumax-github/991a59ce82e2687ad302c134067ecfd3.js"></script>
+      <br>
+      dailyRemind() 関数が処理の入口<br>
 
       <br><br>
       <div id="whatilearn"></div>
@@ -148,8 +151,40 @@
       <p>
         ローカル端末(Windows)で動いたbotを、linux環境で動かそうとした。<br>
         pythonからpostgresに接続する際、psycopg2 というライブラリを使用しているので、それをインストールするためにlinux環境で pip install psycopg2 コマンドを実行したら下記のエラーが発生。<br>
+        <div class="codetitle">実行コマンド：pip install psycopg2</div>
+        <div class="code">
+          Collecting psycopg2<br>
+          Using cached psycopg2-2.8.5.tar.gz (380 kB)<br>
+            ERROR: Command errored out with exit status 1:<br>
+             command: /usr/local/bin/python -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-tca4iell/psycopg2/setup.py'"'"'; __file__='"'"'/tmp/pip-install-tca4iell/psycopg2/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /tmp/pip-pip-egg-info-ef0732k3<br>
+                 cwd: /tmp/pip-install-tca4iell/psycopg2/<br>
+            Complete output (23 lines):<br>
+            running egg_info<br>
+            creating /tmp/pip-pip-egg-info-ef0732k3/psycopg2.egg-info<br>
+            writing /tmp/pip-pip-egg-info-ef0732k3/psycopg2.egg-info/PKG-INFO<br>
+            writing dependency_links to /tmp/pip-pip-egg-info-ef0732k3/psycopg2.egg-info/dependency_links.txt<br>
+            writing top-level names to /tmp/pip-pip-egg-info-ef0732k3/psycopg2.egg-info/top_level.txt<br>
+            writing manifest file '/tmp/pip-pip-egg-info-ef0732k3/psycopg2.egg-info/SOURCES.txt'<br>
+        
+            Error: pg_config executable not found.<br>
+        
+            pg_config is required to build psycopg2 from source.  Please add the directory<br>
+            containing pg_config to the $PATH or specify the full executable path with the<br>
+            option:<br>
+        
+                python setup.py build_ext --pg-config /path/to/pg_config build ...<br>
+        
+            or with the pg_config option in 'setup.cfg'.<br>
+        
+            If you prefer to avoid building psycopg2 from source, please install the PyPI<br>
+            'psycopg2-binary' package instead.<br>
+        
+            For further information please check the 'doc/src/install.rst' file (also at<br>
+            &LThttps://www.psycopg.org/docs/install.html&GT).<br>
 
-        <script src="https://gist.github.com/taumax-github/75982d34515e3087fe93819681730294.js"></script>
+            ----------------------------------------<br>
+          ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.<br>
+        </div>
 
         調べてみたところ、psycopg2 は libpq（PostgreSQL client library）のCラッパーなので、C言語のコンパイラが必要（<a href="https://self-development.info/psycopg2%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6python%E3%81%8B%E3%82%89postgresql%E3%82%92%E6%93%8D%E4%BD%9C%E3%81%99%E3%82%8B/" target="_blank">参考</a>）。
         Windowsの場合はMicrosoft Visual C++というものが初めからインストールされており、ここにコンパイラが含まれているので、pip install psycopg2 コマンドで psycopg2 をインストールするだけで動いた。<br>
@@ -171,7 +206,8 @@
       <p>
         python の datetime オブジェクトの中に isocalendar() という関数があり、日付から、何年の第何週の何番目の日かというのをTupleで返却してくれる。数字型。<br>
         この「何週目か」を2で割った余りが1か0かで分岐すれば隔週で内容を切り替えることができる。<br>
-        ソースコードの382行目参照<br>
+        元のpythonコードを見ると「 dt_now.isocalendar()[1] 」で取得した行番号で分岐していることがわかる（以下、該当箇所抜粋）。<br>
+        <code data-gist-id="991a59ce82e2687ad302c134067ecfd3" data-gist-line="382-402"></code>
 
         <br>
         参考

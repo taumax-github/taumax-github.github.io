@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="../../../css/print.css" media="print">
     <script src="../../../js/openclose.js"></script>
+    <script src="../../../js/gist-embed.min.js"></script>
 
     <title>キャンペーン対象キャラ通知bot</title>
     
@@ -139,12 +140,8 @@
       </p>
 
       <br>
-      主処理<br>
+      主処理。31行目の TweetPublicAccount() が入口<br>
       <script src="https://gist.github.com/taumax-github/a52cb94cacb991d7722320c76685a58f.js"></script>
-
-      <br>
-      DBとのコネクション生成（抜粋） ※上記42行目の呼び出し先<br>
-      <script src="https://gist.github.com/taumax-github/e3da90e16ea98eee809d06c73e8bc41d.js"></script>
 
       <br><br>
       <div id="whatilearn"></div>
@@ -157,8 +154,9 @@
       <h4 class="title">tweet するためのライブラリ</h4>
       <p>
         <a href="https://github.com/ChimeraCoder/anaconda" target="_blank">anaconda</a> というライブラリを使ってツイートするプログラム。<br>
-        TweetPublicAccount 関数の中でツイート用のインスタンス生成し、変数 api に格納（33行目）。67行目でツイート実行。<br>
-        画像をツイートしたい場合は45～55行目。ツイート実行の前に api.UploadMedia で画像を upload する必要があるが、引数の型が base64String なので画像を base64エンコードしている。<br>
+        TweetPublicAccount 関数の中でツイート用のインスタンス生成し、変数 api に格納（36行目）。67行目でツイート実行。<br>
+        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="36-70"></code>
+        画像をツイートしたい場合は54～58行目。ツイート実行の前に api.UploadMedia で画像を upload する必要がある。引数の型が base64String なので画像を base64エンコードしている。<br>
         そのあと、 url.Values{} の "media_ids" に格納。複数ある場合はカンマ区切りで設定。<br>
 
         <br>
@@ -177,8 +175,11 @@
       <p>
         <a href="https://pkg.go.dev/gonum.org/v1/plot" target="_blank">plot</a> というライブラリを使って画像生成。<br>
         上記ソースの82行目 createGraph() 関数の中。90行目で呼び出している getData() 関数で2週間分のデータを取得。<br>
+        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="82-90"></code>
         93行～113行目の処理で縦軸・横軸の設定、115～120行目でグラフの見栄えを調整。<br>
+        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="93-120"></code>
         124～133行目でグラフを生成。<br>
+        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="124-133"></code>
 
         <br>
         参考
@@ -193,7 +194,15 @@
       <p>
         <a href="https://pkg.go.dev/github.com/lib/pq" target="_blank">pq</a> というライブラリを使って postgres DB 接続。ライブラリは import するだけで、コード上使用するのは <a href="https://pkg.go.dev/database/sql" target="_blank">database/sql</a> という標準ライブラリ。<br>
         専用のパッケージを import （16行目の _ "github.com/lib/pq" ）して connection 生成(42行目)してあげればあとはSQL文字列を実行するだけ。<br>
-        136行目の getData() 関数、141行目の insData() 関数が実装例。<br>
+        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="15-17"></code>
+        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="42-43"></code>
+        <br>
+        上記42行目の呼び出し先 ※DBとのコネクション生成（抜粋）<br>
+        <script src="https://gist.github.com/taumax-github/e3da90e16ea98eee809d06c73e8bc41d.js"></script>
+  
+        <br>
+        136行目の getData() 関数、141行目の insData() 関数がSQL実行部分の実装例。<br>
+        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="136-160"></code>
 
         <br>
         参考

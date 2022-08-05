@@ -234,6 +234,7 @@
         </div>
       </p>
 
+      <br>
       参考<br>
       <ul>
         <li><a href="https://shnsprk.com/entry/2015/12/06/100000" target="_blank">SSL証明書が正しくないサイトに対してPythonでアクセスする</a></li>
@@ -263,6 +264,7 @@
         apk は Alpine Linux Package Management の略らしいです。
       </p>
 
+      <br>
       参考<br>
       Go<br>
       <ul>
@@ -302,7 +304,7 @@
       <p style="padding-left: 2.5em;">
         Debian には初めから zoneinfo があるので、 /etc/localtime に Asia/Tokyo をコピーすることで timezone を JST に変更することが可能。<br>
         Go と違って python のスケジューラは timezone を指定していない（指定するやり方はあるのかもしれないけど知らない）ので、実行している環境に依存していると思われる。なのでこの作業は必須。<br>
-        <a href="../toscheduler/toscheduler.html#pysche">これ</a>
+        python のスケジューラのソースコードは<a href="../toscheduler/toscheduler.html#pysche">こちら</a>。
       </p>
       <div class="code">
         RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
@@ -311,6 +313,7 @@
           ※ 「使っている python のスケジューラは timezone を指定していない」であって python 自体に timezone を指定するやり方はあります。<br>
       </p>
 
+      <br>
       参考<br>
       Go, Alpine
       <ul>
@@ -355,7 +358,7 @@
       </div>
 
       <br><br>
-      postgres には 「pg_hba.conf」 というファイルがあり、アクセス可能な ipアドレスのリストが書かれている。ここに<br>
+      postgres には 「pg_hba.conf」 というファイルがあり、アクセス可能な ipアドレスのリストが書かれている。<br>
       <div class="code">
         # host    all             all             127.0.0.1/32            trust<br>
         host    all             all             0.0.0.0/0            trust<br>
@@ -371,7 +374,7 @@
         #port = 5432				# (change requires restart)
         max_connections = 100			# (change requires restart)
       </div>
-      元々 localhost からのアクセスのみを許可していたが、どこからでもアクセスできるようにした<font color="yellow">（雑すぎひん？）</font><br>
+      元々 localhost からのアクセスのみを許可していたが、どこからでもアクセスできるようにした。<br>
 
       この後 postgres を再起動したらOK<br>
       <div class="code">
@@ -379,6 +382,7 @@
         systemctl status postgresql-9.5.service<br>
       </div>
 
+      <br>
       参考<br>
       <ul>
         <li><a href="https://gist.github.com/toenobu/5026188d73b69046248c8792962a7b22" target="_blank">Dockerコンテナのアプリからhost側にあるPostgresqlに接続したい</a></li>
