@@ -110,7 +110,7 @@
         <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 
       <br><br>
-      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > キャンペーン対象キャラ通知bot</p>
+      <p style="color: #FFFFFF;"><a href="../index.html" style="color: #00bfff;">ホーム</a> > <a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > キャンペーン対象キャラ通知bot</p>
 
       <br>
       <div id="summary"></div>
@@ -132,8 +132,15 @@
       <h3 class="title">どんな仕組み？</h3>
       <p>
         <img src="img/whole_image.jpg" width="800"><br>
+      </p>
+        <ul class="none" style="padding-left: 50px;">
+          <li>①時間になったらcronでpythonプログラムを起動</li>
+          <li>②DB(postgres)から対象キャラクタの情報を取得</li>
+          <li>③Githubに保存した画像ファイルを取得＆取得したファイルの加工</li>
+          <li>④ツイート実行</li>
+        </ul>
 
-        <br>
+      <p>
         イベント情報をDBに登録する作業は手動だが、それさえやってしまえば、イベントキャンペーンの対象キャラを毎日お知らせしてくれる。<br>
         ↓GitHub上に以下のようなキャラクタの画像を全キャラ分格納しているので、<br>
         <img src="https://github.com/taumax-github/sagamax/blob/gh-pages/contents/image_files/romasagars/dots/t260g.jpg?raw=true"><br>
@@ -147,13 +154,19 @@
         <li><a href="https://qiita.com/taumax/items/73ad47eaba64943a9c41" target="_blank">TweepyとcronでTwitterボットを作ってみた話</a></li>
       </p>
 
-      pythonソースコード(bot)<br>
+      <br>
+      <h4 class="title">pythonソースコード(bot)</h4>
+      <p>
+        pythonのソースコードは以下の通り。SQLの作り方がだいぶイケてないのは目をつぶっていただけると。。。tweetIkuseiCampaign() 関数が処理の入口。<br>
+      </p>
+
       <script src="https://gist.github.com/taumax-github/4e8e8777ddba736872e7e7090258ac10.js"></script>
-      <!--
-      <script src="https://gist-it.appspot.com/https://github.com/taumax-github/sagamax_bot_python/blob/main/ikusei_charas/ikuseiCharas.py"></script>
-      -->
-      もうちょいコードの詳細を解説した方がいい気がしてきた。。。<br>
-      <ol>
+
+      <br>
+      <p>
+        処理の流れは以下の通り。<br>
+      </p>
+      <ol style="padding-left: 70px;">
         <li>GitHubから画像ファイル読み込み</li>
         <li>画像上部を黒四角で塗りつぶし</li>
         <li>塗りつぶした部分に日本語を書く（キャラ名）</li>
@@ -161,8 +174,10 @@
         <li>横方向に連結（端数に白い画像を連結）
         <li>縦方向に連結</li>
       </ol>
-      ややこしいけど、Pillow は、開発が停止したPILをForkしたもの。インストール時は pip install pillow で、コードの import は PIL.<br>
-      黒四角で塗りつぶす処理は、<a href="https://hashikake.com/eyecatch-maker" target="_blank">こちら</a>の「画像の中に四角形を描く」の部分を参考にした。<br>
+      <p>
+        ややこしいけど、Pillow は、開発が停止したPILをForkしたもの。インストール時は pip install pillow で、コードの import は PIL.<br>
+        黒四角で塗りつぶす処理は、<a href="https://hashikake.com/eyecatch-maker" target="_blank">こちら</a>の「画像の中に四角形を描く」の部分を参考にした。<br>
+      </p>
 
 
       <br><br>
@@ -188,25 +203,39 @@
 
       <h4 class="title">妙な色の画像を生み出してしまう</h4>
       <p>
-        <img src="img/bgr.jpg" width="300">
+        正しい画像<br>
+        <img src="img/bgr.jpg" width="300"><br>
+
+        <br>
+        妙な色の画像<br>
         <img src="img/rgb.jpg" width="300"><br>
+
         Pillowでは色の順番はRGB（赤、緑、青）を前提としている。<br>
         OpenCVは色の順番はBGR（青、緑、赤）。<br>
         Pillow で読み込んだ画像を OpenCV に渡す際に赤と青が逆転した結果こうなった。<br>
         Pillow から OpenCV に渡す際に RGB から BGR に変換することで対処（下記コード参照）。<br>
         <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="291-293"></code>
 
-        Numpy というライブラリをインポートしている。<br>
-        <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="1-5"></code>
-        これは OpenCV が画像を NumPy の配列として扱っているため、 OpenCV に渡す前に np.array(readDot) でNumPy の配列に変換している。<br>
+        <br>
+        また、OpenCV は 画像を Numpy の配列として扱っているため、 OpenCV に渡す前に np.array(readDot) でNumPy の配列に変換している。<br>
         <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="287-292"></code>
+
+        <br>
+        このため、 Numpy というライブラリをインポートしている。<br>
+        <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="1-5"></code>
+
+        <br>
         Pillow, Numpy, OpenCV の違いがよくわからなくなってきたが、凄く雑にまとめると<br>
-        <ul>
-          <li>Pillow：一番お手軽に使用できる画像処理ライブラリ。</li>
-          <li>Numpy： Pillow＋Numpy で Pillow 単体よりはもうちょっと複雑なことができる。</li>
-          <li>OpenCV： OpenCV＋Numpy の組み合わせが一番いろいろな事ができる。顔認識もできるらしいが、環境構築がちょっと面倒。</li>
-        </ul>
-        というイメージ。<a href="https://note.nkmk.me/python-image-processing-pillow-numpy-opencv/" target="_blank">参考</a><br>
+      </p>
+
+      <ul>
+        <li>Pillow：一番お手軽に使用できる画像処理ライブラリ。</li>
+        <li>Numpy： Pillow＋Numpy で Pillow 単体よりはもうちょっと複雑なことができる。</li>
+        <li>OpenCV： OpenCV＋Numpy の組み合わせが一番いろいろな事ができる。顔認識もできるらしいが、環境構築がちょっと面倒。</li>
+      </ul>
+
+      <p>
+        というイメージ（<a href="https://note.nkmk.me/python-image-processing-pillow-numpy-opencv/" target="_blank">参考</a>）。<br>
         コンテナ化した際、 OpenCV が使えるようにするためにひと手間加える必要があったので実際準備に多少手間がかかってる。やりたいこと次第でもっと手間は増えると思われる。<br>
       </p>
 
@@ -231,8 +260,9 @@
           <div class="code">
             apt install 'fonts-takao-*'
         </div>
+      </p>
 
-        <br>
+      <p>
         フォントの指定箇所<br>
         <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="17-20"></code>
       </p>

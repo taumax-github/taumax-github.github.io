@@ -110,6 +110,7 @@
       <br><br>
       <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > 自動リリース</p>
 
+      <br>
       <div id="summary"></div>
       <h3 class="title">自動リリース</h3>
       <p>
@@ -121,26 +122,32 @@
       <h3 class="title">どんな仕組み？</h3>
       <p>
         <img src="img/image.png" width="700"><br>
-        自分の作業は上図の①のgit pushのみ。②～④は GitLabが自動的にやってくれる。<br>
-        GitLabは、.gitlab-ci.ymlに記載したコマンドを自動的に実行してくれる。実際の.gitlab-ci.ymlは以下のようになっている。<br>
-
         <br>
-        <h4 class="title">.gitlab-ci.yml(Go)</h4>
-        <script src="https://gist.github.com/taumax-github/a38a329ca1f21abbaedbc342bc1f3322.js"></script>
+        これまで開発したGo/Pythonのbot、JavaのWebサイト、すべて同じ仕組みで自動リリース機能を実装。自分の作業は上図の①のgit pushのみ。②～④は GitLabが自動的にやってくれる。GitLabは、.gitlab-ci.ymlに記載したコマンドを自動的に実行してくれる。実際の.gitlab-ci.ymlは以下のようになっている。<br>
+      </p>
+
+      <br>
+      <h4 class="title">.gitlab-ci.yml(Go)</h4>
+      <script src="https://gist.github.com/taumax-github/a38a329ca1f21abbaedbc342bc1f3322.js"></script>
+      <p>
         Goのbuild、docker build、ssh接続、docker pushすべての作業を1ステージで行っている。<br>
         GitLabのパイプラインはこんな風になる。<br>
         <img src="img/stage_go.png" width="400"><br>
+      </p>
 
-        <br>
-        <h4 class="title">.gitlab-ci.yml(python)</h4>
-        <script src="https://gist.github.com/taumax-github/4cbd3a0754604e2cc7d37b57feec44f7.js"></script>
+      <br>
+      <h4 class="title">.gitlab-ci.yml(python)</h4>
+      <script src="https://gist.github.com/taumax-github/4cbd3a0754604e2cc7d37b57feec44f7.js"></script>
+      <p>
         pythonのbuildを行ってartifactsに保存するステージと、docker build、ssh接続、docker pushするステージの2ステージに分けている。分けた理由は後述。<br>
         GitLabのパイプラインはこんな風になる。<br>
         <img src="img/stage_python.png" width="400"><br>
+      </p>
 
-        <br>
-        <h4 class="title">.gitlab-ci.yml(Java)</h4>
-        <script src="https://gist.github.com/taumax-github/d7e8512dee8cf19a094231bfe14bdef3.js"></script>
+      <br>
+      <h4 class="title">.gitlab-ci.yml(Java)</h4>
+      <script src="https://gist.github.com/taumax-github/d7e8512dee8cf19a094231bfe14bdef3.js"></script>
+      <p>
         warファイルを生成してartifactsに保存するステージと、ssh接続してwarファイルを所定のディレクトリに格納するステージの2ステージに分けている。<br>
         GitLabのパイプラインはこんな風になる。<br>
         <img src="img/stage_web.png" width="400"><br>
@@ -149,7 +156,7 @@
       <br><br>
       <div id="whatilearn"></div>
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
-      <h4 class="title">python のbot を詰め込んだ Docker が起動しない</h4>
+      <h4 class="title">①python のbot を詰め込んだ Docker が起動しない</h4>
       <p>
         pythonの自動リリースは、最初は1ステージでbuild⇒docker push⇒ssh接続⇒docker pullすべて行おうとしていたが、以下のエラーが発生した。<br>
       </p>
@@ -158,16 +165,16 @@
       </div>
       <p>
         このエラーの原因はアーキテクチャーの違い（<a href="https://atsushinotes.com/standard_init_linux-go228-exec-user-process-caused-exec-format-error/" target="_blank">参考</a>）。<br>
-        python で pyinstaller を使って軽量なコンテナイメージを作ろうとした際、最初は Alpine を使おうとしていた。コンテナに乗せる前に python のコードを build する必要があるが、 python が入っていないと build できないため、 GitLab のパイプラインで使用するイメージは python:3.10 を使って、出来上がった成果物を alpine で動かそうとしていた。<a href="https://hub.docker.com/_/python" target="_blank">python:3.10 は debian形式</a>なので、そこで生成した成果物を Alpine で動かそうとしても動かない。<br>
-        alpine のイメージある（python:&ltversion&gt-alpine）が、debian も使ってみたかったので、ベースイメージを Alpine から debian に変更することでうまく動くようになった。<br>
+        python で <a href="https://pyinstaller.org/en/stable/" target="_blank">Pyinstaller</a> を使って軽量なコンテナイメージを作ろうとした際、最初は Alpine を使おうとしていた。コンテナに乗せる前に python のコードを build する必要があるが、 python が入っていないと build できないため、 GitLab のパイプラインで使用するイメージは python:3.10 を使って、出来上がった成果物を alpine で動かそうとしていた。<a href="https://hub.docker.com/_/python" target="_blank">python:3.10 は debian形式</a>なので、そこで生成した成果物を Alpine で動かすことができず、先のエラーが発生していた。<br>
+        python が入っている alpine のイメージもある（python:&ltversion&gt-alpine）ため、このイメージを使用してビルドしてもいいのだが、debian も使ってみたかったので、bot を稼働させるイメージを Alpine から debian に変更することでうまく動くようになった。<br>
       </p>
 
-      <h4 class="title">設定の外部ファイル化(json, .env)</h4>
+      <h4 class="title">②設定の外部ファイル化(json, .env)</h4>
       <p>
         自動リリース前は手動でリリースしていたのでパスワードとかコードに直書きしていた。GitLab で管理するなら外部ファイル化しないとまずいので対応。<br>
-        twitter API の認証情報とか postgres の接続情報などを外部ファイル化した。 Go, python 共通で使うものなので json で保存。 postgres の接続情報は Java でも使っているが、既に property ファイル化していたため、Goとpythonはjson、Javaは property ファイルのままにしている（json にした方が良いかな・・・）。<br>
+        twitter API の認証情報とか postgres の接続情報などを外部ファイル化した。 Go, python 共通で使うものなので json で保存。 postgres の接続情報は Java でも使っているが、既に property ファイル化していたため、Goとpythonはjson、Javaは property ファイルのままにしている。<br>
         json ファイルは手動で linux サーバに配置している。これは初回のみの作業。<br>
-        また、json ファイルの格納場所はローカルと linux で異なるので、格納場所を環境変数で設定するようにした。<br>
+        また、json ファイルの格納場所はローカル開発環境とサーバで異なるので、格納場所を環境変数で設定するようにした。<br>
       </p>
 
       <h5 class="title">Go の場合</h5>
@@ -182,26 +189,29 @@
       </div>
 
       <br>
-      <div class="codetitle">Go のコード</div>
-      <div class="code">
-        godotenv.Load("[読み込みたい.envファイルのパス]")
-      </div>
       <p style="padding-left: 2.5em;">
+        .env に設定された内容を環境変数に設定するGo のコードは以下の通り。<br>
+        <code data-gist-id="333f5796f9c6413b0a015ab59e6b5d79" data-gist-line="1-19"></code>
+
+        <br>
         これで.env ファイルに記載している環境変数が設定される。<br>
-        「val := os.Getenv("[環境変数名]")」で環境変数に設定された値を取得できる。今回の場合はこれで json ファイルのフルパスが取得できるので、 os.ReadFile(val) で json を読み込むことができる。<br>
-        json の読み込みは Go の標準の 「encoding/json」の json.Unmarshal() でOK
+        この後「val := os.Getenv("[環境変数名]")」で環境変数に設定された値を取得できる。今回の場合はjsonファイルのパスが取得できるので、os.ReadFile(val) で json を読み込むことができる。json を読み込みんだ後は、Go の標準の 「encoding/json」の json.Unmarshal() で構造体に変換。<br>
+        サンプルコードは以下。<br>
+        <code data-gist-id="c8ae2475b6cc54a8df9c6a6fcc7dde2e" data-gist-line="1-16"></code>
       </p>
 
       <h5 class="title">python の場合</h5>
       <p style="padding-left: 2.5em;">
         <a href="https://pypi.org/project/python-dotenv/" target="_blank">python-dotenv</a> という外部ライブラリを使用。Go の godotenv と使い方は同じで、 .env ファイルを読み込んで環境変数を設定してくれる。<br>
-        os.getenv("[環境変数名]")) で環境変数を読み込めるので、　jsonFile = open(str(os.getenv("[環境変数名]")), "r", encoding="utf-8") でファイルを開き、 json.load(jsonFile) で json 読み込み。これは python の標準ライブラリ。<br>
+        サンプルコードは以下<br>
+        <code data-gist-id="7d75db38fee01e38cbbc01b72b7e22d0" data-gist-line="1-10"></code>
+        6行目の load_dotenv() で .env ファイルの内容を環境変数に設定。9行目の os.getenv("[環境変数名]")) で環境変数を読み込める。今回の場合はjsonファイルのパスが取得できるので、 jsonFile = open(str(os.getenv("[環境変数名]")), "r", encoding="utf-8") でファイルを開き、 json.load(jsonFile) で json 読み込み。これは python の標準ライブラリ。<br>
       </p>
 
       <br><br>
-      <h4 class="title">DOCKER_HOST: tcp://docker:2375って何？</h4>
+      <h4 class="title">③DOCKER_HOST: tcp://docker:2375って何？</h4>
       <p>
-        docker push ⇒ ssh接続 ⇒ docker pull するステージで以下の記載があるが、<font color="yellow">どこかのHP</font>に書いてあるコードをそのまま使用していたため、なぜこれが必要なのかがわかっていなかったので今回それを整理。<br>
+        .gitlab-ci.yml の docker push ⇒ ssh接続 ⇒ docker pull するステージで以下の記載があるが、どこかのHPに書いてあるコードをそのまま使用していたため、なぜこれが必要なのかがわかっていなかったので今回それを整理。<br>
         <code data-gist-id="a38a329ca1f21abbaedbc342bc1f3322" data-gist-line="8-10"></code>
       </p>
 
@@ -233,7 +243,7 @@
       </p>
 
       <br><br>
-      <h4 class="title">ssh 関係コマンド</h4>
+      <h4 class="title">④ssh 関係コマンド</h4>
       <code data-gist-id="a38a329ca1f21abbaedbc342bc1f3322" data-gist-line="32-42"></code>
       <ul>
         <li>eval "$(ssh-agent)"：ssh-agentの起動。<a href="https://qiita.com/Yarimizu14/items/6a4bab703d67ea766ddc" target="_blank">「ssh-agent bash」でも起動できる</a>がこれだと環境変数を設定する必要があって面倒（<a href="https://www.server-memo.net/server-setting/ssh/ssh-agent.html" target="_blank">参考</a>）。eval "$(ssh-agent)" であれば、 ssh-agent を実行して出力された結果を実行してくれるので楽。</li>
@@ -245,9 +255,6 @@
       </ul>
 
       <br>
-      <font color="yellow">ssh終了コマンド実行してなくない？ssh-agent -k</font>
-
-      <br><br>
       ssh<br>
       <ul>
         <li><a href="http://www.yosbits.com/opensonar/rest/man/freebsd/man/ja/man1/ssh-keyscan.1.html?l=ja" target="_blank">SSH-KEYSCAN(1)</a></li>
@@ -285,8 +292,6 @@
         <li><a href="https://qiita.com/doz13189/items/9ee8fda335605567b832" target="_blank">Docker Engine API について</a></li>
       </ul>
 
-
-      <h4 class="title">突然timezoneがUTCになってbotの稼働時間が9時間ずれた話</h4>
       </section><!-- section class="box" -->
 
     <footer>

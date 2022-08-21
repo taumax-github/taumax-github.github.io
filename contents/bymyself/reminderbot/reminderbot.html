@@ -110,7 +110,7 @@
         <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 
       <br><br>
-      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > ロマサガRSリマインダー</p>
+      <p style="color: #FFFFFF;"><a href="../index.html" style="color: #00bfff;">ホーム</a> > <a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > ロマサガRSリマインダー</p>
 
       <br>
       <div id="summary"></div>
@@ -123,8 +123,9 @@
       <div id="whatimade"></div>
       <h3 class="title">作ったもの（実際に稼働したときのツイート）</h3>
       <p>
-        DBに登録したイベント情報（開始日時と終了日時）をお知らせしてくれるbot<br>
-        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今06月22日 20時だよ。<br><br>イベント開催予定！<br>・育成 過去のサガ魂(メイン)：06/03 12:00～06/25 04:00<br>・育成 キャラ別,陽,RS1,詩人(制圧戦,メイン)：06/06 12:00～06/25 04:00<br>続きはリプ欄を見てね！ <a href="https://t.co/UMaJAsn1IG">pic.twitter.com/UMaJAsn1IG</a></p>&mdash; ロマサガRS リマインダー(sagamax_bot) (@sagamax_bot) <a href="https://twitter.com/sagamax_bot/status/1539563987838218240?ref_src=twsrc%5Etfw">June 22, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        開催中イベントの開始日時と終了日時をお知らせしてくれるbot<br>
+        <!-- <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今06月22日 20時だよ。<br><br>イベント開催予定！<br>・育成 過去のサガ魂(メイン)：06/03 12:00～06/25 04:00<br>・育成 キャラ別,陽,RS1,詩人(制圧戦,メイン)：06/06 12:00～06/25 04:00<br>続きはリプ欄を見てね！ <a href="https://t.co/UMaJAsn1IG">pic.twitter.com/UMaJAsn1IG</a></p>&mdash; ロマサガRS リマインダー(sagamax_bot) (@sagamax_bot) <a href="https://twitter.com/sagamax_bot/status/1539563987838218240?ref_src=twsrc%5Etfw">June 22, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+        <blockquote class="twitter-tweet" data-conversation="none"><p lang="ja" dir="ltr">今06月22日 20時だよ。<br><br>イベント開催予定！<br>・育成 過去のサガ魂(メイン)：06/03 12:00～06/25 04:00<br>・育成 キャラ別,陽,RS1,詩人(制圧戦,メイン)：06/06 12:00～06/25 04:00<br>続きはリプ欄を見てね！ <a href="https://t.co/UMaJAsn1IG">pic.twitter.com/UMaJAsn1IG</a></p>&mdash; ロマサガRS リマインダー(sagamax_bot) (@sagamax_bot) <a href="https://twitter.com/sagamax_bot/status/1539563987838218240?ref_src=twsrc%5Etfw">June 22, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </p>
 
       <br><br>
@@ -132,17 +133,26 @@
       <h3 class="title">どんな仕組み？</h3>
       <p>
         <img src="img/whole_image.jpg" width="800"><br>
+      </p>
 
-        <br>
+      <ul class="none" style="padding-left: 50px;">
+        <li>①時間になったらcronでpythonプログラムを起動</li>
+        <li>②DB(postgres)から開催中イベントの情報を取得</li>
+        <li>③対応するイベントの画像をGithubから取得</li>
+        <li>④ツイート実行</li>
+      </ul>
+
+      <p>
         イベント情報をDBに登録する作業は手動だが、それさえやってしまえば、開催中のイベントの終了日を毎日お知らせしてくれる。<br>
         決まった文字や画像を呟くだけのbotなら以下の記事参照。<br>
         <li><a href="https://qiita.com/taumax/items/73ad47eaba64943a9c41" target="_blank">TweepyとcronでTwitterボットを作ってみた話</a></li>
       </p>
 
-      pythonソースコード(bot)<br>
+      <h4 class="title">pythonソースコード(bot)</h4>
+      pythonのソースコードは以下の通り。dailyRemind() 関数が処理の入口。<br>
+
       <script src="https://gist.github.com/taumax-github/991a59ce82e2687ad302c134067ecfd3.js"></script>
       <br>
-      dailyRemind() 関数が処理の入口<br>
 
       <br><br>
       <div id="whatilearn"></div>
@@ -185,7 +195,9 @@
             ----------------------------------------<br>
           ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.<br>
         </div>
+      </p>
 
+      <p>
         調べてみたところ、psycopg2 は libpq（PostgreSQL client library）のCラッパーなので、C言語のコンパイラが必要（<a href="https://self-development.info/psycopg2%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6python%E3%81%8B%E3%82%89postgresql%E3%82%92%E6%93%8D%E4%BD%9C%E3%81%99%E3%82%8B/" target="_blank">参考</a>）。
         Windowsの場合はMicrosoft Visual C++というものが初めからインストールされており、ここにコンパイラが含まれているので、pip install psycopg2 コマンドで psycopg2 をインストールするだけで動いた。<br>
         <img src="img/conpane.jpg"><br>
@@ -194,19 +206,20 @@
 
         <br>
         参考
-        <ul>
-          <li><a href="https://yum-info.contradodigital.com/view-package/updates/postgresql-devel/" target="_blank">postgresql-devel</a></li>
-          <li><a href="https://self-development.info/psycopg2%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6python%E3%81%8B%E3%82%89postgresql%E3%82%92%E6%93%8D%E4%BD%9C%E3%81%99%E3%82%8B/" target="_blank">psycopg2をインストールしてPythonからPostgreSQLを操作する</a></li>
-          <li><a href="https://self-development.info/%e3%80%8cmicrosoft-visual-c-14-0-or-greater-is-required-%e3%80%8d%e3%81%8c%e5%87%ba%e3%81%9f%e5%a0%b4%e5%90%88%e3%81%ae%e5%af%be%e5%87%a6%e6%96%b9%e6%b3%95/" target="_blank">「Microsoft Visual C++ 14.0 or greater is required.」が出た場合の対処方法</a></li>
-        </ul>
       </p>
+
+      <ul>
+        <li><a href="https://yum-info.contradodigital.com/view-package/updates/postgresql-devel/" target="_blank">postgresql-devel</a></li>
+        <li><a href="https://self-development.info/psycopg2%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6python%E3%81%8B%E3%82%89postgresql%E3%82%92%E6%93%8D%E4%BD%9C%E3%81%99%E3%82%8B/" target="_blank">psycopg2をインストールしてPythonからPostgreSQLを操作する</a></li>
+        <li><a href="https://self-development.info/%e3%80%8cmicrosoft-visual-c-14-0-or-greater-is-required-%e3%80%8d%e3%81%8c%e5%87%ba%e3%81%9f%e5%a0%b4%e5%90%88%e3%81%ae%e5%af%be%e5%87%a6%e6%96%b9%e6%b3%95/" target="_blank">「Microsoft Visual C++ 14.0 or greater is required.」が出た場合の対処方法</a></li>
+      </ul>
 
       <br><br>
       <h4 class="title">隔週で呟く内容を切り替えたいんだけどどうすれば？</h4>
       <p>
         python の datetime オブジェクトの中に isocalendar() という関数があり、日付から、何年の第何週の何番目の日かというのをTupleで返却してくれる。数字型。<br>
         この「何週目か」を2で割った余りが1か0かで分岐すれば隔週で内容を切り替えることができる。<br>
-        元のpythonコードを見ると「 dt_now.isocalendar()[1] 」で取得した行番号で分岐していることがわかる（以下、該当箇所抜粋）。<br>
+        元のpythonコードを見ると「 dt_now.isocalendar()[1] 」で取得した行番号で分岐していることがわかる（以下、pythonコードの該当箇所抜粋）。<br>
         <code data-gist-id="991a59ce82e2687ad302c134067ecfd3" data-gist-line="382-402"></code>
 
         <br>

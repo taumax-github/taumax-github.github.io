@@ -112,6 +112,7 @@
       <br><br>
       <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > twitterのスクレイピングbot</p>
 
+      <br>
       <div id="summary"></div>
       <h3 class="title">twitterのスクレイピングbot</h3>
       <p>
@@ -144,16 +145,19 @@
         <img src="img/whole_image.jpg" width="800"><br>
 
         <br>
-        botが勝手に情報収集して勝手にDB登録して勝手に公開してくれる、手間のかからない素敵システム。<br>
+        botが勝手に情報収集して勝手にDB登録して勝手に公開してくれる、手間のかからない素敵システム。情報収集してDBに登録する部分はpythonで実装。webサイト部分はJava(jspとservlet)で実装。<br>
       </p>
 
-      pythonソースコード(bot)<br>
+      <br>
+      <h4 class="title">pythonソースコード(bot)</h4>
       <script src="https://gist.github.com/taumax-github/d29226ea9c744cf13a747ef110c12bd8.js"></script>
 
-      Java servlet<br>
+      <br>
+      <h4 class="title">Java servlet</h4>
       <script src="https://gist.github.com/taumax-github/e015c8ddb37697d34466a3988c333a76.js"></script>
 
-      JSP<br>
+      <br>
+      <h4 class="title">JSP</h4>
       <script src="https://gist.github.com/taumax-github/c422b2b191644bbd2a8c0689606e744a.js"></script>
 
       <br><br>
@@ -185,7 +189,7 @@
 
       <br>
       <p>
-        can't compare offset-naive and offset-aware datetimes ？？？何言ってんの？？？だったんだけど、どうやらpythonのdatetimeオブジェクト（日時=日付と時刻を扱う）とtimeオブジェクト（時刻を扱う）は<font color="yellow">naive</font>と<font color="yellow">aware</font>の2種類に分類されるらしい。<br>
+        can't compare offset-naive and offset-aware datetimes ？？？何言ってんの？？？状態だったんだけど、どうやらpythonのdatetimeオブジェクト（日時=日付と時刻を扱うオブジェクト）とtimeオブジェクト（時刻を扱うオブジェクト）は<font color="yellow"><strong>naive</strong></font>と<font color="yellow"><strong>aware</strong></font>の2種類に分類されるらしい。<br>
         ざっくり言うと、
         <ul>
           <li>naive：timezone無しのオブジェクト</li>
@@ -195,8 +199,8 @@
       <p>
         先に乗せたpythonコードの189行目、今は「datetime.datetime.now(JST)」となっているが、以前は「datetime.datetime.now()」となっていたのでnaiveなオブジェクトだった。<br>
         <code data-gist-id="d29226ea9c744cf13a747ef110c12bd8" data-gist-line="186-189"></code>
-        
-        同コードの28行目の「if dt_now_bfr > result.created_at + datetime.timedelta(hours=DIFF_JST_FROM_UTC)」でtwitter apiで取得したツイート時刻(UTCが指定されているのでaware)とdatetime.datetime.now()の10分前(native)を比較しようとしているが、pythonの仕様でawareとnativeは比較できないのでエラーになっていた。ということらしい。<br>
+
+        同コードの28行目の「if dt_now_bfr > result.created_at + datetime.timedelta(hours=DIFF_JST_FROM_UTC)」でtwitter apiで取得したツイート時刻(<font color="yellow">UTCが指定されているのでaware</font>)とdatetime.datetime.now()の10分前（<font color="yellow">native</font>）を比較しようとしているが、pythonの仕様でawareとnativeは比較できないのでエラーになっていた。ということらしい。<br>
         <code data-gist-id="d29226ea9c744cf13a747ef110c12bd8" data-gist-line="26-29"></code>
         「datetime.datetime.now()」の前に「JST = timezone(timedelta(hours=+9), 'JST')」でJSTのtimezoneを生成し、それをnowの引数に渡す（dt_now = datetime.datetime.now(JST)）ことでawareなオブジェクトにして対処した。<br>
 

@@ -137,11 +137,11 @@
         Go の bot を動かすイメージと python の bot を動かすイメージで分けている。<br>
 
         <br><br>
-        Dockerfile(python)<br>
+        <h4 class="title">Dockerfile(python)</h4>
         <script src="https://gist.github.com/taumax-github/990a5d3d89e24beb75dab9bba346e2ca.js"></script>
 
         <br>
-        Dockerfile(Go)<br>
+        <h4 class="title">Dockerfile(Go)</h4>
         <script src="https://gist.github.com/taumax-github/a3ee7cda2b1db1ee16860185f165df5e.js"></script>
       </p>
 
@@ -279,12 +279,16 @@
 
       <br><br>
       <h4 class="title">timezone の設定の仕方がわからない</h4>
-      レンタルしている linux サーバの timezone は初めからJST<br>
+      <p>
+        レンタルしている linux サーバの timezone は初めからJST<br>
+      </p>
       <div class="code">
         /etc/localtime -> ../usr/share/zoneinfo/Asia/Tokyo
       </div>
-      自分で設定した覚えはないので多分最初からこうなっていた。このため、これまで特段何も意識せずに JST で動いでいた。<br>
-      コンテナ化するにあたり、デフォルトは大概 UTC なので、設定を自分で変更する必要があった。<br>
+      <p>
+        自分で設定した覚えはないので多分最初からこうなっていた。このため、これまで特段何も意識せずに JST で動いでいた。<br>
+        コンテナ化するにあたり、デフォルトは大概 UTC なので、設定を自分で変更する必要があった。<br>
+      </p>
 
       <h5 class="title">Alpine × Goの場合</h5>
       <p style="padding-left: 2.5em;">
@@ -331,8 +335,10 @@
 
       <br><br>
       <h4 class="title">コンテナからホストのDBにアクセス</h4>
-      <img src="img/postgres_access.png" width="300"><br>
-      コンテナから postgres にアクセスしようとすると以下のエラーが発生して接続できない<br>
+      <p>
+        <img src="img/postgres_access.png" width="300"><br>
+        コンテナから postgres にアクセスしようとすると以下のエラーが発生して接続できない<br>
+      </p>
       <div class="code">
           Traceback (most recent call last):<br>
           File "/pythonscheduler.py", line 27, in <module><br>
@@ -357,15 +363,19 @@
                 TCP/IP connections on port 5432?<br>
       </div>
 
-      <br><br>
-      postgres には 「pg_hba.conf」 というファイルがあり、アクセス可能な ipアドレスのリストが書かれている。<br>
+      <p>
+        <br><br>
+        postgres には 「pg_hba.conf」 というファイルがあり、アクセス可能な ipアドレスのリストが書かれている。<br>
+      </p>
       <div class="code">
         # host    all             all             127.0.0.1/32            trust<br>
         host    all             all             0.0.0.0/0            trust<br>
       </div>
 
-      <br>
-      また、「postgresql.conf」の listen_addresses を「'localhost'」から「'*'」に変更<br>
+      <p>
+        <br>
+        また、「postgresql.conf」の listen_addresses を「'localhost'」から「'*'」に変更<br>
+      </p>
       <div class="code">
         listen_addresses = '*'		# what IP address(es) to listen on;
         # comma-separated list of addresses;
@@ -374,9 +384,11 @@
         #port = 5432				# (change requires restart)
         max_connections = 100			# (change requires restart)
       </div>
-      元々 localhost からのアクセスのみを許可していたが、どこからでもアクセスできるようにした。<br>
+      <p>
+        元々 localhost からのアクセスのみを許可していたが、どこからでもアクセスできるようにした。<br>
 
-      この後 postgres を再起動したらOK<br>
+        この後 postgres を再起動したらOK<br>
+      </p>
       <div class="code">
         systemctl restart postgresql-9.5.service<br>
         systemctl status postgresql-9.5.service<br>
@@ -391,7 +403,9 @@
 
       <br><br>
       <h4 class="title">PythonでOpenCVを使用する場合に必要なライブラリをinstall</h4>
-      コンテナ起動時に以下のエラーが発生<br>
+      <p>
+        コンテナ起動時に以下のエラーが発生<br>
+      </p>
       <div class="code">
         Traceback (most recent call last):
         File "/pythonscheduler.py", line 3, in <module>
@@ -403,14 +417,15 @@
         ImportError: libGL.so.1: cannot open shared object file: No such file or directory
       </div>
 
-      OpenCV を動かすにあたって必要なモジュール (libgl1-mesa-dev) が入っていないらしい（<a href="https://qiita.com/sky11fur/items/1aa385251030a09830a3" target="_blank">参考記事</a>）。<br>
-      <br>
-      Dockerfile に以下記述追加<br>
+      <p>
+        OpenCV を動かすにあたって必要なモジュール (libgl1-mesa-dev) が入っていないらしい（<a href="https://qiita.com/sky11fur/items/1aa385251030a09830a3" target="_blank">参考記事</a>）。<br>
+        <br>
+        Dockerfile に以下記述追加して解決。<br>
+      </p>
       <div class="code">
         RUN apt-get update && apt-get upgrade -y<br>
         RUN apt-get install -y libgl1-mesa-dev<br>
       </div>
-      <font color="yellow">libgl1-mesa-dev が何者なのか等々もうちょっと深堀したい。</font><br>
 
       <br>
       参考<br>
@@ -420,9 +435,6 @@
         <li><a href="https://cocoinit23.com/docker-opencv-importerror-libgl-so-1-cannot-open-shared-object-file/" target="_blank">DockerのOpenCVでImportError: libGL.so.1: cannot open shared object file</a></li>
         <li><a href="https://packages.debian.org/ja/stretch/libgl1-mesa-dev" target="_blank">free implementation of the OpenGL API -- GLX development files</a></li>
       </ul>
-
-      <br><br>
-      <h4 class="title">non root</h4>
 
       </section><!-- section class="box" -->
 
