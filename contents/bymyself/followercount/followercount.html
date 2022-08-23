@@ -119,7 +119,7 @@
       <div id="summary"></div>
       <h3 class="title">公式アカウントのフォロワー数変化(Goで書いた)</h3>
       <p>
-        ゲームの公式アカウントのフォロワー数に応じてプレゼントがあるキャンペーン。<br>
+        ゲームの公式twitterアカウントのフォロワー数に応じてプレゼントが貰えるというキャンペーンをやっていたので、毎日カウントしてbotで報知してた。<br>
       </p>
 
       <br><br>
@@ -140,7 +140,10 @@
       </p>
 
       <br>
-      主処理。31行目の TweetPublicAccount() が入口<br>
+      <h4 class="title">ソースコード(Go)</h4>
+      <p>
+        主処理。31行目の TweetPublicAccount() が入口
+      </p>
       <script src="https://gist.github.com/taumax-github/a52cb94cacb991d7722320c76685a58f.js"></script>
 
       <br><br>
@@ -154,7 +157,7 @@
       <h4 class="title">tweet するためのライブラリ</h4>
       <p>
         <a href="https://github.com/ChimeraCoder/anaconda" target="_blank">anaconda</a> というライブラリを使ってツイートするプログラム。<br>
-        TweetPublicAccount 関数の中でツイート用のインスタンス生成し、変数 api に格納（36行目）。67行目でツイート実行。<br>
+        TweetPublicAccount 関数の中でツイート用のインスタンス生成し、変数 api に格納（36行目）。70行目でツイート実行。<br>
         <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="36-70"></code>
         画像をツイートしたい場合は54～58行目。ツイート実行の前に api.UploadMedia で画像を upload する必要がある。引数の型が base64String なので画像を base64エンコードしている。<br>
         そのあと、 url.Values{} の "media_ids" に格納。複数ある場合はカンマ区切りで設定。<br>

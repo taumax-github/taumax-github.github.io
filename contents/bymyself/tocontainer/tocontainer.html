@@ -118,8 +118,6 @@
       <h3 class="title">コンテナ化</h3>
       <p>
         新しく配属されたプロジェクトで Docker や GitLab で自動リリース機能構築(CD)など、これまで触れたことのない技術が大量にあったので、それらを使用することで少しでも早くその技術になれ、使いこなせるようになりたかった。<br>
-        なので今後コンテナ化、GitLab で CD 機能を構築していくが、その前に cron から脱却し、各言語のスケジューラを使用することでコンテナ化したときの移植性を高めたい。<br>
-        稼働時間を変えたいとか、新しく bot を作った時の稼働タイミングの設定を各アプリで行うことで、ローカルで設定したものを GitLab に push してしまえば後は勝手にリリースされて時間になったら bot が稼働するという状態を目指したい。<br>
       </p>
 
       <br>
@@ -214,21 +212,27 @@
         </div>
 
         <br>
-        <a href="https://end0tknr.hateblo.jp/entry/20210312/1615498434" target="_blank">このサイト</a>を参考に以下のコードを追加<br>
+        <p>
+          <a href="https://end0tknr.hateblo.jp/entry/20210312/1615498434" target="_blank">このサイト</a>を参考に以下のコードを追加<br>
+        </p>
         <div class="code">
           import ssl<br>
           ssl._create_default_https_context = ssl._create_unverified_context<br>
         </div>
 
-        これで一応動くようにはなったけど、セキュリティ上はよくなさそう（<a href="https://shnsprk.com/entry/2015/12/06/100000" target="_blank">参考</a>）。<br>
-        アクセスしてるのは自分の GitHub と twitter なので大丈夫だとは思うが、以下の対応の方が良さそうなので今度試してみる（<a href="https://jorublog.site/program_error/python-pip-error/" target="_blank">参考</a>）。<br>
+        <p>
+          これで一応動くようにはなったけど、セキュリティ上はよくなさそう（<a href="https://shnsprk.com/entry/2015/12/06/100000" target="_blank">参考</a>）。<br>
+          アクセスしてるのは自分の GitHub と twitter なので大丈夫だとは思うが、以下の対応の方が良さそうなので今度試してみる（<a href="https://jorublog.site/program_error/python-pip-error/" target="_blank">参考</a>）。<br>
+        </p>
         <div class="code">
           pip install --upgrade pip<br>
           pip install --upgrade certifi<br>
         </div>
 
-        <br>
-        これでもダメなら以下。<br>
+        <p>
+          <br>
+          これでもダメなら以下。<br>
+        </p>
         <div class="code">
           pip install --upgrade requests<br>
         </div>
@@ -245,8 +249,7 @@
       <br><br>
       <h4 class="title">apt？yum？？apk？？？</h4>
       <p>
-        コンテナ化するにあたり、パッケージをインストールする際のコマンドが apt だったり yum だったり apk だったりして何が何だかわからず超混乱した。<br>
-        <a href="https://qiita.com/hal-bo/items/1e0568120c545bf723c6" target="_blank">この記事</a>を見てやっとわかったんだけど、パッケージファイル形式によってコマンドが違うのですね。。。<br>
+        コンテナ化するにあたり、パッケージをインストールする際のコマンドが apt だったり yum だったり apk だったりして何が何だかわからず超混乱した。<a href="https://qiita.com/hal-bo/items/1e0568120c545bf723c6" target="_blank">この記事</a>を見てやっとわかったんだけど、パッケージファイル形式によってコマンドが違うのですね。。。<br>
       </p>
 
       <table border="1">

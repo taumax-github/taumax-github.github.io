@@ -19,7 +19,7 @@
     <script src="../../../js/openclose.js"></script>
     <script src="../../../js/gist-embed.min.js"></script>
 
-    <title>キャンペーン対象キャラ通知bot</title>
+    <title>ロマサガRSキャンペーン対象キャラ通知bot</title>
     
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -103,7 +103,7 @@
     <div id="main">
       <span id="pagetop"></span>
       <section class="box">
-        <h2 class="title">キャンペーン対象キャラ通知bot</h2>
+        <h2 class="title">ロマサガRSキャンペーン対象キャラ通知bot</h2>
         <!-- tweetボタン -->
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <!-- はてぶボタン -->
@@ -116,14 +116,14 @@
       <div id="summary"></div>
       <h3 class="title">キャンペーン対象キャラ通知bot</h3>
       <p>
-        ゲームイベントの対象キャラを判断するロジックがわかり辛過ぎるから作ってみたbot。<br>
+        ロマサガRSというゲームで定期的にイベントが開催されるが、イベントの対象キャラが誰なのかがわかり辛過ぎるから作ってみたbot。<br>
       </p>
 
       <br><br>
       <div id="whatimade"></div>
       <h3 class="title">作ったもの（実際に稼働したときのツイート）</h3>
       <p>
-        DBに登録したイベント情報（開始日時と終了日時）をお知らせしてくれるbot<br>
+        DBに登録した情報から、イベントの対象キャラを判断してお知らせしてくれるbot<br>
         <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今2022/06/23 11:04<br>【陽】属性の技・術を持つキャラだよ！<br>画像を添付するからそれで確認してね！ <a href="https://t.co/b4Z54aRYxI">pic.twitter.com/b4Z54aRYxI</a></p>&mdash; ロマサガRS 育成応援キャンペーン情報(sagamax_bot2) (@sagamax_bot2) <a href="https://twitter.com/sagamax_bot2/status/1539791527761031168?ref_src=twsrc%5Etfw">June 23, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
       </p>
 
@@ -185,10 +185,8 @@
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
       <h4 class="title">画像に日本語を埋め込めない</h4>
       <p>
-        pythonで画像編集する場合、OpenCVというライブラリを使うのがスタンダードっぽい。<br>
-        OpenCVで日本語テキストを表示させようとすると文字化けしてうまくいかない（opencvの仕様）。<br>
-        PillowとOpenCVを併用した（※）。<br>
-        大まかな処理の流れ。<br>
+        OpenCV という python のライブラリを使って画像編集している記事があったので、それを参考にした。OpenCVで日本語テキストを表示させようとすると文字化けしてうまくいかなかった（OpenCV の仕様）ので、PillowとOpenCVを併用した（※）。<br>
+        大まかな処理の流れは以下の通り。<br>
       </p>
       <ul>
         <li>画像ファイル読み込み(Pillow)</li>
@@ -210,10 +208,10 @@
         妙な色の画像<br>
         <img src="img/rgb.jpg" width="300"><br>
 
+        <br>
         Pillowでは色の順番はRGB（赤、緑、青）を前提としている。<br>
         OpenCVは色の順番はBGR（青、緑、赤）。<br>
-        Pillow で読み込んだ画像を OpenCV に渡す際に赤と青が逆転した結果こうなった。<br>
-        Pillow から OpenCV に渡す際に RGB から BGR に変換することで対処（下記コード参照）。<br>
+        Pillow で読み込んだ画像を OpenCV に渡す際に赤と青が逆転した結果こうなった。Pillow から OpenCV に渡す際に RGB から BGR に変換することで対処（下記コード参照）。<br>
         <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="291-293"></code>
 
         <br>
@@ -225,7 +223,7 @@
         <code data-gist-id="4e8e8777ddba736872e7e7090258ac10" data-gist-line="1-5"></code>
 
         <br>
-        Pillow, Numpy, OpenCV の違いがよくわからなくなってきたが、凄く雑にまとめると<br>
+        Pillow, Numpy, OpenCV の違いがよくわからなくなってきたが、超個人的主観で凄く雑にまとめると<br>
       </p>
 
       <ul>

@@ -62,8 +62,7 @@
     <nav>
       <ul class="indent_no">
         <li><a href="#summary">概要</a></li>
-        <li><a href="#whatimade">作成物</a></li>
-        <li><a href="#mechanism">仕組み</a></li>
+        <li><a href="#whatido">やったこと</a></li>
         <li><a href="#whatilearn">学び</a></li>
       </ul>
     </nav>
@@ -88,8 +87,7 @@
       <nav>
         <ul class="indent_no">
           <li><a href="#summary">概要</a></li>
-          <li><a href="#whatimade">作成物</a></li>
-          <li><a href="#mechanism">仕組み</a></li>
+          <li><a href="#whatido">やったこと</a></li>
           <li><a href="#whatilearn">学び</a></li>
         </ul>
       </nav>
@@ -114,28 +112,22 @@
       <br><br>
       <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > https化</p>
 
+      <br>
       <div id="summary"></div>
       <h3 class="title">https化（常時SSL化）</h3>
       <p>
-        https化してみたかった。<br>
+        SSL通信回りの仕組みがよくわかっていなかったので、自分のWebサイトを https 化してることで勉強になるかなと思ったのでやってみた。<br>
       </p>
 
       <br>
-      <div id="whatimade"></div>
-      <h3 class="title">作ったもの（実際に稼働したときのツイート）</h3>
+      <div id="whatido"></div>
+      <h3 class="title">やったこと</h3>
       <p>
-        内容は対応前後で変化なし。<br>
-      </p>
-
-      <br><br>
-      <div id="mechanism"></div>
-      <h3 class="title">どんな仕組み？</h3>
-      <p>
-        <font color="yellow">以下のサイトの手順に従えばある程度できたが、それぞれの手順が何をしているのかよくわかっていない部分があるので明日以降整理したい</font><br>
+        以下のサイトの手順に従って SSL証明書を導入し、 https 化してみた。<br>
         <a href="https://qiita.com/yoshizaki_91/items/e6f39a5bfb99900b44b2" target="_blank">さくらVPSにSSL証明書を導入しHTTPS通信の構築</a>
       </p>
 
-      <br><br>
+      <br>
       <div id="whatilearn"></div>
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
       <h4 class="title">①https 化の設定完了後、httpd を再起動したらエラー</h4>
@@ -305,7 +297,7 @@
 
       <br>
       <p>
-        /etc/httpd/conf.d/ssl.confにもSSLCertificateFile, SSLCertificateKeyFile, SSLCertificateChainFile と ServerName を設定します。<br>
+        ssl.conf に SSLCertificateFile, SSLCertificateKeyFile, SSLCertificateChainFile と ServerName を設定します。<br>
       </p>
       <div class="code">
         SSLCertificateFile /etc/httpd/conf/ssl.crt/server.crt<br>
@@ -367,7 +359,7 @@
         <br>
         暗号化の方式を決定した後、サーバからクライアントに対してSSLサーバ証明書を提示します。クライアントは提示されたSSLサーバ証明書を検証します。検証にはルート認証局が発行する「ルート証明書」が必要です。ルート証明書はパソコンやスマートフォンなどの端末内に保存されているため、これを使って検証します。サーバーから送られてくる証明書が、ルート証明書に関連付けられた証明書（正規の中間認証局が発行した証明書）であるかを検証します。<br>
 
-        クライアント認証はオプションです。私の環境では、 /etc/httpd/conf.d/ssl.conf は以下の通りコメントアウトされているので、設定を変えない限りクライアント認証は実施されません。<br>
+        クライアント認証はオプションです。私の環境では、 ssl.conf は以下の通りコメントアウトされているので、設定を変えない限りクライアント認証は実施されません。<br>
       </p>
       <div class="code">
         #   Client Authentication (Type):<br>
@@ -380,7 +372,7 @@
       </div>
       <p>
         <br>
-        「共通鍵の元になるデータの送信」は、共通鍵を生成するためのもの。共通鍵そのものを送るのではなく、共通鍵を生成するための元ネタを送ることで鍵漏洩のリスクを軽減するためのもので、 DH（Diffie-Hellman）法というやり方で共通鍵を生成する。DH法のアルゴリズム自体はややこしいので省略するが、ざっくり言うと、クライアントとサーバがそれぞれ生成した別々の乱数をお互いに送り、それをもとに共通の値を生成してそれを共通鍵暗号方式の鍵として使用する方式のこと。<br>
+        「共通鍵の元になるデータの送信」は、共通鍵を生成するためのもの。共通鍵そのものを送るのではなく、共通鍵を生成するための元ネタを送ることで鍵漏洩のリスクを軽減するためのもので、 DH（Diffie-Hellman）法というやり方で共通鍵を生成する。DH法のアルゴリズム自体はややこしいので省略するが、ざっくり言うと、クライアントとサーバがそれぞれ生成した別々の乱数をお互いに送り、それをもとに共通の値を生成する技術です。DH法で生成した値を共通鍵暗号方式の鍵として使用します。<br>
         このようにして算出した共通鍵を使用して、暗号化通信が行われます。<br>
       </p>
 
@@ -488,13 +480,13 @@
         <br>
         以下のコマンドで、 service に https を追加。
         <br>
-        <div class="codetitle">firewall-cmd --zone=public --add-service=https --permanent</div>
+        <div class="code">firewall-cmd --zone=public --add-service=https --permanent</div>
       </p>
       <p>
-        ※permanentオプションはCentOSを再起動しても設定を残すためのオプション<br>
+        ※ permanent オプションはCentOSを再起動しても設定を残すためのオプション<br>
 
         <br>
-        再度firewallの設定を確認。まだ追加されていない。<br>
+        再度 firewall の設定を確認。まだ https 追加されていない。<br>
       </p>
       <div class="codetitle">firewall-cmd --list-all</div>
       <div class="code">
@@ -515,7 +507,7 @@
 
       <p>
         <br>
-        firewall を再起動して、再度firewallの設定を確認。<br>
+        firewall を再起動して、再度 firewall の設定を確認。<br>
       </p>
       <div class="codetitle">firewall-cmd --reload</div>
       <div class="codetitle">firewall-cmd --list-all</div>
