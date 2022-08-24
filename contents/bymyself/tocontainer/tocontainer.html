@@ -62,7 +62,6 @@
     <nav>
       <ul class="indent_no">
         <li><a href="#summary">概要</a></li>
-        <li><a href="#whatimade">作成物</a></li>
         <li><a href="#mechanism">仕組み</a></li>
         <li><a href="#whatilearn">学び</a></li>
       </ul>
@@ -88,7 +87,6 @@
       <nav>
         <ul class="indent_no">
           <li><a href="#summary">概要</a></li>
-          <li><a href="#whatimade">作成物</a></li>
           <li><a href="#mechanism">仕組み</a></li>
           <li><a href="#whatilearn">学び</a></li>
         </ul>
@@ -117,14 +115,7 @@
       <div id="summary"></div>
       <h3 class="title">コンテナ化</h3>
       <p>
-        新しく配属されたプロジェクトで Docker や GitLab で自動リリース機能構築(CD)など、これまで触れたことのない技術が大量にあったので、それらを使用することで少しでも早くその技術になれ、使いこなせるようになりたかった。<br>
-      </p>
-
-      <br>
-      <div id="whatimade"></div>
-      <h3 class="title">作ったもの（実際に稼働したときのツイート）</h3>
-      <p>
-        内容は対応前後で変化なし。<br>
+        新しく配属されたプロジェクトで Docker や GitLab で自動リリース機能構築(CD)など、これまで触れたことのない技術が大量にあったので、それらを使用することで少しでも早くその技術に慣れ、使いこなせるようになりたかった。<br>
       </p>
 
       <br><br>
@@ -289,14 +280,12 @@
         /etc/localtime -> ../usr/share/zoneinfo/Asia/Tokyo
       </div>
       <p>
-        自分で設定した覚えはないので多分最初からこうなっていた。このため、これまで特段何も意識せずに JST で動いでいた。<br>
-        コンテナ化するにあたり、デフォルトは大概 UTC なので、設定を自分で変更する必要があった。<br>
+        自分で設定した覚えはないので多分最初からこうなっていた。このため、これまで特段何も意識せずに JST で動いていた。コンテナ化するにあたり、デフォルトは大概 UTC なので、設定を自分で変更する必要があった。<br>
       </p>
 
       <h5 class="title">Alpine × Goの場合</h5>
       <p style="padding-left: 2.5em;">
-        <a href="https://kawaken.hateblo.jp/entry/2018/08/30/190954" target="_blank">この記事</a>が凄くわかりやすいのですが、 Go は「time.FixedLocation」という関数を使用すれば、コンテナのタイムゾーンを変更しなくても、アプリ内でJSTとして扱うことはできるらしいです。<br>
-        「time.LoadLocation」という関数を使用した場合はコンテナ内に zoneinfo が必要です。<br>
+        <a href="https://kawaken.hateblo.jp/entry/2018/08/30/190954" target="_blank">この記事</a>が凄くわかりやすいのですが、 Go は「time.FixedLocation」という関数を使用すれば、コンテナのタイムゾーンを変更しなくても、アプリ内でJSTとして扱うことはできるらしいです。「time.LoadLocation」という関数を使用した場合はコンテナ内に zoneinfo が必要です。<br>
         自作した Go の bot は time.FixedLocation を使っているので zoneinfo は不要なのですが、コンテナ内に入って何か調べる時に timezone が合ってないと混乱しそうなので合わせておきます。<br>
         timezone を変更するには、 /etc/localtime を設定したい zoneinfo に変更すればよいのですが、Alpine にはデフォルトでは zoneinfo は用意されていません。apk で tzdata パッケージをインストールする必要があります。<br>
         Dockerfile に以下コマンドを書きましょう。<br>
@@ -310,14 +299,14 @@
       <h5 class="title">Debian × pythonの場合</h5>
       <p style="padding-left: 2.5em;">
         Debian には初めから zoneinfo があるので、 /etc/localtime に Asia/Tokyo をコピーすることで timezone を JST に変更することが可能。<br>
-        Go と違って python のスケジューラは timezone を指定していない（指定するやり方はあるのかもしれないけど知らない）ので、実行している環境に依存していると思われる。なのでこの作業は必須。<br>
-        python のスケジューラのソースコードは<a href="../toscheduler/toscheduler.html#pysche">こちら</a>。
+        Go と違って python のスケジューラは timezone を指定していないので、実行している環境に依存している。なので Dockerfile に以下コマンドを書いて timezone を設定した。<br>
       </p>
       <div class="code">
         RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
       </div>
       <p style="padding-left: 2.5em;">
-          ※ 「使っている python のスケジューラは timezone を指定していない」であって python 自体に timezone を指定するやり方はあります。<br>
+        <br>
+        参考までに、python のスケジューラのソースコードは<a href="../toscheduler/toscheduler.html#pysche">こちら</a>。
       </p>
 
       <br>

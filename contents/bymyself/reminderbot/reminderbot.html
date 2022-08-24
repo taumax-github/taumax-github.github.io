@@ -201,7 +201,7 @@
       </p>
 
       <p>
-        調べてみたところ、psycopg2 は libpq（PostgreSQL client library）という、C言語で書かれた Postgres のインタフェースなので、C言語のコンパイラが必要（<a href="https://self-development.info/psycopg2%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6python%E3%81%8B%E3%82%89postgresql%E3%82%92%E6%93%8D%E4%BD%9C%E3%81%99%E3%82%8B/" target="_blank">参考</a>）。
+        調べてみたところ、psycopg2 は libpq（PostgreSQL client library）という、C言語で書かれた Postgres のインタフェースを python でラップしたものなので、C言語のコンパイラが必要（<a href="https://self-development.info/psycopg2%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6python%E3%81%8B%E3%82%89postgresql%E3%82%92%E6%93%8D%E4%BD%9C%E3%81%99%E3%82%8B/" target="_blank">参考</a>）。
         Windowsの場合はMicrosoft Visual C++というものが初めからインストールされており、ここにコンパイラが含まれているので、pip install psycopg2 コマンドで psycopg2 をインストールするだけで動いた。<br>
         <img src="img/conpane.jpg"><br>
         <br>

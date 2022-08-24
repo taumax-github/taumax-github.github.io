@@ -121,9 +121,16 @@
       <div id="mechanism"></div>
       <h3 class="title">どんな仕組み？</h3>
       <p>
-        <img src="img/image.png" width="700"><br>
+        <img src="img/image_bot.png" width="700"><br>
         <br>
-        これまで開発したGo/Pythonのbot、JavaのWebサイト、すべて同じ仕組みで自動リリース機能を実装。自分の作業は上図の①のgit pushのみ。②～④は GitLabが自動的にやってくれる。GitLabは、.gitlab-ci.ymlに記載したコマンドを自動的に実行してくれる。実際の.gitlab-ci.ymlは以下のようになっている。<br>
+        これまで開発した Go/Python の bot は上図の仕組みで自動リリース機能を実装。自分の作業は上図の①のgit pushのみ。②～④は GitLabが自動的にやってくれるようになっている。<br>
+
+        <br><br>
+        <img src="img/image_java.png" width="700"><br>
+        Java の Webサイトは上図のように、dockerを使わず、 Gitlab 内で maven のコマンドを実行してwar ファイルを生成し、 サーバにwarファイルを転送する方式。自分の作業は上図の①のgit pushのみである点は bot と同じ。<br>
+
+        <br>
+        GitLabは、.gitlab-ci.ymlに記載したコマンドを自動的に実行してくれる。以下が実際の .gitlab-ci.yml の中身。
       </p>
 
       <br>
@@ -218,7 +225,7 @@
       <br>
       <p>
         以下、整理した内容<br>
-        GitLab の CI/CD の中で dockerコマンドを実行するには、いくつか方法があるが、今回使用したものは Docker in Docker(dind とよく呼ばれている)の構成になっている（<a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">参考</a>）。<br>
+        GitLab の CI/CD の中で dockerコマンドを実行するには、いくつか方法があるが、今回使用したものは Docker in Docker(dind と呼ばれている)の構成になっている（<a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">参考</a>）。<br>
         dind とはDockerコンテナ内にDockerを用意する技術の事で、下図のようにdockerが入れ子状態になっています。<br>
         <img src="img/dind.png"><br>
         ※図は<a href="https://esakat.github.io/esakat-blog/posts/docker-in-docker/" target="_blank">Dockerコンテナ内からDockerを使うことについて</a>から引用<br>

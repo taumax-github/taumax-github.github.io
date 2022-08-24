@@ -62,7 +62,6 @@
     <nav>
       <ul class="indent_no">
         <li><a href="#summary">概要</a></li>
-        <li><a href="#whatimade">作成物</a></li>
         <li><a href="#mechanism">仕組み</a></li>
         <li><a href="#whatilearn">学び</a></li>
       </ul>
@@ -88,7 +87,6 @@
       <nav>
         <ul class="indent_no">
           <li><a href="#summary">概要</a></li>
-          <li><a href="#whatimade">作成物</a></li>
           <li><a href="#mechanism">仕組み</a></li>
           <li><a href="#whatilearn">学び</a></li>
         </ul>
@@ -117,16 +115,9 @@
       <div id="summary"></div>
       <h3 class="title">cron脱却（コンテナ化を見据えて）</h3>
       <p>
-        新しく配属されたプロジェクトで Docker や GitLab で自動リリース機能構築(CD)など、これまで触れたことのない技術が大量にあったので、それらを使用することで少しでも早くその技術になれ、使いこなせるようになりたかった。<br>
+        新しく配属されたプロジェクトで Docker や GitLab で自動リリース機能構築(CD)など、これまで触れたことのない技術が大量にあったので、それらを使用することで少しでも早くその技術に慣れ、使いこなせるようになりたかった。<br>
         なので今後コンテナ化、GitLab で CD 機能を構築していくが、その前に cron から脱却し、各言語のスケジューラを使用することでコンテナ化したときの移植性を高めたい。<br>
-        稼働時間を変えたいとか、新しく bot を作った時の稼働タイミングの設定を各アプリで行うことで、ローカルで設定したものを GitLab に push してしまえば後は勝手にリリースされて時間になったら bot が稼働するという状態を目指したい。<br>
-      </p>
-
-      <br>
-      <div id="whatimade"></div>
-      <h3 class="title">作ったもの（実際に稼働したときのツイート）</h3>
-      <p>
-        内容は対応前後で変化なし。<br>
+        稼働時間を変えたいとか、新しく bot を作った時の稼働タイミングの設定を、これまで使用していた cron から各アプリで行うように修正することで、ローカルで設定したものを GitLab に push してしまえば後は勝手にリリースされて時間になったら bot が稼働するという状態を目指したい。<br>
       </p>
 
       <br><br>
@@ -256,12 +247,13 @@
       <br>
       <h4 class="title">sys.path.append で対象ファイルのパスを追加</h4>
       <p>
-        python が import したモジュールを検索するパスは、標準ライブラリのsysモジュールのsys.pathに格納されている。<br>
-        sys.path は sys.path.append([対象パスの文字列]) で追加できるので、 import 前にこれを実行すれば別ディレクトリでも import 可能。<br>
-        sys.path.append('lib.liba.lib_a')<br>
-        from lib_a import aaa<br>
-        sys.path.append('..libb.lib_b')<br>
-        from lib_b import bbb<br>
+        python が import したモジュールを検索するパスは、標準ライブラリのsysモジュールのsys.pathに格納されている。 sys.path は sys.path.append([対象パスの文字列]) で追加できるので、 import 前にこれを実行すれば別ディレクトリでも import 可能。<br>
+        <div class="code">
+          sys.path.append('lib.liba.lib_a')<br>
+          from lib_a import aaa<br>
+          sys.path.append('..libb.lib_b')<br>
+          from lib_b import bbb<br>
+        </div>
       </p>
 
       <br>

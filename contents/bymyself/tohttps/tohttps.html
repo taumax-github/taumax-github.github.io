@@ -116,7 +116,7 @@
       <div id="summary"></div>
       <h3 class="title">https化（常時SSL化）</h3>
       <p>
-        SSL通信回りの仕組みがよくわかっていなかったので、自分のWebサイトを https 化してることで勉強になるかなと思ったのでやってみた。<br>
+        SSL通信回りの仕組みがよくわかっていなかったので、自分のWebサイトを https 化することで勉強になるかなと思ったのでやってみた。<br>
       </p>
 
       <br>
@@ -174,10 +174,9 @@
       <p>
         ログは置いておいて１つ目の方の対処<br>
         443 portを複数プロセスがlistenしていると起きる事象。<br>
-        「ssl.conf」 という、apacheをインストール後に最初から入っていたファイルに「Listen 443 https」とある。<br>
-        また、<a href="https://qiita.com/yoshizaki_91/items/e6f39a5bfb99900b44b2" target="_blank">参考にしていた記事</a>の内容をちゃんと理解せずにそのまま鵜呑みにして作成した「vhost.conf」というファイルにも「Listen 443」という記述があった。<br>
-        この二つのファイルは httpd.conf を経由して読み込まれている。<br>
+        「ssl.conf」 という、apacheをインストール後に最初から入っていたファイルに「Listen 443 https」とある。また、<a href="https://qiita.com/yoshizaki_91/items/e6f39a5bfb99900b44b2" target="_blank">参考にしていた記事</a>の内容をちゃんと理解せずにそのまま鵜呑みにして作成した「vhost.conf」というファイルにも「Listen 443」という記述があった。この二つのファイルは httpd.conf を経由して読み込まれている。<br>
         <img src="img/conf.png"><br>
+        <br>
         この二つがバッティングしているのはわかるのだが、そもそもvhost.confを何のために作成したのかわかってなかったのでそれについて調べてみた。<br>
       </p>
 
@@ -215,7 +214,7 @@
 
       <p>
         この秘密鍵からCSRというものを生成し、CSRを認証局(CA)に提示することでSSLサーバ証明書を発行してもらいます。<br>
-        以下、引用<br>
+        以下、CSRが何者なのかの説明を引用<br>
         『CSRとは「Certificate Signing Request」の略で、認証局に対し、SSLサーバ証明書への署名を申請するためのものです。CSR には「公開鍵」とその所有者情報、及び申請者が対応する秘密鍵を持っていることを示すために申請者の署名が記載されています。』<br>
         引用終わり。<a href="https://xtrust.jp/support/faq/faq08/a001/" target="_blank">引用元はこちら</a>。<br>
         所有者情報は Distinguished Name (DN)と呼ばれたりもします。<br>
