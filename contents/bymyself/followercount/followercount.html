@@ -112,8 +112,30 @@
         <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
         -->
 
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "トップ",
+              "item": "https://taumax-github.github.io/index.html"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "個人開発したことまとめ",
+              "item": "https://taumax-github.github.io/contents/bymyself/bymyself.html"
+            },{
+              "@type": "ListItem",
+              "position": 3,
+              "name": "フォロワー数変化",
+              "item": "https://taumax-github.github.io/contents/bymyself/followercount/followercount.html"
+            }]
+          }
+        </script>
       <br><br>
-      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > 公式アカウントのフォロワー数変化(Goで書いた)</p>
+      <p style="color: #FFFFFF;"><a href="../../../index.html" style="color: #00bfff;">ホーム</a> > <a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > 公式アカウントのフォロワー数変化(Goで書いた)</p>
 
       <br>
       <div id="summary"></div>
@@ -139,7 +161,21 @@
       Go ソースコード(bot)<br>
       </p>
 
-      <br>
+      <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
       <h4 class="title">ソースコード(Go)</h4>
       <p>
         主処理。31行目の TweetPublicAccount() が入口
@@ -147,13 +183,27 @@
       <script src="https://gist.github.com/taumax-github/a52cb94cacb991d7722320c76685a58f.js"></script>
 
       <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
       <div id="whatilearn"></div>
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
       <p>
         エラーで詰まったとかはあんまりないんだけど、これまで python で書いてた twitter bot の Go 版ができた。Go はコンテナと相性がいいんだなという学びはあるんだけど、それに気づくのはまだ先の話。。。<br>
       </p>
 
-      <h4 class="title">tweet するためのライブラリ</h4>
+      <h4 class="title">①tweet するためのライブラリ</h4>
       <p>
         <a href="https://github.com/ChimeraCoder/anaconda" target="_blank">anaconda</a> というライブラリを使ってツイートするプログラム。<br>
         TweetPublicAccount 関数の中でツイート用のインスタンス生成し、変数 api に格納（36行目）。70行目でツイート実行。<br>
@@ -173,7 +223,22 @@
         </ul>
       </p>
 
-      <h4 class="title">グラフ生成するためのライブラリ</h4>
+      <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+      <h4 class="title">②グラフ生成するためのライブラリ</h4>
       <p>
         <a href="https://pkg.go.dev/gonum.org/v1/plot" target="_blank">plot</a> というライブラリを使って画像生成。<br>
         上記ソースの82行目 createGraph() 関数の中。90行目で呼び出している getData() 関数で2週間分のデータを取得。<br>
@@ -192,7 +257,22 @@
         </ul>
       </p>
 
-      <h4 class="title">postgres DB接続のためのライブラリ</h4>
+      <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+      <h4 class="title">③postgres DB接続のためのライブラリ</h4>
       <p>
         <a href="https://pkg.go.dev/github.com/lib/pq" target="_blank">pq</a> というライブラリを使って postgres DB 接続。ライブラリは import するだけで、コード上使用するのは <a href="https://pkg.go.dev/database/sql" target="_blank">database/sql</a> という標準ライブラリ。<br>
         専用のパッケージを import （16行目の _ "github.com/lib/pq" ）して connection 生成(42行目)してあげればあとはSQL文字列を実行するだけ。<br>
@@ -212,6 +292,22 @@
           <li><a href="https://qiita.com/hiro9/items/e6e41ec822a7077c3568" target="_blank">Go PostgreSQLにつないでみる</a></li>
         </ul>
       </p>
+
+      <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
     </section><!-- section class="box" -->
 
     <footer>

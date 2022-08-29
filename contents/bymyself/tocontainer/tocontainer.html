@@ -109,8 +109,30 @@
         <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
         -->
 
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "トップ",
+              "item": "https://taumax-github.github.io/index.html"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "個人開発したことまとめ",
+              "item": "https://taumax-github.github.io/contents/bymyself/bymyself.html"
+            },{
+              "@type": "ListItem",
+              "position": 3,
+              "name": "コンテナ化",
+              "item": "https://taumax-github.github.io/contents/bymyself/tocontainer/tocontainer.html"
+            }]
+          }
+        </script>
       <br><br>
-      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > コンテナ化</p>
+      <p style="color: #FFFFFF;"><a href="../../../index.html" style="color: #00bfff;">ホーム</a> > <a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > コンテナ化</p>
 
       <div id="summary"></div>
       <h3 class="title">コンテナ化</h3>
@@ -126,6 +148,20 @@
         Go の bot を動かすイメージと python の bot を動かすイメージで分けている。<br>
 
         <br><br>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <br><br>
+
         <h4 class="title">Dockerfile(python)</h4>
         <script src="https://gist.github.com/taumax-github/990a5d3d89e24beb75dab9bba346e2ca.js"></script>
 
@@ -135,10 +171,24 @@
       </p>
 
       <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
       <div id="whatilearn"></div>
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
 
-      <h4 class="title">コンテナサイズがでかい</h4>
+      <h4 class="title">①コンテナサイズがでかい</h4>
       <p>
         最初はコンテナに go/python のファイルをそのまま配置して動かしていた。その際のコンテナサイズは以下。<br>
       </p>
@@ -182,7 +232,22 @@
       </ul>
 
       <br><br>
-      <h4 class="title">python バイナリ化したらエラー</h4>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+
+      <h4 class="title">②python バイナリ化したらエラー</h4>
       <p>
         Pyinstaller でバイナリ化したらコンテナ起動時に以下エラー発生。<br>
         <div class="code">
@@ -238,7 +303,7 @@
       </ul>
 
       <br><br>
-      <h4 class="title">apt？yum？？apk？？？</h4>
+      <h4 class="title">③apt？yum？？apk？？？</h4>
       <p>
         コンテナ化するにあたり、パッケージをインストールする際のコマンドが apt だったり yum だったり apk だったりして何が何だかわからず超混乱した。<a href="https://qiita.com/hal-bo/items/1e0568120c545bf723c6" target="_blank">この記事</a>を見てやっとわかったんだけど、パッケージファイル形式によってコマンドが違うのですね。。。<br>
       </p>
@@ -272,7 +337,22 @@
       </ul>
 
       <br><br>
-      <h4 class="title">timezone の設定の仕方がわからない</h4>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+
+      <h4 class="title">④timezone の設定の仕方がわからない</h4>
       <p>
         レンタルしている linux サーバの timezone は初めからJST<br>
       </p>
@@ -326,7 +406,22 @@
       </ul>
 
       <br><br>
-      <h4 class="title">コンテナからホストのDBにアクセス</h4>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+
+      <h4 class="title">⑤コンテナからホストのDBにアクセス</h4>
       <p>
         <img src="img/postgres_access.png" width="300"><br>
         コンテナから postgres にアクセスしようとすると以下のエラーが発生して接続できない<br>
@@ -394,7 +489,7 @@
       </ul>
 
       <br><br>
-      <h4 class="title">PythonでOpenCVを使用する場合に必要なライブラリをinstall</h4>
+      <h4 class="title">⑥PythonでOpenCVを使用する場合に必要なライブラリをinstall</h4>
       <p>
         コンテナ起動時に以下のエラーが発生<br>
       </p>
@@ -428,7 +523,21 @@
         <li><a href="https://packages.debian.org/ja/stretch/libgl1-mesa-dev" target="_blank">free implementation of the OpenGL API -- GLX development files</a></li>
       </ul>
 
-      </section><!-- section class="box" -->
+      <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+    </section><!-- section class="box" -->
 
     <footer>
       <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>

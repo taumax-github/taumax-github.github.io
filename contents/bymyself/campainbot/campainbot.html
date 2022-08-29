@@ -109,8 +109,30 @@
         <!-- はてぶボタン -->
         <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
 
-      <br><br>
-      <p style="color: #FFFFFF;"><a href="../index.html" style="color: #00bfff;">ホーム</a> > <a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > キャンペーン対象キャラ通知bot</p>
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "トップ",
+              "item": "https://taumax-github.github.io/index.html"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "個人開発したことまとめ",
+              "item": "https://taumax-github.github.io/contents/bymyself/bymyself.html"
+            },{
+              "@type": "ListItem",
+              "position": 3,
+              "name": "キャンペーン対象キャラ通知bot",
+              "item": "https://taumax-github.github.io/contents/bymyself/campainbot/campainbot.html"
+            }]
+          }
+        </script>
+        <br><br>
+      <p style="color: #FFFFFF;"><a href="../../../index.html" style="color: #00bfff;">ホーム</a> > <a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > キャンペーン対象キャラ通知bot</p>
 
       <br>
       <div id="summary"></div>
@@ -128,6 +150,20 @@
       </p>
 
       <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
       <div id="mechanism"></div>
       <h3 class="title">どんな仕組み？</h3>
       <p>
@@ -154,7 +190,21 @@
         <li><a href="https://qiita.com/taumax/items/73ad47eaba64943a9c41" target="_blank">TweepyとcronでTwitterボットを作ってみた話</a></li>
       </p>
 
-      <br>
+      <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
       <h4 class="title">pythonソースコード(bot)</h4>
       <p>
         pythonのソースコードは以下の通り。SQLの作り方がだいぶイケてないのは目をつぶっていただけると。。。tweetIkuseiCampaign() 関数が処理の入口。<br>
@@ -181,9 +231,23 @@
 
 
       <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
       <div id="whatilearn"></div>
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
-      <h4 class="title">画像に日本語を埋め込めない</h4>
+      <h4 class="title">①画像に日本語を埋め込めない</h4>
       <p>
         OpenCV という python のライブラリを使って画像編集している記事があったので、それを参考にした。OpenCVで日本語テキストを表示させようとすると文字化けしてうまくいかなかった（OpenCV の仕様）ので、PillowとOpenCVを併用した（※）。<br>
         大まかな処理の流れは以下の通り。<br>
@@ -199,7 +263,7 @@
         ※全部Pillowでやればよかったんだろうけど、書いた当時はよくわかってなかった。この併用が次の問題につながる。
       </p>
 
-      <h4 class="title">妙な色の画像を生み出してしまう</h4>
+      <h4 class="title">②妙な色の画像を生み出してしまう</h4>
       <p>
         正しい画像<br>
         <img src="img/bgr.jpg" width="300"><br>
@@ -250,7 +314,7 @@
       </ul>
 
       <br>
-      <h4 class="title">日本語フォントが入ってない</h4>
+      <h4 class="title">③日本語フォントが入ってない</h4>
       <p>
         ローカルで動いたプログラムを linux 環境に持って行って動かしたら、画像に書き込んだ日本語が文字化けした。<br>
         下記コマンドで日本語フォントをインストールして、使用するフォントをプログラムで指定することで解消した。<br>
@@ -276,6 +340,22 @@
       <br>
       <h4 class="title">【未解決】並び順制御</h4>
       -->
+
+      <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
     </section><!-- section class="box" -->
 
     <footer>

@@ -100,7 +100,7 @@
     <div id="main">
       <span id="pagetop"></span>
       <section class="box">
-        <h2 class="title">コンテナ化</h2>
+        <h2 class="title">https化（常時SSL化）</h2>
         <!-- tweetボタン -->
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <!-- はてぶボタン -->
@@ -109,8 +109,30 @@
         <a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="vertical-normal" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
         -->
 
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "トップ",
+              "item": "https://taumax-github.github.io/index.html"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "個人開発したことまとめ",
+              "item": "https://taumax-github.github.io/contents/bymyself/bymyself.html"
+            },{
+              "@type": "ListItem",
+              "position": 3,
+              "name": "https化",
+              "item": "https://taumax-github.github.io/contents/bymyself/tohttps/tohttps.html"
+            }]
+          }
+        </script>
       <br><br>
-      <p style="color: #FFFFFF;"><a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > https化</p>
+      <p style="color: #FFFFFF;"><a href="../../../index.html" style="color: #00bfff;">ホーム</a> > <a href="../bymyself.html" style="color: #00bfff;">個人開発したことまとめ</a> > https化</p>
 
       <br>
       <div id="summary"></div>
@@ -127,7 +149,21 @@
         <a href="https://qiita.com/yoshizaki_91/items/e6f39a5bfb99900b44b2" target="_blank">さくらVPSにSSL証明書を導入しHTTPS通信の構築</a>
       </p>
 
-      <br>
+      <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
       <div id="whatilearn"></div>
       <h3 class="title">ぶつかった壁とか学んだこととか</h3>
       <h4 class="title">①https 化の設定完了後、httpd を再起動したらエラー</h4>
@@ -186,6 +222,22 @@
         そんなことがしたいわけではないので vhost.conf を削除したところ、事象は解消した。<br>
       </p>
 
+
+
+      <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
 
 
       <h4 class="title">③key, crt, cer？</h4>
@@ -346,8 +398,22 @@
         <li><a href="https://qiita.com/yoshizaki_91/items/e6f39a5bfb99900b44b2" target="_blank">さくらVPSにSSL証明書を導入しHTTPS通信の構築</a></li>
       </ul>
   
-  
       <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+
       <h4 class="title">④SSL通信のシーケンスとサーバ証明書の用途</h4>
       <p>
         上記のサーバ証明書を使ってSSL通信が実現されている。ブラウザから https でサーバにアクセスする際のシーケンスは以下の図のようになっています。<br>
@@ -422,6 +488,20 @@
       </ul>
 
       <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
       <h4 class="title">⑤httpdを再起動するとエラー</h4>
       <p>
         「service httpd restart」 で httpd を再起動すると、以下のエラーが発生。<br>
@@ -536,6 +616,21 @@
         <li><a href="https://teratail.com/questions/145713" target="_blank">httpsでの接続がタイムアウトになります</a></li>
         <li><a href="https://adan.jp.net/blog/programing/1242" target="_blank">CentOS7のfirewalldにhttpとhttpsサービスを許可（Apacheへの外部からのアクセスを許可）する</a></li>
       </ul>
+
+      <br><br>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
 
     </section><!-- section class="box" -->
 
