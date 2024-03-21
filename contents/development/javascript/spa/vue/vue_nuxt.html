@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../../css/print.css" media="print">
+    <script src="../../../../../js/openclose.js"></script>
+
+    <title>とあるＩＴエンジニアの知識整理</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul class="none">
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <h1 class="logo">
+        <a href="https://taumax-github.github.io/"><img src="../../../../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+      </h1>
+      <nav>
+        <ul class="none">
+          <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+        </ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <h2 class="title">Vue.js/Nuxt</h2>
+
+        <ul class="breadcrumb">
+          <li class="breadcrumbli"><a href="../../../../../index.html">ホーム</a></li>
+          <li class="breadcrumbli"> > <a href="../../js_index.html">JavaScript</a></li>
+          <li class="breadcrumbli"> > <a href="../spa.html">SPA</a></li>
+          <li class="breadcrumbli"> > Vue.js/Nuxt</li>
+        </ul>
+
+        <br/>
+        <h3 class="title">Vue.js</h3>
+        <p>
+          2020年9月にVue3がリリース。この時点では主要なモジュールがバージョン3未対応。2022年2月7日に主要なモジュールも含めて、Vueを作成するプロジェクトのデフォルトのバージョンが3になりました。<br/>
+          <a href="../react/react_next.html">React</a>はJSXとReact Hooksを駆使し、コンポーネントを組み合わせてリアクティブなシステムを作るイメージでした。<br/>
+          Vue.jsは、SFC(Single File Components)とVueインスタンスがリアクティブなシステムを作る上でのポイントとなります。Vue3で<a href="../../typescript.html">TypeScript</a>にも対応しました。<br/>
+        </p>
+
+        <br/>
+        <h4>SFC(Single File Components)</h4>
+        <p>
+          Vueプロジェクトでは、SFC(Single File Components)という拡張子.vueのファイルを作成します。<br/>
+          SFCはHTMLとCSS、それらを制御するJavaScriptをワンセットで画面を部品化したものです。<br/>
+        </p>
+
+<pre><code class="title">.vueファイル構造</code></pre>
+<pre><code>&lt;script setup lang="ts"&gt;
+  ...
+&lt;/script&gt;
+
+&lt;template&gt;
+  ...
+&lt;/template&gt;
+
+&lt;style&gt;
+  ...
+&lt;/style&gt;
+</code></pre>
+
+        <br/>
+        <p>
+          <code>&lt;script&gt;&lt;/script&gt;</code>内にJavaScriptを、<code>&lt;template&gt;&lt;/template&gt;</code>にブラウザのbody部に表示する内容をコーディングしていきます。<br/>
+          この<code>&lt;script&gt;&lt;/script&gt;</code>内でVueインスタンスを生成し、Vueインスタンスを介して<code>&lt;template&gt;&lt;/template&gt;</code>を操作することでリアクティブなシステムを実現しています。<br/>
+          操作するにはVueのライフサイクルフックと呼ばれるものを使用する必要があり、以下のようなものがあります。<br/>
+          <br/>
+          <img src="./img/vue_life_cycle.jpg" width="800"/><br/>
+          Vue3 フロントエンド開発の教科書 P150<br/>
+          <br/>
+          <table border="1">
+            <tr><th>ライフサイクル名</th><th>フック名</th><th>概要</th></tr>
+            <tr><td>①起動処理</td><td>-</td><td>Vueアプリケーション起動</td></tr>
+            <tr><td>②Vueアプリケーションの初期化処理</td><td>beforeCreate, created</td><td>Vueアプリケーション初期化。この段階でスクリプトブロック内のコードが実行され、テンプレート変数や算出プロパティ、メソッドなどが準備される。</td></tr>
+            <tr><td>③コンポーネントの解析処理</td><td>-</td><td>コンポーネントの解析処理。テンプレートブロック内のコードが解析され、タグ構成（DOM構造）が決定。</td></tr>
+            <tr><td>④レンダリング処理</td><td>beforeMount, mounted</td><td>③で決定したDOM構造がレンダリング。</td></tr>
+            <tr><td>⑤表示状態(Mounted)</td><td>-</td><td>④のレンダリングが終わると表示状態になり、画面が見えるようになる。この状態をMountedと呼んでいる。</td></tr>
+            <tr><td>⑥リアクティブシステムによる再レンダリング処理</td><td>beforeUpdated, updated</td><td>リアクティブシステムにより再レンダリングが必要になった際に行われる処理。再レンダリングが終わると再びMountedになる。</td></tr>
+            <tr><td>⑦非表示処理</td><td>beforeUnmount, unmount</td><td>表示が不要になったコンポーネントに非表示処理を行う。</td></tr>
+            <tr><td>⑧非表示状態(Unmounted)</td><td>-</td><td>非表示処理が完了すると、コンポーネントは非表示状態になります。この状態をUnmountedと呼んでいる。</td></tr>
+            <tr><td>⑨リアクティブ変数への初回アクセス</td><td>renderTracked</td><td></td></tr>
+            <tr><td>⑩再レンダリングの際にリアクティブ変数へのアクセス</td><td>renderTriggered</td><td></td></tr>
+          </table>
+
+        </p>
+
+<pre><code class="title">CharacterList.vue（抜粋）</code></pre>
+<pre><code>&lt;script setup lang="ts"&gt;
+  interface Props {
+    pageTitle: string
+    crumbEnd: string
+  }
+  defineProps&lt;Props&gt;()
+&lt;/script&gt;
+
+&lt;script lang="ts"&gt;
+  const endPoint = '/all_character'
+  export default {
+    data() {
+      return {
+        charas: [] as chara[],
+        selectedChara: '',
+        ....
+        islpAsc: false,
+        ....
+      }
+    },
+    created: function() {
+      ....
+    },
+    mounted: async function() {
+      ....
+    },
+    methods: {
+      fetchCharas: async function() {
+        ....
+      },
+      initSortFlag: function() {
+        ....
+      },
+      sortFunc: function(order: number, attrName: string): chara[] {
+        ....
+      }
+    }
+  }
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;CommonBody v-bind:pageTitle="pageTitle"&gt;
+    &lt;template v-slot:body&gt;
+    &lt;CommonBreadCrumbs v-bind:crumbEnd="crumbEnd" /&gt;
+
+    &lt;table border="1" style="width: 99.9%"&gt;
+      &lt;tr&gt;
+        &lt;th style="z-index: 1"&gt;#&lt;/th&gt;
+        &lt;th&gt;
+          名前
+          &lt;div style="position: relative; z-index: 10"&gt;
+            &lt;select v-model="selectedChara" v-on:change="fetchCharas"&gt;
+              &lt;option v-for="chara in $CONSTANTS.optionCharas" 
+                v-bind:key="chara.id"
+                v-bind:value="chara.name" &gt;
+                {{ chara.name }}
+              &lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+        &lt;/th&gt;
+        &lt;th&gt;
+          LP&lt;br/&gt;
+          &lt;div style="position: relative; z-index: 10"&gt;
+            &lt;button v-on:click="sortFunc(1, 'lp')"  v-bind:style="{background: islpAsc? $CONSTANTS.colorOn: $CONSTANTS.colorOff, position: 'relative', zIndex: 10}" &gt;▲&lt;/button&gt;&thinsp;
+            &lt;button v-on:click="sortFunc(-1, 'lp')" v-bind:style="{background: islpDesc? $CONSTANTS.colorOn: $CONSTANTS.colorOff, position: 'relative', zIndex: 10}" &gt;▼&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;tr v-for="(chara, index) in charas" :key="chara.id"&gt;
+        &lt;td&gt;{{ index + 1 }}&lt;/td&gt;
+        &lt;td&gt;&lt;NuxtLink v-bind:to="'./detail/' + chara.path + '?destiny=' + chara.destiny + '&weapon=' + chara.weapon"&gt;{{ chara.name }}&lt;/NuxtLink&gt;&lt;/td&gt;
+        &lt;td&gt;{{ chara.lp }}&lt;/td&gt;
+        ....
+      &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;/template&gt;
+  &lt;/CommonBody&gt;
+&lt;/template&gt;
+</code></pre>
+
+
+
+
+
+
+        <br/>
+        <h4>ファイルパスルータ</h4>
+        <p>
+          Vueにはファイルパスルータという機能があります。これはNextのファイルベースルーティングと同じものと考えていいと思います。<br/>
+          画面用のコンポーネントはpagesフォルダに格納する事になっており、さらにその格納するファイルパスの構造がそのままルーティングパスになります。<br/>
+        </p>
+
+        <br/>
+        <h3 class="title">Nuxt</h3>
+        <p>
+          2022年11月16日にVue3に対応したNuxt3がリリース。ネット上はNuxt2とNuxt3の記事が混在している印象がある（2024年3月現在）ので、閲覧している情報がNuxt2のことを言っているのか3のことを言っているのか注意する必要がある。<br/>
+          Nuxt2までは、アプリケーション全体で1つのレンダリングモード(SPA/SSG/SSR)しか指定できませんでした。<br/>
+          Nuxt3でページ単位にレンダリングモードを指定できるようになり、種類も増えて大幅に進化しています。Nuxt3で<a href="../../typescript.html">TypeScript</a>にも対応しました。<br/>
+        </p>
+
+        <br/>
+        <h3 class="title">作った物</h3>
+        <p>
+
+        </p>
+
+        <br/>
+        参考<br/>
+        <ul>
+          <li><a href="https://developer.mamezou-tech.com/blogs/2022/12/18/nuxt3-hybrid-rendering/" target="_blank" rel="noopener noreferrer">豆蔵デベロッパーサイト Nuxt3で導入されたハイブリッドレンダリングとNuxt版ISG/ISRを試してみる</a></li>
+        </ul>
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>

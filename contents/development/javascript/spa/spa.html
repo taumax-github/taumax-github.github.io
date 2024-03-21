@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../css/print.css" media="print">
+    <script src="../../../../js/openclose.js"></script>
+
+    <title>とあるＩＴエンジニアの知識整理</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul class="none">
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <h1 class="logo">
+        <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+      </h1>
+      <nav>
+        <ul class="none">
+          <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+        </ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <h2 class="title">SPA(Single Page Application)</h2>
+
+        <ul class="breadcrumb">
+          <li class="breadcrumbli"><a href="../../../../index.html">ホーム</a></li>
+          <li class="breadcrumbli"> > <a href="../js_index.html">JavaScript</a></li>
+          <li class="breadcrumbli"> > SPA</li>
+        </ul>
+
+        <br/>
+        <h3 class="title">SPA(Single Page Application)</h3>
+        <p>
+          SPA(Single Page Application)は従来のWebアプリケーションとは異なる手法でWebページのレンダリング（データから画像や映像を作ること）を行います。<br/>
+          下図は従来のレンダリング手法。サーバーサイドでレンダリングしてhtmlを生成し、クライアントに返却するという手法です。<br/>
+          htmlを受け取ったクライアントはそのたびにヘッダやフッダを含めて全て更新する方式をとっていました。<br/>
+          <img src="./img/従来のWebアプリケーション.jpg" width="600"/><br/>
+
+          <br/>
+          一方、下図がSPAのレンダリングです。SPAでは、最初にHTMLやCSS、JavaScriptを受け取った後は必要なデータだけをサーバに要求し差分を表示する方式で構築されます。<br/>
+          下図のように、ページをHTTPで最初にロードしたら、あとは手元のデータを処理するだけでインターフェースが構成されます。必要なデータはサーバーから非同期的にJSONデータとして受け取ることで、通信量を最小限に抑えることも可能です。<br/>
+          <img src="./img/SPAの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <p>
+          この新しい形式のWebアプリケーションであるSPAをサポートするフレームワークとして、React, Vue.js, Angular, Svelteなどがあります。<br/>
+          <table border="1">
+            <tr><th>フレームワーク</th><th>特徴</th></tr>
+            <tr><td>React（リアクト）</td><td>Facebook主導のフレームワーク。UIデザインの知識がなくても最先端のフロントエンドが作れるスマホアプリにも拡張できる。</td></tr>
+            <tr><td>Vue.js（ヴュー・ジェイエス）</td><td>シンプルなフレームワークで使いやすい。日本語のドキュメントが充実している。学習コストが低いため小規模開発向き。</td></tr>
+            <tr><td>Angluar（アンギュラー）</td><td>Google主導のフレームワーク。動作端末を考慮する必要がなく、汎用性が高い機能が多いため大規模開発に向いている。</td></tr>
+            <tr><td>Svelte（スヴェルト）</td><td>実行時のファイルサイズが小さいため、高いパフォーマンスが出る。コードの記述量が少ない、コンパイル時に値が変化する可能性を把握しているため、仮想DOMが不要。</td></tr>
+          </table>
+        </p>
+
+        <br/>
+        <p>
+          ここではReactとVue.js、さらに、Reactをベースに開発されたフレームワークのNext.jsと、Vue.jsをベースに開発されたフレームワークのNuxtに注目していきます。<br/>
+          <font color="yellow">仮想DOMの話。</font><br/>
+          React, VueはUI構築に特化したJavaScriptフレームワークですが、それにサーバー側の機能を持たせたのがNext.js, Nuxtです。Next.js, Nuxtを使うことで単体でWebアプリケーションを構築することができるようになります。また、レンダリングの手法も、クライアントだけでなくサーバーサイドでのレンダリングや、それらを組み合わせることもでき利用になります。<br/>
+
+          <br/>
+          以下が、各フレームワークで選択できるレンダリング手法です。<br/>
+          Next.js, Nuxt3共に、ページ毎にレンダリングモードの選択が可能になっています。<br/>
+        </p>
+
+        <div class="slider" style="height: 562px; width: 100%">
+          <table border="1">
+            <tr><th rowspan="2" style="z-index:0">手法</th><th colspan="2">可否</th><th rowspan="2">メリット</th><th rowspan="2">デメリット</th><th rowspan="2">備考</th></tr>
+            <tr><th style="z-index:0">Next.js</th><th style="z-index:0">Nuxt</th></tr>
+            <tr><td><a href="#ssr">SSR(Server-Side Rendering)</a></td><td>●</td><td>●</td><td></td><td></td><td></td></tr>
+            <tr><td><a href="#csr">CSR(Client-Side Rendering)</a></td><td>●</td><td>●</td><td></td><td></td><td></td></tr>
+            <tr><td><a href="#ur">Universal Rendering</a></td><td>✖</td><td>●</td><td></td><td></td><td>SSRとCSRのいいとこどり<br/>Nuxtのデフォルトのレンダリングモード</td></tr>
+            <tr><td><a href="#ssg">SSG(Static Site Generation)</a></td><td>●</td><td>▲</td><td></td><td></td><td>Nuxtは発展途上</td></tr>
+            <tr><td><a href="#isg">ISG(Incremental Static Generation)</a></td><td>✖<font color="yellow">ここ怪しい</font></td><td>▲</td><td></td><td></td><td>Nuxtは発展途上</td></tr>
+            <tr><td><a href="#isr">ISR(Incremental Static Regeneration)</a></td><td>●</td><td>✖</td><td></td><td></td><td>静的に生成したページをrevalidateで指定した時間を超えてからアクセスがあった時、<br/>更新がないかチェックしてからページ更新する機能です。</td></tr>
+            <tr><td><a href="#od_isr">On Demand ISR<br/>(On Demand Incremental Static Regeneration)</a></td><td>●</td><td>✖</td><td></td><td></td><td>ISRに柔軟性をもたせたような機能。<br/>任意のタイミングで更新可能。</td></tr>
+          </table>
+        </div>
+
+        <br/><br/>
+        <span id="ssr"></span>
+        <h4 class="title">SSR(Server-Side Rendering)</h4>
+        <p>
+          JavaやPHPなどのいわゆるサーバーサイドWebアプリケーションと同じ。<br/>
+          サーバー側でレンダリングが行われ、生成されたHTMLデータが送信される。ブラウザは、単に送信されたHTMLデータを表示するだけ。<br/>
+          これがSSR(Server-Side Rendering)<br/>
+          <img src="./img/SSRの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <span id="csr"></span>
+        <h4 class="title">CSR(Client-Side Rendering)</h4>
+        <p>
+          クライアント側でレンダリングの全てを行い、実際に表示に必要な画面を用意する仕組みがCSR(Client-Side Rendering)。<br/>
+          全ての画面がCSRで構成されたアプリケーションのことをSPA(Single Page Application)という。<br/>
+          <img src="./img/CSRの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <span id="ur"></span>
+        <h4 class="title">Universal Rendering</h4>
+        <p>
+          Nuxtのデフォルト。<br/>
+          アプリのユーザーと相互のやり取りが必要な処理など、どうしてもクライアントサイドで動作しないと成り立たない処理内容に関しては、その処理をサーバーサイドで行わず、JavaScriptコードをブラウザに返すことで、ブラウザ上でも動作させるように自動的に制御する仕組み。<br/>
+          このSSRとCSRのいいとこ取りがユニバーサルレンダリング(Universal Rendering)。<br/>
+          <img src="./img/URの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <span id="ssg"></span>
+        <h4 class="title">SSG(Static Site Generation)</h4>
+        <p>
+          初回アクセス時は対応するhtmlファイルをサーバ側で生成し、ブラウザに返します。次にアクセスしてきた場合は、すでに生成されたhtmlファイルを返却します。<br/>
+          一度生成したファイルを何らかの方法で削除したり、強制的に再生成しない限りは、永遠に同じ内容のファイルが返されます。<br/>
+          そのため、例えば現在時刻を表示するようにしていたとしても、htmlファイルが生成された時刻で固定され、何回リロードしても表示時刻は変化しません。<br/>
+          これを静的サイトジェネレーション(Static Site Generation)と言います。<br/>
+          <font color="yellow">NuxtではこのSSGは現在問題を抱えている状態です。</font><br/>
+          <img src="./img/SSGの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <span id="isg"></span>
+        <h4 class="title">ISG(Incremental Static Generation)</h4>
+        <p>
+          <a href="#ssg">SSG(Static Site Generation)</a>とほぼ同じですが、n秒後（nはアプリケーションで指定）にアクセスすると再度サーバ側でhtmlファイルを生成し、それがクライアントに返却されます。<br/>
+          これをインクリメンタル静的ジェネレーション(Incremental Static Generation)と言います。<br/>
+          <img src="./img/ISGの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <span id="isr"></span>
+        <h4 class="title">ISR(Incremental Static Regeneration)</h4>
+        <p>
+          <a href="#isg">ISG(Incremental Static Generation)</a>との違いが分からない。<br/>
+        </p>
+
+        <br/>
+        <span id="od_isr"></span>
+        <h4 class="title">On Demand ISR(On Demand Incremental Static Regeneration)</h4>
+        <p>
+          <a href="#isr">ISR(Incremental Static Regeneration)</a>柔軟性をもたせたような機能。<br/>
+          ISRの場合、↑でやっていたようにrevalidateで指定した時間がたたないとページ更新されませんが、この手法だと任意のタイミングで更新が可能です。<br/>
+          例えばHeadless CMSのコンテンツ更新時やショッピングサイトのメタデータが変更されたときなどに有用です。<br/>
+        </p>
+
+        <br/>
+        <h3 class="title">関連技術</h3>
+        <p>
+          以下がReact/Next.jsとVue.js/Nuxtの詳細です。
+        </p>
+        <ul>
+          <li><a href="react/react_next.html">React/Next.js</a></li>
+          <li><a href="vue/vue_nuxt.html">Vue.js/Nuxt</a></li>
+        </ul>
+
+        <br/>
+        参考<br/>
+        <ul>
+          <li><a href="https://dev.classmethod.jp/articles/nextjs-rendering/" target="_blank" rel="noopener noreferrer">DevelopersIO Next.jsのいろいろなレンダリング方法を確認する</a></li>
+          <li><a href="https://scrapbox.io/teamlab-frontend/SSR,_CSR,_SSG,_ISG,_ISR%E3%81%AE%E9%81%95%E3%81%84%E3%81%A8%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91%E6%96%B9%E3%80%82%E3%81%9D%E3%82%8C%E3%81%9E%E3%82%8CNext.js%E3%81%A7Todo%E3%82%A2%E3%83%97%E3%83%AA%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82" target="_blank" rel="noopener noreferrer">teamlab-frontend SSR, CSR, SSG, ISG, ISRの違いと使い分け方。それぞれNext.jsでTodoアプリ作ってみた。</a></li>
+          <li><a href="https://developer.mamezou-tech.com/blogs/2022/12/18/nuxt3-hybrid-rendering/" target="_blank" rel="noopener noreferrer">豆蔵デベロッパーサイト Nuxt3で導入されたハイブリッドレンダリングとNuxt版ISG/ISRを試してみる</a></li>
+          <li><a href="https://devlog.mescius.jp/spa-javascript-framework-in-2020/" target="_blank" rel="noopener noreferrer">MESCIUS SPAの基本と3大JavaScriptフレームワーク（React、Angular、Vue.js）の最新動向 ～2023年版～</a></li>
+          <li><a href="https://techmania.jp/blog/javascript0008/" target="_blank" rel="noopener noreferrer">TECH MANIA Next.jsとは【入門】Reactとの違い、できること、メリット</a></li>
+          <li><a href="https://techmania.jp/blog/javascript0009/" target="_blank" rel="noopener noreferrer">TECH MANIA Nuxt.jsとは？Vue.jsとの違いやできること、メリットを解説</a></li>
+          <li><a href="https://www.webstaff.jp/guide/trend/webit/nuxtjs/" target="_blank" rel="noopener noreferrer">転職GUIDE Nuxt.jsとは、Vue.jsを効果的に使うためのフレームワーク！導入のメリットは？【入門編】</a></li>
+          <li><a href="https://deha.co.jp/magazine/vue-js-and-nuxt-js/" target="_blank" rel="noopener noreferrer">dehamagazine Vue.jsとNuxt.jsの違いは？徹底解説</a></li>
+          <li><a href="https://sbfl.net/blog/2019/12/04/svelte-frontend-1/" target="_blank" rel="noopener noreferrer">Subterranean Flower Svelteで始める頑張らないフロントエンド生活 前編</a></li>
+          <li><a href="https://sbfl.net/blog/2020/02/03/svelte-frontend-2/" target="_blank" rel="noopener noreferrer">Subterranean Flower Svelteで始める頑張らないフロントエンド生活 後編</a></li>
+          <li><a href="https://relace.co.jp/blog/spadevelopment" target="_blank" rel="noopener noreferrer">RELACE MAGAZINE SPA開発とは？メリットや主要なフレームワークを紹介します</a></li>
+        </ul>
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>

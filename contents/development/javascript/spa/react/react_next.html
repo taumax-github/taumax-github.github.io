@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../../css/print.css" media="print">
+    <script src="../../../../../js/openclose.js"></script>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <title>とあるＩＴエンジニアの知識整理</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul class="none">
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <h1 class="logo">
+        <a href="https://taumax-github.github.io/"><img src="../../../../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+      </h1>
+      <nav>
+        <ul class="none">
+          <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+        </ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <h2 class="title">React/Next.js</h2>
+
+        <ul class="breadcrumb">
+          <li class="breadcrumbli"><a href="../../../../../index.html">ホーム</a></li>
+          <li class="breadcrumbli"> > <a href="../../js_index.html">JavaScript</a></li>
+          <li class="breadcrumbli"> > <a href="../spa.html">SPA</a></li>
+          <li class="breadcrumbli"> > React/Next.js</li>
+        </ul>
+
+        <br/>
+        <h3 class="title">React</h3>
+        <p>
+          Reactとは、WebサイトやWebアプリのUI部分を開発する際に活用するJavaScriptライブラリです。ReactはMeta (旧称Facebook社)が開発し、2013年にオープンソース化されました。<br/>
+          ReactはJavaScript用のフレームワークと勘違いされることがありますが、実際には上述の通りライブラリとなります。<br/>
+          ライブラリなのでCDN経由でhtmlファイル内でReactのライブラリを使用することができます。<br/>
+          以下は実際にReactのライブラリを使用して書いたものです。<br/>
+          ↓クリックでcounter増加<br/>
+        </p>
+        <style>
+          #root {
+            cursor: pointer;
+            font-size: 20pt;
+            background-color: lightblue;
+            color: black;
+            padding: 10px 1px 5px 1px;
+          }
+        </style>
+        <div id="root" onClick="doCount();">wait....</div>
+        <script>
+          let counter = 0;
+          let dom = document.querySelector('#root');
+          doCount();
+
+          function doCount() {
+            counter++
+            let element = React.createElement(
+              'p', {}, "counter: " + counter
+            )
+            ReactDOM.render(element, dom)
+          }
+        </script>
+
+<br/><br/>
+
+<p>ソースコード（抜粋）</p>
+
+<pre><code class="title">react_next.html</code></pre>
+<pre><code>&lt;head&gt;
+&lt;script src="https://unpkg.com/react@18/umd/react.development.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;style&gt;
+  #root {
+    cursor: pointer;
+    font-size: 20pt;
+    background-color: lightblue;
+    color: black;
+    padding: 10px 1px 5px 1px;
+  }
+&lt;/style&gt;
+&lt;div id="root" onClick="doCount();">wait....&lt;/div&gt;
+&lt;script&gt;
+  let counter = 0;
+  let dom = document.querySelector('#root');
+  doCount();
+
+  function doCount() {
+    counter++
+    let element = React.createElement(
+      'p', {}, "counter: " + counter
+    )
+    ReactDOM.render(element, dom)
+  }
+&lt;/script&gt;
+</code></pre>
+
+        <br/>
+        <h4 class="title">JSX(JavaScript XML)</h4>
+        <p>
+          とは言えCDNは、主に学習目的または小規模のアプリケーション目的で使用することが適しています。通常プロジェクトでこのような使い方をすることはまずありません。<br/>
+          大規模な開発をする場合、Reactでは、JSX(JavaScript XML)というJavaScriptの構文拡張を使用します。JavaScriptファイル内にHTMLのようなコードを記述できるようにするものです。Meta（旧Facebook）によって開発されました。<br/>
+          たとえば、次のようなJSXコードを書いて、単純な見出し要素を表示することができます。<br/>
+          <code>const heading = &lt;h1&gt;Hello, JSX!&lt;/h1&gt;;</code><br/>
+          このコードはHTMLのようにも見えますが、JavaScriptのコードです。headingという定数を作り、その値がJSX式の結果となります。<br/>
+          JSXを記述する場合、ファイルの拡張子は<code>.jsx</code>とします。さらにこれに<a href="../../typescript.html">TypeScript</a>を適用する場合、拡張子は<code>.tsx</code>とします。<br/>
+        </p>
+
+        <br/>
+        <h4 class="title">React Hooks</h4>
+        <p>
+          React Hooksはフック(Hook)によって関数コンポーネント内で状態やライフサイクルを扱うための機能です。<br/>
+          公式が提供しているフックは10種類あり、さらにフックを組み合わせてカスタムフックを独自に実装できます。<br/>
+          <table border="1">
+            <tr><th>フック種類</th><th>用途（概要）</th><th>フック名</th></tr>
+            <tr><td rowspan="2">状態のフック<br/>(State Hooks)</td><td rowspan="2">内部状態を持ち、その状態の変化に応じて表示を変更できる。</td><td>useState</td></tr>
+            <tr><td>useReducer</td></tr>
+            <tr><td rowspan="2">メモ化のフック<br/>(Performance Hooks)</td><td rowspan="2">値や関数を保持し、必要のない子要素のレンダリングや計算を抑止するために使用し、パフォーマンスの最適化を図る</td><td>useCallback</td></tr>
+            <tr><td>useMemo</td></tr>
+            <tr><td rowspan="2">副作用のフック<br/>(Effect Hooks)</td><td rowspan="2">副作用（コンポーネントの描画とは直接関係ない処理のこと）のためのフック。外部システムとの同期、イベントリスナ。</td><td>useEffect</td></tr>
+            <tr><td>useLayoutEffect</td></tr>
+            <tr><td>Contextのためのフック<br/>(Context Hooks)</td><td>親の変数を子コンポーネントで受け取る</td><td>useContext</td></tr>
+            <tr><td rowspan="2">refのフック<br/>(Ref Hooks)</td><td rowspan="2">レンダリングに使用しない情報を記録</td><td>useRef</td></tr>
+            <tr><td>useImperativeHandle</td></tr>
+            <tr><td>Other Hooks</td><td>ライブラリ開発時に利用されるHooks</td><td>useDebugValue</td></tr>
+          </table>
+        </p>
+
+        <br/>
+        <h4 class="title">コンポーネント</h4>
+        <p>
+          Reactでは、自分が書いたマークアップ、CSS、JavaScript を、独自の『コンポーネント』と呼ばれる、アプリのための再利用可能な UI 要素にまとめることができます。<br/>
+        </p>
+
+<pre><code class="title">common_footer.tsx</code></pre>
+<pre><code>const url_template = "https://template-party.com/"
+  const rightMap = new Map()
+  const sagacolleLabel = &lt;&gt;
+  ©1989,1990,1991,1993,2020 SQUARE ENIX CO., LTD. All Rights Reserved.&lt;br/&gt;
+  当該作品の転載・配布は禁止いたします。&lt;br/&gt;
+  注：本サイトは上記権利者の協力・要請のもとに作成されたものではありません。
+  &lt;/&gt;
+  
+  export const sagacolleKey = 'sagacolle'
+  rightMap.set(sagacolleKey, sagacolleLabel)
+  
+  export default function CommonFooter(labelKey: any): JSX.Element {
+    return (
+      &lt;div&gt;
+        &lt;footer&gt;
+          &lt;p className="rights"&gt;
+            {/* <!-- 権利表記 --> */}
+            {rightMap.get(labelKey.footerLabelKey)}
+          &lt;/p&gt;
+          &lt;span className="pr"&gt;<a href={url_template} target="_blank" rel="noopener noreferrer">《Web Design:Template-Party》</a></span>
+        &lt;/footer&gt;
+      &lt;/div&gt;
+    );
+  }
+</code></pre>
+
+<br/>
+<pre><code class="title">common_body.tsx</code></pre>
+<pre><code>export default function CommonBody(body: any): JSX.Element {
+  &lt;body&gt;
+    &lt;section className="box"&gt;
+      {body.message}
+      ...
+    &lt;/section&gt;
+    &lt;CommonFooter footerLabelKey={body.footerLabelKey}/&gt;
+  &lt;/body&gt;
+}
+</code></pre>
+
+        <br/>
+        <p>
+          画面のフッター部分をコンポーネント化したもの。<code>CommonFooter</code>と言う名前のコンポーネントを<code>common_footer.tsx</code>に定義。<code>common_body.tsx</code>でフッターを呼び出す。<br/>
+          <code>&lt;CommonFooter footerLabelKey={body.footerLabelKey}/&gt;</code>が呼び出し部分。<br/>
+
+          <br/>
+          <img src="./img/common_footer.jpg" /><br/>
+        </p>
+
+        <br/>
+        <h3 class="title">Next.js</h3>
+        <p>
+          レンダリングについては<a href="../spa.html">こちら</a>に記載しているので、その他Next.jsの主な機能について記載します。<br/>
+        </p>
+
+        <br/>
+        <h4 class="title">ファイルベースルーティング</h4>
+        <p>
+          pagesディレクトリ内のファイル構成がそのままアプリケーションのページ構成になる。<br/>
+          pages/index.tsxの内容がトップページとしてレンダリングされます。<br/>
+          Next.js ではApp というコンポーネントを使用して全てのページを初期化するようになっています。<br/>
+          <code>pages/_app.tsx</code> を作成することで、Appコンポーネントをカスタマイズができるようになります。<br/>
+          全ページに共通のcssを適応するなど、すべてのページで共通な処理などを書くことができます。<br/>
+          また、pages ディレクトリ配下にスクリプトファイルを配置すると、それを使って画面表示を行います。<br/>
+          例えば以下の場合に <code>http://[ホスト名]/saga1/ability/ability_detail</code> というurlで <code>ability_detail.tsx</code> の内容が表示されます。<br/>
+
+          <br/>
+          <img src="./img/nuxt_pjt.jpg" style="border: solid 1px #FFFFFF"/><br/>
+        </p>
+
+        <br/>
+        <h3 class="title">作った物</h3>
+        <ul>
+          <li>魔界塔士サガの仲間モンスター一覧</li>
+          <li>変身後モンスター算出</li>
+          <li>能力一覧</li>
+        </ul>
+
+        <br/>
+        <p>
+          モンスター詳細情報のまとめ。<br/>
+          各モンスターの詳細画面と、変身後モンスター算出の詳細欄にお暗示内容が出力される。<br/>
+          同じ内容を書きたくないので、body部をクラス内に記載し、それを詳細画面と変身後モンスター算出の詳細欄の両方で流用する形にしている。<br/>
+          <a href="https://sagamax.cyou/games/saga1/monster/monster_transform" target="_blank" rel="noopener noreferrer">モンスター情報</a><br/>
+          <img src="img/モンスター情報.jpg" width="500"/><br/>
+
+          <br/>
+          モンスターが使用する能力の詳細。<br/>
+          画面のレイアウトをReactで記載し、表示する情報自体はDBに格納。<br/>
+          URLからIDを取得してそれをもとにDBから情報を取得して画面にレンダリング。<br/>
+          <a href="https://sagamax.cyou/games/saga1/ability/ability_detail?ability_id=0001" target="_blank" rel="noopener noreferrer">能力詳細</a><br/>
+          <img src="img/能力詳細.jpg" width="500"/><br/>
+        </p>
+
+        <br/>
+        参考<br/>
+        <ul>
+          <li><a href="https://kinsta.com/jp/knowledgebase/what-is-jsx/" target="_blank" rel="noopener noreferrer">kinsta Reactで使用するJSXの基本をわかりやすく解説</a></li>
+          <li><a href="https://qiita.com/kamenaris/items/8bcb407007501326bd9d" target="_blank" rel="noopener noreferrer">Qiita Next.jsの_documment..tsxと_app.tsxについてメモ</a></li>
+          <li><a href="https://weseek.co.jp/tech/703/" target="_blank" rel="noopener noreferrer">WESEEK Tech Blog 煩わしい設定は一切なし!Next.jsでCSS を使う方法</a></li>
+          <li><a href="https://tyotto-good.com/nextjs/document-app" target="_blank" rel="noopener noreferrer">Tyotto good! Next.jsの_documment.js(tsx)と_app.js(tsx)について爆速で理解しよう</a></li>
+          <li><a href="https://qiita.com/tetsutaroendo/items/c7171286137d963cdecf" target="_blank" rel="noopener noreferrer">Qiita Next.jsの_app.jsと_document.js</a></li>
+          <li><a href="https://dev-k.hatenablog.com/entry/how-to-use-react-in-cdn-dev-k" target="_blank" rel="noopener noreferrer">deve.K's Programming Primer - プログラミング初心者のための入門ブログ</a></li>
+          <li><a href="https://zenn.dev/kaitok/articles/7a81c497252189" target="_blank" rel="noopener noreferrer">zenn React Hooks 再入門</a></li>
+        </ul>
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>

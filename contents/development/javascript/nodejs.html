@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/print.css" media="print">
+    <script src="../../../js/openclose.js"></script>
+
+    <title>とあるＩＴエンジニアの知識整理</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul class="none">
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <h1 class="logo">
+        <a href="https://taumax-github.github.io/"><img src="../../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+      </h1>
+      <nav>
+        <ul class="none">
+          <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+        </ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <h2 class="title">Node.js</h2>
+
+        <ul class="breadcrumb">
+          <li class="breadcrumbli"><a href="../../../index.html">ホーム</a></li>
+          <li class="breadcrumbli"> > <a href="./js_index.html">js関連技術</a></li>
+          <li class="breadcrumbli"> > Node.js</li>
+        </ul>
+
+        <br/>
+        <h3 class="title">歴史（生まれ）</h3>
+        <p>
+          Node.jsは、Chromeに内蔵されている、「V8」というJavaScriptエンジンの上に構築されたJavaScriptの実行環境（ランタイム）です。<br/>
+          Node.jsはHTTPをやり取りするサーバーとしてユーザーからのリクエストをやり取りするなど、ネットワークの処理を得意としています。<br/>
+          さらに、Node.jsは2009年の登場以来、サーバーでの実行にとどまらず、フロントエンドのためのツールとしても広く利用されてきました。<br/>
+        </p>
+
+        <h3 class="title">特徴</h3>
+        <p>
+          Node.jsを特徴づける大きなポイントは「非同期のイベント駆動型ランタイム」と「Non-Blocking I/Oとシングルスレッド」です。<br/>
+          Non-Blocking I/Oとシングルスレッドの特徴について説明するためには、まず<span style="color:yellow">C10K問題</span>（シーテンケー問題）について理解しておく必要があります。<br/>
+        </p>
+
+        <br/>
+        <h4 class="title">C10K問題</h4>
+        <p>
+          C10K問題とは、「クライアント1万台問題」の略で、ApacheなどのWebサーバーソフトウェアとクライアントとの通信において、クライアントの同時接続数が約1万台に達すると、Webサーバーのハードウェア性能に余裕があるにもかかわらず、レスポンス性能が大きく下がる問題です。<br/>
+          なぜこのような問題が発生するのかは、以下3つの原因があります。<br/>
+
+          <br/>
+          <strong>1. プロセス数の上限</strong><br/>
+          Apacheなどのソフトウェアは、1つのリクエストに対して1つのプロセスを割り当てて処理をする方式が一般的でした。<br/>
+          OS内で走るプロセスにはプロセスIDが割り当てられています。例えば32bit Linuxでは32767が上限です（64bit Linuxでは100万以上まで引き上げられます）。上限を超えるプロセスは生成できないため、1リクエスト1プロセス方式ではプロセス数の上限以上のリクエストを同時に処理できません。ウェブサーバーではApacheの他にも様々なプロセスが走っているため、Apacheに割り当てられるプロセスもその分減ります。<br/>
+
+          <br/>
+          <strong>2. コンテキストスイッチのコスト</strong><br/>
+          コンテキストスイッチとは、1つのCPUが複数のプロセスを並行処理する（処理するプロセスを切り替える）ためにそれまでの処理の内容を記録し、新しい処理の内容を復元することです。「コンテキスト（文脈）」「スイッチ（切り替え）」という名前からもお分かりいただけると思います。複数のプロセスが同時に走っているように見せるため、OS内ではこのコンテキストスイッチが頻繁に繰り返されています。<br/>
+          1リクエスト1プロセス方式では、リクエストが増えるとプロセスも増えるため、コンテキストスイッチのコストが無視できなくなります。特にメモリー空間の切り替えには大きなコストがかかります。そしてコンテキストスイッチのコストが大きくなると、肝心なリクエストを捌くCPUリソースが足りなくなります。<br/>
+          マルチプロセスではなくシングルプロセス・マルチスレッドにすればプロセスIDの問題やコンテキストスイッチのコストはかなり改善されますが、それでも次に述べる問題があります。<br/>
+
+          <br/>
+          <strong>3. ファイルディスクリプターの上限</strong><br/>
+          例えばデータベースを扱うアプリケーションの場合、リクエストごとにDBサーバーに接続すると、その分だけファイルディスクリプターを消費します。また、MySQLのキャッシュにmemcachedを使う構成にしていると、消費するファイルディスクリプターの数が倍になります。<br/>
+          ファイルディスクリプターとは簡単に説明するとOSが読み書きしているファイルのIDのようなもので、プロセスIDと同様にこれも一度に使える上限がOSごと・プロセスごとに設定されています。<br/>
+          つまり、OSで決められている以上の同時接続はできないため、プロセスIDの他にもこのファイルディスクリプターも同時に捌けるリクエストを制限する要因になります。<br/>
+        </p>
+
+        <br/>
+        <h4 class="title">C10K問題の解決方法</h4>
+        <p>
+          C10K問題を解決するには、サーバーの台数を増やすという解決方法がありますが、別の方法として考え出されたのが「Non-Blocking I/Oとシングルスレッド」という方式です。Node.jsはこの方式を採用しています。<br/>
+          余談ですが、WebサーバーソフトウェアのNginxもこの方式でC10K問題に対応しており、マルチプロセスのApacheのよりも高速かつ大規模サービスに向いていると言われています。<br/>
+          話しをNode.jsに戻します。<br/>
+        </p>
+
+        <br/>
+        <h4 class="title">シングルスレッド</h4>
+        <p>
+          Node.js はシングルスレッドのイベントループモデルを採用しており、1つのメインスレッドでイベントループを実行します。これは処理の直列化によって効率的にタスクを処理するためです。<br/>
+          非同期的な処理を実現するために、I/O 操作や非同期処理を別のスレッドで実行することはありますが、これらのスレッドは裏側で動作する補助的なスレッドであり、メインスレッドはブロックされることなく処理を続けます。<br/>
+          これにより、多くの HTTP リクエストを効率的に処理できるようになっています。Apache のようなマルチプロセス/マルチスレッドのモデルとは異なり、Node.js はシングルスレッドであるため、スレッドの切り替えによるオーバーヘッドが発生せず、メモリ消費量を抑えることができます。<br/>
+          シングルスレッドで動かしたら高い、待ちが発生した場合を考慮するとパフォーマンスが得られないように感じますが、Non-Blocking IOという特徴を持つため、シングルスレッドでも性能を最大限発揮できるようになっています。<br/>
+        </p>
+
+        <br/>
+        <h4 class="title">Non-Blocking IO</h4>
+        <p>
+          Node.jsでは、I/Oが発生した場合にその完了を待たずに、すぐに次の処理を行うことになります。<br/>
+          Blocking IO<br/>
+          リクエスト1のI/Oが終わってからリクエスト2の処理開始<br/>
+          <img src="./img/nodejs/multi_thread.jpg" width="400" /><br/>
+
+          <br/>
+          Non-Blocking IO<br/>
+          リクエスト1の完了を待たずにリクエスト2の処理を開始する<br/>
+          <img src="./img/nodejs/single_thread.jpg" width="400" /><br/>
+
+          <br/>
+          コードで体験すると以下のようになります。<br/>
+          以下のコードは、ファイルを読み込んで標準出力するコードですが、実行結果を見ると1→3→2の順に出力されています。<br/>
+        </p>
+
+<pre><code class="title">test.js</code></pre>
+<pre><code>'use strict';
+import fs from 'fs';
+
+console.log(1)
+fs.readFile('nodejs_test.txt', (err, data) => {
+  console.log(2)
+});
+console.log(3)
+</code></pre>
+
+<pre><code class="title">実行結果</code></pre>
+<pre><code>1          
+3          
+2          
+</code></pre>
+
+        <br/>
+        <p>
+          <code>fs.readFile</code>はファイルを読み込むためのI/Oを発生させます。ブロッキングI/Oを採用している場合、I/Oが完了するまで次の処理を行わないため、1→2→3の順に出力されますが、<br/>
+          Non-Blocking-I/Oの場合はファイルの読み込みが終わるのを待たずに次の処理が始まります。このため、出力順が1→3→2になっています。これがNon-Blocking-I/Oです。<br/>
+          <code>fs.readFile</code>の第二引数には関数が渡されています（Callback関数）。これはファイル読み込みが<span style="color: yellow">いつか終わったら実行される</span>関数です。このため、以下のコードのようにCallback関数でファイルの中身を取得してコンソールに出力しようとしてもうまく出力されません。undefinedになります。<br/>
+  
+<pre><code class="title">test.js</code></pre>
+<pre><code>'use strict';
+import fs from 'fs';
+
+let input
+console.log(1)
+fs.readFile('nodejs_test.txt', (err, data) => {
+  input = data;
+});
+console.log(input);
+</code></pre>
+
+<pre><code class="title">実行結果</code></pre>
+<pre><code>1          
+undefined
+</code></pre>
+
+        <br/>
+        <p>
+          ファイルの中身を取得してその中身を出力するためには、以下のようにCallback関数の中で処理する必要があります。<br/>
+        </p>
+
+<pre><code class="title">test.js</code></pre>
+<pre><code>'use strict';
+import fs from 'fs';
+
+let input
+console.log(1)
+fs.readFile('nodejs_test.txt', (err, data) => {
+  input = data;
+  console.log(input.toString());
+});
+</code></pre>
+
+<pre><code class="title">実行結果</code></pre>
+<pre><code>1          
+nodejs_testファイルの中
+</code></pre>
+
+        </p>
+
+        <br/>
+        <h4 class="title">非同期のイベント駆動型ランタイム</h4>
+        <p>
+          JavaScriptはもともとWebページなどでちょっとした動きなどを扱うために利用されてきたプログラミング言語でした。たとえばブラウザでは次のように様々な「イベント」によってタスクが発生します。<br/>
+        </p>
+
+        <ul>
+          <li>ユーザーが特定のHTML要素をクリックする。</li>
+          <li>キーボードで文字入力される。</li>
+        </ul>
+
+        <p>
+          JavaScriptはブラウザ上で発生するさまざまなイベントを処理することを得意としています。例えば先ほど挙げたイベントに紐づけて次のような処理ができます。
+        </p>
+
+        <ul>
+          <li>特定のHTML要素をクリックしたイベントを受け取ったらアラートを表示する。</li>
+          <li>キーボードの入力イベントを受け取る度に、Webページを更新する。</li>
+        </ul>
+
+        <p>
+          JavaScriptは「いつかこういうイベントが起きたら、この処理を実行する」といった<font color="yellow">非同期に起きるイベントの処理が言語に深く結びついています。</font><br/>
+          それではブラウザではなくサーバーで動作するNode.jsではどうなるでしょう。<br/>
+          WebページではブラウザがJavaScriptを動かしています。サーバーサイドではJavaScriptを動かすためにOSとランタイムが同じ役割を果たしています。<br/>
+          OSもブラウザと同様にさまざまなイベント（ファイルの読み込み／書き込みやネットワークのデータ送受信、キーボードやマウスの入力など）が非同期に発生し、それを処理しています。そのような視点で見るとブラウザとOSは似た性質を持っているとも言えます。<br/>
+          ブラウザで発生していたさまざまなイベントを処理するのと同様に、Node.jsはOSで発生するさまざまなイベントを処理するランタイムであるとも言えます。<br/>
+          このようにJavaScriptはもともと言語自体に非同期を中心に処理するという性質が深く結びついています。JavaScript, Node.jsは性能的に優れた非同期処理が書きやすい特徴を持ちます。<br/>
+          Node.jsが生まれた背景に、既存のJavaScriptの文法を使うとOSなどから発生する非同期なイベントを無理なく表現できる、という土壌がありました。ブラウザとサーバーというまったく違ったプラットフォームであるにもかかわらず、非同期と言う文脈は両者で共通していたため、Node.jsはJavaScriptの表現力を活用できました。<br/>
+          Node.jsにはEventEmitterと呼ばれるさまざまなイベントを発行し、受け取る汎用的な仕組みが存在します。Node.jsはこの仕組みを介して、「ファイルの読み込みを開始した」など、OS側のイベントをJavaScriptに持ってきて、Node.js側で受け取ることを可能にしてきました。<br/>
+          このように発行されるイベントを下敷きにさまざまな処理を行う特徴を「イベント駆動型」と表現します。そしてその実行環境であるNode.jsは「非同期のイベント駆動型ランタイム」と呼ばれています。<br/>
+        </p>
+
+        <br/>
+        <h4 class="title">EventEmitter</h4>
+        <p>
+          Node.jsには、イベント駆動型アーキテクチャを支える根幹となるクラスとしてEventEmitterというクラスがあります。<br/>
+          これを使うことで、「何度も」「細切れ」に起きる非同期なイベントを制御することができます。<br/>
+        </p>
+
+        <br/>
+        <h3 class="title">作った物</h3>
+        <p>
+          twitchというプラットフォームを使ってゲームの配信をしている。<br/>
+          自作のbotを動かしたりしているのですが、そのシステム構成が以下の図。<br/>
+          <img src="./img/nodejs/play_with_nodejs.jpg" width="800" /><br/>
+        </p>
+
+        <br/>
+        参考<br/>
+        <ul>
+          <li><a href="https://zenn.dev/tmikada/articles/performance-c10kproblem" target="_blank" rel="noopener noreferrer">Zenn シングルプロセスのNginxがマルチプロセスのApacheより高速という意味について考えてみた</a></li>
+          <li><a href="https://ja.wikipedia.org/wiki/C10K%E5%95%8F%E9%A1%8C" target="_blank" rel="noopener noreferrer">wikipedia C10K問題</a></li>
+          <li><a href="https://qiita.com/katu_/items/01c9c35d17a541014d32" target="_blank" rel="noopener noreferrer">Qiita C10K問題とNode.js</a></li>
+          <li><a href="https://wa3.i-3-i.info/word11592.html" target="_blank" rel="noopener noreferrer">1分で読めるIT用語辞典 C10K問題</a></li>
+          <li><a href="https://knowledge.sakura.ad.jp/24148/" target="_blank" rel="noopener noreferrer">さくらのナレッジ いまさら聞けないNode.js</a></li>
+          <li><a href="https://it-kyujin.jp/article/detail/189/" target="_blank" rel="noopener noreferrer">IT求人ナビ Node.jsは何が凄いのか</a></li>
+          <li><a href="https://blog.recruit.co.jp/rls/2019-12-13-node-async-io/" target="_blank" rel="noopener noreferrer">RECRUIT Tech Blog Node.jsの非同期I/Oについて調べてみた</a></li>
+          <li><a href="https://tech-blog.lakeel.com/n/nad1e70679a96" target="_blank" rel="noopener noreferrer">LaKeel Node.js の非同期処理の仕組み</a></li>
+          <li><a href="https://www.ibm.com/docs/ja/aix/7.1?topic=volumes-using-file-descriptors" target="_blank" rel="noopener noreferrer">ファイル・ディスクリプターの使用</a></li>
+
+          <li><a href="https://v8.dev/" target="_blank" rel="noopener noreferrer">What is V8?</a></li>
+        </ul>
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>
