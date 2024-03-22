@@ -49,6 +49,14 @@
       <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
       <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
     </ul>
+    <ul class="indent_no">
+      <li><a href="#react">React</a></li>
+      <li><a href="#jsx">JSX</a></li>
+      <li><a href="#component">ｺﾝﾎﾟｰﾈﾝﾄ</a></li>
+      <li><a href="#hooks">Hooks</a></li>
+      <li><a href="#next">Next.js</a></li>
+      <li><a href="#what_i_made">作った物</a></li>
+    </ul>
   </header><!--/.pc-->
 
   <!--小さな端末用（800px以下端末）で表示させるブロック-->
@@ -66,6 +74,14 @@
       <ul class="icon">
         <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
         <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+      <ul class="indent_no">
+        <li><a href="#react">React</a></li>
+        <li><a href="#jsx">JSX</a></li>
+        <li><a href="#component">ｺﾝﾎﾟｰﾈﾝﾄ</a></li>
+        <li><a href="#hooks">Hooks</a></li>
+        <li><a href="#next">Next.js</a></li>
+        <li><a href="#what_i_made">作った物</a></li>
       </ul>
     </div><!--/#menubar-s-->
   </header><!--/.sh-->
@@ -90,6 +106,7 @@
         </ul>
 
         <br/>
+        <span id="react"></span>
         <h3 class="title">React</h3>
         <p>
           Reactとは、WebサイトやWebアプリのUI部分を開発する際に活用するJavaScriptライブラリです。ReactはMeta (旧称Facebook社)が開発し、2013年にオープンソース化されました。<br/>
@@ -158,6 +175,7 @@
 </code></pre>
 
         <br/>
+        <span id="jsx"></span>
         <h4 class="title">JSX(JavaScript XML)</h4>
         <p>
           とは言えCDNは、主に学習目的または小規模のアプリケーション目的で使用することが適しています。通常プロジェクトでこのような使い方をすることはまずありません。<br/>
@@ -169,26 +187,7 @@
         </p>
 
         <br/>
-        <h4 class="title">React Hooks</h4>
-        <p>
-          React Hooksはフック(Hook)によって関数コンポーネント内で状態やライフサイクルを扱うための機能です。<br/>
-          公式が提供しているフックは10種類あり、さらにフックを組み合わせてカスタムフックを独自に実装できます。<br/>
-          <table border="1">
-            <tr><th>フック種類</th><th>用途（概要）</th><th>フック名</th></tr>
-            <tr><td rowspan="2">状態のフック<br/>(State Hooks)</td><td rowspan="2">内部状態を持ち、その状態の変化に応じて表示を変更できる。</td><td>useState</td></tr>
-            <tr><td>useReducer</td></tr>
-            <tr><td rowspan="2">メモ化のフック<br/>(Performance Hooks)</td><td rowspan="2">値や関数を保持し、必要のない子要素のレンダリングや計算を抑止するために使用し、パフォーマンスの最適化を図る</td><td>useCallback</td></tr>
-            <tr><td>useMemo</td></tr>
-            <tr><td rowspan="2">副作用のフック<br/>(Effect Hooks)</td><td rowspan="2">副作用（コンポーネントの描画とは直接関係ない処理のこと）のためのフック。外部システムとの同期、イベントリスナ。</td><td>useEffect</td></tr>
-            <tr><td>useLayoutEffect</td></tr>
-            <tr><td>Contextのためのフック<br/>(Context Hooks)</td><td>親の変数を子コンポーネントで受け取る</td><td>useContext</td></tr>
-            <tr><td rowspan="2">refのフック<br/>(Ref Hooks)</td><td rowspan="2">レンダリングに使用しない情報を記録</td><td>useRef</td></tr>
-            <tr><td>useImperativeHandle</td></tr>
-            <tr><td>Other Hooks</td><td>ライブラリ開発時に利用されるHooks</td><td>useDebugValue</td></tr>
-          </table>
-        </p>
-
-        <br/>
+        <span id="component"></span>
         <h4 class="title">コンポーネント</h4>
         <p>
           Reactでは、自分が書いたマークアップ、CSS、JavaScript を、独自の『コンポーネント』と呼ばれる、アプリのための再利用可能な UI 要素にまとめることができます。<br/>
@@ -244,6 +243,29 @@
         </p>
 
         <br/>
+        <span id="hooks"></span>
+        <h4 class="title">React Hooks</h4>
+        <p>
+          React Hooksはフック(Hook)によって関数コンポーネント内で状態やライフサイクルを扱うための機能です。<br/>
+          ReactではこのReact Hooksを利用してリアクティブなシステムを構築していきます。<br/>
+          公式が提供しているフックは10種類あり、さらにフックを組み合わせてカスタムフックを独自に実装できます。<br/>
+          <table border="1">
+            <tr><th>フック種類</th><th>用途（概要）</th><th>フック名</th></tr>
+            <tr><td rowspan="2">状態のフック<br/>(State Hooks)</td><td rowspan="2">内部状態を持ち、その状態の変化に応じて表示を変更できる。</td><td>useState</td></tr>
+            <tr><td>useReducer</td></tr>
+            <tr><td rowspan="2">メモ化のフック<br/>(Performance Hooks)</td><td rowspan="2">値や関数を保持し、必要のない子要素のレンダリングや計算を抑止するために使用し、パフォーマンスの最適化を図る</td><td>useCallback</td></tr>
+            <tr><td>useMemo</td></tr>
+            <tr><td rowspan="2">副作用のフック<br/>(Effect Hooks)</td><td rowspan="2">副作用（コンポーネントの描画とは直接関係ない処理のこと）のためのフック。外部システムとの同期、イベントリスナ。</td><td>useEffect</td></tr>
+            <tr><td>useLayoutEffect</td></tr>
+            <tr><td>Contextのためのフック<br/>(Context Hooks)</td><td>親の変数を子コンポーネントで受け取る</td><td>useContext</td></tr>
+            <tr><td rowspan="2">refのフック<br/>(Ref Hooks)</td><td rowspan="2">レンダリングに使用しない情報を記録</td><td>useRef</td></tr>
+            <tr><td>useImperativeHandle</td></tr>
+            <tr><td>Other Hooks</td><td>ライブラリ開発時に利用されるHooks</td><td>useDebugValue</td></tr>
+          </table>
+        </p>
+
+        <br/>
+        <span id="next"></span>
         <h3 class="title">Next.js</h3>
         <p>
           レンダリングについては<a href="../spa.html">こちら</a>に記載しているので、その他Next.jsの主な機能について記載します。<br/>
@@ -265,6 +287,7 @@
         </p>
 
         <br/>
+        <span id="what_i_made"></span>
         <h3 class="title">作った物</h3>
         <ul>
           <li>魔界塔士サガの仲間モンスター一覧</li>
@@ -297,7 +320,7 @@
           <li><a href="https://tyotto-good.com/nextjs/document-app" target="_blank" rel="noopener noreferrer">Tyotto good! Next.jsの_documment.js(tsx)と_app.js(tsx)について爆速で理解しよう</a></li>
           <li><a href="https://qiita.com/tetsutaroendo/items/c7171286137d963cdecf" target="_blank" rel="noopener noreferrer">Qiita Next.jsの_app.jsと_document.js</a></li>
           <li><a href="https://dev-k.hatenablog.com/entry/how-to-use-react-in-cdn-dev-k" target="_blank" rel="noopener noreferrer">deve.K's Programming Primer - プログラミング初心者のための入門ブログ</a></li>
-          <li><a href="https://zenn.dev/kaitok/articles/7a81c497252189" target="_blank" rel="noopener noreferrer">zenn React Hooks 再入門</a></li>
+          <li><a href="https://zenn.dev/kaitok/articles/7a81c497252189" target="_blank" rel="noopener noreferrer">Zenn React Hooks 再入門</a></li>
         </ul>
       </section><!-- section class="box" -->
 
