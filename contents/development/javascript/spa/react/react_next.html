@@ -109,9 +109,9 @@
         <span id="react"></span>
         <h3 class="title">React</h3>
         <p>
-          Reactとは、WebサイトやWebアプリのUI部分を開発する際に活用するJavaScriptライブラリです。ReactはMeta (旧称Facebook社)が開発し、2013年にオープンソース化されました。<br/>
-          ReactはJavaScript用のフレームワークと勘違いされることがありますが、実際には上述の通りライブラリとなります。<br/>
-          ライブラリなのでCDN経由でhtmlファイル内でReactのライブラリを使用することができます。<br/>
+          Reactとは、WebサイトやWebアプリのUI部分を開発する際に活用するJavaScriptライブラリです。ReactはMeta (旧Facebook社)が開発し、2013年にオープンソース化されました。<br/>
+          リアクティブ・プログラミングを特徴としています。リアクティブとは、『何かの値が変化したり、何かしらイベントが発生するとそれがすぐに反映される仕組み』のことです。<br/>
+          ReactはJavaScript用のフレームワークと勘違いされることがありますが、実際には上述の通りライブラリとなります。ライブラリなのでCDN経由でhtmlファイル内でReactの ライブラリを使用することができます。<br/>
           以下は実際にReactのライブラリを使用して書いたものです。<br/>
           ↓クリックでcounter増加<br/>
         </p>
@@ -178,12 +178,17 @@
         <span id="jsx"></span>
         <h4 class="title">JSX(JavaScript XML)</h4>
         <p>
-          とは言えCDNは、主に学習目的または小規模のアプリケーション目的で使用することが適しています。通常プロジェクトでこのような使い方をすることはまずありません。<br/>
-          大規模な開発をする場合、Reactでは、JSX(JavaScript XML)というJavaScriptの構文拡張を使用します。JavaScriptファイル内にHTMLのようなコードを記述できるようにするものです。Meta（旧Facebook）によって開発されました。<br/>
-          たとえば、次のようなJSXコードを書いて、単純な見出し要素を表示することができます。<br/>
+          CDNは、主に学習目的または小規模のアプリケーション目的で使用することが適しています。<br/>
+          大規模な開発をする場合、Reactでは、JSX(JavaScript XML)というJavaScriptの構文拡張を使用します。JavaScriptファイル内にHTMLのようなコードを記述できるようにするものです。Meta（旧Facebook社）によって開発されました。たとえば、次のようなコードを書くことが出来ます。<br/>
           <code>const heading = &lt;h1&gt;Hello, JSX!&lt;/h1&gt;;</code><br/>
-          このコードはHTMLのようにも見えますが、JavaScriptのコードです。headingという定数を作り、その値がJSX式の結果となります。<br/>
+          このコードはHTMLのようにも見えますが、JavaScriptのコードです。headingという定数を作り、その値がHTMLの要素（React要素）となります。<br/>
           JSXを記述する場合、ファイルの拡張子は<code>.jsx</code>とします。さらにこれに<a href="../../typescript.html">TypeScript</a>を適用する場合、拡張子は<code>.tsx</code>とします。<br/>
+          JSXでは中括弧{}を使うことで、React要素内にJavaScriptの値を埋め込むことができます。<br/>
+          <br/>
+          <code>
+            let name = 'React';<br/>
+            const heading = &lt;h1&gt;Hello, {name}&lt;/h1&gt;;
+          </code><br/>
         </p>
 
         <br/>
@@ -247,7 +252,6 @@
         <h4 class="title">React Hooks</h4>
         <p>
           React Hooksはフック(Hook)によって関数コンポーネント内で状態やライフサイクルを扱うための機能です。<br/>
-          ReactではこのReact Hooksを利用してリアクティブなシステムを構築していきます。<br/>
           公式が提供しているフックは10種類あり、さらにフックを組み合わせてカスタムフックを独自に実装できます。<br/>
           <table border="1">
             <tr><th>フック種類</th><th>用途（概要）</th><th>フック名</th></tr>
@@ -262,7 +266,20 @@
             <tr><td>useImperativeHandle</td></tr>
             <tr><td>Other Hooks</td><td>ライブラリ開発時に利用されるHooks</td><td>useDebugValue</td></tr>
           </table>
+
+          <br/>
+          ReactではこのReact Hooksを利用してリアクティブなシステムを構築していきます。<br/>
+          例えば状態のフックであるuseStateなら以下のようなコーディングをすることでリアクティブにすることができます。<br/>
+
+          <br/>
+          <code>const [状態, 更新関数] = useState(初期状態)</code>
         </p>
+<pre><code>const [count, setCount] = useState(0);
+&lt;div&gt;
+  &lt;p&gt;Count: {count}&lt;/p&gt;
+  &lt;button onClick={() => setCount(count + 1)}&gt;+&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
 
         <br/>
         <span id="next"></span>
@@ -289,6 +306,10 @@
         <br/>
         <span id="what_i_made"></span>
         <h3 class="title">作った物</h3>
+        <p>
+          <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
+        </p>
+
         <ul>
           <li>魔界塔士サガの仲間モンスター一覧</li>
           <li>変身後モンスター算出</li>
@@ -312,7 +333,17 @@
         </p>
 
         <br/>
-        参考<br/>
+        <hr>
+
+        <br/>
+        参考書籍<br/>
+        <ul>
+          <li><a href="https://amzn.to/4cx3seQ" target="_blank" rel="noopener noreferrer"><img src="../img/react_next.jpg" width="200"/><br/>React.js&Next.js超入門 第2版</a></li>
+          <li><a href="https://amzn.to/4as09nr" target="_blank" rel="noopener noreferrer"><img src="../img/typescript_react_next.jpg" width="200"/><br/>TypeScriptとReact/Next.jsでつくる実践Webアプリケーション開発</a></li>
+        </ul>
+
+        <br/>
+        参考サイト<br/>
         <ul>
           <li><a href="https://kinsta.com/jp/knowledgebase/what-is-jsx/" target="_blank" rel="noopener noreferrer">kinsta Reactで使用するJSXの基本をわかりやすく解説</a></li>
           <li><a href="https://qiita.com/kamenaris/items/8bcb407007501326bd9d" target="_blank" rel="noopener noreferrer">Qiita Next.jsの_documment..tsxと_app.tsxについてメモ</a></li>

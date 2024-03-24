@@ -105,16 +105,19 @@
         <span id="vue"></span>
         <h3 class="title">Vue.js</h3>
         <p>
-          2020年9月にVue3がリリース。この時点では主要なモジュールがバージョン3未対応。2022年2月7日に主要なモジュールも含めて、Vueを作成するプロジェクトのデフォルトのバージョンが3になりました。<br/>
-          <a href="../react/react_next.html">React</a>はJSXとReact Hooksを駆使し、コンポーネントを組み合わせてリアクティブなシステムを作るイメージでした。<br/>
+          Vue.jsは、DOM要素とJavaScriptのデータを結びつけるリアクティブなデータバインディングを提供するフレームワークです。2014年にリリースされました。<br/>
+          リアクティブ・プログラミングを特徴としています。リアクティブとは、「何かの値が変化するとそれがすぐに反映される仕組み」のことです。<br/>
+          2020年9月にVue3がリリースされましたが、その時点では、Vueに付随する主要なモジュールがバージョン3未対応のままという状態でした。<br/>
+          2022年2月7日に主要なモジュールも含めて、Vueを作成するプロジェクトのデフォルトのバージョンが3になりました。<br/>
           Vue.jsは、SFC(Single File Components)とVueインスタンスがリアクティブなシステムを作る上でのポイントとなります。Vue3で<a href="../../typescript.html">TypeScript</a>にも対応しました。<br/>
         </p>
 
         <br/>
+        <span id="sfc"></span>
         <h4>SFC(Single File Components)</h4>
         <p>
-          Vueプロジェクトでは、SFC(Single File Components)という拡張子.vueのファイルを作成します。<br/>
-          SFCはHTMLとCSS、それらを制御するJavaScriptをワンセットで画面を部品化したものです。<br/>
+          Vueプロジェクトでは、SFC(Single File Components)という拡張子.vueのファイルを作成します。SFCはHTMLとCSS、それらを制御するJavaScriptをワンセットで画面を部品化したものです。<br/>
+          SFCで作ったコンポーネントを組み合わせてUIを構築していくのがVueの仕組みです。<br/>
         </p>
 
 <pre><code class="title">.vueファイル構造</code></pre>
@@ -131,14 +134,21 @@
 &lt;/style&gt;
 </code></pre>
 
-        <br/>
         <p>
           <code>&lt;script&gt;&lt;/script&gt;</code>内にJavaScriptを、<code>&lt;template&gt;&lt;/template&gt;</code>にブラウザのbody部に表示する内容をコーディングしていきます。<br/>
+        </p>
+
+        <br/>
+        <span id="hooks"></span>
+        <h4>ライフサイクルフック</h4>
+        <p>
           この<code>&lt;script&gt;&lt;/script&gt;</code>内でVueインスタンスを生成し、Vueインスタンスを介して<code>&lt;template&gt;&lt;/template&gt;</code>を操作することでリアクティブなシステムを実現しています。<br/>
-          操作するにはVueのライフサイクルフックと呼ばれるものを使用する必要があり、以下のようなものがあります。<br/>
+          操作するにはVueのライフサイクルフック及び、Vueインスタンス内に定義した関数を使用する必要があり、以下のようなものがあります。<br/>
+
           <br/>
           <img src="./img/vue_life_cycle.jpg" width="800"/><br/>
           Vue3 フロントエンド開発の教科書 P150<br/>
+
           <br/>
           <table border="1">
             <tr><th>ライフサイクル名</th><th>フック名</th><th>概要</th></tr>
@@ -154,94 +164,17 @@
             <tr><td>⑩再レンダリングの際にリアクティブ変数へのアクセス</td><td>renderTriggered</td><td></td></tr>
           </table>
 
+          <br/>
+          Vueインスタンスに定義したdataをtemplateに埋め込み、フックや関数を介してdataを操作することでリアクティブなシステムを構築することができます。<br/>
+          <img src="./img/vueコード例.jpg" style="border: solid 1px #FFFFFF" width="700"/><br/>
+          <a href="http://localhost:3000/character/aaa" target="_blank" rel="noopener noreferrer"/>サンプル</a><br/>
         </p>
-
-<pre><code class="title">CharacterList.vue（抜粋）</code></pre>
-<pre><code>&lt;script setup lang="ts"&gt;
-  interface Props {
-    pageTitle: string
-    crumbEnd: string
-  }
-  defineProps&lt;Props&gt;()
-&lt;/script&gt;
-
-&lt;script lang="ts"&gt;
-  const endPoint = '/all_character'
-  export default {
-    data() {
-      return {
-        charas: [] as chara[],
-        selectedChara: '',
-        ....
-        islpAsc: false,
-        ....
-      }
-    },
-    created: function() {
-      ....
-    },
-    mounted: async function() {
-      ....
-    },
-    methods: {
-      fetchCharas: async function() {
-        ....
-      },
-      initSortFlag: function() {
-        ....
-      },
-      sortFunc: function(order: number, attrName: string): chara[] {
-        ....
-      }
-    }
-  }
-&lt;/script&gt;
-
-&lt;template&gt;
-  &lt;CommonBody v-bind:pageTitle="pageTitle"&gt;
-    &lt;template v-slot:body&gt;
-    &lt;CommonBreadCrumbs v-bind:crumbEnd="crumbEnd" /&gt;
-
-    &lt;table border="1" style="width: 99.9%"&gt;
-      &lt;tr&gt;
-        &lt;th style="z-index: 1"&gt;#&lt;/th&gt;
-        &lt;th&gt;
-          名前
-          &lt;div style="position: relative; z-index: 10"&gt;
-            &lt;select v-model="selectedChara" v-on:change="fetchCharas"&gt;
-              &lt;option v-for="chara in $CONSTANTS.optionCharas" 
-                v-bind:key="chara.id"
-                v-bind:value="chara.name" &gt;
-                {{ chara.name }}
-              &lt;/option&gt;
-            &lt;/select&gt;
-          &lt;/div&gt;
-        &lt;/th&gt;
-        &lt;th&gt;
-          LP&lt;br/&gt;
-          &lt;div style="position: relative; z-index: 10"&gt;
-            &lt;button v-on:click="sortFunc(1, 'lp')"  v-bind:style="{background: islpAsc? $CONSTANTS.colorOn: $CONSTANTS.colorOff, position: 'relative', zIndex: 10}" &gt;▲&lt;/button&gt;&thinsp;
-            &lt;button v-on:click="sortFunc(-1, 'lp')" v-bind:style="{background: islpDesc? $CONSTANTS.colorOn: $CONSTANTS.colorOff, position: 'relative', zIndex: 10}" &gt;▼&lt;/button&gt;
-          &lt;/div&gt;
-        &lt;/th&gt;
-      &lt;/tr&gt;
-      &lt;tr v-for="(chara, index) in charas" :key="chara.id"&gt;
-        &lt;td&gt;{{ index + 1 }}&lt;/td&gt;
-        &lt;td&gt;&lt;NuxtLink v-bind:to="'./detail/' + chara.path + '?destiny=' + chara.destiny + '&weapon=' + chara.weapon"&gt;{{ chara.name }}&lt;/NuxtLink&gt;&lt;/td&gt;
-        &lt;td&gt;{{ chara.lp }}&lt;/td&gt;
-        ....
-      &lt;/tr&gt;
-    &lt;/table&gt;
-    &lt;/template&gt;
-  &lt;/CommonBody&gt;
-&lt;/template&gt;
-</code></pre>
 
         <br/>
         <span id="file_path_router"></span>
         <h4>ファイルパスルータ</h4>
         <p>
-          Vueにはファイルパスルータという機能があります。これはNextのファイルベースルーティングと同じものと考えていいと思います。<br/>
+          Vueにはファイルパスルータという機能があります。これはNext.jsのファイルベースルーティングと同じものと考えていいと思います。<br/>
           画面用のコンポーネントはpagesフォルダに格納する事になっており、さらにその格納するファイルパスの構造がそのままルーティングパスになります。<br/>
         </p>
 
@@ -258,11 +191,29 @@
         <span id="what_i_made"></span>
         <h3 class="title">作った物</h3>
         <p>
-
+          <br/>
+          <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
         </p>
 
         <br/>
-        参考<br/>
+        <hr>
+
+        <br/>
+        参考書籍<br/>
+        <ul>
+          <li><a href="https://amzn.to/3x59PG9" target="_blank" rel="noopener noreferrer"><img src="../img/vue3.jpg" width="200"/><br/>Vue 3　フロントエンド開発の教科書</a></li>
+          <li><a href="https://amzn.to/4atKcNQ" target="_blank" rel="noopener noreferrer"><img src="../img/nuxt3.jpg" width="200"/><br/>Nuxt 3　フロントエンド開発の教科書</a></li>
+          <li><a href="https://amzn.to/4986MdE" target="_blank" rel="noopener noreferrer"><img src="../img/vuejs入門.jpg" width="200"/><br/>Vue.js入門 基礎から実践アプリケーション開発まで</a></li>
+        </ul>
+
+        <ul>
+          <li><a href="http://localhost:3000/character/characters" target="_blank" rel="noopener noreferrer">ロマサガ3のキャラクター一覧</a></li>
+          <li>一覧から詳細への遷移</li>
+          <li>詳細画面でラジオボタンを選択すると画像が切り替わる</li>
+        </ul>
+
+        <br/>
+        参考サイト<br/>
         <ul>
           <li><a href="https://developer.mamezou-tech.com/blogs/2022/12/18/nuxt3-hybrid-rendering/" target="_blank" rel="noopener noreferrer">豆蔵デベロッパーサイト Nuxt3で導入されたハイブリッドレンダリングとNuxt版ISG/ISRを試してみる</a></li>
         </ul>

@@ -107,17 +107,91 @@
         <span id="history"></span>
         <h3 class="title">Node.jsの歴史（生まれ）</h3>
         <p>
-          Node.jsは、Chromeに内蔵されている、「V8」というJavaScriptエンジンの上に構築されたJavaScriptの実行環境（ランタイム）です。<br/>
-          Node.jsはHTTPをやり取りするサーバーとしてユーザーからのリクエストをやり取りするなど、ネットワークの処理を得意としています。<br/>
-          さらに、Node.jsは2009年の登場以来、サーバーでの実行にとどまらず、フロントエンドのためのツールとしても広く利用されてきました。<br/>
+          Node.jaは、サーバーサイドでJavaScriptを使うためのものです。<br/>
+          Chromeに内蔵されている「V8」というJavaScriptエンジンの上に構築されたJavaScriptの実行環境（ランタイム）で、HTTPをやり取りするサーバーとしてユーザーからのリクエストをやり取りするなど、ネットワークの処理を得意としています。<br/>
         </p>
 
         <br/>
         <span id="feature"></span>
         <h3 class="title">特徴</h3>
         <p>
-          Node.jsを特徴づける大きなポイントは「非同期のイベント駆動型ランタイム」と「Non-Blocking I/Oとシングルスレッド」です。<br/>
-          Non-Blocking I/Oとシングルスレッドの特徴について説明するためには、まず<span style="color:yellow">C10K問題</span>（シーテンケー問題）について理解しておく必要があります。<br/>
+          Node.jsには大きく以下3つの特徴があります。<br/>
+        </p>
+
+        <ul>
+          <li>非同期のイベント駆動型ランタイム</li>
+          <li>Non-Blocking I/O</li>
+          <li>シングルスレッド</li>
+        </ul>
+
+        <!--
+        <br/>
+        <span id="async"></span>
+        <h3 class="title">非同期のイベント駆動型ランタイム</h3>
+        <p>
+          JavaScriptはもともとWebページなどでちょっとした動きなどを扱うために利用されてきたプログラミング言語でした。たとえばブラウザでは次のように様々な「イベント」によってタスクが発生します。<br/>
+        </p>
+
+        <ul>
+          <li>ユーザーが特定のHTML要素をクリックする。</li>
+          <li>キーボードで文字入力される。</li>
+        </ul>
+
+        <p>
+          JavaScriptはブラウザ上で発生するさまざまなイベントを処理することを得意としています。例えば先ほど挙げたイベントに紐づけて次のような処理ができます。
+        </p>
+
+        <ul>
+          <li>特定のHTML要素をクリックしたイベントを受け取ったらアラートを表示する。</li>
+          <li>キーボードの入力イベントを受け取る度に、Webページを更新する。</li>
+        </ul>
+
+        <p>
+          JavaScriptは「いつかこういうイベントが起きたら、この処理を実行する」といった<span style="color: yellow">非同期に起きるイベントの処理が言語に深く結びついており</span>、その特徴はサーバーサイドで稼働するNode.jsにも受け継がれています。<br/>
+          サーバーサイドではJavaScriptを動かすためにOSとランタイムがブラウザと同じ役割を果たしています。<br/>
+          OSもブラウザと同様にさまざまなイベント（ファイルの読み込み／書き込みやネットワークのデータ送受信、キーボードやマウスの入力など）が非同期に発生し、それを処理しています。<br/>
+          Node.jsが生まれた背景に、既存のJavaScriptの文法を使うとOSなどから発生する非同期なイベントを無理なく表現できる、という土壌がありました。ブラウザとサーバーというまったく違ったプラットフォームであるにもかかわらず、非同期と言う文脈は両者で共通していたため、Node.jsはJavaScriptの表現力を活用できました。<br/>
+        </p>
+        -->
+
+        <br/>
+        <span id="async"></span>
+        <h4 class="title">非同期のイベント駆動型ランタイム</h4>
+        <p>
+          Node.jsにはEventEmitterと呼ばれるさまざまなイベントを発行し、受け取る汎用的な仕組みが存在します。Node.jsはこの仕組みを介して、「ファイルの読み込みを開始した」など、OS側のイベントをJavaScriptに持ってきて、Node.js側で受け取ることを可能にしてきました。<br/>
+          このように発行されるイベントを下敷きにさまざまな処理を行う特徴を「イベント駆動型」と表現します。そしてその実行環境であるNode.jsは「非同期のイベント駆動型ランタイム」と呼ばれています。<br/>
+          EventEmitterの基本的な使い方としては以下の通り。
+        </p>
+        <ul>
+          <li><code>on(eventName, listener)</code>関数：イベントのlistenerを登録</li>
+          <li><code>emit(eventName, [args])</code>関数：イベントが発動し、第二引数以降のargsを引数として渡す。</li>
+        </ul>
+        <p>
+          <code>on()</code>関数でイベントが発動し、<code>emit()</code>関数で登録されていた処理が実行されます。<code>on()</code>を使って登録されたlistenerは、そのイベントが発火される度に実行されます。<br/>
+        </p>
+
+<pre><code class="title">eventemitter.js</code></pre>
+<pre><code>const EventEmitter = require('events');
+const myEmitter = new EventEmitter(); // EventEmitterインスタンスを生成
+
+// イベントが発動された時の処理を記述する
+eventEmitter.on('myEvent', () => {
+    console.log('Emitted Event');
+});
+
+// イベントを発動させる
+eventEmitter.emit('myEvent');
+</code></pre>
+
+<br/>
+<pre><code class="title">出力結果</code></pre>
+<pre><code>Emitted Event
+  
+</code></pre>
+
+        <br/><br/>
+        <p>
+          次はNon-Blocking I/Oとシングルスレッドですが、これらの特徴について説明するためには、まず<span style="color:yellow">C10K問題（シーテンケー問題）</span>について理解しておく必要があります。<br/>
         </p>
 
         <br/>
@@ -160,7 +234,7 @@
           Node.js はシングルスレッドのイベントループモデルを採用しており、1つのメインスレッドでイベントループを実行します。これは処理の直列化によって効率的にタスクを処理するためです。<br/>
           非同期的な処理を実現するために、I/O 操作や非同期処理を別のスレッドで実行することはありますが、これらのスレッドは裏側で動作する補助的なスレッドであり、メインスレッドはブロックされることなく処理を続けます。<br/>
           これにより、多くの HTTP リクエストを効率的に処理できるようになっています。Apache のようなマルチプロセス/マルチスレッドのモデルとは異なり、Node.js はシングルスレッドであるため、スレッドの切り替えによるオーバーヘッドが発生せず、メモリ消費量を抑えることができます。<br/>
-          シングルスレッドで動かしたら高い、待ちが発生した場合を考慮するとパフォーマンスが得られないように感じますが、Non-Blocking IOという特徴を持つため、シングルスレッドでも性能を最大限発揮できるようになっています。<br/>
+          シングルスレッドで動かしたら、待ちが発生した場合を考慮すると高いパフォーマンスが得られないように感じますが、Non-Blocking IOという特徴を持つため、シングルスレッドでも性能を最大限発揮できるようになっています。<br/>
         </p>
 
         <br/>
@@ -168,6 +242,8 @@
         <h3 class="title">Non-Blocking IO</h3>
         <p>
           Node.jsでは、I/Oが発生した場合にその完了を待たずに、すぐに次の処理を行うことになります。<br/>
+
+          <br/>
           Blocking IO<br/>
           リクエスト1のI/Oが終わってからリクエスト2の処理開始<br/>
           <img src="./img/nodejs/multi_thread.jpg" width="400" /><br/>
@@ -247,55 +323,32 @@ nodejs_testファイルの中
         </p>
 
         <br/>
-        <h4 class="title">非同期のイベント駆動型ランタイム</h4>
-        <p>
-          JavaScriptはもともとWebページなどでちょっとした動きなどを扱うために利用されてきたプログラミング言語でした。たとえばブラウザでは次のように様々な「イベント」によってタスクが発生します。<br/>
-        </p>
-
-        <ul>
-          <li>ユーザーが特定のHTML要素をクリックする。</li>
-          <li>キーボードで文字入力される。</li>
-        </ul>
-
-        <p>
-          JavaScriptはブラウザ上で発生するさまざまなイベントを処理することを得意としています。例えば先ほど挙げたイベントに紐づけて次のような処理ができます。
-        </p>
-
-        <ul>
-          <li>特定のHTML要素をクリックしたイベントを受け取ったらアラートを表示する。</li>
-          <li>キーボードの入力イベントを受け取る度に、Webページを更新する。</li>
-        </ul>
-
-        <p>
-          JavaScriptは「いつかこういうイベントが起きたら、この処理を実行する」といった<font color="yellow">非同期に起きるイベントの処理が言語に深く結びついています。</font><br/>
-          それではブラウザではなくサーバーで動作するNode.jsではどうなるでしょう。<br/>
-          WebページではブラウザがJavaScriptを動かしています。サーバーサイドではJavaScriptを動かすためにOSとランタイムが同じ役割を果たしています。<br/>
-          OSもブラウザと同様にさまざまなイベント（ファイルの読み込み／書き込みやネットワークのデータ送受信、キーボードやマウスの入力など）が非同期に発生し、それを処理しています。そのような視点で見るとブラウザとOSは似た性質を持っているとも言えます。<br/>
-          ブラウザで発生していたさまざまなイベントを処理するのと同様に、Node.jsはOSで発生するさまざまなイベントを処理するランタイムであるとも言えます。<br/>
-          このようにJavaScriptはもともと言語自体に非同期を中心に処理するという性質が深く結びついています。JavaScript, Node.jsは性能的に優れた非同期処理が書きやすい特徴を持ちます。<br/>
-          Node.jsが生まれた背景に、既存のJavaScriptの文法を使うとOSなどから発生する非同期なイベントを無理なく表現できる、という土壌がありました。ブラウザとサーバーというまったく違ったプラットフォームであるにもかかわらず、非同期と言う文脈は両者で共通していたため、Node.jsはJavaScriptの表現力を活用できました。<br/>
-          Node.jsにはEventEmitterと呼ばれるさまざまなイベントを発行し、受け取る汎用的な仕組みが存在します。Node.jsはこの仕組みを介して、「ファイルの読み込みを開始した」など、OS側のイベントをJavaScriptに持ってきて、Node.js側で受け取ることを可能にしてきました。<br/>
-          このように発行されるイベントを下敷きにさまざまな処理を行う特徴を「イベント駆動型」と表現します。そしてその実行環境であるNode.jsは「非同期のイベント駆動型ランタイム」と呼ばれています。<br/>
-        </p>
-
-        <br/>
-        <h4 class="title">EventEmitter</h4>
-        <p>
-          Node.jsには、イベント駆動型アーキテクチャを支える根幹となるクラスとしてEventEmitterというクラスがあります。<br/>
-          これを使うことで、「何度も」「細切れ」に起きる非同期なイベントを制御することができます。<br/>
-        </p>
-
-        <br/>
         <span id="what_i_made"></span>
         <h3 class="title">作った物</h3>
         <p>
           twitchというプラットフォームを使ってゲームの配信をしている。<br/>
           自作のbotを動かしたりしているのですが、そのシステム構成が以下の図。<br/>
+
+          <br/>
+          話すこと<br/>
+          <ul>
+            <li>チャンネルポイント使用→webhook→チャット→OBS操作</li>
+            <li>配信開始→webhook→twitter</li>
+          </ul>
           <img src="./img/nodejs/play_with_nodejs.jpg" width="800" /><br/>
         </p>
 
         <br/>
-        参考<br/>
+        <hr>
+
+        <br/>
+        参考書籍<br/>
+        <ul>
+          <li><a href="https://amzn.to/3x8wRfv" target="_blank" rel="noopener noreferrer"><img src="./img/nodejs入門.jpg" width="200"/><br/>Node.js入門</a></li>
+        </ul>
+
+        <br/>
+        参考サイト<br/>
         <ul>
           <li><a href="https://zenn.dev/tmikada/articles/performance-c10kproblem" target="_blank" rel="noopener noreferrer">Zenn シングルプロセスのNginxがマルチプロセスのApacheより高速という意味について考えてみた</a></li>
           <li><a href="https://ja.wikipedia.org/wiki/C10K%E5%95%8F%E9%A1%8C" target="_blank" rel="noopener noreferrer">wikipedia C10K問題</a></li>
