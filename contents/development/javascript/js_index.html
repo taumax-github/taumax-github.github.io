@@ -138,8 +138,8 @@
         <h4 class="title">JavaScriptの生まれ</h4>
         <p>
           JavaScriptはWebブラウザNetscape Navigatorに起源を持つプログラミング言語です。1995年にネットスケープコミュニケーションズのブレンダン・アイクによって開発されました。<br/>
-          JavaScriptの登場初期は、ブラウザベンダー間で言語仕様の独自拡張が行われていたため、ブラウザ間の互換性が極めて低かったが、1997年、JavaScriptの中核的な仕様がECMAScript（エクマスクリプト）として標準化され、多くのウェブブラウザで利用できるようになりました。<br/>
-          とはいえ、この時代のフロントエンドに求められていたのはCSSによる装飾、JavaScriptによるアラートや入力受付程度のものです。<br/>
+          JavaScriptの登場初期は、ブラウザベンダー間で言語仕様の独自拡張が行われていたため、ブラウザ間の互換性が極めて低かったが、1997年、JavaScriptの中核的な仕様がECMAScript（エクマスクリプト）として標準化され、多くのウェブブラウザで利用できるようになりました。ECMAScriptはEcmaインターナショナルにおいて標準化されたJavaScriptの国際規格です。<br/>
+          しかし、この時代のフロントエンドに求められていたのはCSSによる装飾、JavaScriptによるアラートや入力受付程度のものでした。<br/>
           現在のように様々な場面で使用されるような物ではありませんでした。しかし2005年を境にその状況は変わっていきます。<br/>
 
           <!--
@@ -161,11 +161,11 @@
           この頃から開発のサーバーサイド、クライアントサイドの分業化が見られるようになります。クライアントサイドはWebフロントエンドとして確立していくようになりました。<br/>
 
           <br/>
-          ※DOM(Document Object Model)は、HTMLやXMLドキュメントなどのマークアップ言語とCSSを、JavaScriptなどのプログラミング言語からアクセスできるようにするためのAPIのことを指します。<br/>
+          ※DOM(Document Object Model)は、HTMLやXMLドキュメントなどのマークアップ言語とCSSを、JavaScriptなどのプログラミング言語からアクセスできるようにするためのAPIのこと。<br/>
         </p>
 
         <br/>
-        <h3 class="title">HTML5, Node.js, ES2015, React以降の世界</h3>
+        <h3 class="title">HTML5, Node.js, ES2015, AltJS, React以降の世界</h3>
         <p>
           00年代末から10年代にかけてWebはさらに複雑化、高度化していくことになります。HTML5, Node.js, ES2015, Reactの4つの視点からその過程を見ていきましょう。<br/>
         </p>
@@ -175,7 +175,7 @@
         <h4 class="title">HTML5の登場とWebアプリケーションプラットフォーム化</h4>
         <p>
           HTML5は2014年に勧告された仕様です。HTMLの文書仕様だけでなく、Web全体の仕様をアップデートする大きなムーブメントとなっていきました。HTML5では、Webをアプリケーションプラットフォームとしても機能させられるよう、HTML/CSSやDOM APIに強力な仕様変更が入れられました。<br/>
-          その中でもHistory APIはこの後のWebアプリケーションの発展において特に重要なモノでした。History APIによって、ページの遷移をWebブラウザではなくJavaScriptでハンドリングできるようになりました。これによってコンテンツを画面遷移なしに、URLや履歴は管理しつつ切り替えるシングルページアプリケーションの構築が可能になりました。<br/>
+          その中でもHistory APIはこの後のWebアプリケーションの発展において特に重要なモノでした。History APIによって、ページの遷移をWebブラウザではなくJavaScriptでハンドリングできるようになりました。これによってコンテンツを画面遷移なしに、URLや履歴を管理しつつ切り替えるシングルページアプリケーションの構築が可能になりました。<br/>
           HTML5の登場とそれに伴うライブラリの進化などで、クライアントサイドにおいてもより強力な表現が可能となりました。<br/>
           これを受けて、プレゼンテーション層のプログラムがサーバーサイドからクライアントサイドにシフトしていきます。従来サーバーサイドで行っていたHTMLの描画が、Web APIで必要なデータを取得すれば、クライアントサイドで可能となったためです。こちらの方が画面遷移の少なさなどによって、より優れた体験を与えられます。<br/>
         </p>
@@ -184,7 +184,7 @@
         <span id="nodejs"></span>
         <h4 class="title">Node.jsによるJavaScriptエコシステムの進化</h4>
         <p>
-          2009年にはNode.jsが登場します。Node.jsは、サーバーサイドでJavaScriptを使うためのプラットフォームです。サーバーサイドの技術ですが、フロントエンドにも大きな2つの変化を与えます。<br/>
+          2009年にはNode.jsが登場します。Node.jsは、サーバーサイドでJavaScriptを使うためのプラットフォームですが、フロントエンドにも大きな2つの変化を与えます。<br/>
           1つは今までブラウザに閉じられていた実行環境が広く使えるようになったことです。<br/>
           もう1つはパッケージマネージャー、パッケージリポジトリであるnpmの普及です。JavaScriptで実装されたライブラリをnpm経由で利用できるようになりました。これによってモジュール（パッケージ）を適切に利用し、開発したものをモジュール化してnpm経由で配布する文化が育ちます。サーバーサイド、クライアントサイド問わずJavaScriptアプリケーションはNode.jsを利用して開発し、npmを介して提供されるようになります。<br/>
           エコシステムが整備されたとこ、他にあげている同時期のWeb全体の躍進もあり、JavaScriptライブラリは活況を迎えます。ライブラリが多種多様に出現し、開発にそれらを用いることがWebフロントエンドエンジニアに求められるようになりました。<br/>
@@ -195,7 +195,6 @@
         <h4 class="title">JavaScriptの言語機能の進化（CommonJSとESモジュール）</h4>
         <p>
           Webフロントエンド開発が高度化するなかで問題になるのがJavaScriptの言語機能の貧弱さです。<br/>
-          JavaScriptは本格的なアプリケーションを作成する上ではやや物足りないところもありました。そこで大々的なアップデートが求められ、登場したのがCommonJSとES2015です。<br/>
           JavaScriptが抱えていた大きな問題の一つとして、他のJSファイルを取り込む標準的な仕様が存在しなかったということが挙げられます。<br/>
           分割したファイルや、外部JSファイルを読み込みたい場合、以下のようにHTMLファイルにscriptタグを書き込むことで別ファイルを読み込んでいました。<br/>
         </p>
@@ -221,7 +220,7 @@
 
           <br/>
           こういった問題を解決するため、2009年にCommonJSと呼ばれるプロジェクトが発足し、モジュール化など、様々な仕様を定めました。<br/>
-          一方、2015年に、ES2015(ES6とも言う)という仕様がECMAScript（エクマスクリプト）によって定められます。ECMAScriptはEcmaインターナショナルにおいて標準化されたJavaScriptの国際規格です。<br/>
+          また、2015年に、ES2015（ES6とも言う）という仕様がECMAScriptによって定められます。<br/>
           CommonJSは元々、サーバーサイドにおけるJavaScriptの仕様を定めることを目標としたプロジェクトでした。このため、Node.jsで利用できますが、ブラウザでは使用できません。ES2015は両方で使用できます。<br/>
           今後ES2015に統一されていくと思われますが、現時点ではまだまだ統一されていない状況です（2024年3月現在）。<br/>
           <!-- CommonJSは、ここで登場したnpm(Node package manager)というパッケージマネージャ<br/> -->
@@ -235,7 +234,7 @@
           export について、モジュール側はmodule.exportsに関数やクラスなどを定義します。<br/>
         </p>
 
-<pre><code class="title">module.js</code></pre>
+<pre class="title"><code class="title">module.js</code></pre>
 <pre><code>module.exports = function() {
   console.log('Hello World！');
 }
@@ -244,10 +243,10 @@
 
         <br/>
         <p>
-          読込む側は<code>require([先ほどのモジュールを定義したファイルパス])</code>で読み込みを行います。<br/>
+          読込む側は<code>require([ファイルパス])</code>で読み込みを行います。<br/>
         </p>
 
-<pre><code class="title">main.js</code></pre>
+<pre class="title"><code class="title">main.js</code></pre>
 <pre><code>const helloWorldModule = require('./module.js');
 helloWorldModule();
 // 出力：Hello World！
@@ -271,7 +270,7 @@ helloWorldModule();
           ES2015では、同じ export でも CommonJS のものとは記法が違い、モジュール側では通常通り関数やクラスを定義し、頭にexportを付けます。<br/>
         </p>
 
-<pre><code class="title">module.js</code></pre>
+<pre class="title"><code class="title">module.js</code></pre>
 <pre><code>export const helloWorld = function() {
   console.log('Hello World！');
 }
@@ -282,7 +281,7 @@ helloWorldModule();
         読み込み側ではimport文を使って先ほどのモジュールを読み込みます。<br/>
       </p>
 
-<pre><code class="title">main.js</code></pre>
+<pre class="title"><code class="title">main.js</code></pre>
 <pre><code>import { helloWorld } from './module'
 helloWorld();
 // 出力：Hello World！
@@ -293,7 +292,7 @@ helloWorld();
           letとconstは変数の宣言に使用する構文で、これまで使用されてきたvarに変わるです。
         </p>
 
-<pre><code class="title">varによる変数の宣言</code></pre>
+<pre class="title"><code class="title">varによる変数の宣言</code></pre>
 <pre><code>var name = 'soarflat';
 console.log(name); // => soarflat
 
@@ -305,7 +304,7 @@ console.log(name); // => SOARFLAT
 </code></pre>
 
 <br/>
-<pre><code class="title">letによる変数の宣言</code></pre>
+<pre class="title"><code class="title">letによる変数の宣言</code></pre>
 <pre><code>let name = 'soarflat';
 console.log(name); // => soarflat
 
@@ -316,7 +315,7 @@ let name = 'SOARFLAT'; // 再宣言するとエラーになる
 </code></pre>
 
 <br/>
-<pre><code class="title">constによる変数の宣言</code></pre>
+<pre class="title"><code class="title">constによる変数の宣言</code></pre>
 <pre><code>const NAME = 'soarflat';
 console.log(NAME); // => soarflat
 

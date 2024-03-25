@@ -170,7 +170,7 @@
           <code>on()</code>関数でイベントが発動し、<code>emit()</code>関数で登録されていた処理が実行されます。<code>on()</code>を使って登録されたlistenerは、そのイベントが発火される度に実行されます。<br/>
         </p>
 
-<pre><code class="title">eventemitter.js</code></pre>
+<pre class="title"><code class="title">eventemitter.js</code></pre>
 <pre><code>const EventEmitter = require('events');
 const myEmitter = new EventEmitter(); // EventEmitterインスタンスを生成
 
@@ -184,7 +184,7 @@ eventEmitter.emit('myEvent');
 </code></pre>
 
 <br/>
-<pre><code class="title">出力結果</code></pre>
+<pre class="title"><code class="title">出力結果</code></pre>
 <pre><code>Emitted Event
   
 </code></pre>
@@ -258,7 +258,7 @@ eventEmitter.emit('myEvent');
           以下のコードは、ファイルを読み込んで標準出力するコードですが、実行結果を見ると1→3→2の順に出力されています。<br/>
         </p>
 
-<pre><code class="title">test.js</code></pre>
+<pre class="title"><code class="title">test.js</code></pre>
 <pre><code>'use strict';
 import fs from 'fs';
 
@@ -269,7 +269,7 @@ fs.readFile('nodejs_test.txt', (err, data) => {
 console.log(3)
 </code></pre>
 
-<pre><code class="title">実行結果</code></pre>
+<pre class="title"><code class="title">実行結果</code></pre>
 <pre><code>1          
 3          
 2          
@@ -281,7 +281,7 @@ console.log(3)
           Non-Blocking-I/Oの場合はファイルの読み込みが終わるのを待たずに次の処理が始まります。このため、出力順が1→3→2になっています。これがNon-Blocking-I/Oです。<br/>
           <code>fs.readFile</code>の第二引数には関数が渡されています（Callback関数）。これはファイル読み込みが<span style="color: yellow">いつか終わったら実行される</span>関数です。このため、以下のコードのようにCallback関数でファイルの中身を取得してコンソールに出力しようとしてもうまく出力されません。undefinedになります。<br/>
   
-<pre><code class="title">test.js</code></pre>
+<pre class="title"><code class="title">test.js</code></pre>
 <pre><code>'use strict';
 import fs from 'fs';
 
@@ -293,7 +293,7 @@ fs.readFile('nodejs_test.txt', (err, data) => {
 console.log(input);
 </code></pre>
 
-<pre><code class="title">実行結果</code></pre>
+<pre class="title"><code class="title">実行結果</code></pre>
 <pre><code>1          
 undefined
 </code></pre>
@@ -303,7 +303,7 @@ undefined
           ファイルの中身を取得してその中身を出力するためには、以下のようにCallback関数の中で処理する必要があります。<br/>
         </p>
 
-<pre><code class="title">test.js</code></pre>
+<pre class="title"><code class="title">test.js</code></pre>
 <pre><code>'use strict';
 import fs from 'fs';
 
@@ -315,7 +315,7 @@ fs.readFile('nodejs_test.txt', (err, data) => {
 });
 </code></pre>
 
-<pre><code class="title">実行結果</code></pre>
+<pre class="title"><code class="title">実行結果</code></pre>
 <pre><code>1          
 nodejs_testファイルの中
 </code></pre>

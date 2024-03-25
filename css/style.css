@@ -53,12 +53,21 @@ code {
   background-color: #e7edf3; /* 背景色 */
   border-radius: 3px; /* 角丸 */
   border: solid 1px #d6dde4; /* 枠線 */
-  margin-top: -20px;
 }
 
 code.title {
 	background-color: #b3b3b8; /* 背景色 */
 	border: solid 1px #b3b3b8; /* 枠線 */
+}
+
+pre {
+	margin-left: 1.5rem;
+	overflow-x: scroll;
+}
+
+pre.title {
+	overflow-x: auto;
+	margin-bottom: -18px;
 }
 
 /* [table scroll start] */
