@@ -47,7 +47,7 @@
       <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
     </ul>
     <ul class="indent_no">
-      <li><a href="#history">歴史</a></li>
+      <li><a href="#what_is_nodejs">Node.jsとは</a></li>
       <li><a href="#feature">特徴</a></li>
       <li><a href="#async">非同期</a></li>
       <!-- <li><a href="#event_emitter">EventEmitter</a></li> -->
@@ -75,7 +75,7 @@
         <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
       </ul>
       <ul class="indent_no">
-        <li><a href="#history">歴史</a></li>
+        <li><a href="#what_is_nodejs">Node.jsとは</a></li>
         <li><a href="#feature">特徴</a></li>
         <li><a href="#async">非同期</a></li>
         <!-- <li><a href="#event_emitter">EventEmitter</a></li> -->
@@ -104,11 +104,11 @@
         </ul>
 
         <br/>
-        <span id="history"></span>
-        <h3 class="title">Node.jsの歴史（生まれ）</h3>
+        <span id="what_is_nodejs"></span>
+        <h3 class="title">Node.jsとは</h3>
         <p>
-          Node.jaは、サーバーサイドでJavaScriptを使うためのものです。<br/>
-          Chromeに内蔵されている「V8」というJavaScriptエンジンの上に構築されたJavaScriptの実行環境（ランタイム）で、HTTPをやり取りするサーバーとしてユーザーからのリクエストをやり取りするなど、ネットワークの処理を得意としています。<br/>
+          Node.jsはJavaScriptの実行環境（ランタイム）です。サーバーサイドでJavaScriptを使う事が出来るようになります。<br/>
+          Chromeに内蔵されている「V8」というJavaScriptエンジンの上に構築されており、HTTPをやり取りするサーバーとしてユーザーからのリクエストをやり取りするなど、ネットワークの処理を得意としています。<br/>
         </p>
 
         <br/>
@@ -158,6 +158,7 @@
         <span id="async"></span>
         <h4 class="title">非同期のイベント駆動型ランタイム</h4>
         <p>
+          <span style="color: yellow">ここの話唐突な感じある</span><br/>
           Node.jsにはEventEmitterと呼ばれるさまざまなイベントを発行し、受け取る汎用的な仕組みが存在します。Node.jsはこの仕組みを介して、「ファイルの読み込みを開始した」など、OS側のイベントをJavaScriptに持ってきて、Node.js側で受け取ることを可能にしてきました。<br/>
           このように発行されるイベントを下敷きにさまざまな処理を行う特徴を「イベント駆動型」と表現します。そしてその実行環境であるNode.jsは「非同期のイベント駆動型ランタイム」と呼ばれています。<br/>
           EventEmitterの基本的な使い方としては以下の通り。
@@ -363,6 +364,9 @@ nodejs_testファイルの中
           <li><a href="https://weseek.co.jp/tech/1359/" target="_blank" rel="noopener noreferrer">WESEEK Tech Blog Node.js|EventEmitterの使い方解説</a></li>
           <li><a href="https://zenn.dev/suguru_3u/articles/5452a0a9314ffb" target="_blank" rel="noopener noreferrer">Zenn EventEmitterとストリーム</a></li>
           <li><a href="https://v8.dev/" target="_blank" rel="noopener noreferrer">What is V8?</a></li>
+          <li><a href="https://nodejs.org/en/learn/getting-started/the-v8-javascript-engine" target="_blank" rel="noopener noreferrer">The V8 JavaScript Engine</a></li>
+          <li><a href="https://techmania.jp/blog/javascript0006/" target="_blank" rel="noopener noreferrer">TechMania Node.jsとは【入門編】できることやメリットを解説</a></li>
+          <li><a href="https://ja.wikipedia.org/wiki/V8_(JavaScript%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3)" target="_blank" rel="noopener noreferrer">wikipedia V8 (JavaScriptエンジン)</a></li>
         </ul>
       </section><!-- section class="box" -->
 

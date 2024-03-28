@@ -146,102 +146,88 @@
         <p>
           TypeScriptの最大の特徴は型の定義です。型注釈(Type Annotation)と呼ばれる方情報を付与することで、変数や引数に格納する型を制限できます。<br/>
           なお、型注釈は変数のデータ型が明らかな場合など、一部の条件では省略できます。<br/>
-          <div class="code">
-            function sayHello(name: string) {<br/>
-              &nbsp;&nbsp;console.log(name)<br/>
-            }<br/>
 
-            <br/>
-            let name: string = 'aaa'<br/>
-            sayHello(name)<br/>
-          </div>
-        </p>
+
+<pre><code>function sayHello(name: string) {
+  console.log(name)
+}
+
+let name: string = 'aaa'
+sayHello(name)
+</code></pre>
 
         <br/>
         <span id="variables"></span>
         <h4 class="title">変数</h4>
-        <p>
-          <div class="code">
-            const age: number = 30<br/>
-            let isDone: boolean = true<br/>
-            let name: string = 'abc'<br/>
-          </div>
-        </p>
+<pre><code>const age: number = 30
+let isDone: boolean = true
+let name: string = 'abc'
+</code></pre>
+
 
         <br/>
         <span id="list"></span>
         <h4 class="title">配列</h4>
-        <p>
-          <div class="code">
-            const array: string[] = ['aaa', 'bbb']<br/>
-            array.push('ccc')<br/>
-            array.push(1) // ←型が合わないためエラー<br/>
-          </div>
-        </p>
+
+<pre><code>const array: string[] = ['aaa', 'bbb']
+array.push('ccc')
+array.push(1) // ←型が合わないためエラー
+</code></pre>
 
         <br/>
         <span id="object_type"></span>
         <h4 class="title">オブジェクト型</h4>
-        <p>
-          <div class="code">
-            { キー名1: 型1, キー名2: 型2, キー名3: 型3 }<br/>
-          </div>
+<pre><code>{ キー名1: 型1, キー名2: 型2, キー名3: 型3 }</code></pre>
 
           <br/>
-          <div class="code">
-            const user: { name: string, age: number } = {
-              &nbsp;&nbsp;name: 'aaa',
-              &nbsp;&nbsp;age: 36
-            }<br/>
-            console.log(user.name)<br/>
-            console.log(user.age)<br/>
-          </div>
-        </p>
+
+<pre><code>const user: { name: string, age: number } = {
+  name: 'aaa',
+  age: 36
+}
+console.log(user.name)
+console.log(user.age)
+</code></pre>
+
 
         <br/>
         <span id="function"></span>
         <h4 class="title">関数</h4>
+<pre class="title"><code class="title">tsconfig.json</code></pre>
+<pre><code>function(引数1: 型1, 引数2: 型2): 戻り値 {
+  // 
+}
+</code></pre>
         <p>
-          <div class="code">
-            function(引数1: 型1, 引数2: 型2): 戻り値 {<br/>
-              &nbsp;&nbsp;// <br/>
-            }<br/>
-          </div>
 
           <br/>
-          <div class="code">
-            function sayHello(name: string): string {<br/>
-              &nbsp;&nbsp;return `こんにちは${name}` <br/>
-            }<br/>
-            sayHello('aaa') // こんにちはaaa
-          </div>
+<pre><code>function sayHello(name: string): string {
+  return `こんにちは${name}`
+}
+sayHello('aaa') // こんにちはaaa
+</code></pre>
 
           <br/>
           <p>
             オプショナルや引数のデフォルト値を使用することもできます<br/>
           </p>
-          <div class="codetitle">
-            オプショナル
-          </div>
-          <div class="code">
-            function sayHello(name: string, greeting?: string): string {<br/>
-              &nbsp;&nbsp;return `${greeting} ${name}` <br/>
-            }<br/>
-            sayHello('aaa') // aaa<br/>
-            sayHello('aaa', 'hello') // hello aaa<br/>
-          </div>
+
+<pre class="title"><code class="title">オプショナル</code></pre>
+<pre><code>function sayHello(name: string, greeting?: string): string {
+  return `${greeting} ${name}`
+}
+sayHello('aaa') // aaa
+sayHello('aaa', 'hello') // hello aaa
+</code></pre>
 
           <br/>
-          <div class="codetitle">
-            引数にデフォルト値指定
-          </div>
-          <div class="code">
-            function sayHello(name: string, greeting: string = 'hello'): string {<br/>
-              &nbsp;&nbsp;return `${greeting} ${name}` <br/>
-            }<br/>
-            sayHello('aaa') // hello aaa<br/>
-            sayHello('aaa', 'hey') // hey aaa<br/>
-          </div>
+<pre class="title"><code class="title">引数にデフォルト値指定</code></pre>
+<pre><code>function sayHello(name: string, greeting: string = 'hello'): string {
+  return `${greeting} ${name}`
+}
+sayHello('aaa') // hello aaa
+sayHello('aaa', 'hey') // hey aaa
+</code></pre>
 
           <br/>
           <span id="tsconfig"></span>
@@ -286,7 +272,7 @@
 
           <br/>
           <p>
-            詳細なオプションについては以下公式ドキュメント参照<br/>
+            tsconfig.jsonの詳細なオプションについては以下公式ドキュメント参照<br/>
             <a href="https://www.typescriptlang.org/tsconfig" target="_blank" rel="noopener noreferrer">TypeScript Compiler Options</a>
           </p>
         </p>

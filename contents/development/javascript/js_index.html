@@ -129,7 +129,7 @@
         <p>
           Pythonは機械学習の分野で豊富なライブラリを提供しているから、AIの分野で現在人気なのはわかる。<br/>
           JavaScriptはなんで人気なのか？自分が入社した時代から何が変わったのか？そもそもJavaScriptってクライアントサイドで動いているものなのでは？？<br/>
-          ぐらいの認識だったので調べた＆実際に物を作ってみました。<br/>
+          ぐらいの認識だったので、JavaScriptについて調べた上で、実際に物を作ってみました。<br/>
         </p>
 
         <br/>
@@ -137,10 +137,10 @@
         <h3 class="title">JavaScriptの歴史</h3>
         <h4 class="title">JavaScriptの生まれ</h4>
         <p>
+          まずJavaScriptの歴史から見ていきます。<br/>
           JavaScriptはWebブラウザNetscape Navigatorに起源を持つプログラミング言語です。1995年にネットスケープコミュニケーションズのブレンダン・アイクによって開発されました。<br/>
           JavaScriptの登場初期は、ブラウザベンダー間で言語仕様の独自拡張が行われていたため、ブラウザ間の互換性が極めて低かったが、1997年、JavaScriptの中核的な仕様がECMAScript（エクマスクリプト）として標準化され、多くのウェブブラウザで利用できるようになりました。ECMAScriptはEcmaインターナショナルにおいて標準化されたJavaScriptの国際規格です。<br/>
-          しかし、この時代のフロントエンドに求められていたのはCSSによる装飾、JavaScriptによるアラートや入力受付程度のものでした。<br/>
-          現在のように様々な場面で使用されるような物ではありませんでした。しかし2005年を境にその状況は変わっていきます。<br/>
+          しかし、この時代のフロントエンドに求められていたのはCSSによる装飾、JavaScriptによるアラートや入力受付程度のもので、現在のように様々な場面で使用されるような物ではありませんでした。しかし2005年を境にその状況は変わっていきます。<br/>
 
           <!--
           Webは1991年にインターネット上に登場しました。誕生したばかりのWebは文章閲覧のためのものでしかなかったのですが、1990年代半ば以降、CSSやJavaScriptがWebブラウザに搭載されるようになりました。<br/>
@@ -167,7 +167,7 @@
         <br/>
         <h3 class="title">HTML5, Node.js, ES2015, AltJS, React以降の世界</h3>
         <p>
-          00年代末から10年代にかけてWebはさらに複雑化、高度化していくことになります。HTML5, Node.js, ES2015, Reactの4つの視点からその過程を見ていきましょう。<br/>
+          00年代末から10年代にかけてWebはさらに複雑化、高度化していくことになります。HTML5, Node.js, ES2015, AltJS, Reactの4つの視点からその過程を見ていきましょう。<br/>
         </p>
 
         <br/>
@@ -186,7 +186,7 @@
         <p>
           2009年にはNode.jsが登場します。Node.jsは、サーバーサイドでJavaScriptを使うためのプラットフォームですが、フロントエンドにも大きな2つの変化を与えます。<br/>
           1つは今までブラウザに閉じられていた実行環境が広く使えるようになったことです。<br/>
-          もう1つはパッケージマネージャー、パッケージリポジトリであるnpmの普及です。JavaScriptで実装されたライブラリをnpm経由で利用できるようになりました。これによってモジュール（パッケージ）を適切に利用し、開発したものをモジュール化してnpm経由で配布する文化が育ちます。サーバーサイド、クライアントサイド問わずJavaScriptアプリケーションはNode.jsを利用して開発し、npmを介して提供されるようになります。<br/>
+          もう1つはパッケージマネージャー、パッケージリポジトリであるnpm(Node Package Manager)の普及です。JavaScriptで実装されたライブラリを<a href="https://www.npmjs.com/" target="_blank" rel="noopener noreferrer">npm経由</a>で利用できるようになりました。これによってモジュール（パッケージ）を適切に利用し、開発したものをモジュール化してnpm経由で配布する文化が育ちます。サーバーサイド、クライアントサイド問わずJavaScriptアプリケーションはNode.jsを利用して開発し、npmを介して提供されるようになります。<br/>
           エコシステムが整備されたとこ、他にあげている同時期のWeb全体の躍進もあり、JavaScriptライブラリは活況を迎えます。ライブラリが多種多様に出現し、開発にそれらを用いることがWebフロントエンドエンジニアに求められるようになりました。<br/>
         </p>
 
@@ -199,11 +199,11 @@
           分割したファイルや、外部JSファイルを読み込みたい場合、以下のようにHTMLファイルにscriptタグを書き込むことで別ファイルを読み込んでいました。<br/>
         </p>
 
-<pre><code>&lt;script src="js/hoge_1.js"&gt;&lt;/script&gt;  //  hoge.js を分割したファイル
-&lt;script src="js/hoge_2.js"&gt;&lt;/script&gt;  //  hoge.js を分割したファイル
-&lt;script src="js/hoge_3.js"&gt;&lt;/script&gt;  //  hoge.js を分割したファイル
-&lt;script src="js/vender/fuga.js"&gt;&lt;/script&gt;
-&lt;script src="js/vender/fuga-ui.js"&gt;&lt;/script&gt; //  fuga.js を前提に作られたファイル
+<pre><code>&lt;script src="js/aaa_1.js"&gt;&lt;/script&gt;  //  aaa.js を分割したファイル
+&lt;script src="js/aaa_2.js"&gt;&lt;/script&gt;  //  aaa.js を分割したファイル
+&lt;script src="js/aaa_3.js"&gt;&lt;/script&gt;  //  aaa.js を分割したファイル
+&lt;script src="js/vender/hoge.js"&gt;&lt;/script&gt;
+&lt;script src="js/vender/hoge-child.js"&gt;&lt;/script&gt; // hoge.js を前提に作られたファイル
 </code></pre>
 
         <br/>
@@ -212,15 +212,14 @@
 
           <br/>
           問題点<br/>
-          ① 変数名が被っていた場合、後から読み込んだファイルの変数名で上書きされてしまう。<br/>
-          →　命名の衝突をさける為の名前空間と呼ばれる概念がない<br/>
+          ① 命名の衝突をさける為の名前空間と呼ばれる概念がない<br/>
+          →　変数名が被っていた場合、後から読み込んだファイルの変数名で上書きされてしまう。<br/>
 
-          ② あるファイルをもとに別のファイルが作られていた場合、一方を修正するともう一方の処理が想定どおりに動かなくなってしまう。<br/>
-          →　依存関係を解決する仕組みがない<br/>
+          ② 依存関係を解決する仕組みがない<br/>
+          →　あるファイルをもとに別のファイルが作られていた場合、一方を修正するともう一方の処理が想定どおりに動かなくなってしまう。<br/>
 
           <br/>
-          こういった問題を解決するため、2009年にCommonJSと呼ばれるプロジェクトが発足し、モジュール化など、様々な仕様を定めました。<br/>
-          また、2015年に、ES2015（ES6とも言う）という仕様がECMAScriptによって定められます。<br/>
+          こういった問題を解決するため、2009年にCommonJSと呼ばれるプロジェクトが発足し、モジュール化など、様々な仕様を定めました。また、2015年にもES2015（ES6とも言う）という仕様がECMAScriptによって定められます。<br/>
           CommonJSは元々、サーバーサイドにおけるJavaScriptの仕様を定めることを目標としたプロジェクトでした。このため、Node.jsで利用できますが、ブラウザでは使用できません。ES2015は両方で使用できます。<br/>
           今後ES2015に統一されていくと思われますが、現時点ではまだまだ統一されていない状況です（2024年3月現在）。<br/>
           <!-- CommonJSは、ここで登場したnpm(Node package manager)というパッケージマネージャ<br/> -->
@@ -332,7 +331,7 @@ NAME = 'SOARFLAT'; // 再代入するとエラーになる
         <h4 class="title">AltJSの登場</h4>
         <p>
           ES2015と前後してAltJS(Alternative JavaScript)と呼ばれるものが登場します。AltJSは、JavaScriptの代替として機能する多様なプログラミング言語群のことを指します。<br/>
-          JavaScriptの弱点を補ったり、特定のニーズに特化したJavaScriptの代替言語として開発されました。より簡潔な構文を目指したCofeeScript、型を注釈として付与するTypeScriptが有名です。<br/>
+          JavaScriptの弱点を補ったり、特定のニーズに特化したJavaScriptの代替言語として開発されました。より簡潔な構文を目指したCofeeScriptや、型を注釈として付与するTypeScriptなどがあります。<br/>
           特にTypeScriptは現在の開発で広く使われるようになりつつあります。<br/>
         </p>
 
@@ -341,11 +340,12 @@ NAME = 'SOARFLAT'; // 再代入するとエラーになる
         <h4 class="title">Reactをはじめとするフロントエンドライブラリの出現</h4>
         <p>
           ここまで紹介してきたように、フロントエンドを取り巻く仕様、技術は高度化しています。これらが可能になったことで、アプリケーション、サービスにおいても複雑な要件が求められるようになります。<br/>
-          アプリケーションデータフローをフロントエンド側で受け持つなど、設計段階から難易度が上がり、MVCのようなアプリケーションの構造を持ったフレームワークが必要とされるようになります。React, Vue.js, Angular などの新たなWebアプリケーションフレームワーク、ライブラリが次々と出現します。結果、高度なフロントエンドアプリケーションの開発はjQueryで無理矢理に作るよりも構造化しやすくなりました。<br/>
-
-          <br/>
-          ここまでが、JavaScriptが生まれてから現在までの歴史になります。<br/>
+          アプリケーションデータフローをフロントエンド側で受け持つなど、設計段階から難易度が上がり、MVCのようなアプリケーションの構造を持ったフレームワークが必要とされるようになります。React, Vue.js, Angular, Svelte などの新たなWebアプリケーションフレームワーク、ライブラリが次々と出現します。結果、高度なフロントエンドアプリケーションの開発はjQueryで無理矢理に作るよりも構造化しやすくなりました。<br/>
         </p>
+
+        <br/>
+        ここまでが、JavaScriptが生まれてから現在までの歴史になります。<br/>
+        ここから先はNode.js, AltJSの代表格であるTypeScript, SPA(React, Next.jsとVue.js, Nuxt3)について見ていきます。<br/>
 
         <br/>
         <span id="detail"></span>
@@ -356,7 +356,7 @@ NAME = 'SOARFLAT'; // 再代入するとエラーになる
         <ul>
           <li>【工事中】jQuery</li>
           <li><a href="nodejs.html">Node.js</a></li>
-          <li><a href="typescript.html">TypeScript(AltJS)</a></li>
+          <li><a href="typescript.html">TypeScript</a></li>
           <li><a href="spa/spa.html">SPA(Single Page Application)</a></li>
         </ul>
 
@@ -387,6 +387,7 @@ NAME = 'SOARFLAT'; // 再代入するとエラーになる
           <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model" target="_blank" rel="noopener noreferrer">Mmdn web docs ドキュメントオブジェクトモデル (DOM)</a></li>
           <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction" target="_blank" rel="noopener noreferrer">Mmdn web docsUdemy DOM の紹介</a></li>
           <li><a href="https://udemy.benesse.co.jp/development/dom.html" target="_blank" rel="noopener noreferrer">Udemy メディア DOMとは？仕組みや構造を解説！HTMLやJavaScriptとの関係は？</a></li>
+          <li><a href="https://www.npmjs.com/" target="_blank" rel="noopener noreferrer">npm</a></li>
         </ul>
       </section><!-- section class="box" -->
 
