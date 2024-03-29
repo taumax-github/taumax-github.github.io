@@ -107,8 +107,15 @@
         <span id="what_is_nodejs"></span>
         <h3 class="title">Node.jsとは</h3>
         <p>
+          <br/>
           Node.jsはJavaScriptの実行環境（ランタイム）です。サーバーサイドでJavaScriptを使う事が出来るようになります。<br/>
-          Chromeに内蔵されている「V8」というJavaScriptエンジンの上に構築されており、HTTPをやり取りするサーバーとしてユーザーからのリクエストをやり取りするなど、ネットワークの処理を得意としています。<br/>
+          HTTPをやり取りするサーバーとしてユーザーからのリクエストをやり取りするなど、ネットワークの処理を得意としています。<br/>
+          「V8」と「libuv」の2つがNode.jsの中核を成しています。<br/>
+          <img src="./img/nodejs/v8_libuv.jpg" width="400"/><br/>
+
+          <br/>
+          V8は、Chromeに内蔵されているJavaScriptエンジンです。JavaScriptのソースコードを受け取って機械語に翻訳し、OS上で実行してくれます。<br/>
+          libuvは、OSによるディスクへの書き込みや通信などの処理に関するイベントを監視し、そのステータスをNode.jsに通知する機能を持ちます。<br/>
         </p>
 
         <br/>
@@ -158,14 +165,18 @@
         <span id="async"></span>
         <h4 class="title">非同期のイベント駆動型ランタイム</h4>
         <p>
+          Node.jsは「ファイルの読み込みを開始した」など、OS側のイベントを監視し、Node.js側で受け取ることが可能になっており、このようなイベントをトリガーとして処理を開始することができるようになっています。<br/>
+          EventEmitter（及びそれを継承したStream）という仕組みを利用してこれを実現しています。<br/>
+          <!--
           <span style="color: yellow">ここの話唐突な感じある</span><br/>
           Node.jsにはEventEmitterと呼ばれるさまざまなイベントを発行し、受け取る汎用的な仕組みが存在します。Node.jsはこの仕組みを介して、「ファイルの読み込みを開始した」など、OS側のイベントをJavaScriptに持ってきて、Node.js側で受け取ることを可能にしてきました。<br/>
           このように発行されるイベントを下敷きにさまざまな処理を行う特徴を「イベント駆動型」と表現します。そしてその実行環境であるNode.jsは「非同期のイベント駆動型ランタイム」と呼ばれています。<br/>
+          -->
           EventEmitterの基本的な使い方としては以下の通り。
         </p>
         <ul>
-          <li><code>on(eventName, listener)</code>関数：イベントのlistenerを登録</li>
-          <li><code>emit(eventName, [args])</code>関数：イベントが発動し、第二引数以降のargsを引数として渡す。</li>
+          <li><code>on(eventName, listener)</code>関数：イベントのlistenerを登録（第二引数のlistenerにコールバック関数を実装）</li>
+          <li><code>emit(eventName, [args])</code>関数：イベント発動。第二引数以降のargsを引数としてlistenerに渡す。</li>
         </ul>
         <p>
           <code>on()</code>関数でイベントが発動し、<code>emit()</code>関数で登録されていた処理が実行されます。<code>on()</code>を使って登録されたlistenerは、そのイベントが発火される度に実行されます。<br/>
@@ -173,27 +184,28 @@
 
 <pre class="title"><code class="title">eventemitter.js</code></pre>
 <pre><code>const EventEmitter = require('events');
-const myEmitter = new EventEmitter(); // EventEmitterインスタンスを生成
+const eventEmitter = new EventEmitter(); // EventEmitterインスタンスを生成
 
 // イベントが発動された時の処理を記述する
-eventEmitter.on('myEvent', () => {
-    console.log('Emitted Event');
+eventEmitter.on('myEvent', (arg1, arg2) => {
+    console.log('Emitted Event:' + 'arg1:' + arg1 + ', arg2:' + arg2);
 });
 
 // イベントを発動させる
 eventEmitter.emit('myEvent');
+eventEmitter.emit('myEvent', 'hoge');
+eventEmitter.emit('myEvent', 'huge', 'hoga');
 </code></pre>
 
 <br/>
-<pre class="title"><code class="title">出力結果</code></pre>
-<pre><code>Emitted Event
-  
+<pre class="title"><code class="title">実行結果</code></pre>
+<pre><code>Emitted Event:arg1:undefined, arg2:undefined
+Emitted Event:arg1:hoge, arg2:undefined
+Emitted Event:arg1:huge, arg2:hoga
 </code></pre>
 
         <br/><br/>
-        <p>
-          次はNon-Blocking I/Oとシングルスレッドですが、これらの特徴について説明するためには、まず<span style="color:yellow">C10K問題（シーテンケー問題）</span>について理解しておく必要があります。<br/>
-        </p>
+        次はNon-Blocking I/Oとシングルスレッドですが、これらの特徴について説明するためには、まず<span style="color:yellow">C10K問題（シーテンケー問題）</span>について理解しておく必要があります。<br/>
 
         <br/>
         <span id="c10k"></span>
@@ -232,6 +244,7 @@ eventEmitter.emit('myEvent');
         <span id="single_thread"></span>
         <h3 class="title">シングルスレッド</h3>
         <p>
+          <span style="color: yellow">イベントループモデルとは？</span><br/>
           Node.js はシングルスレッドのイベントループモデルを採用しており、1つのメインスレッドでイベントループを実行します。これは処理の直列化によって効率的にタスクを処理するためです。<br/>
           非同期的な処理を実現するために、I/O 操作や非同期処理を別のスレッドで実行することはありますが、これらのスレッドは裏側で動作する補助的なスレッドであり、メインスレッドはブロックされることなく処理を続けます。<br/>
           これにより、多くの HTTP リクエストを効率的に処理できるようになっています。Apache のようなマルチプロセス/マルチスレッドのモデルとは異なり、Node.js はシングルスレッドであるため、スレッドの切り替えによるオーバーヘッドが発生せず、メモリ消費量を抑えることができます。<br/>
@@ -334,7 +347,9 @@ nodejs_testファイルの中
           話すこと<br/>
           <ul>
             <li>チャンネルポイント使用→webhook→チャット→OBS操作</li>
+            <iframe src="https://player.twitch.tv/?video=2098995290&time=2h9m42s&parent=www.example.com" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
             <li>配信開始→webhook→twitter</li>
+            <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">twitch配信通知bot<br>twitchでロマサガ3配信中です！<br>お時間合う方是非遊びに来てみてくださーい。<br>▶️視聴はこちら：<a href="https://t.co/P46Z6JrYH1">https://t.co/P46Z6JrYH1</a><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%AC3?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガ3</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B2%E3%83%BC%E3%83%A0?src=hash&amp;ref_src=twsrc%5Etfw">#レトロゲーム</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B3%E3%83%B3%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%9E%E3%83%BC%E6%84%9B%E5%A5%BD%E4%BC%9A?src=hash&amp;ref_src=twsrc%5Etfw">#レトロコンシューマー愛好会</a> <a href="https://t.co/UeLX1jIXB8">pic.twitter.com/UeLX1jIXB8</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1708089149629301126?ref_src=twsrc%5Etfw">September 30, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </ul>
           <img src="./img/nodejs/play_with_nodejs.jpg" width="800" /><br/>
         </p>
@@ -367,6 +382,13 @@ nodejs_testファイルの中
           <li><a href="https://nodejs.org/en/learn/getting-started/the-v8-javascript-engine" target="_blank" rel="noopener noreferrer">The V8 JavaScript Engine</a></li>
           <li><a href="https://techmania.jp/blog/javascript0006/" target="_blank" rel="noopener noreferrer">TechMania Node.jsとは【入門編】できることやメリットを解説</a></li>
           <li><a href="https://ja.wikipedia.org/wiki/V8_(JavaScript%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%B3)" target="_blank" rel="noopener noreferrer">wikipedia V8 (JavaScriptエンジン)</a></li>
+          <li><a href="https://kkty.hatenablog.jp/entry/2019/01/11/195601" target="_blank" rel="noopener noreferrer">kkty’s blog libuvとは(特にイベントループについて)</a></li>
+          <li><a href="https://savaniabhishek.medium.com/node-js-internal-structure-part-1-ef2b7d24e303" target="_blank" rel="noopener noreferrer">Medium Node Js Internal Structure Part-1</a></li>
+          <li><a href="https://xtech.nikkei.com/it/article/COLUMN/20120725/411442/" target="_blank" rel="noopener noreferrer">日経XTECH I/Oのイベント管理がキモ</a></li>
+          <li><a href="https://qiita.com/Shiruba/items/709044782cffbd2aaeda" target="_blank" rel="noopener noreferrer">Qiita Node.jsの設計をつらつらと概観する</a></li>
+          <li><a href="https://www.linkedin.com/pulse/what-libuv-korvage-afpff" target="_blank" rel="noopener noreferrer">Linkedin What Is Libuv ?</a></li>
+          <li><a href="https://kinsta.com/jp/knowledgebase/what-is-node-js/" target="_blank" rel="noopener noreferrer">kinsta Node.jsとは</a></li>
+          <li><a href="https://www.linkedin.com/posts/ahmed-el-shnnawy_backenddevelopment-nodejs-v8-activity-7099043608892256256-8OYa" target="_blank" rel="noopener noreferrer">Linkedin Ahmed EL_Shnnawyさんの投稿</a></li>
         </ul>
       </section><!-- section class="box" -->
 
