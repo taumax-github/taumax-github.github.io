@@ -342,16 +342,20 @@ nodejs_testファイルの中
         <p>
           twitchというプラットフォームを使ってゲームの配信をしている。<br/>
           自作のbotを動かしたりしているのですが、そのシステム構成が以下の図。<br/>
+          <img src="./img/nodejs/play_with_nodejs.jpg" width="800" /><br/>
 
           <br/>
           話すこと<br/>
           <ul>
-            <li>チャンネルポイント使用→webhook→チャット→OBS操作</li>
-            <iframe src="https://player.twitch.tv/?video=2098995290&time=2h9m42s&parent=www.example.com" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+            <li>
+              チャンネルポイント使用→webhook→チャット→OBS操作<br/>
+              twitchにはチャンネルポイントという機能があります。普通は配信者に何かリクエストを送ったりするためのものなのですが、チャンネルポイントが使用されたらwebhookを飛ばすこともできます。<br/>
+              サーバにwebhookが飛んで来たら、それに対応するメッセージをbotがチャットに投げて、そのチャットをトリガーにローカルのbotが稼働してwebsocket経由でOBSを操作することができます。<br/>
+            </li>
+            <iframe src="https://player.twitch.tv/?video=2098995290&time=2h9m42s&parent=taumax-github.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
             <li>配信開始→webhook→twitter</li>
             <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">twitch配信通知bot<br>twitchでロマサガ3配信中です！<br>お時間合う方是非遊びに来てみてくださーい。<br>▶️視聴はこちら：<a href="https://t.co/P46Z6JrYH1">https://t.co/P46Z6JrYH1</a><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%AC3?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガ3</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B2%E3%83%BC%E3%83%A0?src=hash&amp;ref_src=twsrc%5Etfw">#レトロゲーム</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B3%E3%83%B3%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%9E%E3%83%BC%E6%84%9B%E5%A5%BD%E4%BC%9A?src=hash&amp;ref_src=twsrc%5Etfw">#レトロコンシューマー愛好会</a> <a href="https://t.co/UeLX1jIXB8">pic.twitter.com/UeLX1jIXB8</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1708089149629301126?ref_src=twsrc%5Etfw">September 30, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </ul>
-          <img src="./img/nodejs/play_with_nodejs.jpg" width="800" /><br/>
         </p>
 
         <br/>
