@@ -221,6 +221,30 @@
           <br/>
           こういった問題を解決するため、2009年にCommonJSと呼ばれるプロジェクトが発足し、モジュール化など、様々な仕様を定めました。また、2015年にもES2015（ES6とも言う）という仕様がECMAScriptによって定められます。<br/>
           CommonJSは元々、サーバーサイドにおけるJavaScriptの仕様を定めることを目標としたプロジェクトでした。このため、Node.jsで利用できますが、ブラウザでは使用できません。ES2015は両方で使用できます。<br/>
+          Node.jsはデフォルトで全てのモジュールをCommonJSで扱います。ES2015で扱うようにするには、以下のいずれかの対応でモジュールシステムを変える必要があります。<br/>
+        </p>
+        <ol>
+          <li>
+            package.jsonに"type": "module"を追加する<br/>
+            package.jsonは、Node.jsプロジェクトにおいて、そのプロジェクトの情報や依存関係、スクリプトなどの設定を記述するためのファイルです。
+
+<pre class="title"><code class="title">package.json</code></pre>
+<pre><code>{
+  "type": "module",
+  ...
+}
+</code></pre>
+デフォルトをES2015にしても、ファイルの拡張子を.cjsとすることでCommonJSとして扱うことができます。
+
+          </li>
+          <li>
+            --input-type=moduleをつけて実行する<br/>
+            <code>node main.js --input-type=module</code>
+          </li>
+          <li>拡張子を.mjsに変える</li>
+        </ol>
+
+        <p>
           今後ES2015に統一されていくと思われますが、現時点ではまだまだ統一されていない状況です（2024年3月現在）。<br/>
           <!-- CommonJSは、ここで登場したnpm(Node package manager)というパッケージマネージャ<br/> -->
         </p>
