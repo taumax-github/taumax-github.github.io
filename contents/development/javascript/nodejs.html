@@ -166,18 +166,16 @@
         <h4 class="title">非同期のイベント駆動型ランタイム</h4>
         <p>
           Node.jsは「ファイルの読み込みを開始した」など、OS側のイベントを監視し、Node.js側で受け取ることが可能になっており、このようなイベントをトリガーとして処理を開始することができるようになっています。<br/>
-          EventEmitter（及びそれを継承したStream）という仕組みを利用してこれを実現しています。<br/>
-          <!--
-          <span style="color: yellow">ここの話唐突な感じある</span><br/>
-          Node.jsにはEventEmitterと呼ばれるさまざまなイベントを発行し、受け取る汎用的な仕組みが存在します。Node.jsはこの仕組みを介して、「ファイルの読み込みを開始した」など、OS側のイベントをJavaScriptに持ってきて、Node.js側で受け取ることを可能にしてきました。<br/>
-          このように発行されるイベントを下敷きにさまざまな処理を行う特徴を「イベント駆動型」と表現します。そしてその実行環境であるNode.jsは「非同期のイベント駆動型ランタイム」と呼ばれています。<br/>
-          -->
-          EventEmitterの基本的な使い方としては以下の通り。
+          EventEmitter（及びそれを継承したStream）という仕組みを利用してこれを実現しています。EventEmitterの基本的な使い方としては以下の通り。
         </p>
+
+        <br/>
         <ul>
           <li><code>on(eventName, listener)</code>関数：イベントのlistenerを登録（第二引数のlistenerにコールバック関数を実装）</li>
           <li><code>emit(eventName, [args])</code>関数：イベント発動。第二引数以降のargsを引数としてlistenerに渡す。</li>
         </ul>
+
+        <br/>
         <p>
           <code>on()</code>関数でイベントが発動し、<code>emit()</code>関数で登録されていた処理が実行されます。<code>on()</code>を使って登録されたlistenerは、そのイベントが発火される度に実行されます。<br/>
         </p>
@@ -203,6 +201,11 @@ eventEmitter.emit('myEvent', 'huge', 'hoga');
 Emitted Event:arg1:hoge, arg2:undefined
 Emitted Event:arg1:huge, arg2:hoga
 </code></pre>
+
+        <br/>
+        <p>
+          このように、発行されるイベントを起点にさまざまな処理を行う特徴を「イベント駆動型」と表現します。そしてその実行環境であるNode.jsは「非同期のイベント駆動型ランタイム」と呼ばれています。<br/>
+        </p>
 
         <br/><br/>
         次はNon-Blocking I/Oとシングルスレッドですが、これらの特徴について説明するためには、まず<span style="color:yellow">C10K問題（シーテンケー問題）</span>について理解しておく必要があります。<br/>
@@ -398,6 +401,9 @@ nodejs_testファイルの中
           <li><a href="https://www.linkedin.com/pulse/what-libuv-korvage-afpff" target="_blank" rel="noopener noreferrer">Linkedin What Is Libuv ?</a></li>
           <li><a href="https://kinsta.com/jp/knowledgebase/what-is-node-js/" target="_blank" rel="noopener noreferrer">kinsta Node.jsとは</a></li>
           <li><a href="https://www.linkedin.com/posts/ahmed-el-shnnawy_backenddevelopment-nodejs-v8-activity-7099043608892256256-8OYa" target="_blank" rel="noopener noreferrer">Linkedin Ahmed EL_Shnnawyさんの投稿</a></li>
+          <li><a href="https://gk-fe.com/article/about-packagejson/" target="_blank" rel="noopener noreferrer">GK Front-end Blog package.jsonとは</a></li>
+          <li><a href="https://qiita.com/hidekatsu-izuno/items/486263d86b6a4a0b8636" target="_blank" rel="noopener noreferrer">Qiita ESモジュールとCommonJSと対応したTypeScriptパッケージの（たぶん）正しい作り方</a></li>
+          <li><a href="https://zenn.dev/yodaka/articles/596f441acf1cf3" target="_blank" rel="noopener noreferrer">Zenn CommonJSとES Modulesについてまとめる</a></li>
         </ul>
       </section><!-- section class="box" -->
 

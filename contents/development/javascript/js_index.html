@@ -244,14 +244,14 @@
           <li>拡張子を.mjsに変える</li>
         </ol>
 
+        <br/>
         <p>
           今後ES2015に統一されていくと思われますが、現時点ではまだまだ統一されていない状況です（2024年3月現在）。<br/>
-          <!-- CommonJSは、ここで登場したnpm(Node package manager)というパッケージマネージャ<br/> -->
         </p>
 
         <br/>
         <span id="cjs"></span>
-        <h4 class="title">CommonJS</h4>
+        <h4 class="title">CommonJSのモジュール機能</h4>
         <p>
           CommonJS に従って作られた新たなJavaScriptでは、 export, require という機能を使ってモジュールをimport/exportします。<br/>
           export について、モジュール側はmodule.exportsに関数やクラスなどを定義します。<br/>
@@ -280,14 +280,7 @@ helloWorldModule();
         <span id="es6"></span>
         <h4 class="title">ES2015(ES6)によるプログラミング言語としての進化</h4>
         <p>
-          ES2015はJavaScriptの歴史上でも最大のアップデートだと言われています。モジュールをimport/exportする機能や、constやletなどの構文が増え、書き方も大々的に変わることになります。<br/>
-          <!-- 
-          JavaScriptの仕様が増えるということは、表現力が増すと同時に覚えることも増えるということです。<br/>
-          仕様が提案されてすぐ全てのブラウザに実装されるわけではありません。しかし、多くの仕様はJavaScriptへの不満を解消する魅力的なものです。そこでこういった仕様をブラウザ実装に先駆けて利用しようとする動きが広がります。<br/>
-          Babelはこのニーズに応えるJavaScript to JavaScriptのコンパイラです。次世代のJavaScriptを、まだその仕様を実装していないブラウザで動作するJavaScriptに変換します。<br/>
-          言語自体の複雑さもさることながら、ES2015以降の仕様の人気でコンパイラの需要が高まりビルド過程が複雑になってしまいました。<br/>
-          高度な表現ができるようになることは望ましいことですが、これもやはり学習コストの増大という二面性を持ちます。<br/>
-          -->
+          ES2015はJavaScriptの歴史上でも最大のアップデートだと言われています。モジュールをimport/exportする機能や、constやletなどの様々な構文が増え、書き方も大々的に変わることになります。ここではモジュールとlet, constについてのみ言及します。<br/>
 
           <br/>
           ES2015では、同じ export でも CommonJS のものとは記法が違い、モジュール側では通常通り関数やクラスを定義し、頭にexportを付けます。<br/>
@@ -300,6 +293,7 @@ helloWorldModule();
 </code></pre>
 
 
+      <br/>
       <p>
         読み込み側ではimport文を使って先ほどのモジュールを読み込みます。<br/>
       </p>
@@ -312,7 +306,7 @@ helloWorld();
 
         <br/>
         <p>
-          letとconstは変数の宣言に使用する構文で、これまで使用されてきたvarに変わるです。
+          let と const は変数の宣言に使用する構文で、これまで使用されてきた var に変わるです。var は以下に示すように、再宣言できるという問題がありました。<br/>
         </p>
 
 <pre class="title"><code class="title">varによる変数の宣言</code></pre>
@@ -326,6 +320,11 @@ var name = 'SOARFLAT'; // 再宣言をする
 console.log(name); // => SOARFLAT
 </code></pre>
 
+        <br/>
+        <p>
+          この問題を解決するために追加された機能が let です。let を使用した場合、同じ変数名を再宣言するとエラーになります。<br/>
+        </p>
+
 <br/>
 <pre class="title"><code class="title">letによる変数の宣言</code></pre>
 <pre><code>let name = 'soarflat';
@@ -337,6 +336,12 @@ console.log(name); // => SoarFlat
 let name = 'SOARFLAT'; // 再宣言するとエラーになる
 </code></pre>
 
+
+        <br/>
+        <p>
+          const は定数を宣言するためのもので、再宣言はもちろんのこと、再代入もできないようになっています。<br/>
+        </p>
+
 <br/>
 <pre class="title"><code class="title">constによる変数の宣言</code></pre>
 <pre><code>const NAME = 'soarflat';
@@ -347,7 +352,7 @@ NAME = 'SOARFLAT'; // 再代入するとエラーになる
 
         <br/>
         <p>
-          Promise<br/>
+          これ以外にも、Promise というオブジェクトと Async/await という構文が追加され、非同期処理を容易に扱えることができるようになるなど、ES2015では様々な機能が追加されました。<br/>
         </p>
 
         <br/>
@@ -369,7 +374,7 @@ NAME = 'SOARFLAT'; // 再代入するとエラーになる
 
         <br/>
         ここまでが、JavaScriptが生まれてから現在までの歴史になります。<br/>
-        ここから先はNode.js, AltJSの代表格であるTypeScript, SPA(React, Next.jsとVue.js, Nuxt3)について見ていきます。<br/>
+        ここから先はNode.js, AltJSの代表格であるTypeScript, SPA（React, Next.jsとVue.js, Nuxt3）について見ていきます。<br/>
 
         <br/>
         <span id="detail"></span>
@@ -411,6 +416,8 @@ NAME = 'SOARFLAT'; // 再代入するとエラーになる
           <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model" target="_blank" rel="noopener noreferrer">Mmdn web docs ドキュメントオブジェクトモデル (DOM)</a></li>
           <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction" target="_blank" rel="noopener noreferrer">Mmdn web docsUdemy DOM の紹介</a></li>
           <li><a href="https://udemy.benesse.co.jp/development/dom.html" target="_blank" rel="noopener noreferrer">Udemy メディア DOMとは？仕組みや構造を解説！HTMLやJavaScriptとの関係は？</a></li>
+          <li><a href="https://www.codegrid.net/articles/2015-es6-1/" target="_blank" rel="noopener noreferrer">CodeGrid ECMAScript 2015の新機能 第1回 Promise 1</a></li>
+          <li><a href="https://thinkit.co.jp/article/10625" target="_blank" rel="noopener noreferrer">ThinkIT ES2015が備えるモダンな非同期処理</a></li>
           <li><a href="https://www.npmjs.com/" target="_blank" rel="noopener noreferrer">npm</a></li>
         </ul>
       </section><!-- section class="box" -->
