@@ -50,10 +50,9 @@
       <li><a href="#what_is_nodejs">Node.jsとは</a></li>
       <li><a href="#feature">特徴</a></li>
       <li><a href="#async">非同期</a></li>
-      <!-- <li><a href="#event_emitter">EventEmitter</a></li> -->
       <li><a href="#c10k">C10K問題</a></li>
-      <li><a href="#single_thread">ｼﾝｸﾞﾙｽﾚｯﾄﾞ</a></li>
       <li><a href="#non_blobking">Non-Block</a></li>
+      <li><a href="#single_thread">ｼﾝｸﾞﾙｽﾚｯﾄﾞ</a></li>
       <li><a href="#what_i_made">作った物</a></li>
     </ul>
   </header><!--/.pc-->
@@ -78,10 +77,9 @@
         <li><a href="#what_is_nodejs">Node.jsとは</a></li>
         <li><a href="#feature">特徴</a></li>
         <li><a href="#async">非同期</a></li>
-        <!-- <li><a href="#event_emitter">EventEmitter</a></li> -->
         <li><a href="#c10k">C10K問題</a></li>
-        <li><a href="#single_thread">ｼﾝｸﾞﾙｽﾚｯﾄﾞ</a></li>
         <li><a href="#non_blobking">Non-Block</a></li>
+        <li><a href="#single_thread">シングルスレッド</a></li>
         <li><a href="#what_i_made">作った物</a></li>
       </ul>
     </div><!--/#menubar-s-->
@@ -215,7 +213,7 @@ Emitted Event:arg1:huge, arg2:hoga
         <h3 class="title">C10K問題</h3>
         <p>
           C10K問題とは、「クライアント1万台問題」の略で、ApacheなどのWebサーバーソフトウェアとクライアントとの通信において、クライアントの同時接続数が約1万台に達すると、Webサーバーのハードウェア性能に余裕があるにもかかわらず、レスポンス性能が大きく下がる問題です。<br/>
-          なぜこのような問題が発生するのかは、以下3つの原因があります。<br/>
+          これには以下3つの原因があります。<br/>
 
           <br/>
           <strong>1. プロセス数の上限</strong><br/>
@@ -239,39 +237,31 @@ Emitted Event:arg1:huge, arg2:hoga
         <h4 class="title">C10K問題の解決方法</h4>
         <p>
           C10K問題を解決するには、サーバーの台数を増やすという解決方法がありますが、別の方法として考え出されたのが「Non-Blocking I/Oとシングルスレッド」という方式です。Node.jsはこの方式を採用しています。<br/>
-          余談ですが、WebサーバーソフトウェアのNginxもこの方式でC10K問題に対応しており、マルチプロセスのApacheのよりも高速かつ大規模サービスに向いていると言われています。<br/>
-          話しをNode.jsに戻します。<br/>
-        </p>
-
-        <br/>
-        <span id="single_thread"></span>
-        <h3 class="title">シングルスレッド</h3>
-        <p>
-          <span style="color: yellow">イベントループモデルとは？</span><br/>
-          Node.js はシングルスレッドのイベントループモデルを採用しており、1つのメインスレッドでイベントループを実行します。これは処理の直列化によって効率的にタスクを処理するためです。<br/>
-          非同期的な処理を実現するために、I/O 操作や非同期処理を別のスレッドで実行することはありますが、これらのスレッドは裏側で動作する補助的なスレッドであり、メインスレッドはブロックされることなく処理を続けます。<br/>
-          これにより、多くの HTTP リクエストを効率的に処理できるようになっています。Apache のようなマルチプロセス/マルチスレッドのモデルとは異なり、Node.js はシングルスレッドであるため、スレッドの切り替えによるオーバーヘッドが発生せず、メモリ消費量を抑えることができます。<br/>
-          シングルスレッドで動かしたら、待ちが発生した場合を考慮すると高いパフォーマンスが得られないように感じますが、Non-Blocking IOという特徴を持つため、シングルスレッドでも性能を最大限発揮できるようになっています。<br/>
+          余談ですが、WebサーバーソフトウェアのNginxもこの方式でC10K問題に対応しており、マルチプロセスのApacheよりも高速かつ大規模サービスに向いていると言われています。<br/>
+          話しをNode.jsに戻してシングルスレッドとNon-Blocking I/Oの話をしていきます。<br/>
         </p>
 
         <br/>
         <span id="non_blobking"></span>
         <h3 class="title">Non-Blocking IO</h3>
         <p>
-          Node.jsでは、I/Oが発生した場合にその完了を待たずに、すぐに次の処理を行うことになります。<br/>
+          以下の図はBlocking IOの場合の処理の流れです。入出力中は他の処理を行わず、終わるまでI/Oを待機します。<br/>
 
           <br/>
           Blocking IO<br/>
           リクエスト1のI/Oが終わってからリクエスト2の処理開始<br/>
           <img src="./img/nodejs/multi_thread.jpg" width="400" /><br/>
 
+          <br/><br/>
+          Node.jsでは、I/Oが発生した場合にその完了を待たずに、すぐに次の処理を行うことになります。これがNon-Blocking IOです。<br/>
+
           <br/>
           Non-Blocking IO<br/>
           リクエスト1の完了を待たずにリクエスト2の処理を開始する<br/>
           <img src="./img/nodejs/single_thread.jpg" width="400" /><br/>
 
-          <br/>
-          コードで体験すると以下のようになります。<br/>
+          <br/><br/>
+          これをコードで体験すると以下のようになります。<br/>
           以下のコードは、ファイルを読み込んで標準出力するコードですが、実行結果を見ると1→3→2の順に出力されています。<br/>
         </p>
 
@@ -296,7 +286,8 @@ console.log(3)
         <p>
           <code>fs.readFile</code>はファイルを読み込むためのI/Oを発生させます。ブロッキングI/Oを採用している場合、I/Oが完了するまで次の処理を行わないため、1→2→3の順に出力されますが、<br/>
           Non-Blocking-I/Oの場合はファイルの読み込みが終わるのを待たずに次の処理が始まります。このため、出力順が1→3→2になっています。これがNon-Blocking-I/Oです。<br/>
-          <code>fs.readFile</code>の第二引数には関数が渡されています（Callback関数）。これはファイル読み込みが<span style="color: yellow">いつか終わったら実行される</span>関数です。このため、以下のコードのようにCallback関数でファイルの中身を取得してコンソールに出力しようとしてもうまく出力されません。undefinedになります。<br/>
+          I/Oが完了してから処理を行いたい場合はCallback関数を使います。<code>fs.readFile</code>の第二引数に渡された関数がCallback関数で、ファイル読み込みが<span style="color: yellow">いつか終わったら実行されます</span>。Callback関数を使わずに、以下のようにファイルの中身を取得してコンソールに出力しようとしてもうまく出力されません。undefinedになります。<br/>
+        </p>
   
 <pre class="title"><code class="title">test.js</code></pre>
 <pre><code>'use strict';
@@ -337,6 +328,17 @@ fs.readFile('nodejs_test.txt', (err, data) => {
 nodejs_testファイルの中
 </code></pre>
 
+        </p>
+
+        <br/>
+        <span id="single_thread"></span>
+        <h3 class="title">シングルスレッド</h3>
+        <p>
+          <span style="color: yellow">イベントループモデルとは？</span><br/>
+          Node.js はシングルスレッドのイベントループモデルを採用しており、1つのメインスレッドでイベントループを実行します。これは処理の直列化によって効率的にタスクを処理するためです。<br/>
+          非同期的な処理を実現するために、I/O 操作や非同期処理を別のスレッドで実行することはありますが、これらのスレッドは裏側で動作する補助的なスレッドであり、メインスレッドはブロックされることなく処理を続けます。<br/>
+          これにより、多くの HTTP リクエストを効率的に処理できるようになっています。Apache のようなマルチプロセス/マルチスレッドのモデルとは異なり、Node.js はシングルスレッドであるため、スレッドの切り替えによるオーバーヘッドが発生せず、メモリ消費量を抑えることができます。<br/>
+          シングルスレッドで動かしたら、待ちが発生した場合を考慮すると高いパフォーマンスが得られないように感じますが、Non-Blocking IOという特徴を持つため、シングルスレッドでも性能を最大限発揮できるようになっています。<br/>
         </p>
 
         <br/>
