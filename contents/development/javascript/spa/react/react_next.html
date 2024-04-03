@@ -55,6 +55,8 @@
       <li><a href="#component">ｺﾝﾎﾟｰﾈﾝﾄ</a></li>
       <li><a href="#hooks">Hooks</a></li>
       <li><a href="#next">Next.js</a></li>
+      <li><a href="#rendering">ﾚﾝﾀﾞﾘﾝｸﾞ</a></li>
+      <li><a href="#filebase_routing">ﾌｧｲﾙﾍﾞｰｽ<br/>ﾙｰﾃｨﾝｸﾞ</a></li>
       <li><a href="#what_i_made">作った物</a></li>
     </ul>
   </header><!--/.pc-->
@@ -81,6 +83,8 @@
         <li><a href="#component">ｺﾝﾎﾟｰﾈﾝﾄ</a></li>
         <li><a href="#hooks">Hooks</a></li>
         <li><a href="#next">Next.js</a></li>
+        <li><a href="#rendering">レンダリング</a></li>
+        <li><a href="#filebase_routing">ファイルベースルーティング</a></li>
         <li><a href="#what_i_made">作った物</a></li>
       </ul>
     </div><!--/#menubar-s-->
@@ -111,10 +115,11 @@
         <p>
           Reactとは、WebサイトやWebアプリのUI部分を開発する際に活用するJavaScriptライブラリです。ReactはMeta (旧Facebook社)が開発し、2013年にオープンソース化されました。<br/>
           リアクティブ・プログラミングを特徴としています。リアクティブとは、『何かの値が変化したり、何かしらイベントが発生するとそれがすぐに反映される仕組み』のことです。<br/>
-          ReactはJavaScript用のフレームワークと勘違いされることがありますが、実際には上述の通りライブラリとなります。ライブラリなのでCDN経由でhtmlファイル内でReactの ライブラリを使用することができます。<br/>
+          ReactはJavaScript用のフレームワークと勘違いされることがありますが、実際には上述の通りライブラリとなります。CDN(Contents Delivery Network)経由でhtmlファイル内でReactのライブラリを使用することができます。<br/>
           以下は実際にReactのライブラリを使用して書いたものです。<br/>
           ↓クリックでcounter増加<br/>
         </p>
+
         <style>
           #root {
             cursor: pointer;
@@ -139,9 +144,8 @@
           }
         </script>
 
-<br/><br/>
-
-<p>ソースコード（抜粋）</p>
+        <br/><br/>
+        <p>上記のソースコード（抜粋）</p>
 
 <pre class="title"><code class="title">react_next.html</code></pre>
 <pre><code>&lt;head&gt;
@@ -175,15 +179,23 @@
 </code></pre>
 
         <br/>
+        上記はCDNを使用していますが、これは主に学習目的または小規模のアプリケーション目的での使用が適しています。<br/>
+        大規模な開発をする場合、Reactで重要な概念として以下3つがあります。<br/>
+        <ul>
+          <li><a href="#jsx">JSX(JavaScript XML)</a></li>
+          <li><a href="#component">コンポーネント</a></li>
+          <li><a href="#hooks">React Hooks</a></li>
+        </ul>
+
+        <br/>
         <span id="jsx"></span>
         <h4 class="title">JSX(JavaScript XML)</h4>
         <p>
-          CDNは、主に学習目的または小規模のアプリケーション目的で使用することが適しています。<br/>
-          大規模な開発をする場合、Reactでは、JSX(JavaScript XML)というJavaScriptの構文拡張を使用します。JavaScriptファイル内にHTMLのようなコードを記述できるようにするものです。Meta（旧Facebook社）によって開発されました。たとえば、次のようなコードを書くことが出来ます。<br/>
+          JSXはJavaScriptの構文拡張で、JavaScriptファイル内にHTMLのようなコードを記述できるようにするものです。Meta（旧Facebook社）によって開発されました。たとえば、次のようなコードを書くことが出来ます。<br/>
           <code>const heading = &lt;h1&gt;Hello, JSX!&lt;/h1&gt;;</code><br/>
-          このコードはHTMLのようにも見えますが、JavaScriptのコードです。headingという定数を作り、その値がHTMLの要素（React要素）となります。<br/>
-          JSXを記述する場合、ファイルの拡張子は<code>.jsx</code>とします。さらにこれに<a href="../../typescript.html">TypeScript</a>を適用する場合、拡張子は<code>.tsx</code>とします。<br/>
-          JSXでは中括弧{}を使うことで、React要素内にJavaScriptの値を埋め込むことができます。<br/>
+          このコードはHTMLのようにも見えますが、JavaScriptのコードです。headingという定数を作り、その定数にHTMLの要素（React要素）を代入しています。<br/>
+          JSXを記述する場合、ファイルの拡張子は<code>.jsx</code>とします。これに<a href="../../typescript.html">TypeScript</a>を適用する場合、拡張子は<code>.tsx</code>とします。<br/>
+          JSXでは中括弧 { } を使うことで、以下のようにReact要素内にJavaScriptの値を埋め込むことができます。<br/>
           <br/>
           <code>
             let name = 'React';<br/>
@@ -195,35 +207,29 @@
         <span id="component"></span>
         <h4 class="title">コンポーネント</h4>
         <p>
-          Reactでは、自分が書いたマークアップ、CSS、JavaScript を、独自の『コンポーネント』と呼ばれる、アプリのための再利用可能な UI 要素にまとめることができます。<br/>
+          Reactでは、自分が書いたマークアップ、CSS、JavaScript を、アプリのための再利用可能な UI 要素にまとめることができます。これを『コンポーネント』と呼びます。<br/>
+          以下はWebサイトに表示するページのフッター部分を <code>CommonFooter</code> という名前でコンポーネント化したものです。<br/>
         </p>
 
 <pre class="title"><code class="title">common_footer.tsx</code></pre>
-<pre><code>const url_template = "https://template-party.com/"
-  const rightMap = new Map()
-  const sagacolleLabel = &lt;&gt;
-  ©1989,1990,1991,1993,2020 SQUARE ENIX CO., LTD. All Rights Reserved.&lt;br/&gt;
-  当該作品の転載・配布は禁止いたします。&lt;br/&gt;
-  注：本サイトは上記権利者の協力・要請のもとに作成されたものではありません。
-  &lt;/&gt;
-  
-  export const sagacolleKey = 'sagacolle'
-  rightMap.set(sagacolleKey, sagacolleLabel)
-  
-  export default function CommonFooter(labelKey: any): JSX.Element {
-    return (
-      &lt;div&gt;
-        &lt;footer&gt;
-          &lt;p className="rights"&gt;
-            {/* <!-- 権利表記 --> */}
-            {rightMap.get(labelKey.footerLabelKey)}
-          &lt;/p&gt;
-          &lt;span className="pr"&gt;<a href={url_template} target="_blank" rel="noopener noreferrer">《Web Design:Template-Party》</a></span>
-        &lt;/footer&gt;
-      &lt;/div&gt;
-    );
-  }
+<pre><code>export default function CommonFooter(labelKey: any): JSX.Element {
+  return (
+    &lt;div&gt;
+      &lt;footer&gt;
+        &lt;p className="rights"&gt;
+          ...
+        &lt;/p&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;
+  );
+}
 </code></pre>
+
+      <br/>
+      <p>
+        コンポーネント化したフッターを呼び出す際は <code>&lt;CommonFooter /&gt;</code> と記述します。<br/>
+        以下は同じくコンポーネント化した CommonBody というコンポーネントから CommonFooter を呼び出しているサンプルです。<br/>
+      </p>
 
 <br/>
 <pre class="title"><code class="title">common_body.tsx</code></pre>
@@ -233,19 +239,10 @@
       {body.message}
       ...
     &lt;/section&gt;
-    &lt;CommonFooter footerLabelKey={body.footerLabelKey}/&gt;
+    &lt;CommonFooter /&gt;  {/* &lt;!--/#main--&gt; */}
   &lt;/body&gt;
 }
 </code></pre>
-
-        <br/>
-        <p>
-          画面のフッター部分をコンポーネント化したもの。<code>CommonFooter</code>と言う名前のコンポーネントを<code>common_footer.tsx</code>に定義。<code>common_body.tsx</code>でフッターを呼び出す。<br/>
-          <code>&lt;CommonFooter footerLabelKey={body.footerLabelKey}/&gt;</code>が呼び出し部分。<br/>
-
-          <br/>
-          <img src="./img/common_footer.jpg" /><br/>
-        </p>
 
         <br/>
         <span id="hooks"></span>
@@ -253,27 +250,29 @@
         <p>
           React Hooksはフック(Hook)によって関数コンポーネント内で状態やライフサイクルを扱うための機能です。<br/>
           公式が提供しているフックは10種類あり、さらにフックを組み合わせてカスタムフックを独自に実装できます。<br/>
-          <table border="1">
-            <tr><th>フック種類</th><th>用途（概要）</th><th>フック名</th></tr>
-            <tr><td rowspan="2">状態のフック<br/>(State Hooks)</td><td rowspan="2">内部状態を持ち、その状態の変化に応じて表示を変更できる。</td><td>useState</td></tr>
-            <tr><td>useReducer</td></tr>
-            <tr><td rowspan="2">メモ化のフック<br/>(Performance Hooks)</td><td rowspan="2">値や関数を保持し、必要のない子要素のレンダリングや計算を抑止するために使用し、パフォーマンスの最適化を図る</td><td>useCallback</td></tr>
-            <tr><td>useMemo</td></tr>
-            <tr><td rowspan="2">副作用のフック<br/>(Effect Hooks)</td><td rowspan="2">副作用（コンポーネントの描画とは直接関係ない処理のこと）のためのフック。外部システムとの同期、イベントリスナ。</td><td>useEffect</td></tr>
-            <tr><td>useLayoutEffect</td></tr>
-            <tr><td>Contextのためのフック<br/>(Context Hooks)</td><td>親の変数を子コンポーネントで受け取る</td><td>useContext</td></tr>
-            <tr><td rowspan="2">refのフック<br/>(Ref Hooks)</td><td rowspan="2">レンダリングに使用しない情報を記録</td><td>useRef</td></tr>
-            <tr><td>useImperativeHandle</td></tr>
-            <tr><td>Other Hooks</td><td>ライブラリ開発時に利用されるHooks</td><td>useDebugValue</td></tr>
-          </table>
+        </p>
 
-          <br/>
+        <table border="1">
+          <tr><th>フック種類</th><th>用途（概要）</th><th>フック名</th></tr>
+          <tr><td rowspan="2">状態のフック<br/>(State Hooks)</td><td rowspan="2">内部状態を持ち、その状態の変化に応じて表示を変更できる。</td><td>useState</td></tr>
+          <tr><td>useReducer</td></tr>
+          <tr><td rowspan="2">メモ化のフック<br/>(Performance Hooks)</td><td rowspan="2">値や関数を保持し、必要のない子要素のレンダリングや計算を抑止するために使用し、パフォーマンスの最適化を図る</td><td>useCallback</td></tr>
+          <tr><td>useMemo</td></tr>
+          <tr><td rowspan="2">副作用のフック<br/>(Effect Hooks)</td><td rowspan="2">副作用（コンポーネントの描画とは直接関係ない処理のこと）のためのフック。外部システムとの同期、イベントリスナ。</td><td>useEffect</td></tr>
+          <tr><td>useLayoutEffect</td></tr>
+          <tr><td>Contextのためのフック<br/>(Context Hooks)</td><td>親の変数を子コンポーネントで受け取る</td><td>useContext</td></tr>
+          <tr><td rowspan="2">refのフック<br/>(Ref Hooks)</td><td rowspan="2">レンダリングに使用しない情報を記録</td><td>useRef</td></tr>
+          <tr><td>useImperativeHandle</td></tr>
+          <tr><td>Other Hooks</td><td>ライブラリ開発時に利用されるHooks</td><td>useDebugValue</td></tr>
+        </table>
+
+        <br/>
+        <p>
           ReactではこのReact Hooksを利用してリアクティブなシステムを構築していきます。<br/>
           例えば状態のフックであるuseStateなら以下のようなコーディングをすることでリアクティブにすることができます。<br/>
-
-          <br/>
-          <code>const [状態, 更新関数] = useState(初期状態)</code>
         </p>
+
+<pre><code>const [状態, 更新関数] = useState(初期状態)</code></pre>
 <pre><code>const [count, setCount] = useState(0);
 &lt;div&gt;
   &lt;p&gt;Count: {count}&lt;/p&gt;
@@ -284,24 +283,39 @@
         <br/>
         <span id="next"></span>
         <h3 class="title">Next.js</h3>
+
+        <span id="rendering"></span>
+        <h4 class="title">レンダリング</h4>
         <p>
           レンダリングについては<a href="../spa.html">こちら</a>に記載しているので、その他Next.jsの主な機能について記載します。<br/>
         </p>
 
         <br/>
+        <span id="filebase_routing"></span>
         <h4 class="title">ファイルベースルーティング</h4>
         <p>
-          pagesディレクトリ内のファイル構成がそのままアプリケーションのページ構成になる。<br/>
-          pages/index.tsxの内容がトップページとしてレンダリングされます。<br/>
-          Next.js ではApp というコンポーネントを使用して全てのページを初期化するようになっています。<br/>
-          <code>pages/_app.tsx</code> を作成することで、Appコンポーネントをカスタマイズができるようになります。<br/>
-          全ページに共通のcssを適応するなど、すべてのページで共通な処理などを書くことができます。<br/>
-          また、pages ディレクトリ配下にスクリプトファイルを配置すると、それを使って画面表示を行います。<br/>
-          例えば以下の場合に <code>http://[ホスト名]/saga1/ability/ability_detail</code> というurlで <code>ability_detail.tsx</code> の内容が表示されます。<br/>
+          Next.jsの「ファイルベースルーティング」は、pagesディレクトリ内のファイル構成がそのままアプリケーションのページ構成になるという機能です。pages ディレクトリ配下にスクリプトファイルを配置すると、それを使って画面表示を行います。<br/>
+          例えば以下の画像のように配置した場合、 <code>http://[ホスト名]/saga1/ability/ability_detail</code> というurlで <code>ability_detail.tsx</code> の内容が表示されます。<br/>
 
           <br/>
-          <img src="./img/nuxt_pjt.jpg" style="border: solid 1px #FFFFFF"/><br/>
+          <img src="./img/next_project.jpg" style="border: solid 1px #FFFFFF"/><br/>
+
+          <br/>
+          Next.js では、すべてのページの初期化に App というコンポーネントを使用しています。<code>pages/_app.tsx</code> を作成することで、Appコンポーネントをカスタマイズできます。全ページに共通のcssを適応するなど、すべてのページで共通な処理などを書くことができます。<br/>
+          <img src="./img/_app.jpg" style="border: solid 1px #FFFFFF"/><br/>
+
+          <br/>
+          以下のコードは<code>_app.tsx</code>の中身です。1行目で<code>import '../styles/style.css'</code>を記述することで、pages配下のすべてのページに <code>style.css</code> が適応されます。<br/>
         </p>
+
+<pre class="title"><code class="title">_app.tsx</code></pre>
+<pre><code>import '../styles/style.css'
+function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
+export default MyApp
+</code></pre>
+
 
         <br/>
         <span id="what_i_made"></span>
@@ -352,6 +366,7 @@
           <li><a href="https://qiita.com/tetsutaroendo/items/c7171286137d963cdecf" target="_blank" rel="noopener noreferrer">Qiita Next.jsの_app.jsと_document.js</a></li>
           <li><a href="https://dev-k.hatenablog.com/entry/how-to-use-react-in-cdn-dev-k" target="_blank" rel="noopener noreferrer">deve.K's Programming Primer - プログラミング初心者のための入門ブログ</a></li>
           <li><a href="https://zenn.dev/kaitok/articles/7a81c497252189" target="_blank" rel="noopener noreferrer">Zenn React Hooks 再入門</a></li>
+          <li><a href="https://weseek.co.jp/tech/703/" target="_blank" rel="noopener noreferrer">WESEEK Tech Blog 煩わしい設定は一切なし!Next.jsでCSS を使う方法</a></li>
         </ul>
       </section><!-- section class="box" -->
 

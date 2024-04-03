@@ -195,7 +195,7 @@
 
         <br/><br/>
         <span id="ssr"></span>
-        <h4 class="title">SSR(Server-Side Rendering)(Next, Nuxt)</h4>
+        <h4 class="title">【Next, Nuxt】SSR(Server-Side Rendering)</h4>
         <p>
           JavaやPHPなどのいわゆるサーバーサイドWebアプリケーションと同じ。<br/>
           サーバー側でレンダリングが行われ、生成されたHTMLデータが送信される。ブラウザは、単に送信されたHTMLデータを表示するだけ。<br/>
@@ -205,7 +205,7 @@
 
         <br/>
         <span id="csr"></span>
-        <h4 class="title">CSR(Client-Side Rendering)(Next, Nuxt)</h4>
+        <h4 class="title">【Next, Nuxt】CSR(Client-Side Rendering)</h4>
         <p>
           クライアント側でレンダリングの全てを行い、実際に表示に必要な画面を用意する仕組みがCSR(Client-Side Rendering)。<br/>
           全ての画面がCSRで構成されたアプリケーションのことをSPA(Single Page Application)という。<br/>
@@ -214,7 +214,7 @@
 
         <br/>
         <span id="ur"></span>
-        <h4 class="title">Universal Rendering(Nuxt)</h4>
+        <h4 class="title">【Nuxt】Universal Rendering</h4>
         <p>
           Nuxtのデフォルト。<br/>
           アプリのユーザーと相互のやり取りが必要な処理など、どうしてもクライアントサイドで動作しないと成り立たない処理内容に関しては、その処理をサーバーサイドで行わず、JavaScriptコードをブラウザに返すことで、ブラウザ上でも動作させるように自動的に制御する仕組み。<br/>
@@ -224,7 +224,7 @@
 
         <br/>
         <span id="ssg"></span>
-        <h4 class="title">SSG(Static Site Generation)(Next, Nuxt)</h4>
+        <h4 class="title">【Next, Nuxt】SSG(Static Site Generation)</h4>
         <p>
           初回アクセス時は対応するhtmlファイルをサーバ側で生成し、ブラウザに返します。次にアクセスしてきた場合は、すでに生成されたhtmlファイルを返却します。<br/>
           一度生成したファイルを何らかの方法で削除したり、強制的に再生成しない限りは、永遠に同じ内容のファイルが返されます。<br/>
@@ -236,7 +236,7 @@
 
         <br/>
         <span id="isg"></span>
-        <h4 class="title">ISG(Incremental Static Generation)(Nuxt)</h4>
+        <h4 class="title">【Nuxt】ISG(Incremental Static Generation)</h4>
         <p>
           <a href="#ssg">SSG(Static Site Generation)</a>とほぼ同じですが、n秒後（nはアプリケーションで指定）にアクセスすると再度サーバ側でhtmlファイルを生成し、それがクライアントに返却されます。<br/>
           これをインクリメンタル静的ジェネレーション(Incremental Static Generation)と言います。<br/>
@@ -245,14 +245,14 @@
 
         <br/>
         <span id="isr"></span>
-        <h4 class="title">ISR(Incremental Static Regeneration)(Next)</h4>
+        <h4 class="title">【Next】ISR(Incremental Static Regeneration)</h4>
         <p>
           <a href="#isg">ISG(Incremental Static Generation)</a>との違いが分からない。<br/>
         </p>
 
         <br/>
         <span id="od_isr"></span>
-        <h4 class="title">On Demand ISR(On Demand Incremental Static Regeneration)(Next)</h4>
+        <h4 class="title">【Next】On Demand ISR(On Demand Incremental Static Regeneration)</h4>
         <p>
           <a href="#isr">ISR(Incremental Static Regeneration)</a>柔軟性をもたせたような機能。<br/>
           ISRの場合、↑でやっていたようにrevalidateで指定した時間がたたないとページ更新されませんが、ISRの場合は任意のタイミングで更新が可能です。<br/>
@@ -277,8 +277,9 @@
           React/Next.jsとVue.js/Nuxtの両方を触ってみた感想ですが、React/Next.jsは自由度が高い（.jsxの特徴かもしれない）。<br/>
           一つの関数の中にビジネスロジックとhtmlの生成処理を（良くも悪くも）書けてしまうので、メンテナンス性の悪いコードをうっかり書いてしまいがちに感じました。<br/>
           利用者が多いだけあって、困った時もググれば解決できることが多かったように思いました。<br/>
-          一方、Vue.js/Nuxtは、SFCと言う仕組みを使う以上、ロジックとテンプレート(UI)を分けて書く事を強制されるので、結果的にメンテナンスの高いコードになりやすいように感じました。<br/>
-          但し、React/Next.jsと比べると利用率が低いということと、Nuxt2と3の記事が混在している状態なので困ったときに答えに辿り着きづらいように感じました。<br/>
+          一方、Vue.js/Nuxtは、SFCと言う仕組みを使う以上、ロジックとテンプレート(UI)を分けて書く事を強制されるので、この仕組みに収まる範囲であればメンテナンスの高いコードになりやすいように感じました。<br/>
+          ただし、これは感覚的な話であまり根拠はないですが、システムの規模が大きくなり複雑性が増した場合でもこのSFCの仕組みに収めることができるのかという点は疑問で、もし収まらなかった場合は一気に破綻してしまう恐れがあるように思いました。<br/>
+          また、Vue/Nuxt は React/Next.js と比べると利用率が低いということと、Nuxt2と3の記事が混在している状態なので困ったときに答えに辿り着きづらいように感じました。<br/>
         </p>
 
         <br/>

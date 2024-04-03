@@ -134,6 +134,7 @@
 &lt;/style&gt;
 </code></pre>
 
+        <br/>
         <p>
           <code>&lt;script&gt;&lt;/script&gt;</code>内にJavaScriptを、<code>&lt;template&gt;&lt;/template&gt;</code>にブラウザのbody部に表示する内容をコーディングしていきます。<br/>
         </p>
@@ -147,27 +148,34 @@
 
           <br/>
           <img src="./img/vue_life_cycle.jpg" width="800"/><br/>
-          Vue3 フロントエンド開発の教科書 P150<br/>
+          ※図は書籍、<a href="https://amzn.to/3x59PG9" target="_blank" rel="noopener noreferrer">Vue 3　フロントエンド開発の教科書</a> P150の図を管理人が独自に加筆・修正したもの<br/>
+        </p>
 
-          <br/>
-          <table border="1">
-            <tr><th>ライフサイクル名</th><th>フック名</th><th>概要</th></tr>
-            <tr><td>①起動処理</td><td>-</td><td>Vueアプリケーション起動</td></tr>
-            <tr><td>②Vueアプリケーションの初期化処理</td><td>beforeCreate, created</td><td>Vueアプリケーション初期化。この段階でスクリプトブロック内のコードが実行され、テンプレート変数や算出プロパティ、メソッドなどが準備される。</td></tr>
-            <tr><td>③コンポーネントの解析処理</td><td>-</td><td>コンポーネントの解析処理。テンプレートブロック内のコードが解析され、タグ構成（DOM構造）が決定。</td></tr>
-            <tr><td>④レンダリング処理</td><td>beforeMount, mounted</td><td>③で決定したDOM構造がレンダリング。</td></tr>
-            <tr><td>⑤表示状態(Mounted)</td><td>-</td><td>④のレンダリングが終わると表示状態になり、画面が見えるようになる。この状態をMountedと呼んでいる。</td></tr>
-            <tr><td>⑥リアクティブシステムによる再レンダリング処理</td><td>beforeUpdated, updated</td><td>リアクティブシステムにより再レンダリングが必要になった際に行われる処理。再レンダリングが終わると再びMountedになる。</td></tr>
-            <tr><td>⑦非表示処理</td><td>beforeUnmount, unmount</td><td>表示が不要になったコンポーネントに非表示処理を行う。</td></tr>
-            <tr><td>⑧非表示状態(Unmounted)</td><td>-</td><td>非表示処理が完了すると、コンポーネントは非表示状態になります。この状態をUnmountedと呼んでいる。</td></tr>
-            <tr><td>⑨リアクティブ変数への初回アクセス</td><td>renderTracked</td><td></td></tr>
-            <tr><td>⑩再レンダリングの際にリアクティブ変数へのアクセス</td><td>renderTriggered</td><td></td></tr>
-          </table>
+        <br/>
+        <table border="1">
+          <tr><th>ライフサイクル名</th><th>フック名</th><th>概要</th></tr>
+          <tr><td>①起動処理</td><td>-</td><td>Vueアプリケーション起動</td></tr>
+          <tr><td>②Vueアプリケーションの初期化処理</td><td>beforeCreate, created</td><td>Vueアプリケーション初期化。この段階でスクリプトブロック内のコードが実行され、テンプレート変数や算出プロパティ、メソッドなどが準備される。</td></tr>
+          <tr><td>③コンポーネントの解析処理</td><td>-</td><td>コンポーネントの解析処理。テンプレートブロック内のコードが解析され、タグ構成（DOM構造）が決定。</td></tr>
+          <tr><td>④レンダリング処理</td><td>beforeMount, mounted</td><td>③で決定したDOM構造がレンダリング。</td></tr>
+          <tr><td>⑤表示状態(Mounted)</td><td>-</td><td>④のレンダリングが終わると表示状態になり、画面が見えるようになる。この状態をMountedと呼んでいる。</td></tr>
+          <tr><td>⑥リアクティブシステムによる再レンダリング処理</td><td>beforeUpdated, updated</td><td>リアクティブシステムにより再レンダリングが必要になった際に行われる処理。再レンダリングが終わると再びMountedになる。</td></tr>
+          <tr><td>⑦非表示処理</td><td>beforeUnmount, unmount</td><td>表示が不要になったコンポーネントに非表示処理を行う。</td></tr>
+          <tr><td>⑧非表示状態(Unmounted)</td><td>-</td><td>非表示処理が完了すると、コンポーネントは非表示状態になります。この状態をUnmountedと呼んでいる。</td></tr>
+          <tr><td>⑨リアクティブ変数への初回アクセス</td><td>renderTracked</td><td></td></tr>
+          <tr><td>⑩再レンダリングの際にリアクティブ変数へのアクセス</td><td>renderTriggered</td><td></td></tr>
+        </table>
 
-          <br/>
+        <br/>
+        <p>
           Vueインスタンスに定義したdataをtemplateに埋め込み、フックや関数を介してdataを操作することでリアクティブなシステムを構築することができます。<br/>
+          以下はVue.jsのコード例です。VueインスタンスにoutMsgとinMsgを定義し、textに入力すると「だよ」という文字列を付与してブラウザに表示します。<br/>
+          <span style="color:yellow">フックの話してるのにサンプルがフック使ってない。</span><br/>
           <img src="./img/vueコード例.jpg" style="border: solid 1px #FFFFFF" width="700"/><br/>
-          <!-- <a href="http://localhost:3000/character/aaa" target="_blank" rel="noopener noreferrer"/>サンプル</a><br/> -->
+
+          <br/>
+          以下のリンク先が上記コードを実際に動かしたものです。<br/>
+          <a href="http://localhost:3000/character/aaa" target="_blank" rel="noopener noreferrer"/>サンプル</a><br/>
         </p>
 
         <br/>
@@ -207,7 +215,7 @@
         </ul>
 
         <ul>
-          <!-- <li><a href="http://localhost:3000/character/characters" target="_blank" rel="noopener noreferrer">ロマサガ3のキャラクター一覧</a></li> -->
+          <li><a href="http://localhost:3000/character/characters" target="_blank" rel="noopener noreferrer">ロマサガ3のキャラクター一覧</a></li>
           <li>一覧から詳細への遷移</li>
           <li>詳細画面でラジオボタンを選択すると画像が切り替わる</li>
         </ul>
