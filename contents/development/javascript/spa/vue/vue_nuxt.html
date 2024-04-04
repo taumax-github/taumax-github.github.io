@@ -52,6 +52,7 @@
       <li><a href="#hooks">フック</a></li>
       <li><a href="#file_path_router">ファイルパスルータ</a></li>
       <li><a href="#nuxt">Nuxt</a></li>
+      <li><a href="#rendering">レンダリング</a></li>
       <li><a href="#what_i_made">作った物</a></li>
     </ul>
   </header><!--/.pc-->
@@ -78,6 +79,7 @@
         <li><a href="#hooks">フック</a></li>
         <li><a href="#file_path_router">ファイルパスルータ</a></li>
         <li><a href="#nuxt">Nuxt</a></li>
+        <li><a href="#rendering">レンダリング</a></li>
         <li><a href="#what_i_made">作った物</a></li>
       </ul>
     </div><!--/#menubar-s-->
@@ -196,12 +198,58 @@
         </p>
 
         <br/>
+        <span id="rendering"></span>
+        <h4 class="title">レンダリング</h4>
+        <p>
+          Nuxtで使えるレンダリングモードとその概要は<a href="../spa.html">こちら</a>に記載しているので、どのようにしてそれを実現するかを以下に記載します。<br/>
+
+          <br/>
+          Nuxtでは、<code>nuxt.config.ts</code> に <code>"パス": {レンダリングモード}</code> の形式でページ毎のレンダリング方法を記述することでレンダリング方法を制御します。具体的には以下。
+        </p>
+<pre class="title"><code class="title">nuxt.config.ts</code></pre>
+<pre><code>export default defineNuxtConfig({
+  devtools: { enabled: true },
+  routeRules: {
+    "/spa": {ssr: false},
+    "/ssg": {prerender: true},
+    "/isg": {swr: 30},
+  }
+})
+</code></pre>
+
+        <br/>
+        <p>
+          レンダリングモードは以下のように指定します。<br/>
+          全量は<a href="https://nuxt.com/docs/guide/concepts/rendering" target="_blank" rel="noopener noreferrer">公式サイト</a>参照。<br/>
+        </p>
+
+        <table border="1">
+          <tr><th>レンダリングモード</th><th>nuxt.config.tsの記述</th></tr>
+          <tr><td>CSR(Client-Side Rendering)</td><td>ssr: false</td></tr>
+          <tr><td>SSR(Server-Side Rendering)</td><td rowspan="2">ssr: true（デフォルトなので記述不要）</td></tr>
+          <tr><td>Universal Rendering</td></tr>
+          <tr><td>SSG(Static Site Generation)</td><td>prerender: true</td></tr>
+          <tr><td>ISG(Incremental Static Generation)</td><td>swr: [数値]<br/>数値で指定した秒数毎に再レンダリング</td></tr>
+        </table>
+
+        <p>
+          <br/>
+          ssr: true（または記述無し）とすることで、サーバーサイドでレンダリングした後、アプリのユーザと相互のやり取りが必要な処理など、どうしてもクライアントサイドで動作しないと成り立たない処理内容に関しては、クライアントサイドでレンダリングを行います。<br/>
+        </p>
+
+        <br/>
         <span id="what_i_made"></span>
         <h3 class="title">作った物</h3>
         <p>
           <br/>
           <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
         </p>
+
+        <ul>
+          <li><a href="http://localhost:3000/character/characters" target="_blank" rel="noopener noreferrer">ロマサガ3のキャラクター一覧</a></li>
+          <li>一覧から詳細への遷移</li>
+          <li>詳細画面でラジオボタンを選択すると画像が切り替わる</li>
+        </ul>
 
         <br/>
         <hr>
@@ -214,16 +262,15 @@
           <li><a href="https://amzn.to/4986MdE" target="_blank" rel="noopener noreferrer"><img src="../img/vuejs入門.jpg" width="200"/><br/>Vue.js入門 基礎から実践アプリケーション開発まで</a></li>
         </ul>
 
-        <ul>
-          <li><a href="http://localhost:3000/character/characters" target="_blank" rel="noopener noreferrer">ロマサガ3のキャラクター一覧</a></li>
-          <li>一覧から詳細への遷移</li>
-          <li>詳細画面でラジオボタンを選択すると画像が切り替わる</li>
-        </ul>
-
         <br/>
         参考サイト<br/>
         <ul>
+          <li><a href="https://nuxt.com/docs/guide/concepts/rendering" target="_blank" rel="noopener noreferrer">Nuxt Rendering Modes</a></li>
           <li><a href="https://developer.mamezou-tech.com/blogs/2022/12/18/nuxt3-hybrid-rendering/" target="_blank" rel="noopener noreferrer">豆蔵デベロッパーサイト Nuxt3で導入されたハイブリッドレンダリングとNuxt版ISG/ISRを試してみる</a></li>
+          <li><a href="https://theblueback.com/post-20230521022312" target="_blank" rel="noopener noreferrer">【Nuxt3×SPA×SSR】ハイブリッドレンダリングを駆使してFirebaseでホスティングする</a></li>
+          <li><a href="https://zenn.dev/mm67/articles/nuxt3-rendering-modes" target="_blank" rel="noopener noreferrer">Zenn [和訳] Nuxt3 公式サイト~Rendering Modes</a></li>
+          <li><a href="https://kentico.jp/kontent/blog/demystify-nuxt-target-mode-and-ssr-properties" target="_blank" rel="noopener noreferrer">Kontent. Nuxt.jsのtarget、mode、およびssrプロパティをわかりやすく説明します</a></li>
+          <li><a href="https://developer.mamezou-tech.com/nuxt/nuxt3-rendering-mode/" target="_blank" rel="noopener noreferrer">豆蔵デベロッパーサイト Nuxt3入門(第1回) - Nuxtがサポートするレンダリングモードを理解する</a></li>
         </ul>
       </section><!-- section class="box" -->
 

@@ -283,12 +283,38 @@
         <br/>
         <span id="next"></span>
         <h3 class="title">Next.js</h3>
+        <p>
+          ここではNext.jsの機能について記載していきます。
+        </p>
 
+        <br/>
         <span id="rendering"></span>
         <h4 class="title">レンダリング</h4>
         <p>
-          レンダリングについては<a href="../spa.html">こちら</a>に記載しているので、その他Next.jsの主な機能について記載します。<br/>
+          Nextで使えるレンダリング手法とその概要は<a href="../spa.html">こちら</a>に記載しているので、どのようにしてそれを実現するかを記載します。<br/>
+
+          <br/>
+          Nextでは、所定の関数を呼び出すことでレンダリングのタイミングを制御します。使用する関数は以下です。getServerSideProps と getStaticProps は export する必要があります。<br/>
         </p>
+        <ul>
+          <li>getServerSideProps：ページを描画する前に呼ばれる。この関数が返した props を元にページを描画される。</li>
+          <li>getStaticProps：ビルド時に実行される。revalidateに数値（秒数）を指定して返すと、指定秒数経過後に再レンダリングされる。</li>
+          <li>unstable_revalidate：当該関数が呼び出されたタイミングで、引数に指定したパスに対応するページが再レンダリングされる。</li>
+        </ul>
+
+        <br/>
+        <p>
+          それぞれ対応するレンダリングモードは以下の通り。
+        </p>
+
+        <table border="1">
+          <tr><th>レンダリング手法</th><th>関数名</th></tr>
+          <tr><td>SSR(Server-Side Rendering)</td><td>getServerSideProps</td></tr>
+          <tr><td>CSR(Client-Side Rendering)</td><td>-（デフォルトがCSRなので使用する関数は無し）</td></tr>
+          <tr><td>SSG(Static Site Generation)</td><td>getStaticProps</td></tr>
+          <tr><td>ISR(Incremental Static Regeneration)</td><td>revalidateを返すgetStaticProps</td></tr>
+          <tr><td>On Demand ISR<br/>(On Demand Incremental Static Regeneration)</td><td>revalidateを返すgetStaticPropsとunstable_revalidateの組み合わせ</td></tr>
+        </table>
 
         <br/>
         <span id="filebase_routing"></span>
@@ -367,6 +393,9 @@ export default MyApp
           <li><a href="https://dev-k.hatenablog.com/entry/how-to-use-react-in-cdn-dev-k" target="_blank" rel="noopener noreferrer">deve.K's Programming Primer - プログラミング初心者のための入門ブログ</a></li>
           <li><a href="https://zenn.dev/kaitok/articles/7a81c497252189" target="_blank" rel="noopener noreferrer">Zenn React Hooks 再入門</a></li>
           <li><a href="https://weseek.co.jp/tech/703/" target="_blank" rel="noopener noreferrer">WESEEK Tech Blog 煩わしい設定は一切なし!Next.jsでCSS を使う方法</a></li>
+          <li><a href="https://dev.classmethod.jp/articles/next-js-12-1/" target="_blank" rel="noopener noreferrer">DevelopersIO Next.js 12.1の新機能オンデマンド ISRでページを手動再検証させてみた</a></li>
+          <li><a href="https://zenn.dev/shimabukuromeg/articles/955cea236650d4" target="_blank" rel="noopener noreferrer">Zenn On-demand ISRの機能を試してみた</a></li>
+          <li><a href="https://kk-web.link/blog/20220412" target="_blank" rel="noopener noreferrer">kk-web Next.jsのOn-demand Revalidationの簡単な説明</a></li>
         </ul>
       </section><!-- section class="box" -->
 
