@@ -299,7 +299,7 @@
         <ul>
           <li>getServerSideProps：ページを描画する前に呼ばれる。この関数が返した props を元にページを描画される。</li>
           <li>getStaticProps：ビルド時に実行される。revalidateに数値（秒数）を指定して返すと、指定秒数経過後に再レンダリングされる。</li>
-          <li>unstable_revalidate：当該関数が呼び出されたタイミングで、引数に指定したパスに対応するページが再レンダリングされる。</li>
+          <li>unstable_revalidate：当該関数が実行されたタイミングで、getStaticPropsを使用しているページが再レンダリングされる。</li>
         </ul>
 
         <br/>
