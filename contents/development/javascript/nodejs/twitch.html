@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../css/print.css" media="print">
+    <script src="../../../../js/openclose.js"></script>
+
+    <title>Twitch × Twitter × Node.js</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul class="none">
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+    <ul class="indent_no">
+      <li><a href="#implementation">作った物</a></li>
+      <li><a href="#authentication">Twitch 認証</a></li>
+      <li><a href="#user">Twitch の<br/>ユーザー</a></li>
+      <li><a href="#api">Twitch API</a></li>
+      <li><a href="#webhook">Twitch × <br/>Webhook</a></li>
+      <li><a href="#tmijs">Twitch × <br/>tmi.js</a></li>
+      <li><a href="#twitter">twitter × <br/>Node.js</a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <h1 class="logo">
+        <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+      </h1>
+      <nav>
+        <ul class="none">
+          <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+        </ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+      <ul class="indent_no">
+        <li><a href="#implementation">作った物</a></li>
+        <li><a href="#authentication">Twitch 認証</a></li>
+        <li><a href="#user">Twitch のユーザー</a></li>
+        <li><a href="#api">Twitch API</a></li>
+        <li><a href="#webhook">Twitch × Webhook</a></li>
+        <li><a href="#tmijs">Twitch × tmi.js</a></li>
+        <li><a href="#twitter">X（旧twitter） × Node.js</a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <h2 class="title">Twitch × Twitter × Node.js</h2>
+
+        <ul class="breadcrumb">
+          <li class="breadcrumbli"><a href="../../../../index.html">ホーム</a></li>
+          <li class="breadcrumbli"> > <a href="../js_index.html">js関連技術</a></li>
+          <li class="breadcrumbli"> > <a href="./nodejs.html">Node.js</a></li>
+          <li class="breadcrumbli"> > Twitch</li>
+        </ul>
+
+        <br/><br/>
+        <span id="implementation"></span>
+        <h3 class="title">作った物</h3>
+        <p>
+          twitchというプラットフォームを使ってゲームの配信をしているのですが、Node.jsを使ってbotを動かすなど、いろいろカスタマイズしています。そのシステム構成が以下の図。<br/>
+          OBSはゲーム配信するためのツールです。websocket経由で操作しています。<br/>
+          <img src="./img/play_with_nodejs.jpg" width="800" /><br/>
+        </p>
+
+        <br/>
+        カスタマイズの例<br/>
+        <ol>
+          <li>
+            チャンネルポイント使用→webhook→チャット→OBS操作<br/>
+            twitchにはチャンネルポイントという機能があり、使用されたら任意のサーバーにWebhookリクエストを飛ばすことができます。<br/>
+            サーバにWebhookが飛んで来たらそれに対応するメッセージをチャットに投げて、そのチャットをトリガーにEventEmitterでローカルのNode.jsを稼働させ、websocket経由でOBSを操作しています。<br/>
+            以下がチャンネルポイントを使った例(2h9m35s頃)。webhookを受けて「やきつくしてさしあげますわ！」という台詞をbotが喋り、その台詞をトリガーにローカルのNode.jsが稼働し、OBSを操作することで画面に炎を表示させたり、BGMを流したりしています。<br/>
+          </li>
+          <iframe src="https://player.twitch.tv/?video=2098995290&time=2h9m35s&parent=taumax-github.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+          <li>
+            配信開始→Webhook→twitter<br/>
+            配信を開始した際にもWebhookリクエストを飛ばすことができるので、それをトリガーにX（旧twitter）に配信開始を告知する処理を稼働させています。<br/>
+            以下が実際のポスト。<br/>
+          </li>
+          <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">twitch配信通知bot<br>twitchでロマサガ3配信中です！<br>お時間合う方是非遊びに来てみてくださーい。<br>▶️視聴はこちら：<a href="https://t.co/P46Z6JrYH1">https://t.co/P46Z6JrYH1</a><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%AC3?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガ3</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B2%E3%83%BC%E3%83%A0?src=hash&amp;ref_src=twsrc%5Etfw">#レトロゲーム</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B3%E3%83%B3%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%9E%E3%83%BC%E6%84%9B%E5%A5%BD%E4%BC%9A?src=hash&amp;ref_src=twsrc%5Etfw">#レトロコンシューマー愛好会</a> <a href="https://t.co/UeLX1jIXB8">pic.twitter.com/UeLX1jIXB8</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1708089149629301126?ref_src=twsrc%5Etfw">September 30, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </ol>
+
+        <br/>
+        <span id="authentication"></span>
+        <h3 class="title">Twitch の認証</h3>
+        <p>
+          まず Twitch の Webhook やAPIを使うためには、access token を取得する必要がある。<br/>
+          access token には user access token と app access token の2種類があり、それぞれ用途は大雑把に以下の通り。<br/>
+        </p>
+
+        <ul>
+          <li>
+            user access token：主に Twitch の API を呼び出す際に使用。<br/>
+            <a href="https://dev.twitch.tv/docs/authentication/#user-access-tokens" target="_blank" rel="noopener noreferrer">User access tokens</a>
+          </li>
+          <li>
+            app access token：主に Webhook を使用する場合に必要。<br/>
+            <a href="https://dev.twitch.tv/docs/authentication/#app-access-tokens" target="_blank" rel="noopener noreferrer">App access tokens</a>
+          </li>
+        </ul>
+
+        <p>
+          access token を取得する方法は以下リンク先参照。<br/>
+          <a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/" target="_blank" rel="noopener noreferrer">Getting OAuth Access Tokens</a><br/>
+        </p>
+
+        <br/>
+        <span id="user"></span>
+        <h3 class="title">Twitch のユーザー</h3>
+        <p>
+          Twitch では、ユーザーを示す項目は大きく3種類あります。<br/>
+          API や Webhook を使う際に理解しておく必要があります。<br/>
+        </p>
+
+        <ul>
+          <li>user_name/login_name：ログインするときのid。アカウントの設定画面の日本語名称は「ユーザー名」。後から変更できる。</li>
+          <li>display_name：チャット欄などに表示される名前。アカウントの設定画面の日本語名称は「表示名」。後から変更できる。設定していないユーザーもいる。</li>
+          <li>user_id：Twitch が裏で採番している一意なid。通常意識しない。変更不可。</li>
+        </ul>
+
+        <p>
+          呼び方は統一されていない気がしますが、項目としてはこの3つがあります。<br/>
+          display_nameが設定されている場合、チャットしたときの名前が「あああ(aaa)」と表示されまが、この「あああ」がdisplay_nameで「aaa」がuser_nameです。<br/>
+          Twitch の API や Webhook を使用するときは user_name と user_id を結構使うので、この違いは把握しておきたい。<br/>
+          下記リンク先から user_name と user_id を相互に変換することができます。結構使うことはあるのでブックマークしておくといいと思います。<br/>
+
+          <a href="https://www.streamweasels.com/tools/convert-twitch-username-to-user-id/" target="_blank" rel="noopener noreferrer">Convert Twitch Username to Channel ID</a><br/>
+        </p>
+
+        <br/>
+        <span id="api"></span>
+        <h3 class="title">Twitch API</h3>
+        <p>
+          Twitch の API<br/>
+          <a href="https://dev.twitch.tv/docs/api/" target="_blank" rel="noopener noreferrer">Twitch API</a><br/>
+        </p>
+
+        <br/>
+        <span id="webhook"></span>
+        <h3 class="title">Twitch × Webhook</h3>
+        <p>
+          Webhook でイベントの通知を受け取るためには<br/>
+          <a href="https://dev.twitch.tv/docs/eventsub/handling-webhook-events/" target="_blank" rel="noopener noreferrer">Getting Events Using Webhook Callbacks</a><br/>
+        </p>
+
+        <br/>
+        <span id="tmijs"></span>
+        <h3 class="title">Twitch × tmi.js</h3>
+        <p>
+          event emitter<br/>
+          <a href="https://tmijs.com/" target="_blank" rel="noopener noreferrer">tmi.js</a><br/>
+          <a href="https://github.com/tmijs/tmi.js" target="_blank" rel="noopener noreferrer">github tmi.js</a><br/>
+
+          <br/>
+          tmi.jsで拾えるイベントの全量は以下リンク先参照。<br/>
+          <a href="https://github.com/tmijs/docs/blob/gh-pages/_posts/v1.4.2/2019-03-03-Events.md" target="_blank" rel="noopener noreferrer">github tmijs/docs</a><br/>
+
+          <br/>
+          webhookと被っているものが結構ある。<br/>
+          webhookよりはtmi.jsを使った方が（たぶん）早いので基本的にtmi.jsを使えばいいと思うが、raidはwebhookの方が使い勝手が良いと思います。<br/>
+          tmi.js の raidだと、 display_name を設定しているユーザーの場合、display_name のみが返されるため、 user_name を取得できないからです。display_name をキーに user_name を返してくれるAPI は（たぶん）ないので、結構困ります。<br/>
+          Webhookは両方返してくれる。<br/>
+          tmi.js を改造するブログ記事もありますが、外部ライブラリを改造すると、それが原因で予期せぬ挙動をすることも考えられるので、あまりお勧めできません。<br/>
+          <a href="https://zenn.dev/sushat4692/scraps/7c25d4050fcb3b" target="_blank" rel="noopener noreferrer">Zenn tmi.jsでRaidのユーザ名・表示名を別々に取得したい</a><br/>
+        </p>
+
+<pre><code>'use strict';
+import tmi from 'tmi.js';
+const opts = {
+  identity: {
+      username: acdata.username,
+      password: 'oauth:'+acdata.oauth_token,
+  },
+  channels: [
+      targetChannel
+  ]
+};
+const twClientBot = new tmi.client(opts)
+
+// チャットに反応
+twClientBot.on('message', (channel, userstate, msg, self) => {
+    if (self) return; // Ignore messages from the bot
+    // 何か処理
+});
+
+// チアーに反応
+twClientBot.on('cheer', (channel, userstate, message) => {
+  // 何か処理
+});
+
+// サブスク（初回）に反応
+twClientBot.on('subscription', (channel, username, method, message, userstate) => {
+  // 何か処理
+});
+
+// サブスク（再サブスク）に反応
+twClientBot.on('resub', (channel, username, months, message, userstate, methods) => {
+  // 何か処理
+});
+
+// サブギフ（くれた人）に反応
+twClientBot.on('submysterygift', (channel, username, numbOfSubs, methods, userstate) => {
+  // 何か処理
+});
+
+// サブギフ（貰った人）に反応
+twClientBot.on('subgift', (channel, username, streakMonths, recipient, methods, userstate) => {
+  // 何か処理
+});
+
+// twitchのサーバに接続したら動く
+twClientBot.on('connected', async (addr, port) => {
+  // 何か処理
+});
+
+// Connect to Twitch:
+twClientBot.connect();
+</code></pre>
+
+<pre><code>curl -X POST 'https://id.twitch.tv/oauth2/token' \
+-H 'Content-Type: application/x-www-form-urlencoded' \
+-d 'client_id=XXXXXX&client_secret=YYYYYY&grant_type=client_credentials'
+</code></pre>
+
+
+        <br/>
+        <span id="twitter"></span>
+        <h3 class="title">X（旧twitter） × Node.js</h3>
+        <p>
+          X（旧twitter）のAPIはv1, v2の2つがあり、それぞれ使い分け理必要がある。
+        </p>
+
+        <ul>
+          <li>v1：ツイートに画像や動画などのメディアを添付する場合に使用。</li>
+          <li>v2：上記以外は基本的にはv2を使用。</li>
+        </ul>
+
+        <br/>
+        <hr>
+
+        <br/>
+        参考サイト<br/>
+        <ul>
+          <li><a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/" target="_blank" rel="noopener noreferrer">Twitch developers Getting OAuth Access Tokens</a></li>
+          <li><a href="https://dev.twitch.tv/docs/authentication/" target="_blank" rel="noopener noreferrer">Twitch developers Authentication</a></li>
+          <li><a href="https://dev.twitch.tv/docs/eventsub/handling-webhook-events/" target="_blank" rel="noopener noreferrer">Twitch developers Getting Events Using Webhook Callbacks</a></li>
+          <li><a href="https://dev.twitch.tv/docs/api/" target="_blank" rel="noopener noreferrer">Twitch developers Twitch API</a></li>
+          <li><a href="https://www.streamweasels.com/tools/convert-twitch-username-to-user-id/" target="_blank" rel="noopener noreferrer">Twitch Channel ID and User ID Convertor</a></li>
+          <li><a href="https://tmijs.com/" target="_blank" rel="noopener noreferrer">tmi.js</a></li>
+          <li><a href="https://github.com/tmijs/tmi.js" target="_blank" rel="noopener noreferrer">github tmi.js</a></li>
+          <li><a href="https://github.com/tmijs/docs/blob/gh-pages/_posts/v1.4.2/2019-03-03-Events.md" target="_blank" rel="noopener noreferrer">github tmijs/docs</a></li>
+          <li><a href="https://zenn.dev/sushat4692/scraps/7c25d4050fcb3b" target="_blank" rel="noopener noreferrer">Zenn tmi.jsでRaidのユーザ名・表示名を別々に取得したい</a></li>
+        </ul>
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>
