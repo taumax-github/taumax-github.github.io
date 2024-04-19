@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../css/print.css" media="print">
+    <script src="../../../../js/openclose.js"></script>
+
+    <title>Twitter × Node.js</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul class="none">
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+    <ul class="indent_no">
+      <li><a href="#firstly">はじめに</a></li>
+      <li><a href="#implementation">作った物</a></li>
+      <li><a href="#twitter">twitter × <br/>Node.js</a></li>
+      <li><a href="#others">その他の実装</a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <h1 class="logo">
+        <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+      </h1>
+      <nav>
+        <ul class="none">
+          <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+        </ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+      <ul class="indent_no">
+        <li><a href="#firstly">はじめに</a></li>
+        <li><a href="#implementation">作った物</a></li>
+        <li><a href="#twitter">X（旧twitter） × Node.js</a></li>
+        <li><a href="#others">その他の実装</a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <h2 class="title">Twitch × Twitter × Node.js</h2>
+
+        <ul class="breadcrumb">
+          <li class="breadcrumbli"><a href="../../../../index.html">ホーム</a></li>
+          <li class="breadcrumbli"> > <a href="../js_index.html">js関連技術</a></li>
+          <li class="breadcrumbli"> > <a href="./nodejs.html">Node.js</a></li>
+          <li class="breadcrumbli"> > <a href="./what_i_made.html">自作したもの</a></li>
+          <li class="breadcrumbli"> > Node.js × Twitter</li>
+        </ul>
+
+        <br/><br/>
+        <span id="firstly"></span>
+        <h3 class="title">はじめに</h3>
+        <p>
+        </p>
+
+        <br/>
+        <span id="twitter"></span>
+        <h3 class="title">X（旧twitter） × Node.js</h3>
+        <p>
+          X（旧twitter）のAPIは、限定された範囲であれば無料で使用することができます。具体的には以下。
+        </p>
+
+        <ul>
+          <li>月1,500、1日50ポストまで</li>
+          <li>ポストとポストの削除</li>
+          <li>自分のアカウントのデータの取得（フォロワー数、フォロー数など）</li>
+        </ul>
+
+        <p>
+          詳しくは<a href="https://programming-zero.net/how-to-start-twitter-api-basic-and-free/" target="_blank" rel="noopener noreferrer">リンク先参照</a>。<br/>
+
+          <br/>
+          XのAPIはv1.1, v2の2つがあり、それぞれ使い分ける必要がある。
+        </p>
+
+        <ul>
+          <li>v1.1：ツイートに画像や動画などのメディアを添付する場合に使用。</li>
+          <li>v2：上記以外は基本的にはv2を使用。</li>
+        </ul>
+
+        <p>
+          私は、X関連の機能を Node.js で実装する場合、 <a href="https://github.com/PLhery/node-twitter-api-v2/tree/065b02ad264d70e8f879184fb7130e033c659cc3" target="_blank" rel="noopener noreferrer">node-twitter-api-v2</a> というライブラリを使用しています。これを使うと簡単にv1.1とv2を切り替えることができるので便利です。実際にそのライブラリを使用したコードは以下の通り。<br/>
+        </p>
+
+
+<pre class="title"><code class="title">tweet.js</code></pre>
+<pre><code>export async function tweetStreamStart() {
+  let tweetClient = new twitter.TwitterApi({
+    appKey: [api_key],
+    appSecret: [api_secret],
+    accessToken: [access_token],
+    accessSecret: [access_secret],
+  }).readWrite
+
+  // 画像のアップロード。
+  // 複数ファイルをアップロードする場合は Promise.all([]) 内で複数アップロード。
+  const mediaIds = await Promise.all([
+    <span style="color:red">tweetClient.v1.uploadMedia([file_path]),</span>  // v1.1で画像アップロード
+  ]);
+
+  const status = {
+    text: [post_text],
+    media: {media_ids: mediaIds} // Pass the media id string
+  }
+
+  <span style="color:red">tweetClient.v2.tweet(status)</span>  // v2でポスト
+}
+</code></pre>
+
+        <br/>
+        <p>
+          ここで上記"[ ]"部分には以下の値を当てはめます。
+        </p>
+        <ol>
+          <li>api_key：XのAPI Key</li>
+          <li>api_secret：XのAPI Secret</li>
+          <li>access_token：XのAccess Token</li>
+          <li>access_secret：XのAccess Secret</li>
+          <li>file_path：ポストするファイルのパスとファイル名</li>
+          <li>post_text：ポストする文言</li>
+        </ol>
+        <p>
+          API を使うためには 各種APIキーを取得する必要があります（上記1～4）。<br/>
+          これらを取得する方法は<a href="https://zenn.dev/eito_blog/articles/a982fdb073493a" target="_blank" rel="noopener noreferrer">こちら参照</a>。<br/>
+
+          <br/>
+          これは余談ですが、（おそらくですが）2023年4月頃にXのAPI仕様が変わって以降、APIキーを取得するプロセスが変わって案外楽に取得できるようになったようです。<br/>
+          無料枠で済むようなものであれば気軽に申請できるようになったようなので興味ある方はやってみてはいかがでしょうか。<br/>
+        </p>
+
+        <br/>
+        <span id="others"></span>
+        <h3 class="title">その他の実装</h3>
+        <ul>
+          <li><a href="./twitch.html">Node.js × twitch</a></li>
+          <li><a href="./obs.html">Node.js × OBS</a></li>
+        </ul>
+
+        <br/>
+        <hr>
+
+        <br/>
+        参考サイト<br/>
+        <ul>
+          <li><a href="https://programming-zero.net/how-to-start-twitter-api-basic-and-free/" target="_blank" rel="noopener noreferrer">Programming ZERO Twitter API有料(Basic)、無料プラン利用開始手順※2023年9月最新</a></li>
+          <li><a href="https://zenn.dev/eito_blog/articles/a982fdb073493a" target="_blank" rel="noopener noreferrer">Zenn 【2023年度最新版】Twitter API 取得方法</a></li>
+          <li><a href="https://github.com/PLhery/node-twitter-api-v2/tree/065b02ad264d70e8f879184fb7130e033c659cc3" target="_blank" rel="noopener noreferrer">github node-twitter-api-v2</a></li>
+          <li><a href="https://zenn.dev/temple_c_tech/scraps/72ce713752f7cd" target="_blank" rel="noopener noreferrer">Zenn Twitter-API-v2(Node.js)ライブラリでTwitter検索してみる</a></li>
+        </ul>
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>

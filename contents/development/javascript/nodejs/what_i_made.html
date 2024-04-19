@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ITエンジニアがこれまで学んだことを整理するサイト" />
+    <meta name="keywords" content="IT,エンジニア">
+
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../css/print.css" media="print">
+    <script src="../../../../js/openclose.js"></script>
+
+    <title>Twitch × Twitter × Node.js</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul class="none">
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+    <ul class="indent_no">
+      <li><a href="#firstly">はじめに</a></li>
+      <li><a href="#implementation">作った物</a></li>
+      <li><a href="#register_application">アプリケーションの登録</a></li>
+      <li><a href="#impletentation">実装</a></li>
+  </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <h1 class="logo">
+        <a href="https://taumax-github.github.io/"><img src="../../../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+      </h1>
+      <nav>
+        <ul class="none">
+          <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+        </ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+      <ul class="indent_no">
+        <li><a href="#firstly">はじめに</a></li>
+        <li><a href="#implementation">作った物</a></li>
+        <li><a href="#register_application">アプリケーションの登録</a></li>
+        <li><a href="#impletentation">実装</a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <h2 class="title">Twitch × Twitter × Node.js</h2>
+
+        <ul class="breadcrumb">
+          <li class="breadcrumbli"><a href="../../../../index.html">ホーム</a></li>
+          <li class="breadcrumbli"> > <a href="../js_index.html">js関連技術</a></li>
+          <li class="breadcrumbli"> > <a href="./nodejs.html">Node.js</a></li>
+          <li class="breadcrumbli"> > 自作したもの</li>
+        </ul>
+
+        <br/><br/>
+        <span id="firstly"></span>
+        <h3 class="title">はじめに</h3>
+        <p>
+          このページでは、自分が Node.js を使って実際に作った物について記載しています。<br/>
+          <a href="./nodejs.html">Node.js</a>の記事を読んだ前提で書いています。今見ているこの頁の1階層上の記事です。<br/>
+          EventEmitter という単語を見てピンと来ないようなら、<a href="./nodejs.html#async">非同期のイベント駆動型ランタイム</a>の部分だけでも読んでください。<br/>
+        </p>
+
+        <br/>
+        <span id="implementation"></span>
+        <h3 class="title">作った物</h3>
+        <p>
+          Twitch というプラットフォームを使ってゲームの配信をしているのですが、Node.jsを使ってbotを動かすなど、いろいろカスタマイズしています。そのシステム構成が以下の図。<br/>
+          図右下の OBS Studio はゲーム配信するためのツールです。 <a href="https://github.com/obs-websocket-community-projects/obs-websocket-js" target="_blank" rel="noopener noreferrer">obs-websocket-js</a> というライブラリを使って、Node.js から WebSocket 経由で操作しています。<br/>
+          <img src="./img/play_with_nodejs.jpg" width="800" /><br/>
+        </p>
+
+        <br/>
+        カスタマイズの例<br/>
+        <ol>
+          <li>
+            チャンネルポイント使用→webhook→チャット→OBS操作<br/>
+            twitchにはチャンネルポイントという機能があり、（普通こんな使い方はしないのですが）使用されたら任意のサーバーに Webhook リクエストを飛ばすこともできます。<br/>
+            サーバに Webhook が飛んで来たらそれに対応するメッセージをチャットに投げて、そのチャットをトリガーに EventEmitter でローカルの Node.js を稼働させ、WebSocket 経由で OBS を操作しています（下図の赤線の流れ）。<br/>
+            <img src="./img/chanel_point.jpg" width="800" /><br/>
+
+            <br/>
+            以下がチャンネルポイントを使った例(2h9m35s頃)。 Webhook を受けて「やきつくしてさしあげますわ！」という台詞をbotが喋り、その台詞をトリガーにローカルの Node.js が稼働し、OBS を操作することで画面に炎を表示させたり、音声を流したりしています。<br/>
+          </li>
+          <iframe src="https://player.twitch.tv/?video=2098995290&time=2h9m35s&parent=taumax-github.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+          <li>
+            配信開始→Webhook→twitter<br/>
+            配信を開始した際にもWebhookリクエストを飛ばすことができるので、それをトリガーにX（旧twitter）に配信開始を告知する処理を稼働させています（下図の赤線の流れ）。<br/>
+            <img src="./img/auto_post.jpg" width="800" /><br/>
+
+            <br/>
+            以下が実際のポスト。<br/>
+          </li>
+          <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">twitch配信通知bot<br>twitchでロマサガ3配信中です！<br>お時間合う方是非遊びに来てみてくださーい。<br>▶️視聴はこちら：<a href="https://t.co/P46Z6JrYH1">https://t.co/P46Z6JrYH1</a><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%AC3?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガ3</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B2%E3%83%BC%E3%83%A0?src=hash&amp;ref_src=twsrc%5Etfw">#レトロゲーム</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B3%E3%83%B3%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%9E%E3%83%BC%E6%84%9B%E5%A5%BD%E4%BC%9A?src=hash&amp;ref_src=twsrc%5Etfw">#レトロコンシューマー愛好会</a> <a href="https://t.co/UeLX1jIXB8">pic.twitter.com/UeLX1jIXB8</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1708089149629301126?ref_src=twsrc%5Etfw">September 30, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </ol>
+
+        <br/>
+        以降、この中身がどうなっているのかについて説明していきます。<br/>
+
+        <br/>
+        <span id="impletentation"></span>
+        <h3 class="title">実装</h3>
+        <ul>
+          <li><a href="./twitch.html">Node.js × twitch</a></li>
+          <li><a href="./twitter.html">Node.js × twitter</a></li>
+          <li><a href="./obs.html">Node.js × OBS</a></li>
+        </ul>
+
+        <br/>
+        <hr>
+
+        <br/>
+        参考サイト<br/>
+        <ul>
+          <li><a href="https://github.com/obs-websocket-community-projects/obs-websocket-js" target="_blank" rel="noopener noreferrer">obs-websocket-js</a></li>
+        </ul>
+      </section><!-- section class="box" -->
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>

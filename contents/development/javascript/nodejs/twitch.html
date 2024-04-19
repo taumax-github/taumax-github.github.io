@@ -48,15 +48,13 @@
     </ul>
     <ul class="indent_no">
       <li><a href="#firstly">はじめに</a></li>
-      <li><a href="#implementation">作った物</a></li>
       <li><a href="#register_application">アプリケーションの登録</a></li>
       <li><a href="#authentication">Twitch 認証</a></li>
       <li><a href="#user">Twitch の<br/>ユーザー</a></li>
       <li><a href="#tmijs">tmi.js × <br/>Node.js</a></li>
       <li><a href="#webhook">Webhook × <br/>Node.js</a></li>
       <li><a href="#api">API × <br/>Node.js</a></li>
-      <li><a href="#twitter">twitter × <br/>Node.js</a></li>
-      <li><a href="#obs">OBS × <br/>Node.js</a></li>
+      <li><a href="#others">その他の実装</a></li>
     </ul>
   </header><!--/.pc-->
 
@@ -78,15 +76,13 @@
       </ul>
       <ul class="indent_no">
         <li><a href="#firstly">はじめに</a></li>
-        <li><a href="#implementation">作った物</a></li>
         <li><a href="#register_application">アプリケーションの登録</a></li>
         <li><a href="#authentication">Twitch 認証</a></li>
         <li><a href="#user">Twitch のユーザー</a></li>
         <li><a href="#tmijs">tmi.js × Node.js</a></li>
         <li><a href="#webhook">Webhook × Node.js</a></li>
         <li><a href="#api">Twitch API</a></li>
-        <li><a href="#twitter">X（旧twitter） × Node.js</a></li>
-        <li><a href="#obs">OBS × Node.js</a></li>
+        <li><a href="#others">その他の実装</a></li>
       </ul>
     </div><!--/#menubar-s-->
   </header><!--/.sh-->
@@ -105,53 +101,15 @@
           <li class="breadcrumbli"><a href="../../../../index.html">ホーム</a></li>
           <li class="breadcrumbli"> > <a href="../js_index.html">js関連技術</a></li>
           <li class="breadcrumbli"> > <a href="./nodejs.html">Node.js</a></li>
-          <li class="breadcrumbli"> > Twitch</li>
+          <li class="breadcrumbli"> > <a href="./what_i_made.html">自作したもの</a></li>
+          <li class="breadcrumbli"> > Node.js × Twitch</li>
         </ul>
 
         <br/><br/>
         <span id="firstly"></span>
         <h3 class="title">はじめに</h3>
         <p>
-          このページでは、自分が Node.js を使って実際に作った物について記載しています。<br/>
-          <a href="./nodejs.html">Node.js</a>の記事を読んだ前提で書いています。今見ているこの頁の1階層上の記事です。<br/>
-          EventEmitter という単語を見てピンと来ないようなら、<a href="./nodejs.html#async">非同期のイベント駆動型ランタイム</a>の部分だけでも読んでください。<br/>
         </p>
-
-        <br/>
-        <span id="implementation"></span>
-        <h3 class="title">作った物</h3>
-        <p>
-          Twitch というプラットフォームを使ってゲームの配信をしているのですが、Node.jsを使ってbotを動かすなど、いろいろカスタマイズしています。そのシステム構成が以下の図。<br/>
-          図右下の OBS Studio はゲーム配信するためのツールです。 <a href="https://github.com/obs-websocket-community-projects/obs-websocket-js" target="_blank" rel="noopener noreferrer">obs-websocket-js</a> というライブラリを使って、Node.js から WebSocket 経由で操作しています。<br/>
-          <img src="./img/play_with_nodejs.jpg" width="800" /><br/>
-        </p>
-
-        <br/>
-        カスタマイズの例<br/>
-        <ol>
-          <li>
-            チャンネルポイント使用→webhook→チャット→OBS操作<br/>
-            twitchにはチャンネルポイントという機能があり、（普通こんな使い方はしないのですが）使用されたら任意のサーバーに Webhook リクエストを飛ばすこともできます。<br/>
-            サーバに Webhook が飛んで来たらそれに対応するメッセージをチャットに投げて、そのチャットをトリガーに EventEmitter でローカルの Node.js を稼働させ、WebSocket 経由で OBS を操作しています（下図の赤線の流れ）。<br/>
-            <img src="./img/chanel_point.jpg" width="800" /><br/>
-
-            <br/>
-            以下がチャンネルポイントを使った例(2h9m35s頃)。 Webhook を受けて「やきつくしてさしあげますわ！」という台詞をbotが喋り、その台詞をトリガーにローカルの Node.js が稼働し、OBS を操作することで画面に炎を表示させたり、音声を流したりしています。<br/>
-          </li>
-          <iframe src="https://player.twitch.tv/?video=2098995290&time=2h9m35s&parent=taumax-github.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
-          <li>
-            配信開始→Webhook→twitter<br/>
-            配信を開始した際にもWebhookリクエストを飛ばすことができるので、それをトリガーにX（旧twitter）に配信開始を告知する処理を稼働させています（下図の赤線の流れ）。<br/>
-            <img src="./img/auto_post.jpg" width="800" /><br/>
-
-            <br/>
-            以下が実際のポスト。<br/>
-          </li>
-          <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">twitch配信通知bot<br>twitchでロマサガ3配信中です！<br>お時間合う方是非遊びに来てみてくださーい。<br>▶️視聴はこちら：<a href="https://t.co/P46Z6JrYH1">https://t.co/P46Z6JrYH1</a><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%AC3?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガ3</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B2%E3%83%BC%E3%83%A0?src=hash&amp;ref_src=twsrc%5Etfw">#レトロゲーム</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B3%E3%83%B3%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%9E%E3%83%BC%E6%84%9B%E5%A5%BD%E4%BC%9A?src=hash&amp;ref_src=twsrc%5Etfw">#レトロコンシューマー愛好会</a> <a href="https://t.co/UeLX1jIXB8">pic.twitter.com/UeLX1jIXB8</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1708089149629301126?ref_src=twsrc%5Etfw">September 30, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </ol>
-
-        <br/>
-        以降、この中身がどうなっているのかについて説明していきます。<br/>
 
         <br/>
         <span id="register_application"></span>
@@ -160,7 +118,7 @@
           まず、Twitch の developers サイトでアプリケーションを登録する必要があります。<br/>
           以下リンク先から developers サイトにログイン。<br/>
           <a href="https://dev.twitch.tv/" target="_blank" rel="noopener noreferrer">Twitch developers</a><br/>
-          右上の 「Your Console」 ボタンからコンソール画面に遷移して、「アプリケーションを登録」ボタンを押下。<br/>
+          ログイン後、右上の 「Your Console」 ボタンからコンソール画面に遷移して、「アプリケーションを登録」ボタンを押下。<br/>
           <img src="./img/console.jpg" width="500"/><br/>
 
           <br/>
@@ -614,95 +572,12 @@ function verifyMessage(hmac, verifySignature) {
 
 
         <br/>
-        <span id="twitter"></span>
-        <h3 class="title">X（旧twitter） × Node.js</h3>
-        <p>
-          X（旧twitter）のAPIは、限定された範囲であれば無料で使用することができます。具体的には以下。
-        </p>
-
+        <span id="others"></span>
+        <h3 class="title">その他の実装</h3>
         <ul>
-          <li>月1,500、1日50ポストまで</li>
-          <li>ポストとポストの削除</li>
-          <li>自分のアカウントのデータの取得（フォロワー数、フォロー数など）</li>
+          <li><a href="./twitter.html">Node.js × twitter</a></li>
+          <li><a href="./obs.html">Node.js × OBS</a></li>
         </ul>
-
-        <p>
-          詳しくは<a href="https://programming-zero.net/how-to-start-twitter-api-basic-and-free/" target="_blank" rel="noopener noreferrer">リンク先参照</a>。<br/>
-
-          <br/>
-          XのAPIはv1.1, v2の2つがあり、それぞれ使い分ける必要がある。
-        </p>
-
-        <ul>
-          <li>v1.1：ツイートに画像や動画などのメディアを添付する場合に使用。</li>
-          <li>v2：上記以外は基本的にはv2を使用。</li>
-        </ul>
-
-        <p>
-          私は、X関連の機能を Node.js で実装する場合、 <a href="https://github.com/PLhery/node-twitter-api-v2/tree/065b02ad264d70e8f879184fb7130e033c659cc3" target="_blank" rel="noopener noreferrer">node-twitter-api-v2</a> というライブラリを使用しています。これを使うと簡単にv1.1とv2を切り替えることができるので便利です。実際にそのライブラリを使用したコードは以下の通り。<br/>
-        </p>
-
-
-<pre class="title"><code class="title">tweet.js</code></pre>
-<pre><code>export async function tweetStreamStart() {
-  let tweetClient = new twitter.TwitterApi({
-    appKey: [api_key],
-    appSecret: [api_secret],
-    accessToken: [access_token],
-    accessSecret: [access_secret],
-  }).readWrite
-
-  // 画像のアップロード。
-  // 複数ファイルをアップロードする場合は Promise.all([]) 内で複数アップロード。
-  const mediaIds = await Promise.all([
-    <span style="color:red">tweetClient.v1.uploadMedia([file_path]),</span>  // v1.1で画像アップロード
-  ]);
-
-  const status = {
-    text: [post_text],
-    media: {media_ids: mediaIds} // Pass the media id string
-  }
-
-  <span style="color:red">tweetClient.v2.tweet(status)</span>  // v2でポスト
-}
-</code></pre>
-
-        <br/>
-        <p>
-          ここで上記"[ ]"部分には以下の値を当てはめます。
-        </p>
-        <ol>
-          <li>api_key：XのAPI Key</li>
-          <li>api_secret：XのAPI Secret</li>
-          <li>access_token：XのAccess Token</li>
-          <li>access_secret：XのAccess Secret</li>
-          <li>file_path：ポストするファイルのパスとファイル名</li>
-          <li>post_text：ポストする文言</li>
-        </ol>
-        <p>
-          API を使うためには 各種APIキーを取得する必要があります（上記1～4）。<br/>
-          これらを取得する方法は<a href="https://zenn.dev/eito_blog/articles/a982fdb073493a" target="_blank" rel="noopener noreferrer">こちら参照</a>。<br/>
-
-          <br/>
-          これは余談ですが、（おそらくですが）2023年4月頃にXのAPI仕様が変わって以降、APIキーを取得するプロセスが変わって案外楽に取得できるようになったようです。<br/>
-          無料枠で済むようなものであれば気軽に申請できるようになったようなので興味ある方はやってみてはいかがでしょうか。<br/>
-        </p>
-
-        <br/>
-        <span id="obs"></span>
-        <h3 class="title">OBS × Node.js</h3>
-        <p>
-          <a href="https://github.com/obs-websocket-community-projects/obs-websocket-js" target="_blank" rel="noopener noreferrer">obs-websocket-js</a> というライブラリを使うと Node.js から OBS の操作ができるようになります。<br/>
-          <a href="https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md" target="_blank" rel="noopener noreferrer">使用できる関数はこちら</a>。<br/>
-          今回はチャンネルポイントの「火の鳥」を例にして説明してみます。<br/>
-          <img src="img/websocker_setting1.jpg" width="500"/><br/>
-          <img src="img/websocker_setting2.jpg" width="400"/><br/>
-          <img src="img/websocker_setting3.jpg" width="400"/><br/>
-
-          <br/>
-          <img src="img/obs1.jpg" width="500"/><br/>
-          <img src="img/obs2.jpg" width="500"/><br/>
-        </p>
 
         <br/>
         <hr>
@@ -723,10 +598,6 @@ function verifyMessage(hmac, verifySignature) {
           <li><a href="https://github.com/tmijs/docs/blob/gh-pages/_posts/v1.4.2/2019-03-03-Events.md" target="_blank" rel="noopener noreferrer">github tmijs/docs</a></li>
           <li><a href="https://zenn.dev/sushat4692/scraps/7c25d4050fcb3b" target="_blank" rel="noopener noreferrer">Zenn tmi.jsでRaidのユーザ名・表示名を別々に取得したい</a></li>
           <li><a href="https://qiita.com/pasta04/items/750d71d41e5edd12932b" target="_blank" rel="noopener noreferrer">Qiita Twitch APIを利用してみよう</a></li>
-          <li><a href="https://programming-zero.net/how-to-start-twitter-api-basic-and-free/" target="_blank" rel="noopener noreferrer">Programming ZERO Twitter API有料(Basic)、無料プラン利用開始手順※2023年9月最新</a></li>
-          <li><a href="https://zenn.dev/eito_blog/articles/a982fdb073493a" target="_blank" rel="noopener noreferrer">Zenn 【2023年度最新版】Twitter API 取得方法</a></li>
-          <li><a href="https://github.com/PLhery/node-twitter-api-v2/tree/065b02ad264d70e8f879184fb7130e033c659cc3" target="_blank" rel="noopener noreferrer">github node-twitter-api-v2</a></li>
-          <li><a href="https://zenn.dev/temple_c_tech/scraps/72ce713752f7cd" target="_blank" rel="noopener noreferrer">Zenn Twitter-API-v2(Node.js)ライブラリでTwitter検索してみる</a></li>
         </ul>
       </section><!-- section class="box" -->
 
