@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../../../../css/print.css" media="print">
     <script src="../../../../js/openclose.js"></script>
 
-    <title>Twitch × Twitter × Node.js</title>
+    <title>Node.js × Twitch</title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
@@ -51,9 +51,9 @@
       <li><a href="#register_application">アプリケーションの登録</a></li>
       <li><a href="#authentication">Twitch 認証</a></li>
       <li><a href="#user">Twitch の<br/>ユーザー</a></li>
-      <li><a href="#tmijs">tmi.js × <br/>Node.js</a></li>
-      <li><a href="#webhook">Webhook × <br/>Node.js</a></li>
-      <li><a href="#api">API × <br/>Node.js</a></li>
+      <li><a href="#tmijs">Node.js × tmi.js<br/></a></li>
+      <li><a href="#webhook">Node.js × Webhook<br/></a></li>
+      <li><a href="#api">Node.js × <br/>API</a></li>
       <li><a href="#others">その他の実装</a></li>
     </ul>
   </header><!--/.pc-->
@@ -79,9 +79,9 @@
         <li><a href="#register_application">アプリケーションの登録</a></li>
         <li><a href="#authentication">Twitch 認証</a></li>
         <li><a href="#user">Twitch のユーザー</a></li>
-        <li><a href="#tmijs">tmi.js × Node.js</a></li>
-        <li><a href="#webhook">Webhook × Node.js</a></li>
-        <li><a href="#api">Twitch API</a></li>
+        <li><a href="#tmijs">Node.js × tmi.js</a></li>
+        <li><a href="#webhook">Node.js × Webhook</a></li>
+        <li><a href="#api">Node.js × Twitch API</a></li>
         <li><a href="#others">その他の実装</a></li>
       </ul>
     </div><!--/#menubar-s-->
@@ -95,13 +95,13 @@
       <section class="box">
         <!-- tweetボタン -->
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        <h2 class="title">Twitch × Twitter × Node.js</h2>
+        <h2 class="title">Node.js × Twitch</h2>
 
         <ul class="breadcrumb">
           <li class="breadcrumbli"><a href="../../../../index.html">ホーム</a></li>
           <li class="breadcrumbli"> > <a href="../js_index.html">js関連技術</a></li>
           <li class="breadcrumbli"> > <a href="./nodejs.html">Node.js</a></li>
-          <li class="breadcrumbli"> > <a href="./what_i_made.html">自作したもの</a></li>
+          <li class="breadcrumbli"> > <a href="./what_i_made.html">Node.js × Twitch × Twitter × OBS</a></li>
           <li class="breadcrumbli"> > Node.js × Twitch</li>
         </ul>
 
@@ -109,14 +109,25 @@
         <span id="firstly"></span>
         <h3 class="title">はじめに</h3>
         <p>
+          このページは、 <a href="./what_i_made.html">Node.js × Twitch × Twitter × OBS</a> の続きです。<br/>
+          twitch イベントを Webhook や tmi.js というライブラリを使用して Node.js で受け取ったり、チャットを投げたりする部分について記載します。以下画像の赤枠部分です。<br/>
+          <img src="./img/play_with_nodejs_twitch.jpg" width="800" /><br/>
+
+          <br/>
+          その他の部分については、以下リンク先に別ページでまとめています。GitLab や Linux, Docker, nginx については記載していません。
         </p>
+
+        <ul>
+          <li><a href="./twitter.html">Node.js × twitter</a></li>
+          <li><a href="./obs.html">Node.js × OBS</a></li>
+        </ul>
 
         <br/>
         <span id="register_application"></span>
         <h3 class="title">アプリケーションの登録</h3>
         <p>
-          まず、Twitch の developers サイトでアプリケーションを登録する必要があります。<br/>
-          以下リンク先から developers サイトにログイン。<br/>
+          Twitch の機能を使うためには、まず Twitch の developers サイトでアプリケーションを登録する必要があります。<br/>
+          以下リンク先右上の「Log in with Twitch」ボタンから developers サイトにログイン。<br/>
           <a href="https://dev.twitch.tv/" target="_blank" rel="noopener noreferrer">Twitch developers</a><br/>
           ログイン後、右上の 「Your Console」 ボタンからコンソール画面に遷移して、「アプリケーションを登録」ボタンを押下。<br/>
           <img src="./img/console.jpg" width="500"/><br/>
@@ -179,6 +190,7 @@
           <li>XXXXXX：<a href="#register_application">アプリケーションの登録</a>で取得したクライアントID</li>
           <li>YYYYYY：<a href="#register_application">アプリケーションの登録</a>で取得した秘密鍵</li>
         </ul>
+        <span style="color:yellow">XXXXXXとかじゃなくてちゃんとした変数名にしたい</span>
 
         <p>
           以下の形式でレスポンスが返ってくるので、 access_token を保存する。<br/>
@@ -209,6 +221,7 @@
           <li>必要なスコープ：<a href="https://dev.twitch.tv/docs/authentication/scopes/" target="_blank" rel="noopener noreferrer">リンク先を参考に必要なスコープを指定</a></li>
         </ul>
 
+        <span style="color:yellow">XXXXXXとかじゃなくてちゃんとした変数名にしたい</span>
         <p>
           例として、「channel:read:polls」と「channel:manage:polls」の2つをスコープに指定する場合、URLの入力は「channel%3Amanage%3Apolls+channel%3Aread%3Apolls」として以下のようになります。<br/>
           ここで「%3A」は「:」のURLエンコードです。「+」で二つのスコープを連結しています。<br/>
@@ -253,7 +266,7 @@
 
         <br/>
         <span id="tmijs"></span>
-        <h3 class="title">tmi.js × Node.js</h3>
+        <h3 class="title">Node.js × tmi.js</h3>
         <p>
           event emitter<br/>
           <a href="https://tmijs.com/" target="_blank" rel="noopener noreferrer">tmi.js</a><br/>
@@ -325,7 +338,7 @@ twClientBot.connect();
 
         <br/>
         <span id="webhook"></span>
-        <h3 class="title">Webhook × Node.js</h3>
+        <h3 class="title">Node.js × Webhook</h3>
         <p>
           Webhook でイベントの通知を受け取るためには、まず受け取るサーバを構築する必要があります。以下リンク先で詳細に解説されていますが、ここでも記載します。<br/>
           <a href="https://dev.twitch.tv/docs/eventsub/handling-webhook-events/" target="_blank" rel="noopener noreferrer">Getting Events Using Webhook Callbacks</a><br/>
@@ -531,7 +544,7 @@ function verifyMessage(hmac, verifySignature) {
 
         <br/>
         <span id="api"></span>
-        <h3 class="title">Twitch API × Node.js</h3>
+        <h3 class="title">Node.js × Twitch API</h3>
         <p>
           Twitch の API の一覧と仕様は <a href="https://dev.twitch.tv/docs/api/reference/" target="_blank" rel="noopener noreferrer">Twitch API Reference</a> 参照。リクエストパラメータやリクエストボディ、レスポンスの内容、必要なスコープがわかるようになっている。<br/>
           例として、ユーザーを Ban する Node.js の関数を作ってみます。<br/>
@@ -570,6 +583,9 @@ function verifyMessage(hmac, verifySignature) {
 }
 </code></pre>
 
+
+        <br/>
+        Node.js と Twitch の組み合わせについては以上です。その他の組み合わせについては以下リンク先を参照してください。<br/>
 
         <br/>
         <span id="others"></span>

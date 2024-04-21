@@ -48,7 +48,7 @@
     </ul>
     <ul class="indent_no">
       <li><a href="#firstly">はじめに</a></li>
-      <li><a href="#obs">OBS × <br/>Node.js</a></li>
+      <li><a href="#obs">Node.js × <br/>OBS</a></li>
       <li><a href="#websocket">WebSocket<br/>の設定</a></li>
       <li><a href="#control_obs">OBS の操作</a></li>
       <li><a href="#others">その他の実装</a></li>
@@ -73,7 +73,7 @@
       </ul>
       <ul class="indent_no">
         <li><a href="#firstly">はじめに</a></li>
-        <li><a href="#obs">OBS × <br/>Node.js</a></li>
+        <li><a href="#obs">Node.js × <br/>OBS</a></li>
         <li><a href="#websocket">WebSocket<br/>の設定</a></li>
         <li><a href="#control_obs">OBS の操作</a></li>
         <li><a href="#others">その他の実装</a></li>
@@ -95,7 +95,7 @@
           <li class="breadcrumbli"><a href="../../../../index.html">ホーム</a></li>
           <li class="breadcrumbli"> > <a href="../js_index.html">js関連技術</a></li>
           <li class="breadcrumbli"> > <a href="./nodejs.html">Node.js</a></li>
-          <li class="breadcrumbli"> > <a href="./what_i_made.html">自作したもの</a></li>
+          <li class="breadcrumbli"> > <a href="./what_i_made.html">Node.js × Twitch × Twitter × OBS</a></li>
           <li class="breadcrumbli"> > Node.js × OBS</li>
         </ul>
 
@@ -103,15 +103,25 @@
         <span id="firstly"></span>
         <h3 class="title">はじめに</h3>
         <p>
+          このページは、 <a href="./what_i_made.html">Node.js × Twitch × Twitter × OBS</a> の続きです。<br/>
+          Node.js から OBS の画面を操作する処理について記載していきます。以下画像右下の赤枠部分です。<br/>
+          <img src="./img/play_with_nodejs_obs.jpg" width="800" /><br/>
+
+          <br/>
+          その他の部分については、以下リンク先に別ページでまとめています。GitLab や Linux, Docker, nginx については記載していません。
         </p>
+
+        <ul>
+          <li><a href="./twitch.html">Node.js × twitch</a></li>
+          <li><a href="./twitter.html">Node.js × twitter</a></li>
+        </ul>
 
         <br/>
         <span id="obs"></span>
-        <h3 class="title">OBS × Node.js</h3>
+        <h3 class="title">Node.js × OBS</h3>
         <p>
-          <a href="https://github.com/obs-websocket-community-projects/obs-websocket-js" target="_blank" rel="noopener noreferrer">obs-websocket-js</a> というライブラリを使うと Node.js から OBS の操作ができるようになります。<br/>
-          <a href="https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md" target="_blank" rel="noopener noreferrer">使用できる関数はこちら</a>。<br/>
-          今回はチャンネルポイントの「1ゲト」を例にして説明してみます。<br/>
+          <a href="https://github.com/obs-websocket-community-projects/obs-websocket-js" target="_blank" rel="noopener noreferrer">obs-websocket-js</a> というライブラリを使うと Node.js から OBS の操作ができるようになります。今回はチャンネルポイントの「1ゲト」を例にして説明してみます。<br/>
+          <span style="color:yellow">実際にポイントを使った時の画面が欲しい</span>
         </p>
 
         <br/>
@@ -125,11 +135,12 @@
           <img src="img/websocker_setting1.jpg" width="500"/><br/>
 
           <br/>
-          下図赤枠部分を設定。<br/>
+          下図赤枠部分を設定（パスワードは任意）。<br/>
+          「接続情報を表示」ボタンを押下。<br/>
           <img src="img/websocker_setting2.jpg" width="400"/><br/>
 
           <br/>
-          サーバーIP、サーバーポート、サーバーパスワードを控える。<br/>
+          サーバーIP、サーバーポート、サーバーパスワードを控えておく。<br/>
           <img src="img/websocker_setting3.jpg" width="400"/><br/>
 
           <br/>
@@ -155,19 +166,21 @@ obs.connect(
           <li>obs_url：WebSocket 接続情報のサーバIP:サーバーポート</li>
           <li>obs_password：サーバーパスワード</li>
         </ul>
-        <p>
-          <br/>
-          <img src="img/obs1.jpg" width="500"/><br/>
-          <img src="img/obs2.jpg" width="500"/><br/>
-        </p>
 
         <br/>
         <span id="control_obs"></span>
         <h3 class="title">OBS の操作</h3>
         <p>
-          上記で WebSocket の設定ができれば、後は対応する関数を呼び出すことで OBS を操作することができます。<br/>
-          どんな関数があるかは <a href="https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#requests-table-of-contents" target="_blank" rel="noopener noreferrer">Requests Table of Contents</a> を参照してください。<br/>
-          今回は使用している関数は以下の通りです。<br/>
+          上記で WebSocket の設定ができれば、後は対応する <a href="https://github.com/obs-websocket-community-projects/obs-websocket-js" target="_blank" rel="noopener noreferrer">obs-websocket-js</a> の関数を呼び出すことで OBS を操作することができます。<br/>
+          関数を呼び出す際には「シーン名」と「ソース名」が必要になることが多いです。画像の赤枠部分です。<br/>
+          <img src="img/obs1.jpg" width="500"/><br/>
+ 
+          <br/>
+          操作対象のソースは予め非表示にして隠しています。以下画像は、普段は隠している「1げと」のソースを表示状態にしたもの。<br/>
+          <img src="img/obs2.jpg" width="500"/><br/>
+
+          <br/>
+          <a href="https://github.com/obs-websocket-community-projects/obs-websocket-js" target="_blank" rel="noopener noreferrer">obs-websocket-js</a> にどんな関数があるかは <a href="https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#requests-table-of-contents" target="_blank" rel="noopener noreferrer">Requests Table of Contents</a> を参照してください。今回使用している関数は以下の通りです。<br/>
         </p>
 
         <ul>
@@ -179,9 +192,17 @@ obs.connect(
           <li><a href="https://github.com/obsproject/obs-websocket/blob/master/docs/generated/protocol.md#removesceneitem" target="_blank" rel="noopener noreferrer">RemoveSceneItem</a>：対象ソースを削除する関数</li>
         </ul>
 
+        <br/>
         <p>
-          ソース名（1げと）を元に対象ソースのコピーを生成→コピーしたアイテムを表示に切り替え→左方向に移動→コピーを削除<br/>
-          という流れです。コピーを生成している理由は、元のソースを操作すると後で戻さないといけないのと、同タイミングで複数回ポイントを使用された場合でも対応できるようにするためです。<br/>
+          これらの関数を組み合わせて作ったソースコードが以下。<br/>
+          ①シーン名（ノーマル）とソース名（1げと）を元に、後続の処理に必要な情報を取得<br/>
+          ②①で取得した情報を元に、対象ソースのコピーを生成<br/>
+          ③コピーしたアイテムを表示に切り替え<br/>
+          ④コピーしたアイテムの情報を取得<br/>
+          ⑤左方向に移動<br/>
+          ⑥コピーを削除<br/>
+          という流れになっています。<br/>
+          コピーを生成している理由は、コピーせずに元のソースを操作すると後で移動前の状態に戻さないといけないのと、同タイミングで複数回ポイントを使用された場合でも対応できるようにするためです。<br/>
         </p>
 
 
@@ -202,34 +223,34 @@ obs.connect(
 })
 
 async function moveObsItem(sourceName) {
-  // コピー元アイテムの情報を取得
+  // ①コピー元アイテムの情報を取得
   let orgItem = await obs.call('GetSceneItemId', {
     'sceneName': sceneNameNormal,
     'sourceName': sourceName
   });
   Object.values(orgItem).forEach(async (orgItemId) => {
-    // コピー生成
+    // ②コピー生成
     let dupItem = await obs.call('DuplicateSceneItem', {
       'sceneName': sceneNameNormal,
       'sceneItemId': orgItemId
     });
     Object.values(dupItem).forEach(async (dupItemId) => {
-      // 生成したアイテムを表示
+      // ③コピーしたアイテムを表示
       obs.call('SetSceneItemEnabled', {
         'sceneName': sceneNameNormal,
         'sceneItemId': dupItemId,
         'sceneItemEnabled':true
       });
-      // 生成したアイテムの情報取得
+      // ④コピーしたアイテムの情報取得
       let sceneItem = await obs.call('GetSceneItemTransform', {
         'sceneName': sceneNameNormal,
         'sceneItemId': dupItemId,
       });
 
-      // 関数呼び出し（左に移動させる）
+      // ⑤関数呼び出し（左に移動させる）
       await moveHorizontal(dupItemId, sceneItem)
 
-      // 生成したコピーを消す
+      // ⑥生成したコピーを消す
       obs.call('RemoveSceneItem', {
         'sceneName': sceneNameNormal,
         'sceneItemId': dupItemId,
@@ -247,7 +268,7 @@ async function moveHorizontal(sceneItemId, sceneItem) {
       'sceneName': sceneNameNormal,
       'sceneItemId': sceneItemId,
       'sceneItemTransform': {
-        'positionX': (posX + i * 5 * -1)
+        'positionX': (posX + i * -5)
       }
     });
     await setTimeout(10)  // 0.1秒待つ
@@ -255,6 +276,9 @@ async function moveHorizontal(sceneItemId, sceneItem) {
 }
 </code></pre>
 
+
+        <br/>
+        Node.js と OBS の組み合わせについては以上です。その他の組み合わせについては以下リンク先を参照してください。<br/>
 
         <br/>
         <span id="others"></span>

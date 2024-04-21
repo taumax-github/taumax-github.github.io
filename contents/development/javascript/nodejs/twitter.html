@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../../../../css/print.css" media="print">
     <script src="../../../../js/openclose.js"></script>
 
-    <title>Twitter × Node.js</title>
+    <title>Node.js × X（旧Twitter）</title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
@@ -49,7 +49,7 @@
     <ul class="indent_no">
       <li><a href="#firstly">はじめに</a></li>
       <li><a href="#implementation">作った物</a></li>
-      <li><a href="#twitter">twitter × <br/>Node.js</a></li>
+      <li><a href="#twitter">Node.js × X(旧twitter)<br/></a></li>
       <li><a href="#others">その他の実装</a></li>
     </ul>
   </header><!--/.pc-->
@@ -73,7 +73,7 @@
       <ul class="indent_no">
         <li><a href="#firstly">はじめに</a></li>
         <li><a href="#implementation">作った物</a></li>
-        <li><a href="#twitter">X（旧twitter） × Node.js</a></li>
+        <li><a href="#twitter">Node.js × X（旧twitter）</a></li>
         <li><a href="#others">その他の実装</a></li>
       </ul>
     </div><!--/#menubar-s-->
@@ -87,13 +87,13 @@
       <section class="box">
         <!-- tweetボタン -->
         <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        <h2 class="title">Twitch × Twitter × Node.js</h2>
+        <h2 class="title">Node.js × Twitter</h2>
 
         <ul class="breadcrumb">
           <li class="breadcrumbli"><a href="../../../../index.html">ホーム</a></li>
           <li class="breadcrumbli"> > <a href="../js_index.html">js関連技術</a></li>
           <li class="breadcrumbli"> > <a href="./nodejs.html">Node.js</a></li>
-          <li class="breadcrumbli"> > <a href="./what_i_made.html">自作したもの</a></li>
+          <li class="breadcrumbli"> > <a href="./what_i_made.html">Node.js × Twitch × Twitter × OBS</a></li>
           <li class="breadcrumbli"> > Node.js × Twitter</li>
         </ul>
 
@@ -101,13 +101,24 @@
         <span id="firstly"></span>
         <h3 class="title">はじめに</h3>
         <p>
+          このページは、 <a href="./what_i_made.html">Node.js × Twitch × Twitter × OBS</a> の続きです。<br/>
+          Node.js から X（旧twitter）にポストする部分について記載します。以下画像の赤枠部分です。<br/>
+          <img src="./img/play_with_nodejs_twitter.jpg" width="800" /><br/>
+
+          <br/>
+          その他の部分については、以下リンク先に別ページでまとめています。GitLab や Linux, Docker, nginx については記載していません。
         </p>
+
+        <ul>
+          <li><a href="./twitch.html">Node.js × twitch</a></li>
+          <li><a href="./obs.html">Node.js × OBS</a></li>
+        </ul>
 
         <br/>
         <span id="twitter"></span>
-        <h3 class="title">X（旧twitter） × Node.js</h3>
+        <h3 class="title">Node.js × X（旧twitter）</h3>
         <p>
-          X（旧twitter）のAPIは、限定された範囲であれば無料で使用することができます。具体的には以下。
+          Node.js から X（旧twitter）にポストするためには Xの API を呼び出す必要があります。X（旧twitter）のAPIは、限定された条件内であれば無料で使用することができます。具体的な条件は以下。
         </p>
 
         <ul>
@@ -120,7 +131,7 @@
           詳しくは<a href="https://programming-zero.net/how-to-start-twitter-api-basic-and-free/" target="_blank" rel="noopener noreferrer">リンク先参照</a>。<br/>
 
           <br/>
-          XのAPIはv1.1, v2の2つがあり、それぞれ使い分ける必要がある。
+          XのAPIはv1.1, v2の2つがあり、それぞれ以下のように使い分ける必要があります。
         </p>
 
         <ul>
@@ -129,7 +140,7 @@
         </ul>
 
         <p>
-          私は、X関連の機能を Node.js で実装する場合、 <a href="https://github.com/PLhery/node-twitter-api-v2/tree/065b02ad264d70e8f879184fb7130e033c659cc3" target="_blank" rel="noopener noreferrer">node-twitter-api-v2</a> というライブラリを使用しています。これを使うと簡単にv1.1とv2を切り替えることができるので便利です。実際にそのライブラリを使用したコードは以下の通り。<br/>
+          私はX関連の機能を Node.js で実装する場合、 <a href="https://github.com/PLhery/node-twitter-api-v2/tree/065b02ad264d70e8f879184fb7130e033c659cc3" target="_blank" rel="noopener noreferrer">node-twitter-api-v2</a> というライブラリを使用しています。これを使うと簡単にv1.1とv2を切り替えることができるので便利です。実際にそのライブラリを使用したコードは以下の通り。<br/>
         </p>
 
 
@@ -176,7 +187,16 @@
           <br/>
           これは余談ですが、（おそらくですが）2023年4月頃にXのAPI仕様が変わって以降、APIキーを取得するプロセスが変わって案外楽に取得できるようになったようです。<br/>
           無料枠で済むようなものであれば気軽に申請できるようになったようなので興味ある方はやってみてはいかがでしょうか。<br/>
+
+          <br/>
+          <a href="./twitch.html#webhook">Twitch の Webhook</a> と組み合わせることで、配信開始と同時にXに自動的にポストするということも実現できます。<br/>
+          以下が実際のポストです。<br/>
         </p>
+
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">twitch配信通知bot<br>twitchでロマサガ3配信中です！<br>お時間合う方是非遊びに来てみてくださーい。<br>▶️視聴はこちら：<a href="https://t.co/P46Z6JrYH1">https://t.co/P46Z6JrYH1</a><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%AC3?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガ3</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B2%E3%83%BC%E3%83%A0?src=hash&amp;ref_src=twsrc%5Etfw">#レトロゲーム</a> <a href="https://twitter.com/hashtag/%E3%83%AC%E3%83%88%E3%83%AD%E3%82%B3%E3%83%B3%E3%82%B7%E3%83%A5%E3%83%BC%E3%83%9E%E3%83%BC%E6%84%9B%E5%A5%BD%E4%BC%9A?src=hash&amp;ref_src=twsrc%5Etfw">#レトロコンシューマー愛好会</a> <a href="https://t.co/UeLX1jIXB8">pic.twitter.com/UeLX1jIXB8</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1708089149629301126?ref_src=twsrc%5Etfw">September 30, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <br/>
+        Node.js と X の組み合わせについては以上です。その他の組み合わせについては以下リンク先を参照してください。<br/>
 
         <br/>
         <span id="others"></span>
