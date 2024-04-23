@@ -129,7 +129,7 @@
           <iframe src="https://player.twitch.tv/?video=2098995290&time=2h9m35s&parent=taumax-github.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
           <li>
             配信開始→Webhook→twitter<br/>
-            配信を開始した際にもWebhookリクエストを飛ばすことができるので、それをトリガーにX（旧twitter）に配信開始を告知する処理を稼働させています（下図の赤線の流れ）。<br/>
+            配信を開始した際にもWebhookリクエストを飛ばすことができるので、それをトリガーにX（旧twitter）に配信開始を告知しています（下図の赤線の流れ）。<br/>
             <img src="./img/auto_post.jpg" width="800" /><br/>
 
             <br/>
@@ -144,6 +144,9 @@
         <br/>
         <span id="impletentation"></span>
         <h3 class="title">実装</h3>
+        <p>
+          以下リンク先で、 Node.js と Twitch の組み合わせ部分、 Twitter との組み合わせ部分、 OBS との組み合わせ部分の3つに分けて説明しています。
+        </p>
         <ul>
           <li><a href="./twitch.html">Node.js × twitch</a></li>
           <li><a href="./twitter.html">Node.js × twitter</a></li>

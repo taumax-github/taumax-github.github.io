@@ -120,8 +120,13 @@
         <span id="obs"></span>
         <h3 class="title">Node.js × OBS</h3>
         <p>
-          <a href="https://github.com/obs-websocket-community-projects/obs-websocket-js" target="_blank" rel="noopener noreferrer">obs-websocket-js</a> というライブラリを使うと Node.js から OBS の操作ができるようになります。今回はチャンネルポイントの「1ゲト」を例にして説明してみます。<br/>
-          <span style="color:yellow">実際にポイントを使った時の画面が欲しい</span>
+          <a href="https://github.com/obs-websocket-community-projects/obs-websocket-js" target="_blank" rel="noopener noreferrer">obs-websocket-js</a> というライブラリを使うと Node.js から OBS の操作ができるようになります。今回は自分のチャンネルでチャンネルポイントとして実装している「1ゲト」を例にして説明してみます。<br/>
+          以下動画の9分54秒頃が1ゲトのチャンネルポイントを使用したときの実際の画面です。これを Node.js を使って実現しています。<br/>
+          ①Webhook でイベントを受信<br/>
+          ②チャットを投げる<br/>
+          ③チャットをトリガーにローカルの Node.js から OBS を操作する<br/>
+          という流れになっています。このページで説明するのは③の部分のみです。①については <a href="./twitch.html#webhook">Webhook</a> を、②については <a href="./twitch.html#tmijs">tmi.js</a> を参照してください。<br/>
+          <iframe src="https://player.twitch.tv/?video=2105785157&time=0h09m54s&parent=taumax-github.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
         </p>
 
         <br/>
@@ -144,7 +149,9 @@
           <img src="img/websocker_setting3.jpg" width="400"/><br/>
 
           <br/>
-          この設定ができれば、 以下のコードで OBS に接続できるようになります。
+          この設定ができれば、 以下のコードで OBS に接続できるようになります。<br/>
+          事前に以下コマンドで obs-websocket-js をインストールしている前提です。<br/>
+          <code>npm i obs-websocket-js</code><br/>
         </p>
 
 <pre class="title"><code class="title">obs_control.js</code></pre>

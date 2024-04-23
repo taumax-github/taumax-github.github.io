@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="../../../../css/print.css" media="print">
     <script src="../../../../js/openclose.js"></script>
 
-    <title>とあるＩＴエンジニアの知識整理</title>
+    <title>Node.js</title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
@@ -105,7 +105,6 @@
         <span id="what_is_nodejs"></span>
         <h3 class="title">Node.jsとは</h3>
         <p>
-          <br/>
           Node.jsはJavaScriptの実行環境（ランタイム）です。サーバーサイドでJavaScriptを使う事が出来るようになります。<br/>
           HTTPをやり取りするサーバーとしてユーザーからのリクエストをやり取りするなど、ネットワークの処理を得意としています。<br/>
           「V8」と「libuv」の2つがNode.jsの中核を成しています。<br/>
@@ -334,17 +333,21 @@ nodejs_testファイルの中
         <span id="single_thread"></span>
         <h3 class="title">シングルスレッド</h3>
         <p>
-          <span style="color: yellow">イベントループモデルとは？</span><br/>
-          Node.js はシングルスレッドのイベントループモデルを採用しており、1つのメインスレッドでイベントループを実行します。これは処理の直列化によって効率的にタスクを処理するためです。<br/>
-          非同期的な処理を実現するために、I/O 操作や非同期処理を別のスレッドで実行することはありますが、これらのスレッドは裏側で動作する補助的なスレッドであり、メインスレッドはブロックされることなく処理を続けます。<br/>
-          これにより、多くの HTTP リクエストを効率的に処理できるようになっています。Apache のようなマルチプロセス/マルチスレッドのモデルとは異なり、Node.js はシングルスレッドであるため、スレッドの切り替えによるオーバーヘッドが発生せず、メモリ消費量を抑えることができます。<br/>
+          Node.js はシングルスレッドのイベントループモデル（※）を採用しており、1つのメインスレッドでイベントループを実行します。これは処理の直列化によって効率的にタスクを処理するためです。<br/>
+          シングルスレッドとは言っても、非同期的な処理を実現するために、I/O 操作や非同期処理を別のスレッドで実行することはあります。しかしこれらのスレッドは裏側で動作する補助的なスレッドであり、メインスレッドはブロックされることなく処理を続けます。<br/>
+          これにより、多くのリクエストを効率的に処理できるようになっています。Apache のようなマルチプロセス/マルチスレッドのモデルとは異なり、Node.js はシングルスレッドであるため、スレッドの切り替えによるオーバーヘッドが発生せず、メモリ消費量を抑えることができます。<br/>
           シングルスレッドで動かしたら、待ちが発生した場合を考慮すると高いパフォーマンスが得られないように感じますが、Non-Blocking IOという特徴を持つため、シングルスレッドでも性能を最大限発揮できるようになっています。<br/>
+
+          <br/>
+          ※イベントループモデルについては以下の記事がわかりやすいと思ったのでリンクを張っておきます。<br/>
+          <a href="https://qiita.com/ist-ko-su/items/a985864fc767d8bdfc4a" target="_blank" rel="noopener noreferrer">描いて理解するイベントループ</a><br/>
         </p>
 
         <br/>
         <span id="implementation"></span>
         <h3 class="title">作った物</h3>
         <p>
+          Node.js を使って実際にものを作ってみました。<br/>
           <a href="./what_i_made.html">具体的な中身の話はこちら</a><br/>
         </p>
 
@@ -386,6 +389,7 @@ nodejs_testファイルの中
           <li><a href="https://gk-fe.com/article/about-packagejson/" target="_blank" rel="noopener noreferrer">GK Front-end Blog package.jsonとは</a></li>
           <li><a href="https://qiita.com/hidekatsu-izuno/items/486263d86b6a4a0b8636" target="_blank" rel="noopener noreferrer">Qiita ESモジュールとCommonJSと対応したTypeScriptパッケージの（たぶん）正しい作り方</a></li>
           <li><a href="https://zenn.dev/yodaka/articles/596f441acf1cf3" target="_blank" rel="noopener noreferrer">Zenn CommonJSとES Modulesについてまとめる</a></li>
+          <li><a href="https://qiita.com/ist-ko-su/items/a985864fc767d8bdfc4a" target="_blank" rel="noopener noreferrer">Qiita 描いて理解するイベントループ</a></li>
         </ul>
       </section><!-- section class="box" -->
 
