@@ -330,24 +330,37 @@ twClientBot.connect();
           <code>twClientBot.on('message', (channel, userstate, msg, self) => {...中略...});</code><br/>
           の部分はチャットが入力される度に稼働する処理です。channel にはチャンネル名、 userstate にはチャットしてくれたユーザーの情報、 msg にはチャットに入力された文言、 self は自分自身かどうかを示す bool 型の値が入っています。<br/>
           第2引数の userstate には以下のようなユーザー情報が json 形式で入っているので、主にこの userstate と msg（ユーザーがチャットに投げた文言） を使って自由に処理を組み立てることができます。<br/>
-          <span style="color: yellow">json の中身変わってるっぽい</span>
         </p>
 
 <pre><code>{
-  'badges': { 'broadcaster': '1', 'warcraft': 'horde' },
-  'color': '#FFFFFF',
-  'display-name': 'サンプル',
-  'emotes': { '25': [ '0-4' ] },
-  'mod': true,
-  'room-id': '[数値]',
-  'subscriber': false,
-  'turbo': true,
-  'user-id': '[数値]',
-  'user-type': 'mod',
-  'emotes-raw': '25:0-4',
-  'badges-raw': 'broadcaster/1,warcraft/horde',
-  'username': 'sample',
-  'message-type': 'chat'
+  "badge-info": {
+      "subscriber": "8"
+  },
+  "badges": {
+      "broadcaster": "1",
+      "subscriber": "0",
+      "premium": "1"
+  },
+  "client-nonce": "sample",
+  "color": "#0000FF",
+  "display-name": "sample",
+  "emotes": null,
+  "first-msg": false,
+  "flags": null,
+  "id": "sample",
+  "mod": false,
+  "returning-chatter": false,
+  "room-id": "sample",
+  "subscriber": true,
+  "tmi-sent-ts": "sample",
+  "turbo": false,
+  "user-id": "sample",
+  "user-type": null,
+  "emotes-raw": null,
+  "badge-info-raw": "subscriber/8",
+  "badges-raw": "broadcaster/1,subscriber/0,premium/1",
+  "username": "sample",
+  "message-type": "chat"
 }
 </code></pre>
 

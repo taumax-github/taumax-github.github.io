@@ -171,13 +171,55 @@
         <br/>
         <p>
           Vueインスタンスに定義したdataをtemplateに埋め込み、フックや関数を介してdataを操作することでリアクティブなシステムを構築することができます。<br/>
-          以下はVue.jsのコード例です。VueインスタンスにoutMsgとinMsgを定義し、textに入力すると「だよ」という文字列を付与してブラウザに表示します。<br/>
-          <span style="color:yellow">フックの話してるのにサンプルがフック使ってない。</span><br/>
-          <img src="./img/vueコード例.jpg" style="border: solid 1px #FFFFFF" width="700"/><br/>
+          以下はVue.jsのコード例です。VueインスタンスにoutMsgとinMsgを定義し、ライフサイクルフックの created でデフォルト値を設定。<br/>
+          textに入力すると「だよ」という文字列を付与してブラウザに表示します。<br/>
+          ※ created なんて使わずに <code>outMsg: 'default message.'</code> と定義すればいいのですが、サンプルなので無理矢理ですが created を使ってみました。<br/>
 
           <br/>
-          以下のリンク先が上記コードを実際に動かしたものです。<br/>
+          以下のリンク先で実際に触ることができます。<br/>
           <a href="http://localhost:3000/character/aaa" target="_blank" rel="noopener noreferrer"/>サンプル</a><br/>
+
+          <br/>
+          ソースコードは以下の通り。<br/>
+        </p>
+
+
+<pre><code>&lt;script lang="ts"&gt;
+  export default {
+    data() {
+      return {
+        outMsg: '',
+        inMsg: ''
+      }
+    },
+    created: function() {
+      this.outMsg = 'default message.'
+    },
+    methods: {
+      execFunc: function() {
+        if (this.inMsg !== '') {
+          this.outMsg = this.inMsg + 'だよ'
+        } else {
+          this.outMsg = 'no message.'
+        }
+      }
+    }
+  }
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div id="app"&gt;
+    &lt;input type='text' v-model="inMsg" v-on:input="execFunc" placeholder='何か入力' style="color: black"/&gt;
+    &lt;p style="color: black"&gt;{{ outMsg }}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+
+
+        <br/>
+        <p>
+          構造を図解するとこんな感じです。<br/>
+          <img src="./img/vueコード例.jpg" style="border: solid 1px #FFFFFF" width="700"/><br/>
         </p>
 
         <br/>
@@ -206,6 +248,7 @@
           <br/>
           Nuxtでは、<code>nuxt.config.ts</code> に <code>"パス": {レンダリングモード}</code> の形式でページ毎のレンダリング方法を記述することでレンダリング方法を制御します。具体的には以下。
         </p>
+
 <pre class="title"><code class="title">nuxt.config.ts</code></pre>
 <pre><code>export default defineNuxtConfig({
   devtools: { enabled: true },
