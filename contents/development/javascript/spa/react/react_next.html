@@ -291,14 +291,15 @@
         <span id="rendering"></span>
         <h4 class="title">レンダリング</h4>
         <p>
-          Nextで使えるレンダリング手法とその概要は<a href="../spa.html">こちら</a>に記載しているので、どのようにしてそれを実現するかを記載します。<br/>
+          Nextで使えるレンダリング手法とその概要は<a href="../spa.html#rendering">こちら</a>に記載しているので、どのようにしてそれを実現するかを記載します。<br/>
 
           <br/>
-          Nextでは、所定の関数を呼び出すことでレンダリングのタイミングを制御します。使用する関数は以下です。getServerSideProps と getStaticProps は export する必要があります。<br/>
+          Nextでは、所定の関数を呼び出すことでレンダリングモードを制御します。使用する関数は以下です。getServerSideProps, getStaticProps と getStaticPaths は export する必要があります。<br/>
         </p>
         <ul>
-          <li>getServerSideProps：ページを描画する前に呼ばれる。この関数が返した props を元にページを描画される。</li>
+          <li>getServerSideProps：ページを描画する前に呼ばれる。この関数が返した props を元にページが描画される。</li>
           <li>getStaticProps：ビルド時に実行される。revalidateに数値（秒数）を指定して返すと、指定秒数経過後に再レンダリングされる。</li>
+          <li>getStaticPaths：事前にすべてのページを生成せず、必要に応じてhtml生成、およびキャッシュからの返却を行う。pathsにないパスに対してリクエストがあったときに、fallbackキーの値によって挙動が異なる。</li>
           <li>unstable_revalidate：当該関数が実行されたタイミングで、getStaticPropsを使用しているページが再レンダリングされる。</li>
         </ul>
 
@@ -312,6 +313,7 @@
           <tr><td>SSR(Server-Side Rendering)</td><td>getServerSideProps</td></tr>
           <tr><td>CSR(Client-Side Rendering)</td><td>-（デフォルトがCSRなので使用する関数は無し）</td></tr>
           <tr><td>SSG(Static Site Generation)</td><td>getStaticProps</td></tr>
+          <tr><td>ISG(Incremental Static Generation)</td><td>getStaticPaths</td></tr>
           <tr><td>ISR(Incremental Static Regeneration)</td><td>revalidateを返すgetStaticProps</td></tr>
           <tr><td>On Demand ISR<br/>(On Demand Incremental Static Regeneration)</td><td>revalidateを返すgetStaticPropsとunstable_revalidateの組み合わせ</td></tr>
         </table>
@@ -396,6 +398,9 @@ export default MyApp
           <li><a href="https://dev.classmethod.jp/articles/next-js-12-1/" target="_blank" rel="noopener noreferrer">DevelopersIO Next.js 12.1の新機能オンデマンド ISRでページを手動再検証させてみた</a></li>
           <li><a href="https://zenn.dev/shimabukuromeg/articles/955cea236650d4" target="_blank" rel="noopener noreferrer">Zenn On-demand ISRの機能を試してみた</a></li>
           <li><a href="https://kk-web.link/blog/20220412" target="_blank" rel="noopener noreferrer">kk-web Next.jsのOn-demand Revalidationの簡単な説明</a></li>
+          <li><a href="https://scrapbox.io/teamlab-frontend/SSR,_CSR,_SSG,_ISG,_ISR%E3%81%AE%E9%81%95%E3%81%84%E3%81%A8%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91%E6%96%B9%E3%80%82%E3%81%9D%E3%82%8C%E3%81%9E%E3%82%8CNext.js%E3%81%A7Todo%E3%82%A2%E3%83%97%E3%83%AA%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82" target="_blank" rel="noopener noreferrer">teamlab-frontend SSR, CSR, SSG, ISG, ISRの違いと使い分け方。それぞれNext.jsでTodoアプリ作ってみた。</a></li>
+          <li><a href="https://note.com/meg_t/n/n286d6b52073e" target="_blank" rel="noopener noreferrer">note Next.jsのIncremental Static Regenerationが凄い</a></li>
+          <li><a href="https://zenn.dev/k_kazukiiiiii/articles/dc14b9249d0255" target="_blank" rel="noopener noreferrer">Zenn Next.js + TypeScript | CSR・SSR・SG・ISG・ISR・On Demand ISR の違いをコード付きで解説</a></li>
         </ul>
       </section><!-- section class="box" -->
 

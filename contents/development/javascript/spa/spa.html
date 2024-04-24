@@ -189,17 +189,17 @@
           Next.js, Nuxt3共に、ページ毎にレンダリングモードの選択が可能になっています。<br/>
         </p>
 
-        <div class="slider" style="height: 562px; width: 100%">
+        <div class="slider" style="width: 100%">
           <table border="1">
-            <tr><th rowspan="2" style="z-index:0">手法</th><th colspan="2">可否</th><th rowspan="2">メリット</th><th rowspan="2">デメリット</th><th rowspan="2">備考</th></tr>
+            <tr><th rowspan="2" style="z-index:0">手法</th><th colspan="2">可否</th><th rowspan="2">備考</th></tr>
             <tr><th style="z-index:0">Next.js</th><th style="z-index:0">Nuxt</th></tr>
-            <tr><td><a href="#ssr">SSR(Server-Side Rendering)</a></td><td>●</td><td>●</td><td></td><td></td><td></td></tr>
-            <tr><td><a href="#csr">CSR(Client-Side Rendering)</a></td><td>●</td><td>●</td><td></td><td></td><td></td></tr>
-            <tr><td><a href="#ur">Universal Rendering</a></td><td>✖</td><td>●</td><td></td><td></td><td>SSRとCSRのいいとこどり<br/>Nuxtのデフォルトのレンダリングモード</td></tr>
-            <tr><td><a href="#ssg">SSG(Static Site Generation)</a></td><td>●</td><td>▲</td><td></td><td></td><td>Nuxtは発展途上</td></tr>
-            <tr><td><a href="#isg">ISG(Incremental Static Generation)</a></td><td>✖<font color="yellow">ここ怪しい</font></td><td>▲</td><td></td><td></td><td>Nuxtは発展途上</td></tr>
-            <tr><td><a href="#isr">ISR(Incremental Static Regeneration)</a></td><td>●</td><td>✖</td><td></td><td></td><td>静的に生成したページをrevalidateで指定した時間を超えてからアクセスがあった時、<br/>更新がないかチェックしてからページ更新する機能です。</td></tr>
-            <tr><td><a href="#od_isr">On Demand ISR<br/>(On Demand Incremental Static Regeneration)</a></td><td>●</td><td>✖</td><td></td><td></td><td>ISRに柔軟性をもたせたような機能。<br/>任意のタイミングで更新可能。</td></tr>
+            <tr><td><a href="#ssr">SSR(Server-Side Rendering)</a></td><td>●</td><td>●</td><td></td></tr>
+            <tr><td><a href="#csr">CSR(Client-Side Rendering)</a></td><td>●</td><td>●</td><td></td></tr>
+            <tr><td><a href="#ur">Universal Rendering</a></td><td>✖</td><td>●</td><td>SSRとCSRのいいとこどり<br/>Nuxtのデフォルトのレンダリングモード</td></tr>
+            <tr><td><a href="#ssg">SSG(Static Site Generation)</a></td><td>●</td><td>●</td><td></td></tr>
+            <tr><td><a href="#isg">ISG(Incremental Static Generation)</a></td><td>●</td><td>●</td><td>同じISGでもNextとNuxtで内容が異なる。</td></tr>
+            <tr><td><a href="#isr">ISR(Incremental Static Regeneration)</a></td><td>●</td><td>✖</td><td></td></tr>
+            <tr><td><a href="#od_isr">On Demand ISR<br/>(On Demand Incremental Static Regeneration)</a></td><td>●</td><td>✖</td><td>ISRに柔軟性をもたせたような機能。<br/>任意のタイミングで更新可能。</td></tr>
           </table>
         </div>
 
@@ -240,13 +240,17 @@
           一度生成したファイルを何らかの方法で削除したり、強制的に再生成しない限りは、永遠に同じ内容のファイルが返されます。<br/>
           そのため、例えば現在時刻を表示するようにしていたとしても、htmlファイルが生成された時刻で固定され、何回リロードしても表示時刻は変化しません。<br/>
           これを静的サイトジェネレーション(Static Site Generation)と言います。<br/>
-          <font color="yellow">NuxtではこのSSGは現在問題を抱えている状態です。</font><br/>
           <img src="./img/SSGの動作イメージ.jpg" width="600"/><br/>
         </p>
 
         <br/>
         <span id="isg"></span>
-        <h4 class="title">【Nuxt】ISG(Incremental Static Generation)</h4>
+        <h4 class="title">【Next, Nuxt】ISG(Incremental Static Generation)</h4>
+        <p>
+          ISG の言葉の定義が Next と Nuxt で異なっているので分けて記載します。
+        </p>
+
+        <h5 class="title">Nuxt の ISG</h5>
         <p>
           <a href="#ssg">SSG(Static Site Generation)</a>とほぼ同じですが、n秒後（nはアプリケーションで指定）にアクセスすると再度サーバ側でhtmlファイルを生成し、それがクライアントに返却されます。<br/>
           これをインクリメンタル静的ジェネレーション(Incremental Static Generation)と言います。<br/>
@@ -254,10 +258,18 @@
         </p>
 
         <br/>
+        <h5 class="title">Next の ISG</h5>
+        <p>
+          <a href="#ssg">SSG</a>のページが大量にある場合にビルド時間がかかりすぎる問題を解決した手法。<br/>
+          事前にすべてのページを生成せず、初回リクエスト時には<a href="#ssr">SSR</a>で完全なHTMLを生成しクライアントに返却（キャッシュもする）。2回目以降のリクエスト時にはキャッシュを表示する。<br/>
+          という仕組みです。<br/>
+        </p>
+
+        <br/>
         <span id="isr"></span>
         <h4 class="title">【Next】ISR(Incremental Static Regeneration)</h4>
         <p>
-          <a href="#isg">ISG(Incremental Static Generation)</a>との違いが分からない。<br/>
+          NextのISGは<a href="#isg">NuxtのISG</a>と仕組み的には同じです（実現方法は異なります）。<br/>
         </p>
 
         <br/>
