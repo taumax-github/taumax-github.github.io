@@ -104,7 +104,21 @@
           <li class="breadcrumbli"> > Node.js × Twitch</li>
         </ul>
 
-        <br/><br/>
+        <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="firstly"></span>
         <h3 class="title">はじめに</h3>
         <p>
@@ -137,6 +151,20 @@
           <img src="./img/application_info.jpg" width="500"/><br/>
         </p>
 
+
+        <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
 
         <br/>
         <span id="authentication"></span>
@@ -199,6 +227,20 @@
 
 
         <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="auth_code_grant_flow"></span>
         <h4>Authorization code grant flow</h4>
         <p>
@@ -237,6 +279,20 @@
         </p>
 
         <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="user"></span>
         <h3 class="title">Twitch のユーザー</h3>
         <p>
@@ -258,6 +314,20 @@
 
           <a href="https://www.streamweasels.com/tools/convert-twitch-username-to-user-id/" target="_blank" rel="noopener noreferrer">Convert Twitch Username to Channel ID</a><br/>
         </p>
+
+        <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
 
         <br/>
         <span id="tmijs"></span>
@@ -370,11 +440,27 @@ twClientBot.connect();
         </p>
 
         <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="webhook"></span>
         <h3 class="title">Node.js × Webhook</h3>
         <p>
           Webhook でイベントの通知を受け取るためには、まず受け取るサーバを構築する必要があります。以下リンク先で詳細に解説されていますが、ここでも記載します。<br/>
           <a href="https://dev.twitch.tv/docs/eventsub/handling-webhook-events/" target="_blank" rel="noopener noreferrer">Getting Events Using Webhook Callbacks</a><br/>
+
+          <br/>
           Webhook でイベントを受け取るためには、まず以下のような形式で curl コマンドを実行する必要があります。
         </p>
 
@@ -398,7 +484,10 @@ https://api.twitch.tv/helix/eventsub/subscriptions
 
         <br/>
         <ul>
-          <li>subscription_type：<a href="https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types/" target="_blank" rel="noopener noreferrer">Subscription Types</a> の Name 列の値を設定。配信開始なら 'stream.online' を、チャンネルポイントの使用を受け取るなら 'channel.channel_points_custom_reward_redemption.add' を指定。</li>
+          <li>
+            subscription_type：<a href="https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types/" target="_blank" rel="noopener noreferrer">Subscription Types</a> の Name 列の値を設定。<br/>
+            例として、配信開始なら 'stream.online' を、チャンネルポイントの使用を受け取るなら 'channel.channel_points_custom_reward_redemption.add' を指定。
+          </li>
           <li>user_id：イベントを受け取りたいユーザーの user_id（基本的には自分の user_id を指定するが、他人の user_id を指定すれば、他人の配信開始などのイベントを受信することも可能）</li>
           <li>
             callback_url：Webhook でイベントの通知を受け取りたいURL<br/>
@@ -437,6 +526,7 @@ app.post([パス], async (req, res) => {
   // 初回認証
   if (messageType === MESSAGE_TYPE_VERIFICATION) {
     res.status(200).send(req.body.challenge);
+  } else {
     ...
   }
 }
@@ -597,6 +687,20 @@ function verifyMessage(hmac, verifySignature) {
         </p>
 
         <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="api"></span>
         <h3 class="title">Node.js × Twitch API</h3>
         <p>
@@ -686,6 +790,21 @@ function verifyMessage(hmac, verifySignature) {
           <li><a href="https://qiita.com/pasta04/items/750d71d41e5edd12932b" target="_blank" rel="noopener noreferrer">Qiita Twitch APIを利用してみよう</a></li>
         </ul>
       </section><!-- section class="box" -->
+
+      <br/>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br/>
 
       <footer>
         <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>

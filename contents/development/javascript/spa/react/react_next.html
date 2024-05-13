@@ -19,7 +19,7 @@
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-    <title>とあるＩＴエンジニアの知識整理</title>
+    <title>React/Next.js</title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
@@ -109,6 +109,20 @@
         </ul>
 
         <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="react"></span>
         <h3 class="title">React</h3>
         <p>
@@ -187,6 +201,20 @@
         </ul>
 
         <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="jsx"></span>
         <h4 class="title">JSX(JavaScript XML)</h4>
         <p>
@@ -244,6 +272,20 @@
 </code></pre>
 
         <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5924490903263360"
+            data-ad-slot="6254596512"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="hooks"></span>
         <h4 class="title">React Hooks</h4>
         <p>
@@ -278,6 +320,20 @@
   &lt;button onClick={() => setCount(count + 1)}&gt;+&lt;/button&gt;
 &lt;/div&gt;
 </code></pre>
+
+        <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5924490903263360"
+            data-ad-slot="6254596512"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
 
         <br/>
         <span id="next"></span>
@@ -345,33 +401,70 @@ export default MyApp
 
 
         <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5924490903263360"
+            data-ad-slot="6254596512"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="what_i_made"></span>
         <h3 class="title">作った物</h3>
         <p>
-          <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
+          ゲームのサガシリーズが好きなので、初代サガである魔界塔士サガに関するものを作ってみました。<br/>
+          実際に作った物は大まかに以下。<br/>
         </p>
 
         <ul>
-          <li>魔界塔士サガの仲間モンスター一覧</li>
+          <li>仲間モンスター一覧</li>
           <li>変身後モンスター算出</li>
           <li>能力一覧</li>
         </ul>
 
+        <p>
+          各ページのレイアウトを統一するために、共通部分を CommonBody, CommonHeader, CommonFotter に分け、ページ毎に異なる部分を別途作成してそれを埋め込む形で作成しています。<br/>
+          <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
+        </p>
+
         <br/>
         <p>
-          モンスター詳細情報のまとめ。<br/>
-          各モンスターの詳細画面と、変身後モンスター算出の詳細欄にお暗示内容が出力される。<br/>
-          同じ内容を書きたくないので、body部をクラス内に記載し、それを詳細画面と変身後モンスター算出の詳細欄の両方で流用する形にしている。<br/>
-          <a href="https://sagamax.cyou/games/saga1/monster/monster_transform" target="_blank" rel="noopener noreferrer">モンスター情報</a><br/>
-          <img src="img/モンスター情報.jpg" width="500"/><br/>
+          魔界塔士サガはモンスターを仲間にすることができ、そのモンスターは敵が落とす肉を食べることでより強力なモンスターに変身し、成長するというシステムになっています。何に変身するかは（普通は）分からないようになっています。<br/>
+          仲間になるモンスターを一覧化したものが<a href="https://sagamax.cyou/games/saga1/monster/monster_detail_index" target="_blank" rel="noopener noreferrer">仲間モンスター一覧</a>で、変身後に何のモンスターになるかを算出してくれるのが<a href="https://sagamax.cyou/games/saga1/monster/monster_transform" target="_blank" rel="noopener noreferrer">変身後モンスター算出ツール</a>です。<br/>
+          ※変身後モンスター算出初期描画が遅いが、おそらく適切なレンダリング手法になっていないからだと思われる。今後改善予定。<br/>
 
           <br/>
-          モンスターが使用する能力の詳細。<br/>
+          一覧の方は、テーブルのヘッダー部分を操作することで表示対象を絞ったり、並び替えができるようになっています。<br/>
+          また、一覧のモンスター名がリンクになっていて、そこから当該モンスターの詳細情報を確認できる画面に遷移できるようになっています。<br/>
+          このモンスターの詳細情報は、変身後モンスター算出画面でも同じ内容が出力されるようになっています。ソースコードに同じ内容を2回書きたくないので、各モンスターの詳細情報部分をbody部として切り出し、それを詳細画面と変身後モンスター算出の詳細欄の両方で流用する形にしている。<br/>
+
+          <br/>
+          変身後モンスター算出の詳細欄<br/>
+          <img src="img/変身後モンスター算出.jpg" width="500"/><br/>
+
+          <br/>
+          モンスター一覧の詳細欄。パンくずリスト以外は同じ内容になっていることがわかる。<br/>
+          <img src="img/モンスター一覧.jpg" width="500"/><br/>
+
+          <br/><br/>
+          あと作ったのは、モンスターが使用する能力の詳細。<br/>
           画面のレイアウトをReactで記載し、表示する情報自体はDBに格納。<br/>
-          URLからIDを取得してそれをもとにDBから情報を取得して画面にレンダリング。<br/>
-          <a href="https://sagamax.cyou/games/saga1/ability/ability_detail?ability_id=0001" target="_blank" rel="noopener noreferrer">能力詳細</a><br/>
+          URLからIDを取得してそれをもとにDBから情報を取得して画面にレンダリングするようになっています。<br/>
           <img src="img/能力詳細.jpg" width="500"/><br/>
+
+          <br/>
+          リンクは↓こちら。URL の ability_id を変えることで内容が変わることが確認できると思います。<br/>
+          <a href="https://sagamax.cyou/games/saga1/ability/ability_detail?ability_id=0001" target="_blank" rel="noopener noreferrer">能力詳細</a><br/>
         </p>
+
+        <br/>
+        Reactを使って作ってみたものの紹介は以上です。<br/>
 
         <br/>
         <hr>
@@ -402,6 +495,21 @@ export default MyApp
           <li><a href="https://zenn.dev/k_kazukiiiiii/articles/dc14b9249d0255" target="_blank" rel="noopener noreferrer">Zenn Next.js + TypeScript | CSR・SSR・SG・ISG・ISR・On Demand ISR の違いをコード付きで解説</a></li>
         </ul>
       </section><!-- section class="box" -->
+
+      <br/>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-5924490903263360"
+          data-ad-slot="6254596512"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br/>
 
       <footer>
         <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>

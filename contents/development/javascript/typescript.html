@@ -17,7 +17,7 @@
     <script src="../../../js/openclose.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <title>とあるＩＴエンジニアの知識整理</title>
+    <title>TypeScript</title>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
@@ -105,6 +105,20 @@
         </ul>
 
         <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="altjs"></span>
         <h3 class="title">AltJS</h3>
         <p>
@@ -140,8 +154,22 @@
         </ul>
 
         <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <spam id="define_type"></spam>
-        <h4 class="title">型の定義</h4>
+        <h3 class="title">型の定義</h3>
         <p>
           TypeScriptの最大の特徴は型の定義です。型注釈(Type Annotation)と呼ばれる方情報を付与することで、変数や引数に格納する型を制限できます。<br/>
           なお、型注釈は変数のデータ型が明らかな場合など、一部の条件では省略できます。<br/>
@@ -157,7 +185,7 @@ sayHello(name)
 
         <br/>
         <span id="variables"></span>
-        <h4 class="title">変数</h4>
+        <h3 class="title">変数</h3>
 <pre><code>const age: number = 30
 let isDone: boolean = true
 let name: string = 'abc'
@@ -166,7 +194,7 @@ let name: string = 'abc'
 
         <br/>
         <span id="list"></span>
-        <h4 class="title">配列</h4>
+        <h3 class="title">配列</h3>
 
 <pre><code>const array: string[] = ['aaa', 'bbb']
 array.push('ccc')
@@ -175,10 +203,10 @@ array.push(1) // ←型が合わないためエラー
 
         <br/>
         <span id="object_type"></span>
-        <h4 class="title">オブジェクト型</h4>
+        <h3 class="title">オブジェクト型</h3>
 <pre><code>{ キー名1: 型1, キー名2: 型2, キー名3: 型3 }</code></pre>
 
-          <br/>
+        <br/>
 
 <pre><code>const user: { name: string, age: number } = {
   name: 'aaa',
@@ -191,25 +219,24 @@ console.log(user.age)
 
         <br/>
         <span id="function"></span>
-        <h4 class="title">関数</h4>
+        <h3 class="title">関数</h3>
 <pre class="title"><code class="title">tsconfig.json</code></pre>
 <pre><code>function(引数1: 型1, 引数2: 型2): 戻り値 {
   // 
 }
 </code></pre>
-        <p>
 
-          <br/>
+        <br/>
 <pre><code>function sayHello(name: string): string {
   return `こんにちは${name}`
 }
 sayHello('aaa') // こんにちはaaa
 </code></pre>
 
-          <br/>
-          <p>
-            オプショナルや引数のデフォルト値を使用することもできます<br/>
-          </p>
+        <br/>
+        <p>
+          オプショナルや引数のデフォルト値を使用することもできます<br/>
+        </p>
 
 <pre class="title"><code class="title">オプショナル</code></pre>
 <pre><code>function sayHello(name: string, greeting?: string): string {
@@ -219,7 +246,7 @@ sayHello('aaa') // aaa
 sayHello('aaa', 'hello') // hello aaa
 </code></pre>
 
-          <br/>
+        <br/>
 <pre class="title"><code class="title">引数にデフォルト値指定</code></pre>
 <pre><code>function sayHello(name: string, greeting: string = 'hello'): string {
   return `${greeting} ${name}`
@@ -228,13 +255,27 @@ sayHello('aaa') // hello aaa
 sayHello('aaa', 'hey') // hey aaa
 </code></pre>
 
-          <br/>
-          <span id="tsconfig"></span>
-          <h4 class="title">tsconfig.json</h4>
-          <p>
-            TypeScriptではコンパイルに必要なオプションやコンパイル対象となるファイルの情報をtsconfig.jsonに記述します。<br/>
-            <code>tsc --init</code>コマンドを実行することでデフォルトのtsconfig.jsonが作成されます。プロジェクトルートに配置しましょう。<br/>
-          </p>
+        <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
+        <span id="tsconfig"></span>
+        <h3 class="title">tsconfig.json</h3>
+        <p>
+          TypeScriptではコンパイルに必要なオプションやコンパイル対象となるファイルの情報をtsconfig.jsonに記述します。<br/>
+          <code>tsc --init</code>コマンドを実行することでデフォルトのtsconfig.jsonが作成されます。プロジェクトルートに配置しましょう。<br/>
+        </p>
 
 <pre class="title"><code class="title">tsconfig.json</code></pre>
 <pre><code>{
@@ -269,11 +310,10 @@ sayHello('aaa', 'hey') // hey aaa
 }
 </code></pre>
 
-          <br/>
-          <p>
-            tsconfig.jsonの詳細なオプションについては以下公式ドキュメント参照<br/>
-            <a href="https://www.typescriptlang.org/tsconfig" target="_blank" rel="noopener noreferrer">TypeScript Compiler Options</a>
-          </p>
+        <br/>
+        <p>
+          tsconfig.jsonの詳細なオプションについては以下公式ドキュメント参照<br/>
+          <a href="https://www.typescriptlang.org/tsconfig" target="_blank" rel="noopener noreferrer">TypeScript Compiler Options</a>
         </p>
 
         <br/>
@@ -294,6 +334,21 @@ sayHello('aaa', 'hey') // hey aaa
           <li><a href="https://www.typescriptlang.org/tsconfig" target="_blank" rel="noopener noreferrer">TypeScript Compiler Options</a></li>
         </ul>
       </section><!-- section class="box" -->
+
+      <br/>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br/>
 
       <footer>
         <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
