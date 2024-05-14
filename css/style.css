@@ -25,25 +25,61 @@ body {
 	-webkit-text-size-adjust: none;
 }
 
-h1,h4,h5,p,ul,ol,li,dl,dt,dd,form,figure,form,input,textarea {
-	margin: 0px;
-	padding: 0px;
-	font-size: 100%;
-	font-weight: normal;
+h1,h2,h3,h4,h5,p,ul,ol,li,dl,dt,dd,form,figure,form,input,textarea {
+  margin: 0px;
+  padding: 0px;
+  font-size: 100%;
+  font-weight: normal;
 }
 
-h2 {
-	margin: 0px;
-	padding: 0px;
-	font-size: 20px;
-	font-weight: normal;
+img {
+  border: none;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
 
-h3 {
-	margin: 0px;
-	padding: 0px;
-	font-size: 24px;
-	font-weight: normal;
+/* 画像拡大用css定義 */
+* {
+	margin: 0;
+	padding: 0;
+	/* box-sizing: border-box; これを指定するとテーブルソートが上手くいかない */
+	box-sizing: content-box;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+}
+
+.wrapper img {
+	width: 200px;
+	object-fit: contain;
+	cursor: pointer;
+}
+
+.breadcrumb {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+    background: rgba(112, 107, 107, 0.5);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.breadcrumb li:not(:last-of-type)::after {
+    background: rgba(112, 107, 107, 0.5);
+}
+
+#contents li.breadcrumbli {
+	list-style-type: none;
+	background: none;
+	padding-left: 10px;
 }
 
 code {
@@ -68,6 +104,52 @@ pre {
 pre.title {
 	overflow-x: auto;
 	margin-bottom: -18px;
+}
+
+/* modal */
+.modal-wrapper {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.5);
+	pointer-events: none;
+	opacity: 0;
+	transition: 0.25s ease-out;
+}
+
+.modal-wrapper.show {
+	opacity: 1;
+	pointer-events: all;
+}
+
+.modal-image {
+	position: absolute;
+	max-width: 80%;
+	max-height: 80%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	object-fit: cover;
+	opacity: 0;
+	transition: 0.5s ease-out;
+}
+
+.modal-image.show {
+	opacity: 1;
+}
+
+th {
+  padding: 3px 7px;	/*上下、左右への余白*/
+  background-color: #0099cc;  /* 背景色 */
+  background-color: rgba(00,99,cc,0.1);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
+}
+
+td {
+  padding: 3px 7px;	/*上下、左右への余白*/
+  background-color: #000;	/*背景色（古いブラウザ用）*/
+  background-color: rgba(0,0,0,0.5);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
 }
 
 /* [table scroll start] */
@@ -164,13 +246,13 @@ th.double_slider_hor {
 /* [table scroll end] */
 
 table {
-	border-collapse:collapse;
-	font-size: 100%;
-	border-spacing: 0;
+  border-collapse:collapse;
+  font-size: 100%;
+  border-spacing: 0;
 }
-  
+
 caption {
-	text-align:left;
+  text-align:left;
 }
 
 .youtube {
@@ -186,77 +268,23 @@ caption {
   width: 100%;
   height: 100%;
 }
-  
-th {
-	padding: 3px 7px;	/*上下、左右への余白*/
-	background-color: #0099cc;  /* 背景色 */
-	background-color: rgba(00,99,cc,0.1);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
+
+.embed_own {
+  position: relative;
+  height: 82%;
 }
 
-td {
-	padding: 3px 7px;	/*上下、左右への余白*/
-	background-color: #000;	/*背景色（古いブラウザ用）*/
-	background-color: rgba(0,0,0,0.5);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
+.embed_own iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-/*ul.disc,olタグ
----------------------------------------------------------------------------*/
-
-ul.none {
-	list-style-type: none;
-	padding: 0px 0px 0px 0px;
+iframe {
+  width: 100%;
 }
-
-ul {
-	list-style: disc;
-	padding: 0px 20px 20px 45px;
-}
-
-ul.indent_no {
-	list-style: disc;
-	padding: 0px 0px 0px 20px;
-}
-
-ol {
-	padding: 0px 20px 20px 45px;
-}
-
-img {
-	border: none;
-	max-width: 100%;
-	height: auto;
-	vertical-align: middle;
-}
-
-table {
-	border-collapse:collapse;
-	font-size: 100%;
-	border-spacing: 0;
-}
-
-.breadcrumb {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  background: rgba(112, 107, 107, 0.5);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  padding: 0px 0px 0px 0px;
-}
-
-.breadcrumb li:not(:last-of-type)::after {
-  background: rgba(112, 107, 107, 0.5);
-}
-
-#contents li.breadcrumbli {
-  list-style-type: none;
-  background: none;
-  padding-left: 10px;
-}
-
-iframe {width: 100%;}
 
 /* スクロールバーの幅の設定 */
 ::-webkit-scrollbar{
@@ -272,10 +300,15 @@ iframe {width: 100%;}
 }
 
 /* スクロールバーのつまみ部分の設定 */
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   background: #00bfff;
   border-radius: 10px;
   box-shadow: none;
+}
+
+ul.indent_no {
+  list-style: disc;
+  padding: 0px 0px 0px 20px;
 }
 
 /*リンク（全般）設定
@@ -293,9 +326,8 @@ a:hover {
 ---------------------------------------------------------------------------*/
 /*containerブロック共通*/
 #container {
-	/* position: fixed; */
+	/*position: fixed;*/
 	width: 100%;
-	height: auto;
 }
 
 /*defaultbodyの背景画像指定*/
@@ -307,16 +339,19 @@ a:hover {
 	background-position: center bottom;
 	/* no-repeat:center center / cover;*/    /*背景画像*/
 }
+
 /*works.htmlの背景画像指定*/
 .works #container {
 	background: url(../images/2.jpg) no-repeat center center;	/*背景画像（※IE8以下の古いブラウザ用）*/
 	background: url(../images/2.jpg) no-repeat center center / cover;	/*背景画像*/
 }
+
 /*link.htmlの背景画像指定*/
 .link #container {
 	background: url(../images/3.jpg) no-repeat center center;	/*背景画像（※IE8以下の古いブラウザ用）*/
 	background: url(../images/3.jpg) no-repeat center center / cover;	/*背景画像*/
 }
+
 /*contact.htmlにも背景画像を指定したい場合は、以下にスタイルを追加して下さい。*/
 .contact #container {
 	background: #000;
@@ -328,6 +363,7 @@ a:hover {
 	height: 100%;
 	width: 100%;
 }
+
 /*トップページのcontentsブロック。Whats's Newブロックの表示箇所です。*/
 .home #contents {
 	height: auto;
@@ -335,6 +371,26 @@ a:hover {
 	width: 100%;
 	bottom: 0px;	/*下からの配置指定*/
 	right: 0%;		/*右からの配置指定*/
+}
+
+#contents li.normal {
+  list-style-type: disc;
+  list-style: inside;
+  background: none;
+  padding-left: 40px;
+}
+
+#contents li.none {
+  list-style-type: none;
+  background: none;
+  padding-left: 0px;
+}
+
+#contents li {
+  list-style-type: none;
+  background: url(../images/right.png) no-repeat left center;
+  padding-left: 40px;
+  background-position:0px 4px;
 }
 
 /*header（大きな端末用：左ブロック）
@@ -350,6 +406,8 @@ header.pc {
 	border-right: 1px solid #fff;	/*右側の線の幅、線種、色（古いブラウザ用）*/
 	border-right: 1px solid rgba(255,255,255,0.3);	/*右側の線の幅、線種、色。255,255,255は白の事で0.3は色が30%出た状態の事。*/
 	transition: 1s;	/*hove時に１秒かけて動く*/
+	background-color: #000;	/*背景色（古いブラウザ用）*/
+	background-color: rgba(0,0,0,0.7);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
 }
 /*マウスオン時のheaderブロック*/
 header.pc:hover {
@@ -363,14 +421,21 @@ header.pc .logo {
 	text-align: center;	/*内容をセンタリング*/
 	border-bottom: 1px solid #fff;	/*下線の幅、線種、色（古いブラウザ用）*/
 	border-bottom: 1px solid rgba(255,255,255,0.3);	/*下線の幅、線種、色。255,255,255は白の事で0.3は色が30%出た状態の事。*/
-	height: 100px;	/*高さ*/
+	height: 90px;	/*高さ*/
 }
+
 header.pc .logo img {
-	width: 100px;	/*画像の幅。マウスオン時に同じ大きさを保つ為。*/
+	width: 90px;	/*画像の幅。マウスオン時に同じ大きさを保つ為。*/
 }
+
 /*header内のp(段落)タグ*/
 header.pc p {
 	padding: 10px;	/*余白*/
+}
+
+/* スクロールバーの幅の設定 */
+header.pc::-webkit-scrollbar{
+  width: 6px;
 }
 
 /*メインメニュー
@@ -471,7 +536,7 @@ header .icon_middle li {
 }
 /*アイコン画像の設定*/
 header .icon_middle img {
-	width: 60%;		/*画像の幅*/
+	width: 40%;		/*画像の幅*/
 }
 
 /*mainブロック
@@ -489,6 +554,7 @@ header .icon_middle img {
 	top: 0px;
 }
 }
+
 /*mainブロック*/
 #main {
 	overflow: auto;
@@ -543,44 +609,6 @@ header .icon_middle img {
 	text-decoration: underline;
 	color: #c1bc9e;			/*文字色*/
 }
-/*段落(p)タグ*/
-#main p {
-	padding: 0 20px 20px;	/*上、左右、下への余白*/
-}
-
-/*他。微調整。*/
-#main p + p {
-	margin-top: -5px;
-}
-
-div .code {
-	margin: 0 0 0 1em;	/* 上右下左） */
-	padding: 0 0 0 2em; /* 上右下左） */
-	line-height: 1.5;
-	overflow: auto;
-	white-space: nowrap;
-	flex-wrap: nowrap;
-	background-color: #eee;
-	box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);
-	color: #000;			/*文字色*/
-}
-
-div .codetitle {
-	margin: 0 0 0 1em;	/* 上右下左） */
-	padding: 0 0 0 1em; /* 上右下左） */
-	border-top: 0px solid #fff;
-	background-color: #aaa;
-	color: #000;			/*文字色*/
-}
-
-#main h2 + p,
-#main h3 + p {
-	margin-top: -10px;
-}
-#main section + section {
-	clear: both;
-	padding-top: 40px;
-}
 
 /*h4タグ*/
 #main h4 {
@@ -590,15 +618,31 @@ div .codetitle {
 	color: #c1bc9e;			/*文字色*/
 }
 
-/*h4タグ*/
+/*h5タグ*/
 #main h5 {
-	padding: 1em;
 	clear: both;
-	margin-bottom: 5px;	/*見出しの下に空けるスペース*/
+	margin-bottom: 2px;	/*見出しの下に空けるスペース*/
 	font-size: 20px;		/*文字サイズ*/
 	color: #c1bc9e;			/*文字色*/
+	padding-left: 10px;
 }
 
+/*段落(p)タグ*/
+#main p {
+	padding: 0 20px 20px;	/*上、左右、下への余白*/
+}
+/*他。微調整。*/
+#main p + p {
+	margin-top: -5px;
+}
+#main h2 + p,
+#main h3 + p {
+	margin-top: -10px;
+}
+#main section + section {
+	clear: both;
+	padding-top: 40px;
+}
 
 /*listブロック（works.htmlで使用）
 ---------------------------------------------------------------------------*/
@@ -806,7 +850,15 @@ p.check a {color: #fff;}
 	margin-bottom: 30px;			/*ボックスの下に空けるスペース*/
 	border: 1px solid #fff;						/*線の幅、線種、色（古いブラウザ用）*/
 	border: 1px solid rgba(255,255,255,0.3);	/*線の幅、線種、色。255,255,255は白の事で0.3は色が30%出た状態の事。*/
+}
 
+.box_darker {
+	background: #000;				/*背景色（古いブラウザ用）*/
+	background: rgba(0,0,0,0.8);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
+	padding: 5%;					/*ボックス内の余白*/
+	margin-bottom: 30px;			/*ボックスの下に空けるスペース*/
+	border: 1px solid #fff;						/*線の幅、線種、色（古いブラウザ用）*/
+	border: 1px solid rgba(255,255,255,0.3);	/*線の幅、線種、色。255,255,255は白の事で0.3は色が30%出た状態の事。*/
 }
 
 /*その他
@@ -828,11 +880,9 @@ p.check a {color: #fff;}
 .sh {display: none;}
 #pagetop {display: block;margin-top: -2%;padding-top: 2%;}
 
-
-
-/*画面幅800px以下の設定
+/*画面幅768px以下の設定
 ------------------------------------------------------------------------------------------------------------------------------------------------------*/
-@media screen and (max-width:800px){
+@media screen and (max-width:768px){
 
 /*header（小さな端末用：上部ブロック）
 ---------------------------------------------------------------------------*/
@@ -853,9 +903,9 @@ header.sh .logo {
 #menubar-s {
 	display: block;
 	position: fixed;
-	z-index: 3;
+	z-index: 100;
 	top: 0px;
-	width: 100%;
+	width: 70%;
 	height: 100%;
 	overflow: auto;
 	background: rgba(0,0,0,0.8);	/*背景色*/
@@ -871,7 +921,9 @@ header.sh .logo {
 }
 /*メニュー１個あたりの設定*/
 #menubar-s nav li a {
-	display: block;text-decoration: none;width: 100%;
+	display: block;
+	text-decoration: none;
+	width: 100%;
 	border-bottom: 1px solid #fff;	/*下の線の幅、線種、色*/
 	font-size: 16px;	/*文字サイズ*/
 	height: 100px;		/*高さ*/
@@ -963,7 +1015,7 @@ header .icon img {
 }
 /*h2タグにclass="title"をつけたタイプ。大見出し。*/
 #main h2.title {
-	font-size: 30px;		/*文字サイズ*/
+	font-size: 40px;		/*文字サイズ*/
 	margin-bottom: 20px;	/*見出しの下に空けるスペース*/
 }
 /*h2タグにclass="title"をつけたタイプ内にあるspanタグ*/
@@ -974,6 +1026,8 @@ header .icon img {
 /*footerブロック
 ---------------------------------------------------------------------------*/
 footer {padding-bottom: 100px;}
+
+/* web desing template の PR */
 footer .pr {display: block;}
 
 /*「更新情報・お知らせ」ブロック
@@ -1018,7 +1072,7 @@ footer .pr {display: block;}
 }
 /*h2タグにclass="title"をつけたタイプ。大見出し。*/
 #main h2.title {
-	font-size: 20px;		/*文字サイズ*/
+	font-size: 26px;		/*文字サイズ*/
 }
 /*h2タグにclass="title"をつけたタイプ内にあるspanタグ*/
 #main h2.title span {
@@ -1026,8 +1080,8 @@ footer .pr {display: block;}
 	margin-top: 10px;	/*上に空ける余白。上下のバランスをここでとります。*/
 }
 /*h3タグ*/
-#main h3 {
-	font-size: 14px;		/*文字サイズ*/
+#main h3.title {
+	font-size: 22px;		/*文字サイズ*/
 }
 /*段落(p)タグ*/
 #main p {
@@ -1073,6 +1127,7 @@ ul.disc {
 	list-style: disc;
 	padding: 0 10px 20px 30px;
 }
+
 ol {
 	padding: 0 10px 20px 30px;
 }
@@ -1080,5 +1135,4 @@ ol {
 /*その他
 ---------------------------------------------------------------------------*/
 .ws,.wl {width: 94%;}
-
 }
