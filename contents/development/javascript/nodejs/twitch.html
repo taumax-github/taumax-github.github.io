@@ -188,8 +188,8 @@
           今回私が自作したアプリケーションにおいては、以下2つの方法で access token を取得しています。<br/>
         </p>
         <ul>
-          <li><a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#client-credentials-grant-flow" target="_blank" rel="noopener noreferrer">Client credentials grant flow</a>：Webhook を受信する際に使用。</li>
-          <li><a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#authorization-code-grant-flow" target="_blank" rel="noopener noreferrer">Authorization code grant flow</a>：API を発行する際に使用。</li>
+          <li><a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#client-credentials-grant-flow" target="_blank" rel="noopener noreferrer">Client credentials grant flow</a>：Webhook を受信する際に使用。App access token が発行される。</li>
+          <li><a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#authorization-code-grant-flow" target="_blank" rel="noopener noreferrer">Authorization code grant flow</a>：API を発行する際に使用。User access token が発行される。</li>
         </ul>
         <p>
           具体的にどうやって token を取得するかは <a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#examples-of-the-four-flows" target="_blank" rel="noopener noreferrer">Examples of the four flows</a> に書いていますが、以下にも記載します。<br/>
@@ -199,15 +199,16 @@
         <span id="client_cred_grant_flow"></span>
         <h4>Client credentials grant flow</h4>
         <p>
-          Client credentials grant flow では以下のような curl コマンドを発行します。<br/>
+          Client credentials grant flow では App access token が発行され、Webhook を受信する際に使用します。<br/>
+          token 発行の手順としては、以下のような curl コマンドを発行します。<br/>
         </p>
 
-<pre class="title"><code class="title">Client credentials grant flow example(App access token)</code></pre>
 <pre><code>curl -X POST 'https://id.twitch.tv/oauth2/token' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
 -d 'client_id=[clientID]&client_secret=[clientSecret]&grant_type=client_credentials'
 </code></pre>
 
+        <br/>
         <ul>
           <li>clientID：<a href="#register_application">アプリケーションの登録</a>で取得したクライアントID</li>
           <li>clientSecret：<a href="#register_application">アプリケーションの登録</a>で取得した秘密鍵</li>
@@ -215,7 +216,7 @@
 
         <br/>
         <p>
-          上記コマンドを実行すると、以下の形式でレスポンスが返ってくるので、 access_token を保存する。
+          上記コマンドを実行すると、以下の形式でレスポンスが返ってきます。 access_token に記載されているのが App access token です。
         </p>
 
 <pre><code>{
@@ -244,13 +245,14 @@
         <span id="auth_code_grant_flow"></span>
         <h4>Authorization code grant flow</h4>
         <p>
-          Authorization code grant flow では以下のような形式の URL をブラウザに入力します。<br/>
+          Authorization code grant flow では User access token が発行され、Twitch の API を発行する際に使用します。<br/>
+          token 発行の手順としては、以下のような形式の URL をブラウザに入力します。<br/>
         </p>
 
 
-<pre class="title"><code class="title">Authorization code grant flow example(User access token)</code></pre>
 <pre><code>https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=[clientID]&redirect_uri=[redirectURL]&scope=[必要なスコープ]&state=[state]</code></pre>
 
+        <br/>
         <ul>
           <li>clientID：<a href="#register_application">アプリケーションの登録</a>で取得したクライアントID</li>
           <li>redirectURL：<a href="#register_application">アプリケーションの登録</a>で設定したリダイレクトURL</li>
@@ -260,23 +262,23 @@
 
         <br/>
         <p>
-          必要なスコープの例として「channel:read:polls」と「channel:manage:polls」の2つをスコープに指定する場合、URLは「channel%3Amanage%3Apolls+channel%3Aread%3Apolls」として以下のようになります。<br/>
-          ここで「%3A」は「:」のURLエンコードです。「+」で二つのスコープを連結しています。<br/>
+          必要なスコープは、発行する API ごとに異なります。例えば、投票を開始する API を呼び出す場合、 <a href="https://dev.twitch.tv/docs/api/polls/" target="_blank" rel="noopener noreferrer">Polls</a> を見ると「The endpoint requires a user access token with scope channel:manage:polls」とあるので、必要なスコープは「channel:manage:polls」だということがわかります。<br/>
+          この場合、URLに指定するスコープは<br/>
+        </p>
+        <pre><code>channel%3Amanage%3Apolls+channel%3Aread%3Apolls</code></pre>
+        <p>
+          となります。ここで「%3A」は「:」のURLエンコードです。「+」で二つのスコープを連結しています。<br/>
+          これを踏まえ、URL全体としては以下のようになります。<br/>
         </p>
 
         <pre><code>https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=[clientID]&redirect_uri=[redirectURL]&scope=channel%3Amanage%3Apolls+channel%3Aread%3Apolls&state=c3ab8aa609ea11e793ae92361f002671</code></pre>
 
         <br/>
         <p>
-          上記をブラウザに入力すると、 redirect_uri に指定したURLにリダイレクトされます。リダイレクト先のURLに、以下のような形式で access_token が記載されているのでそれを保存します。<br/>
+          上記をブラウザに入力すると、 redirect_uri に指定したURLにリダイレクトされます。リダイレクト先のURLに、以下のような形式で access_token が記載されています。これが User access token です。<br/>
         </p>
 
         <pre><code>[指定したリダイレクトURL]/#access_token=[発行されたトークン]&scope=[指定したスコープ]&token_type=bearer</code></pre>
-
-        <br/>
-        <p>
-          必要なスコープは発行する API ごとに異なります。例えば、投票を開始する API を呼び出す場合、 <a href="https://dev.twitch.tv/docs/api/polls/" target="_blank" rel="noopener noreferrer">Polls</a> を見ると「The endpoint requires a user access token with scope channel:manage:polls」とあるので、必要なスコープは「channel:manage:polls」だということがわかる。<br/>
-        </p>
 
         <br/>
         <!-- Google AdSense -->
@@ -395,8 +397,10 @@ twClientBot.connect();
         </ul>
 
         <br/>
+<pre><code>twClientBot.on('message', (channel, userstate, msg, self) => {
+  ...中略...
+});</code></pre>
         <p>
-          <code>twClientBot.on('message', (channel, userstate, msg, self) => {...中略...});</code><br/>
           の部分はチャットが入力される度に稼働する処理です。channel にはチャンネル名、 userstate にはチャットしてくれたユーザーの情報、 msg にはチャットに入力された文言、 self は自分自身かどうかを示す bool 型の値が入っています。<br/>
           第2引数の userstate には以下のようなユーザー情報が json 形式で入っているので、主にこの userstate と msg（ユーザーがチャットに投げた文言） を使って自由に処理を組み立てることができます。<br/>
         </p>
