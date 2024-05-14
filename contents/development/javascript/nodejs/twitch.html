@@ -171,15 +171,15 @@
         <h3 class="title">Twitch の認証</h3>
         <p>
           Twitch の Webhook や API を使うためには access token を取得する必要があります。<br/>
-          access token には user access token と app access token の2種類があり、それぞれ用途は以下の通り。<br/>
+          access token には app access token と user access token の2種類があり、それぞれ用途は以下の通り。<br/>
         </p>
 
         <ul>
           <li>
-            <a href="https://dev.twitch.tv/docs/authentication/#user-access-tokens" target="_blank" rel="noopener noreferrer">User access tokens</a>：ユーザー認証が必要な機能を利用する場合に使用する token。<br/>
+            <a href="https://dev.twitch.tv/docs/authentication/#app-access-tokens" target="_blank" rel="noopener noreferrer">App access tokens</a>：ユーザー認証が不要な機能を利用する場合に使用する token。<br/>
           </li>
           <li>
-            <a href="https://dev.twitch.tv/docs/authentication/#app-access-tokens" target="_blank" rel="noopener noreferrer">App access tokens</a>：ユーザー認証が不要な機能を利用する場合に使用する token。<br/>
+            <a href="https://dev.twitch.tv/docs/authentication/#user-access-tokens" target="_blank" rel="noopener noreferrer">User access tokens</a>：ユーザー認証が必要な機能を利用する場合に使用する token。<br/>
           </li>
         </ul>
 
@@ -490,7 +490,7 @@ https://api.twitch.tv/helix/eventsub/subscriptions
         <ul>
           <li>
             subscription_type：<a href="https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types/" target="_blank" rel="noopener noreferrer">Subscription Types</a> の Name 列の値を設定。<br/>
-            例として、配信開始なら 'stream.online' を、チャンネルポイントの使用を受け取るなら 'channel.channel_points_custom_reward_redemption.add' を指定。
+            例として、配信開始なら <pre><code>'stream.online'</code></pre> を、チャンネルポイントの使用を受け取るなら <pre><code>'channel.channel_points_custom_reward_redemption.add'</code></pre> を指定。
           </li>
           <li>user_id：イベントを受け取りたいユーザーの user_id（基本的には自分の user_id を指定するが、他人の user_id を指定すれば、他人の配信開始などのイベントを受信することも可能）</li>
           <li>
