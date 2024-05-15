@@ -188,8 +188,8 @@
           今回私が自作したアプリケーションにおいては、以下2つの方法で access token を取得しています。<br/>
         </p>
         <ul>
-          <li><a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#client-credentials-grant-flow" target="_blank" rel="noopener noreferrer">Client credentials grant flow</a>：Webhook を受信する際に使用。App access token が発行される。</li>
-          <li><a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#authorization-code-grant-flow" target="_blank" rel="noopener noreferrer">Authorization code grant flow</a>：API を発行する際に使用。User access token が発行される。</li>
+          <li><a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#client-credentials-grant-flow" target="_blank" rel="noopener noreferrer">Client credentials grant flow</a>：主に Webhook を受信する際に使用。App access token が発行される。</li>
+          <li><a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#authorization-code-grant-flow" target="_blank" rel="noopener noreferrer">Authorization code grant flow</a>：主に API を発行する際に使用。User access token が発行される。</li>
         </ul>
         <p>
           具体的にどうやって token を取得するかは <a href="https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#examples-of-the-four-flows" target="_blank" rel="noopener noreferrer">Examples of the four flows</a> に書いていますが、以下にも記載します。<br/>
@@ -303,8 +303,8 @@
         </p>
 
         <ul>
-          <li>user_name/login_name：ログインするときのid。アカウントの設定画面の日本語名称は「ユーザー名」。後から変更できる。</li>
-          <li>display_name：チャット欄などに表示される名前。アカウントの設定画面の日本語名称は「表示名」。後から変更できる。設定していないユーザーもいる。</li>
+          <li>user_name/login_name：ログインするときのid。アカウントの設定画面では「ユーザー名」と訳されている。後から変更できる。</li>
+          <li>display_name：チャット欄などに表示される名前。アカウントの設定画面では「表示名」と訳されている。後から変更できる。設定していないユーザーもいる。</li>
           <li>user_id：Twitch が裏で採番している一意なid。通常意識しない。変更不可。</li>
         </ul>
 
@@ -508,7 +508,7 @@ https://api.twitch.tv/helix/eventsub/subscriptions
           上記 curl を実行すると callback_url に確認のリクエストが飛んでくる。<br/>
           リクエストヘッダーの 'Twitch-Eventsub-Message-Type' に 'webhook_callback_verification' という値が入ってくるので、その場合は body 部の challenge を status 200 でそのまま返せばOK。<br/>
           確認のリクエストを受け取るためのサーバ側の Node.js のコードは以下の通り。http サーバを構築してリクエストを受け取れるようにしています。<br/>
-          （<a href="#whole">全量のコードを後に</a>載せていますが、長いので抜粋）<br/>
+          （<a href="#whole">全量のコードを後に</a>載せていますが、長いのでここでは抜粋）<br/>
           事前に以下コマンドで express と body-parser というライブラリをインストールしている前提です。<br/>
           <code>npm i express</code><br/>
           <code>npm i body-parser</code><br/>

@@ -191,7 +191,7 @@
 &lt;/script&gt;
 </code></pre>
 
-        <br/>
+        <br/><br/>
         上記はCDNを使用していますが、これは主に学習目的または小規模のアプリケーション目的での使用が適しています。<br/>
         大規模な開発をする場合、Reactで重要な概念として以下3つがあります。<br/>
         <ul>
@@ -252,11 +252,11 @@
 }
 </code></pre>
 
-      <br/>
-      <p>
-        コンポーネント化したフッターを呼び出す際は <code>&lt;CommonFooter /&gt;</code> と記述します。<br/>
-        以下は同じくコンポーネント化した CommonBody というコンポーネントから CommonFooter を呼び出しているサンプルです。<br/>
-      </p>
+        <br/>
+        <p>
+          コンポーネント化したフッターを呼び出す際は <code>&lt;CommonFooter /&gt;</code> と記述します。<br/>
+          以下は同じくコンポーネント化した CommonBody というコンポーネントから CommonFooter を呼び出しているサンプルです。<br/>
+        </p>
 
 <br/>
 <pre class="title"><code class="title">common_body.tsx</code></pre>
@@ -270,6 +270,11 @@
   &lt;/body&gt;
 }
 </code></pre>
+
+        <br/>
+        <p>
+          このようにして作成したコンポーネントを組み合わせてシステムを構築していくのがReactの考え方です。<br/>
+        </p>
 
         <br/>
         <!-- Google AdSense -->
@@ -373,7 +378,7 @@
           <tr><td>On Demand ISR<br/>(On Demand Incremental Static Regeneration)</td><td>revalidateを返すgetStaticPropsとunstable_revalidateの組み合わせ</td></tr>
         </table>
 
-        <br/>
+        <br/><br/>
         <span id="filebase_routing"></span>
         <h4 class="title">ファイルベースルーティング</h4>
         <p>
@@ -429,7 +434,7 @@ export default MyApp
         </ul>
 
         <p>
-          各ページのレイアウトを統一するために、共通部分を CommonBody, CommonHeader, CommonFotter に分け、ページ毎に異なる部分を別途作成してそれを埋め込む形で作成しています。<br/>
+          各ページのレイアウトを統一するために、共通部分を CommonBody, CommonHeader, CommonFooter に分け、ページ毎に異なる部分を別途作成してそれを埋め込む形で作成しています。<br/>
           <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
         </p>
 
@@ -455,7 +460,7 @@ export default MyApp
           <br/><br/>
           あと作ったのは、モンスターが使用する能力の詳細。<br/>
           画面のレイアウトをReactで記載し、表示する情報自体はDBに格納。<br/>
-          URLからIDを取得してそれをもとにDBから情報を取得して画面にレンダリングするようになっています。<br/>
+          URLからIDを取得してそれをもとにDBから情報を取得して画面をレンダリングするようになっています。<br/>
           <img src="img/能力詳細.jpg" width="500"/><br/>
 
           <br/>

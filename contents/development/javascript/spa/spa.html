@@ -338,15 +338,16 @@
         <span id="isr"></span>
         <h4 class="title">【Next】ISR(Incremental Static Regeneration)</h4>
         <p>
-          NextのISGは<a href="#isg">NuxtのISG</a>と仕組み的には同じです（実現方法は異なります）。<br/>
+          NextのISRは<a href="#isg">NuxtのISG</a>と仕組み的には同じです。<br/>
+          revalidate という項目に指定した時間（秒）が経過した後にページにアクセスすると、再度サーバ側でhtmlを再生成します。<br/>
         </p>
 
         <br/>
         <span id="od_isr"></span>
         <h4 class="title">【Next】On Demand ISR(On Demand Incremental Static Regeneration)</h4>
         <p>
-          <a href="#isr">ISR(Incremental Static Regeneration)</a>柔軟性をもたせたような機能。<br/>
-          ISRの場合、↑でやっていたようにrevalidateで指定した時間がたたないとページ更新されませんが、ISRの場合は任意のタイミングで更新が可能です。<br/>
+          <a href="#isr">ISR(Incremental Static Regeneration)</a>に柔軟性をもたせたような機能。<br/>
+          ISRの場合、先に記載したようにrevalidateで指定した時間がたたないとページ更新されませんが、On Demand ISRの場合は任意のタイミングで更新が可能です。<br/>
           例えばHeadless CMSのコンテンツ更新時やショッピングサイトのメタデータが変更されたときなどに有用です。<br/>
         </p>
 
