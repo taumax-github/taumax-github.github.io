@@ -49,6 +49,7 @@
       <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
     </ul>
     <ul class="indent_no">
+      <li><a href="#firstly">はじめに</a></li>
       <li><a href="#react">React</a></li>
       <li><a href="#jsx">JSX</a></li>
       <li><a href="#component">ｺﾝﾎﾟｰﾈﾝﾄ</a></li>
@@ -77,6 +78,7 @@
         <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
       </ul>
       <ul class="indent_no">
+        <li><a href="#firstly">はじめに</a></li>
         <li><a href="#react">React</a></li>
         <li><a href="#jsx">JSX</a></li>
         <li><a href="#component">ｺﾝﾎﾟｰﾈﾝﾄ</a></li>
@@ -121,6 +123,15 @@
         <script>
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
+
+        <br/>
+        <span id="firstly"></span>
+        <h3 class="title">はじめに</h3>
+        <p>
+          このページは、<a href="../spa.html">SPA(Single Page Application)</a>の続きのページです。<br/>
+          ここではReactとNext.jsにスポットを当てて記載していきます。<br/>
+          一応このページから読み進めても問題ないように構成したつもりですが、先のページを見てからの方が、ReactとNext.jsについて理解が深まるかもしれません。<br/>
+        </p>
 
         <br/>
         <span id="react"></span>
@@ -298,19 +309,21 @@
           公式が提供しているフックは10種類あり、さらにフックを組み合わせてカスタムフックを独自に実装できます。<br/>
         </p>
 
-        <table border="1">
-          <tr><th>フック種類</th><th>用途（概要）</th><th>フック名</th></tr>
-          <tr><td rowspan="2">状態のフック<br/>(State Hooks)</td><td rowspan="2">内部状態を持ち、その状態の変化に応じて表示を変更できる。</td><td>useState</td></tr>
-          <tr><td>useReducer</td></tr>
-          <tr><td rowspan="2">メモ化のフック<br/>(Performance Hooks)</td><td rowspan="2">値や関数を保持し、必要のない子要素のレンダリングや計算を抑止するために使用し、パフォーマンスの最適化を図る</td><td>useCallback</td></tr>
-          <tr><td>useMemo</td></tr>
-          <tr><td rowspan="2">副作用のフック<br/>(Effect Hooks)</td><td rowspan="2">副作用（コンポーネントの描画とは直接関係ない処理のこと）のためのフック。外部システムとの同期、イベントリスナ。</td><td>useEffect</td></tr>
-          <tr><td>useLayoutEffect</td></tr>
-          <tr><td>Contextのためのフック<br/>(Context Hooks)</td><td>親の変数を子コンポーネントで受け取る</td><td>useContext</td></tr>
-          <tr><td rowspan="2">refのフック<br/>(Ref Hooks)</td><td rowspan="2">レンダリングに使用しない情報を記録</td><td>useRef</td></tr>
-          <tr><td>useImperativeHandle</td></tr>
-          <tr><td>Other Hooks</td><td>ライブラリ開発時に利用されるHooks</td><td>useDebugValue</td></tr>
-        </table>
+        <div class="slider" style="width: 100%">
+          <table border="1">
+            <tr><th style="z-index:0">フック種類</th><th>用途（概要）</th><th>フック名</th></tr>
+            <tr><td rowspan="2">状態のフック<br/>(State Hooks)</td><td rowspan="2">内部状態を持ち、その状態の変化に応じて表示を変更できる。</td><td>useState</td></tr>
+            <tr><td>useReducer</td></tr>
+            <tr><td rowspan="2">メモ化のフック<br/>(Performance Hooks)</td><td rowspan="2">値や関数を保持し、必要のない子要素のレンダリングや計算を<br/>抑止するために使用し、パフォーマンスの最適化を図る</td><td>useCallback</td></tr>
+            <tr><td>useMemo</td></tr>
+            <tr><td rowspan="2">副作用のフック<br/>(Effect Hooks)</td><td rowspan="2">副作用（コンポーネントの描画とは直接関係ない処理のこと）<br/>のためのフック。副作用にはログの出力やデータの取得などが<br/>あります。</td><td>useEffect</td></tr>
+            <tr><td>useLayoutEffect</td></tr>
+            <tr><td>Contextのためのフック<br/>(Context Hooks)</td><td>親の変数を子コンポーネントで受け取る</td><td>useContext</td></tr>
+            <tr><td rowspan="2">refのフック<br/>(Ref Hooks)</td><td rowspan="2">レンダリングに使用しない情報を記録</td><td>useRef</td></tr>
+            <tr><td>useImperativeHandle</td></tr>
+            <tr><td>Other Hooks</td><td>ライブラリ開発時に利用されるHooks</td><td>useDebugValue</td></tr>
+          </table>
+        </div>
 
         <br/>
         <p>
@@ -319,6 +332,7 @@
         </p>
 
 <pre><code>const [状態, 更新関数] = useState(初期状態)</code></pre>
+<br/>
 <pre><code>const [count, setCount] = useState(0);
 &lt;div&gt;
   &lt;p&gt;Count: {count}&lt;/p&gt;
@@ -424,6 +438,7 @@ export default MyApp
         <h3 class="title">作った物</h3>
         <p>
           ゲームのサガシリーズが好きなので、初代サガである魔界塔士サガに関するものを作ってみました。<br/>
+          とりあえず作った後に勉強したので、今見ると作り直したくなる感じはあるが、一旦現時点（2021年5月）のものとして公開してみます。<br/>
           実際に作った物は大まかに以下。<br/>
         </p>
 
@@ -442,10 +457,10 @@ export default MyApp
         <p>
           魔界塔士サガはモンスターを仲間にすることができ、そのモンスターは敵が落とす肉を食べることでより強力なモンスターに変身し、成長するというシステムになっています。何に変身するかは（普通は）分からないようになっています。<br/>
           仲間になるモンスターを一覧化したものが<a href="https://sagamax.cyou/games/saga1/monster/monster_detail_index" target="_blank" rel="noopener noreferrer">仲間モンスター一覧</a>で、変身後に何のモンスターになるかを算出してくれるのが<a href="https://sagamax.cyou/games/saga1/monster/monster_transform" target="_blank" rel="noopener noreferrer">変身後モンスター算出ツール</a>です。<br/>
-          ※変身後モンスター算出初期描画が遅いが、おそらく適切なレンダリング手法になっていないからだと思われる。今後改善予定。<br/>
+          ※変身後モンスター算出ツールの初期表示が遅いが、おそらく適切なレンダリング手法になっていないからだと思われる。今後改善予定。<br/>
 
           <br/>
-          一覧の方は、テーブルのヘッダー部分を操作することで表示対象を絞ったり、並び替えができるようになっています。<br/>
+          一覧の方は、テーブルのヘッダー部分を操作することで表示対象を絞ったり、並び替えができるようになっており、その度に一覧の部分だけが再レンダリングされるようになっています。<br/>
           また、一覧のモンスター名がリンクになっていて、そこから当該モンスターの詳細情報を確認できる画面に遷移できるようになっています。<br/>
           このモンスターの詳細情報は、変身後モンスター算出画面でも同じ内容が出力されるようになっています。ソースコードに同じ内容を2回書きたくないので、各モンスターの詳細情報部分をbody部として切り出し、それを詳細画面と変身後モンスター算出の詳細欄の両方で流用する形にしている。<br/>
 
@@ -469,7 +484,7 @@ export default MyApp
         </p>
 
         <br/>
-        Reactを使って作ってみたものの紹介は以上です。<br/>
+        React/Next.jsを使って作ってみたものの紹介は以上です。<br/>
 
         <br/>
         <hr>

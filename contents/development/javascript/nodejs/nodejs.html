@@ -46,6 +46,7 @@
       <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
     </ul>
     <ul class="indent_no">
+      <li><a href="#firstly">はじめに</a></li>
       <li><a href="#what_is_nodejs">Node.jsとは</a></li>
       <li><a href="#feature">特徴</a></li>
       <li><a href="#async">非同期</a></li>
@@ -73,6 +74,7 @@
         <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../images/icon_qiita.png" alt="Qiita"></a></li>
       </ul>
       <ul class="indent_no">
+        <li><a href="#firstly">はじめに</a></li>
         <li><a href="#what_is_nodejs">Node.jsとは</a></li>
         <li><a href="#feature">特徴</a></li>
         <li><a href="#async">非同期</a></li>
@@ -113,6 +115,15 @@
         <script>
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
+
+        <br/>
+        <span id="firstly"></span>
+        <h3 class="title">はじめに</h3>
+        <p>
+          このページは、<a href="../js_index.html">JavaScriptの進化</a>の続きのページです。<br/>
+          ここではNode.jsにスポットを当てて記載していきます。<br/>
+          一応このページから読み進めても問題ないように構成したつもりですが、先のページを見てからの方が、Node.jsが生まれるまでの背景がわかって面白いかもしれません。<br/>
+        </p>
 
         <br/>
         <span id="what_is_nodejs"></span>
@@ -190,7 +201,8 @@
         <h3 class="title">非同期のイベント駆動型ランタイム</h3>
         <p>
           Node.jsは「ファイルの読み込みを開始した」など、OS側のイベントを監視し、Node.js側で受け取ることが可能になっており、このようなイベントをトリガーとして処理を開始することができるようになっています。<br/>
-          EventEmitter（及びそれを継承したStream）という仕組みを利用してこれを実現しています。EventEmitterの基本的な使い方としては以下の通り。
+          これは先の『<a href="#what_is_nodejs">Node.jsとは</a>』の章で記載した libuv というライブラリを使って実現しています。<br/>
+          実装レベルの話としては、EventEmitter（及びそれを継承したStream）という仕組みを利用します。EventEmitterの基本的な使い方は以下の通り。
         </p>
 
         <br/>
@@ -427,6 +439,7 @@ nodejs_testファイルの中
         参考書籍<br/>
         <ul>
           <li><a href="https://amzn.to/3x8wRfv" target="_blank" rel="noopener noreferrer"><img src="./img/nodejs入門.jpg" width="200"/><br/>Node.js入門</a></li>
+          <li><a href="https://amzn.to/4986MdE" target="_blank" rel="noopener noreferrer"><img src="../spa/img/vuejs入門.jpg" width="200"/><br/>Vue.js入門 基礎から実践アプリケーション開発まで</a></li>
         </ul>
 
         <br/>
