@@ -246,7 +246,7 @@
         <h4 class="title">コンポーネント</h4>
         <p>
           Reactでは、自分が書いたマークアップ、CSS、JavaScript を、アプリのための再利用可能な UI 要素にまとめることができます。これを『コンポーネント』と呼びます。<br/>
-          以下はWebサイトに表示するページのフッター部分を <code>CommonFooter</code> という名前でコンポーネント化したものです。<br/>
+          以下コンポーネントの例です。 <code>CommonFooter</code> という名前のコンポーネントを作っています。<br/>
         </p>
 
 <pre class="title"><code class="title">common_footer.tsx</code></pre>
@@ -254,31 +254,10 @@
   return (
     &lt;div&gt;
       &lt;footer&gt;
-        &lt;p className="rights"&gt;
-          ...
-        &lt;/p&gt;
+        ...
       &lt;/footer&gt;
     &lt;/div&gt;
   );
-}
-</code></pre>
-
-        <br/>
-        <p>
-          コンポーネント化したフッターを呼び出す際は <code>&lt;CommonFooter /&gt;</code> と記述します。<br/>
-          以下は同じくコンポーネント化した CommonBody というコンポーネントから CommonFooter を呼び出しているサンプルです。<br/>
-        </p>
-
-<br/>
-<pre class="title"><code class="title">common_body.tsx</code></pre>
-<pre><code>export default function CommonBody(body: any): JSX.Element {
-  &lt;body&gt;
-    &lt;section className="box"&gt;
-      {body.message}
-      ...
-    &lt;/section&gt;
-    &lt;CommonFooter /&gt;  {/* &lt;!--/#main--&gt; */}
-  &lt;/body&gt;
 }
 </code></pre>
 
@@ -439,19 +418,98 @@ export default MyApp
         <p>
           ゲームのサガシリーズが好きなので、初代サガである魔界塔士サガに関するものを作ってみました。<br/>
           とりあえず作った後に勉強したので、今見ると作り直したくなる感じはあるが、一旦現時点（2021年5月）のものとして公開してみます。<br/>
-          実際に作った物は大まかに以下。<br/>
+          ソースコードを全量載せると結構な量になるので、だいぶ抜粋して紹介します。<br/>
+
+          <br/>
+          各ページのレイアウトを統一するために、共通部分を CommonBody, CommonHeader, CommonFooter に分けてそれぞれコンポーネント化し、ページ毎に異なる部分を別途作成してそれを埋め込む形で作成しています。<br/>
+          <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
+
+          <br/><br/>
+          以下はWebサイトに表示するページのフッター部分を <code>CommonFooter</code> という名前でコンポーネント化したものです。<br/>
         </p>
 
+
+<pre class="title"><code class="title">common_footer.tsx</code></pre>
+<pre><code>export default function CommonFooter(labelKey: any): JSX.Element {
+return (
+  &lt;div&gt;
+    &lt;footer&gt;
+      共通フッターの内容をここに書く
+    &lt;/footer&gt;
+  &lt;/div&gt;
+);
+}
+</code></pre>
+
+        <br/>
+        <p>
+          コンポーネント化したフッターを呼び出す際は <code>&lt;CommonFooter /&gt;</code> と記述します。<br/>
+          以下は同じくコンポーネント化した CommonBody から CommonFooter を呼び出しているサンプルです。<br/>
+          また、呼び出し元から引数で渡された内容をbody部に設定しています（<code>{body.message}</code>の部分）。<br/>
+        </p>
+
+<pre class="title"><code class="title">common_body.tsx</code></pre>
+<pre><code>import CommonFooter from "./common_footer";
+
+export default function CommonBody(body: any): JSX.Element {
+&lt;body&gt;
+  &lt;section className="box"&gt;
+    {body.message}  // 引数(body)から渡された値(message)を設定
+    ...
+  &lt;/section&gt;
+  &lt;CommonFooter /&gt;  // CommonFooter コンポーネント呼び出し
+&lt;/body&gt;
+}
+</code></pre>
+
+
+        <br/><br/>
+        <p>
+          共通のコンポーネントはこんな感じで、あとは各ページ個別の内容を pages ディレクトリ配下に配置し、作成したコンポーネントをその中で呼び出して使うようにしていました。<br/>
+          今回は pages 直下に monster_trans_mechanism.tsx というファイル名で配置しているので、サーバ起動後、 http://ホスト名:3000/monster_trans_mechanism でアクセスできます。<br/>
+          <code>&lt;CommonBody message={this.CreateBody()} /&gt;</code>の部分で CommonBody コンポーネントを呼び出し、 message という名前の変数に CreateBody() の戻り値を設定しています。<br/>
+        </p>
+
+<pre class="title"><code class="title">pages/monster_trans_mechanism.tsx</code></pre>
+<pre><code>import CommonBody from '../common/common_body';
+
+export default class MonsterTransform extends Component {
+constructor(props: {} | Readonly&lt;{}&gt;) {
+  super(props)
+}
+
+render() {
+  return (
+    &lt;&gt;
+    // CommonBodyコンポーネント呼び出し。
+    // CreateBody()の戻り値を引数(messageという名前の変数)で渡している。
+    &lt;CommonBody message={this.CreateBody()} /&gt;
+    &lt;/&gt;
+  )
+}
+
+// body部の生成
+CreateBody() {
+  let body =
+  &lt;&gt;
+    各ページの内容をここに書く
+  &lt;/&gt;
+  return body
+}
+};
+</code></pre>
+
+
+        <br/><br/>
+        <p>
+          基本的に上記のような構成で全てのページを作成しています。<br/>
+          実際に作った物は大まかに以下。<br/>
+        </p>
         <ul>
           <li>仲間モンスター一覧</li>
           <li>変身後モンスター算出</li>
           <li>能力一覧</li>
         </ul>
-
-        <p>
-          各ページのレイアウトを統一するために、共通部分を CommonBody, CommonHeader, CommonFooter に分け、ページ毎に異なる部分を別途作成してそれを埋め込む形で作成しています。<br/>
-          <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
-        </p>
 
         <br/>
         <p>
@@ -460,7 +518,12 @@ export default MyApp
           ※変身後モンスター算出ツールの初期表示が遅いが、おそらく適切なレンダリング手法になっていないからだと思われる。今後改善予定。<br/>
 
           <br/>
-          一覧の方は、テーブルのヘッダー部分を操作することで表示対象を絞ったり、並び替えができるようになっており、その度に一覧の部分だけが再レンダリングされるようになっています。<br/>
+          <a href="https://sagamax.cyou/games/saga1/monster/monster_transform" target="_blank" rel="noopener noreferrer">変身後モンスター算出ツール</a>は、画面上段のプルダウンを選択すると、それに合わせて画面下の変身後の部分がリアクティブに切り替わるようになっています。<br/>
+          下段の変身後の部分だけがレンダリグンされるようになっています。<br/>
+          <img src="img/変身後モンスター算出（リアクティブ）.jpg" width="500"/><br/>
+
+          <br/>
+          <a href="https://sagamax.cyou/games/saga1/monster/monster_detail_index" target="_blank" rel="noopener noreferrer">仲間モンスター一覧</a>の方は、テーブルのヘッダー部分を操作することで表示対象を絞ったり、並び替えができるようになっており、その度に一覧の部分だけが再レンダリングされるようになっています。<br/>
           また、一覧のモンスター名がリンクになっていて、そこから当該モンスターの詳細情報を確認できる画面に遷移できるようになっています。<br/>
           このモンスターの詳細情報は、変身後モンスター算出画面でも同じ内容が出力されるようになっています。ソースコードに同じ内容を2回書きたくないので、各モンスターの詳細情報部分をbody部として切り出し、それを詳細画面と変身後モンスター算出の詳細欄の両方で流用する形にしている。<br/>
 

@@ -246,7 +246,8 @@
                   <li>updated</li>
                 </ul>
               </td>
-              <td>リアクティブシステムにより再レンダリングが必要になった際に行われる処理。<br/>
+              <td>
+                リアクティブシステムにより再レンダリングが必要になった際に行われる処理。<br/>
                 再レンダリングが終わると再びMountedになる。
               </td>
             </tr>
@@ -275,7 +276,7 @@
 
           <br/>
           以下のリンク先で実際に触ることができます。<br/>
-          <a href="https://sagamax.cyou/romasaga3/aaa" target="_blank" rel="noopener noreferrer">サンプル</a><br/>
+          <a href="https://sagamax.cyou/romasaga3/test" target="_blank" rel="noopener noreferrer">サンプル</a><br/>
 
           <br/>
           ソースコードは以下の通り。<br/>
@@ -412,6 +413,84 @@
         <p>
           ゲームのサガシリーズが好きなので、シリーズの中でも1, 2を争う人気のロマンシングサガ3に関するものを作ってみました。<br/>
           ロマサガ3の記事としては未完成。Vue.js/Nuxtアプリケーションとしては、とりあえず作った後に勉強したので今見ると作り直したくなる感じはあるが、一旦現時点（2021年5月）のものとして公開してみます。<br/>
+
+          <br/>
+          各ページのレイアウトを統一するために、共通部分を CommonBody, CommonHeader, CommonFooter に分け、ページ毎に異なる部分を別途作成してそれを埋め込む形で作成しています。<br/>
+          <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
+
+          <br/><br/>
+          コードレベルだと以下のようになっています（かなり簡略化しています）。<br/>
+          以下は共通のフッター。共通のボディ部から呼び出す。<br/>
+        </p>
+
+
+<pre class="title"><code class="title">CommonFooter.vue</code></pre>
+<pre><code>&lt;template&gt;
+  &lt;div&gt;
+    &lt;footer&gt;
+      "フッターに記載する内容をここに書く"
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+
+
+
+        <br/><br/>
+        <p>
+          以下は共通のbody部。<code>&lt;CommonFooter /&gt;</code>の所で上記CommonFooterコンポーネントを呼び出し。<br/>
+          CommonBodyを呼び出した側で pageTitle を設定し、<code>&lt;h2&gt;{{ pageTitle }}&lt;/h2&gt;</code>に代入。<br/>
+          <code>&lt;slot name="body"&gt;&lt;/slot&gt;</code>の部分に、呼び出し側の<code>&lt;template v-slot:body&gt;</code>の内容を埋め込む。
+        </p>
+
+
+<br/>
+<pre class="title"><code class="title">CommonBody.vue</code></pre>
+<pre><code>&lt;script setup lang="ts"&gt;
+  interface Props {
+    pageTitle: string   // 当コンポーネントの呼び出し元で設定する変数を定義
+  }
+  defineProps&lt;Props&gt;()
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;body&gt;
+    &lt;section&gt;
+      &lt;h2&gt;{{ pageTitle }}&lt;/h2&gt;  // 定義した変数を設定
+      &lt;slot name="body"&gt;&lt;/slot&gt;
+      &lt;br/&gt;
+    &lt;/section&gt;
+    &lt;CommonFooter /&gt;  // 上で定義したFooterをここに読み込む
+  &lt;/body&gt;
+&lt;/template>
+</code></pre>
+
+
+        <br/><br/>
+        <p>
+          各ページの内容を pages ディレクトリ配下に作成。<br/>
+          ファイル名を page.vue としているため、サーバー起動後、http://ホスト名:3000/page でアクセスできる。
+        </p>
+
+<pre class="title"><code class="title">pages/page.vue</code></pre>
+<pre><code>&lt;template&gt;
+  &lt;CommonBody v-bind:pageTitle="ページのタイトルをここに入れる"&gt;
+    &lt;template v-slot:body&gt;
+      ページ毎の内容をここに書く。
+      v-slot:body としているため、CommonBody.vueの「&lt;slot name="body"&gt;&lt;/slot&gt;」に埋め込まれる。
+    &lt;/template&gt;
+  &lt;/CommonBody&gt;
+&lt;/template&gt;
+
+&lt;script setup lang="ts"&gt;
+  スクリプトをここに書く
+&lt;/script&gt;
+</code></pre>
+
+
+        <br/><br/>
+        <p>
+          基本的に上記のような構成で全てのページを作成しています。<br/>
           実際に作った物は大まかに以下。<br/>
         </p>
 
@@ -421,11 +500,8 @@
           <li>詳細画面でラジオボタンを選択すると画像が切り替わる</li>
         </ul>
 
+        <br/>
         <p>
-          各ページのレイアウトを統一するために、共通部分を CommonBody, CommonHeader, CommonFooter に分け、ページ毎に異なる部分を別途作成してそれを埋め込む形で作成しています。<br/>
-          <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
-
-          <br/>
           ゲーム内に登場するキャラクターの一覧が<a href="https://sagamax.cyou/romasaga3/character/characters" target="_blank" rel="noopener noreferrer">こちら</a>。テーブルのヘッダー部分を操作することで表示対象を絞ったり、並び替えができるようになっており、その度に一覧の部分だけが再レンダリングされるようになっています。<br/>
           また、一覧のキャラクター名がリンクになっていて、そこから当該キャラクターの詳細情報を確認できる画面に遷移できるようになっています（詳細画面の一例は<a href="https://sagamax.cyou/romasaga3/character/detail/julian?destiny=歳星&weapon=なし">こちら</a>）。<br/>
           詳細画面ではラジオボタンを選択することで表示する画像が切り替わるようになっている部分があり、これもその部分だけがリアクティブに切り替わるようになっています。<br/>
