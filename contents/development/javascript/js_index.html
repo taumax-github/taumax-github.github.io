@@ -215,10 +215,14 @@
         <span id="html5"></span>
         <h4 class="title">HTML5の登場とWebアプリケーションプラットフォーム化</h4>
         <p>
-          HTML5は2014年に勧告された仕様です。HTMLの文書仕様だけでなく、Web全体の仕様をアップデートする大きな動きとなっていきました。HTML5では、Webをアプリケーションプラットフォームとしても機能させられるよう、HTML/CSSやDOM APIに強力な仕様変更が入れられました。<br/>
+          HTML5は2014年に勧告された仕様です。HTMLの文書仕様だけでなく、Web全体の仕様をアップデートする大きな動きとなっていきました。<br/>
+          HTML5では、Webをアプリケーションプラットフォームとしても機能させられるよう、HTML/CSSやDOM APIに強力な仕様変更が入れられました。<br/>
           その中でもHistory APIはこの後のWebアプリケーションの発展において特に重要なモノでした。History APIによって、ページの遷移をWebブラウザではなくJavaScriptでハンドリングできるようになりました。これによってコンテンツを画面遷移なしに、URLや履歴を管理しつつ切り替えるシングルページアプリケーションの構築が可能になりました。<br/>
-          HTML5の登場とそれに伴うライブラリの進化などで、クライアントサイドにおいてもより強力な表現が可能となりました。<br/>
-          これを受けて、プレゼンテーション層のプログラムがサーバーサイドからクライアントサイドにシフトしていきます。従来サーバーサイドで行っていたHTMLの描画が、Web APIで必要なデータを取得すれば、クライアントサイドで可能となったためです。こちらの方が画面遷移の少なさなどによって、より優れた体験を与えられます。<br/>
+          HTML5 の仕様策定には Apple, Mozilla, Opera というブラウザエンジンを開発している組織が関わっていました。このこともあり、これらのベンダがリリースするブラウザは標準に準拠しているのが当たり前という流れが出来上がっていきます。<br/>
+          一方、この頃から、Webの標準に準拠していないIEの利用が避けられることが多くなりました。Microsoftもその状況に対応するために、標準への準拠を謳ったブラウザとして Edge を2015年にリリースします。<br/>
+          この Edge, Chrome, Safari, Firefox といった、Web 標準に準拠したブラウザをモダンブラウザと言います。そして2010年後半には、モダンブラウザがシェアの殆どを占める状況になったおかげで、JavaScriptの仕様が、ECMAScriptへの準拠という形で標準化された状況が出来上がります。<br/>
+          HTML5の登場とそれに伴うライブラリの進化、モダンブラウザの普及などにより、クライアントサイドにおいてもより強力な表現が可能となりました。<br/>
+          これを受けて、プレゼンテーション層のプログラムがサーバーサイドからクライアントサイドにシフトしていきます。従来サーバーサイドで行っていたHTMLの描画が、Web APIで必要なデータを取得すればクライアントサイドで可能となったためです。こちらの方が画面遷移の少なさなどによって、より優れた体験を与えられます。<br/>
         </p>
 
         <br/>
@@ -283,8 +287,8 @@
             package.jsonに"type": "module"を追加する<br/>
             package.jsonは、Node.jsプロジェクトにおいて、そのプロジェクトの情報や依存関係、スクリプトなどの設定を記述するためのファイルです。
 
-<pre class="title"><code class="title">package.json</code></pre>
-<pre><code>{
+<pre class="title" style="margin-left: 0rem"><code class="title">package.json</code></pre>
+<pre style="margin-left: 0rem"><code>{
   "type": "module",
   ...
 }
@@ -394,7 +398,6 @@ console.log(name); // => SOARFLAT
           この問題を解決するために追加された機能が let です。let を使用した場合、同じ変数名を再宣言するとエラーになります。<br/>
         </p>
 
-<br/>
 <pre class="title"><code class="title">letによる変数の宣言</code></pre>
 <pre><code>let name = 'soarflat';
 console.log(name); // => soarflat
@@ -411,7 +414,6 @@ let name = 'SOARFLAT'; // 再宣言するとエラーになる
           const は定数を宣言するためのもので、再宣言はもちろんのこと、再代入もできないようになっています。<br/>
         </p>
 
-<br/>
 <pre class="title"><code class="title">constによる変数の宣言</code></pre>
 <pre><code>const NAME = 'soarflat';
 console.log(NAME); // => soarflat
@@ -480,6 +482,8 @@ NAME = 'SOARFLAT'; // 再代入するとエラーになる
         参考書籍<br/>
         <ul>
           <li><a href="https://amzn.to/3x8wRfv" target="_blank" rel="noopener noreferrer"><img src="./nodejs/img/nodejs入門.jpg" width="200"/><br/>Node.js入門</a></li>
+          <li><a href="https://amzn.to/4986MdE" target="_blank" rel="noopener noreferrer"><img src="./spa/img/vuejs入門.jpg" width="200"/><br/>Vue.js入門 基礎から実践アプリケーション開発まで</a></li>
+          <li><a href="https://amzn.to/3x59PG9" target="_blank" rel="noopener noreferrer"><img src="./spa/img/vue3.jpg" width="200"/><br/>Vue 3　フロントエンド開発の教科書</a></li>
         </ul>
 
         <br/>

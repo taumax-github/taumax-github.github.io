@@ -130,12 +130,16 @@
         <ol>
           <li>
             チャンネルポイント使用→webhook→チャット→OBS操作<br/>
-            twitchにはチャンネルポイントという機能があり、（普通こんな使い方はしないと思うのですが）ポイントが使用されたら任意のサーバーに Webhook リクエストを飛ばすこともできます。<br/>
+            Twitch にはチャンネルポイントという機能があり、（普通こんな使い方はしないと思うのですが）ポイントが使用されたら任意のサーバーに Webhook リクエストを飛ばすこともできます。<br/>
             サーバに Webhook が飛んで来たらそれに対応するメッセージをチャットに投げて、そのチャットをトリガーに EventEmitter でローカルの Node.js を稼働させ、WebSocket 経由で OBS を操作しています（下図の赤線の流れ）。<br/>
             <img src="./img/chanel_point.jpg" width="800" /><br/>
 
             <br/>
-            以下がチャンネルポイントを使った例(2h9m35s頃)。 Webhook を受けて「やきつくしてさしあげますわ！」という台詞をbotが喋り、その台詞をトリガーにローカルの Node.js が稼働し、OBS を操作することで画面に炎を表示させたり、音声を流したりしています。<br/>
+            以下がチャンネルポイントを使った例(2h9m35s頃)。<br/>
+            ①TwitchからWebhook を受けて<br/>
+            ②「やきつくしてさしあげますわ！」という台詞をbotが喋り<br/>
+            ③その台詞をトリガーにローカルの Node.js が稼働し<br/>
+            ④OBS を操作することで画面に炎を表示させたり、音声を流したりしています。<br/>
           </li>
           <iframe src="https://player.twitch.tv/?video=2098995290&time=2h9m35s&parent=taumax-github.github.io" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
           <li>

@@ -50,6 +50,8 @@
       <li><a href="#vue">Vue.js</a></li>
       <li><a href="#sfc">SFC</a></li>
       <li><a href="#hooks">フック</a></li>
+      <li><a href="#mustache">マスタッシュ構文</a></li>
+      <li><a href="#directive">ディレクティブ</a></li>
       <li><a href="#file_path_router">ファイルパスルータ</a></li>
       <li><a href="#nuxt">Nuxt</a></li>
       <li><a href="#rendering">レンダリング</a></li>
@@ -78,6 +80,8 @@
         <li><a href="#vue">Vue.js</a></li>
         <li><a href="#sfc">SFC</a></li>
         <li><a href="#hooks">フック</a></li>
+        <li><a href="#mustache">マスタッシュ構文</a></li>
+        <li><a href="#directive">ディレクティブ</a></li>
         <li><a href="#file_path_router">ファイルパスルータ</a></li>
         <li><a href="#nuxt">Nuxt</a></li>
         <li><a href="#rendering">レンダリング</a></li>
@@ -132,7 +136,7 @@
         <h3 class="title">Vue.js</h3>
         <p>
           Vue.jsは、DOM要素とJavaScriptのデータを結びつけるリアクティブなデータバインディングを提供するフレームワークです。2014年にリリースされました。<br/>
-          リアクティブ・プログラミングを特徴としています。リアクティブとは、「何かの値が変化するとそれがすぐに反映される仕組み」のことです。<br/>
+          リアクティブ・プログラミングを特徴としています。リアクティブとは、『何かの値が変化するとそれに連動して表示内容が自動で変化する仕組み』のことです。<br/>
           2020年9月にVue3がリリースされましたが、その時点では、Vueに付随する主要なモジュールがバージョン3未対応のままという状態でした。<br/>
           2022年2月7日に主要なモジュールも含めて、Vueを作成するプロジェクトのデフォルトのバージョンが3になりました。Vue3で<a href="../../typescript.html">TypeScript</a>にも対応しました。<br/>
           Vue.jsは、SFC(Single File Components)とVueインスタンスがリアクティブなシステムを作る上でのポイントとなります。<br/>
@@ -275,7 +279,7 @@
           ※ created なんて使わずに <code>outMsg: 'default message.'</code> と定義すればいいのですが、サンプルなので無理矢理ですが created を使ってみました。<br/>
 
           <br/>
-          以下のリンク先で実際に触ることができます。<br/>
+          恐ろしく簡素なページですが、一応以下のリンク先で実際に触ることができます。<br/>
           <a href="https://sagamax.cyou/romasaga3/test" target="_blank" rel="noopener noreferrer">サンプル</a><br/>
 
           <br/>
@@ -322,11 +326,40 @@
         </p>
 
         <br/>
+        <span id="mustache"></span>
+        <h4 class="title">マスタッシュ構文</h4>
+        <p>
+          上記コードの<code>{{ outMsg }}</code> はマスタッシュ構文と呼ばれるもので、スクリプトブロックで用意した変数を表示するための構文です。ここではスクリプトブロック内で宣言した変数 outMsg を表示しています。タグとタグに囲まれた部分（要素のテキスト部分）にしか使えません。<br/>
+        </p>
+
+        <br/>
+        <span id="directive"></span>
+        <h4 class="title">ディレクティブ</h4>
+        <p>
+          <code>v-model</code> や <code>v-on</code> という属性はディレクティブと呼ばれるもので、 template 内の属性にデータや関数などをバインドするものです。<br/>
+          主なディレクティブには以下のようなものがあります。
+        </p>
+
+        <table border="1">
+          <tr><th>ディレクティブ</th><th>役割</th></tr>
+          <tr><td>v-bind</td><td>データバインディング</td></tr>
+          <tr><td>v-on</td><td>イベント処理</td></tr>
+          <tr><td>v-model</td><td>双方向データバインディング</td></tr>
+          <tr><td>v-html</td><td>HTML 文字列表示</td></tr>
+          <tr><td>v-pre</td><td>静的コンテンツ表示</td></tr>
+          <tr><td>v-once</td><td>データバインディングを初回のみに制限</td></tr>
+          <tr><td>v-cloak</td><td>マスタッシュ構文の非表示</td></tr>
+          <tr><td>v-if</td><td>条件分岐</td></tr>
+          <tr><td>v-show</td><td>表示・非表示の制御</td></tr>
+          <tr><td>v-for</td><td>ループ処理</td></tr>
+        </table>
+
+        <br/>
         <span id="file_path_router"></span>
         <h4>ファイルパスルータ</h4>
         <p>
           Vueにはファイルパスルータという機能があります。これは<a href="../react/react_next.html#filebase_routing">Next.jsのファイルベースルーティング</a>と同じものと考えていいと思います。<br/>
-          画面用のコンポーネントは pages フォルダに格納する事になっており、さらにその格納するファイルパスの構造がそのままルーティングパスになります。<br/>
+          pages フォルダ配下に格納するファイルパスの構造がそのままルーティングパスになります。<br/>
         </p>
 
         <br/>
@@ -356,7 +389,7 @@
         <span id="rendering"></span>
         <h4 class="title">レンダリング</h4>
         <p>
-          Nuxtで使えるレンダリングモードとその概要は<a href="../spa.html">こちら</a>に記載しているので、どのようにしてそれを実現するかを以下に記載します。<br/>
+          Nuxtで使えるレンダリングモードとその概要は<a href="../spa.html#rendering">こちら</a>に記載しているので、どのようにしてそれを実現するかを以下に記載します。<br/>
 
           <br/>
           Nuxtでは、<code>nuxt.config.ts</code> に <code>"パス": {レンダリングモード}</code> の形式でページ毎のレンダリング方法を記述することでレンダリング方法を制御します。具体的には以下。
@@ -390,7 +423,7 @@
 
         <p>
           <br/>
-          ssr: true（または記述無し）とすることで、サーバーサイドでレンダリングした後、アプリのユーザと相互のやり取りが必要な処理など、どうしてもクライアントサイドで動作しないと成り立たない処理内容に関しては、クライアントサイドでレンダリングを行います。<br/>
+          ssr: true（または記述無し）とすると、サーバーサイドでレンダリングした後、どうしてもクライアントサイドで動作しないと成り立たない処理（アプリのユーザと相互のやり取りが必要な処理など）に関しては、クライアントサイドでレンダリングを行います。<br/>
         </p>
 
         <br/>
@@ -502,8 +535,9 @@
 
         <br/>
         <p>
-          ゲーム内に登場するキャラクターの一覧が<a href="https://sagamax.cyou/romasaga3/character/characters" target="_blank" rel="noopener noreferrer">こちら</a>。テーブルのヘッダー部分を操作することで表示対象を絞ったり、並び替えができるようになっており、その度に一覧の部分だけが再レンダリングされるようになっています。<br/>
-          また、一覧のキャラクター名がリンクになっていて、そこから当該キャラクターの詳細情報を確認できる画面に遷移できるようになっています（詳細画面の一例は<a href="https://sagamax.cyou/romasaga3/character/detail/julian?destiny=歳星&weapon=なし">こちら</a>）。<br/>
+          ゲーム内に登場する<a href="https://sagamax.cyou/romasaga3/character/characters" target="_blank" rel="noopener noreferrer">キャラクターの一覧がこちら</a>。テーブルのヘッダー部分を操作することで表示対象を絞ったり、並び替えができるようになっており、その度に一覧の部分だけが再レンダリングされるようになっています。<br/>
+          また、一覧のキャラクター名がリンクになっていて、そこから当該キャラクターの詳細情報を確認できる画面に遷移できるようになっています<br/>
+          <!-- （詳細画面の一例は<a href="https://sagamax.cyou/romasaga3/character/detail/julian?destiny=歳星&weapon=なし" target="_blank" rel="noopener noreferrer">こちら</a>）。<br/> -->
           詳細画面ではラジオボタンを選択することで表示する画像が切り替わるようになっている部分があり、これもその部分だけがリアクティブに切り替わるようになっています。<br/>
 
           <br/>
