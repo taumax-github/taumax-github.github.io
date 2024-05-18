@@ -50,8 +50,8 @@
       <li><a href="#vue">Vue.js</a></li>
       <li><a href="#sfc">SFC</a></li>
       <li><a href="#hooks">フック</a></li>
-      <li><a href="#mustache">マスタッシュ構文</a></li>
-      <li><a href="#directive">ディレクティブ</a></li>
+      <li><a href="#mustache">ﾏｽﾀｯｼｭ構文</a></li>
+      <li><a href="#directive">ﾃﾞｨﾚｸﾃｨﾌﾞ</a></li>
       <li><a href="#file_path_router">ファイルパスルータ</a></li>
       <li><a href="#nuxt">Nuxt</a></li>
       <li><a href="#rendering">レンダリング</a></li>
@@ -79,7 +79,7 @@
         <li><a href="#firstly">はじめに</a></li>
         <li><a href="#vue">Vue.js</a></li>
         <li><a href="#sfc">SFC</a></li>
-        <li><a href="#hooks">フック</a></li>
+        <li><a href="#hooks">ライフサイクルフック</a></li>
         <li><a href="#mustache">マスタッシュ構文</a></li>
         <li><a href="#directive">ディレクティブ</a></li>
         <li><a href="#file_path_router">ファイルパスルータ</a></li>
@@ -166,7 +166,7 @@
 
         <br/>
         <p>
-          <code>&lt;script&gt;&lt;/script&gt;</code>内にJavaScriptを、<code>&lt;template&gt;&lt;/template&gt;</code>にブラウザのbody部に表示する内容をコーディングしていきます。<br/>
+          <code>&lt;script&gt;&lt;/script&gt;</code>内にJavaScriptを、<code>&lt;template&gt;&lt;/template&gt;</code>にブラウザのbody部に表示する内容を、<code>&lt;style&gt;&lt;/style&gt;</code>に適応するCSSをコーディングしていきます。<br/>
         </p>
 
         <br/>
@@ -336,8 +336,7 @@
         <span id="directive"></span>
         <h4 class="title">ディレクティブ</h4>
         <p>
-          <code>v-model</code> や <code>v-on</code> という属性はディレクティブと呼ばれるもので、 template 内の属性にデータや関数などをバインドするものです。<br/>
-          主なディレクティブには以下のようなものがあります。
+          <code>v-model</code> や <code>v-on</code> という属性はディレクティブと呼ばれるもので、 template 内の属性にデータや関数などをバインドするものです。主なディレクティブには以下のようなものがあります。
         </p>
 
         <table border="1">
@@ -354,7 +353,7 @@
           <tr><td>v-for</td><td>ループ処理</td></tr>
         </table>
 
-        <br/>
+        <br/><br/>
         <span id="file_path_router"></span>
         <h4>ファイルパスルータ</h4>
         <p>
@@ -445,7 +444,7 @@
         <h3 class="title">作った物</h3>
         <p>
           ゲームのサガシリーズが好きなので、シリーズの中でも1, 2を争う人気のロマンシングサガ3に関するものを作ってみました。<br/>
-          ロマサガ3の記事としては未完成。Vue.js/Nuxtアプリケーションとしては、とりあえず作った後に勉強したので今見ると作り直したくなる感じはあるが、一旦現時点（2021年5月）のものとして公開してみます。<br/>
+          ロマサガ3の記事としては未完成ですが、Vue.js/Nuxtアプリケーションとしてはとりあえず動くようにはなっている状態。とりあえず作った後に勉強したので今見ると作り直したくなる感じはあるが、一旦現時点（2024年5月）のものとして公開してみます。<br/>
 
           <br/>
           各ページのレイアウトを統一するために、共通部分を CommonBody, CommonHeader, CommonFooter に分け、ページ毎に異なる部分を別途作成してそれを埋め込む形で作成しています。<br/>

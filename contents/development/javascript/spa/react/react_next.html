@@ -81,7 +81,7 @@
         <li><a href="#firstly">はじめに</a></li>
         <li><a href="#react">React</a></li>
         <li><a href="#jsx">JSX</a></li>
-        <li><a href="#component">ｺﾝﾎﾟｰﾈﾝﾄ</a></li>
+        <li><a href="#component">コンポーネント</a></li>
         <li><a href="#hooks">Hooks</a></li>
         <li><a href="#next">Next.js</a></li>
         <li><a href="#rendering">レンダリング</a></li>
@@ -345,20 +345,7 @@
         <h4 class="title">レンダリング</h4>
         <p>
           Nextで使えるレンダリング手法とその概要は<a href="../spa.html#rendering">こちら</a>に記載しているので、どのようにしてそれを実現するかを記載します。<br/>
-
-          <br/>
-          Nextでは、所定の関数を呼び出すことでレンダリングモードを制御します。使用する関数は以下です。getServerSideProps, getStaticProps と getStaticPaths は export する必要があります。<br/>
-        </p>
-        <ul>
-          <li>getServerSideProps：ページを描画する前に呼ばれる。この関数が返した props を元にページが描画される。</li>
-          <li>getStaticProps：ビルド時に実行される。revalidateに数値（秒数）を指定して返すと、指定秒数経過後に再レンダリングされる。</li>
-          <li>getStaticPaths：事前にすべてのページを生成せず、必要に応じてhtml生成、およびキャッシュからの返却を行う。pathsにないパスに対してリクエストがあったときに、fallbackキーの値によって挙動が異なる。</li>
-          <li>unstable_revalidate：当該関数が実行されたタイミングで、getStaticPropsを使用しているページが再レンダリングされる。</li>
-        </ul>
-
-        <br/>
-        <p>
-          それぞれ対応するレンダリングモードは以下の通り。
+          Nextでは、所定の関数を使用することでレンダリングモードを制御します。レンダリングモードと対応する関数は以下の通り。
         </p>
 
         <table border="1">
@@ -371,7 +358,37 @@
           <tr><td>On Demand ISR<br/>(On Demand Incremental Static Regeneration)</td><td>revalidateを返すgetStaticPropsとunstable_revalidateの組み合わせ</td></tr>
         </table>
 
-        <br/><br/>
+        <br/>
+        <p>
+          各関数の細かい使い方に関してはここでは記載しません（各関数の使い方まで記載するスキルが今の自分にはありません）。<br/>
+          使い方に関しては以下のサイトがわかりやすい気がしたのでリンクを張っておきます。<br/>
+          <ul>
+            <li>
+              <a href="https://scrapbox.io/teamlab-frontend/SSR,_CSR,_SSG,_ISG,_ISR%E3%81%AE%E9%81%95%E3%81%84%E3%81%A8%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91%E6%96%B9%E3%80%82%E3%81%9D%E3%82%8C%E3%81%9E%E3%82%8CNext.js%E3%81%A7Todo%E3%82%A2%E3%83%97%E3%83%AA%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82" target="_blank" rel="noopener noreferrer">SSR, CSR, SSG, ISG, ISRの違いと使い分け方。それぞれNext.jsでTodoアプリ作ってみた。</a><br/>
+              様々な手法のコード例が載っているが、 On Demand ISR についての記載なし。
+            </li>
+            <li>
+              <a href="https://zenn.dev/shimabukuromeg/articles/955cea236650d4" target="_blank" rel="noopener noreferrer">Zenn On-demand ISRの機能を試してみた</a><br/>
+              On Demand ISR についての記事。
+            </li>
+          </ul>
+        </p>
+
+        <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-5924490903263360"
+            data-ad-slot="6254596512"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
         <span id="filebase_routing"></span>
         <h4 class="title">ファイルベースルーティング</h4>
         <p>
@@ -417,7 +434,7 @@ export default MyApp
         <h3 class="title">作った物</h3>
         <p>
           ゲームのサガシリーズが好きなので、初代サガである魔界塔士サガに関するものを作ってみました。<br/>
-          とりあえず作った後に勉強したので、今見ると作り直したくなる感じはあるが、一旦現時点（2021年5月）のものとして公開してみます。<br/>
+          とりあえず作った後に勉強したので、今見ると作り直したくなる感じはあるが、一旦現時点（2024年5月）のものとして公開してみます。<br/>
           ソースコードを全量載せると結構な量になるので、だいぶ抜粋して紹介します。<br/>
 
           <br/>
@@ -445,7 +462,7 @@ return (
         <p>
           コンポーネント化したフッターを呼び出す際は <code>&lt;CommonFooter /&gt;</code> と記述します。<br/>
           以下は同じくコンポーネント化した CommonBody から CommonFooter を呼び出しているサンプルです。<br/>
-          また、呼び出し元から引数で渡された内容をbody部に設定しています（<code>{body.message}</code>の部分）。<br/>
+          また、 CommonBody の呼び出し元から引数で渡された内容をbody部に設定しています（<code>{body.message}</code>の部分）。<br/>
         </p>
 
 <pre class="title"><code class="title">common_body.tsx</code></pre>
@@ -467,7 +484,7 @@ export default function CommonBody(body: any): JSX.Element {
         <p>
           共通のコンポーネントはこんな感じで、あとは各ページ個別の内容を pages ディレクトリ配下に配置し、作成したコンポーネントをその中で呼び出して使うようにしていました。<br/>
           今回は pages 直下に monster_trans_mechanism.tsx というファイル名で配置しているので、サーバ起動後、 http://ホスト名:3000/monster_trans_mechanism でアクセスできます。<br/>
-          <code>&lt;CommonBody message={this.CreateBody()} /&gt;</code>の部分で CommonBody コンポーネントを呼び出し、 message という名前の変数に CreateBody() の戻り値を設定しています。<br/>
+          以下が monster_trans_mechanism.tsx の中身です。<code>&lt;CommonBody message={this.CreateBody()} /&gt;</code>の部分で CommonBody コンポーネントを呼び出し、 message という名前の変数に CreateBody() 関数の戻り値を設定しています。<br/>
         </p>
 
 <pre class="title"><code class="title">pages/monster_trans_mechanism.tsx</code></pre>

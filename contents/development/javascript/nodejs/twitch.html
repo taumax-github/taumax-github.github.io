@@ -123,7 +123,7 @@
         <h3 class="title">はじめに</h3>
         <p>
           このページは、 <a href="./what_i_made.html">Node.js × Twitch, Twitter, OBS</a> の続きです。<br/>
-          twitch イベントを Webhook や tmi.js というライブラリを使用して Node.js で受け取ったり、チャットを投げたりする部分について記載します。以下画像の赤枠部分です。<br/>
+          Twitch イベントを Webhook や tmi.js というライブラリを使用して Node.js で受け取ったり、チャットを投げたりする部分について記載します。以下画像の赤枠部分です。<br/>
           <img src="./img/play_with_nodejs_twitch.jpg" width="800" /><br/>
 
           <br/>
@@ -170,8 +170,7 @@
         <span id="authentication"></span>
         <h3 class="title">Twitch の認証</h3>
         <p>
-          Twitch の Webhook や API を使うためには access token を取得する必要があります。<br/>
-          access token には app access token と user access token の2種類があり、それぞれ用途は以下の通り。<br/>
+          Twitch の Webhook や API を使うためには access token を取得する必要があります。access token には app access token と user access token の2種類があり、それぞれ用途は以下の通り。<br/>
         </p>
 
         <ul>
@@ -347,7 +346,7 @@
           <br/>
           イベントの中には Webhook で拾えるものと被っているものが結構あります。<br/>
           Webhook よりは tmi.js を使った方が（たぶん）早いので基本的に tmi.js を使えばいいと思いますが、raid は Webhook の方が使い勝手が良いと思います。<br/>
-          tmi.js の raid だと、 display_name を設定しているユーザーの場合、display_name のみが返されるため、 user_name を取得できないからです。display_name をキーに user_name を返してくれるAPI は（たぶん）ないので、結構困ります。<br/>
+          tmi.js の raid だと、 display_name を設定しているユーザーの場合、display_name のみが返され user_name を取得できないからです。display_name をキーに user_name を返してくれるAPI は（たぶん）ないので、結構困ります。<br/>
           Webhook であれば user_name と display_name の両方を取得できます。<br/>
           tmi.js を改造して両方取得するやり方を紹介しているブログ記事もありますが、外部ライブラリを改造するとバージョンアップの度に書き直す必要があったり、改造が原因で予期せぬ挙動をすることも考えられるのであまりお勧めできません。一応当該記事のリンクを張っておきます。<br/>
           <a href="https://zenn.dev/sushat4692/scraps/7c25d4050fcb3b" target="_blank" rel="noopener noreferrer">Zenn tmi.jsでRaidのユーザ名・表示名を別々に取得したい</a><br/>
@@ -438,7 +437,7 @@ twClientBot.connect();
 </code></pre>
 
 
-        <br/>
+        <br/><br/>
         <p>
           以上で tmi.js については終わりです。
         </p>
@@ -685,7 +684,7 @@ function verifyMessage(hmac, verifySignature) {
 </code></pre>
 
 
-        <br/>
+        <br/><br/>
         <p>
           以上で Webhook については終わりです。
         </p>
