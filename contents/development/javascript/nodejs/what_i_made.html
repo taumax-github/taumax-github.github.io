@@ -160,8 +160,18 @@
         <span id="impletentation"></span>
         <h3 class="title">実装</h3>
         <p>
-          以下リンク先で、 Node.js と Twitch の組み合わせ部分、 Twitter との組み合わせ部分、 OBS との組み合わせ部分の3つに分けて説明しています。
+          以下リンク先で、 Node.js と Twitch の組み合わせ部分、 Twitter との組み合わせ部分、 OBS との組み合わせ部分の3つに分けて説明しています。<br/>
+          開発する前に、以下のように package.json に "private": true を追記しておくといいと思います。これがあるとモジュールの公開ができなくなります。公開する気がない場合は念のため記載していた方がまあ安全かなと思います。<br/>
         </p>
+
+<pre class="title"><code class="title">package.json</code></pre>
+<pre><code>{
+  "private": true,
+  ...
+}</code></pre>
+
+
+        <br/>
         <ul>
           <li><a href="./twitch.html">Node.js × twitch</a></li>
           <li><a href="./twitter.html">Node.js × twitter</a></li>
