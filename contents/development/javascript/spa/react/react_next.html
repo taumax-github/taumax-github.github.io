@@ -403,11 +403,11 @@
           例えば以下の画像のように配置した場合、 <code>http://[ホスト名]/saga1/ability/ability_detail</code> というurlで <code>ability_detail.tsx</code> の内容が表示されます。<br/>
 
           <br/>
-          <img src="./img/next_project.jpg" style="border: solid 1px #FFFFFF"/><br/>
+          <img src="./img/react_next/next_project.jpg" style="border: solid 1px #FFFFFF"/><br/>
 
           <br/>
           Next.js では、すべてのページの初期化に App というコンポーネントを使用しています。<code>pages/_app.tsx</code> を作成することで、Appコンポーネントをカスタマイズできます。全ページに共通のcssを適応するなど、すべてのページで共通な処理などを書くことができます。<br/>
-          <img src="./img/_app.jpg" style="border: solid 1px #FFFFFF"/><br/>
+          <img src="./img/react_next/_app.jpg" style="border: solid 1px #FFFFFF"/><br/>
 
           <br/>
           以下のコードは<code>_app.tsx</code>の中身です。1行目で<code>import '../styles/style.css'</code>を記述することで、pages配下のすべてのページに <code>style.css</code> が適応されます。<br/>
@@ -446,7 +446,7 @@ export default MyApp
 
           <br/>
           各ページのレイアウトを統一するために、共通部分を CommonBody, CommonHeader, CommonFooter に分けてそれぞれコンポーネント化し、ページ毎に異なる部分を別途作成してそれを埋め込む形で作成しています。<br/>
-          <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
+          <img src="./img/react_next/コンポーネント構造.jpg" width="500"/><br/>
 
           <br/><br/>
           以下はWebサイトに表示するページのフッター部分を <code>CommonFooter</code> という名前でコンポーネント化したものです。<br/>
@@ -503,13 +503,11 @@ constructor(props: {} | Readonly&lt;{}&gt;) {
 }
 
 render() {
-  return (
-    &lt;&gt;
+  return (&lt;&gt;
     // CommonBodyコンポーネント呼び出し。
     // CreateBody()の戻り値を引数(messageという名前の変数)で渡している。
     &lt;CommonBody message={this.CreateBody()} /&gt;
-    &lt;/&gt;
-  )
+  &lt;/&gt;)
 }
 
 // body部の生成
@@ -520,7 +518,6 @@ CreateBody() {
   &lt;/&gt;
   return body
 }
-};
 </code></pre>
 
 
@@ -544,7 +541,7 @@ CreateBody() {
           <br/>
           <a href="https://sagamax.cyou/games/saga1/monster/monster_transform" target="_blank" rel="noopener noreferrer">変身後モンスター算出ツール</a>は、画面上段のプルダウンを選択すると、それに合わせて画面下の変身後の部分がリアクティブに切り替わるようになっています。<br/>
           下段の変身後の部分だけがレンダリングされるようになっています。<br/>
-          <img src="img/変身後モンスター算出（リアクティブ）.jpg" width="500"/><br/>
+          <img src="img/react_next/変身後モンスター算出（リアクティブ）.jpg" width="500"/><br/>
 
           <br/>
           <a href="https://sagamax.cyou/games/saga1/monster/monster_detail_index" target="_blank" rel="noopener noreferrer">仲間モンスター一覧</a>の方は、テーブルのヘッダー部分を操作することで表示対象を絞ったり、並び替えができるようになっており、その度に一覧の部分だけが再レンダリングされるようになっています。<br/>
@@ -553,17 +550,17 @@ CreateBody() {
 
           <br/>
           変身後モンスター算出の詳細欄<br/>
-          <img src="img/変身後モンスター算出.jpg" width="500"/><br/>
+          <img src="img/react_next/変身後モンスター算出.jpg" width="500"/><br/>
 
           <br/>
           モンスター一覧の詳細欄。パンくずリスト以外は同じ内容になっていることがわかる。<br/>
-          <img src="img/モンスター一覧.jpg" width="500"/><br/>
+          <img src="img/react_next/モンスター一覧.jpg" width="500"/><br/>
 
           <br/><br/>
           あと作ったのは、モンスターが使用する能力の詳細。<br/>
           画面のレイアウトをReactで記載し、表示する情報自体はDBに格納。<br/>
           URLからIDを取得してそれをもとにDBから情報を取得して画面をレンダリングするようになっています。<br/>
-          <img src="img/能力詳細.jpg" width="500"/><br/>
+          <img src="img/react_next/能力詳細.jpg" width="500"/><br/>
 
           <br/>
           リンクは↓こちら。URL の ability_id を変えることで内容が変わることが確認できると思います。<br/>
