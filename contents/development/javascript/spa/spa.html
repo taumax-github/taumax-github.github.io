@@ -57,13 +57,6 @@
       <li><a href="#spa">SPA</a></li>
       <li><a href="#fw">ﾌﾚｰﾑﾜｰｸ</a></li>
       <li><a href="#rendering">Next, Nuxt<br/>のﾚﾝﾀﾞﾘﾝｸﾞ</a></li>
-      <li><a href="#ssr">SSR</a></li>
-      <li><a href="#csr">CSR</a></li>
-      <li><a href="#ur">Universal Rendering</a></li>
-      <li><a href="#ssg">SSG</a></li>
-      <li><a href="#isg">ISG</a></li>
-      <li><a href="#isr">ISR</a></li>
-      <li><a href="#od_isr">On Demand<br/> ISR</a></li>
       <li><a href="#detail">React, Vue<br/>詳細</a></li>
       <li><a href="#thoughts">感想</a></li>
     </ul>
@@ -90,13 +83,6 @@
         <li><a href="#spa">SPA</a></li>
         <li><a href="#fw">フレームワーク</a></li>
         <li><a href="#rendering">NextとNuxtのレンダリング手法</a></li>
-        <li><a href="#ssr">SSR</a></li>
-        <li><a href="#csr">CSR</a></li>
-        <li><a href="#ur">Universal Rendering</a></li>
-        <li><a href="#ssg">SSG</a></li>
-        <li><a href="#isg">ISG</a></li>
-        <li><a href="#isr">ISR</a></li>
-        <li><a href="#od_isr">On Demand ISR</a></li>
         <li><a href="#detail">React, Vue詳細</a></li>
         <li><a href="#thoughts">感想</a></li>
       </ul>
@@ -147,7 +133,7 @@
         <span id="spa"></span>
         <h3 class="title">SPA(Single Page Application)</h3>
         <p>
-          SPA(Single Page Application)は従来のWebアプリケーションとは異なる手法でWebページのレンダリング（データから画像や映像を作ること）を行います。<br/>
+          SPA(Single Page Application)は従来のWebアプリケーションとは異なる手法でWebページのレンダリング（HTMLやCSS、JavaScriptなどで書かれたコードをWebページとして閲覧できる形に変換すること）を行います。<br/>
           下図は従来のレンダリング手法。サーバーサイドでレンダリングしてhtmlを生成し、クライアントに返却するという手法です。<br/>
           htmlを受け取ったクライアントはそのたびにヘッダやフッダを含めて全て更新する方式をとっていました。<br/>
           <img src="./img/従来のWebアプリケーション.jpg" width="600"/><br/>
@@ -215,7 +201,7 @@
           ※仮想DOM：DOMの軽量版みたいなもの。ユーザーのアクションに応じて仮想DOMを更新し、差分だけを実際のDOMに適用する。<br/>
 
           <br/>
-          2024年の State of JavaScript では React が圧倒的に利用率が高く、Vue.js, Angular, Svelte等が続いている状況でした。<br/>
+          2024年の State of JavaScript では React が圧倒的に利用率が高く、その後に Vue.js, Angular, Svelte等が続いている状況でした。<br/>
           フロントエンドフレームワークの利用順位(2024)<br/>
           <img src="./img/利用率ランキング_2024.jpg" width="500" style="border: solid 1px #FFFFFF"/><br/>
           ※画像は<a href="https://2024.stateofjs.com/ja-JP/libraries/front-end-frameworks/" target="_blank" rel="noopener noreferrer">こちら</a>から抜粋<br/>
@@ -247,128 +233,29 @@
           <br/>
           以下が、各フレームワークで選択できるレンダリング手法です。<br/>
           Next.js, Nuxt3共に、ページ毎にレンダリングモードの選択が可能になっています。<br/>
+          それぞれのレンダリング手法の詳細は以下リンク先を参照してください。<br/>
         </p>
 
+        <ul>
+          <li><a href="./react/next_rendering.html">Next.js のレンダリング</a></li>
+          <li><a href="./vue/nuxt_rendering.html">Nuxt3 のレンダリング</a></li>
+        </ul>
+        <br/>
+
+        各フレームワークで使用できるレンダリング手法を整理すると以下のようになります。<br/>
         <div class="slider" style="width: 100%">
           <table border="1">
             <tr><th rowspan="2" style="z-index:0">手法</th><th colspan="2">可否</th><th rowspan="2">備考</th></tr>
-            <tr><th style="z-index:0">Next.js</th><th style="z-index:0">Nuxt</th></tr>
-            <tr><td><a href="#ssr">SSR(Server-Side Rendering)</a></td><td>●</td><td>●</td><td></td></tr>
-            <tr><td><a href="#csr">CSR(Client-Side Rendering)</a></td><td>●</td><td>●</td><td></td></tr>
-            <tr><td><a href="#ur">Universal Rendering</a></td><td>✖</td><td>●</td><td>SSRとCSRのいいとこどり<br/>Nuxtのデフォルトのレンダリングモード</td></tr>
-            <tr><td><a href="#ssg">SSG(Static Site Generation)</a></td><td>●</td><td>●</td><td></td></tr>
-            <tr><td><a href="#isg">ISG(Incremental Static Generation)</a></td><td>●</td><td>●</td><td>同じISGでもNextとNuxtで内容が異なる。</td></tr>
-            <tr><td><a href="#isr">ISR(Incremental Static Regeneration)</a></td><td>●</td><td>✖</td><td></td></tr>
-            <tr><td><a href="#od_isr">On Demand ISR<br/>(On Demand Incremental Static Regeneration)</a></td><td>●</td><td>✖</td><td>ISRに柔軟性をもたせたような機能。<br/>任意のタイミングで更新可能。</td></tr>
+            <tr><th style="z-index:1">Next.js</th><th style="z-index:1">Nuxt</th></tr>
+            <tr><td>SSR(Server-Side Rendering)</td><td>●</td><td>●</td><td></td></tr>
+            <tr><td>CSR(Client-Side Rendering)</td><td>●</td><td>●</td><td></td></tr>
+            <tr><td>Universal Rendering</td><td>✖</td><td>●</td><td>SSRとCSRのいいとこどり<br/>Nuxtのデフォルトのレンダリングモード</td></tr>
+            <tr><td>SSG(Static Site Generation)</td><td>●</td><td>●</td><td></td></tr>
+            <tr><td>ISG(Incremental Static Generation)</td><td>●</td><td>●</td><td>同じISGでもNextとNuxtで内容が異なる。</td></tr>
+            <tr><td>ISR(Incremental Static Regeneration)</td><td>●</td><td>✖</td><td></td></tr>
+            <tr><td>On Demand ISR<br/>(On Demand Incremental Static Regeneration)</td><td>●</td><td>✖</td><td>ISRに柔軟性をもたせたような機能。<br/>任意のタイミングで更新可能。</td></tr>
           </table>
         </div>
-
-        <br/><br/>
-        <span id="ssr"></span>
-        <h4 class="title">【Next, Nuxt】SSR(Server-Side Rendering)</h4>
-        <p>
-          JavaやPHPなどのいわゆるサーバーサイドWebアプリケーションと同じ。<br/>
-          サーバー側でレンダリングが行われ、生成されたHTMLデータが送信される。ブラウザは、単に送信されたHTMLデータを表示するだけ。<br/>
-          これがSSR(Server-Side Rendering)<br/>
-          <img src="./img/SSRの動作イメージ.jpg" width="600"/><br/>
-        </p>
-
-        <br/>
-        <span id="csr"></span>
-        <h4 class="title">【Next, Nuxt】CSR(Client-Side Rendering)</h4>
-        <p>
-          クライアント側でレンダリングの全てを行い、実際に表示に必要な画面を用意する仕組みがCSR(Client-Side Rendering)。<br/>
-          全ての画面がCSRで構成されたアプリケーションのことをSPA(Single Page Application)という。<br/>
-          <img src="./img/CSRの動作イメージ.jpg" width="600"/><br/>
-        </p>
-
-        <br/>
-        <!-- Google AdSense -->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- 横長広告 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5924490903263360"
-             data-ad-slot="6254596512"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
-        <br/>
-        <span id="ur"></span>
-        <h4 class="title">【Nuxt】Universal Rendering</h4>
-        <p>
-          Nuxtのデフォルト。<br/>
-          アプリのユーザーと相互のやり取りが必要な処理など、どうしてもクライアントサイドで動作しないと成り立たない処理内容に関しては、その処理をサーバーサイドで行わず、JavaScriptコードをブラウザに返すことで、ブラウザ上でも動作させるように自動的に制御する仕組み。<br/>
-          このSSRとCSRのいいとこ取りがユニバーサルレンダリング(Universal Rendering)。<br/>
-          <img src="./img/URの動作イメージ.jpg" width="600"/><br/>
-        </p>
-
-        <br/>
-        <span id="ssg"></span>
-        <h4 class="title">【Next, Nuxt】SSG(Static Site Generation)</h4>
-        <p>
-          初回アクセス時は対応するhtmlファイルをサーバ側で生成し、ブラウザに返します。次にアクセスしてきた場合は、すでに生成されたhtmlファイルを返却します。<br/>
-          一度生成したファイルを何らかの方法で削除したり、強制的に再生成しない限りは、永遠に同じ内容のファイルが返されます。<br/>
-          そのため、例えば現在時刻を表示するようにしていたとしても、htmlファイルが生成された時刻で固定され、何回リロードしても表示時刻は変化しません。<br/>
-          これを静的サイトジェネレーション(Static Site Generation)と言います。<br/>
-          <img src="./img/SSGの動作イメージ.jpg" width="600"/><br/>
-        </p>
-
-        <br/>
-        <!-- Google AdSense -->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <!-- 横長広告 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5924490903263360"
-             data-ad-slot="6254596512"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
-        <br/>
-        <span id="isg"></span>
-        <h4 class="title">【Next, Nuxt】ISG(Incremental Static Generation)</h4>
-        <p>
-          ISG の言葉の定義が Next と Nuxt で異なっているので分けて記載します。
-        </p>
-
-        <h5 class="title">Nuxt の ISG</h5>
-        <p>
-          <a href="#ssg">SSG(Static Site Generation)</a>とほぼ同じですが、n秒後（nはアプリケーションで指定）にアクセスすると再度サーバ側でhtmlファイルを生成し、それがクライアントに返却されます。<br/>
-          これをインクリメンタル静的ジェネレーション(Incremental Static Generation)と言います。<br/>
-          <img src="./img/ISGの動作イメージ.jpg" width="600"/><br/>
-        </p>
-
-        <br/>
-        <h5 class="title">Next の ISG</h5>
-        <p>
-          <a href="#ssg">SSG</a>のページが大量にある場合にビルド時間がかかりすぎる問題を解決した手法。<br/>
-          事前にすべてのページを生成せず、初回リクエスト時には<a href="#ssr">SSR</a>で完全なHTMLを生成しクライアントに返却（キャッシュもする）。2回目以降のリクエスト時にはキャッシュを表示する。<br/>
-          という仕組みです。<br/>
-        </p>
-
-        <br/>
-        <span id="isr"></span>
-        <h4 class="title">【Next】ISR(Incremental Static Regeneration)</h4>
-        <p>
-          NextのISRは<a href="#isg">NuxtのISG</a>と仕組み的には同じです。<br/>
-          revalidate という項目に指定した時間（秒）が経過した後にページにアクセスすると、再度サーバ側でhtmlを再生成します。<br/>
-        </p>
-
-        <br/>
-        <span id="od_isr"></span>
-        <h4 class="title">【Next】On Demand ISR(On Demand Incremental Static Regeneration)</h4>
-        <p>
-          <a href="#isr">ISR(Incremental Static Regeneration)</a>に柔軟性をもたせたような機能。<br/>
-          ISRの場合、先に記載したようにrevalidateで指定した時間がたたないとページ更新されませんが、On Demand ISRの場合は任意のタイミングで更新が可能です。<br/>
-          例えばHeadless CMSのコンテンツ更新時やショッピングサイトのメタデータが変更されたときなどに有用です。<br/>
-        </p>
 
         <br/>
         <span id="detail"></span>

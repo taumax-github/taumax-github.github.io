@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- twitter投稿用の設定 -->
+    <meta name="twitter:card" content="summary" /> <!--カード種類：summary か summary_large_image-->
+    <meta name="twitter:site" content="@taumax_" /> <!--ユーザー名-->
+    <meta property="og:url" content="https://taumax-github.github.io/contents/development/javascript/spa/vue/nuxt_rendering.html" /> <!--記事のURL-->
+    <meta property="og:title" content="Nuxt3のレンダリング" /> <!--記事のタイトル-->
+    <meta property="og:description" content="Nuxt3のレンダリング" /> <!--記事の要約（ディスクリプション）-->
+    <meta property="og:image" content="https://taumax-github.github.io/images/logo.png" /> <!--画像のURL-->
+
+    <link rel="stylesheet" href="../../../../../css/style.css">
+    <link rel="stylesheet" href="../../../../../css/print.css" media="print">
+    <script src="../../../../../js/openclose.js"></script>
+
+    <title>Nuxt3のレンダリング</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-141266564-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+  <!--PC用（801px以上端末）で表示させるブロック-->
+  <header class="pc">
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/"><img src="../../../../../images/icon_twitter_card.png" alt="TOP"></a>
+    </h1>
+
+    <!--PC用（801px以上端末）メニュー-->
+    <nav id="menubar">
+      <ul class="none">
+        <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+      </ul>
+    </nav>
+    <ul class="icon">
+      <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+    </ul>
+    <ul class="indent_no">
+      <li><a href="#firstly">はじめに</a></li>
+      <li><a href="#rendering_method">ﾚﾝﾀﾞﾘﾝｸﾞ手法</a></li>
+      <li><a href="#ssr">SSR</a></li>
+      <li><a href="#csr">CSR</a></li>
+      <li><a href="#ur">Universal Rendering</a></li>
+      <li><a href="#ssg">SSG</a></li>
+      <li><a href="#isg">ISG</a></li>
+      <li><a href="#implementation">実装</a></li>
+    </ul>
+  </header><!--/.pc-->
+
+  <!--小さな端末用（800px以下端末）で表示させるブロック-->
+  <header class="sh">
+    <!--小さな端末用（800px以下端末）メニュー-->
+    <div id="menubar-s">
+      <h1 class="logo">
+        <a href="https://taumax-github.github.io/"><img src="../../../../../images/icon_twitter_card.png" alt="SAMPLE SITE"></a>
+      </h1>
+      <nav>
+        <ul class="none">
+          <li class="menuimg menu1"><a href="https://taumax-github.github.io/"><span>Home</span></a></li>
+        </ul>
+      </nav>
+      <ul class="icon">
+        <li><a href="https://twitter.com/taumax_" target="_blank"><img src="../../../../../images/icon_twitter.png" alt="Twitter"></a></li>
+        <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../../../images/icon_qiita.png" alt="Qiita"></a></li>
+      </ul>
+      <ul class="indent_no">
+        <li><a href="#firstly">はじめに</a></li>
+        <li><a href="#rendering_method">ﾚﾝﾀﾞﾘﾝｸﾞ手法</a></li>
+        <li><a href="#ssr">SSR</a></li>
+        <li><a href="#csr">CSR</a></li>
+        <li><a href="#ur">Universal Rendering</a></li>
+        <li><a href="#ssg">SSG</a></li>
+        <li><a href="#isg">ISG</a></li>
+        <li><a href="#implementation">実装</a></li>
+      </ul>
+    </div><!--/#menubar-s-->
+  </header><!--/.sh-->
+
+  <body class="defaultbody">
+    <div id="container">
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <h2 class="title">Nuxt3のレンダリング</h2>
+
+        <ul class="breadcrumb">
+          <li class="breadcrumbli"><a href="../../../../../index.html">ホーム</a></li>
+          <li class="breadcrumbli"> > <a href="../js_index.html">JavaScript</a></li>
+          <li class="breadcrumbli"> > <a href="../spa.html">SPA</a></li>
+          <li class="breadcrumbli"> > <a href="./vue_nuxt.html">Vue.js/Nuxt</a></li>
+          <li class="breadcrumbli"> > Nuxt3のレンダリング</li>
+        </ul>
+
+        <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
+        <span id="firstly"></span>
+        <h3 class="title">はじめに</h3>
+        <p>
+          このページは、<a href="../spa.html#rendering">NextとNuxtのレンダリング手法の続き</a>です。一応このページから読んでも分かるように構成したつもりですが、SPAがよくわかっていない場合は<a href="../spa.html">こちらから見た方が良い</a>かもしれません。<br/>
+          2025年1月16日時点でのNuxtの最新バージョンは v3.15.2 です。<br/>
+          Nuxtは2と3で変更部分が多く、Nuxt4へのアップデートも予定されているため、どのバージョンについて調べているのか注意が必要です。<br/>
+        </p>
+
+        <br/>
+        <span id="rendering_method"></span>
+        <h3 class="title">Nuxt3のレンダリング手法</h3>
+        <p>
+          以下が、Nuxt3で選択できるレンダリング手法です。<br/>
+          Nuxt2まではアプリケーション全体のレンダリングしか指定できなかったのですが、Nuxt3ではページ毎にレンダリングモードの選択が可能になっています。<br/>
+        </p>
+
+        <div class="slider" style="width: 100%">
+          <table border="1">
+            <tr><th style="z-index:0">手法</th><th>備考</th></tr>
+            <tr><td><a href="#ssr">SSR(Server-Side Rendering)</a></td><td></td></tr>
+            <tr><td><a href="#csr">CSR(Client-Side Rendering)</a></td><td></td></tr>
+            <tr><td><a href="#ur">Universal Rendering</a></td><td>SSRとCSRのいいとこどり<br/>Nuxt3のデフォルトのレンダリングモード</td></tr>
+            <tr><td><a href="#ssg">SSG(Static Site Generation)</a></td><td></td></tr>
+            <tr><td><a href="#isg">ISG(Incremental Static Generation)</a></td><td>同じISGでもNextとNuxtで内容が異なる。</td></tr>
+          </table>
+        </div>
+
+        <br/><br/>
+        <span id="ssr"></span>
+        <h3 class="title">SSR(Server-Side Rendering)</h3>
+        <p>
+          JavaやPHPなどのいわゆるサーバーサイドWebアプリケーションと同じ。<br/>
+          サーバー側でレンダリングが行われ、生成されたHTMLデータが送信される。ブラウザは、単に送信されたHTMLデータを表示するだけ。<br/>
+          これがSSR(Server-Side Rendering)<br/>
+          <img src="./img/nuxt_rendering/SSRの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <span id="csr"></span>
+        <h3 class="title">CSR(Client-Side Rendering)</h3>
+        <p>
+          クライアント側でレンダリングの全てを行い、実際に表示に必要な画面を用意する仕組みがCSR(Client-Side Rendering)。<br/>
+          全ての画面がCSRで構成されたアプリケーションのことをSPA(Single Page Application)という。<br/>
+          <img src="./img/nuxt_rendering/CSRの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
+        <span id="ur"></span>
+        <h3 class="title">Universal Rendering</h3>
+        <p>
+          Nuxt3のデフォルト。<br/>
+          アプリのユーザーと相互のやり取りが必要な処理など、どうしてもクライアントサイドで動作しないと成り立たない処理内容に関しては、その処理をサーバーサイドで行わず、JavaScriptコードをブラウザに返すことで、ブラウザ上でも動作させるように自動的に制御する仕組み。<br/>
+          このSSRとCSRのいいとこ取りがユニバーサルレンダリング(Universal Rendering)。<br/>
+          <img src="./img/nuxt_rendering/URの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <span id="ssg"></span>
+        <h3 class="title">SSG(Static Site Generation)</h3>
+        <p>
+          初回アクセス時は対応するhtmlファイルをサーバ側で生成し、ブラウザに返します。次にアクセスしてきた場合は、すでに生成されたhtmlファイルを返却します。<br/>
+          一度生成したファイルを何らかの方法で削除したり、強制的に再生成しない限りは、永遠に同じ内容のファイルが返されます。<br/>
+          そのため、例えば現在時刻を表示するようにしていたとしても、htmlファイルが生成された時刻で固定され、何回リロードしても表示時刻は変化しません。<br/>
+          これを静的サイトジェネレーション(Static Site Generation)と言います。<br/>
+          <img src="./img/nuxt_rendering/SSGの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
+        <span id="isg"></span>
+        <h3 class="title">ISG(Incremental Static Generation)</h3>
+        <p>
+          <a href="#ssg">SSG(Static Site Generation)</a>とほぼ同じですが、n秒後（nはアプリケーションで指定）にアクセスすると再度サーバ側でhtmlファイルを生成し、それがクライアントに返却されます。<br/>
+          これをインクリメンタル静的ジェネレーション(Incremental Static Generation)と言います。<br/>
+          <img src="./img/nuxt_rendering/ISGの動作イメージ.jpg" width="600"/><br/>
+        </p>
+
+        <br/>
+        <span id="implementation"></span>
+        <h3 class="title">各レンダリングの実装方法</h3>
+        <p>
+          Nuxt3では、<code>nuxt.config.ts</code> に <code>"パス": {レンダリングモード}</code> の形式でページ毎のレンダリング方法を記述することでレンダリング方法を制御します。具体的には以下。
+        </p>
+
+
+<pre class="title"><code class="title">nuxt.config.ts</code></pre>
+<pre><code>export default defineNuxtConfig({
+  devtools: { enabled: true },
+  routeRules: {
+    "/spa": {ssr: false},
+    "/ssg": {prerender: true},
+    "/isg": {swr: 30},
+  }
+})
+</code></pre>
+
+
+        <br/>
+        <p>
+          レンダリングモードは以下のように指定します。<br/>
+          全量は<a href="https://nuxt.com/docs/guide/concepts/rendering" target="_blank" rel="noopener noreferrer">公式サイト</a>参照。<br/>
+        </p>
+
+        <table border="1">
+          <tr><th>レンダリングモード</th><th>nuxt.config.tsの記述</th></tr>
+          <tr><td>CSR(Client-Side Rendering)</td><td>ssr: false</td></tr>
+          <tr><td>SSR(Server-Side Rendering)</td><td rowspan="2">ssr: true（デフォルトなので記述不要）</td></tr>
+          <tr><td>Universal Rendering</td></tr>
+          <tr><td>SSG(Static Site Generation)</td><td>prerender: true</td></tr>
+          <tr><td>ISG(Incremental Static Generation)</td><td>swr: [数値]<br/>数値で指定した秒数毎に再レンダリング</td></tr>
+        </table>
+
+        <p>
+          <br/>
+          ssr: true（または記述無し）とすると、サーバーサイドでレンダリングした後、どうしてもクライアントサイドで動作しないと成り立たない処理（アプリのユーザと相互のやり取りが必要な処理など）に関しては、クライアントサイドでレンダリングを行います。<br/>
+        </p>
+
+        <br/>
+        <!-- Google AdSense -->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 横長広告 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5924490903263360"
+             data-ad-slot="6254596512"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <br/>
+        <hr>
+
+        <br/>
+        参考書籍<br/>
+        <ul>
+          <li><a href="https://amzn.to/3x59PG9" target="_blank" rel="noopener noreferrer"><img src="../img/vue3.jpg" width="200"/><br/>Vue 3　フロントエンド開発の教科書</a></li>
+          <li><a href="https://amzn.to/4atKcNQ" target="_blank" rel="noopener noreferrer"><img src="../img/nuxt3.jpg" width="200"/><br/>Nuxt 3　フロントエンド開発の教科書</a></li>
+          <li><a href="https://amzn.to/4986MdE" target="_blank" rel="noopener noreferrer"><img src="../img/vuejs入門.jpg" width="200"/><br/>Vue.js入門 基礎から実践アプリケーション開発まで</a></li>
+        </ul>
+
+        <br/>
+        参考サイト<br/>
+        <ul>
+          <li><a href="https://developer.mamezou-tech.com/blogs/2022/12/18/nuxt3-hybrid-rendering/" target="_blank" rel="noopener noreferrer">豆蔵デベロッパーサイト Nuxt3で導入されたハイブリッドレンダリングとNuxt版ISG/ISRを試してみる</a></li>
+          <li><a href="https://techmania.jp/blog/javascript0009/" target="_blank" rel="noopener noreferrer">TECH MANIA Nuxt.jsとは？Vue.jsとの違いやできること、メリットを解説</a></li>
+          <li><a href="https://www.webstaff.jp/guide/trend/webit/nuxtjs/" target="_blank" rel="noopener noreferrer">転職GUIDE Nuxt.jsとは、Vue.jsを効果的に使うためのフレームワーク！導入のメリットは？【入門編】</a></li>
+          <li><a href="https://deha.co.jp/magazine/vue-js-and-nuxt-js/" target="_blank" rel="noopener noreferrer">dehamagazine Vue.jsとNuxt.jsの違いは？徹底解説</a></li>
+          <li><a href="https://career.levtech.jp/guide/knowhow/article/388/" target="_blank" rel="noopener noreferrer">Vue.jsとは？他フレームワークとの違いやできることをわかりやすく解説</a></li>
+        </ul>
+      </section><!-- section class="box" -->
+
+      <br/>
+      <!-- Google AdSense -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br/>
+
+      <footer>
+        <small><a href="https://taumax-github.github.io/">とあるＩＴエンジニアの知識整理</a> All Rights Reserved.</small>
+        <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+      </footer>
+
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+    <!--メニューの開閉処理条件設定　800px以下-->
+    <script>
+      if (OCwindowWidth() <= 800) {
+        open_close("menubar_hdr", "menubar-s");
+      }
+    </script>
+</html>

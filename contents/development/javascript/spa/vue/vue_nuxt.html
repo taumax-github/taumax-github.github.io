@@ -198,7 +198,7 @@
           操作するにはVueのライフサイクルフック及び、Vueインスタンス内に定義した関数を使用する必要があり、以下のようなものがあります。<br/>
 
           <br/>
-          <img src="./img/vue_life_cycle.jpg" width="800"/><br/>
+          <img src="./img/vue_nuxt/vue_life_cycle.jpg" width="800"/><br/>
           ※図は書籍、<a href="https://amzn.to/3x59PG9" target="_blank" rel="noopener noreferrer">Vue 3　フロントエンド開発の教科書</a> P150の図を管理人が独自に加筆・修正したもの<br/>
         </p>
 
@@ -329,7 +329,7 @@
         <br/>
         <p>
           構造を図解するとこんな感じです。<br/>
-          <img src="./img/vueコード例.jpg" style="border: solid 1px #FFFFFF" width="700"/><br/>
+          <img src="./img/vue_nuxt/vueコード例.jpg" style="border: solid 1px #FFFFFF" width="700"/><br/>
         </p>
 
         <br/>
@@ -395,41 +395,7 @@
         <span id="rendering"></span>
         <h4 class="title">レンダリング</h4>
         <p>
-          Nuxtで使えるレンダリングモードとその概要は<a href="../spa.html#rendering">こちら</a>に記載しているので、どのようにしてそれを実現するかを以下に記載します。<br/>
-
-          <br/>
-          Nuxtでは、<code>nuxt.config.ts</code> に <code>"パス": {レンダリングモード}</code> の形式でページ毎のレンダリング方法を記述することでレンダリング方法を制御します。具体的には以下。
-        </p>
-
-<pre class="title"><code class="title">nuxt.config.ts</code></pre>
-<pre><code>export default defineNuxtConfig({
-  devtools: { enabled: true },
-  routeRules: {
-    "/spa": {ssr: false},
-    "/ssg": {prerender: true},
-    "/isg": {swr: 30},
-  }
-})
-</code></pre>
-
-        <br/>
-        <p>
-          レンダリングモードは以下のように指定します。<br/>
-          全量は<a href="https://nuxt.com/docs/guide/concepts/rendering" target="_blank" rel="noopener noreferrer">公式サイト</a>参照。<br/>
-        </p>
-
-        <table border="1">
-          <tr><th>レンダリングモード</th><th>nuxt.config.tsの記述</th></tr>
-          <tr><td>CSR(Client-Side Rendering)</td><td>ssr: false</td></tr>
-          <tr><td>SSR(Server-Side Rendering)</td><td rowspan="2">ssr: true（デフォルトなので記述不要）</td></tr>
-          <tr><td>Universal Rendering</td></tr>
-          <tr><td>SSG(Static Site Generation)</td><td>prerender: true</td></tr>
-          <tr><td>ISG(Incremental Static Generation)</td><td>swr: [数値]<br/>数値で指定した秒数毎に再レンダリング</td></tr>
-        </table>
-
-        <p>
-          <br/>
-          ssr: true（または記述無し）とすると、サーバーサイドでレンダリングした後、どうしてもクライアントサイドで動作しないと成り立たない処理（アプリのユーザと相互のやり取りが必要な処理など）に関しては、クライアントサイドでレンダリングを行います。<br/>
+          Nuxtで使えるレンダリングモードとその実装方法は<a href="./nuxt_rendering.html">別ページでまとめているのでそちら</a>参照。<br/>
         </p>
 
         <br/>
@@ -455,7 +421,7 @@
 
           <br/>
           各ページのレイアウトを統一するために、共通部分を CommonBody, CommonHeader, CommonFooter に分け、ページ毎に異なる部分を別途作成してそれを埋め込む形で作成しています。<br/>
-          <img src="./img/コンポーネント構造.jpg" width="500"/><br/>
+          <img src="./img/vue_nuxt/コンポーネント構造.jpg" width="500"/><br/>
 
           <br/><br/>
           コードレベルだと以下のようになっています（かなり簡略化しています）。<br/>
@@ -548,11 +514,11 @@
 
           <br/>
           初期表示<br/>
-          <img src="./img/ラジオボタン1.jpg" /><br/>
+          <img src="./img/vue_nuxt/ラジオボタン1.jpg" /><br/>
 
           <br/>
           ラジオボタンの選択を変更すると、それに対応する画像に切り替わるようになっている。<br/>
-          <img src="./img/ラジオボタン2.jpg" /><br/>
+          <img src="./img/vue_nuxt/ラジオボタン2.jpg" /><br/>
         </p>
 
         <br/>
