@@ -232,13 +232,13 @@
 
           <br/>
           以下が、各フレームワークで選択できるレンダリング手法です。<br/>
-          Next.js, Nuxt3共に、ページ毎にレンダリングモードの選択が可能になっています。<br/>
+          Next.js, Nuxt共に、ページ毎にレンダリングモードの選択が可能になっています。<br/>
           それぞれのレンダリング手法の詳細は以下リンク先を参照してください。<br/>
         </p>
 
         <ul>
           <li><a href="./react/next_rendering.html">Next.js のレンダリング</a></li>
-          <li><a href="./vue/nuxt_rendering.html">Nuxt3 のレンダリング</a></li>
+          <li><a href="./vue/nuxt_rendering.html">Nuxt のレンダリング</a></li>
         </ul>
         <br/>
 
@@ -256,12 +256,14 @@
             <tr><td>On Demand ISR<br/>(On Demand Incremental Static Regeneration)</td><td>●</td><td>✖</td><td>ISRに柔軟性をもたせたような機能。<br/>任意のタイミングで更新可能。</td></tr>
           </table>
         </div>
+        <br/>
 
         <br/>
         <span id="detail"></span>
         <h3 class="title">React/Next.js, Vue.js/Nuxt詳細</h3>
         <p>
-          React/Next.jsとVue.js/Nuxtの詳細については以下リンク先参照。
+          Next.jsやNuxtなどのフレームワークと組み合わせることで、レンダリング以外にも様々な機能が利用出来るようになります。<br/>
+          React と Next.js, Vue.js と Nuxt を組わせてWebアプリケーションを構築する方法や、利用できる機能の詳細については以下リンク先参照。
         </p>
         <ul>
           <li><a href="react/react_next.html">React/Next.js</a></li>
@@ -284,14 +286,15 @@
 
         <br/>
         <span id="thoughts"></span>
-        <h3 class="title">触ってみた感想</h3>
+        <h3 class="title">React/Next.js, Vue.js/Nuxt を触ってみた感想</h3>
         <p>
-          React/Next.jsとVue.js/Nuxtの両方を触ってみた感想ですが、React/Next.jsは自由度が高い（.jsxの特徴かもしれない）。<br/>
+          React/Next.jsとVue.js/Nuxtの両方を触ってみた感想です。<br/>
+          React/Next.jsは自由度が高いなと感じました（.jsxの特徴かもしれない）。<br/>
           一つの関数の中にビジネスロジックとhtmlの生成処理を（良くも悪くも）書けてしまうので、メンテナンス性の悪いコードをうっかり書いてしまいがちに感じました。<br/>
-          利用者が多いだけあって、困った時もググれば解決できることが多かったように思いました。<br/>
+          また、利用者が多いだけあって、困った時もググれば解決できることが多かったように思いました。<br/>
           一方、Vue.js/Nuxtは、SFCと言う仕組みを使う以上、ロジックとテンプレート(UI)を分けて書く事を強制されるので、この仕組みに収まる範囲であればメンテナンス性の高いコードになりやすいように感じました。<br/>
           ただし、これは感覚的な話であまり根拠はないですが、システムの規模が大きくなり複雑性が増した場合でもこのSFCの仕組みに収めることができるのかという点は疑問で、もし収まらなかった場合は一気に破綻してしまう恐れがあるように思いました。<br/>
-          また、Vue/Nuxt は React/Next.js と比べると利用率が低いということと、Nuxt2と3の記事が混在している状態なので困ったときに答えに辿り着きづらいように感じました。<br/>
+          また、Vue/Nuxt は React/Next.js と比べると利用率が低いということと、Web上の記事はNuxt2と3の記事が混在している状態なので、困ったときに答えに辿り着きづらいように感じました。<br/>
         </p>
 
         <br/>

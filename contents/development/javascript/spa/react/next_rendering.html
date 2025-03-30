@@ -138,37 +138,6 @@
         <h3 class="title">はじめに</h3>
         <p>
           このページは、 <a href="./react_next.html#rendering">React/Next.js のレンダリング</a>の続きのページです。Next.js のレンダリング手法にスポットを当てて記載していきます。一応このページから読み進めても問題ないように構成したつもりですが、リンク先のページを見てからの方が、ReactとNext.jsについて理解が深まるかもしれません。<br/>
-          <!--
-          前々回の発表会でJavaScriptの歴史について発表し、その中で React/Next.js についても言及したが、その時深掘りしきれなかったことがあった。
-        </p>
-
-        <ul>
-          <li>テストフレームワークとして何がよく使われているのか、その使い方は？</li>
-          <li>Next.js というフレームワークを利用することで、様々なレンダリング（HTMLやCSS、JavaScriptなどで書かれたコードをWebページとして閲覧できる形に変換すること）手法でページを構築することができるようになるが、それについての深掘り</li>
-        </ul>
-
-        <p>
-          今回はレンダリング手法にスポットを当てています。<br/>
-          実際に業務で使用する際に、非機能面（主に処理性能）を考える上でどのレンダリング手法を採用すべきかは重要な要素だと思うので、今回整理してみました。<br/>
-
-          <br/>
-          近年 JavaScript の注目度がどんどん上がっている現状において、（特にWeb系の）エンジニアとして JavaScript や、そこから派生した SPA, React, Next.js 辺りは押さえておく必要がある。<br/>
-          <img src="./img/rendering/language_2006.jpg" width="500" />
-          <img src="./img/rendering/language_2025.jpg" width="500" /><br/>
-          <br/>
-
-          <div class="youtube">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZTPrbAKmcdo?si=XkkOKSaf8_KVCcNJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-          </div>
-
-          <br/><br/>
-          本題に入る前に、SPA(Single Page Application)についておさらい。 SPA は近年注目を集めているWebアプリケーションの形式の1つで、JavaScriptが人気の言語になった理由の一つ。<br/>
-          <a href="../spa.html">SPAとフレームワークについて</a><br/>
-
-          <br/>
-          今回は、最も人気のある React と、Reactの機能を拡張した Next.js というフレーム枠を使っています。 Next.js がサポートしている様々なレンダリング手法を試してみたというのが今回の発表内容です。<br/>
-          -->
-
           今回は Next.js の v13.0.2 を使用していますが、v14以降（2025/3/23時点の最新は v15.2.3）、各レンダリング手法の実装方法が変わっていたり、新しいレンダリング手法が実装されたりするなど変化している模様。とは言え根本的な考え方は変わっていないはずなので主にそこを参考にしてほしいです。<br/>
         </p>
 
@@ -240,7 +209,7 @@
         <h4 class="title">レンダリングのタイミングと使用する関数</h4>
         <p>
           SSRは、ページへのアクセスが発生する度にサーバーサイド処理が実行され、クライアントに結果を返します。getServerSideProps 関数を使用して実現します。<br/>
-          ページへのアクセスが発生する度に、ページをレンダリングする前にサーバーサイドで getServerSideProps が実行され、関数が返した値を元にサーバー側でページをレンダリングするという手法です。<br/>
+          ページへのアクセスが発生すると、レンダリングする前にサーバーサイドで getServerSideProps が実行され、関数が返した値を元にサーバー側でページをレンダリングするという手法です。<br/>
           ブラウザでの初期レンダリング後は普通のReactアプリケーションと同様に、APIなどからデータを取得してレンダリングを動的に変化させることができます。<br/>
 
           <br/>
@@ -411,7 +380,7 @@ export async function getStaticProps(): Promise&lt;result&gt; {
           </ul>
           <li>getStaticProps 関数と合わせて getStaticPaths 関数を利用する</li>
           <ul>
-            <li>getStaticPaths 内でパスパラメータ(id)を指定し、getStaticProps 内でパラメータを使用可能</li>
+            <li>getStaticPaths 内でパスパラメータ（ファイル名が[id]ならパラメータはid）を指定し、getStaticProps 内でパラメータを使用可能</li>
           </ul>
         </ul>
 
@@ -489,11 +458,9 @@ export default Post
           </li>
         </ul>
         <p>
-          true/blocking を指定した場合であっても、同じページへの2回目以降のアクセスではサーバー側で構築されたHTMLが返却されます。
-        </p>
-        <p>
-          先のサンプルコードでは、 getStaticProps 関数内でログ出力（console.log(id)の部分）を行っている。<br/>
-          fallbackにtrueを指定しているため、ビルド時のログと、サーバ起動後に実際に1, 2, 3, 4, 5の順にアクセスした場合のログの出力は以下のようになっている（1, 2, 3はビルド時に生成済みなのでページアクセス時はログ出力無し。4, 5はページへの初回アクセス時に getStaticProps が実行されるので初回のみログが出力される）。<br/>
+          true/blocking を指定した場合であっても、同じページへの2回目以降のアクセスではサーバー側で構築されたHTMLが返却されます。<br/>
+          先のサンプルコードでは、 getStaticProps 関数内でログ出力（console.log(id)の部分）を行っています。fallbackにtrueを指定しているため、ビルド時のログと、サーバ起動後に実際に1, 2, 3, 4, 5の順にアクセスした場合のログの出力は以下のようになります<br/>
+          （1, 2, 3はビルド時に生成済みなのでページアクセス時はログ出力無し。4, 5はページへの初回アクセス時に getStaticProps が実行されるので初回のみログが出力される）。<br/>
         </p>
 
 
@@ -543,8 +510,8 @@ ready - started server on 0.0.0.0:3000, url: http://localhost:3000
         <h3 class="title">ISR(Incremental Static Regeneration)</h3>
         <h4 class="title">レンダリングのタイミングと使用する関数</h4>
         <p>
-          インクリメンタル静的再生成(ISR)はSSGの応用とも言えるレンダリング手法です。<br/>
-          特徴としてはページの寿命を設定でき、寿命を過ぎたページについては最新の情報での再生成を試みて、静的ページを配信しつつ情報を更新できます。<br/>
+          ISRはSSGの応用とも言えるレンダリング手法です。<br/>
+          ページの寿命を設定でき、寿命を過ぎたページについては最新の情報での再生成を試みて、静的ページを配信しつつ情報を更新できます。<br/>
           ISR には revalidate を返す getStaticProps を用います。 revalidate の値が有効期間（秒）となり、有効期間を過ぎたページは再生成されます。<br/>
 
           <br/>
@@ -649,12 +616,14 @@ export async function getStaticProps(): Promise&lt;result&gt; {
         <span id="what_i_made1"></span>
         <h3 class="title">作った物①：SSGとCSRの組み合わせ</h3>
         <p>
+          SSGとCSRを組み合わせて作ったページ。<br/>
+          ロマサガ2リメイクというゲームに登場するキャラクターのステータスを一覧化したもの。<br/>
+          キャラクターのステータスは変化しないので、一覧自体はSSGで生成。一覧のソートや検索機能はCSRで一覧を操作することで実現している。<br/>
           <a href="https://sagamax.cyou/games/romasaga2r/charas/charas_index" target="_blank">作った物①：SSGとCSRの組み合わせ</a><br/>
 
           <br/>
           処理イメージ<br/>
           <img src="./img/rendering/what_i_made1_ssg_csr_build.jpg" width="500"/><br/>
-          <br/>
           <img src="./img/rendering/what_i_made1_ssg_csr_rendering.jpg" width="800"/><br/>
 
           <br/>
@@ -670,6 +639,8 @@ export async function getStaticProps(): Promise&lt;result&gt; {
         <span id="what_i_made2"></span>
         <h3 class="title">作った物②：SSGで一覧画面、ISGで詳細画面</h3>
         <p>
+          SSGで一覧画面、ISRで詳細画面（一覧画面からの遷移先）を構築したページ。<br/>
+          ロマサガ2リメイクというゲームに登場する陣形の一覧と詳細画面を作成した。<br/>
           <a href="https://sagamax.cyou/games/romasaga2r/formation/formation_index" target="_blank">作った物②：SSGで一覧画面、ISGで詳細画面</a><br/>
 
           <br/>
