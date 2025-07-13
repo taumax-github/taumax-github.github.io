@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="refresh" content="0; URL=https://taumax-develop.github.io/contents/security/cors/cors.html"> <!-- リダイレクト -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../../../css/style.css">
@@ -83,91 +84,10 @@
         -->
 
         <h2 class="title">とあるＩＴエンジニアの知識整理</h2>
-      <dt>オリジン間リソース共有(CORS：Cross-Origin Resource Sharing)</dt>
-      <dd>
         <p>
-        工事中...<br>
-        情報処理試験のセキュリティスペシャリスト（現：情報処理安全確保支援士）の<a href="https://www.jitec.ipa.go.jp/1_04hanni_sukiru/mondai_kaitou_2016h28.html#28haru" target="_blank">平成28年秋　午後Ⅱ問2</a>でも出題されています。<br>
-        まずWebにおける「オリジン」を理解する必要があります。<br>
-        <a href="../origin.html" target="_blank">オリジン</a>
-
-        <dt style="padding-left:1em">
-          SOAとCORS
-        </dt>
-        <dd>
-          現在のWebブラウザでは、標準で<a href="../SOP/SOP.html">同一生成元ポリシー(SOP：Same-Origin Policy)</a>という情報の悪用の防止策が適用されています。<br>
-          （詳しくは<a href="https://tools.ietf.org/html/rfc6454" target="_blank">RFC6454</a>をご覧ください。）
-          セキュリティの観点で生まれた考え方なのですが、Webサービスを提供する際、他のWebサービスを利用できないので利便性を損ねるという側面もあります。<br>
-          そこで、異なるオリジンのサーバーにある選択されたリソースへのアクセスを許可することができる仕組みとして、オリジン間リソース共有(CORS：Cross-Origin Resource Sharing)が誕生しました。<br>
-          facebookの「いいね」を設置できるのもCORSのおかげです。<br>
-        </dd>
-        <dt style="padding-left:1em">
-          Access-Control-Allow-Origin
-        </dt>
-        <dd>
-          Webサーバーが明示的にクロスオリジンを許可する場合には、レスポンスにAccess-Control-Allow-Originヘッダを付加します。<br>
-          その際、「Access-Control-Allow-Origin:*」と記載すると、攻撃者のサイトを含むすべてのサイトにクロスオリジンが許可されます。<br>
-          XMLHttpRequest(XHR)を使用するとクロスオリジンリクエストが可能になります。これは、JavaScriptを使用してサーバと通信するAPIの一種です。<br>
-          基本的にXMLHttpRequestでは、同一生成元ポリシによってクロスオリジンリクエストが制限されます。<br>
-          しかし、XMLHttpRequest Level 2ではクロスオリジンリクエストが可能になりました。<br>
-          現在使われているWebブラウザの殆どはXMLHttpRequest Level 2を実装しています。（参考書1 P266-267）<br>
-          <p>プロキシサーバーを経由して情報を持ち出す流れ</p>
-          上記を利用すると、不正なサイトが社内Webサーバーから情報を取得することが可能となってしまいます。<br>
-          その際の流れは以下のようになっています。<br>
-          <img src="CORS_pathproxy.png" width=70%>
-          <p>
-            (1)社内のWebブラウザが、攻撃者のサイトにアクセスしてHTTPリクエストを送信します。<br>
-          </p>
-          <p>
-            (2)攻撃者のサイトには、不正なJavaScriptが置かれています。JavaScriptには、XMLHttpRequest(XHR)を使って、Webブラウザに社内Webサーバを攻撃させるコードが書かれています。<br>
-            攻撃コードには、社内Webサーバでbashの脆弱性を突いて実効させるOSコマンドが記載されています。<br>
-          </p>
-          <p>
-            (3)Webブラウザ上で不正なJavaScriptが実行されると、bashの脆弱性を突く攻撃コードが、社内WebサーバにHTTPリクエストとして送信されます。<br>
-          <p>
-            (4)社内WebサーバのCGIを利用したWebアプリケーションは、HTTPリクエストを受け取ってbashを呼び出します。<br>
-            その呼び出し時に、攻撃者が指定したOSコマンドが実行されます。<br>
-          </p>
-          <p>
-            (5)攻撃者が指定したOSコマンドには、社内Webサーバの情報を集めるコマンドと、集めた情報をプロキシ経由で攻撃者のサイトに送るコマンドが書かれています。<br>
-            それらが社内Webサーバ上で実行され、情報が持ち出されます。<br>
-          </p>
-          <dt style="padding-left:2em">
-            攻撃が成立する条件
-          </dt>
-          <dd>
-            条件１<br>
-            攻撃者が社内Webサーバのアドレスを知ることができ、その情報を(2)の攻撃コードに組込むことができること<br>
-          </dd>
-          <dd>
-            条件２<br>
-            社内Webサーバにおいて、CGIを利用したWebアプリケーションプログラムが、bashを呼び出すこと<br>
-          </dd>
-          <dd>
-            条件３<br>
-            (4)のHTTPレスポンスヘッダとしてAccess-Control-Allow-Originが付加されていること<br>
-          </dd>
-          <p>
-        </dd>
-        <dt style="padding-left:1em">
-          参考サイト
-        </dt>
-        <dd>
-          1. <a href="https://www.w3.org/TR/cors/" target="_blank">Cross-Origin Resource Sharing</a><br>
-          2. <a href="http://www.tohoho-web.com/ex/cors.html" target="_blank">CORS(Cross-Origin Resource Sharing)</a><br>
-          3. <a href="https://at-virtual.net/securecoding/access-control-allow-originはどれほど脆弱なのか脆弱なcors設定して/" target="_blank">オリジン間リソース共有 (CORS)</a><br>
-          4. <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank">Cross-origin resource sharing</a><br>
-        <dt style="padding-left:1em">
-          参考書
-        </dt>
-        <dd>
-          1. <a href="https://www.amazon.co.jp/dp/4822239268/" target="_blank">絶対わかる情報処理安全確保支援士 2017年春版</a><br>
-          　※上記1.の2018年度版は<a href="https://www.amazon.co.jp/dp/4822257835" target="_blank">こちら（絶対わかる情報処理安全確保支援士 2018年春版）</a><br>
-          <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B079RSQVLJ/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B079RSQVLJ&linkCode=as2&tag=sagamax-22&linkId=9b45769cb3cf939d821202f406d187d8"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B079RSQVLJ&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a><br>
-        </dd>
+          移動しました。自動転送します。<br>
+          <a href="https://taumax-develop.github.io/contents/security/cors/cors.html">移動先はこちら</a>。
         </p>
-      </dd>
-    </dl>
       </section><!-- section class="box" -->
 
       <footer>

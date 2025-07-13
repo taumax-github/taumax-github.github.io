@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="refresh" content="0; URL=https://taumax-develop.github.io/contents/development/codesmell/category/sub_bloaters/Long_Parameter_List.html"> <!-- リダイレクト -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../../../../../css/style.css">
@@ -82,35 +83,10 @@
         -->
 
         <h3 id="longparameterlist">Long Parameter List</h3>
-        <p><a href="https://sourcemaking.com/refactoring/smells/long-parameter-list">Long Parameter List（長すぎるパラメータリスト）</a></p>
-        <p><strong><em>兆候と症状</em></strong>
-        メソッドの3つまたは4つ以上のパラメーター。</p>
-        <p><strong><em>問題の理由</em></strong>
-        Long Parameter Listは、いくつかの種類のアルゴリズムが単一のメソッドに統合された後に発生する場合があります。実行されるアルゴリズムとその方法を制御するために、Long Parameter Listが作成されている場合があります。</p>
-        <p>Long parameter listsは、クラスを互いに独立させる努力の副産物でもあります。たとえば、メソッドに必要な特定のオブジェクトを生成するコードをメソッド内部から呼び出し元に移動した場合、生成されたオブジェクトは引数としてメソッドに渡されます。これにより、元のクラスはオブジェクト間の関係を認識しなくなり、依存関係が減少します。ただし、このようなオブジェクトがいくつも作成された場合、各オブジェクトには独自のパラメーターが必要になります。つまり、パラメーターリストが長くなります。
-        そのようなリストを理解することは難しく、それらが長くなるにつれて矛盾し、使いにくくなります。Long parameter listsの代わりに、メソッドは自オブジェクトのデータを使用できます。現在のオブジェクトに必要なデータがすべて含まれていない場合は、必要なデータを取得する別オブジェクトをメソッドパラメーターとして渡すことができます。</p>
-        <p><strong><em>対処</em></strong>
-        パラメーターに渡される値を確認します。引数の一部が別のオブジェクトのメソッド呼び出しの結果である場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-parameter-with-method-call">Replace Parameter with Method Call</a>」を使用します。このリファクタリングによって作成されたオブジェクトは、対象のクラスのフィールドに配置するか、メソッドパラメーターとして渡すことができます。</p>
-        <ul>
-          <li><p>別のオブジェクトから受け取ったデータのグループをパラメーターとして渡す代わりに、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#preserve-whole-object">Preserve Whole Object</a>」を使用して、オブジェクト自体をメソッドに渡します。</p></li>
-          <li><p>関係のないデータ要素が複数ある場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-parameter-object">Introduce Parameter Object</a>」を介してそれらを単一のパラメータオブジェクトにマージできる場合があります。</p></li>
-        </ul>
-        <p><strong><em>効果</em></strong></p>
-        <ul>
-          <li>コードが読みやすく、短くなる。</li>
-          <li>リファクタリングすることでコードの重複に気づくきっかけになる。</li>
-        </ul>
-
-        <br><br><br>
-        書籍としてはこの辺りが参考になると思います。<br>
-        <br>
-        リファクタリング第2版<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B0827R4BDW/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0827R4BDW&linkCode=as2&tag=sagamax-22&linkId=2c815fe7fdaf327848df6aecba6fefbd"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0827R4BDW&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
-
-        <br>
-        レガシーコード改善ガイド<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B01AN97W08/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B01AN97W08&linkCode=as2&tag=sagamax-22&linkId=dcf7be1a6f0449a97291d59c84305a0b"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B01AN97W08&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
-
+        <p>
+          移動しました。自動転送します。<br>
+          <a href="https://taumax-develop.github.io/contents/development/codesmell/category/sub_bloaters/Long_Parameter_List.html">移動先はこちら</a>。
+        </p>
       </section><!-- section class="box" -->
 
       <footer>

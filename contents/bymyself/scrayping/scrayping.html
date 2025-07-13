@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="refresh" content="0; URL=https://taumax-develop.github.io/contents/bymyself/scrayping/scrayping.html"> <!-- リダイレクト -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Google 検索結果に表示される説明 -->
     <meta name="description" content="twitterのbotとか自動リリース機能の構築とか、自作サイト作ってそれをhttps化したりとかいろいろ自力で構築した中で得た知識を整理した記事です。" />
@@ -56,12 +57,6 @@
       <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
     </ul>
     <nav>
-      <ul class="indent_no">
-        <li><a href="#summary">概要</a></li>
-        <li><a href="#whatimade">作成物</a></li>
-        <li><a href="#mechanism">仕組み</a></li>
-        <li><a href="#whatilearn">学び</a></li>
-      </ul>
     </nav>
   </header><!--/.pc-->
 
@@ -82,12 +77,6 @@
         <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
       </ul>
       <nav>
-        <ul class="indent_no">
-          <li><a href="#summary">概要</a></li>
-          <li><a href="#whatimade">作成物</a></li>
-          <li><a href="#mechanism">仕組み</a></li>
-          <li><a href="#whatilearn">学び</a></li>
-        </ul>
       </nav>
     </div><!--/#menubar-s-->
   </header><!--/.sh-->
@@ -132,150 +121,10 @@
       <br>
       <div id="summary"></div>
       <h3 class="title">twitterのスクレイピングbot</h3>
-      <p>
-        ロマサガRSというソシャゲをやってて、新キャラが実装されるたびに絵師さんがこんなツイートしてたりする。
-        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">【仕事絵】<br>SQUARE ENIX様の「ロマンシング サガ リ・ユニバース」にて、<br>『SSグレイ』を描かせて頂きました。<a href="https://t.co/YoMfUvbRR8">https://t.co/YoMfUvbRR8</a><a href="https://twitter.com/hashtag/%E6%96%B0%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#新ロマサガRS</a><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/Z3BCV7bphQ">pic.twitter.com/Z3BCV7bphQ</a></p>&mdash; 木野田 永志 (@bittercolors) <a href="https://twitter.com/bittercolors/status/1537359948749111296?ref_src=twsrc%5Etfw">June 16, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        キャラクタは大量にいるし、いつ誰が公開するかもわからないので自動的に情報収集して検索できるようなもの作れないかな？<br>
-        　⇒そうだ！スクレイピングだ！（！？）<br>
-      </p>
-
-      <br><br>
-      <div id="whatimade"></div>
-      <h3 class="title">作ったもの（実際に稼働したときのツイート）</h3>
-      <p>
-        勝手に拾ってリツイート<br>
-        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今2022/06/16 18:03<br>木野田 永志さんの絵<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS%E3%81%AE%E7%B5%B5?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRSの絵</a><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a><a href="https://t.co/ahTsGxTHIZ">https://t.co/ahTsGxTHIZ</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1537360093167386625?ref_src=twsrc%5Etfw">June 16, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-        <br><br>
-        勝手に自分のサイトに公開<br>
-        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今2022/06/16 18:03<br><br>twitterに公開されたロマサガRSの絵氏さんのツイートを下記リンク先の画面で検索できます。<br>直前でRTしたツイートも登録済みです。<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a><a href="https://t.co/LW0D58Uw9M">https://t.co/LW0D58Uw9M</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1537360094450839552?ref_src=twsrc%5Etfw">June 16, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-        <br><br>
-        勝手にひとつ前の作品を拾ってリツイート<br>
-        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今2022/06/16 18:03<br>木野田 永志さんの1つ前の作品はこちら。<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a><a href="https://t.co/lcLGaB0lrW">https://t.co/lcLGaB0lrW</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1537360095608451078?ref_src=twsrc%5Etfw">June 16, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </p>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
-
-      <div id="mechanism"></div>
-      <h3 class="title">どんな仕組み？</h3>
-      <p>
-        <img src="img/whole_image.jpg" width="800"><br>
-
-        <br>
-        botが勝手に情報収集して勝手にDB登録して勝手に公開してくれる、手間のかからない素敵システム。情報収集してDBに登録する部分はpythonで実装。webサイト部分はJava(jspとservlet)で実装。<br>
-      </p>
-
-      <br>
-      <h4 class="title">ソースコード(python)</h4>
-      <script src="https://gist.github.com/taumax-github/d29226ea9c744cf13a747ef110c12bd8.js"></script>
-
-      <br>
-      <h4 class="title">Java servlet</h4>
-      <script src="https://gist.github.com/taumax-github/e015c8ddb37697d34466a3988c333a76.js"></script>
-
-      <br>
-      <h4 class="title">JSP</h4>
-      <script src="https://gist.github.com/taumax-github/c422b2b191644bbd2a8c0689606e744a.js"></script>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
-
-      <div id="whatilearn"></div>
-      <h3 class="title">ぶつかった壁とか学んだこととか</h3>
-      <p>
-        timezone関係。以下のようなエラーが発生した。<br>
-      </p>
-
-        <div class="codetitle">エラー内容</div>
-        <div class="code">
-          Traceback (most recent call last):<br>
-            File "/pythonscheduler.py", line 32, in &ltmodule&gt<br>
-            schedule.run_pending()<br>
-          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 780, in run_pending<br>
-            default_scheduler.run_pending()<br>
-          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 100, in run_pending<br>
-            self._run_job(job)<br>
-          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 172, in _run_job<br>
-            ret = job.run()<br>
-          File "/usr/local/lib/python3.10/site-packages/schedule/__init__.py", line 661, in run<br>
-            ret = self.job_func()<br>
-          File "/artist_rt/SagaRsPictures.py", line 296, in searchArt<br>
-            searchKoushikiPic(api)<br>
-          File "/artist_rt/SagaRsPictures.py", line 38, in searchKoushikiPic<br>
-            if dt_now_bfr > result.created_at.astimezone(datetime.timezone(datetime.timedelta(hours=DIFF_JST_FROM_UTC))):<br>
-          TypeError: can't compare offset-naive and offset-aware datetimes<br>
-        </div>
-
-      <br>
-      <p>
-        can't compare offset-naive and offset-aware datetimes ？？？何言ってんの？？？状態だったんだけど、どうやらpythonのdatetimeオブジェクト（日時=日付と時刻を扱うオブジェクト）とtimeオブジェクト（時刻を扱うオブジェクト）は<font color="yellow"><strong>naive</strong></font>と<font color="yellow"><strong>aware</strong></font>の2種類に分類されるらしい。<br>
-        ざっくり言うと、
-        <ul>
-          <li>naive：timezone無しのオブジェクト</li>
-          <li>aware：timezone付きのオブジェクト</li>
-        </ul>
-      </p>
-      <p>
-        先に乗せたpythonコードの189行目、今は「datetime.datetime.now(JST)」となっているが、以前は「datetime.datetime.now()」となっていたのでnaiveなオブジェクトだった。<br>
-        <code data-gist-id="d29226ea9c744cf13a747ef110c12bd8" data-gist-line="186-189"></code>
-
-        同コードの28行目の「if dt_now_bfr > result.created_at + datetime.timedelta(hours=DIFF_JST_FROM_UTC)」でtwitter apiで取得したツイート時刻(<font color="yellow">UTCが指定されているのでaware</font>)とdatetime.datetime.now()の10分前（<font color="yellow">native</font>）を比較しようとしているが、pythonの仕様でawareとnativeは比較できないのでエラーになっていた。ということらしい。<br>
-        <code data-gist-id="d29226ea9c744cf13a747ef110c12bd8" data-gist-line="26-29"></code>
-        「datetime.datetime.now()」の前に「JST = timezone(timedelta(hours=+9), 'JST')」でJSTのtimezoneを生成し、それをnowの引数に渡す（dt_now = datetime.datetime.now(JST)）ことでawareなオブジェクトにして対処した。<br>
-
-        <br><br>
-        参考
-        <ul>
-          <li><a href="https://note.nkmk.me/python-datetime-pytz-timezone/" target="_blank">Python, datetime, pytzでタイムゾーンを設定・取得・変換・削除</a></li>
-          <li><a href="https://docs.python.org/ja/3/library/datetime.html" target="_blank">datetime --- 基本的な日付型および時間型</a></li>
-          <li><a href="https://www.javadrive.jp/python/date/index2.html" target="_blank">タイムゾーンのインスタンスを生成する</a></li>
-          <li><a href="https://qiita.com/takaki@github/items/b1a380a0a644170f5885" target="_blank">Pythonのタイムゾーンの扱い</a></li>
-          <li><a href="https://kimuson.dev/blog/python/python_datetime/" target="_blank">Python で Datetime を扱う際に気をつけること</a></li>
-          <li><a href="https://qiita.com/keisuke0508/items/df2594770d63bf124ccd" target="_blank">Python: datetimeで確実に日本時間を取得する方法</a></li>
-          <li><a href="https://docs.python.org/ja/3/library/datetime.html" target="_blank">基本的な日付型および時間型</a></li>
-        </ul>
-      </p>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
+        <p>
+          移動しました。自動転送します。<br>
+          <a href="https://taumax-develop.github.io/contents/bymyself/scrayping/scrayping.html">移動先はこちら</a>。
+        </p>
 
     </section><!-- section class="box" -->
 

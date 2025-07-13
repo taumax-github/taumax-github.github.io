@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="refresh" content="0; URL=https://taumax-develop.github.io/contents/bymyself/followercount/followercount.html"> <!-- リダイレクト -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Google 検索結果に表示される説明 -->
     <meta name="description" content="twitterのbotとか自動リリース機能の構築とか、自作サイト作ってそれをhttps化したりとかいろいろ自力で構築した中で得た知識を整理した記事です。" />
@@ -135,173 +136,10 @@
       <br>
       <div id="summary"></div>
       <h3 class="title">公式アカウントのフォロワー数変化(Goで書いた)</h3>
-      <p>
-        ゲームの公式twitterアカウントのフォロワー数に応じてプレゼントが貰えるというキャンペーンをやっていたので、毎日カウントしてbotで報知してた。<br>
-      </p>
-
-      <br><br>
-      <div id="whatimade"></div>
-      <h3 class="title">作ったもの（実際に稼働したときのツイート）</h3>
-      <p>
-        毎朝フォロワー数を通知してくれるbot<br>
-        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今2021-12-07 08:00<br>ロマサガ公式垢のフォロワー数をカウントするbotです。<br>現在の <a href="https://twitter.com/romasaga_rs?ref_src=twsrc%5Etfw">@romasaga_rs</a> のフォロワー数は225,178人。<br>あと24,822人でSSポール！<br>21,22,23,24万で海外版の着せ替え衣装も貰えます！<a href="https://twitter.com/romasaga_rs?ref_src=twsrc%5Etfw">@romasaga_rs</a> のフォローお願いします！<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a><a href="https://twitter.com/hashtag/%E6%96%B0%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#新ロマサガRS</a><a href="https://twitter.com/hashtag/%E5%85%AC%E5%BC%8F%E3%83%95%E3%82%A9%E3%83%AD%E3%83%AF%E3%83%BC%E6%95%B0?src=hash&amp;ref_src=twsrc%5Etfw">#公式フォロワー数</a> <a href="https://t.co/976eRmJ8pt">pic.twitter.com/976eRmJ8pt</a></p>&mdash; sagamax@サガとレトロゲー (@sagamax__) <a href="https://twitter.com/sagamax__/status/1467992275322273793?ref_src=twsrc%5Etfw">December 6, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </p>
-
-      <br><br>
-      <div id="mechanism"></div>
-      <h3 class="title">どんな仕組み？</h3>
-      <p>
-        <img src="img/whole_image.jpg" width="800"><br>
-
-      Go ソースコード(bot)<br>
-      </p>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
-
-      <h4 class="title">ソースコード(Go)</h4>
-      <p>
-        主処理。31行目の TweetPublicAccount() が入口
-      </p>
-      <script src="https://gist.github.com/taumax-github/a52cb94cacb991d7722320c76685a58f.js"></script>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
-
-      <div id="whatilearn"></div>
-      <h3 class="title">ぶつかった壁とか学んだこととか</h3>
-      <p>
-        エラーで詰まったとかはあんまりないんだけど、これまで python で書いてた twitter bot の Go 版ができた。Go はコンテナと相性がいいんだなという学びはあるんだけど、それに気づくのはまだ先の話。。。<br>
-      </p>
-
-      <h4 class="title">①tweet するためのライブラリ</h4>
-      <p>
-        <a href="https://github.com/ChimeraCoder/anaconda" target="_blank">anaconda</a> というライブラリを使ってツイートするプログラム。<br>
-        TweetPublicAccount 関数の中でツイート用のインスタンス生成し、変数 api に格納（36行目）。70行目でツイート実行。<br>
-        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="36-70"></code>
-        画像をツイートしたい場合は54～58行目。ツイート実行の前に api.UploadMedia で画像を upload する必要がある。引数の型が base64String なので画像を base64エンコードしている。<br>
-        そのあと、 url.Values{} の "media_ids" に格納。複数ある場合はカンマ区切りで設定。<br>
-
-        <br>
-        参考
-        <ul>
-          <li><a href="https://github.com/ChimeraCoder/anaconda" target="_blank">ChimeraCoder/anaconda</a></li>
-          <li><a href="https://www.mtioutput.com/entry/go-tweet-pic" target="_blank">【Go言語/Twitter】anacondaを利用して画像付きツイートをするプログラム</a></li>
-          <li><a href="https://www.mtioutput.com/entry/golang-auto-tweet" target="_blank">【Go言語/Twitter】引数の文字列をツイートするプログラム</a></li>
-          <li><a href="https://qiita.com/dahiyu/items/7ffd6ee0b2afa0ea46bd" target="_blank">Go言語でTwitterAPIを利用する(anacondaの利用)</a></li>
-          <li><a href="https://www.kokoja-hourehore.com/2656/" target="_blank">【Go】TwitterAppでツイートするプログラムを作った</a></li>
-          <li><a href="https://kwmt27.net/index.php/2013/09/29/golang-base64-encode-decode/" target="_blank">#golang 画像ファイルをbase64 encode/decode するには</a></li>
-        </ul>
-      </p>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
-
-      <h4 class="title">②グラフ生成するためのライブラリ</h4>
-      <p>
-        <a href="https://pkg.go.dev/gonum.org/v1/plot" target="_blank">plot</a> というライブラリを使って画像生成。<br>
-        上記ソースの82行目 createGraph() 関数の中。90行目で呼び出している getData() 関数で2週間分のデータを取得。<br>
-        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="82-90"></code>
-        93行～113行目の処理で縦軸・横軸の設定、115～120行目でグラフの見栄えを調整。<br>
-        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="93-120"></code>
-        124～133行目でグラフを生成。<br>
-        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="124-133"></code>
-
-        <br>
-        参考
-        <ul>
-          <li><a href="https://pkg.go.dev/gonum.org/v1/plot#example-Axis-LabelsPosition" target="_blank">gonum.org/v1/plot</a></li>
-          <li><a href="https://text.baldanders.info/golang/chart-with-golang/" target="_blank">Go 言語でもグラフを描きたい！</a></li>
-          <li><a href="https://qiita.com/RuyPKG/items/0a569953e9e24870f527" target="_blank">Go言語で折れ線グラフや棒グラフを描く</a></li>
-        </ul>
-      </p>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
-
-      <h4 class="title">③postgres DB接続のためのライブラリ</h4>
-      <p>
-        <a href="https://pkg.go.dev/github.com/lib/pq" target="_blank">pq</a> というライブラリを使って postgres DB 接続。ライブラリは import するだけで、コード上使用するのは <a href="https://pkg.go.dev/database/sql" target="_blank">database/sql</a> という標準ライブラリ。<br>
-        専用のパッケージを import （16行目の _ "github.com/lib/pq" ）して connection 生成(42行目)してあげればあとはSQL文字列を実行するだけ。<br>
-        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="15-17"></code>
-        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="42-43"></code>
-        <br>
-        上記42行目の呼び出し先 ※DBとのコネクション生成（抜粋）<br>
-        <script src="https://gist.github.com/taumax-github/e3da90e16ea98eee809d06c73e8bc41d.js"></script>
-  
-        <br>
-        136行目の getData() 関数、141行目の insData() 関数がSQL実行部分の実装例。<br>
-        <code data-gist-id="a52cb94cacb991d7722320c76685a58f" data-gist-line="136-160"></code>
-
-        <br>
-        参考
-        <ul>
-          <li><a href="https://qiita.com/hiro9/items/e6e41ec822a7077c3568" target="_blank">Go PostgreSQLにつないでみる</a></li>
-        </ul>
-      </p>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
+        <p>
+          移動しました。自動転送します。<br>
+          <a href="https://taumax-develop.github.io/contents/bymyself/followercount/followercount.html">移動先はこちら</a>。
+        </p>
 
     </section><!-- section class="box" -->
 

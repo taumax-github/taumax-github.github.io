@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="refresh" content="0; URL=https://taumax-develop.github.io/contents/development/codesmell/category/sub_dispensables/Duplicate_Code.html"> <!-- リダイレクト -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../../../../../css/style.css">
@@ -84,39 +85,10 @@
         <h1 id="duplicatecode">Duplicate Code</h1>
         <p><a href="https://sourcemaking.com/refactoring/smells/duplicate-code">Duplicate Code（重複コード）</a></p>
         <p><strong><em>兆候と症状</em></strong>
-        ほとんど同じようなコードが見られる場合</p>
-        <p><strong><em>問題の理由</em></strong>
-        通常、コードの重複は、複数のプログラマーが同じプログラムの異なる部分を同時に操作しているときに発生します。彼らはさまざまなタスクに取り組んでいるので、同僚が似たようなコードを既に書いていることに気付いていない可能性があります。</p>
-        <p>コードの特定の部分が異なって見えるが実際には同じジョブを実行する場合のように、より微妙な重複もあります。このような重複は、見つけて修正するのが難しい場合があります。</p>
-        <p>意図的に重複させている場合もあります。納期に追われているようなときで、既存のコードが”ほぼ正しく”要件を満たせる場合、初心者のプログラマーは、関連するコードをコピーして貼り付ける誘惑に抵抗できないかもしれません。また、場合によっては、単にプログラマーが整理するのをさぼるようなこともあります。</p>
-        <p><strong><em>対処</em></strong>
-        同じクラスの2つ以上のメソッドで重複コードが見つかった場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を使用して新しいメソッドを作成し、両方の場所でその新しいメソッドを呼び出します。</p>
-        <ul>
-          <li><p>2つの同階層のサブクラスで重複コードを見つけた場合：</p></li><li><p>両方のクラスに「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を用いて、抽出したメソッドに対して「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#pull-up-field">Pull Up Field</a>」で使用されているフィールドを抽出します。</p></li>
-          <li><p>重複コードがコンストラクタの内部に存在する場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#pull-up-constructor-body">Pull Up Constructor Body</a>」を適用します。</p></li>
-          <li><p>重複コードが似ているが完全には一致しない場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#form-template-method">Form Template Method</a>」を適用します。</p></li>
-          <li><p>2つのメソッドが同じことを別のアルゴリズムで実現している場合、最適なアルゴリズムを選択し、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#substitute-algorithm">Substitute Algorithm</a>」を適用します。</p></li>
-          <li><p>重複コードが異なる二つのクラスで見つかった場合：</p></li>
-          <li><p>対象のクラスが階層の一部ではない場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-superclass">Extract Superclass</a>」を適用して新しいスーパークラスを一つ作り、そのスーパークラスに重複コードを持たせます。</p></li>
-          <li><p>スーパークラスを作るのが難しい場合は、一方のクラスから「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-class">Extract Class</a>」を使用してクラスを抽出し、もう一方のクラスは抽出したコンポーネントを使用します。</p></li>
-          <li><p>多数の条件式が存在し、同じコードを実行する（条件のみが異なる）場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#consolidate-conditional-expression">Consolidate Conditional Expression</a>」を使用してこれらの演算子を単一の条件にマージし、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を使用して、条件を簡単な別のメソッドに配置し、分かりやすいメソッド名を付けます。</p></li>
-          <li><p>条件式のすべての分岐で同じコードが実行される場合：「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#consolidate-duplicate-conditional-fragments">Consolidate Duplicate Conditional Fragments</a>」を使用して、条件ツリーの外側に同じコードを配置します。</p></li>
-        </ul>
-        <p><strong><em>効果</em></strong></p>
-        <ul>
-          <li>重複コードをマージすることでコードの構造が簡潔になり、コードを短くすることができる。</li>
-          <li>簡潔さ＋短さ＝単純化が容易で、サポートが安価なコード。</li>
-        </ul>
-
-        <br><br><br>
-        書籍としてはこの辺りが参考になると思います。<br>
-        <br>
-        リファクタリング第2版<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B0827R4BDW/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0827R4BDW&linkCode=as2&tag=sagamax-22&linkId=2c815fe7fdaf327848df6aecba6fefbd"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0827R4BDW&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
-
-        <br>
-        レガシーコード改善ガイド<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B01AN97W08/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B01AN97W08&linkCode=as2&tag=sagamax-22&linkId=dcf7be1a6f0449a97291d59c84305a0b"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B01AN97W08&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
+        <p>
+          移動しました。自動転送します。<br>
+          <a href="https://taumax-develop.github.io/contents/development/codesmell/category/sub_dispensables/Duplicate_Code.html">移動先はこちら</a>。
+        </p>
 
       </section><!-- section class="box" -->
 

@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="refresh" content="0; URL=https://taumax-develop.github.io/contents/development/codesmell/category/sub_objectabuse/Switch_Statements.html"> <!-- リダイレクト -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../../../../../css/style.css">
@@ -84,39 +85,10 @@
         <h1 id="switchstatements">Switch Statements</h1>
         <p><a href="https://sourcemaking.com/refactoring/smells/switch-statements">Switch Statements</a></p>
         <p><strong><em>兆候と症状</em></strong>
-        複雑なswitch文またはif文の連続がこのCode Smellの兆候です。</p>
-        <p><strong><em>問題の理由</em></strong>
-        switch/case演算子の比較的まれな使用は、オブジェクト指向コードの特徴の1つです。多くの場合、同じようなswitch文はプログラム内のさまざまな場所に散在します。新しい条件が追加されたら、すべてのスイッチコードを見つけて変更する必要があります。
-        経験則として、switch文が使われている場所ではポリモルフィズムを検討する必要があります。</p>
-        <p><strong><em>対処</em></strong></p>
-        <ul>
-          <li><p>switch文を分離して適切なクラスに配置するには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」が必要になる場合があります。</p></li>
-          <li><p>プログラムのランタイムモードが切り替えられるときなどにように、switch文がtype codeに基づいている場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-type-code-with-subclasses">Replace Type Code with Subclasses</a>」か、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-type-code-with-statestrategy">Replace Type Code with State/Strategy</a>」を使用します。</p></li>
-          <li><p>継承構造を指定した後、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-conditional-with-polymorphism">Replace Conditional with Polymorphism</a>」を使用します。</p></li>
-          <li><p>演算子にあまり多くの条件がなく、それらがすべて異なるパラメーターで同じメソッドを呼び出す場合、ポリモルフィズムはでは問題を解決できません。この場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-parameter-with-explicit-methods">Replace Parameter with Explicit Methods</a>」の手法でそのメソッドを複数の小さなメソッドに分割し、それに応じてswitch文を変更できます。</p></li>
-          <li><p>条件オプションの1つがnullの場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-null-object">Introduce Null Object</a>」を使用します。</p></li>
-        </ul>
-        <p><strong><em>効果</em></strong></p>
-        <ul>
-          <li>ソースコードの構成を改善することができます。</li>
-        </ul>
-        <p><strong><em>When to Ignore</em></strong>
-        以下のような場合はswitch文をリファクタリングする必要はありません。</p>
-        <ul>
-          <li>switch文がシンプルなものである場合。</li>
-          <li>GoFのデザインパターンである <a href="https://sourcemaking.com/design_patterns/factory_method">Factory Method</a> や <a href="https://sourcemaking.com/design_patterns/abstract_factory">Abstract Factory</a> パターンを実装する場合。</li>
-        </ul>
-
-        <br><br><br>
-        書籍としてはこの辺りが参考になると思います。<br>
-        <br>
-        リファクタリング第2版<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B0827R4BDW/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0827R4BDW&linkCode=as2&tag=sagamax-22&linkId=2c815fe7fdaf327848df6aecba6fefbd"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0827R4BDW&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
-
-        <br>
-        レガシーコード改善ガイド<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B01AN97W08/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B01AN97W08&linkCode=as2&tag=sagamax-22&linkId=dcf7be1a6f0449a97291d59c84305a0b"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B01AN97W08&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
-
+        <p>
+          移動しました。自動転送します。<br>
+          <a href="https://taumax-develop.github.io/contents/development/codesmell/category/sub_objectabuse/Switch_Statements.html">移動先はこちら</a>。
+        </p>
       </section><!-- section class="box" -->
 
       <footer>

@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="refresh" content="0; URL=https://taumax-develop.github.io/contents/bymyself/tocd/tocd.html"> <!-- リダイレクト -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Google 検索結果に表示される説明 -->
     <meta name="description" content="twitterのbotとか自動リリース機能の構築とか、自作サイト作ってそれをhttps化したりとかいろいろ自力で構築した中で得た知識を整理した記事です。" />
@@ -56,11 +57,6 @@
       <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
     </ul>
     <nav>
-      <ul class="indent_no">
-        <li><a href="#summary">概要</a></li>
-        <li><a href="#mechanism">仕組み</a></li>
-        <li><a href="#whatilearn">学び</a></li>
-      </ul>
     </nav>
   </header><!--/.pc-->
 
@@ -81,11 +77,6 @@
         <li><a href="https://qiita.com/taumax" target="_blank"><img src="../../../images/icon_qiita.png" alt="Qiita"></a></li>
       </ul>
       <nav>
-        <ul class="indent_no">
-          <li><a href="#summary">概要</a></li>
-          <li><a href="#mechanism">仕組み</a></li>
-          <li><a href="#whatilearn">学び</a></li>
-        </ul>
       </nav>
     </div><!--/#menubar-s-->
   </header><!--/.sh-->
@@ -130,265 +121,10 @@
       <br>
       <div id="summary"></div>
       <h3 class="title">自動リリース</h3>
-      <p>
-        ローカルのPCで作成したプログラムを手動でサーバーに配置していたが、手間を省くためにGitLabにpushしたらデプロイは自動で行ってくれる仕組みを構築した。<br>
-      </p>
-
-      <br><br>
-      <div id="mechanism"></div>
-      <h3 class="title">どんな仕組み？</h3>
-      <p>
-        <img src="img/image_bot.png" width="700"><br>
-        <br>
-        これまで開発した Go/Python の bot は上図の仕組みで自動リリース機能を実装。自分の作業は上図の①のgit pushのみ。②～④は GitLabが自動的にやってくれるようになっている。<br>
-        ③のgitlabからssh接続する部分については、<a href="https://qiita.com/fukasawah/items/9c257f0bc2dfe1d6823f" target="_blank">この記事を参考にしました</a>。<br>
-
-        <br><br>
-        <img src="img/image_java.png" width="700"><br>
-        Java の Webサイトは上図のように、dockerを使わず、 Gitlab 内で maven のコマンドを実行してwar ファイルを生成し、 サーバにwarファイルを転送する方式。自分の作業は上図の①のgit pushのみである点は bot と同じ。<br>
-
-        <br>
-        GitLabは、.gitlab-ci.ymlに記載したコマンドを自動的に実行してくれる。以下が実際の .gitlab-ci.yml の中身。
-      </p>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
-
-      <h4 class="title">.gitlab-ci.yml(Go)</h4>
-      <script src="https://gist.github.com/taumax-github/a38a329ca1f21abbaedbc342bc1f3322.js"></script>
-      <p>
-        Goのbuild、docker build、ssh接続、docker pushすべての作業を1ステージで行っている。<br>
-        GitLabのパイプラインはこんな風になる。<br>
-        <img src="img/stage_go.png" width="400"><br>
-      </p>
-
-      <br>
-      <h4 class="title">.gitlab-ci.yml(python)</h4>
-      <script src="https://gist.github.com/taumax-github/4cbd3a0754604e2cc7d37b57feec44f7.js"></script>
-      <p>
-        pythonのbuildを行ってartifactsに保存するステージと、docker build、ssh接続、docker pushするステージの2ステージに分けている。分けた理由は後述。<br>
-        GitLabのパイプラインはこんな風になる。<br>
-        <img src="img/stage_python.png" width="400"><br>
-      </p>
-
-      <br>
-      <h4 class="title">.gitlab-ci.yml(Java)</h4>
-      <script src="https://gist.github.com/taumax-github/d7e8512dee8cf19a094231bfe14bdef3.js"></script>
-      <p>
-        warファイルを生成してartifactsに保存するステージと、ssh接続してwarファイルを所定のディレクトリに格納するステージの2ステージに分けている。<br>
-        GitLabのパイプラインはこんな風になる。<br>
-        <img src="img/stage_web.png" width="400"><br>
-      </p>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
-
-      <div id="whatilearn"></div>
-      <h3 class="title">ぶつかった壁とか学んだこととか</h3>
-      <h4 class="title">①python のbot を詰め込んだ Docker が起動しない</h4>
-      <p>
-        pythonの自動リリースは、最初は1ステージでbuild⇒docker push⇒ssh接続⇒docker pullすべて行おうとしていたが、以下のエラーが発生した。<br>
-      </p>
-      <div class="code">
-        standard_init_linux.go:228: exec user process caused: exec format error
-      </div>
-      <p>
-        このエラーの原因はアーキテクチャーの違い（<a href="https://atsushinotes.com/standard_init_linux-go228-exec-user-process-caused-exec-format-error/" target="_blank">参考</a>）。<br>
-        python で <a href="https://pyinstaller.org/en/stable/" target="_blank">Pyinstaller</a> を使って軽量なコンテナイメージを作ろうとした際、最初は Alpine を使おうとしていた。コンテナに乗せる前に python のコードを build する必要があるが、 python が入っていないと build できないため、 GitLab のパイプラインで使用するイメージは python:3.10 を使って、出来上がった成果物を alpine で動かそうとしていた。<a href="https://hub.docker.com/_/python" target="_blank">python:3.10 は debian形式</a>なので、そこで生成した成果物を Alpine で動かすことができず、先のエラーが発生していた。<br>
-        python が入っている alpine のイメージもある（python:&ltversion&gt-alpine）ため、このイメージを使用してビルドしてもいいのだが、debian も使ってみたかったので、bot を稼働させるイメージを Alpine から debian に変更することでうまく動くようになった。<br>
-      </p>
-
-      <h4 class="title">②設定の外部ファイル化(json, .env)</h4>
-      <p>
-        自動リリース前は手動でリリースしていたのでパスワードとかコードに直書きしていた。GitLab で管理するなら外部ファイル化しないとまずいので対応。<br>
-        twitter API の認証情報とか postgres の接続情報などを外部ファイル化した。 Go, python 共通で使うものなので json で保存。 postgres の接続情報は Java でも使っているが、既に property ファイル化していたため、Goとpythonはjson、Javaは property ファイルのままにしている。<br>
-        json ファイルは手動で linux サーバに配置している。これは初回のみの作業。<br>
-        また、json ファイルの格納場所はローカル開発環境とサーバで異なるので、格納場所を環境変数で設定するようにした。<br>
-      </p>
-
-      <h5 class="title">Go の場合</h5>
-      <p style="padding-left: 2.5em;">
-        <a href="https://github.com/joho/godotenv" target="_blank">godotenv</a> というライブラリを使用している。 .env 形式のファイルを読み込んで環境変数を設定してくれるもの。<br>
-        .env ファイルの中はこんな感じ<br>
-      </p>
-      <div class="codetitle">.env</div>
-      <div class="code">
-        [環境変数名]="[設定値]"<br>
-        [環境変数名]="[設定値]"<br>
-      </div>
-
-      <br>
-      <p style="padding-left: 2.5em;">
-        .env に設定された内容を環境変数に設定するGo のコードは以下の通り。<br>
-        <code data-gist-id="333f5796f9c6413b0a015ab59e6b5d79" data-gist-line="1-19"></code>
-
-        <br>
-        これで.env ファイルに記載している環境変数が設定される。<br>
-        この後「val := os.Getenv("[環境変数名]")」で環境変数に設定された値を取得できる。今回の場合はjsonファイルのパスが取得できるので、os.ReadFile(val) で json を読み込むことができる。json を読み込みんだ後は、Go の標準の 「encoding/json」の json.Unmarshal() で構造体に変換。<br>
-        サンプルコードは以下。<br>
-        <code data-gist-id="c8ae2475b6cc54a8df9c6a6fcc7dde2e" data-gist-line="1-16"></code>
-      </p>
-
-      <h5 class="title">python の場合</h5>
-      <p style="padding-left: 2.5em;">
-        <a href="https://pypi.org/project/python-dotenv/" target="_blank">python-dotenv</a> という外部ライブラリを使用。Go の godotenv と使い方は同じで、 .env ファイルを読み込んで環境変数を設定してくれる。<br>
-        サンプルコードは以下<br>
-        <code data-gist-id="7d75db38fee01e38cbbc01b72b7e22d0" data-gist-line="1-10"></code>
-        6行目の load_dotenv() で .env ファイルの内容を環境変数に設定。9行目の os.getenv("[環境変数名]")) で環境変数を読み込める。今回の場合はjsonファイルのパスが取得できるので、 jsonFile = open(str(os.getenv("[環境変数名]")), "r", encoding="utf-8") でファイルを開き、 json.load(jsonFile) で json 読み込み。これは python の標準ライブラリ。<br>
-      </p>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
-
-
-      <h4 class="title">③DOCKER_HOST: tcp://docker:2375って何？</h4>
-      <p>
-        .gitlab-ci.yml の docker push ⇒ ssh接続 ⇒ docker pull するステージで以下の記載があるが、どこかのHPに書いてあるコードをそのまま使用していたため、なぜこれが必要なのかがわかっていなかったので今回それを整理。<br>
-        <code data-gist-id="a38a329ca1f21abbaedbc342bc1f3322" data-gist-line="8-10"></code>
-      </p>
-
-      <br>
-      <p>
-        以下、整理した内容<br>
-        GitLab の CI/CD の中で dockerコマンドを実行するには、いくつか方法があるが、今回使用したものは Docker in Docker(dind と呼ばれている)の構成になっている（<a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">参考</a>）。<br>
-        dind とはDockerコンテナ内にDockerを用意する技術の事で、下図のようにdockerが入れ子状態になっています。<br>
-        <img src="img/dind.png"><br>
-        ※図は<a href="https://esakat.github.io/esakat-blog/posts/docker-in-docker/" target="_blank">Dockerコンテナ内からDockerを使うことについて</a>から引用<br>
-
-        <br>
-        Docker Engine は下の図のように、主に以下の３つのコンポーネントで構成されており、Docker CLI が Dockerホストの中にあるか外にあるかによって、Dockerデーモンとの通信方式は異なります。<br>
-      </p>
-        <ol style="padding-left: 4em;">
-          <li>Docker CLI：docker run や docker build などの Dockerコマンドを実行するコマンドラインツールです</li>
-          <li>Docker Engine API：プログラム（クライアント）とデーモンとの間での通信方法を定義し、何をなすべきかを指示する。</li>
-          <li>Dockerデーモン：Docker Engine API が呼び出されるのを待ち受けています。</li>
-        </ol>
-      <p>
-        <img src="img/docker_cli.png"><br>
-        ※図は<a href="https://www.ogis-ri.co.jp/otc/hiroba/technical/docker/part6.html" target="_blank">さわって理解する Docker 入門</a>から引用<br>
-
-        <br>
-        gitlab-ci.ymlに記載したDOCKER_HOST は docker デーモンの URL を指定します。Docker クライアントでは、デフォルトは unix:///var/run/docker.sock です。<br>
-        <code data-gist-id="a38a329ca1f21abbaedbc342bc1f3322" data-gist-line="8-10"></code>
-        下記の構成を取った場合のserverのエンドポイントは（非SSLの場合）tcp://docker:2375 なので、DOCKER_HOST を tcp://docker:2375 とすることでServerに対してdockerコマンドを発行している。<br>
-        <img src="img/dind_pipeline.png"><br>
-      </p>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
-
-
-      <h4 class="title">④ssh 関係コマンド</h4>
-      <code data-gist-id="a38a329ca1f21abbaedbc342bc1f3322" data-gist-line="32-42"></code>
-      <ul>
-        <li>eval "$(ssh-agent)"：ssh-agentの起動。<a href="https://qiita.com/Yarimizu14/items/6a4bab703d67ea766ddc" target="_blank">「ssh-agent bash」でも起動できる</a>がこれだと環境変数を設定する必要があって面倒（<a href="https://www.server-memo.net/server-setting/ssh/ssh-agent.html" target="_blank">参考</a>）。eval "$(ssh-agent)" であれば、 ssh-agent を実行して出力された結果を実行してくれるので楽。</li>
-        <li>ssh-add "$ID_RSA_DEPLOY"：秘密鍵をssh-agentに登録</li>
-        <li>- mkdir ~/.ssh/ && chmod 0700 ~/.ssh<br>
-        - ssh-keyscan -p$PORT -H sagamax.cyou > ~/.ssh/known_hosts<br>
-        　⇒これいる？と思ったけど、おそらく「Are you sure you want to continue connecting (yes/no)?」を聞かれないようにするため。<br>
-        ssh-keyscan コマンドは複数のホストのsshの公開鍵を収集するためのコマンド。これで収集した公開鍵を known_hosts に登録することで yes/no を聞かれないようにしている。</li>
-      </ul>
-
-      <br>
-      ssh<br>
-      <ul>
-        <li><a href="http://www.yosbits.com/opensonar/rest/man/freebsd/man/ja/man1/ssh-keyscan.1.html?l=ja" target="_blank">SSH-KEYSCAN(1)</a></li>
-        <li><a href="https://laboradian.com/how-to-use-ssh-agent/" target="_blank">【SSH】ssh-agent の使い方</a></li>
-        <li><a href="https://www.server-memo.net/server-setting/ssh/ssh-agent.html" target="_blank">ssh-agentを使って公開鍵認証方式のsshパスワード入力を省略する方法</a></li>
-        <li><a href="https://qiita.com/suzuki-koya/items/af4b511d40b6362da60a" target="_blank">SSHについて調べてみた</a></li>
-        <li><a href="https://qiita.com/miyuki_samitani/items/1f6f024acfdca0516d61" target="_blank">ssh-keyscan コマンドがあるらしい</a></li>
-        <li><a href="https://qiita.com/Yarimizu14/items/6a4bab703d67ea766ddc" target="_blank">【SSH】ssh-agentの使い方を整理する</a></li>
-        <li><a href="https://www.web-dev-qa-db-ja.com/ja/ssh/gitlab-ci%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%ABssh%E7%B5%8C%E7%94%B1%E3%81%A7%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4/959937633/" target="_blank">Gitlab CI-リモートサーバーにSSH経由でデプロイ</a></li>
-        <li><a href="https://tutorialmore.com/questions-374957.htm" target="_blank">deployment - Gitlab CI：SSH経由でリモートサーバーにデプロイする</a></li>
-        <li><a href="https://qiita.com/fukasawah/items/9c257f0bc2dfe1d6823f" target="_blank">GitLab Runnerで任意のSSH接続を行いたい</a></li>
-      </ul>
-      eval<br>
-      <ul>
-        <li><a href="https://bunjava.com/shell_eval/" target="_blank">【シェルスクリプト】【備忘録】evalとは？</a></li>
-        <li><a href="https://digirakuda.org/blog/2018/12/05/post-417/" target="_blank">変数に格納したコマンドを実行する</a></li>
-      </ul>
-      Gitlab<br>
-      <ul>
-        <li><a href="https://qiita.com/wqwq/items/d50792a826499a7db861" target="_blank">【Gitlab/CI/CD】Cloud Run の 自動デプロイ ~gitlab~</a></li>
-        <li><a href="https://www.ted027.com/post/gitlabci-services-host/" target="_blank">GitLab-CIでservicesのコンテナに対してアクセスする</a></li>
-      </ul>
-      Docker<br>
-      <ul>
-        <li><a href="https://gitlab.com/gitlab-org/gitlab-runner/-/issues/25344#note_323941341" target="_blank">OSX - Gitlab-runner "error during connect: Get http://docker:2375/v1.40/containers/json: dial tcp: lookup docker on 192.168.65.1:53: no such host""</a></li>
-        <li><a href="https://til.swfz.io/entries/docker_host/" target="_blank">DOCKER_HOSTを指定してVM外からdockerを操作できるようにする</a></li>
-        <li><a href="https://docs.docker.jp/compose/reference/envvars.html" target="_blank">Compose CLI 環境変数</a></li>
-        <li><a href="https://www.yasunaga-lab.bio.kyutech.ac.jp/EosJ/index.php/%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%81%AE%E4%B8%AD%E3%81%AEDocker%E3%81%AB%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%81%8B%E3%82%89%E6%8E%A5%E7%B6%9A%E3%81%99%E3%82%8B" target="_blank">リモートサーバーの中のDockerにローカルから接続する</a></li>
-        <li><a href="https://esakat.github.io/esakat-blog/posts/docker-in-docker/" target="_blank">Dockerコンテナ内からDockerを使うことについて</a></li>
-        <li><a href="https://docs.gitlab.com/ee/ci/docker/using_docker_build.html#use-docker-in-docker-workflow-with-docker-executor" target="_blank">Use Docker to build Docker images</a></li>
-        <li><a href="https://docs.gitlab.com/ee/ci/services/#how-docker-integration-works" target="_blank">Services</a></li>
-        <li><a href="https://qiita.com/doz13189/items/34c0158d874e81bdeaf0" target="_blank">GitLab の CI/CD で Docker in Docker</a></li>
-        <li><a href="https://www.ogis-ri.co.jp/otc/hiroba/technical/docker/part6.html" target="_blank">さわって理解する Docker 入門</a></li>
-        <li><a href="https://zenn.dev/ryoatsuta/articles/64dcc2e2b4e0cf" target="_blank">Docker Engineとは何か</a></li>
-        <li><a href="https://qiita.com/doz13189/items/9ee8fda335605567b832" target="_blank">Docker Engine API について</a></li>
-      </ul>
-
-      <br><br>
-      <!-- Google AdSense -->
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 横長広告 -->
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-5924490903263360"
-           data-ad-slot="6254596512"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>
-           (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      <br><br>
+        <p>
+          移動しました。自動転送します。<br>
+          <a href="https://taumax-develop.github.io/contents/bymyself/tocd/tocd.html">移動先はこちら</a>。
+        </p>
 
     </section><!-- section class="box" -->
 

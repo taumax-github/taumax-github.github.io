@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="refresh" content="0; URL=https://taumax-develop.github.io/contents/development/codesmell/category/sub_dispensables/Data_Class.html"> <!-- リダイレクト -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../../../../../css/style.css">
@@ -84,32 +85,10 @@
         <h1 id="dataclass">Data Class</h1>
         <p><a href="https://sourcemaking.com/refactoring/smells/data-class">Data Class（データクラス）</a></p>
         <p><strong><em>兆候と症状</em></strong>
-        データクラスは、フィールドとそれらへのアクセッサメソッド(getter/setter)のみを含むクラスを指します。これらは、他のクラスで使用される単なるデータのコンテナです。これらのクラスには追加機能は含まれておらず、所有するデータを独立して操作することはできません。</p>
-        <p><strong><em>問題の理由</em></strong>
-        新しく作成されたクラスに含まれるパブリックフィールドの数が少ないことは普通のことです（getter/setterが少数の場合もあります）。しかし、オブジェクトの真の力は、オブジェクト内のデータに動作タイプや操作を含めることができることです。</p>
-        <p><strong><em>対処</em></strong></p>
-        <ul>
-          <li><p>クラスにパブリックフィールドが含まれる場合は、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#encapsulate-field">Encapsulate Field</a>」を使用して直接アクセスできないようにし、getter/setterを介してのみデータにアクセスできるようにしましょう。</p></li>
-          <li><p>コレクション（配列など）に格納されているデータには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#encapsulate-collection">Encapsulate Collection</a>」を使用します。</p></li>
-          <li><p>データクラスを使用しているクライアントコードを確認します。その中に、データクラス自体に配置されるべき機能があった場合、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-method">Extract Method</a>」を使用して、その機能をデータクラスに移行します。</p></li>
-        </ul>
-        <p>よく考え抜かれたメソッドでクラスがいっぱいになったら、クラスデータへの過度に広範なアクセスを可能にするデータアクセスの古いメソッドを削除することができます。これには、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#remove-setting-method">Remove Setting Method</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#hide-method">Hide Method</a>」が役立つ場合があります。</p>
-        <p><strong><em>効果</em></strong></p>
-        <ul>
-          <li>コードが理解しやすくなり、構成が改善されます。特定のデータに対する操作は、コード全体で無計画に行われるのではなく、単一の場所に収集されるようになりますた。</li>
-          <li>クライアントコードの重複を見つけるのに役立ちます。</li>
-        </ul>
-
-        <br><br><br>
-        書籍としてはこの辺りが参考になると思います。<br>
-        <br>
-        リファクタリング第2版<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B0827R4BDW/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0827R4BDW&linkCode=as2&tag=sagamax-22&linkId=2c815fe7fdaf327848df6aecba6fefbd"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0827R4BDW&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
-
-        <br>
-        レガシーコード改善ガイド<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B01AN97W08/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B01AN97W08&linkCode=as2&tag=sagamax-22&linkId=dcf7be1a6f0449a97291d59c84305a0b"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B01AN97W08&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
-
+        <p>
+          移動しました。自動転送します。<br>
+          <a href="https://taumax-develop.github.io/contents/development/codesmell/category/sub_dispensables/Data_Class.html">移動先はこちら</a>。
+        </p>
       </section><!-- section class="box" -->
 
       <footer>

@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="refresh" content="0; URL=https://taumax-develop.github.io/contents/development/codesmell/category/sub_objectabuse/Temporary_Field.html"> <!-- リダイレクト -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../../../../../css/style.css">
@@ -84,95 +85,10 @@
         <h1 id="temporaryfield">Temporary Field</h1>
         <p><a href="https://sourcemaking.com/refactoring/smells/temporary-field">Temporary Field</a></p>
         <p><strong><em>兆候と症状</em></strong>
-        Temporary fieldsは、特定の状況下でのみ値を取得します（したがって、オブジェクトに必要です）。これらの状況以外では、それらは空です。</p>
-        <p>※Temporary Fieldに関しては<a href="https://blog.ploeh.dk/2015/09/18/temporary-field-code-smell/">この記事</a>の方が私はわかりやすかったので、兆候と症状のところはこの記事をベースに書いてみます。</p>
-        <pre>
-          <code class="java:Estimator language-java:Estimator">
-            public class Estimator {
-              private readonly TimeSpan defaultEstimate;
-              private IReadOnlyCollection&lt;TimeSpan&gt; durations;
-              private TimeSpan average;
-              private TimeSpan standardDeviation;
-        
-              public Estimator(TimeSpan defaultEstimate) {
-                  this.defaultEstimate = defaultEstimate;
-              }
-        
-              public TimeSpan CalculateEstimate(
-                IReadOnlyCollection&lt;TimeSpan&gt; durations) {
-                if (durations == null)
-                  throw new ArgumentNullException(nameof(durations));
-        
-                if (durations.Count == 0)
-                  return this.defaultEstimate;
-        
-                this.durations = durations;
-                this.CalculateAverage();
-                this.CalculateStandardDeviation();
-        
-                var margin = TimeSpan.FromTicks(this.standardDeviation.Ticks * 3);
-                return this.average + margin;
-              }
-        
-              private void CalculateAverage() {
-                this.average =
-                    TimeSpan.FromTicks(
-                        (long)this.durations.Average(ts =&gt; ts.Ticks));
-              }
-        
-              private void CalculateStandardDeviation() {
-                var variance =
-                    this.durations.Average(ts =&gt; 
-                        Math.Pow(
-                            (ts - this.average).Ticks,
-                            2));
-                this.standardDeviation = 
-                    TimeSpan.FromTicks((long)Math.Sqrt(variance));
-              }
-            }
-          </code>
-        </pre>
-        <p>上記EstimatorクラスのCalculateEstimateメソッド内でdurationsというフィールドを使用してます。同時に、CalculateAverageメソッド内ではaverageを使用しており、CalculateStandardDeviationメソッド内ではstandardDeviationを使用しています。これらのメソッドはCalculateEstimateメソッドで呼ばれているため、CalculateEstimateは、明示的にdurationsを使用し、さらに暗黙的にaverage, standardDeviationフィールドも使用しています。
-        averageとstandardDeviationはdurationsに依存しています。さらに、standardDeviationはaverageに依存しています。
-        ここで、CalculateEstimateメソッド内の処理の順番を以下のように変更したらどうなるでしょうか？</p>
-        <pre>
-          <code class="java:変更前 language-java:変更前">
-            this.durations = durations;
-            this.CalculateAverage();
-            this.CalculateStandardDeviation();
-          </code>
-        </pre>
-        <pre>
-          <code class="java:変更後 language-java:変更後">
-            this.durations = durations;
-            this.CalculateStandardDeviation();
-            this.CalculateAverage();
-          </code>
-        </pre>
-        <p>コンパイルは通ります。CalculateEstimateを実行してもExceptionは発生しません。しかし、想定外の結果になります。
-        このコードは理解しにくいだけではなく、脆弱です（処理の順番を入れ替えただけで破綻します）。さらに、スレッドセーフでもありません。</p>
-        <p><strong><em>問題の理由</em></strong>
-        多くの場合、Temporary fieldsは、大量の入力を必要とするアルゴリズムで使用するために作成されます。そのため、プログラマーはメソッド内に多数のパラメーターを作成する代わりに、クラスの中にこのデータのフィールドを作成することにします。これらのフィールドはアルゴリズムでのみ使用され、それ以外では使用されません。
-        この種のコードは理解するのが難しいです。オブジェクトフィールドにデータが表示されるはずですが、何らかの理由でほとんど常に空です。
-        （フィールドに値を設定するメソッドが実行されるまではnullが設定されている）</p>
-        <p><strong><em>対処</em></strong>
-        Temporary fieldとそれらを操作するすべてのコードは、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#extract-class">Extract Class</a>」を介して別のクラスに入れることができます。つまり、メソッドオブジェクトを作成して、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#replace-method-with-method-object">Replace Method with Method Object</a>」を実施します。</p>
-        <p>「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#introduce-null-object">Introduce Null Object</a>」を導入し、Temporary fieldの値の存在を確認するために使用された条件コードをそこに統合します。</p>
-        <p><strong><em>効果</em></strong></p>
-        <ul>
-          <li>コードが明確になり、コードの構成が改善されます。</li>
-        </ul>
-
-        <br><br><br>
-        書籍としてはこの辺りが参考になると思います。<br>
-        <br>
-        リファクタリング第2版<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B0827R4BDW/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0827R4BDW&linkCode=as2&tag=sagamax-22&linkId=2c815fe7fdaf327848df6aecba6fefbd"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0827R4BDW&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
-
-        <br>
-        レガシーコード改善ガイド<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B01AN97W08/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B01AN97W08&linkCode=as2&tag=sagamax-22&linkId=dcf7be1a6f0449a97291d59c84305a0b"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B01AN97W08&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
-
+        <p>
+          移動しました。自動転送します。<br>
+          <a href="https://taumax-develop.github.io/contents/development/codesmell/category/sub_objectabuse/Temporary_Field.html">移動先はこちら</a>。
+        </p>
       </section><!-- section class="box" -->
 
       <footer>

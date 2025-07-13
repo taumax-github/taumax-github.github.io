@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta http-equiv="refresh" content="0; URL=https://taumax-develop.github.io/contents/development/codesmell/category/sub_changeprevent/Parallel_Inheritance_Hierarchies.html"> <!-- リダイレクト -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="../../../../../css/style.css">
@@ -82,65 +83,10 @@
         -->
 
         <h1 id="parallelinheritancehierarchies">Parallel Inheritance Hierarchies</h1>
-        <p><a href="https://sourcemaking.com/refactoring/smells/parallel-inheritance-hierarchies">Parallel Inheritance Hierarchies（パラレル継承）</a></p>
-        <p><strong><em>兆候と症状</em></strong>
-        クラスのサブクラスを作成するたびに、別のクラスのサブクラスを作成する必要がある場合。</p>
-        <p>※正直この説明だけだとどういう状況なのかがよくわからなかった。
-        <a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Parallel_hierarchies_problem">このサイト</a>の方がわかりやすかったのでこちらをベースに訳してみました。</p>
-        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/a4e5eb3d-44ee-4ed4-918e-b12ea0ce1c0b.png" alt="image.png" /></p>
-        <p><a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Parallel_hierarchies_problem">このサイト</a>より抜粋</p>
-        <p>どうやら似たような継承関係を持つクラスが複数あるような状況で、新たなクラスを追加するともう一方の方にもクラスを追加する必要があるような状況らしい。</p>
-        <p>上の図で言うと、VehicleクラスがOperatorクラスを保有している（フィールドがある）ような状況で、Vehicleのサブクラスに新しいクラスを追加したいような場合にOperatorも追加しないといけないような状況のことを言っているらしい。</p>
-        <p>対処法も違うやり方が掲載されているのでご紹介</p>
-        <h4 id="deferidentificationofstatevariablespattern">Defer identification of state variables pattern</h4>
-        <p><a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Defer_identification_of_state_variables_pattern">Defer identification of state variables pattern（状態変数の識別延期パターン）</a></p>
-        <p>状態変数（図1でいうPoint）をサブクラスに識別させるパターン。
-        （サブクラスでの定義をDefer identification：遅延識別と言っている）
-        スーパークラスでアクセッサをabstractで定義しておいて、サブクラスでOverrideすることで、柔軟な設計ができるようになる。</p>
-        <p><strong><em>【図1】</em></strong>
-        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/9c77541a-fb0e-3936-bfa9-53140004f813.png" alt="image.png" />
-        <a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Defer_identification_of_state_variables_pattern">このサイト</a>より抜粋</p>
-        <p><strong><em>【図2】</em></strong>
-        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/74cad662-fde8-17ae-49ee-5e44bc03bcb4.png" alt="image.png" />
-        <a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Defer_identification_of_state_variables_pattern">このサイト</a>より抜粋</p>
-        <h4 id="intelligentchildrenpattern">Intelligent children pattern</h4>
-        <p><a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Intelligent_children_pattern">Intelligent children pattern</a></p>
-        <p>Defer identification of state variables のより具体的な話。
-        スーパークラス同士をコンポジットさせるのではなく、サブクラス同士をコンポジットさせるパターン。</p>
-        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/fe4bd8f3-625f-75b6-db92-0c14e6274e8a.png" alt="image.png" />
-        <a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Intelligent_children_pattern">このサイト</a>より抜粋</p>
-        <p>スーパークラスにOperatorを返すアクセッサをAbstractで定義しておいて、サブクラスでOperatorのサブクラスを返すようにOverrideすることで実現する。</p>
-        <p><img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/7a62f3f1-4e97-3734-148a-e4ef4203712e.png" alt="image.png" />
-        <a href="http://wiki3.cosc.canterbury.ac.nz/index.php/Intelligent_children_pattern">このサイト</a>より抜粋</p>
-        <p><strong><em>問題の理由</em></strong>
-        階層が小さければ問題は発生しにくいですが、新しいクラスが追加されると、変更を加えることがだんだん難しくなります。</p>
-        <p><strong><em>対処</em></strong>
-        ※対処は<a href="https://sourcemaking.com/refactoring/smells/parallel-inheritance-hierarchies">元のサイト(sourcemaking)</a>を訳しています。
-        上で紹介した「Intelligent children pattern」とは別の対処方法の話です。</p>
-        <p>2つの手順でParallel Inheritance Hierarchiesを排除できます。まず、ある階層のインスタンスが別の階層のインスタンスを参照するようにします。次に、「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-method">Move Method</a>」と「<a href="https://qiita.com/taumax/items/f192b16676f78fa04849#move-field">Move Field</a>」を使用して、参照先クラスの階層を削除します。</p>
-        <p><strong><em>【リファクタリング前】</em></strong>
-        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/229db98c-2fb6-2277-0c61-81f767ad4e0c.png" alt="image.png" />
-        <a href="https://refactoring.guru/smells/parallel-inheritance-hierarchies">このサイト</a>より抜粋</p>
-        <p><strong><em>【リファクタリング後】</em></strong>
-        <img src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/254168/824b621c-d0d1-d8ae-2df4-b9c46118e5d5.png" alt="image.png" />
-        <a href="https://refactoring.guru/smells/parallel-inheritance-hierarchies">このサイト</a>より抜粋</p>
-        <p><strong><em>効果</em></strong></p>
-        <ul>
-          <li>重複コードの排除</li>
-          <li>コード構成の改善</li>
-        </ul>
-        <p><strong><em>When to Ignore</em></strong>
-        Parallel Inheritance Hierarchiesは、プログラムアーキテクチャでさらに大きな混乱を避けるための方法の一つです。階層の重複を排除しようとしても醜いコードが生成される場合は、すべての変更を元に戻し、そのコードに慣れてください。</p>
-
-        <br><br><br>
-        書籍としてはこの辺りが参考になると思います。<br>
-        <br>
-        リファクタリング第2版<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B0827R4BDW/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B0827R4BDW&linkCode=as2&tag=sagamax-22&linkId=2c815fe7fdaf327848df6aecba6fefbd"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B0827R4BDW&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
-
-        <br>
-        レガシーコード改善ガイド<br>
-        <a target="_blank"  href="https://www.amazon.co.jp/gp/product/B01AN97W08/ref=as_li_tl?ie=UTF8&camp=247&creative=1211&creativeASIN=B01AN97W08&linkCode=as2&tag=sagamax-22&linkId=dcf7be1a6f0449a97291d59c84305a0b"><img border="0" src="//ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN=B01AN97W08&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=sagamax-22" ></a>
+        <p>
+          移動しました。自動転送します。<br>
+          <a href="https://taumax-develop.github.io/contents/development/codesmell/category/sub_changeprevent/Parallel_Inheritance_Hierarchies.html">移動先はこちら</a>。
+        </p>
 
       </section><!-- section class="box" -->
 
