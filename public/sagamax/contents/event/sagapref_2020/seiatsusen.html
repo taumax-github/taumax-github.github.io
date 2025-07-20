@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- twitter投稿用の設定 -->
+    <meta name="twitter:card" content="summary_large_image" /> <!--カード種類：summary か summary_large_image-->
+    <meta name="twitter:site" content="@sagamax__" /> <!--ユーザー名-->
+    <meta property="og:url" content="https://taumax-github.github.io/sagamax/contents/event/sagapref_2020/seiatsusen.html" /> <!--記事のURL-->
+    <meta property="og:title" content="ロマンシング佐賀" /> <!--記事のタイトル-->
+    <meta property="og:description" content="ロマサガＲＳと佐賀県のコラボイベントを振り返る" /> <!--記事の要約（ディスクリプション）-->
+    <meta property="og:image" content="https://taumax-github.github.io/sagamax/contents/event/sagapref_2020/twitter_card.png" /> <!--画像のURL-->
+
+    <link rel="icon"       href="../../../images/favicon.ico">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/print.css" media="print">
+    <script src="../../../js/openclose.js"></script>
+    <script src="../../../js/giffer.js"></script>
+
+    <title>ロマ佐賀ＲＳ 2020</title>
+    
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <style>
+      .menu1 a {background-position: -10px -10px;}
+      .menu2 a {background-position: -10px -130px;}
+      .menu3 a {background-position: -10px -250px;}
+      .menu4 a {background-position: -10px -370px;}
+      .menu5 a {background-position: -10px -490px;}
+    </style>
+    <![endif]-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156501005-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-156501005-1');
+    </script>
+    <script data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  </head>
+
+<!--PC用（801px以上端末）で表示させるブロック-->
+<header class="pc">
+  <h1 class="logo">
+    <a href="https://taumax-github.github.io/sagamax/">
+      <img src="../../../images/icon_top.png" alt="TOP">
+      <br>
+      <font size="3px">TOP</font>
+    </a>
+  </h1>
+
+  <!--PC用（801px以上端末）メニュー-->
+  <ul class="icon">
+    <li><a href="https://twitter.com/sagamax__" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
+    <li><a href="https://twitter.com/sagamax_bot" target="_blank"><img src="../../../images/icon_twitter_bot.png" alt="Twitter"></a></li>
+    <li><a href="https://www.youtube.com/channel/UCFFZpzVyg22-2sxXE95cR_Q" target="_blank"><img src="../../../images/icon_youtube.png" alt="youtube"></a></li>
+  </ul>
+  <nav>
+    <ul class="indent_no">
+      <li><a href="#domination_blattle_map"">制圧戦マップ</a></li>
+      <li><a href="#takezakicrub">竹崎かに</a></li>
+      <li><a href="#oreshinospa">嬉野温泉</a></li>
+      <li><a href="#warasubo">ワラスボ</a></li>
+      <li><a href="#yobiko_squid">呼子のイカ</a></li>
+      <li><a href="#karatsukunchi">唐津くんち</a></li>
+      <li><a href="#saga_beef">佐賀牛</a></li>
+      <li><a href="#baloon_festa">佐賀バルーンフェスタ</a></li>
+      <li><a href="#sagameguri">佐賀めぐり！</a></li>
+      <li><a href="#newstyles">新スタイル</a></li>
+      <li><a href="#nhk_news">ニュースにまで・・・！！</a></li>
+      <li><a href="#others">その他</a></li>
+    </ul>
+  </nav>
+</header><!--/.pc-->
+
+<!--小さな端末用（768px以下端末）で表示させるブロック-->
+<header class="sh">
+  <!--小さな端末用（768px以下端末）メニュー-->
+  <div id="menubar-s" align="center">
+    <nav>
+      <ul>
+        <li><a href="#domination_blattle_map">制圧戦全体マップ</a></li>
+        <li><a href="#takezakicrub">竹崎かに</a></li>
+        <li><a href="#oreshinospa">嬉野温泉</a></li>
+        <li><a href="#warasubo">ワラスボ</a></li>
+        <li><a href="#yobiko_squid">呼子のイカ</a></li>
+        <li><a href="#karatsukunchi">唐津くんち</a></li>
+        <li><a href="#saga_beef">佐賀牛</a></li>
+        <li><a href="#baloon_festa">佐賀バルーンフェスタ</a></li>
+        <li><a href="#sagameguri">佐賀めぐり！</a></li>
+        <li><a href="#newstyles">新スタイル</a></li>
+        <li><a href="#nhk_news">ニュースにまで・・・！！</a></li>
+        <li><a href="#others">その他</a></li>
+      </ul>
+    </nav>
+    <h1 class="logo">
+      <a href="https://taumax-github.github.io/sagamax/">
+        <img src="../../../images/icon_top.png" alt="TOP">
+        <br>
+        <font size="3px">TOP</font>
+      </a>
+    </h1>
+    <ul class="icon">
+      <li><a href="https://twitter.com/sagamax__" target="_blank"><img src="../../../images/icon_twitter.png" alt="Twitter"></a></li>
+      <li><a href="https://twitter.com/sagamax_bot" target="_blank"><img src="../../../images/icon_twitter_bot.png" alt="Twitter"></a></li>
+      <li><a href="https://www.youtube.com/channel/UCFFZpzVyg22-2sxXE95cR_Q" target="_blank"><img src="../../../images/icon_youtube.png" alt="youtube"></a></li>
+    </ul>
+  </div><!--/#menubar-s-->
+</header><!--/.sh-->
+
+<body class="defaultbody">
+  <div id="container" style="background-image: url(img/background-min.png); background-attachment: fixed;">
+  <div id="contents">
+  <div id="main">
+    <span id="pagetop"></span>
+    <section class="box">
+      <!-- tweetボタン -->
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><br>
+
+      <h2 class="title">2020年のロマサガＲＳ佐賀県コラボを振り返る</h2>
+
+      <a href="../../../index.html">ホーム</a> > <a href="../../index_romasagars.html">ロマサガＲＳ</a> > ロマサガＲＳ佐賀コラボ_2020年<br>
+
+      <br>
+      <p>
+        2020年のＧＷはロマサガＲＳの初のコラボイベント「ロマンシング佐賀 2020」が開催されました。
+        控えめに言って神イベだったこのイベントがこのまま風化してしまうのはもったいない。
+        少しでも多くの人に記憶に残っていてほしい。
+        また、知らなかった人がこのページを見て知ることができたらいいなと思ってこのページを作りました。
+        特に制圧戦が本当に気合入ってたと思っているので、制圧戦を中心に書いていこうと思います。<br>
+      </p>
+
+      <span id="domination_blattle_map"></span>
+      <h3 class="title">制圧戦全体マップ</h3>
+      <p>
+       制圧戦の全体マップがこれ。ロマ佐賀ＲＳでは、マップの名所・名物をタッチすると簡単な説明を見ることができるようになっていました。
+       説明を全部タッチしてGIFにしました。<br>
+       （本当は七英雄の素材を作ってマップに配置したかったんだけど、素材づくりが間に合わなかった・・・）<br>
+       <img src="img/seiatsusen_wholemap_50.gif"></img>
+       <br><br>
+       静止で見たい方は<a href="map.html" target="_blank">こちら</a>。
+      </p>
+
+      <h4 class="title">佐賀県の地図</h4>
+      <p>
+        制圧戦のマップを本物の佐賀県の地図と比べると、かなり忠実に作られていることがわかります。
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d853849.3184040635!2d129.5791466496922!3d33.28353410861784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3541d2a1e2f15555%3A0x300bd46c1f1ef1da!2z5L2Q6LOA55yM!5e0!3m2!1sja!2sjp!4v1589633263474!5m2!1sja!2sjp" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+      </p>
+      <p>
+        制圧戦イベントでは、モンスターに制圧された場所を開放していくと、一日一体七英雄が出現する仕様になっていました。七英雄はその名所・名物にまつわる強力な技を使用してきました。以下、佐賀県の名所・名物と、登場した七英雄とその特徴となる技を紹介していきます。<br>
+      </p>
+
+      <br><br>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+      <span id="takezakicrub"></span>
+      <h3 class="title">竹崎かに</h3>
+      <p>
+        制圧戦１日目(4/26)<br>
+        竹崎かにを担当する七英雄はクジンシー<br>
+        <img src="img/bosses/takezakikani.jpg">
+        <br><br><br>
+        佐賀コラボの固有技は「美味しい竹崎かに」と「ハサミ」<br>
+        美味しい竹崎かにはLPを3も吸い取ってくる技。どんなキャラも2回喰らうと気絶してしまう。やめてくれ～。<br>
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/T4ILi4nWiyo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </p>
+
+      <h4 class="title">本物の竹崎かに情報</h4>
+      <p>
+        <a href="https://www.town.tara.lg.jp/kanko/_1899/_1279.html" target="_blank">太良町の観光情報サイト</a>で紹介されている。かにうまそう～。<br>
+        <img src="img/real_takezaki_crub.png"><br>
+      </p>
+
+      <span id="oreshinospa"></span>
+      <h3 class="title">嬉野温泉（うれしのおんせん）</h3>
+      <p>
+        制圧戦２日目(4/27)<br>
+        嬉野温泉を担当する七英雄はスービエ<br>
+        <img src="img/bosses/oreshinoonsen.jpg">
+        <br><br><br>
+        佐賀コラボの固有技は「源泉掛け流し」と「嬉野で一杯！」。<br>
+        嬉野で一杯でよっぱらったスービエはろれつが回らなくなり、以降使用する技はすべてひらがなになってしまう（笑）<br>
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/AHjsoKYYFOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br>
+      </p>
+      <h4 class="title">本物の嬉野温泉の情報</h4>
+      <p>
+        嬉野温泉観光協会なるものがあるらしい。<br>
+        こちらはそのホームページ（<a href="https://spa-u.net/" target="_blank">うれしの温泉情報局</a>）<br>
+        <img src="img/real_ureshinospa.png">
+      </p>
+
+      <span id="warasubo"></span>
+      <h3 class="title">ワラスボ</h3>
+      <p>
+        制圧戦３日目(4/28)<br>
+        ワラスボを担当する七英雄はボクオーン<br>
+        <img src="img/bosses/warasubo.jpg">
+        <br><br><br>
+        佐賀コラボの固有技は「ガタウェーブ」と「有明海エイリアンズ」。<br>
+        ガタウェーブは<a href="https://www.gatalympic.com/" target="_blank">ガタリンピック</a>に因んだ技。
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/BFjqX1ChgSY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br><br>
+        ボクオーンが操るワラスボは案外かわいい一面もあった（笑）
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">なんかさっき自分がつぶやいた画像、ワラスボがこう言っているように見えてきた。<br>ワラスボかわいい<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/lIiNAKrLja">pic.twitter.com/lIiNAKrLja</a></p>&mdash; sagamax (@sagamax__) <a href="https://twitter.com/sagamax__/status/1255102691354673152?ref_src=twsrc%5Etfw">April 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </p>
+      <h4 class="title">本物のワラスボの情報</h4>
+      <p>
+        写真<br>
+        <img src="img/realwarasubo.png">
+        <br><br>
+        動画
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Vl-CiwmEhXE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        1:25辺りに実際に動いているワラスボが・・・！！
+      </p>
+
+      <span id="yobiko_squid"></span>
+      <h3 class="title">呼子のイカ（よぶこのいか）</h3>
+      <p>
+        制圧戦４日目(4/29)<br>
+        呼子のイカを担当する七英雄はノエル<br>
+        <img src="img/bosses/yobukoika.jpg">
+        <br><br><br>
+        佐賀コラボの固有技は「呼子の大量イカ」と「漁師のいかり」。<br>
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/vDBlkEfVlpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br><br>
+        ノエルは腕力デバフで雑魚化して倒す人が多かった模様。１年前から進歩のないノエルェ・・・。<br>
+      </p>
+      <h4 class="title">本物の呼子のイカ情報</h4>
+      <p>
+        佐賀県の唐津市呼子町は「イカの活造り」が生まれた町。<br>
+        河太郎というお店が呼子のイカを使った活造りの発祥のお店らしい。<br>
+        <a href="http://www.kawatarou.jp/yobuko/" target="_blank">河太郎呼子店</a><br>
+        <img src="img/real_yobiko_squid.png"><br>
+      </p>
+
+      <br><br>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+      <span id="karatsukunchi"></span>
+      <h3 class="title">唐津くんち</h3>
+      <p>
+        制圧戦５日目(4/30)<br>
+        唐津くんちを担当する七英雄はロックブーケ<br>
+        <img src="img/bosses/karatsukunchi.jpg">
+        <br><br><br>
+        佐賀コラボの固有技は「荘厳華麗・唐津くんち」と「祭りばやし」。<br>
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/63YaQTFH4Ck" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br><br>
+        荘厳華麗・唐津くんちは狂戦士状態になる全体攻撃技。<br>
+        知力デバフで威力・狂戦士になる確率を下げて攻略する人が多かった。
+      </p>
+      <h4 class="title">本物の唐津くんち情報</h4>
+      <p>
+        本物の唐津くんちはこんな雰囲気。まさに「荘厳華麗」！！
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/60Dx3OD2tb4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </p>
+
+      <span id="saga_beef"></span>
+      <h3 class="title">佐賀牛</h3>
+      <p>
+        制圧戦６日目(5/1)<br>
+        佐賀牛を担当する七英雄はダンターグ<br>
+        <img src="img/bosses/sagabeef.jpg">
+        <br><br><br>
+        佐賀コラボの固有技は「黒毛和牛「佐賀牛」」と「巨石投げ」。<br>
+        巨石投げは、ダンターグの出現場所が「<a href="https://www.asobo-saga.jp/feature/archives/69" target="_blank">巨石パーク</a>」という場所だったからそういう技を入れたんだと思う。<br>
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/XCvLUTTCioQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br><br>
+        斬が弱点なので脳筋プレイで問題なく倒せた人が多かった模様。
+      </p>
+      <h4 class="title">本物の佐賀牛の情報</h4>
+      <p>
+        う、、、うまそう・・・・！！！！<br>
+        公式サイトや公式のtwitterもある模様。興味ある方はフォローしてみては？<br>
+        <a href="https://sagagyu-portal.com/" target="_blank">公式の佐賀牛のサイト</a><br>
+        <a href="https://twitter.com/sagagyu_ja" target="_blank">公式のtwitter</a><br>
+        <img src="img/real_saga_beef.png" width="700"><br>
+      </p>
+
+      <span id="baloon_festa"></span>
+      <h3 class="title">佐賀バルーンフェスタ</h3>
+      <p>
+        制圧戦７日目(5/2)<br>
+        佐賀バルーンフェスタを担当する七英雄はワグナス<br>
+        <img src="img/bosses/balloonfesta.jpg">
+        <br><br><br>
+        佐賀コラボの固有技は「上昇気流」と「バルーンフェスティバル」。<br>
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/aevO83XJ82w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br><br>
+        ワグナスは毒耐性が低めに設定されているため、毒で攻める戦法が流行るが、人によってワグナスの毒ダメージが違うことが話題になる。<br>
+        ロマサガＲＳにおける毒ダメージは最大ＨＰの1/10のため、各自の育成度合いに応じて敵の強さが変わっている模様。<br>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">まーさんのと私のとで毒ダメージと違いますね。<br>私がワグナスに与える毒ダメージ：23,069<br>まーさんの場合：23,948<br>各自のキャラクタの成長に合わせてHP違うのか・・・。<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E4%BD%90%E8%B3%80?src=hash&amp;ref_src=twsrc%5Etfw">#ロマ佐賀</a> <a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%83%B3%E3%82%B7%E3%83%B3%E3%82%B0%E4%BD%90%E8%B3%80?src=hash&amp;ref_src=twsrc%5Etfw">#ロマンシング佐賀</a> <a href="https://t.co/oYM18SKVEQ">https://t.co/oYM18SKVEQ</a> <a href="https://t.co/C4IabwCnsp">pic.twitter.com/C4IabwCnsp</a></p>&mdash; sagamax (@sagamax__) <a href="https://twitter.com/sagamax__/status/1256444432011808768?ref_src=twsrc%5Etfw">May 2, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br>
+        それについてガチで検証する人
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ステ上げたら毒ダメが変わりました！<br><br>恐らく所持スタイルの中で最大ステ合計(小数点込み)で決まっていて、ステ合計10刻みでダメージが違うようです<br><br>ステ合計 毒ダメ<br>1123.59〜1126.80 22207<br>1130.06 22429<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/MMLRwSIMAU">pic.twitter.com/MMLRwSIMAU</a></p>&mdash; WizardII (@wizardii_) <a href="https://twitter.com/wizardii_/status/1256490711299440640?ref_src=twsrc%5Etfw">May 2, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br>
+        つられて検証する私
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ワラスボ後回しにしてワグナスの毒ダメージの検証をしていました。<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E4%BD%90%E8%B3%80?src=hash&amp;ref_src=twsrc%5Etfw">#ロマ佐賀</a> <a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%83%B3%E3%82%B7%E3%83%B3%E3%82%B0%E4%BD%90%E8%B3%80?src=hash&amp;ref_src=twsrc%5Etfw">#ロマンシング佐賀</a><br>ワグナス毒ダメ検証 <a href="https://t.co/2JP2CBstt9">https://t.co/2JP2CBstt9</a></p>&mdash; sagamax (@sagamax__) <a href="https://twitter.com/sagamax__/status/1256635926664450051?ref_src=twsrc%5Etfw">May 2, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        ※リンク先は<a href="../../romasagars/poison_damage/poisondamage.html">こちら</a>に変更されています。<br>
+      </p>
+      <h4 class="title">本物の佐賀バルーンフェスタの情報</h4>
+      <p>
+        <a href="https://sibf.jp/news/2020/20200115a.html" target="_blank">2020佐賀インターナショナルバルーンフェスタ</a><br>
+        <!--
+        2020年は10月29日（木）～11月4日（水）に開催される模様。<br>
+        ※2020/5/17時点の情報です。変更される可能性もあるので、正しい情報は上記リンク先を確認してください。
+        -->
+        2020年は中止になってしまったようです。<br>
+        しかしインターネットを使ったライブ配信を予定しているらしい。<br>
+        <a href="https://www.sagatv.co.jp/news/archives/2020091103689" target="_blank">無観客で夜間係留を実施 佐賀インターナショナルバルーンフェスタ代替イベント【佐賀県】</a>
+        
+        <br><br>
+        バルーンフェスタの公式のtwitterアカウントがあることを最近知ったのでリンク張っておきます。<br>
+        <a href="https://twitter.com/SIBFO" target="_blank">佐賀バルーンフェスタ 公式ネットチーム</a>
+      </p>
+
+      <span id="sagameguri"></span>
+      <h3 class="title">佐賀めぐり！</h3>
+      <p>
+        ワグナスを倒した後、満を持して登場した、佐賀コラボ制圧戦のラスボス「ワラスボ」。<br>
+        ワラスボはラスボスのアナグラム・・・・・・ではないですよ（笑）<br>
+        <img src="img/bosses/sagameguri!.png" width="300">
+        <br><br><br>
+        これまでの七英雄の技を使ってくる。８ターン目以降は鬼畜技「佐賀めぐり！」で、１ターンで７回連続攻撃を仕掛けてくる。
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/yd55q9q3q78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <br><br><br>
+        強すぎるワラスボにギブアップする河津神
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%83%B3%E3%82%B7%E3%83%B3%E3%82%B0%E4%BD%90%E8%B3%80?src=hash&amp;ref_src=twsrc%5Etfw">#ロマンシング佐賀</a><br>ワラスボに勝てません。皆さん、よろしくお願いします。</p>&mdash; 河津秋敏 (@SaGa30kawazu) <a href="https://twitter.com/SaGa30kawazu/status/1256558891090898944?ref_src=twsrc%5Etfw">May 2, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <br>
+        ワラスボを創造した人（ある意味神）ですら苦戦
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">連携でイカが5回飛んでくれたら <a href="https://twitter.com/hashtag/%E3%83%AF%E3%83%A9%E3%82%B9%E3%83%9C?src=hash&amp;ref_src=twsrc%5Etfw">#ワラスボ</a> 倒せたところだったのにorz</p>&mdash; Seizan Shimazaki (@seizans) <a href="https://twitter.com/seizans/status/1256581033480220674?ref_src=twsrc%5Etfw">May 2, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </p>
+
+      制圧戦はこんな感じでした。<br>
+      いや～、楽しかった！<br><br>
+
+      <br><br>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+      <span id="newstyles"></span>
+      <h3 class="title">登場した新スタイル</h3>
+      佐賀コラボで登場したスタイルもすべて佐賀に因んだ技を持っているのでここでご紹介。<br>
+      <p>
+        <h4 class="title">アセルス</h4>
+        <img src="img/styles/aserus.jpg">
+        <br><br>
+        技
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/tPy9Kj8YXPc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br><br>
+        アセルスの新技「エンヤーヨイサー」は、出てくるお供が三種類存在している。
+        唐津くんちの動画を見れば、これを再現しているということがわかりますね。
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">「唐津くんち」の動画<br>1:28あたりに緑色の顔のやつ<br>1:35あたりに赤の顔のやつ<br>1:37あたりに魚<a href="https://t.co/sbBhVoFTLw">https://t.co/sbBhVoFTLw</a></p>&mdash; sagamax (@sagamax__) <a href="https://twitter.com/sagamax__/status/1255168791987621889?ref_src=twsrc%5Etfw">April 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <br><br>
+        赤い魚<br>
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/Ae-Sv830nPw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <br><br>
+        獅子舞（緑）<br>
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/Dm9bPrfHi7s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <br><br>
+        獅子舞（赤）<br>
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/uGZlUVzHaIY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br><br>
+
+      </p>
+      <p>
+        <h4 class="title">ロックブーケ</h4>
+        <img src="img/styles/rocbouquet.jpg">
+        <br><br>
+        技
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/o55QLMm6Jd4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <br><br>
+        魅惑イカの怒りは呼子のイカに因んだ技。よく見るとイカの目がハートになっている。
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ロックブーケのイカの怒り、よく見たらイカの目がハートになってた😍<br>本当は怒ってないのではないか？<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E4%BD%90%E8%B3%80?src=hash&amp;ref_src=twsrc%5Etfw">#ロマ佐賀</a> <a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%83%B3%E3%82%B7%E3%83%B3%E3%82%B0%E4%BD%90%E8%B3%80?src=hash&amp;ref_src=twsrc%5Etfw">#ロマンシング佐賀</a> <a href="https://t.co/i0OOQ6fKAi">pic.twitter.com/i0OOQ6fKAi</a></p>&mdash; sagamax (@sagamax__) <a href="https://twitter.com/sagamax__/status/1255472736798797824?ref_src=twsrc%5Etfw">April 29, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <br><br>
+        佐賀県関係ないけど、１年以上待ち続けていた複属性杖がついに実装されたのもビックリでした！！
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ちょっと待って❗なにこれ⁉️今気づいたんだけど。ブーケ人権じゃん‼️<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/paBDYyfltC">pic.twitter.com/paBDYyfltC</a></p>&mdash; sagamax (@sagamax__) <a href="https://twitter.com/sagamax__/status/1254721248732430337?ref_src=twsrc%5Etfw">April 27, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br><br>
+      </p>
+
+      <p>
+        <h4 class="title">T260G</h4>
+        <img src="img/styles/T260G.jpg">
+        <br><br>
+        技
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/Ta7-sAJjXMc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br><br>
+        <a href="https://www.gatalympic.com/" target="_blank">ガタリンピック</a>というイベントに因んだ「ガタスプレッド」という全体攻撃技を持つスタイル。
+        カウンターでもガタスプレッドを放って全体攻撃するというとんでもないアビリティを持つ。これは凄い！<br>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">動画ありがとうございます！<br>これが噂の全体カウンターｗｗ<br>たしかにこれはやばそうｗｗ<br>デトックスも「これこれ！これが欲しかったの！！」って感じです😂</p>&mdash; sagamax (@sagamax__) <a href="https://twitter.com/sagamax__/status/1254753862843371521?ref_src=twsrc%5Etfw">April 27, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br>
+        ちなみにガタスプレッドはOverDriveのゲージが貯まりやすいという特徴もある模様。<br>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ガタスプレッドのOverDriveゲージ増加量が30%もあるのでカウンター発動すれば一瞬でODたまりそう</p>&mdash; ちん (@chin_ohnck) <a href="https://twitter.com/chin_ohnck/status/1254753647663038464?ref_src=twsrc%5Etfw">April 27, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br><br>
+      </p>
+
+      <p>
+        <span id="taria"></span>
+        <h4 class="title">タリア</h4>
+        <img src="img/styles/taria.jpg">
+        <br><br>
+        技
+        <iframe width="300" height="634" src="https://www.youtube.com/embed/61Fef-Wj-ZQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <br><br>
+        知力上昇アビリティで知力を上げてからのアリタペトラ。相手は石化する。<br>
+        知力が高く、石化率が高いため、耐性が低い相手には無双できる。<br>
+        アリタペトラの皿の真ん中に「SaGa」って書いてる・・・！！
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">気付かれてなさそうな予感がしたのでこれも。<br>タリアのアリタ・ペトラの皿の真ん中にSaGaって書いてある。<br>芸が細かすぎます・・😍<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/M4RlpZh1fy">pic.twitter.com/M4RlpZh1fy</a></p>&mdash; sagamax (@sagamax__) <a href="https://twitter.com/sagamax__/status/1255162018169909248?ref_src=twsrc%5Etfw">April 28, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <br><br>
+        そんなタリアさんの新スタイルを祝うツイート。おめでとうございます！
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">タリアさん、新スタイルおめでとうございます🎉 <a href="https://t.co/rEpDZHAYR9">pic.twitter.com/rEpDZHAYR9</a></p>&mdash; 雨史さん@サガ好きな蛙 (@amemiyan_saga) <a href="https://twitter.com/amemiyan_saga/status/1256397121193836545?ref_src=twsrc%5Etfw">May 2, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <br><br>
+        タリアという名前は、佐賀県有田町発祥の焼き物の『有田焼』からとられているらしい（アリタを逆から読んだらタリア）。<br>
+        今回のイベントで出なかったらいつ出るんだ！？っていうぐらいのキャラクターだったんですね。<br>
+        <a href="https://dic.nicovideo.jp/a/%E3%82%BF%E3%83%AA%E3%82%A2" target="_blank">ニコニコ大百科　タリア</a>
+      </p>
+
+      <span id="nhk_news"></span>
+      <h3 class="title">ニュースにまで・・・！！</h3>
+      <p>
+        NHKのニュースになってる・・・！（リンク先に動画あり）<br>
+        すんごい！！！！！
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">県の風物など登場のゲームが話題｜NHK 佐賀県のニュース <a href="https://t.co/iwpOg3LCEQ">https://t.co/iwpOg3LCEQ</a></p>&mdash; 市川雅統 Masanori Ichikawa (@saga_ichikawa) <a href="https://twitter.com/saga_ichikawa/status/1260521223403888640?ref_src=twsrc%5Etfw">May 13, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <br>
+        毎日新聞
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ニュースになってたw<br>ワラスボも大暴れ　ゲーム「ロマンシングサガRS」　佐賀舞台にコラボキャラとバトル - 毎日新聞 <a href="https://t.co/9M48ev5cto">https://t.co/9M48ev5cto</a></p>&mdash; ばにふら@ロマサガRS(七分咲き (@NXISuB0XqC6CAL4) <a href="https://twitter.com/NXISuB0XqC6CAL4/status/1260025842748387332?ref_src=twsrc%5Etfw">May 12, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </p>
+
+      <br><br>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+      <span id="others"></span>
+      <h3 class="title">その他</h3>
+      <p>
+        twitterを見ていて興味を引いたもの。<br>
+        佐賀コラボ七英雄が出揃ったので特殊技をまとめた動画。かっこいい！
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">佐賀コラボ七英雄が出揃ったので特殊技をまとめた動画を作りました☺️<br><br>どれも演出にこだわりが見られる😎<br>七英雄好きな人に届け🐙<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/GXjQ4gVprp">pic.twitter.com/GXjQ4gVprp</a></p>&mdash; ロマサガRS攻略@GameWith (@romars_GW) <a href="https://twitter.com/romars_GW/status/1256449936427634688?ref_src=twsrc%5Etfw">May 2, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        
+        <br><br><br>
+        牛に話しかける謎の遊びが流行る（笑）<br>
+        とてもじゃないけど全部はピックアップはできないので興味ある方は<a href="https://twitter.com/search?q=%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS%20%E7%89%9B&src=typed_query" target="_blank">ここで探してみて</a>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">節子、それイカやない。牛や。<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/pJP4l5AQsD">pic.twitter.com/pJP4l5AQsD</a></p>&mdash; Mid-night (@Midnigh09841678) <a href="https://twitter.com/Midnigh09841678/status/1259339687828664321?ref_src=twsrc%5Etfw">May 10, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">牛さん逃げて…<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/owbjUUZB7b">pic.twitter.com/owbjUUZB7b</a></p>&mdash; うえさま@乱れ日月火 (@uesama0706) <a href="https://twitter.com/uesama0706/status/1260326434045919234?ref_src=twsrc%5Etfw">May 12, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a><br><br>みなさんの牛に話しかけるシリーズ楽しませてもらっています。そろそろ終わりなので、さみしくなりますね。 <a href="https://t.co/3WlxJT4qHg">pic.twitter.com/3WlxJT4qHg</a></p>&mdash; oyana (@_o_y_a_n_a) <a href="https://twitter.com/_o_y_a_n_a/status/1261610215549493250?ref_src=twsrc%5Etfw">May 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">あなたに幸いが訪れますように・・・って仰ってますが🧐<br>この牛さんの末路って・・・<br>みんなには喜ばれるとはおもうけど・・・ねぇ😅<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%AC?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガ</a>　<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E4%BD%90%E8%B3%80?src=hash&amp;ref_src=twsrc%5Etfw">#ロマ佐賀</a> <a href="https://t.co/y0OxarA1W4">pic.twitter.com/y0OxarA1W4</a></p>&mdash; さとちゃんGAMES (@GAMES84207731) <a href="https://twitter.com/GAMES84207731/status/1260255146920914944?ref_src=twsrc%5Etfw">May 12, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">牛さん、いつもありがとう。<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/tdsTByMP5u">pic.twitter.com/tdsTByMP5u</a></p>&mdash; しぇりろま@＼サガ！！／ (@sherylatro) <a href="https://twitter.com/sherylatro/status/1261469507052122112?ref_src=twsrc%5Etfw">May 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">今更ながら牛に話しかけるやつ、個人的はゆきだるまとプラタリアがツボですた(°▽°)<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/bZQMjOitSa">pic.twitter.com/bZQMjOitSa</a></p>&mdash; たれ (@L6XYRfJqxILWX8X) <a href="https://twitter.com/L6XYRfJqxILWX8X/status/1261547789994999808?ref_src=twsrc%5Etfw">May 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">皆さん牛に話を聞いてもらうのが流行ってるみたいで、ウチでもストライフさんが話を聞いてもらってました(´∇｀)❁⃘*.ﾟ<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://twitter.com/hashtag/%E5%8A%9B%E3%81%93%E3%81%9D%E3%83%91%E3%83%AF%E3%83%BC?src=hash&amp;ref_src=twsrc%5Etfw">#力こそパワー</a> <a href="https://t.co/OTIyxXiRnE">pic.twitter.com/OTIyxXiRnE</a></p>&mdash; きんじろぅ@ロマサガRS (@RS76562279) <a href="https://twitter.com/RS76562279/status/1261445681429897216?ref_src=twsrc%5Etfw">May 15, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ゆきだるまからのまさかの牛一頭のプレゼントw<br><br>たまたまタッチしたらナイスタイミングw<br>思わず笑ってしまいました(・∀・)<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/bVSpf5sOtO">pic.twitter.com/bVSpf5sOtO</a></p>&mdash; 黒豆柴 (@W8UsXHdu2XHLznK) <a href="https://twitter.com/W8UsXHdu2XHLznK/status/1261640063185612804?ref_src=twsrc%5Etfw">May 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">流行りの牛に話しかけるチャレンジしてみた♪.°ʚ(*´꒳`*)ɞ°.<a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a> <a href="https://t.co/RzKpQ9F3ys">pic.twitter.com/RzKpQ9F3ys</a></p>&mdash; かりんこ⌄̈⃝ (@KarinkoRs) <a href="https://twitter.com/KarinkoRs/status/1261900028118851586?ref_src=twsrc%5Etfw">May 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a><br><br>牛に話しかける人々シリーズが、<br><br>面白かったので便乗しますw <a href="https://t.co/Dn6mlF9r5z">pic.twitter.com/Dn6mlF9r5z</a></p>&mdash; ヘルニキ (@HERUNIKI) <a href="https://twitter.com/HERUNIKI/status/1262321353622867968?ref_src=twsrc%5Etfw">May 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/hashtag/%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%ACRS?src=hash&amp;ref_src=twsrc%5Etfw">#ロマサガRS</a><br><br>うーん、無理w <a href="https://t.co/Isg0kZU1tA">pic.twitter.com/Isg0kZU1tA</a></p>&mdash; ヘルニキ (@HERUNIKI) <a href="https://twitter.com/HERUNIKI/status/1262322910250688512?ref_src=twsrc%5Etfw">May 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+        <br>
+        これは牛関連
+        <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">ロマサガで牛をツイートしてる人がいるけど、自分の中でゲームで牛といったらこれを思い出す。 <a href="https://t.co/AoIVhrtDVV">pic.twitter.com/AoIVhrtDVV</a></p>&mdash; 村雨@P_FF (@murasame_2000) <a href="https://twitter.com/murasame_2000/status/1260048393075691522?ref_src=twsrc%5Etfw">May 12, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </p>
+
+      <br><br><br>
+      最後に公式サイトへのリンクを張って終わりにしたいと思います。<br>
+      <a href="https://romasaga.jp/2020/" target="_blank">ロマンシング佐賀 2020</a>
+
+      <br><br><br>
+      <font size="15">以上！</font>
+
+      <br><br>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 横長広告 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-5924490903263360"
+           data-ad-slot="6254596512"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      <br><br>
+
+    </section><!-- section class="box" -->
+
+    <footer>
+      <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+    </footer>
+
+  </div><!--/#main-->
+  </div><!--/#contents-->
+  </div><!--/#container-->
+</body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+
+  <!--メニューの開閉処理条件設定　768px以下-->
+  <script>
+    if (OCwindowWidth() <= 768) {
+      open_close("menubar_hdr", "menubar-s");
+    }
+  </script>
+</html>
