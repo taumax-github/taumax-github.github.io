@@ -1,1 +1,1 @@
-Sitemap: https://taumax-github.github.io/sagamax/sitemap.xml
+Sitemap: https://taumax-github.github.io/sitemap.xml
