@@ -1,6 +1,6 @@
 /*
- * ƒuƒƒbƒNŠJ•Âˆ—
- * 2015/12/21 ƒ{ƒ^ƒ“‰æ‘œ‚Ì”ñ•\¦ˆ—‚ğs‚í‚È‚¢
+ * ï¿½uï¿½ï¿½ï¿½bï¿½Nï¿½Jï¿½Âï¿½ï¿½ï¿½
+ * 2015/12/21 ï¿½{ï¿½^ï¿½ï¿½ï¿½æ‘œï¿½Ì”ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½È‚ï¿½
  */
 /*
  * Return the classList property of e, if it has one.
@@ -89,7 +89,7 @@ function do_onoff(hdr, item)
 		classList(e).add('close');
 	}
 }
-function open_close(hdr, item)
+export function open_close(hdr, item)
 {
 	var e = document.getElementById(hdr);
 	var e2 = document.getElementById(item);
@@ -118,7 +118,7 @@ function OCdisplayWidth()
 {
 	return window.parent.screen.width;
 }
-function OCwindowWidth()
+export function OCwindowWidth()
 {
 	if (window.screen.width < window.innerWidth) {
 		return window.screen.width;

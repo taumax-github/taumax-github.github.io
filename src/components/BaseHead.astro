@@ -1,57 +1,56 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
-import { SITE_TITLE } from '../consts';
-import FallbackImage from '../assets/blog-placeholder-1.jpg';
+import '../styles/style.css';
+import '../styles/print.css';
 import type { ImageMetadata } from 'astro';
 
-interface Props {
-	title: string;
-	description: string;
-	image?: ImageMetadata;
-}
+type Props = {
+  title: string;
+  description: string;
+  twitterCardSize: 'summary' | 'summary_large_image';
+  image?: ImageMetadata;
+};
+
+export const twitterCardEnum = Object.freeze({
+  summary: 'summary',
+  summaryLargeImage: 'summary_large_image'
+})
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title, description, image = FallbackImage } = Astro.props;
+const { title, description, twitterCardSize } = Astro.props;
+const isProd = import.meta.env.PROD;
 ---
 
-<!-- Global Metadata -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="sitemap" href="/sitemap-index.xml" />
-<link
-	rel="alternate"
-	type="application/rss+xml"
-	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
-/>
-<meta name="generator" content={Astro.generator} />
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+  <!-- twitter投稿用の設定 -->
+  <meta name="twitter:card" content={twitterCardSize} /> <!--カード種類：summary か summary_large_image-->
+  <meta name="twitter:site" content="@sagamax__" /> <!--ユーザー名-->
+  <meta property="og:url" content={Astro.url.href} /> <!--記事のURL-->
+  <meta property="og:title" content={title} /> <!--記事のタイトル-->
+  <meta property="og:description" content={description} /> <!--記事の要約（ディスクリプション）-->
+  <meta property="og:image" content="https://taumax-github.github.io/sagamax/images/icon_twitter_card.png" /> <!--画像のURL-->
 
-<!-- Canonical URL -->
-<link rel="canonical" href={canonicalURL} />
+  {isProd &&
+    // Global site tag (gtag.js) - Google Analytics
+    <script async is:inline src="https://www.googletagmanager.com/gtag/js?id=UA-156501005-1"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-156501005-1');
+    </script>
+    <script is:inline data-ad-client="ca-pub-5924490903263360" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  }
 
-<!-- Primary Meta Tags -->
-<title>{title}</title>
-<meta name="title" content={title} />
-<meta name="description" content={description} />
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={Astro.url} />
-<meta property="og:title" content={title} />
-<meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, Astro.url)} />
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+  <title>{title}</title>
+</head>

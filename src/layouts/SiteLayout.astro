@@ -1,0 +1,106 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AdUnit from '../components/AdUnit.astro';
+import { BASE_URL } from '../consts';
+
+export const bgEnum = Object.freeze({
+  default: "container",
+  roma2r: "roma2rcontainer"
+})
+const { title,
+  description,
+  twitterCardSize,
+  indexList,
+  breadcrumbList,
+  background = bgEnum.default,
+  rights
+} = Astro.props;
+
+export type Breadcrumb = {
+  "@type"?: string,
+  position?: number,
+  title: string,
+  url: string
+};
+
+let bcList: Breadcrumb[] = [{
+  "@type": "ListItem",
+  position: 1,
+  title: "トップページ",
+  url: `${BASE_URL}/index.html`
+}]
+breadcrumbList.map((item: Breadcrumb, index: number) => (
+  bcList.push({
+    "@type": "ListItem",
+    position: index + 2,
+    title: item.title,
+    url: item.url
+  })
+))
+
+let breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: bcList
+};
+---
+
+<!DOCTYPE html>
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+  <BaseHead title={title} description={description} twitterCardSize={twitterCardSize} />
+  <Header indexList={indexList} />
+
+  <script is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(breadcrumb)}
+  />
+
+  <body class="defaultbody">
+    <div id={background}>
+    <div id="contents">
+    <div id="main">
+      <span id="pagetop"></span>
+      <section class="box">
+        <!-- tweetボタン -->
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><br>
+
+        <h2 class="title">{title}</h2>
+
+        <ul class="breadcrumb">
+          {bcList?.map((item, i) => (
+            i === (bcList.length - 1)
+              ? <li>{item.title}</li>
+              : <li><a href={item.url}>{item.title}</a></li>
+          ))}
+        </ul>
+
+        <article>
+          <slot /> <!-- ここにコンテンツが挿入される -->
+        </article>
+
+        <br>
+        <AdUnit />
+        <br>
+
+      </section><!-- section class="box" -->
+      <Footer rights={rights} />
+    </div><!--/#main-->
+    </div><!--/#contents-->
+    </div><!--/#container-->
+  </body>
+
+  <!--ページの上部に戻る「↑」ボタン-->
+  <p class="nav-fix-pos-pagetop"><a href="#pagetop">↑</a></p>
+
+  <!--メニュー開閉ボタン-->
+  <div id="menubar_hdr" class="close"></div>
+  <!--メニューの開閉処理条件設定　800px以下-->
+  <script>
+    import {OCwindowWidth, open_close} from "../js/openclose.js";
+    if (OCwindowWidth() <= 800) {
+      open_close("menubar_hdr", "menubar-s");
+    }
+  </script>
+</html>

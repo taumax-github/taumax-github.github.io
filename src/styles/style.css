@@ -62,32 +62,32 @@ img {
 }
 
 .breadcrumb {
-	display: flex;
-	flex-wrap: wrap;
-	list-style: none;
-    background: rgba(112, 107, 107, 0.5);
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  background: rgba(112, 107, 107, 0.5);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+#contents .breadcrumb li {
+  list-style-type: none;
+  background: none;
+  padding-left: 10px;
 }
 
 .breadcrumb li:not(:last-of-type)::after {
-    background: rgba(112, 107, 107, 0.5);
-}
-
-#contents li.breadcrumbli {
-	list-style-type: none;
-	background: none;
-	padding-left: 10px;
+  content: "  >";
 }
 
 .rights {
-    background: rgba(110, 106, 106, 0.5);
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+  background: rgba(110, 106, 106, 0.5);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 
 /* modal */
@@ -464,14 +464,19 @@ a:hover {
 }
 
 /*defaultbodyの背景画像指定*/
+.defaultbody #roma2rcontainer {
+  background-image: url(../assets/images/background/romasaga2r/background_0.5.png);
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center bottom;
+}
+
+/*defaultbodyの背景画像指定*/
 .defaultbody #container {
-	/*背景画像（※IE8以下の古いブラウザ用）*/
-	/*background: url(../assets/images/background.png) no-repeat center center;*/
-	background-image: url(../assets/images/background.png);
-	background-repeat: repeat;
-	background-attachment: fixed;
-	background-position: center bottom;
-	/* no-repeat:center center / cover;*/	/*背景画像*/
+  background-image: url(../assets/images/background.png);
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center bottom;
 }
 
 /*works.htmlの背景画像指定*/

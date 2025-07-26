@@ -1,0 +1,104 @@
+---
+import { BASE_URL } from '../../../../consts';
+import { twitterCardEnum } from '../../../../components/BaseHead.astro';
+import SiteLayout, { bgEnum, type Breadcrumb } from '../../../../layouts/SiteLayout.astro';
+import { rightsEnum } from '../../../../components/Footer.astro';
+import type { index } from '../../../../components/HeaderIndex.astro';
+
+export const roma2rIndexPagebc: Breadcrumb = {
+  title: "ロマサガ２リメイク",
+  url: `${BASE_URL}/contents/romasaga2r/index_romasaga2r`
+};
+const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc];
+const indexList: index[] = [
+  { id: "#ancient", name: "古代人" },
+  { id: "#list", name: "各種一覧" },
+  { id: "#classes", name: "各クラス詳細" },
+]
+---
+
+<SiteLayout
+  title="ｓａｇａｍａｘのロマサガ２リメイク"
+  description="ｓａｇａｍａｘのロマサガ２リメイク indexページ"
+  twitterCardSize={twitterCardEnum.summary}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r}
+  rights={rightsEnum.roma2r}>
+
+  <br/><br/>
+  <div id="ancient"></div>
+  <h3 class="title">古代人</h3>
+  <ul>
+    <li><a href=`${BASE_URL}/contents/romasaga2r/ancient_people/ancient_people.html`>古代人について</a></li>
+    <li><a href=`${BASE_URL}/contents/romasaga2r/ancient_people/seven_heroes/seven_heroes_index.html`>七英雄</a></li>
+    <li><a href=`${BASE_URL}/contents/romasaga2r/ancient_people/sank_tower.html`>沈んだ塔の水龍</a></li>
+    <li>塔の構造と次元転移装置</li>
+    <li><a href=`${BASE_URL}/contents/romasaga2r/ancient_people/ancient_methods.html`>同化の法と吸収の法と伝承法</a></li>
+    <li>BGMとダンジョン</li>
+    <li>大神官</li>
+    <li>オアイーブ</li>
+    <li>サグザー</li>
+    <li>忘れられた町の人</li>
+  </ul>
+
+  <br>
+  <div id="list"></div>
+  <h3 class="title">各種一覧</h3>
+  <ul>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/charas_index">全キャラステータス一覧</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/class_index">クラス一覧</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/formation/formation_index">陣形一覧</a></li>
+    <li>アビリティ一覧</li>
+    <li>武器一覧</li>
+    <li>防具一覧</li>
+    <li>アイテム一覧</li>
+    <li>モンスター一覧</li>
+  </ul>
+
+  <br>
+  <div id="classes"></div>
+  <h3 class="title">各クラス詳細</h3>
+  <ul>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/heavy_infatry">帝国重装歩兵</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/light_infatry_man">帝国軽装歩兵（男）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/light_infatry_woman">帝国軽装歩兵（女）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/ranger_man">帝国猟兵（男）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/ranger_woman">帝国猟兵（女）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/court_mage_man">宮廷魔術師（男）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/court_mage_woman">宮廷魔術師（女）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/freefighter_man">フリーファイター（男）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/freefighter_woman">フリーファイター（女）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/freelance_mage_male">フリーメイジ（男）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/freelance_mage_female">フリーメイジ（女）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/imperial_guard_man">インペリアルガード（男）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/imperial_guard_woman">インペリアルガード（女）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/city_thief_man">シティシーフ（男）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/city_thief_woman">シティシーフ（女）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/strategist">軍師</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/imperial_blacksmith">帝国鍛冶職人</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/martial_artist">格闘家</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/saigo_clansman">サイゴ族</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/holy_order_man">ホーリーオーダー（男）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/holy_order_woman">ホーリーオーダー（女）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/nomad_man">ノーマッド（男）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/nomad_woman">ノーマッド（女）</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/hunter">ハンター</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/amazoness">アマゾネス</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/desert_guard">デザートガード</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/east_guard">イーストガード</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/ninja">忍者</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/diver">海女</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/dancer">踊り子</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/corsair">武装商船団</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/onmyoji">陰陽師</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/salamander">サラマンダー</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/mole">モール</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/nereid">ネレイド</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/iris">イーリス</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/coppelia">コッペリア</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/final_emperor">最終皇帝</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/gerard">ジェラール</a></li>
+    <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/leon">レオン</a></li>
+  </ul>
+</SiteLayout>

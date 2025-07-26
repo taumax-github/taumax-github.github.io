@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import ICON_TWITTER from '../assets/images/icon_twitter.png';
+import ICON_TWITTER_BOT from '../assets/images/icon_twitter_bot.png';
+import ICON_YOUTUBE from '../assets/images/icon_youtube.png';
+import ICON_TWITCH from '../assets/images/icon_twitch.webp';
+import ICON_TWITTER_CARD from '../assets/images/icon_top.png';
+
+export type index = {
+  id: string;
+  name: string;
+};
+let { indexList } = Astro.props;
+---
+
+<h1 class="logo">
+  <a href="https://taumax-github.github.io/sagamax/">
+    <Image src={ICON_TWITTER_CARD} alt="TOP" /><br/>
+    <font size="3px">TOP</font>
+  </a>
+</h1>
+<ul class="icon">
+  <li><a href="https://twitter.com/sagamax__" target="_blank"><Image src={ICON_TWITTER} alt="Twitter" /></a></li>
+  <li><a href="https://twitter.com/sagamax_bot" target="_blank"><Image src={ICON_TWITTER_BOT} alt="Twitter" /></a></li>
+  <li><a href="https://www.youtube.com/channel/UCFFZpzVyg22-2sxXE95cR_Q" target="_blank"><Image src={ICON_YOUTUBE} alt="youtube" /></a></li>
+  <li><a href="https://www.twitch.tv/sagamax" target="_blank"><Image src={ICON_TWITCH} alt="twitch" /></a></li>
+</ul>
+<nav>
+  <ul class="indent_no">
+    {indexList?.map((item: index) => {
+      let ele = item.id? <li><a href={item.id}>{item.name}</a></li>: <br/><p>{item.name}</p>
+      return ele
+    })}
+  </ul>
+</nav>

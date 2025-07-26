@@ -1,0 +1,23 @@
+---
+const isProd = import.meta.env.PROD;
+---
+
+{isProd && (
+  // Global site tag (gtag.js) - Google Analytics
+  <script
+    is:inline
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1">
+  </script>
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-5924490903263360"
+    data-ad-slot="6254596512"
+    data-ad-format="auto"
+    data-full-width-responsive="true">
+  </ins>
+
+  <script is:inline>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+)}
