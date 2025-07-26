@@ -79,7 +79,7 @@ img {
 }
 
 .breadcrumb li:not(:last-of-type)::after {
-  content: "  >";
+  content: " >";
 }
 
 .rights {
