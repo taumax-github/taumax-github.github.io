@@ -31,7 +31,7 @@ let bcList: Breadcrumb[] = [{
   title: "トップページ",
   url: `${BASE_URL}/index.html`
 }]
-breadcrumbList.map((item: Breadcrumb, index: number) => (
+breadcrumbList?.map((item: Breadcrumb, index: number) => (
   bcList.push({
     "@type": "ListItem",
     position: index + 2,
@@ -81,9 +81,9 @@ let breadcrumb = {
           <slot /> <!-- ここにコンテンツが挿入される -->
         </article>
 
-        <br>
+        <br/>
         <AdUnit />
-        <br>
+        <br/>
 
         問い合わせ先：<a href="https://twitter.com/sagamax__" target="_blank" rel="noopener noreferrer">@sagamax</a><br/>
       </section><!-- section class="box" -->

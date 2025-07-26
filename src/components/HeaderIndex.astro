@@ -28,7 +28,9 @@ let { indexList } = Astro.props;
 <nav>
   <ul class="indent_no">
     {indexList?.map((item: index) => {
-      let ele = item.id? <li><a href={item.id}>{item.name}</a></li>: <br/><p>{item.name}</p>
+      let ele = item.id
+        ? <li><a href={item.id}><Fragment set:html={item.name} /></a></li>
+        : <br/><p><Fragment set:html={item.name} /></p>
       return ele
     })}
   </ul>
