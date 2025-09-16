@@ -70,10 +70,10 @@ let breadcrumb = {
         <h2 class="title">{title}</h2>
 
         <ul class="breadcrumb">
-          {bcList?.map((item, i) => (
+          {bcList?.map((ele, i) => (
             i === (bcList.length - 1)
-              ? <li>{item.name}</li>
-              : <li><a href={item.item}>{item.name}</a></li>
+              ? <li>{ele.name}</li>
+              : <li><a href={ele.item}>{ele.name}</a></li>
           ))}
         </ul>
 
