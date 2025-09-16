@@ -22,21 +22,21 @@ export type Breadcrumb = {
   "@type"?: string,
   position?: number,
   name: string,
-  url: string
+  item: string
 };
 
 let bcList: Breadcrumb[] = [{
   "@type": "ListItem",
   position: 1,
   name: "トップページ",
-  url: `${BASE_URL}/index.html`
+  item: `${BASE_URL}/index.html`
 }]
 breadcrumbList?.map((item: Breadcrumb, index: number) => (
   bcList.push({
     "@type": "ListItem",
     position: index + 2,
     name: item.name,
-    url: item.url
+    item: item.item
   })
 ))
 
@@ -73,7 +73,7 @@ let breadcrumb = {
           {bcList?.map((item, i) => (
             i === (bcList.length - 1)
               ? <li>{item.name}</li>
-              : <li><a href={item.url}>{item.name}</a></li>
+              : <li><a href={item.item}>{item.name}</a></li>
           ))}
         </ul>
 
