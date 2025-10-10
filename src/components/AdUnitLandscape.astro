@@ -3,11 +3,11 @@ const isProd = import.meta.env.PROD;
 ---
 
 {isProd && (
-  // Global site tag (gtag.js) - Google Analytics
   <script
-    is:inline
     async
-    src="https://www.googletagmanager.com/gtag/js?id=UA-141266564-1">
+    is:inline
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5924490903263360"
+    crossorigin="anonymous">
   </script>
   <ins class="adsbygoogle"
     style="display:block"
@@ -16,7 +16,6 @@ const isProd = import.meta.env.PROD;
     data-ad-format="auto"
     data-full-width-responsive="true">
   </ins>
-
   <script is:inline>
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>

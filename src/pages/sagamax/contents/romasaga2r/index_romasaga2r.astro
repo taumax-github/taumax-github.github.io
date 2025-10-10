@@ -1,7 +1,7 @@
 ---
 import { BASE_URL } from '../../../../consts';
 import { twitterCardEnum } from '../../../../components/BaseHead.astro';
-import SiteLayout, { bgEnum, type Breadcrumb } from '../../../../layouts/SiteLayout.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../layouts/MainLayout.astro';
 import { rightsEnum } from '../../../../components/Footer.astro';
 import type { index } from '../../../../components/HeaderIndex.astro';
 
@@ -18,7 +18,7 @@ const indexList: index[] = [
 ]
 ---
 
-<SiteLayout
+<MainLayout
   title="ｓａｇａｍａｘのロマサガ２リメイク"
   description="ｓａｇａｍａｘのロマサガ２リメイク indexページ"
   twitterCardSize={twitterCardEnum.summary}
@@ -102,4 +102,4 @@ const indexList: index[] = [
     <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/gerard">ジェラール</a></li>
     <li><a href="https://sagamax.cyou/games/romasaga2r/charas/classes/leon">レオン</a></li>
   </ul>
-</SiteLayout>
+</MainLayout>

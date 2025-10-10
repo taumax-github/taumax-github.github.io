@@ -2,12 +2,13 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import AdUnit from '../components/AdUnit.astro';
+import AdUnitLandscape from '../components/AdUnitLandscape.astro';
 import { BASE_URL } from '../consts';
 
 export const bgEnum = Object.freeze({
   default: "container",
-  roma2r: "roma2rcontainer"
+  roma2r: "roma2rcontainer",
+  roma2r_rocbouquet: "roma2r_rocbouquet"
 })
 const { title,
   description,
@@ -82,10 +83,10 @@ let breadcrumb = {
         </article>
 
         <br/>
-        <AdUnit />
+        <AdUnitLandscape />
         <br/>
 
-        問い合わせ先：<a href="https://twitter.com/sagamax__" target="_blank" rel="noopener noreferrer">@sagamax</a><br/>
+        問い合わせ先：<a href="https://twitter.com/sagamax__" target="_blank" rel="noopener noreferrer">@sagamax__</a><br/>
       </section><!-- section class="box" -->
       <Footer rights={rights} />
     </div><!--/#main-->
