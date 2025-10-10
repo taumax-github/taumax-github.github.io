@@ -464,19 +464,19 @@ a:hover {
 }
 
 /*defaultbodyの背景画像指定*/
-.defaultbody #roma2rcontainer {
-  background-image: url(../assets/images/background/romasaga2r/background_0.5.png);
+.defaultbody {
   background-repeat: repeat;
   background-attachment: fixed;
   background-position: center bottom;
-}
-
-/*defaultbodyの背景画像指定*/
-.defaultbody #container {
-  background-image: url(../assets/images/background.png);
-  background-repeat: repeat;
-  background-attachment: fixed;
-  background-position: center bottom;
+  #container {
+    background-image: url(../assets/images/background.png);
+  }
+  #roma2rcontainer {
+    background-image: url(../assets/images/background/romasaga2r/background_0.5.png);
+  }
+  #roma2r_rocbouquet {
+    background-image: url(../assets/images/background/romasaga2r/background_rocbouquet_0.5.png);
+  }
 }
 
 /*works.htmlの背景画像指定*/
