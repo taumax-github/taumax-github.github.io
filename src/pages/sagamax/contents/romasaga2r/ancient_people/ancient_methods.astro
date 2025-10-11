@@ -1,0 +1,91 @@
+---
+import { twitterCardEnum } from '../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../components/Footer.astro';
+import type { index } from '../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../index_romasaga2r.astro';
+import short_lived from './img/ancient_methods/短命種について.jpg';
+import { Image } from 'astro:assets';
+
+export const roma2rAncientMethodPagebc: Breadcrumb = {
+  name: "同化の法と吸収の法と伝承法",
+  item: `${BASE_URL_ROMA2R}/ancient_people/ancient_methods`
+};
+const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc, roma2rAncientMethodPagebc];
+const indexList: index[] = [
+  { id: "#summary", name: "同化の法と<br/>吸収の法と<br/>伝承法" },
+  { id: "#assimilation", name: "同化の法" },
+  { id: "#suction", name: "吸収の法" },
+  { id: "#inherit", name: "伝承法" },
+]
+---
+
+<MainLayout
+  title="同化の法と吸収の法と伝承法"
+  description="ロマサガ2リメイクの同化の法と吸収の法と伝承法について"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r}
+  rights={rightsEnum.roma2r}>
+
+  <br/>
+  <span id="summary"></span>
+  <h3 class="title">同化の法と吸収の法と伝承法</h3>
+  <p>
+    ロマサガ2の世界では<span style="color: yellow">？？千年前</span>から生きている古代人<span style="color: yellow">長命種？</span>と、その長命種に召し使われている短命種がいる。<br/>
+    <Image src={short_lived} alt="短命種について" width="300" height="200" /><br/>
+    古代人（長命種）は秘術を使って不老不死を実現しており、ゲーム中には以下3種類の秘術が登場する。<br/>
+    古代人が使っている<a href="#assimilation">同化の法</a>。<br/>
+    同化の法を進化させた<a href="#suction">吸収の法</a>。<br/>
+    同化の法を短命種用に調整した<a href="#inherit">伝承法</a>。<br/>
+  </p>
+
+  <br/>
+  <span id="assimilation"></span>
+  <h3 class="title">同化の法</h3>
+  <p>
+    古代人が使っているもの。他者と同化することで肉体を維持し、実質的に不老を実現している。<br/>
+    <span style="color: yellow">解釈あってる？</span><br/>
+    そもそも誰と同化していたのか？短命種？古代人は短命種を召し使っていたのであり得るかも。<br/>
+    <span style="color: yellow">画像が欲しい</span><br/>
+    古代人同士で同化していた可能性もあるが、いずれにしても闇深さを感じる。<br/>
+  </p>
+
+  <br/>
+  <span id="suction"></span>
+  <h3 class="title">吸収の法</h3>
+  <p>
+    ノエルが開発した。タームに対抗するためにノエルが開発。同化の法を進化させたもの。<br/>
+    七英雄はモンスターと同化することで力を得、クィーンの討伐に成功したが、そのことを大神官に利用され、異世界に転移させられる。<br/>
+    恐らくその間もモンスターと同化することでちからを得て、<span style="color: yellow">なんやかんやあって</span>現世に帰ってきた。<br/>
+    しかし彼らはモンスターを吸収し続けたことで、力だけでなく見た目や性格も変化。オアイーブは「七匹のモンスター」とまで言っている。<br/>
+    <span style="color: yellow">画像が欲しい</span><br/>
+  </p>
+
+  <br/>
+  <span id="inherit"></span>
+  <h3 class="title">伝承法</h3>
+  <p>
+    バレンヌ帝国の皇帝レオンが、謎の女魔道士オアイーブからもたらされた秘法で、己の力と記憶を任意の相手に引き継がせることが出来る。<br/>
+    レオンの弁によれば「己の人生を捨てて戦う覚悟がある、強い意志を持った人間」のみが受け継げるという。<br/>
+    <span style="color: yellow">そうなの？</span><br/>
+    ゲーム中では現在の皇帝が死亡または退位すると後継者を指名し、その者に引き継がせる事になる。<br/>
+    ただし無限に使えるわけではなく、限界が存在することがオアイーブから示されている。<br/>
+    その「限界」として現れ、七英雄との因縁を終わらせる為に彼らとの最後の決戦に向かうのが最終皇帝である。<br/>
+    書籍『ロマンシング サ・ガ大全集』の記述によると、古代人が使う「同化の法」を短命種用に調整したものであり、基本的には同じ物とのこと。<br/>
+    また「全ての皇帝の遺志は伝承法によって繋がっており、全て同一人格である。」とも書いてある。<br/>
+    なお自動人形のコッペリアの継承は独特であり、玉座ではなく発明したヒラガの横で伝承法を引き継ぎ、仲間の時では荒々しかった口調が皇帝の時は丁寧な口調になる。<br/>
+    選択肢のセリフが統一されている関係から元は泥棒であるシティシーフやお調子者な性格である忍者が皇帝になった場合ですら、帝国のためにその身を費す覚悟ガン決まりな性格に変化したように見える。<br/>
+    コッペリアを皇帝にすることができるということから、人間以外にも伝承できるということがわかる。<br/>
+    <span style="color: yellow">画像が欲しい</span><br/>
+    コッペリアを皇帝にしてオアイーブに会いに行ってもオアイーブは特に驚きもしない。人形にも伝承できることは、伝承法は人間以外にも有効であるということをオアイーブは認識していたんだろう（<span style="color: gray">本当かな？知らんけど</span>）。<br/>
+    <span style="color: yellow">画像が欲しい</span><br/>
+  </p>
+  <br/>
+
+  <h3 class="title">参考</h3>
+  <ul>
+    <li><a href="https://dic.pixiv.net/a/%E4%BC%9D%E6%89%BF%E6%B3%95%28%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%AC%29" target="_blank" rel="noopener noreferrer">ピクシブ百科事典 伝承法(ロマサガ)</a></li>
+  </ul>
+</MainLayout>

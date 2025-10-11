@@ -66,10 +66,7 @@ img {
   flex-wrap: wrap;
   list-style: none;
   background: rgba(112, 107, 107, 0.5);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-radius: 20px;
 }
 
 #contents .breadcrumb li {
@@ -474,6 +471,30 @@ a:hover {
 }
 #roma2r_default {
   background-image: url(../assets/images/background/romasaga2r/roma2r_0.5.png);
+}
+#roma2r_rocbouquet {
+  background-image: url(../assets/images/background/romasaga2r/rocbouquet_0.5.png);
+}
+#roma2r_bokhohn {
+  background-image: url(../assets/images/background/romasaga2r/bokhohn_0.4.png);
+}
+#roma2r_dantag {
+  background-image: url(../assets/images/background/romasaga2r/dantag_0.4.png);
+}
+#roma2r_kzinssie {
+  background-image: url(../assets/images/background/romasaga2r/kzinssie_0.4.png);
+}
+#roma2r_noel {
+  background-image: url(../assets/images/background/romasaga2r/noel_0.5.png);
+}
+#roma2r_seven_heroes {
+  background-image: url(../assets/images/background/romasaga2r/seven_heroes_0.5.png);
+}
+#roma2r_subier {
+  background-image: url(../assets/images/background/romasaga2r/subier_0.4.png);
+}
+#roma2r_wagnas {
+  background-image: url(../assets/images/background/romasaga2r/wagnas_0.5.png);
 }
 
 /*works.htmlの背景画像指定*/

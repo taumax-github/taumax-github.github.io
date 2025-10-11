@@ -1,0 +1,168 @@
+---
+import { Image } from 'astro:assets';
+import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../../components/Footer.astro';
+import type { index } from '../../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
+import { roma2r7heroesIndexPagebc } from './seven_heroes_index.astro';
+import pose_form1 from './img/kzinssie/pose_form1.jpg'
+import pose_form2 from './img/kzinssie/pose_form2.jpg'
+import ソウルスティール_ヴィクトール from './img/kzinssie/ソウルスティール_ヴィクトール.jpg'
+import 食らうヴィクトール from './img/kzinssie/食らうヴィクトール.jpg'
+import ソウルスティール_レオン from './img/kzinssie/ソウルスティール_レオン.jpg'
+import 食らうレオン from './img/kzinssie/食らうレオン.jpg'
+import はいはい from './img/kzinssie/はい、はい.jpg'
+import もっと真剣に from './img/kzinssie/もっと真剣に.jpg'
+import 伝承法 from './img/kzinssie/伝承法.jpg'
+import 見切りを授ける from './img/kzinssie/見切りを授ける.jpg'
+import ソウルスティール回避 from './img/kzinssie/ソウルスティール回避.jpg'
+import クジンシー討伐 from './img/kzinssie/クジンシー討伐.jpg'
+import 死んだわけではない from './img/kzinssie/死んだわけではない.jpg'
+import 復讐だ from './img/kzinssie/復讐だ.jpg'
+import ただの負け惜しみだろう from './img/kzinssie/ただの負け惜しみだろう.jpg'
+import クジンシーの挑戦状1 from './img/kzinssie/クジンシーの挑戦状1.jpg'
+import クジンシーの挑戦状2 from './img/kzinssie/クジンシーの挑戦状2.jpg'
+import クジンシーの挑戦状3 from './img/kzinssie/クジンシーの挑戦状3.jpg'
+import クジンシー様の力 from './img/kzinssie/クジンシー様の力.jpg'
+import 卑怯な奴 from './img/kzinssie/卑怯な奴.jpg'
+import 他の七英雄とは違う from './img/kzinssie/他の七英雄とは違う.jpg'
+import 俺こそが最強 from './img/kzinssie/俺こそが最強.jpg'
+import 七英雄の弱卒 from './img/kzinssie/七英雄の弱卒.jpg'
+import ほざけ from './img/kzinssie/ほざけ.jpg'
+import 冥府の女神 from './img/kzinssie/冥府の女神.jpg'
+import なんで俺だけが2回も1 from './img/kzinssie/なんで俺だけが2回も1.jpg'
+import なんで俺だけが2回も2 from './img/kzinssie/なんで俺だけが2回も2.jpg'
+import 古代人クジンシーがいる場所 from './img/kzinssie/古代人クジンシーがいる場所.jpg'
+import 七英雄の記憶11の場所 from './img/kzinssie/七英雄の記憶11の場所.jpg'
+import エネミー図鑑クジンシー第一形態 from './img/kzinssie/エネミー図鑑クジンシー第一形態.jpg'
+import エネミー図鑑クジンシー第二形態 from './img/kzinssie/エネミー図鑑クジンシー第二形態.jpg'
+import エネミー図鑑クジンシー古代人 from './img/kzinssie/エネミー図鑑クジンシー古代人.jpg'
+
+export const roma2rKzinssiePagebc: Breadcrumb = {
+  name: "クジンシー",
+  item: `${BASE_URL_ROMA2R}/ancient_people/seven_heroes/kzinssie`
+};
+const breadcrumbList: Breadcrumb[] = [
+  roma2rIndexPagebc,
+  roma2r7heroesIndexPagebc,
+  roma2rKzinssiePagebc
+];
+const indexList: index[] = [
+  { id: "#kzinssie", name: "クジンシー" },
+];
+---
+
+<MainLayout
+  title="クジンシー"
+  description="ロマサガ2リメイクのクジンシーについて"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r_kzinssie}
+  rights={rightsEnum.roma2r}>
+
+  <br/>
+  <span id="kzinssie"></span>
+  <h3 class="title">クジンシー</h3>
+  <p>
+    第一形態<br/>
+    <Image src={pose_form1} width="500" alt="pose_form1" /><br/>
+    <br/>
+    第二形態<br/>
+    <Image src={pose_form2} width="500" alt="pose_form2" /><br/>
+
+    <br/>
+    七英雄の名前は山手線の駅名を逆から読んだもので、クジンシーは新宿から来ている。<br/>
+    ソーモンを根城とし、アバロンを急襲した人物。ヴィクトールをソウルスティールで一撃の下に葬った。<br/>
+    <Image src={ソウルスティール_ヴィクトール} width="500" alt="ソウルスティール_ヴィクトール" /><br/>
+    <Image src={食らうヴィクトール} width="500" alt="食らうヴィクトール" /><br/>
+
+    <br/>
+    これをきっかけにレオンは七英雄を敵とみなし、オアイーブから伝承法を教えてもらい、自らの命を懸けてソウルスティールを見切り、ジェラールにその見切りを伝承することでジェラールはクジンシーの討伐に成功した。<br/>
+    <Image src={ソウルスティール_レオン} width="500" alt="ソウルスティール_レオン" /><br/>
+    <Image src={食らうレオン} width="500" alt="食らうレオン" /><br/>
+    <Image src={はいはい} width="500" alt="はい、はい" /><br/>
+    <Image src={もっと真剣に} width="500" alt="もっと真剣に" /><br/>
+    <Image src={伝承法} width="500" alt="伝承法" /><br/>
+    <Image src={見切りを授ける} width="500" alt="見切りを授ける" /><br/>
+    <Image src={ソウルスティール回避} width="500" alt="ソウルスティール回避" /><br/>
+    <Image src={クジンシー討伐} width="500" alt="クジンシー討伐" /><br/>
+
+    <br/>
+    負け惜しみのようなセリフを言うが、実際数百年後に復活して再度戦うことになる。<br/>
+    <Image src={死んだわけではない} width="500" alt="死んだわけではない" /><br/>
+    <Image src={復讐だ} width="500" alt="復讐だ" /><br/>
+    <Image src={ただの負け惜しみだろう} width="500" alt="ただの負け惜しみだろう" /><br/>
+
+    <br/>
+    ロマサガ2というゲームの物語の起点であり、戦犯とも言える存在。<br/>
+
+    悪魔系やアンデッド系（骸骨系、ゾンビ系、霊体系）のモンスターをメインの吸収対象としていた為。<br/>
+    クジンシーはソウルスティールを得意技としているが、これはミミック（悪魔系）を吸収した結果使えるようになったのかも？<br/>
+    （原作のロマサガ2ではミミックがソウルスティールを使用することがあったので）<br/>
+
+    クジンシーは七英雄の嫌われ者<br/>
+    地層は冥<br/>
+
+    <Image src={クジンシーの挑戦状1} width="500" alt="クジンシーの挑戦状1" /><br/>
+    <Image src={クジンシーの挑戦状2} width="500" alt="クジンシーの挑戦状2" /><br/>
+    <Image src={クジンシーの挑戦状3} width="500" alt="クジンシーの挑戦状3" /><br/>
+
+    <br/>
+    2回目<br/>
+    「クジンシー様の力、とくと味わうがいい！」という割には手下を仕掛けてきたり、弱卒と煽られて激高するという小物っぷり。<br/>
+    <Image src={クジンシー様の力} width="500" alt="クジンシー様の力" /><br/>
+    <Image src={卑怯な奴} width="500" alt="卑怯な奴" /><br/>
+    <Image src={他の七英雄とは違う} width="500" alt="他の七英雄とは違う" /><br/>
+    <Image src={俺こそが最強} width="500" alt="俺こそが最強" /><br/>
+    <Image src={七英雄の弱卒} width="500" alt="七英雄の弱卒" /><br/>
+    <Image src={ほざけ} width="500" alt="ほざけ" /><br/>
+
+    <br/>
+    第二形態のクジンシーが持っている女性の顔は冥府の女神という名前<br/>
+    <Image src={冥府の女神} width="500" alt="冥府の女神" /><br/>
+
+    <br/>
+    負けた時の台詞もなんとも間抜けな感じ。<br/>
+    <Image src={なんで俺だけが2回も1} width="500" alt="なんで俺だけが2回も1" /><br/>
+    <Image src={なんで俺だけが2回も2} width="500" alt="なんで俺だけが2回も2" /><br/>
+
+    <br/>
+    古代人状態のクジンシーがいる場所は、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#eleven`>七英雄の記憶11</a>でクィーン討伐後に町に戻って「七英雄だ！」と言われた場所。<br/>
+    <Image src={古代人クジンシーがいる場所} width="500" alt="古代人クジンシーがいる場所" /><br/>
+    <br/>
+    七英雄の記憶11の画像<br/>
+    <Image src={七英雄の記憶11の場所} width="500" alt="七英雄の記憶11の場所" /><br/>
+
+    <br/>
+    古代人Verの七英雄<br/>
+
+    ラスダン前七英雄<br/>
+    ラスダンの七英雄<br/>
+    初登場<br/>
+    戦闘中<br/>
+    戦闘終了時<br/>
+  </p>
+
+  <br/>
+  <h3 class="title">エネミー図鑑</h3>
+  <p>
+    エネミー図鑑の画像<br/>
+    第一形態<br/>
+    <Image src={エネミー図鑑クジンシー第一形態} width="500" alt="エネミー図鑑クジンシー第一形態" /><br/>
+    <br/>
+    第二形態<br/>
+    <Image src={エネミー図鑑クジンシー第二形態} width="500" alt="エネミー図鑑クジンシー第二形態" /><br/>
+    <br/>
+    古代人<br/>
+    <Image src={エネミー図鑑クジンシー古代人} width="500" alt="エネミー図鑑クジンシー古代人" /><br/>
+  </p>
+
+  <br/>
+  <h3 class="title">参考</h3>
+  <ul>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%82%AF%E3%82%B8%E3%83%B3%E3%82%B7%E3%83%BC%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【クジンシー】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%B8%E5%8F%8E%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【吸収の法】</a></li>
+  </ul>
+</MainLayout>

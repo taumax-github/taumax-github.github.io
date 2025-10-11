@@ -1,0 +1,150 @@
+---
+import { Image } from 'astro:assets';
+import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../../components/Footer.astro';
+import type { index } from '../../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
+import { roma2r7heroesIndexPagebc } from './seven_heroes_index.astro';
+import pose_form1 from './img/dantag/pose_form1.jpg';
+import pose_form3 from './img/dantag/pose_form3.jpg';
+import pose_form4 from './img/dantag/pose_form4.jpg';
+import 目的は強くなること1 from './img/dantag/目的は強くなること1.jpg';
+import 目的は強くなること2 from './img/dantag/目的は強くなること2.jpg';
+import 強者を求める_古代人 from './img/dantag/強者を求める_古代人.jpg';
+import ノエルとの出会い from './img/dantag/ノエルとの出会い.jpg';
+import 古代人ダンターグがいる場所 from './img/dantag/古代人ダンターグがいる場所.jpg';
+import エンシェントターム1 from './img/dantag/エンシェントターム1.jpg';
+import エンシェントターム2 from './img/dantag/エンシェントターム2.jpg';
+import エンシェントターム from './img/dantag/エンシェントターム.jpg';
+import エネミー図鑑_第一形態 from './img/dantag/エネミー図鑑_第一形態.jpg';
+import エネミー図鑑_第二形態 from './img/dantag/エネミー図鑑_第二形態.jpg';
+import エネミー図鑑_第三形態 from './img/dantag/エネミー図鑑_第三形態.jpg';
+import エネミー図鑑_第四形態 from './img/dantag/エネミー図鑑_第四形態.jpg';
+import エネミー図鑑_最終形態 from './img/dantag/エネミー図鑑_最終形態.jpg';
+import エネミー図鑑_古代人 from './img/dantag/エネミー図鑑_古代人.jpg';
+import 最終形態1 from './img/dantag/最終形態1.jpg';
+import 最終形態2 from './img/dantag/最終形態2.jpg';
+import 最終形態3 from './img/dantag/最終形態3.jpg';
+
+export const roma2rDantagPagebc: Breadcrumb = {
+  name: "ダンターグ",
+  item: `${BASE_URL_ROMA2R}/ancient_people/seven_heroes/dantag`
+};
+const breadcrumbList: Breadcrumb[] = [
+  roma2rIndexPagebc,
+  roma2r7heroesIndexPagebc,
+  roma2rDantagPagebc
+];
+const indexList: index[] = [
+  { id: "#dantag", name: "ダンターグ" },
+];
+---
+
+<MainLayout
+  title="ダンターグ"
+  description="ロマサガ2リメイクのダンターグについて"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r_dantag}
+  rights={rightsEnum.roma2r}>
+
+  <br/>
+  <span id="dantag"></span>
+  <h3 class="title">ダンターグ</h3>
+  <p>
+    第一形態<br/>
+    <Image src={pose_form1} width="500" alt="pose_form1" /><br/>
+
+    <br/>
+    第二形態<br/>
+
+    <br/>
+    第三形態<br/>
+    <Image src={pose_form3} width="500" alt="pose_form3" /><br/>
+
+    <br/>
+    第四形態<br/>
+    <Image src={pose_form4} width="500" alt="pose_form4" /><br/>
+
+    <br/>
+    七英雄の名前は山手線の駅名を逆から読んだもので、ダンターグは五反田から来ている。<br/>
+
+    獣系のモンスターを吸収している。獣なのでビーストスレイヤーでクリティカルが入る。<br/>
+    ダンターグの進化は他の七英雄と比べて特殊で、全七英雄の中で形態数が最も多い。<br/>
+    ダンターグは年代が進むと東のダンジョン、南のダンジョン、詩人の洞窟の順に遠征する。<br/>
+    その度に各ダンジョンのモンスターを吸収することで形態が進化するようになっている。<br/>
+    遠征前に各ダンジョンのボスを撃破することで進化を阻害することができる。<br/>
+    戦闘中にHPゲージを一つ削ると形態が一段階進化する第四形態で遭遇すると最終形態に進化する。<br/>
+    <span style="color: yellow">（ラストダンジョンのダンターグは無条件で第四形態になる）</span><br/>
+
+    <br/>
+    戦闘中、ある程度ダメージを与えると全力を出してきて形態が一つ進む。<br/>
+    戦闘開始時点で第四形態だった場合は、原作にはなかった最終形態になる。<br/>
+    <Image src={最終形態1} width="500" alt="最終形態1" /><br/>
+    <Image src={最終形態2} width="500" alt="最終形態2" /><br/>
+    <Image src={最終形態3} width="500" alt="最終形態3" /><br/>
+
+    <br/>
+    ダンターグは・・・ただの暴れ者。アリ討伐中にピンチに陥ったノエルを助けた。<br/>
+    復讐等は一切考えておらず、ただ強さを追い求めている。<br/>
+    <Image src={目的は強くなること1} width="500" alt="目的は強くなること1" /><br/>
+    <Image src={目的は強くなること2} width="500" alt="目的は強くなること2" /><br/>
+
+    <br/>
+    強さを求めているという点は古代人の時からブレていない。<br/>
+    <Image src={強者を求める_古代人} width="500" alt="強者を求める_古代人" /><br/>
+
+    <br/>
+    古代人状態のダンターグがいる場所は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#four`>七英雄の記憶4</a>でノエルを助けた場所<br/>
+    <Image src={ノエルとの出会い} width="500" alt="ノエルとの出会い" /><br/>
+    <Image src={古代人ダンターグがいる場所} width="500" alt="古代人ダンターグがいる場所" /><br/>
+
+    <br/>
+    <a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#four`>七英雄の記憶4</a>でノエルとダンターグが戦ったタームは、色合い的に恐妃の都にいたエンシェントタームだと思われる。<br/>
+    <Image src={エンシェントターム1} width="500" alt="エンシェントターム1" /><br/>
+    <Image src={エンシェントターム2} width="500" alt="エンシェントターム2" /><br/>
+    <Image src={エンシェントターム} width="500" alt="エンシェントターム" /><br/>
+
+    <br/>
+    全部で5つの形態を持つ（原作、リマスターは4形態）。<br/>
+    第三形態以降はデストロイヤーという斧をドロップする。ダンターグのドロップでしか手に入れることはできない。<br/>
+    地層は地<br/>
+    ラスダン前七英雄<br/>
+    ラスダンの七英雄<br/>
+    古代人Verの七英雄<br/>
+    初登場<br/>
+    戦闘中<br/>
+    戦闘終了時<br/>
+  </p>
+
+  <br/>
+  <h3 class="title">エネミー図鑑</h3>
+  <p>
+    第一形態<br/>
+    <Image src={エネミー図鑑_第一形態} width="500" alt="エネミー図鑑_第一形態" /><br/>
+    <br/>
+    第二形態<br/>
+    <Image src={エネミー図鑑_第二形態} width="500" alt="エネミー図鑑_第二形態" /><br/>
+    <br/>
+    第三形態<br/>
+    <Image src={エネミー図鑑_第三形態} width="500" alt="エネミー図鑑_第三形態" /><br/>
+    <br/>
+    第四形態<br/>
+    <Image src={エネミー図鑑_第四形態} width="500" alt="エネミー図鑑_第四形態" /><br/>
+    <br/>
+    最終形態<br/>
+    <Image src={エネミー図鑑_最終形態} width="500" alt="エネミー図鑑_最終形態" /><br/>
+    <br/>
+    古代人<br/>
+    <Image src={エネミー図鑑_古代人} width="500" alt="エネミー図鑑_古代人" /><br/>
+  </p>
+
+  <br/>
+  <h3 class="title">参考</h3>
+  <ul>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%80%E3%83%B3%E3%82%BF%E3%83%BC%E3%82%B0%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【ダンターグ】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%B8%E5%8F%8E%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【吸収の法】</a></li>
+  </ul>
+</MainLayout>

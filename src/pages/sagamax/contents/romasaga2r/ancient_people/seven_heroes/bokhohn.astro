@@ -1,0 +1,186 @@
+---
+import { Image } from 'astro:assets';
+import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../../components/Footer.astro';
+import type { index } from '../../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
+import { roma2r7heroesIndexPagebc } from './seven_heroes_index.astro';
+import pose_form1 from './img/bokhohn/pose_form1.jpg';
+import pose_form2 from './img/bokhohn/pose_form2.jpg';
+import 七英雄に取り入り from './img/bokhohn/七英雄に取り入り.jpg';
+import 永遠の命を from './img/bokhohn/永遠の命を.jpg';
+import ボクオーンでもなんでもない from './img/bokhohn/ボクオーンでもなんでもない.jpg';
+import 名乗って見たかっただけ from './img/bokhohn/名乗って見たかっただけ.jpg';
+import 麻薬作りもやめる from './img/bokhohn/麻薬作りもやめる.jpg';
+import 許してくれ from './img/bokhohn/許してくれ.jpg';
+import 許す from './img/bokhohn/許す.jpg';
+import さすがは皇帝 from './img/bokhohn/さすがは皇帝.jpg';
+import 二度目は許さん from './img/bokhohn/二度目は許さん.jpg';
+import 甘いわ from './img/bokhohn/甘いわ.jpg';
+import 再度二度目は許さん from './img/bokhohn/再度二度目は許さん.jpg';
+import かかったな from './img/bokhohn/かかったな.jpg';
+import 策が読まれて from './img/bokhohn/策が読まれて.jpg';
+import ボクオーンがいる場所 from './img/bokhohn/ボクオーンがいる場所.jpg';
+import 七英雄の記憶11の場所 from './img/bokhohn/七英雄の記憶11の場所.jpg';
+import あと一手 from './img/bokhohn/あと一手.jpg';
+import 戦況を優位に from './img/bokhohn/戦況を優位に.jpg';
+import 策略に気付くボクオーン1 from './img/bokhohn/七英雄の記憶13_策略に気付くボクオーン1.jpg';
+import 策略に気付くボクオーン2 from './img/bokhohn/七英雄の記憶13_策略に気付くボクオーン2.jpg';
+import 策略に気付くボクオーン3 from './img/bokhohn/七英雄の記憶13_策略に気付くボクオーン3.jpg';
+import 策略に気付くボクオーン4 from './img/bokhohn/七英雄の記憶13_策略に気付くボクオーン4.jpg';
+import 策略に気付くボクオーン5 from './img/bokhohn/七英雄の記憶13_策略に気付くボクオーン5.jpg';
+import 策略に気付くボクオーン6 from './img/bokhohn/七英雄の記憶13_策略に気付くボクオーン6.jpg';
+import 策略に気付くボクオーン7 from './img/bokhohn/七英雄の記憶13_策略に気付くボクオーン7.jpg';
+import 策略に気付くボクオーン8 from './img/bokhohn/七英雄の記憶13_策略に気付くボクオーン8.jpg';
+import エネミー図鑑_第一形態_本体 from './img/bokhohn/エネミー図鑑_第一形態_本体.jpg';
+import エネミー図鑑_第一形態_人形1 from './img/bokhohn/エネミー図鑑_第一形態_人形1.jpg';
+import エネミー図鑑_第一形態_人形2 from './img/bokhohn/エネミー図鑑_第一形態_人形2.jpg';
+import エネミー図鑑_第二形態_本体 from './img/bokhohn/エネミー図鑑_第二形態_本体.jpg';
+import エネミー図鑑_第二形態_大型人形 from './img/bokhohn/エネミー図鑑_第二形態_大型人形.jpg';
+import エネミー図鑑_最終形態 from './img/bokhohn/エネミー図鑑_最終形態.jpg';
+import エネミー図鑑_古代人 from './img/bokhohn/エネミー図鑑_古代人.jpg';
+import 最終形態1 from './img/bokhohn/最終形態1.jpg';
+import 最終形態2 from './img/bokhohn/最終形態2.jpg';
+import 最終形態3 from './img/bokhohn/最終形態3.jpg';
+
+export const roma2rBokhohnPagebc: Breadcrumb = {
+  name: "ボクオーン",
+  item: `${BASE_URL_ROMA2R}/ancient_people/seven_heroes/bokhohn`
+};
+const breadcrumbList: Breadcrumb[] = [
+  roma2rIndexPagebc,
+  roma2r7heroesIndexPagebc,
+  roma2rBokhohnPagebc
+];
+const indexList: index[] = [
+  { id: "#bokhohn", name: "ボクオーン" },
+];
+---
+
+<MainLayout
+  title="ボクオーン"
+  description="ロマサガ2リメイクのボクオーンについて"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r_bokhohn}
+  rights={rightsEnum.roma2r}>
+
+  <br/>
+  <span id="bokhohn"></span>
+  <h3 class="title">ボクオーン</h3>
+  <p>
+    第一形態<br/>
+    <Image src={pose_form1} width="500" alt="pose_form1" /><br/>
+    <br/>
+    第二形態<br/>
+    <Image src={pose_form2} width="500" alt="pose_form2" /><br/>
+
+    <br/>
+    七英雄の名前は山手線の駅名を逆から読んだもので、ボクオーンは新大久保から来ている。<br/>
+    （大久保は山手線ではないので新大久保のはず）<br/>
+    植物系モンスターを吸収したため、マキ割りスペシャルや大木断でクリティカルが入る。<br/>
+    <span style="color: yellow">運河要塞のボスはボクオーンの手下。</span><br/>
+    <span style="color: yellow">サイフリートは七英雄に取り入って永遠の命を手に入れようと画策している。具体的にどの七英雄に取り入ろうとしていたかは不明だが、サイフリートの一見の最中に長城からカンバーランドにモンスターが攻め入ったことからすると、恐らくステップにいるボクオーンと手を組んでいて、ボクオーンに取り入ろうとしていたのだと考えられる。</span><br/>
+    <Image src={七英雄に取り入り} width="500" alt="七英雄に取り入り" /><br/>
+    <Image src={永遠の命を} width="500" alt="永遠の命を" /><br/>
+
+    <br/>
+    運河要塞のせいでアバロンとカンバーランドの交流は絶たれている（運河要塞を攻略しないとカンバーランドのイベントが始まらない）。<br/>
+    サイフリートがボクオーンと関係があるということは、長城から攻めてきたモンスターも恐らくボクオーンの手引きしたものだと考えられる。<br/>
+    そしてカンバーランドが滅亡するとボクオーンが第二形態に変化するという点からしても、カンバーランドに対する影響度は大きいと言えそう。<br/>
+
+    <br/>
+    許すと後ろから攻撃を仕掛けてくる卑怯者。一度攻撃を仕掛けられて全滅して再度許すと2度は許さないとなる。<br/>
+    許す一回目<br/>
+    <Image src={ボクオーンでもなんでもない} width="500" alt="ボクオーンでもなんでもない" /><br/>
+    <Image src={名乗って見たかっただけ} width="500" alt="名乗って見たかっただけ" /><br/>
+    <Image src={麻薬作りもやめる} width="500" alt="麻薬作りもやめる" /><br/>
+    <Image src={許してくれ} width="500" alt="許してくれ" /><br/>
+    <Image src={許す} width="500" alt="許す" /><br/>
+    <Image src={さすがは皇帝} width="500" alt="さすがは皇帝" /><br/>
+    <Image src={二度目は許さん} width="500" alt="二度目は許さん" /><br/>
+    <Image src={甘いわ} width="500" alt="甘いわ" /><br/>
+
+    <br/>
+    許す二回目<br/>
+    <Image src={再度二度目は許さん} width="500" alt="再度二度目は許さん" /><br/>
+    <Image src={かかったな} width="500" alt="かかったな" /><br/>
+    <Image src={策が読まれて} width="500" alt="策が読まれて" /><br/>
+
+    <br/>
+    戦闘中、ある程度ダメージを与えると全力を出してきて形態が一つ進む。<br/>
+    戦闘開始時点で第二形態だった場合は人形と合体し、原作にはなかった最終形態になる。<br/>
+    <Image src={最終形態1} width="500" alt="最終形態1" /><br/>
+    <Image src={最終形態2} width="500" alt="最終形態2" /><br/>
+    <Image src={最終形態3} width="500" alt="最終形態3" /><br/>
+
+    <br/>
+    古代人状態のクジンシーがいる場所は、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#eleven`>七英雄の記憶11</a>でクィーン討伐後に町に戻って「七英雄だ！」と言われた場所。<br/>
+    <Image src={ボクオーンがいる場所} width="500" alt="ボクオーンがいる場所" /><br/>
+    <br/>
+    七英雄の記憶11の画像<br/>
+    <Image src={七英雄の記憶11の場所} width="500" alt="七英雄の記憶11の場所" /><br/>
+
+    <br/>
+    七英雄の参謀的ポジション。<br/>
+    <a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#five`>七英雄の記憶5</a>ではクィーン討伐戦におけるワグナスの作戦に一工夫加えたり、<br/>
+    <Image src={あと一手} width="500" alt="あと一手" /><br/>
+    <Image src={戦況を優位に} width="500" alt="戦況を優位に" /><br/>
+
+    <br/>
+    <a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#thirteen`>七英雄の記憶13</a>では大神官の目論見に最初に気付いたりしている。<br/>
+    <Image src={策略に気付くボクオーン1} width="500" alt="策略に気付くボクオーン1" /><br/>
+    <Image src={策略に気付くボクオーン2} width="500" alt="策略に気付くボクオーン2" /><br/>
+    <Image src={策略に気付くボクオーン3} width="500" alt="策略に気付くボクオーン3" /><br/>
+    <Image src={策略に気付くボクオーン4} width="500" alt="策略に気付くボクオーン4" /><br/>
+    <Image src={策略に気付くボクオーン5} width="500" alt="策略に気付くボクオーン5" /><br/>
+    <Image src={策略に気付くボクオーン6} width="500" alt="策略に気付くボクオーン6" /><br/>
+    <Image src={策略に気付くボクオーン7} width="500" alt="策略に気付くボクオーン7" /><br/>
+    <Image src={策略に気付くボクオーン8} width="500" alt="策略に気付くボクオーン8" /><br/>
+
+    <br/>
+    ボクオーンは・・・なんだっけ。ワグナスの知り合い？？？。<br/>
+    復讐等を考えているのか何なのかよくわからない。麻薬を作っている。<br/>
+    全部で3つの形態を持つ（原作、リマスターは2形態）。最終形態がかなり強い。第一第二形態はかなり弱い。<br/>
+
+    地層は冥<br/>
+    ラスダン前七英雄<br/>
+    ラスダンの七英雄<br/>
+    古代人Verの七英雄<br/>
+    初登場<br/>
+    戦闘中<br/>
+    戦闘終了時<br/>
+  </p>
+
+  <br/>
+  <h3 class="title">エネミー図鑑</h3>
+  <p>
+    第一形態<br/>
+    <Image src={エネミー図鑑_第一形態_本体} width="500" alt="第一形態_本体" /><br/>
+    <Image src={エネミー図鑑_第一形態_人形1} width="500" alt="第一形態_人形1" /><br/>
+    <Image src={エネミー図鑑_第一形態_人形2} width="500" alt="第一形態_人形2" /><br/>
+
+    <br/>
+    第二形態<br/>
+    <Image src={エネミー図鑑_第二形態_本体} width="500" alt="第二形態_本体" /><br/>
+    <Image src={エネミー図鑑_第二形態_大型人形} width="500" alt="第二形態_大型人形" /><br/>
+
+    <br/>
+    最終形態<br/>
+    <Image src={エネミー図鑑_最終形態} width="500" alt="最終形態" /><br/>
+
+    <br/>
+    古代人<br/>
+    <Image src={エネミー図鑑_古代人} width="500" alt="エネミー図鑑_古代人" /><br/>
+  </p>
+
+  <br/>
+  <h3 class="title">参考</h3>
+  <ul>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%9C%E3%82%AF%E3%82%AA%E3%83%BC%E3%83%B3%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【ボクオーン】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%82%B5%E3%82%A4%E3%83%95%E3%83%AA%E3%83%BC%E3%83%88%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【サイフリート】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%B8%E5%8F%8E%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【吸収の法】</a></li>
+  </ul>
+</MainLayout>

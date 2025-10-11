@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import { twitterCardEnum } from '../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../components/Footer.astro';
+import type { index } from '../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../index_romasaga2r.astro';
+
+import water_dragon_desert from './img/sanked_tower/2.砂漠.jpg';
+import water_dragon_ice from './img/sanked_tower/3.氷に埋もれ.jpg';
+import water_dragon_sea from './img/sanked_tower/4.海中に沈み.jpg';
+
+import real_desert from './img/sanked_tower/6.砂漠_実画像.jpg';
+import real_ice from './img/sanked_tower/7.氷に埋もれ_実画像.jpg';
+import real_sea from './img/sanked_tower/8.ここは沈んだ_実画像.jpg';
+
+export const roma2rAncientBgm: Breadcrumb = {
+  name: "BGMとダンジョン",
+  item: `${BASE_URL_ROMA2R}/ancient_people/ancient_bgm`
+};
+const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc, roma2rAncientBgm];
+const indexList: index[] = [
+  { id: "#one", name: "BGMとダンジョン" },
+]
+---
+
+<MainLayout
+  title="BGMとダンジョン"
+  description="ロマサガ2リメイクのBGMとダンジョンについて"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r}
+  rights={rightsEnum.roma2r}>
+
+  <br/>
+  <span id="one"></span>
+  <h3 class="title">古代遺跡というBGM</h3>
+  <p>
+    ロマサガ2には『<a href="https://www.youtube.com/watch?v=csrRA4pEmo0" target="_blank" rel="noopener noreferrer">古代遺跡</a>』という曲名のBMGがあり、これは何かしらの形で古代人が関連している場所で流れる。<br/>
+    具体的には以下の場所。<br/>
+  </p>
+  <ul>
+    <li>沈んだ塔</li>
+    <li>テレルテバの塔</li>
+    <li>浮上島</li>
+    <li>忘れられた町</li>
+    <li>雪の遺跡</li>
+    <li>砂の遺跡</li>
+    <li>氷の遺跡</li>
+    <li>移動湖</li>
+    <li>あとは？</li>
+  </ul>
+
+  <br/>
+  <p>
+    特に砂の遺跡、氷の遺跡、浮上島の3つは、沈んだ塔の水龍が語る際の映像としても出てきている。<br/>
+
+    <br/>
+    水龍が語る砂の遺跡<br/>
+    <Image src={water_dragon_desert} alt="水龍が語る砂の遺跡" width="500" /><br/>
+
+    <br/>
+    実際の砂の遺跡<br/>
+    <Image src={real_desert} alt="砂の遺跡" width="500" /><br/>
+
+    <br/>
+    水龍が語る氷の遺跡<br/>
+    <Image src={water_dragon_ice} alt="水龍が語る氷の遺跡" width="500" /><br/>
+
+    <br/>
+    実際の氷の遺跡<br/>
+    <Image src={real_ice} alt="氷の遺跡" width="500" /><br/>
+
+    <br/>
+    水龍が語る浮上島<br/>
+    <Image src={water_dragon_sea} alt="水龍が語る浮上島" width="500" /><br/>
+
+    <br/>
+    実際の浮上島<br/>
+    <Image src={real_sea} alt="浮上島" width="500" /><br/>
+  </p>
+</MainLayout>

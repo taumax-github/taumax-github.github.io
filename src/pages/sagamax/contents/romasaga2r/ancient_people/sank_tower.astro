@@ -1,0 +1,145 @@
+---
+import { Image } from 'astro:assets';
+import { twitterCardEnum } from '../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../components/Footer.astro';
+import type { index } from '../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../index_romasaga2r.astro';
+import ブーケに魅了された水龍 from './img/sanked_tower/ブーケに魅了された水龍.jpg'
+import この世界には大きな変動が from './img/sanked_tower/この世界には大きな変動が.jpg'
+import 大災厄 from './img/sanked_tower/大災厄.jpg'
+import 変動から逃れるために from './img/sanked_tower/変動から逃れるために.jpg'
+import 別の世界への道を from './img/sanked_tower/別の世界への道を.jpg'
+import 塔の実験は成功 from './img/sanked_tower/塔の実験は成功.jpg'
+import そして他の者たちが from './img/sanked_tower/そして他の者たちが.jpg'
+import 見舞われた from './img/sanked_tower/1.見舞われた.jpg'
+import 砂漠 from './img/sanked_tower/2.砂漠.jpg'
+import 氷に埋もれ from './img/sanked_tower/3.氷に埋もれ.jpg'
+import 海中に沈み from './img/sanked_tower/4.海中に沈み.jpg'
+import ここは沈んだ from './img/sanked_tower/5.ここは沈んだ.jpg'
+import 砂漠_実画像 from './img/sanked_tower/6.砂漠_実画像.jpg'
+import 氷に埋もれ_実画像 from './img/sanked_tower/7.氷に埋もれ_実画像.jpg'
+import ここは沈んだ_実画像 from './img/sanked_tower/8.ここは沈んだ_実画像.jpg'
+import 浮上島の生活感1 from './img/sanked_tower/浮上島の生活感1.jpg'
+import 浮上島の生活感2 from './img/sanked_tower/浮上島の生活感2.jpg'
+import 浮上島の生活感3 from './img/sanked_tower/浮上島の生活感3.jpg'
+import 七英雄とこの塔の関係_q from './img/sanked_tower/七英雄とこの塔の関係_q.jpg'
+import 七英雄とこの塔の関係_a1 from './img/sanked_tower/七英雄とこの塔の関係_a1.jpg'
+import 七英雄とこの塔の関係_a2 from './img/sanked_tower/七英雄とこの塔の関係_a2.jpg'
+import 七英雄とこの塔の関係_a3 from './img/sanked_tower/七英雄とこの塔の関係_a3.jpg'
+
+export const roma2rSankTowerPagebc: Breadcrumb = {
+  name: "沈んだ塔と水龍",
+  item: `${BASE_URL_ROMA2R}/ancient_people/sank_tower`
+};
+const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc, roma2rSankTowerPagebc];
+const indexList: index[] = [
+  { id: "#one", name: "沈んだ塔と水龍" },
+]
+---
+
+<MainLayout
+  title="沈んだ塔と水龍"
+  description="ロマサガ2リメイクの沈んだ塔と水龍について"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r}
+  rights={rightsEnum.roma2r}>
+
+  <br/>
+  <span id="one"></span>
+  <h3 class="title">沈んだ塔と水龍</h3>
+  <p>
+    ロックブーケに依頼される前にエイルネップの塔の守護者を倒して沈んだ塔に先回りすると水龍と会話することができます。<br/>
+    ブーケがいると魅了されているので戦闘になる（画像はエンディングの画像）。<br/>
+    <Image src={ブーケに魅了された水龍} width="500" alt='ブーケに魅了された水龍' /><br/>
+
+    この水龍は、<span style="color: yellow">古の誓いに縛られているため（？）</span>、この塔を守っています。<br/>
+    まだロックブーケに魅了されていないので、襲いかかってくることはありません。<br/>
+    暇を持て余しているため、この世界について少し語ってくれます。<br/>
+  </p>
+
+  <div class="youtube">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/bT1E1z2QxWY?si=EMME7QCNiNTq--Rn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <br/><br/>
+  <p>
+    動画の水龍の台詞を一つ一つ見ていきます。<br/>
+    まずここ。「もう何千年も前の事だが、この世界には大きな変動が訪れようとしていた。」と言っている。<br/>
+    <Image src={この世界には大きな変動が} width="500" alt="この世界には大きな変動が" /><br/>
+
+    <br/>
+    ここでいう『大きな変動』というのは<a href="./seven_heroes/seven_heroes_memory.html#one">七英雄の記憶１</a>でサグザーが『大災厄』と言っていたもののこと。<br/>
+    <Image src={大災厄} width="500" alt="大災厄" /><br/>
+
+    <br/>
+    次にこれ、変動から逃れるためにこれらの塔は作られたのだ。<br/>
+    『これらの塔』と言っている。沈んだ塔のみではなくサラマットに複数存在している塔全てを指している。<br/>
+    <Image src={変動から逃れるために} width="500" alt="変動から逃れるために" /><br/>
+
+    <br/>
+    次、別の世界への道を作ろうとしたのだ。<br/>
+    この塔での実験は成功し、まず七英雄が、そして他の者達が別の世界へと去っていった。<br/>
+    <Image src={別の世界への道を} width="500" alt="別の世界への道を" /><br/>
+    <Image src={塔の実験は成功} width="500" alt="塔の実験は成功" /><br/>
+    <Image src={そして他の者たちが} width="500" alt="そして他の者たちが" /><br/>
+
+    七英雄は事故を装って別世界に送られた。<br/>
+    <br/>
+
+    <br/>
+    さらに<br/>
+    その後世界は変動に見舞われた。<br/>
+    ある所は砂漠に変わり。<br/>
+    ある所は氷にうもれ。<br/>
+    ある所は海中に沈み。<br/>
+    そしてここは地中に沈んだのだ。<br/>
+    <Image src={見舞われた} width="500" alt="見舞われた" /><br/>
+    <Image src={砂漠} width="500" alt="砂漠" /><br/>
+    <Image src={氷に埋もれ} width="500" alt="氷に埋もれ" /><br/>
+    <Image src={海中に沈み} width="500" alt="海中に沈み" /><br/>
+    <Image src={ここは沈んだ} width="500" alt="ここは沈んだ"/><br/>
+
+    <br/>
+    砂の遺跡<br/>
+    <Image src={砂漠_実画像} width="500" alt="砂漠_実画像"/><br/>
+
+    <br/>
+    氷の遺跡<br/>
+    <Image src={氷に埋もれ_実画像} width="500" alt="氷に埋もれ_実画像" /><br/>
+
+    <br/>
+    浮上島<br/>
+    <Image src={ここは沈んだ_実画像} width="500" alt="ここは沈んだ_実画像" /><br/>
+
+    <br/>
+    浮上島には本棚や食器棚のようなものなどが多く残っている。恐らく、数千年前に古代人が生活していた名残だろう。<br/>
+    <Image src={浮上島の生活感1} width="500" alt="浮上島の生活感1" /><br/>
+    <Image src={浮上島の生活感2} width="500" alt="浮上島の生活感2" /><br/>
+    <Image src={浮上島の生活感3} width="500" alt="浮上島の生活感3" /><br/>
+
+    <br/>
+    水龍の話には出てこないが、雪の遺跡も古代人に関連していると思われる。<br/>
+    というか、BGMで判断できる。<br/>
+    テレルテバの塔<br/>
+    浮上島<br/>
+    忘れられた町<br/>
+    雪の遺跡<br/>
+    砂の遺跡<br/>
+    氷の遺跡<br/>
+    あとは？<br/>
+
+    <br/>
+    この選択肢、「七英雄とこの塔の関係は？」を選んだ時だけ、水龍はもう少しだけ話をしてくれます。<br/>
+    （他の選択肢の場合は「話は終わりと言っただぞ。」と言われて何も教えてくれません）<br/>
+    リメイクでは<a href="../seven_heroes/seven_heroes_memory.html">七英雄の記憶</a>を見ればわかることですが、原作及びリマスターでは、ゲーム中ではここでしか語られなかったのでこの話は結構貴重でした。<br/>
+    <Image src={七英雄とこの塔の関係_q} width="500" alt="七英雄とこの塔の関係_q" /><br/>
+    <Image src={七英雄とこの塔の関係_a1} width="500" alt="七英雄とこの塔の関係_a1" /><br/>
+    <Image src={七英雄とこの塔の関係_a2} width="500" alt="七英雄とこの塔の関係_a2" /><br/>
+    <Image src={七英雄とこの塔の関係_a3} width="500" alt="七英雄とこの塔の関係_a3" /><br/>
+
+    塔の構造の話。複数の塔の内部構造は同じ構造になっている。<br/>
+  </p>
+</MainLayout>

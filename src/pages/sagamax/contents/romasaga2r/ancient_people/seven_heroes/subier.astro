@@ -1,0 +1,169 @@
+---
+import { Image } from 'astro:assets';
+import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../../components/Footer.astro';
+import type { index } from '../../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
+import { roma2r7heroesIndexPagebc } from './seven_heroes_index.astro';
+import pose_form1 from './img/subier/pose_form1.jpg'
+import pose_form2 from './img/subier/pose_form2.jpg'
+import エレメントコーティング_スービエ from './img/subier/エレメントコーティング_スービエ.jpg'
+import エレメントコーティング_海の主 from './img/subier/エレメントコーティング_海の主.jpg'
+import 召し使えていた from './img/seven_heroes/召し使えていた.jpg'
+import 下等動物にしては from './img/subier/下等動物にしては.jpg'
+import この俺が from './img/subier/この俺が.jpg'
+import 下劣な短命種に from './img/subier/下劣な短命種に.jpg'
+import お前ほどの槍の使い手は from './img/subier/お前ほどの槍の使い手は.jpg'
+import これと決めた時 from './img/subier/これと決めた時.jpg'
+import 非凡な知恵 from './img/subier/非凡な知恵.jpg'
+import 不可欠の戦士 from './img/subier/不可欠の戦士.jpg'
+import スービエの幻影がいる場所 from './img/subier/スービエの幻影がいる場所.jpg'
+import スービエがいた場所_七英雄の記憶3 from './img/subier/スービエがいた場所_七英雄の記憶3.jpg'
+import 従兄弟のお前が from './img/subier/従兄弟のお前が.jpg'
+import ダンターグボクオーンクジンシースービエ from './img/seven_heroes/ダンターグ、ボクオーン、クジンシー、スービエ.jpg'
+import スービエの目的1 from './img/subier/スービエの目的1.jpg'
+import スービエの目的2 from './img/subier/スービエの目的2.jpg'
+import スービエの目的3 from './img/subier/スービエの目的3.jpg'
+import スービエの目的4 from './img/subier/スービエの目的4.jpg'
+import スービエの目的5 from './img/subier/スービエの目的5.jpg'
+import スービエの目的6 from './img/subier/スービエの目的6.jpg'
+import スービエの目的7 from './img/subier/スービエの目的7.jpg'
+import スービエの目的8 from './img/subier/スービエの目的8.jpg'
+import スービエの目的9 from './img/subier/スービエの目的9.jpg'
+import スービエの目的10 from './img/subier/スービエの目的10.jpg'
+import エネミー図鑑_第一形態 from './img/subier/エネミー図鑑_第一形態.jpg'
+import エネミー図鑑_第二形態 from './img/subier/エネミー図鑑_第二形態.jpg'
+import エネミー図鑑_古代人 from './img/subier/エネミー図鑑_古代人.jpg'
+
+export const roma2rSubierPagebc: Breadcrumb = {
+  name: "スービエ",
+  item: `${BASE_URL_ROMA2R}/ancient_people/seven_heroes/subier`
+};
+const breadcrumbList: Breadcrumb[] = [
+  roma2rIndexPagebc,
+  roma2r7heroesIndexPagebc,
+  roma2rSubierPagebc
+];
+const indexList: index[] = [
+  { id: "#subier", name: "スービエ" },
+];
+---
+
+<MainLayout
+  title="スービエ"
+  description="ロマサガ2リメイクのスービエについて"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r_subier}
+  rights={rightsEnum.roma2r}>
+
+  <br/>
+  <span id="subier"></span>
+  <h3 class="title">スービエ</h3>
+  <p>
+    第一形態<br/>
+    <Image src={pose_form1} width="500" alt="pose_form1" /><br/>
+    <br/>
+    第二形態<br/>
+    <Image src={pose_form2} width="500" alt="pose_form2" /><br/>
+
+    <br/>
+    七英雄の名前は山手線の駅名を逆から読んだもので、スービエは恵比寿から来ている。<br/>
+    水棲系、魚系モンスターを吸収している。<br/>
+    特に第二形態は海の主の娘を吸収したことがその姿に表れている。<br/>
+    第二形態が使用してくるエレメントコーティングは海の主が使ってくる技。角を破壊するとエレメントコーティング状態を解除できる。<br/>
+    スービエの槍は海の主の娘の角を削り出したもので、スービエがエレメントコーティングを使用する際は槍が光を発していることが確認できる。<br/>
+    槍の力でエレメントコーティングを使用しているのだろう。<br/>
+    <Image src={エレメントコーティング_スービエ} width="500" alt="エレメントコーティング_スービエ" /><br/>
+    <Image src={エレメントコーティング_海の主} width="500" alt="エレメントコーティング_海の主" /><br/>
+    <span style="color: yellow">海の主の角を折ったらエレメントコーティングが剥がれる？画像が欲しい。角が折れた海の主の画像も欲しい。</span><br/>
+
+    <br/>
+    戦闘中の「下等動物にしてはよく足掻く」という台詞や、戦闘終了後の「この俺が下劣な短命種に・・・！！」という台詞から、現代の人間（短命種）を見下しているということがよくわかる。<br/>
+    忘れられた町の人の台詞に「私たちはあなた方を召し使えていた」とあるので、古代人は短命種を見下しているというのは分からなくはない。<br/>
+    <Image src={召し使えていた} width="500" alt="召し使えていた" /><br/>
+
+    <br/>
+    戦闘中<br/>
+    <Image src={下等動物にしては} width="500" alt="下等動物にしては" /><br/>
+    <br/>
+    戦闘終了後<br/>
+    <Image src={この俺が} width="500" alt="この俺が" /><br/>
+    <Image src={下劣な短命種に} width="500" alt="下劣な短命種に" /><br/>
+    <br/>
+    第二形態が持つ槍は海の主の娘の角を削り出したもの。<br/>
+
+    原作（SFC、リマスター）では、皇帝のHPが700を越えると殆どの七英雄は第二形態に進化する仕様だった（一部例外有り）が、リメイクでは、七英雄を4体以上撃破すると残りの七英雄は第二形態に進化するようになっている。<br/>
+    スービエも例外ではなく、この場合、「海の主と同化した力を見よ」という台詞を吐くにもかかわらず海の主（と娘）はワイリンガ湖で悠々と泳いでいるという状況が発生しうる。<br/>
+
+    <br/>
+    槍の使い手としてワグナスに買われている。<br/>
+    以下は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#three`>七英雄の記憶3</a>の画像<br/>
+    <Image src={お前ほどの槍の使い手は} width="500" alt="お前ほどの槍の使い手は" /><br/>
+    <Image src={これと決めた時} width="500" alt="これと決めた時" /><br/>
+    <Image src={非凡な知恵} width="500" alt="非凡な知恵" /><br/>
+    <Image src={不可欠の戦士} width="500" alt="不可欠の戦士" /><br/>
+
+    <br/>
+    スービエの幻影がいる場所は、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#three`>七英雄の記憶3</a>でワグナスがスービエを勧誘した場所。<br/>
+    恐妃の都にいるスービエの幻影<br/>
+    <Image src={スービエの幻影がいる場所} width="500" alt="スービエの幻影がいる場所" /><br/>
+    <br/>
+    七英雄の記憶<br/>
+    <Image src={スービエがいた場所_七英雄の記憶3} width="500" alt="スービエがいた場所_七英雄の記憶3" /><br/>
+
+    <br/>
+    スービエはワグナスの従兄弟。<br/>
+    <a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#three`>七英雄の記憶3</a>のスービエの発言。<br/>
+    <Image src={従兄弟のお前が} width="500" alt="従兄弟のお前が" /><br/>
+    <br/>
+    忘れられた町の人との会話<br/>
+    <Image src={ダンターグボクオーンクジンシースービエ} width="500" alt="ダンターグ、ボクオーン、クジンシー、スービエ" /><br/>
+
+    <br/>
+    スービエは明確に復讐のために古代人を探している。<br/>
+    <Image src={スービエの目的1} width="500" alt="スービエの目的1" /><br/>
+    <Image src={スービエの目的2} width="500" alt="スービエの目的2" /><br/>
+    <Image src={スービエの目的3} width="500" alt="スービエの目的3" /><br/>
+    <Image src={スービエの目的4} width="500" alt="スービエの目的4" /><br/>
+    <Image src={スービエの目的5} width="500" alt="スービエの目的5" /><br/>
+    <Image src={スービエの目的6} width="500" alt="スービエの目的6" /><br/>
+    <Image src={スービエの目的7} width="500" alt="スービエの目的7" /><br/>
+    <Image src={スービエの目的8} width="500" alt="スービエの目的8" /><br/>
+    <Image src={スービエの目的9} width="500" alt="スービエの目的9" /><br/>
+    <Image src={スービエの目的10} width="500" alt="スービエの目的10" /><br/>
+
+    <br/>
+    地層は水<br/>
+
+    ラスダン前七英雄<br/>
+    ラスダンの七英雄<br/>
+    古代人Verの七英雄<br/>
+    初登場<br/>
+    戦闘中<br/>
+    戦闘終了時<br/>
+  </p>
+
+  <br/>
+  <h3 class="title">エネミー図鑑</h3>
+  <p>
+    第一形態<br/>
+    <Image src={エネミー図鑑_第一形態} width="500" alt="エネミー図鑑_第一形態" /><br/>
+    <br/>
+    第二形態<br/>
+    <Image src={エネミー図鑑_第二形態} width="500" alt="エネミー図鑑_第二形態" /><br/>
+    <br/>
+    古代人<br/>
+    <Image src={エネミー図鑑_古代人} width="500" alt="エネミー図鑑_古代人" /><br/>
+  </p>
+
+  <br/>
+  <h3 class="title">参考</h3>
+  <ul>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%82%B9%E3%83%BC%E3%83%93%E3%82%A8%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【スービエ】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E6%B5%B7%E3%81%AE%E4%B8%BB%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【海の主】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%B8%E5%8F%8E%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【吸収の法】</a></li>
+  </ul>
+</MainLayout>

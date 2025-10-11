@@ -1,0 +1,148 @@
+---
+import { Image } from 'astro:assets';
+import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../../components/Footer.astro';
+import type { index } from '../../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
+import { roma2r7heroesIndexPagebc } from './seven_heroes_index.astro';
+import pose_form1 from './img/rocbouquet/pose_form1.jpg'
+import pose_form2 from './img/rocbouquet/pose_form2.jpg'
+import 図鑑第一形態ロックブーケ from './img/rocbouquet/図鑑第一形態ロックブーケ.jpg'
+import 図鑑第二形態ロックブーケ from './img/rocbouquet/図鑑第二形態ロックブーケ.jpg'
+import 図鑑古代人ロックブーケ from './img/rocbouquet/図鑑古代人ロックブーケ.jpg'
+import 守護者 from './img/rocbouquet/守護者.jpg'
+import 女皇帝_何ともできない from './img/rocbouquet/女皇帝_何ともできない.jpg'
+import 女皇帝_残念 from './img/rocbouquet/女皇帝_残念.jpg'
+import 男皇帝_何ともできない from './img/rocbouquet/男皇帝_何ともできない.jpg'
+import 男皇帝_そんなウソ from './img/rocbouquet/男皇帝_そんなウソ.jpg'
+import 男皇帝_無理にでも from './img/rocbouquet/男皇帝_無理にでも.jpg'
+import 男皇帝_どちらが上か from './img/rocbouquet/男皇帝_どちらが上か.jpg'
+import 男皇帝_これからは私のために from './img/rocbouquet/男皇帝_これからは私のために.jpg'
+import 男皇帝_エイルネップ神殿 from './img/rocbouquet/男皇帝_エイルネップ神殿.jpg'
+import 男皇帝_頑張って from './img/rocbouquet/男皇帝_頑張って.jpg'
+import 何とかして from './img/rocbouquet/何とかして.jpg'
+import 古代人ブーケ_いつも背中を from './img/rocbouquet/古代人ブーケ_いつも背中を.jpg'
+import 古代人ブーケ_世界を救う from './img/rocbouquet/古代人ブーケ_世界を救う.jpg'
+import 古代人_仲間に入れて from './img/rocbouquet/古代人_仲間に入れて.jpg'
+import 仲間になった場所 from './img/rocbouquet/仲間になった場所.jpg'
+import { BRAND } from 'astro:schema';
+
+export const roma2rRocbouquetPagebc: Breadcrumb = {
+  name: "ロックブーケ",
+  item: `${BASE_URL_ROMA2R}/ancient_people/seven_heroes/rocbouquet`
+};
+const breadcrumbList: Breadcrumb[] = [
+  roma2rIndexPagebc,
+  roma2r7heroesIndexPagebc,
+  roma2rRocbouquetPagebc
+];
+const indexList: index[] = [
+  { id: "#rocbouquet", name: "ロックブーケ" },
+];
+---
+
+<MainLayout
+  title="ロックブーケ"
+  description="ロマサガ2リメイクのロックブーケについて"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r_rocbouquet}
+  rights={rightsEnum.roma2r}>
+
+  <br/>
+  <span id="rocbouquet"></span>
+  <h3 class="title">ロックブーケ</h3>
+  <p>
+    ロックブーケは七英雄の紅一点で<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/noel`>ノエル</a>の妹<br/>
+    人間の頃の姿をほぼ保っている（ロックブーケとノエルのみ）。<br/>
+    七英雄の名前は山手線の駅名を逆から読んだもので、ロックブーケは池袋から来ている。<br/>
+    第一形態では自身の周囲に霊体を纏っていることから、霊体系のモンスターを吸収していたようである。<br/>
+
+    <br/>
+    第一形態<br/>
+    <Image src={pose_form1} width="500" alt="pose_form1" /><br/>
+    <br/>
+    第二形態<br/>
+    羽が生える。<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/wagnas`>ワグナス</a>を意識している？<br/>
+    <Image src={pose_form2} width="500" alt="pose_form2" /><br/>
+
+    <br/>
+    エイルネップの塔のカイザーアントはブーケが先回りしていようといまいと襲ってくるので魅了されたわけではない？<span style="color: yellow">要確認</span><br/>
+    エイルネップの塔の事を調べようとしているが、守護者には術もテンプテーションも効かないので塔の事が調べられずに困っている。<br/>
+    以下はエネミー図鑑の守護者の画像。物理攻撃以外に耐性があることがわかる。術主体のロックブーケにとっては天敵。<br/>
+    恐らく古代人の魔力でここに置かれたものなのだと思われる。<br/>
+    <Image src={守護者} width="500" alt="守護者" /><br/>
+
+    <br/>
+    <span style="color: yellow">エイルネップの男性を魅了し、その町の女性（アマゾネス）との断絶を生んだ元凶</span><br/>
+
+    <br/>
+    ワグナスにガチ恋している。<br/>
+    第二形態で羽生えるのってもしかしてワグナスに寄せてる・・・？若干蝶みたいな形してる気もするし（妄想です）。<br/>
+    <br/>
+    守護者を倒す依頼を断ると、女性又は性別不明の皇帝（リメイクの場合はネレイド、イーリス、コッペリア）の場合は残念そうなセリフを呟くものの、それ以上無理強いをしてくることはない。テンプテーションで魅了できないので強気に行けないのだろう。<br/>
+    <Image src={女皇帝_何ともできない} width="500" alt="女皇帝_何ともできない" /><br/>
+    <Image src={女皇帝_残念} width="500" alt="女皇帝_残念" /><br/>
+
+    <br/>
+    男性皇帝（リメイクの場合はサラマンダーとモールも対象）の場合は突然ぶちぎれてその場で襲いかかってくる<span style="color: gray">（短気だな・・・）</span>。テンプテーションで魅了できるので強気なのだろう。<br/>
+
+    <Image src={男皇帝_何ともできない} width="500" alt="男皇帝_何ともできない" /><br/>
+    <Image src={男皇帝_そんなウソ} width="500" alt="男皇帝_そんなウソ" /><br/>
+    <Image src={男皇帝_無理にでも} width="500" alt="男皇帝_無理にでも" /><br/>
+
+    <br/>
+    負けるとそのままエイルネップ神殿に連れていかれ、守護者と戦うことになる。<br/>
+    <Image src={男皇帝_どちらが上か} width="500" alt="男皇帝_どちらが上か" /><br/>
+    <Image src={男皇帝_これからは私のために} width="500" alt="男皇帝_これからは私のために" /><br/>
+    <Image src={男皇帝_エイルネップ神殿} width="500" alt="男皇帝_エイルネップ神殿" /><br/>
+    <Image src={男皇帝_頑張って} width="500" alt="男皇帝_頑張って" /><br/>
+    <br/>
+    余談だけどこのロックブーケ可愛くないですか？<br/>
+    <Image src={何とかして} width="500" alt="何とかして" /><br/>
+  </p>
+
+  <br/>
+  <h3 class="title">エネミー図鑑</h3>
+  <p>
+    第一形態<br/>
+    <Image src={図鑑第一形態ロックブーケ} width="500" alt="図鑑第一形態ロックブーケ" /><br/>
+    <br/>
+    第二形態<br/>
+    <a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/wagnas`>ワグナス</a>を意識したかのような、蝶の形に似た羽が生える。<br/>
+    <Image src={図鑑第二形態ロックブーケ} width="500" alt="図鑑第二形態ロックブーケ" /><br/>
+    <br/>
+    古代人<br/>
+    <Image src={図鑑古代人ロックブーケ} width="500" alt="図鑑第古代人ロックブーケ" /><br/>
+  </p>
+
+  <br/>
+  <h3 class="title">古代人ロックブーケ</h3>
+  <p>
+    <Image src={古代人ブーケ_いつも背中を} width="500" alt="古代人ブーケ_いつも背中を" /><br/>
+    <Image src={古代人ブーケ_世界を救う} width="500" alt="古代人ブーケ_世界を救う" /><br/>
+
+    <br/>
+    画像は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#nine`>七英雄の記憶9</a>の画像。古代人ブーケがいる場所は、ロックブーケがターム殲滅戦に合流した時の場所だということがわかる。<br/>
+    <Image src={古代人_仲間に入れて} width="500" alt="古代人_仲間に入れて" /><br/>
+    <Image src={仲間になった場所} width="500" alt="仲間になった場所" /><br/>
+
+    <br/>
+    地層は風<br/>
+    ラスダン前七英雄<br/>
+    ラスダンの七英雄<br/>
+    古代人Verの七英雄<br/>
+    初登場<br/>
+    戦闘中<br/>
+    戦闘終了時<br/>
+  </p>
+
+  <br/>
+  <h3 class="title">参考</h3>
+  <ul>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%AD%E3%83%83%E3%82%AF%E3%83%96%E3%83%BC%E3%82%B1%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【ロックブーケ】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%B8%E5%8F%8E%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【吸収の法】</a></li>
+  </ul>
+</MainLayout>

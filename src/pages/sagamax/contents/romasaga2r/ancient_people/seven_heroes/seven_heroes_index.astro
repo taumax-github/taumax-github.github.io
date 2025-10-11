@@ -1,0 +1,50 @@
+---
+import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../../components/Footer.astro';
+import type { index } from '../../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
+
+export const roma2r7heroesIndexPagebc: Breadcrumb = {
+  name: "七英雄",
+  item: `${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_index`
+};
+const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc, roma2r7heroesIndexPagebc];
+const indexList: index[] = [
+  { id: "#7heroes", name: "七英雄" },
+]
+---
+
+<MainLayout
+  title="七英雄"
+  description="ロマサガ2リメイクの七英雄について"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r_seven_heroes}
+  rights={rightsEnum.roma2r}>
+
+  <br/>
+  <span id="7heroes"></span>
+  <h3 class="title">七英雄</h3>
+  <p>
+    七英雄の山手線の名前、ラスボス形態の場所、何を吸収して今の姿になったのか、ラスボス前に残した場合の台詞<br/>
+    七福神に因んで七英雄<br/>
+    忘れられた町で得られる七英雄の情報（オアイーブと町の人）<br/>
+    七英雄を倒した直後、エンディングでオアイーブは涙を流している。<br/>
+    サグザーは外に出て七英雄が倒されたことで発生している光の柱を見ている。<br/>
+    サグザーは七英雄の記憶の中で、大神官の差し金とは言え、ノエルたち七英雄を別次元に転移してしまったことで光を見ることが出来なくなっていた。<br/>
+    彼が移動湖の中の神殿にこもっていたのは恐らく光から逃れるためだと考えられるが、このエンディングで外を見ているということはこの呪縛から解き放たれたということだろう。<br/>
+    <span style="color: yellow">画像欲しい</span>
+  </p>
+  <ul>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory`>七英雄の記憶</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/wagnas`>ワグナス</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/noel`>ノエル</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/rocbouquet`>ロックブーケ</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/bokhohn`>ボクオーン</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/dantag`>ダンターグ</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/kzinssie`>クジンシー</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/subier`>スービエ</a></li>
+  </ul>
+</MainLayout>

@@ -1,0 +1,226 @@
+---
+import { Image } from 'astro:assets';
+import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../../components/Footer.astro';
+import type { index } from '../../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
+import { roma2r7heroesIndexPagebc } from './seven_heroes_index.astro';
+import pose_form1 from './img/noel/pose_form1.jpg'
+import pose_form2 from './img/noel/pose_form2.jpg'
+import 赤竜隊と名付けた from './img/noel/赤竜隊と名付けた.jpg'
+import 久しぶりだな from './img/noel/久しぶりだな.jpg'
+import 戻ってきたのか from './img/noel/戻ってきたのか.jpg'
+import 来客のようだ from './img/noel/来客のようだ.jpg'
+import ノエルと申します from './img/noel/ノエルと申します.jpg'
+import 旧友と再会 from './img/noel/旧友と再会.jpg'
+import オアイーブと恋仲1 from './img/noel/オアイーブと恋仲1.jpg'
+import オアイーブと恋仲2 from './img/noel/オアイーブと恋仲2.jpg'
+import オアイーブと恋仲3 from './img/noel/オアイーブと恋仲3.jpg'
+import ノエルは剣で自らは学問で from './img/noel/ノエルは剣で、自らは学問で.jpg'
+import そう誓ったそうだな from './img/noel/そう誓ったそうだな.jpg'
+import 王国兵団の武人として from './img/noel/王国兵団の武人として.jpg'
+import そなたの誓いは from './img/noel/そなたの誓いは.jpg'
+import サグザーは学問でノエルは剣で from './img/noel/サグザーは学問で、ノエルは剣で.jpg'
+import その通りになった from './img/noel/その通りになった.jpg'
+import 人違い from './img/noel/1.人違い.jpg'
+import 嘘はいけません from './img/noel/2.嘘はいけません.jpg'
+import 妹のカタキ from './img/noel/3.妹のカタキ.jpg'
+import 殺らせていただきます from './img/noel/4.殺らせていただきます.jpg'
+import 激おこラスダンノエル from './img/noel/激おこラスダンノエル.jpg'
+import 逃げるサグザー1 from './img/noel/逃げるサグザー1.jpg'
+import 逃げるサグザー2 from './img/noel/逃げるサグザー2.jpg'
+import ここまでとは from './img/noel/ここまでとは.jpg'
+import 何かあるな from './img/noel/何かあるな.jpg'
+import 妹を手にかけたら from './img/noel/妹を手にかけたら.jpg'
+import 相応の報いが from './img/noel/相応の報いが.jpg'
+import 覚悟されよ from './img/noel/覚悟されよ.jpg'
+import いずれ暴く from './img/noel/いずれ暴く.jpg'
+import ロックブーケのカタキ from './img/noel/ロックブーケのカタキ.jpg'
+import 七英雄の真の力を from './img/noel/七英雄の真の力を.jpg'
+import 図鑑第一形態ノエル from './img/noel/図鑑第一形態ノエル.jpg'
+import 図鑑第二形態ノエル from './img/noel/図鑑第二形態ノエル.jpg'
+import 図鑑古代人ノエル from './img/noel/図鑑古代人ノエル.jpg'
+import 幼い頃友と約束した from './img/noel/幼い頃友と約束した.jpg'
+import たとえ禁忌を犯しても from './img/noel/たとえ禁忌を犯しても.jpg'
+import 古代人ノエルがいる場所 from './img/noel/古代人ノエルがいる場所.jpg'
+import 人間を超える力を from './img/noel/人間を超える力を.jpg'
+import 全力1 from './img/noel/全力1.jpg'
+import 全力2 from './img/noel/全力2.jpg'
+import 全力3 from './img/noel/全力3.jpg'
+
+export const roma2rNoelPagebc: Breadcrumb = {
+  name: "ノエル",
+  item: `${BASE_URL_ROMA2R}/ancient_people/seven_heroes/noel`
+};
+const breadcrumbList: Breadcrumb[] = [
+  roma2rIndexPagebc,
+  roma2r7heroesIndexPagebc,
+  roma2rNoelPagebc
+];
+const indexList: index[] = [
+  { id: "#noel", name: "ノエル" },
+];
+---
+
+<MainLayout
+  title="ノエル"
+  description="ロマサガ2リメイクのノエルについて"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r_noel}
+  rights={rightsEnum.roma2r}>
+
+  <br/>
+  <span id="noel"></span>
+  <h3 class="title">ノエル</h3>
+  <p>
+    第一形態<br/>
+    体術主体で攻撃してくるため、武器は持っていない。<br/>
+    <Image src={pose_form1} width="500" alt="pose_form1" /><br/>
+    <br/>
+    第二形態<br/>
+    剣術主体で攻撃してくるため、剣を持っている。<br/>
+    <Image src={pose_form2} width="500" alt="pose_form2" /><br/>
+
+    <br/>
+    ノエルは<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/rocbouquet`>ロックブーケ</a>の兄<br/>
+    七英雄の名前は山手線の駅名を逆から読んだもので、ノエルは上野から来ている。<br/>
+    人間の頃の姿をほぼ保っている（ロックブーケとノエルのみ）。<br/>
+    何を吸収したんだっけ？<br/>
+    七英雄の記憶を見ればわかる通り、七英雄はクィーンを倒すため、吸収の法で様々なモンスターを吸収している。それぞれメインで吸収しているモンスターの系統が存在し、それに合わせて外見も変化しているが、ノエル（とロックブーケ）は、外見からは何の種族をメインの吸収対象としているのかが解らない。<br/>
+    <a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%8E%E3%82%A8%E3%83%AB%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki*</a> によると、内部データでは竜の種族属性を持つらしく、竜系のモンスターをメインの吸収対象としていたと考えられる。<br/>
+    ノエルは『赤竜隊』という名前の部隊の隊長であり、第一形態のノエル（体術）は後半、赤竜破を使用してくることから、竜に対して何かしらこだわりがあるのかもしれない。<br/>
+    以下は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#two`>七英雄の記憶2</a>の画像。赤竜隊と名付けたのはノエル本人だということがわかる。<br/>
+    <Image src={赤竜隊と名付けた} width="500" alt="赤竜隊と名付けた" /><br/>
+
+    <br/>
+    サグザーと仲が良い。<br/>
+    <span style="color: yellow">テレルテバの塔でボスを倒す前（条件確認）</span>に移動湖に来ると、サグザーとノエルが再開して懐かしがっているところを見ることができる。<br/>
+    <Image src={久しぶりだな} width="500" alt="久しぶりだな" /><br/>
+    <Image src={戻ってきたのか} width="500" alt="戻ってきたのか" /><br/>
+    <Image src={来客のようだ} width="500" alt="来客のようだ" /><br/>
+    <Image src={ノエルと申します} width="500" alt="ノエルと申します" /><br/>
+    <Image src={旧友と再会} width="500" alt="旧友と再会" /><br/>
+
+    <br/>
+    戦闘中、ある程度ダメージを与えると全力を出してきて青い羽が生える。かっこよ。<br/>
+    <Image src={全力1} width="500" alt="全力1" /><br/>
+    <Image src={全力2} width="500" alt="全力2" /><br/>
+    <Image src={全力3} width="500" alt="全力3" /><br/>
+
+    <br/>
+    以下は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#two`>七英雄の記憶2</a>の画像。オアイーブとは恋仲であることがうかがえる。<br/>
+    これは舞台版のロマサガ2においてもこのような関係性である。<span style="color: yellow">確かそうだよね？</span><br/>
+    原作（SFC版やリマスター版）においてはこのような関係性だったということを知る情報はない。本編では語られなかっただけなのか、舞台版の設定を逆輸入した設定なのかは不明。<br/>
+    リメイク版はとりぼり木さん（舞台を手掛けた方）が関わっているため、逆輸入の設定なのかなと個人的には思っています。<br/>
+    <Image src={オアイーブと恋仲1} width="500" alt="オアイーブと恋仲1" /><br/>
+    <Image src={オアイーブと恋仲2} width="500" alt="オアイーブと恋仲2" /><br/>
+    <Image src={オアイーブと恋仲3} width="500" alt="オアイーブと恋仲3" /><br/>
+
+    <br/>
+    古代人時代は、ノエルは剣で、サグザーは学問で王国を守ると誓い合った仲だということが<a href="./seven_heroes_memory.html#one">七英雄の記憶1</a>、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#two`>七英雄の記憶2</a>で語られている。<br/>
+    <span style="color: yellow">オアイーブとの関係についても言及したい</span><br/>
+
+    七英雄の記憶1の画像<br/>
+    <Image src={ノエルは剣で自らは学問で} width="500" alt="ノエルは剣で、自らは学問で" /><br/>
+    <Image src={そう誓ったそうだな} width="500" alt="そう誓ったそうだな" /><br/>
+    <Image src={王国兵団の武人として} width="500" alt="王国兵団の武人として" /><br/>
+    <Image src={そなたの誓いは} width="500" alt="そなたの誓いは" /><br/>
+
+    <br/>
+    七英雄の記憶2の画像<br/>
+    <Image src={サグザーは学問でノエルは剣で} width="500" alt="サグザーは学問で、ノエルは剣で" /><br/>
+    <Image src={その通りになった} width="500" alt="その通りになった" /><br/>
+
+    <br/>
+    テレルテバの塔の事を調べている。<br/>
+    七英雄の中で一番話が通じそう。基本的に温厚な性格をしているが。。。<br/>
+
+    <br/>
+    <span style="color: yellow">退却できる話をどこかに入れたい</span><br/>
+
+    <br/>
+    極度のシスコン。ロックブーケを倒した後に来ると激おこ状態になり、本気で襲いかかってくる（第二形態で大剣主体で襲って来る）。<br/>
+    <Image src={人違い} width="500" alt="人違い" /><br/>
+    <Image src={嘘はいけません} width="500" alt="嘘はいけません" /><br/>
+    <Image src={妹のカタキ} width="500" alt="妹のカタキ" /><br/>
+    <Image src={殺らせていただきます} width="500" alt="殺らせていただきます" /><br/>
+
+    <br/>
+    ノエルを最後に残した場合のラスダンでの台詞。ここでもロックブーケの事しか言わない。<br/>
+    <Image src={激おこラスダンノエル} width="500" alt="激おこラスダンノエル" /><br/>
+
+    <br/>
+    余談ですが、「皇帝陛下ですね？」と迫るノエルを見て、止められないことを悟ったサグザーが即座に逃げだすのが個人的にツボでした。<br/>
+    <Image src={逃げるサグザー1} width="500" alt="逃げるサグザー1" /><br/>
+    <Image src={逃げるサグザー2} width="500" alt="逃げるサグザー2" /><br/>
+
+    <br/>
+    ノエルを倒した場合、皇帝の力に驚くと共に、何か秘密があることに感付く。<br/>
+    <Image src={ここまでとは} width="500" alt="ここまでとは" /><br/>
+    <Image src={何かあるな} width="500" alt="何かあるな" /><br/>
+
+    <br/>
+    ロックブーケをまだ倒していない場合、最終的には妹の心配である。やはりシスコン・・・。<br/>
+    <Image src={妹を手にかけたら} width="500" alt="妹を手にかけたら" /><br/>
+    <Image src={相応の報いが} width="500" alt="相応の報いが" /><br/>
+    <Image src={覚悟されよ} width="500" alt="覚悟されよ"/><br/>
+
+    <br/>
+    ロックブーケを既に倒している場合は、ロックブーケのカタキとか言い始める。<br/>
+    妹のこと好きすぎん？<br/>
+    <Image src={いずれ暴く} width="500" alt="いずれ暴く" /><br/>
+    <Image src={ロックブーケのカタキ} width="500" alt="ロックブーケのカタキ" /><br/>
+    <Image src={七英雄の真の力を} width="500" alt="七英雄の真の力を" /><br/>
+
+
+    <br/>
+    地層は火<br/>
+
+    <br/>
+    ラスダン前七英雄<br/>
+    ラスダンの七英雄<br/>
+    古代人Verの七英雄<br/>
+    初登場<br/>
+    戦闘中<br/>
+    戦闘終了時<br/>
+  </p>
+
+  <br/>
+  <h3 class="title">図鑑</h3>
+  <p>
+    第一形態<br/>
+    <Image src={図鑑第一形態ノエル} width="500" alt="図鑑第一形態ノエル" /><br/>
+    <br/>
+    第二形態<br/>
+    <Image src={図鑑第二形態ノエル} width="500" alt="図鑑第二形態ノエル" /><br/>
+    <br/>
+    古代人<br/>
+    <Image src={図鑑古代人ノエル} width="500" alt="図鑑古代人ノエル" /><br/>
+  </p>
+
+  <br/>
+  <h3 class="title">古代人</h3>
+  <p>
+    恐妃の都の古代人ノエル（の幻影）と戦う前の台詞。ここで言う友は言うまでもなくサグザーの事。<br/>
+    <Image src={幼い頃友と約束した} width="500" alt="幼い頃友と約束した" /><br/>
+    <Image src={たとえ禁忌を犯しても} width="500" alt="たとえ禁忌を犯しても" /><br/>
+
+    <br/>
+    古代人ノエルは、以下の画像のような場所にいる。<br/>
+    <Image src={古代人ノエルがいる場所} width="500" alt="古代人ノエルがいる場所" /><br/>
+
+    <br/>
+    ここは、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#six`>七英雄の記憶6</a>で、タームの巣穴に乗り込んだノエルが撤退を余儀なくされ、人間を超える力を欲し始めた場所。<br/>
+    <Image src={人間を超える力を} width="500" alt="人間を超える力を" /><br/>
+  </p>
+
+  <br/>
+  <h3 class="title">参考</h3>
+  <ul>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%8E%E3%82%A8%E3%83%AB%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【ノエル】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%B8%E5%8F%8E%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【吸収の法】</a></li>
+  </ul>
+</MainLayout>
