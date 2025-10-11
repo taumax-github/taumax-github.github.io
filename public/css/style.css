@@ -143,7 +143,6 @@ pre.title {
 th {
   padding: 3px 7px;	/*上下、左右への余白*/
   background-color: #0099cc;  /* 背景色 */
-  background-color: rgba(00,99,cc,0.1);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
 }
 
 td {
@@ -269,11 +268,9 @@ caption {
   height: 100%;
 }
 
-  
 th {
     padding: 3px 7px;    /*上下、左右への余白*/
     background-color: #0099cc;  /* 背景色 */
-    background-color: rgba(00,99,cc,0.1);    /*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
 }
 
 td {

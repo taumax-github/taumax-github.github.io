@@ -127,7 +127,6 @@ img {
 th {
   padding: 3px 7px;	/*上下、左右への余白*/
   background-color: #0099cc;  /* 背景色 */
-  background-color: rgba(00,99,cc,0.1);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
 }
 
 td {
@@ -468,15 +467,14 @@ a:hover {
   background-repeat: repeat;
   background-attachment: fixed;
   background-position: center bottom;
-  #container {
-    background-image: url(../assets/images/background.png);
-  }
-  #roma2rcontainer {
-    background-image: url(../assets/images/background/romasaga2r/background_0.5.png);
-  }
-  #roma2r_rocbouquet {
-    background-image: url(../assets/images/background/romasaga2r/background_rocbouquet_0.5.png);
-  }
+}
+
+#default {
+  background-image: url(../assets/images/background.png);
+}
+#roma2r_default {
+  background-image: url(../assets/images/background/romasaga2r/roma2r_0.5.png);
+}
 }
 
 /*works.htmlの背景画像指定*/
@@ -937,7 +935,6 @@ footer p.rights {
   color: #fff; /* 文字色 */
   padding: 3px 0px;
   background-color: #0099cc;  /* 背景色 */
-  background-color: rgba(00,99,cc,0.1);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
 }
 
 #sclTbl tbody tr td{/* tbody 'td'のスタイル */
@@ -950,7 +947,6 @@ footer p.rights {
   color: #fff; /* 文字色 */
   padding: 3px 0px;
   background-color: #6699cc;  /* 背景色 */
-  background-color: rgba(00,99,cc,0.1);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
 }
 
 #horizontalTbl td{/* tbody 'td'のスタイル */

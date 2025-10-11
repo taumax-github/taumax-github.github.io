@@ -6,9 +6,9 @@ import AdUnitLandscape from '../components/AdUnitLandscape.astro';
 import { BASE_URL } from '../consts';
 
 export const bgEnum = Object.freeze({
-  default: "container",
-  roma2r: "roma2rcontainer",
   roma2r_rocbouquet: "roma2r_rocbouquet"
+  default: "default",
+  roma2r: "roma2r_default",
 })
 const { title,
   description,
@@ -58,9 +58,9 @@ let breadcrumb = {
     set:html={JSON.stringify(breadcrumb)}
   />
 
-  <body class="defaultbody">
+  <body class="defaultbody" id={background}>
     <!-- container -->
-    <div id={background}>
+    <div id="container">
     <div id="contents">
     <div id="main">
       <span id="pagetop"></span>

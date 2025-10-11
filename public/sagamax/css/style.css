@@ -127,7 +127,6 @@ img {
 th {
   padding: 3px 7px;	/*上下、左右への余白*/
   background-color: #0099cc;  /* 背景色 */
-  background-color: rgba(00,99,cc,0.1);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
 }
 
 td {
@@ -932,7 +931,6 @@ footer p.rights {
   color: #fff; /* 文字色 */
   padding: 3px 0px;
   background-color: #0099cc;  /* 背景色 */
-  background-color: rgba(00,99,cc,0.1);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
 }
 
 #sclTbl tbody tr td{/* tbody 'td'のスタイル */
@@ -945,7 +943,6 @@ footer p.rights {
   color: #fff; /* 文字色 */
   padding: 3px 0px;
   background-color: #6699cc;  /* 背景色 */
-  background-color: rgba(00,99,cc,0.1);	/*背景色。0,0,0は黒の事で0.7は色が70%出た状態の事。*/
 }
 
 #horizontalTbl td{/* tbody 'td'のスタイル */
