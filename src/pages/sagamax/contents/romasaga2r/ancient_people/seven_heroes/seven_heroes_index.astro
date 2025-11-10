@@ -4,6 +4,7 @@ import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/M
 import { rightsEnum } from '../../../../../../components/Footer.astro';
 import type { index } from '../../../../../../components/HeaderIndex.astro';
 import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
+import SevenHeroesAbsorb from '../../seven_heroes_absorb.astro';
 
 export const roma2r7heroesIndexPagebc: Breadcrumb = {
   name: "七英雄",
@@ -51,7 +52,14 @@ const indexList: index[] = [
     運河要塞はボスが「ボクオーン様」とか言ってたのでまあボクオーンが関与しているんだろうなぁ。<br/>
     クジンシーはひゃっはーしたいだけに見える。<br/>
   </p>
+
+  <br/>
+  <SevenHeroesAbsorb />
+
+  <br/>
+  <h3 class="title">参考</h3>
   <ul>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%B8%E5%8F%8E%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【吸収の法】</a></li>
     <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory`>七英雄の記憶</a></li>
     <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/wagnas`>ワグナス</a></li>
     <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/noel`>ノエル</a></li>
