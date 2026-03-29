@@ -1,0 +1,255 @@
+---
+import { Image } from 'astro:assets';
+import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../../components/Footer.astro';
+import type { index } from '../../../../../../components/HeaderIndex.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
+import { roma2r7heroesIndexPagebc } from './seven_heroes_index.astro';
+import pose_form1 from './img/dantarg/pose_form1.jpg';
+import pose_form2 from './img/dantarg/pose_form2.jpg';
+import pose_form3 from './img/dantarg/pose_form3.jpg';
+import pose_form4 from './img/dantarg/pose_form4.jpg';
+import 目的は強くなること1 from './img/dantarg/目的は強くなること1.jpg';
+import 目的は強くなること2 from './img/dantarg/目的は強くなること2.jpg';
+import 強者を求める_古代人1 from './img/dantarg/強者を求める_古代人1.jpg';
+import 強者を求める_古代人2 from './img/dantarg/強者を求める_古代人2.jpg';
+import ノエルとの出会い from './img/dantarg/ノエルとの出会い.jpg';
+import 古代人ダンターグがいる場所 from './img/dantarg/古代人ダンターグがいる場所.jpg';
+import エンシェントターム1 from './img/dantarg/エンシェントターム1.jpg';
+import エンシェントターム2 from './img/dantarg/エンシェントターム2.jpg';
+import エンシェントターム from './img/dantarg/エンシェントターム.jpg';
+import エネミー図鑑_第一形態 from './img/dantarg/エネミー図鑑_第一形態.jpg';
+import エネミー図鑑_第二形態 from './img/dantarg/エネミー図鑑_第二形態.jpg';
+import エネミー図鑑_第三形態 from './img/dantarg/エネミー図鑑_第三形態.jpg';
+import エネミー図鑑_第四形態 from './img/dantarg/エネミー図鑑_第四形態.jpg';
+import エネミー図鑑_最終形態 from './img/dantarg/エネミー図鑑_最終形態.jpg';
+import エネミー図鑑_古代人 from './img/dantarg/エネミー図鑑_古代人.jpg';
+import 最終形態1 from './img/dantarg/最終形態1.jpg';
+import 最終形態2 from './img/dantarg/最終形態2.jpg';
+import 最終形態3 from './img/dantarg/最終形態3.jpg';
+import critical from './img/dantarg/critical.jpg';
+import ナゼール from './img/dantarg/ナゼール.png';
+import ヒラガの世代 from './img/dantarg/ヒラガの世代.jpg';
+import 倒した後_ラスダン以外1 from './img/dantarg/倒した後_ラスダン以外1.jpg';
+import 倒した後_ラスダン以外2 from './img/dantarg/倒した後_ラスダン以外2.jpg';
+import 倒した後_ラスダン以外3 from './img/dantarg/倒した後_ラスダン以外3.jpg';
+import 倒した後_ラスダン以外4 from './img/dantarg/倒した後_ラスダン以外4.jpg';
+import 倒した後_ラスダン1 from './img/dantarg/倒した後_ラスダン1.jpg';
+import 倒した後_ラスダン2 from './img/dantarg/倒した後_ラスダン2.jpg';
+import 倒した後_ラスダン3 from './img/dantarg/倒した後_ラスダン3.jpg';
+import 古代人から見た七英雄の人物像1 from './img/古代人から見た七英雄の人物像1.jpg';
+
+export const roma2rDantargPagebc: Breadcrumb = {
+  name: "ダンターグ",
+  item: `${BASE_URL_ROMA2R}/ancient_people/seven_heroes/dantarg`
+};
+const breadcrumbList: Breadcrumb[] = [
+  roma2rIndexPagebc,
+  roma2r7heroesIndexPagebc,
+  roma2rDantargPagebc
+];
+const indexList: index[] = [
+  { id: "#personality", name: "人物像" },
+  { id: "#system", name: "システム面" },
+  { id: "#battle_pose", name: "戦闘前ポーズ" },
+  { id: "#enemy_book", name: "エネミー図鑑" },
+  { id: "#before_battle", name: "戦闘開始前" },
+  { id: "#after_defeat", name: "倒した後" },
+];
+---
+
+<MainLayout
+  title="ダンターグ"
+  description="ロマサガ2リメイクのダンターグについて"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r_dantarg}
+  rights={rightsEnum.roma2r}>
+
+  <br>
+  <h3 class="title" id="personality">ダンターグの人物像</h3>
+  <p>
+    七英雄の名前は山手線の駅名を逆から読んだもので、ダンターグは五反田から来ている。<br>
+    ナゼール地方の各地で獣系のモンスターを吸収しながら力を蓄えている。<br>
+    ひたすら強さを追い求める脳筋で、古代人に対する復讐は考えておらず、ただ強さを追い求めている。<br>
+    <Image src={目的は強くなること1} width="700" alt="目的は強くなること1" /><br>
+    <Image src={目的は強くなること2} width="700" alt="目的は強くなること2" /><br>
+
+    <br>
+    強さを追い求めるという点は、古代人の時からブレずに一貫している。<br>
+    画像は恐妃の都のダンターグと戦闘前の会話。<br>
+    <Image src={強者を求める_古代人1} width="700" alt="強者を求める_古代人1" /><br>
+    <Image src={強者を求める_古代人2} width="700" alt="強者を求める_古代人2" /><br>
+
+    <br>
+    古代人から見ても、ダンターグは「暴れ者」とされている。<br>
+    <Image src={古代人から見た七英雄の人物像1} width="700" alt="古代人から見た七英雄の人物像1" /><br>
+
+    <br>
+    古代人時代のダンターグが七英雄と出会ったのは、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#four`>七英雄の記憶4</a>でアリ討伐中、ピンチに陥ったノエルを助けたこの場面。<br>
+    <Image src={エンシェントターム2} width="700" alt="エンシェントターム2" /><br>
+    <Image src={ノエルとの出会い} width="700" alt="ノエルとの出会い" /><br>
+
+    <br>
+    恐妃の都で古代人姿のダンターグがいる場所は、この場面と同じ場所だと思われる。<br>
+    <Image src={古代人ダンターグがいる場所} width="700" alt="古代人ダンターグがいる場所" /><br>
+
+    <br>
+    余談ですが、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#four`>七英雄の記憶4</a>でノエルとダンターグが戦ったタームは、色合い的に恐妃の都にいたエンシェントタームだと思われる。<br>
+    <Image src={エンシェントターム1} width="700" alt="エンシェントターム1" /><br>
+    <Image src={エンシェントターム} width="700" alt="エンシェントターム" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="system">システム面</h3>
+  <p>
+    ダンターグはナゼール地方で主に獣系のモンスターを吸収している。自身も獣化してしまったのか、ビーストスレイヤーでクリティカルが入る。<br>
+    <Image src={critical} width="700" alt="critical" /><br>
+    <br>
+    地層が地属性の時、ターン終了時にHPが回復する。<br>
+
+    <br>
+    ダンターグの形態の進化は他の七英雄と比べて特殊で、全七英雄の中で形態数が最も多い。<br>
+    ダンターグはナゼール地方にある各ダンジョンのボスモンスターを吸収することで形態が進むようになっている。<br>
+    年代が進むと、東のダンジョン→南のダンジョン→詩人の洞窟の順に遠征し、その度に各ダンジョンのモンスターを吸収することで形態が進化するようになっている。<br>
+    遠征する前に各ダンジョンのボスを撃破することでダンターグの進化を阻止することができる。<br>
+    <Image src={ナゼール} width="700" alt="ナゼール" /><br>
+
+    <br>
+    ダンターグの出現場所は、1回目の遭遇時は東のダンジョン固定だが、2回目以降は年代が進むごとに出現場所が変化する。<br>
+    ソーモンのヒラガに話しかけると「私はヒラガXX世です。」と言って来る。このヒラガの世代を確認することでダンターグが今どこにいるのかがわかる。<br>
+    <Image src={ヒラガの世代} width="700" alt="ヒラガの世代" /><br>
+    <br>
+    南のダンジョンと詩人の洞窟は、ダンターグが遠征する前と後でボスが変化し、遠征後はダンターグの形態が進化する。<br>
+    遠征前に各ダンジョンのボスを撃破することでダンターグの進化を阻止することができる。<br>
+    但しラストダンジョンは第四形態固定。<br>
+  </p>
+
+  <div style="margin: 20px;">
+    <div class="slider">
+      <table border="1">
+        <tr><th rowspan="2">ダンターグ<br>の形態</th><th rowspan="2">ヒラガ<br>の世代</th><th rowspan="2">2回目以降<br>出現場所</th><th colspan="2">各ダンジョンのボス</th></tr>
+        <tr><th>南のダンジョン</th><th>詩人の洞窟</th></tr>
+        <tr><td>第一形態</td><td>3～8世</td><td>子供と子ムー</td><td>ホーンリザード</td><td>クラブライダー</td></tr>
+        <tr><td>第二形態</td><td>9～15世</td><td>子供と子ムー</td><td>ホーンリザード</td><td>クラブライダー</td></tr>
+        <tr><td rowspan="2">第三形態</td><td>16世</td><td>南のダンジョン</td><td>ダンターグ</td><td>クラブライダー</td></tr>
+        <tr><td>17～23世</td><td>子供と子ムー</td><td>ジャン</td><td>クラブライダー</td></tr>
+        <tr><td rowspan="2">第四形態<span style="color: yellow">（※）</span></td><td>24世</td><td>詩人の洞窟</td><td>ジャン</td><td>ダンターグ</td></tr>
+        <tr><td>25世以降</td><td>子供と子ムー</td><td>ジャン</td><td>首長竜</td></tr>
+      </table>
+    </div>
+    <span style="color: yellow">※第3形態への進化を阻止していても第2形態から一気に第4形態へ進化する。</span><br>
+  </div>
+
+  <br>
+  <p>
+    ダンターグは戦闘中にHPゲージを一つ削ると形態が一段階進化する。<br>
+    第四形態で遭遇すると、原作にはなかった最終形態に進化する。<br>
+    <Image src={最終形態1} width="700" alt="最終形態1" /><br>
+    <Image src={最終形態2} width="700" alt="最終形態2" /><br>
+    <Image src={最終形態3} width="700" alt="最終形態3" /><br>
+
+    <br>
+    第三形態はデストロイヤーを、第四形態と最終形態はデストロイヤーと超銅金の盾をドロップする。デストロイヤーはダンターグからしか手に入らない斧なので、アイテムコンプしたい人は注意。<br>
+
+    <br>
+    初登場<br>
+    戦闘中<br>
+    戦闘終了時<br>
+  </p>
+
+  <br>
+  <h3 class="title" id="before_battle">戦闘開始前の台詞</h3>
+  <h4 class="title">初回（東のダンジョン）</h4>
+  <p>
+    <span style="color: yellow">ここは動画の方がいいかな。</span><br>
+
+  </p>
+
+  <br>
+  <h4 class="title">2回目以降（ラストダンジョン以外）</h4>
+  <p>
+    <span style="color: yellow">ここは動画の方がいいかな。</span><br>
+  </p>
+
+  <br>
+  <h4 class="title">ラストダンジョン</h4>
+  <p>
+    <span style="color: yellow">ここは動画の方がいいかな。</span><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="after_defeat">倒した後の台詞</h3>
+  <h4 class="title">ラスダン以外</h4>
+  <p>
+    <span style="color: yellow">ここは動画の方がいいかな。</span><br>
+    <Image src={倒した後_ラスダン以外1} width="700" alt="倒した後_ラスダン以外1" /><br>
+    <Image src={倒した後_ラスダン以外2} width="700" alt="倒した後_ラスダン以外2" /><br>
+    <Image src={倒した後_ラスダン以外3} width="700" alt="倒した後_ラスダン以外3" /><br>
+    <Image src={倒した後_ラスダン以外4} width="700" alt="倒した後_ラスダン以外4" /><br>
+  </p>
+
+  <br>
+  <h4 class="title">ラスダン</h4>
+  <p>
+    <span style="color: yellow">ここは動画の方がいいかな。</span><br>
+    <Image src={倒した後_ラスダン1} width="700" alt="倒した後_ラスダン1" /><br>
+    <Image src={倒した後_ラスダン2} width="700" alt="倒した後_ラスダン2" /><br>
+    <Image src={倒した後_ラスダン3} width="700" alt="倒した後_ラスダン3" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="battle_pose">戦闘前ポーズ</h3>
+  <p>
+    <span style="color: yellow">原作ポーズの画像が欲しい</span><br>
+    第一形態<br>
+    <Image src={pose_form1} width="500" alt="pose_form1" /><br>
+
+    <br>
+    第二形態<br>
+    <Image src={pose_form2} width="500" alt="pose_form2" /><br>
+
+    <br>
+    第三形態<br>
+    <Image src={pose_form3} width="500" alt="pose_form3" /><br>
+
+    <br>
+    第四形態<br>
+    <Image src={pose_form4} width="500" alt="pose_form4" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="enemy_book">エネミー図鑑</h3>
+  <p>
+    第一形態<br>
+    <Image src={エネミー図鑑_第一形態} width="500" alt="エネミー図鑑_第一形態" /><br>
+    <br>
+    第二形態<br>
+    <Image src={エネミー図鑑_第二形態} width="500" alt="エネミー図鑑_第二形態" /><br>
+    <br>
+    第三形態<br>
+    <Image src={エネミー図鑑_第三形態} width="500" alt="エネミー図鑑_第三形態" /><br>
+    <br>
+    第四形態<br>
+    <Image src={エネミー図鑑_第四形態} width="500" alt="エネミー図鑑_第四形態" /><br>
+    <br>
+    最終形態<br>
+    <Image src={エネミー図鑑_最終形態} width="500" alt="エネミー図鑑_最終形態" /><br>
+    <br>
+    古代人<br>
+    <Image src={エネミー図鑑_古代人} width="500" alt="エネミー図鑑_古代人" /><br>
+  </p>
+
+  <br>
+  <h3 class="title">参考</h3>
+  <ul>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%80%E3%83%B3%E3%82%BF%E3%83%BC%E3%82%B0%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【ダンターグ】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%B8%E5%8F%8E%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【吸収の法】</a></li>
+    <li><a href="https://game8.jp/romasaga2-remake/650688" target="_blank" rel="noopener noreferrer">Game8 【ロマサガ2 リメイク】ダンターグの攻略と出現マップ【リベンジオブザセブン】</a></li>
+    <li><a href="https://kamikouryaku.com/romancingsaga2r/?&d1aaae1fed" target="_blank" rel="noopener noreferrer">ロマサガ2リベンジオブザセブン | 神攻略wiki ボス攻略</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%80%E3%83%B3%E3%82%BF%E3%83%BC%E3%82%B0%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【ダンターグ】</a></li>
+    <li><a href="https://www.jp.square-enix.com/rs2r/character/dantarg/" target="_blank" rel="noopener noreferrer">SQUARE ENIX ダンターグ</a></li>
+  </ul>
+</MainLayout>

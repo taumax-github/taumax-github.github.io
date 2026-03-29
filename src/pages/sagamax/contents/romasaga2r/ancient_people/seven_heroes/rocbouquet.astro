@@ -26,7 +26,30 @@ import 古代人ブーケ_いつも背中を from './img/rocbouquet/古代人ブ
 import 古代人ブーケ_世界を救う from './img/rocbouquet/古代人ブーケ_世界を救う.jpg'
 import 古代人_仲間に入れて from './img/rocbouquet/古代人_仲間に入れて.jpg'
 import 仲間になった場所 from './img/rocbouquet/仲間になった場所.jpg'
-import { BRAND } from 'astro:schema';
+import 魅了の力 from './img/rocbouquet/魅了の力.jpg'
+import 女王様ごっこ from './img/rocbouquet/女王様ごっこ.jpg'
+import 霊体を纏っている from './img/rocbouquet/霊体を纏っている.jpg'
+import 襲って来る水龍 from './img/rocbouquet/襲って来る水龍.jpg'
+import 羽はワグナス意識してる from './img/rocbouquet/羽はワグナス意識してる？.jpg'
+import ワグナス from './img/rocbouquet/ワグナス.jpg'
+import ラスダン戦闘前1 from './img/rocbouquet/ラスダン戦闘前1.jpg'
+import ラスダン戦闘前2 from './img/rocbouquet/ラスダン戦闘前2.jpg'
+import ラスダン戦闘前3 from './img/rocbouquet/ラスダン戦闘前3.jpg'
+import ラスダン戦闘前4 from './img/rocbouquet/ラスダン戦闘前4.jpg'
+import エンディングのブーケと水龍 from './img/rocbouquet/エンディングのブーケと水龍.jpg'
+import 倒した_沈んだ塔1 from './img/rocbouquet/倒した_沈んだ塔1.jpg'
+import 倒した_沈んだ塔2 from './img/rocbouquet/倒した_沈んだ塔2.jpg'
+import 倒した_沈んだ塔3 from './img/rocbouquet/倒した_沈んだ塔3.jpg'
+import 倒した_沈んだ塔4 from './img/rocbouquet/倒した_沈んだ塔4.jpg'
+import 倒した_沈んだ塔5 from './img/rocbouquet/倒した_沈んだ塔5.jpg'
+import 倒した_エイルネップの塔1 from './img/rocbouquet/倒した_エイルネップの塔1.jpg'
+import 倒した_エイルネップの塔2 from './img/rocbouquet/倒した_エイルネップの塔2.jpg'
+import 倒した_エイルネップの塔3 from './img/rocbouquet/倒した_エイルネップの塔3.jpg'
+import 倒した_エイルネップの塔4 from './img/rocbouquet/倒した_エイルネップの塔4.jpg'
+import エイルネップ神殿の映像を見たロックブーケ1 from './img/rocbouquet/エイルネップ神殿の映像を見たロックブーケ1.jpg'
+import エイルネップ神殿の映像を見たロックブーケ2 from './img/rocbouquet/エイルネップ神殿の映像を見たロックブーケ2.jpg'
+import エイルネップ神殿のカイザーアント1 from './img/rocbouquet/エイルネップ神殿のカイザーアント1.jpg'
+import エイルネップ神殿のカイザーアント2 from './img/rocbouquet/エイルネップ神殿のカイザーアント2.jpg'
 
 export const roma2rRocbouquetPagebc: Breadcrumb = {
   name: "ロックブーケ",
@@ -38,7 +61,15 @@ const breadcrumbList: Breadcrumb[] = [
   roma2rRocbouquetPagebc
 ];
 const indexList: index[] = [
-  { id: "#rocbouquet", name: "ロックブーケ" },
+  { id: "#personality", name: "人物像" },
+  { id: "#temptation", name: "テンプテーション" },
+  { id: "#purpose", name: "ロックブーケの目的" },
+  { id: "#last_dungeon", name: "ラストダンジョン" },
+  { id: "#ancient_rocbouquet", name: "古代人時代" },
+  { id: "#battle_pose", name: "戦闘前ポーズ" },
+  { id: "#enemy_book", name: "エネミー図鑑" },
+  { id: "#before_battle", name: "戦闘開始前" },
+  { id: "#after_defeat", name: "倒した後" },
 ];
 ---
 
@@ -51,98 +82,210 @@ const indexList: index[] = [
   background={bgEnum.roma2r_rocbouquet}
   rights={rightsEnum.roma2r}>
 
-  <br/>
-  <span id="rocbouquet"></span>
-  <h3 class="title">ロックブーケ</h3>
+  <br>
+  <h3 class="title" id="personality">人物像</h3>
   <p>
-    ロックブーケは七英雄の紅一点で<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/noel`>ノエル</a>の妹<br/>
-    人間の頃の姿をほぼ保っている（ロックブーケとノエルのみ）。<br/>
-    七英雄の名前は山手線の駅名を逆から読んだもので、ロックブーケは池袋から来ている。<br/>
-    第一形態では自身の周囲に霊体を纏っていることから、霊体系のモンスターを吸収していたようである。<br/>
+    七英雄の名前は山手線の駅名を逆から読んだもので、ロックブーケは池袋から来ている。<br>
+    ロックブーケは七英雄の紅一点で<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/noel`>ノエル</a>の妹。<br>
 
-    <br/>
-    第一形態<br/>
-    <Image src={pose_form1} width="500" alt="pose_form1" /><br/>
-    <br/>
-    第二形態<br/>
-    羽が生える。<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/wagnas`>ワグナス</a>を意識している？<br/>
-    <Image src={pose_form2} width="500" alt="pose_form2" /><br/>
+    <br>
+    人間の頃の姿をほぼ保っている（ロックブーケとノエルのみ）。<br>
+    第一形態では、戦闘モードに入ると自身の周囲に霊体を纏うことから、霊体系のモンスターを吸収していたようである。<br>
+    <Image src={霊体を纏っている} width="700" alt="霊体を纏っている" /><br>
 
-    <br/>
-    エイルネップの塔のカイザーアントはブーケが先回りしていようといまいと襲ってくるので魅了されたわけではない？<span style="color: yellow">要確認</span><br/>
-    エイルネップの塔の事を調べようとしているが、守護者には術もテンプテーションも効かないので塔の事が調べられずに困っている。<br/>
-    以下はエネミー図鑑の守護者の画像。物理攻撃以外に耐性があることがわかる。術主体のロックブーケにとっては天敵。<br/>
-    恐らく古代人の魔力でここに置かれたものなのだと思われる。<br/>
-    <Image src={守護者} width="500" alt="守護者" /><br/>
-
-    <br/>
-    <span style="color: yellow">エイルネップの男性を魅了し、その町の女性（アマゾネス）との断絶を生んだ元凶</span><br/>
-
-    <br/>
-    ワグナスにガチ恋している。<br/>
-    第二形態で羽生えるのってもしかしてワグナスに寄せてる・・・？若干蝶みたいな形してる気もするし（妄想です）。<br/>
-    <br/>
-    守護者を倒す依頼を断ると、女性又は性別不明の皇帝（リメイクの場合はネレイド、イーリス、コッペリア）の場合は残念そうなセリフを呟くものの、それ以上無理強いをしてくることはない。テンプテーションで魅了できないので強気に行けないのだろう。<br/>
-    <Image src={女皇帝_何ともできない} width="500" alt="女皇帝_何ともできない" /><br/>
-    <Image src={女皇帝_残念} width="500" alt="女皇帝_残念" /><br/>
-
-    <br/>
-    男性皇帝（リメイクの場合はサラマンダーとモールも対象）の場合は突然ぶちぎれてその場で襲いかかってくる<span style="color: gray">（短気だな・・・）</span>。テンプテーションで魅了できるので強気なのだろう。<br/>
-
-    <Image src={男皇帝_何ともできない} width="500" alt="男皇帝_何ともできない" /><br/>
-    <Image src={男皇帝_そんなウソ} width="500" alt="男皇帝_そんなウソ" /><br/>
-    <Image src={男皇帝_無理にでも} width="500" alt="男皇帝_無理にでも" /><br/>
-
-    <br/>
-    負けるとそのままエイルネップ神殿に連れていかれ、守護者と戦うことになる。<br/>
-    <Image src={男皇帝_どちらが上か} width="500" alt="男皇帝_どちらが上か" /><br/>
-    <Image src={男皇帝_これからは私のために} width="500" alt="男皇帝_これからは私のために" /><br/>
-    <Image src={男皇帝_エイルネップ神殿} width="500" alt="男皇帝_エイルネップ神殿" /><br/>
-    <Image src={男皇帝_頑張って} width="500" alt="男皇帝_頑張って" /><br/>
-    <br/>
-    余談だけどこのロックブーケ可愛くないですか？<br/>
-    <Image src={何とかして} width="500" alt="何とかして" /><br/>
+    <br>
+    ワグナスに想いを寄せている。<br>
+    第二形態で羽が生えるのは<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/wagnas`>ワグナス</a>を意識している？（妄想です）。<br>
+    <Image src={羽はワグナス意識してる} width="700" alt="羽はワグナス意識してる？" /><br>
+    <Image src={ワグナス} width="700" alt="ワグナス" /><br>
   </p>
 
-  <br/>
-  <h3 class="title">エネミー図鑑</h3>
+  <br>
+  <h3 class="title" id="temptation">テンプテーション</h3>
   <p>
-    第一形態<br/>
-    <Image src={図鑑第一形態ロックブーケ} width="500" alt="図鑑第一形態ロックブーケ" /><br/>
-    <br/>
-    第二形態<br/>
-    <a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/wagnas`>ワグナス</a>を意識したかのような、蝶の形に似た羽が生える。<br/>
-    <Image src={図鑑第二形態ロックブーケ} width="500" alt="図鑑第二形態ロックブーケ" /><br/>
-    <br/>
-    古代人<br/>
-    <Image src={図鑑古代人ロックブーケ} width="500" alt="図鑑第古代人ロックブーケ" /><br/>
+    ロックブーケの最大の特徴は男性を魅了する能力、テンプテーション。<br>
+    この力を使ってエイルネップの男性を魅了し、かしずかせている。<br>
+    <Image src={魅了の力} width="700" alt="魅了の力" /><br>
+
+    <br>
+    上の画像でロックブーケが座っているのは、エイルネップの塔の最深部、ロックブーケがラッフルツリーに捕らえられてる風を装って女王様ごっこしていた時の椅子っぽい。<br>
+    <Image src={女王様ごっこ} width="700" alt="女王様ごっこ" /><br>
+
+    <br>
+    エイルネップ神殿の事を調べようとしているが、入り口を守る守護者には術もテンプテーションも効かないので神殿の事を調べられずに困っている。<br>
+    以下はエネミー図鑑の守護者の画像。物理攻撃以外に耐性があることがわかる。術主体のロックブーケにとっては天敵。<br>
+    恐らく古代人の魔力でここに置かれたものなのだと思われる。<br>
+    <Image src={守護者} width="500" alt="守護者" /><br>
+
+    <br>
+    ローックブーケに会う前にこの守護者を倒して先に進み、沈んだ塔まで先回りで進むことができる。<br>
+    この場合、沈んだ塔最奥にいる水龍から昔話を聞くことができる。<br>
+    <span style="color: yellow">↓この動画は別ページにおいてここはリンクを張るだけにするか悩んでいる。</span><br>
   </p>
 
-  <br/>
-  <h3 class="title">古代人ロックブーケ</h3>
+  <br>
+  <div class="youtube">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/bT1E1z2QxWY?si=9zXjwH4jbbPhCGla" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <br>
   <p>
-    <Image src={古代人ブーケ_いつも背中を} width="500" alt="古代人ブーケ_いつも背中を" /><br/>
-    <Image src={古代人ブーケ_世界を救う} width="500" alt="古代人ブーケ_世界を救う" /><br/>
+    上の動画で水龍は「七英雄が送り出された時、塔が上手く作動せず、七英雄は行方不明になった。」と言っているが、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#thirteen`>七英雄の記憶13</a>を見ればわかるように、実際には大神官の陰謀で異世界に送り出されている。<br>
+    大神官の権力で事故ということにして隠蔽されたということだろう。<br>
+    <span style="color: yellow">↑この動画も別ページにおいてここはリンクを張るだけにするか悩んでいる。</span><br>
+    <span style="color: yellow">やるにしても七英雄の記憶はリンクではなく動画を埋め込んだ方がいい気もする。</span><br>
 
-    <br/>
-    画像は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#nine`>七英雄の記憶9</a>の画像。古代人ブーケがいる場所は、ロックブーケがターム殲滅戦に合流した時の場所だということがわかる。<br/>
-    <Image src={古代人_仲間に入れて} width="500" alt="古代人_仲間に入れて" /><br/>
-    <Image src={仲間になった場所} width="500" alt="仲間になった場所" /><br/>
+    <br>
+    <span style="color: yellow">一回男性皇帝で負けると男性皇帝ではもう挑めないんだっけ？うろ覚え。</span><br>
 
-    <br/>
-    地層は風<br/>
-    ラスダン前七英雄<br/>
-    ラスダンの七英雄<br/>
-    古代人Verの七英雄<br/>
-    初登場<br/>
-    戦闘中<br/>
-    戦闘終了時<br/>
+    <br>
+    ロックブーケが沈んだ塔にいる状態で先の水龍の所に行くと、水龍が襲ってくる。<br>
+    ロックブーケに魅了されたということなのだろう。<br>
+    <Image src={襲って来る水龍} width="700" alt="襲って来る水龍" /><br>
+
+    <br>
+    エンディングに出てくる以下のイラストが、ロックブーケと魅了された水龍を表現していて好きです。<br>
+    <Image src={エンディングのブーケと水龍} width="700" alt="エンディングのブーケと水龍" /><br>
+
+    <br>
+    エイルネップ神殿のカイザーアントは、ブーケに先回りしようがしまいが関係なく襲ってくるので、魅了されたわけではなさそう。<br>
+    <Image src={エイルネップ神殿のカイザーアント1} width="700" alt="エイルネップ神殿のカイザーアント1" /><br>
+    <Image src={エイルネップ神殿のカイザーアント2} width="700" alt="エイルネップ神殿のカイザーアント2" /><br>
+
+    <br>
+    守護者を倒す依頼を断ると、女性又は性別不明の皇帝（リメイクの場合はネレイド、イーリス、コッペリア）の場合は残念そうなセリフを呟くものの、それ以上無理強いをしてくることはない。テンプテーションで魅了できないので強気に行けないのだろう。<br>
+    <Image src={何とかして} width="700" alt="何とかして" /><br>
+    <Image src={女皇帝_何ともできない} width="700" alt="女皇帝_何ともできない" /><br>
+    <Image src={女皇帝_残念} width="700" alt="女皇帝_残念" /><br>
+
+    <br>
+    男性皇帝（リメイクの場合はサラマンダーとモールも対象）の場合は突然ぶちぎれてその場で襲いかかってくる<span style="text-decoration: line-through">（すげぇ短気だな・・・）</span>。テンプテーションで魅了できるので強気なのだろう。<br>
+
+    <Image src={男皇帝_何ともできない} width="700" alt="男皇帝_何ともできない" /><br>
+    <Image src={男皇帝_そんなウソ} width="700" alt="男皇帝_そんなウソ" /><br>
+    <Image src={男皇帝_無理にでも} width="700" alt="男皇帝_無理にでも" /><br>
+
+    <br>
+    負けるとそのままエイルネップ神殿に連れていかれ、守護者と戦うことになる。<br>
+    <Image src={男皇帝_どちらが上か} width="700" alt="男皇帝_どちらが上か" /><br>
+    <Image src={男皇帝_これからは私のために} width="700" alt="男皇帝_これからは私のために" /><br>
+    <Image src={男皇帝_エイルネップ神殿} width="700" alt="男皇帝_エイルネップ神殿" /><br>
+    <Image src={男皇帝_頑張って} width="700" alt="男皇帝_頑張って" /><br>
   </p>
 
-  <br/>
+  <br>
+  <h3 class="title" id="purpose">ロックブーケの目的</h3>
+  <p>
+    ロックブーケは兄ノエルと同じく塔の秘密を調べようとしていた。<br>
+    そのためエイルネップ神殿を調べようとしているが、入り口を守る守護者には術もテンプテーションも効かないので神殿の事を調べられずに困っている。<br>
+    <span style="text-decoration: line-through">（ラッフルツリーを使って女王様ごっこをしたかったわけではない）</span><br>
+    エイルネップ神殿の最深部で見れる映像。塔が2つあり、どこかにもう一つ塔があることがわかる。<br>
+  </p>
+
+  <div class="youtube">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/nSJpFpkQXbs?si=RpshbzJwt43tCHYE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <br>
+  <p>
+    この映像を見たロックブーケは「やっとわかったわ！」と言ってダッシュでどこか（＝沈んだ塔）に行ってしまう。<br>
+    <Image src={エイルネップ神殿の映像を見たロックブーケ1} width="700" alt="エイルネップ神殿の映像を見たロックブーケ1" /><br>
+    <Image src={エイルネップ神殿の映像を見たロックブーケ2} width="700" alt="エイルネップ神殿の映像を見たロックブーケ2" /><br>
+    <span style="color: yellow">昔自分が書いた七英雄の記事では『この映像から、「別次元への移動を行うことができる」ということと、「隠れた場所に塔がある」ということがわかります。』と書いている。</span><br>
+
+    <br>
+    沈んだ塔でロックブーケを倒したときの台詞。塔の秘密をつかむために活動していたということがわかる。<br>
+    <span style="color: yellow">塔の秘密については別ページにまとめてリンクを張る。</span><br>
+    <Image src={倒した_沈んだ塔1} width="700" alt="倒した_沈んだ塔1" /><br>
+    <Image src={倒した_沈んだ塔2} width="700" alt="倒した_沈んだ塔2" /><br>
+    <Image src={倒した_沈んだ塔3} width="700" alt="倒した_沈んだ塔3" /><br>
+    <Image src={倒した_沈んだ塔4} width="700" alt="倒した_沈んだ塔4" /><br>
+    <Image src={倒した_沈んだ塔5} width="700" alt="倒した_沈んだ塔5" /><br>
+
+  <br>
+  <p>
+    エイルネップの塔で倒した場合の台詞。<br>
+    沈んだ塔に辿り着いていないので、「やっと塔の秘密をつかんだのに」が「あと少しで塔の秘密がつかめたのに」に変わっていたり、「秘密は・・・ここに・・・」という台詞が無かったり、状況に合わせて微妙に台詞が変わっている。<br>
+    <Image src={倒した_エイルネップの塔1} width="700" alt="倒した_エイルネップの塔1" /><br>
+    <Image src={倒した_エイルネップの塔2} width="700" alt="倒した_エイルネップの塔2" /><br>
+    <Image src={倒した_エイルネップの塔3} width="700" alt="倒した_エイルネップの塔3" /><br>
+    <Image src={倒した_エイルネップの塔4} width="700" alt="倒した_エイルネップの塔4" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="last_dungeon">ラストダンジョン</h3>
+  <p>
+    ロックブーケを最後に残した場合のラストダンジョンでの台詞。<br>
+    ノエル、ワグナスを倒した相手に自分が勝てるわけがないとわかりつつ、血の誓いのために戦う姿が健気でいいですね。<br>
+    <Image src={ラスダン戦闘前1} width="700" alt="ラスダン戦闘前1" /><br>
+    <Image src={ラスダン戦闘前2} width="700" alt="ラスダン戦闘前2" /><br>
+    <Image src={ラスダン戦闘前3} width="700" alt="ラスダン戦闘前3" /><br>
+    <Image src={ラスダン戦闘前4} width="700" alt="ラスダン戦闘前4" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="ancient_rocbouquet">古代人時代</h3>
+  <p>
+    <Image src={古代人ブーケ_いつも背中を} width="700" alt="古代人ブーケ_いつも背中を" /><br>
+    <Image src={古代人ブーケ_世界を救う} width="700" alt="古代人ブーケ_世界を救う" /><br>
+
+    <br>
+    画像は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#nine`>七英雄の記憶9</a>の画像。古代人ブーケがいる場所は、ロックブーケがターム殲滅戦に合流した時の場所だということがわかる。<br>
+    <Image src={古代人_仲間に入れて} width="700" alt="古代人_仲間に入れて" /><br>
+    <Image src={仲間になった場所} width="700" alt="仲間になった場所" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="battle_pose">戦闘前ポーズ</h3>
+  <p>
+    第一形態<br>
+    <Image src={pose_form1} width="500" alt="pose_form1" /><br>
+    <br>
+    第二形態<br>
+    羽が生える。<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/wagnas`>ワグナス</a>を意識している？<br>
+    <Image src={pose_form2} width="500" alt="pose_form2" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="enemy_book">エネミー図鑑</h3>
+  <p>
+    第一形態<br>
+    <Image src={図鑑第一形態ロックブーケ} width="500" alt="図鑑第一形態ロックブーケ" /><br>
+    <br>
+    第二形態<br>
+    <a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/wagnas`>ワグナス</a>を意識したかのような、蝶の形に似た羽が生える。<br>
+    <Image src={図鑑第二形態ロックブーケ} width="500" alt="図鑑第二形態ロックブーケ" /><br>
+    <br>
+    古代人<br>
+    <Image src={図鑑古代人ロックブーケ} width="500" alt="図鑑古代人ロックブーケ" /><br>
+  </p>
+
+  <br>
+  地層は風<br>
+  ラスダン前七英雄<br>
+  ラスダンの七英雄<br>
+  古代人Verの七英雄<br>
+  初登場<br>
+  戦闘中<br>
+  戦闘終了時<br>
+
+  <br>
+  <h3 class="title" id="before_battle">戦闘開始前</h3>
+  <p>
+    <span style="color: yellow">ここは動画の方がいいかな。</span><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="after_defeat">倒した後</h3>
+  <p>
+    <span style="color: yellow">ここは動画の方がいいかな。</span><br>
+  </p>
+
+  <br>
   <h3 class="title">参考</h3>
   <ul>
     <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%AD%E3%83%83%E3%82%AF%E3%83%96%E3%83%BC%E3%82%B1%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【ロックブーケ】</a></li>
     <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%B8%E5%8F%8E%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【吸収の法】</a></li>
+    <li><a href="https://www.jp.square-enix.com/rs2r/character/rocbouquet/" target="_blank" rel="noopener noreferrer">SQUARE ENIX ロックブーケ</a></li>
   </ul>
 </MainLayout>

@@ -8,6 +8,8 @@ import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro
 import { roma2r7heroesIndexPagebc } from './seven_heroes_index.astro';
 import pose_form1 from './img/noel/pose_form1.jpg'
 import pose_form2 from './img/noel/pose_form2.jpg'
+import 赤竜波1 from './img/noel/赤竜波1.jpg'
+import 赤竜波2 from './img/noel/赤竜波2.jpg'
 import 赤竜隊と名付けた from './img/noel/赤竜隊と名付けた.jpg'
 import 久しぶりだな from './img/noel/久しぶりだな.jpg'
 import 戻ってきたのか from './img/noel/戻ってきたのか.jpg'
@@ -48,6 +50,21 @@ import 人間を超える力を from './img/noel/人間を超える力を.jpg'
 import 全力1 from './img/noel/全力1.jpg'
 import 全力2 from './img/noel/全力2.jpg'
 import 全力3 from './img/noel/全力3.jpg'
+import 和解01 from './img/noel/和解01.jpg'
+import 和解02 from './img/noel/和解02.jpg'
+import 和解03 from './img/noel/和解03.jpg'
+import 和解04 from './img/noel/和解04.jpg'
+import 和解05 from './img/noel/和解05.jpg'
+import 和解06 from './img/noel/和解06.jpg'
+import 和解07 from './img/noel/和解07.jpg'
+import 和解08 from './img/noel/和解08.jpg'
+import 和解09 from './img/noel/和解09.jpg'
+import 和解10 from './img/noel/和解10.jpg'
+import 戦闘1 from './img/noel/戦闘1.jpg'
+import 戦闘2 from './img/noel/戦闘2.jpg'
+import 戦闘3 from './img/noel/戦闘3.jpg'
+import 戦闘4 from './img/noel/戦闘4.jpg'
+import 戦闘5 from './img/noel/戦闘5.jpg'
 
 export const roma2rNoelPagebc: Breadcrumb = {
   name: "ノエル",
@@ -59,7 +76,15 @@ const breadcrumbList: Breadcrumb[] = [
   roma2rNoelPagebc
 ];
 const indexList: index[] = [
-  { id: "#noel", name: "ノエル" },
+  { id: "#personality", name: "人物像" },
+  { id: "#sister_complex", name: "話が分かるシスコン" },
+  { id: "#sagzer_relationship", name: "サグザーとの関係" },
+  { id: "#oaive_relationship", name: "オアイーブとの関係" },
+  { id: "#battle_pose", name: "戦闘前ポーズ" },
+  { id: "#enemy_book", name: "エネミー図鑑" },
+  { id: "#ancient_noel", name: "古代人" },
+  { id: "#before_battle", name: "戦闘開始前" },
+  { id: "#after_defeat", name: "倒した後" },
 ];
 ---
 
@@ -72,155 +97,215 @@ const indexList: index[] = [
   background={bgEnum.roma2r_noel}
   rights={rightsEnum.roma2r}>
 
-  <br/>
-  <span id="noel"></span>
-  <h3 class="title">ノエル</h3>
+  <br>
+  <h3 class="title" id="personality">人物像</h3>
   <p>
-    第一形態<br/>
-    体術主体で攻撃してくるため、武器は持っていない。<br/>
-    <Image src={pose_form1} width="500" alt="pose_form1" /><br/>
-    <br/>
-    第二形態<br/>
-    剣術主体で攻撃してくるため、剣を持っている。<br/>
-    <Image src={pose_form2} width="500" alt="pose_form2" /><br/>
+    七英雄の名前は山手線の駅名を逆から読んだもので、ノエルは上野から来ている。<br>
 
-    <br/>
-    ノエルは<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/rocbouquet`>ロックブーケ</a>の兄<br/>
-    七英雄の名前は山手線の駅名を逆から読んだもので、ノエルは上野から来ている。<br/>
-    人間の頃の姿をほぼ保っている（ロックブーケとノエルのみ）。<br/>
-    何を吸収したんだっけ？<br/>
-    七英雄の記憶を見ればわかる通り、七英雄はクィーンを倒すため、吸収の法で様々なモンスターを吸収している。それぞれメインで吸収しているモンスターの系統が存在し、それに合わせて外見も変化しているが、ノエル（とロックブーケ）は、外見からは何の種族をメインの吸収対象としているのかが解らない。<br/>
-    <a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%8E%E3%82%A8%E3%83%AB%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki*</a> によると、内部データでは竜の種族属性を持つらしく、竜系のモンスターをメインの吸収対象としていたと考えられる。<br/>
-    ノエルは『赤竜隊』という名前の部隊の隊長であり、第一形態のノエル（体術）は後半、赤竜破を使用してくることから、竜に対して何かしらこだわりがあるのかもしれない。<br/>
-    以下は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#two`>七英雄の記憶2</a>の画像。赤竜隊と名付けたのはノエル本人だということがわかる。<br/>
-    <Image src={赤竜隊と名付けた} width="500" alt="赤竜隊と名付けた" /><br/>
+    ノエルは<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/rocbouquet`>ロックブーケ</a>の兄。<br>
+    人間の頃の姿をほぼ保っている（ノエルとロックブーケのみ）。<br>
+    七英雄はクィーンを倒すため、吸収の法で様々なモンスターを吸収している（<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#eight`>七英雄の記憶8</a>より）。それぞれメインで吸収しているモンスターの系統が存在し、それに合わせて外見も変化しているが、ノエルは何の種族をメインの吸収対象としているのかを外見から判断することはできない。<br>
+    <a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%8E%E3%82%A8%E3%83%AB%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki*</a> によると、内部データでは竜の種族属性を持つらしく、竜系のモンスターをメインの吸収対象としていたと考えられる。<br>
+    外見からは分からないが、過去の記憶の情報などから竜に対して何かこだわりがあるようには見える。<br>
 
-    <br/>
-    サグザーと仲が良い。<br/>
-    <span style="color: yellow">テレルテバの塔でボスを倒す前（条件確認）</span>に移動湖に来ると、サグザーとノエルが再開して懐かしがっているところを見ることができる。<br/>
-    <Image src={久しぶりだな} width="500" alt="久しぶりだな" /><br/>
-    <Image src={戻ってきたのか} width="500" alt="戻ってきたのか" /><br/>
-    <Image src={来客のようだ} width="500" alt="来客のようだ" /><br/>
-    <Image src={ノエルと申します} width="500" alt="ノエルと申します" /><br/>
-    <Image src={旧友と再会} width="500" alt="旧友と再会" /><br/>
+    <br>
+    古代人時代のノエルはターム討伐に特化した部隊の隊長に抜擢されており、『赤竜隊』と名付けている。<br>
+    以下は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#two`>七英雄の記憶2</a>の画像。赤竜隊と名付けたのはノエル本人だということがわかる。<br>
+    <Image src={赤竜隊と名付けた} width="700" alt="赤竜隊と名付けた" /><br>
 
-    <br/>
-    戦闘中、ある程度ダメージを与えると全力を出してきて青い羽が生える。かっこよ。<br/>
-    <Image src={全力1} width="500" alt="全力1" /><br/>
-    <Image src={全力2} width="500" alt="全力2" /><br/>
-    <Image src={全力3} width="500" alt="全力3" /><br/>
-
-    <br/>
-    以下は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#two`>七英雄の記憶2</a>の画像。オアイーブとは恋仲であることがうかがえる。<br/>
-    これは舞台版のロマサガ2においてもこのような関係性である。<span style="color: yellow">確かそうだよね？</span><br/>
-    原作（SFC版やリマスター版）においてはこのような関係性だったということを知る情報はない。本編では語られなかっただけなのか、舞台版の設定を逆輸入した設定なのかは不明。<br/>
-    リメイク版はとりぼり木さん（舞台を手掛けた方）が関わっているため、逆輸入の設定なのかなと個人的には思っています。<br/>
-    <Image src={オアイーブと恋仲1} width="500" alt="オアイーブと恋仲1" /><br/>
-    <Image src={オアイーブと恋仲2} width="500" alt="オアイーブと恋仲2" /><br/>
-    <Image src={オアイーブと恋仲3} width="500" alt="オアイーブと恋仲3" /><br/>
-
-    <br/>
-    古代人時代は、ノエルは剣で、サグザーは学問で王国を守ると誓い合った仲だということが<a href="./seven_heroes_memory.html#one">七英雄の記憶1</a>、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#two`>七英雄の記憶2</a>で語られている。<br/>
-    <span style="color: yellow">オアイーブとの関係についても言及したい</span><br/>
-
-    七英雄の記憶1の画像<br/>
-    <Image src={ノエルは剣で自らは学問で} width="500" alt="ノエルは剣で、自らは学問で" /><br/>
-    <Image src={そう誓ったそうだな} width="500" alt="そう誓ったそうだな" /><br/>
-    <Image src={王国兵団の武人として} width="500" alt="王国兵団の武人として" /><br/>
-    <Image src={そなたの誓いは} width="500" alt="そなたの誓いは" /><br/>
-
-    <br/>
-    七英雄の記憶2の画像<br/>
-    <Image src={サグザーは学問でノエルは剣で} width="500" alt="サグザーは学問で、ノエルは剣で" /><br/>
-    <Image src={その通りになった} width="500" alt="その通りになった" /><br/>
-
-    <br/>
-    テレルテバの塔の事を調べている。<br/>
-    七英雄の中で一番話が通じそう。基本的に温厚な性格をしているが。。。<br/>
-
-    <br/>
-    <span style="color: yellow">退却できる話をどこかに入れたい</span><br/>
-
-    <br/>
-    極度のシスコン。ロックブーケを倒した後に来ると激おこ状態になり、本気で襲いかかってくる（第二形態で大剣主体で襲って来る）。<br/>
-    <Image src={人違い} width="500" alt="人違い" /><br/>
-    <Image src={嘘はいけません} width="500" alt="嘘はいけません" /><br/>
-    <Image src={妹のカタキ} width="500" alt="妹のカタキ" /><br/>
-    <Image src={殺らせていただきます} width="500" alt="殺らせていただきます" /><br/>
-
-    <br/>
-    ノエルを最後に残した場合のラスダンでの台詞。ここでもロックブーケの事しか言わない。<br/>
-    <Image src={激おこラスダンノエル} width="500" alt="激おこラスダンノエル" /><br/>
-
-    <br/>
-    余談ですが、「皇帝陛下ですね？」と迫るノエルを見て、止められないことを悟ったサグザーが即座に逃げだすのが個人的にツボでした。<br/>
-    <Image src={逃げるサグザー1} width="500" alt="逃げるサグザー1" /><br/>
-    <Image src={逃げるサグザー2} width="500" alt="逃げるサグザー2" /><br/>
-
-    <br/>
-    ノエルを倒した場合、皇帝の力に驚くと共に、何か秘密があることに感付く。<br/>
-    <Image src={ここまでとは} width="500" alt="ここまでとは" /><br/>
-    <Image src={何かあるな} width="500" alt="何かあるな" /><br/>
-
-    <br/>
-    ロックブーケをまだ倒していない場合、最終的には妹の心配である。やはりシスコン・・・。<br/>
-    <Image src={妹を手にかけたら} width="500" alt="妹を手にかけたら" /><br/>
-    <Image src={相応の報いが} width="500" alt="相応の報いが" /><br/>
-    <Image src={覚悟されよ} width="500" alt="覚悟されよ"/><br/>
-
-    <br/>
-    ロックブーケを既に倒している場合は、ロックブーケのカタキとか言い始める。<br/>
-    妹のこと好きすぎん？<br/>
-    <Image src={いずれ暴く} width="500" alt="いずれ暴く" /><br/>
-    <Image src={ロックブーケのカタキ} width="500" alt="ロックブーケのカタキ" /><br/>
-    <Image src={七英雄の真の力を} width="500" alt="七英雄の真の力を" /><br/>
-
-
-    <br/>
-    地層は火<br/>
-
-    <br/>
-    ラスダン前七英雄<br/>
-    ラスダンの七英雄<br/>
-    古代人Verの七英雄<br/>
-    初登場<br/>
-    戦闘中<br/>
-    戦闘終了時<br/>
+    <br>
+    また、ゲーム中で戦う際、赤竜破という技を使用してくる。竜に対して何かしらこだわりがあるように見える。<br>
+    <Image src={赤竜波1} width="700" alt="赤竜波1" /><br>
+    <Image src={赤竜波2} width="700" alt="赤竜波2" /><br>
   </p>
 
-  <br/>
-  <h3 class="title">図鑑</h3>
+  <br>
+  <h3 class="title" id="sister_complex">話が分かるシスコン</h3>
   <p>
-    第一形態<br/>
-    <Image src={図鑑第一形態ノエル} width="500" alt="図鑑第一形態ノエル" /><br/>
-    <br/>
-    第二形態<br/>
-    <Image src={図鑑第二形態ノエル} width="500" alt="図鑑第二形態ノエル" /><br/>
-    <br/>
-    古代人<br/>
-    <Image src={図鑑古代人ノエル} width="500" alt="図鑑古代人ノエル" /><br/>
+    ノエルは基本的に温厚な性格をしており、話せばわかる人物。<br>
+    モンスターを使ってテレルテバの塔を調べているが、そのことがテレルテバの人々を苦しめていることについて話すと、モンスターを撤退させると提言してきて、戦闘せずに平和的に解決することができる。<br>
+    <Image src={和解01} width="700" alt="和解01" /><br>
+    <Image src={和解02} width="700" alt="和解02" /><br>
+    <Image src={和解03} width="700" alt="和解03" /><br>
+    <Image src={和解04} width="700" alt="和解04" /><br>
+    <Image src={和解05} width="700" alt="和解05" /><br>
+    <Image src={和解06} width="700" alt="和解06" /><br>
+    <Image src={和解07} width="700" alt="和解07" /><br>
+    <Image src={和解08} width="700" alt="和解08" /><br>
+    <Image src={和解09} width="700" alt="和解09" /><br>
+    <Image src={和解10} width="700" alt="和解10" /><br>
+
+    <br>
+    <span style="color: yellow">（ノエルがテレルテバの塔を調べているのは、塔が次元転移装置と関係しているからなのだが、それについてはこちらで）</span><br>
+    ただし、ノエルを挑発するような選択肢を選ぶと戦闘になる。<br>
+    <Image src={戦闘1} width="700" alt="戦闘1" /><br>
+    <Image src={戦闘2} width="700" alt="戦闘2" /><br>
+    <Image src={戦闘3} width="700" alt="戦闘3" /><br>
+    <Image src={戦闘4} width="700" alt="戦闘4" /><br>
+    <Image src={戦闘5} width="700" alt="戦闘5" /><br>
+
+    <br>
+    しかし戦闘に入っても退却可能で、その後和解することができる（以下動画参照）。
   </p>
 
-  <br/>
-  <h3 class="title">古代人</h3>
+  <div class="youtube">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/GA2_HYgxACM?si=fFv9zbpffXUWMaVJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <br>
+  <br>
   <p>
-    恐妃の都の古代人ノエル（の幻影）と戦う前の台詞。ここで言う友は言うまでもなくサグザーの事。<br/>
-    <Image src={幼い頃友と約束した} width="500" alt="幼い頃友と約束した" /><br/>
-    <Image src={たとえ禁忌を犯しても} width="500" alt="たとえ禁忌を犯しても" /><br/>
+    一方、上記動画でサグザーが言っている通り、怒ると止めようがなくなる。<br>
+    ノエルは極度のシスコンなので、ロックブーケを倒した後に来ると激おこ状態になり、本気で襲いかかってくる（第二形態で大剣主体で襲って来る）。<br>
+    <Image src={人違い} width="700" alt="人違い" /><br>
+    <Image src={嘘はいけません} width="700" alt="嘘はいけません" /><br>
+    <Image src={妹のカタキ} width="700" alt="妹のカタキ" /><br>
+    <Image src={殺らせていただきます} width="700" alt="殺らせていただきます" /><br>
 
-    <br/>
-    古代人ノエルは、以下の画像のような場所にいる。<br/>
-    <Image src={古代人ノエルがいる場所} width="500" alt="古代人ノエルがいる場所" /><br/>
+    <br>
+    余談ですが、「皇帝陛下ですね？」と迫るノエルを見て、ノエルを止められないことを悟ったサグザーが即座に逃げだすのが個人的にツボでした。<br>
+    <span style="color: yellow">このシーンを書くなら動画の方がいいけど、そもそもいるかな？悩んでいる。</span><br>
+    <Image src={逃げるサグザー1} width="700" alt="逃げるサグザー1" /><br>
+    <Image src={逃げるサグザー2} width="700" alt="逃げるサグザー2" /><br>
 
-    <br/>
-    ここは、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#six`>七英雄の記憶6</a>で、タームの巣穴に乗り込んだノエルが撤退を余儀なくされ、人間を超える力を欲し始めた場所。<br/>
-    <Image src={人間を超える力を} width="500" alt="人間を超える力を" /><br/>
+    <br>
+    ノエルを最後に残した場合のラスダンでの台詞。ここでもロックブーケの事しか言わない。<br>
+    <Image src={激おこラスダンノエル} width="700" alt="激おこラスダンノエル" /><br>
+
+    <br>
+    ノエルを倒した場合、皇帝の力に驚くと共に、何か秘密があることに感付く。<br>
+    <Image src={ここまでとは} width="700" alt="ここまでとは" /><br>
+    <Image src={何かあるな} width="700" alt="何かあるな" /><br>
+
+    <br>
+    ロックブーケをまだ倒していない場合、最終的には妹の心配である。やはりシスコン・・・。<br>
+    <Image src={妹を手にかけたら} width="700" alt="妹を手にかけたら" /><br>
+    <Image src={相応の報いが} width="700" alt="相応の報いが" /><br>
+    <Image src={覚悟されよ} width="700" alt="覚悟されよ"/><br>
+
+    <br>
+    ロックブーケを既に倒している場合は、ロックブーケのカタキとか言い始める。<br>
+    妹のこと好きすぎん？<br>
+    <Image src={いずれ暴く} width="700" alt="いずれ暴く" /><br>
+    <Image src={ロックブーケのカタキ} width="700" alt="ロックブーケのカタキ" /><br>
+    <Image src={七英雄の真の力を} width="700" alt="七英雄の真の力を" /><br>
+
+    <br>
+    戦闘中、ある程度ダメージを与えると全力を出してきて青い羽が生える。これはSFC版にはなかった演出。かっこよ。<br>
+    <span style="color: yellow">この記述いるかな？悩んでいる。</span><br>
+    <Image src={全力1} width="700" alt="全力1" /><br>
+    <Image src={全力2} width="700" alt="全力2" /><br>
+    <Image src={全力3} width="700" alt="全力3" /><br>
   </p>
 
-  <br/>
+  <br>
+  <h3 class="title" id="sagzer_relationship">サグザーとの関係</h3>
+  <p>
+    ノエルはサグザーと仲が良い。<br>
+    <span style="color: yellow">テレルテバの塔でボスを倒す前（条件確認）</span>に移動湖に来ると、サグザーとノエルが再会して懐かしがっているところを見ることができる。<br>
+    <Image src={久しぶりだな} width="700" alt="久しぶりだな" /><br>
+    <Image src={戻ってきたのか} width="700" alt="戻ってきたのか" /><br>
+    <Image src={来客のようだ} width="700" alt="来客のようだ" /><br>
+    <Image src={ノエルと申します} width="700" alt="ノエルと申します" /><br>
+    <Image src={旧友と再会} width="700" alt="旧友と再会" /><br>
+
+    <br>
+    古代人時代は、ノエルは剣で、サグザーは学問で王国を守ると誓い合った仲だということが<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#one`>七英雄の記憶1</a>、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#two`>七英雄の記憶2</a>で語られている。<br>
+
+    <a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#one`>七英雄の記憶1</a>の画像<br>
+    <Image src={ノエルは剣で自らは学問で} width="700" alt="ノエルは剣で、自らは学問で" /><br>
+    <Image src={そう誓ったそうだな} width="700" alt="そう誓ったそうだな" /><br>
+    <Image src={王国兵団の武人として} width="700" alt="王国兵団の武人として" /><br>
+    <Image src={そなたの誓いは} width="700" alt="そなたの誓いは" /><br>
+
+    <br>
+    <a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#two`>七英雄の記憶2</a>の画像<br>
+    <Image src={サグザーは学問でノエルは剣で} width="700" alt="サグザーは学問で、ノエルは剣で" /><br>
+    <Image src={その通りになった} width="700" alt="その通りになった" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="oaive_relationship">オアイーブとの関係</h3>
+  <p>
+    <span style="color: yellow">オアイーブとの関係についても言及したい</span><br>
+    以下は<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#two`>七英雄の記憶2</a>の画像。オアイーブとは恋仲であることがうかがえる。<br>
+    これは舞台版のロマサガ2においてもこのような関係性である。<span style="color: yellow">確かそうだよね？</span><br>
+    原作（SFC版やリマスター版）においてはこのような関係性だったということを知る情報はない。本編では語られなかっただけなのか、舞台版の設定を逆輸入した設定なのかは不明。<br>
+    リメイク版はとりぼり木さん（舞台を手掛けた方）が関わっているため、逆輸入の設定なのかなと個人的には思っています。<br>
+    <Image src={オアイーブと恋仲1} width="700" alt="オアイーブと恋仲1" /><br>
+    <Image src={オアイーブと恋仲2} width="700" alt="オアイーブと恋仲2" /><br>
+    <Image src={オアイーブと恋仲3} width="700" alt="オアイーブと恋仲3" /><br>
+  </p>
+
+  <br>
+  地層は火<br>
+
+  <br>
+  ラスダン前七英雄<br>
+  ラスダンの七英雄<br>
+  古代人Verの七英雄<br>
+  初登場<br>
+  戦闘中<br>
+  戦闘終了時<br>
+
+  <br>
+  <h3 class="title" id="ancient_noel">古代人時代</h3>
+  <p>
+    恐妃の都の古代人ノエル（の幻影）と戦う前の台詞。<br>
+    <Image src={幼い頃友と約束した} width="700" alt="幼い頃友と約束した" /><br>
+    <Image src={たとえ禁忌を犯しても} width="700" alt="たとえ禁忌を犯しても" /><br>
+
+    <br>
+    古代人ノエルは、以下の画像のような場所にいる。<br>
+    <Image src={古代人ノエルがいる場所} width="700" alt="古代人ノエルがいる場所" /><br>
+
+    <br>
+    ここは、<a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_memory#six`>七英雄の記憶6</a>で、タームの巣穴に乗り込んだノエルが撤退を余儀なくされ、人間を超える力を欲し始めた場所。<br>
+    <Image src={人間を超える力を} width="700" alt="人間を超える力を" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="battle_pose">戦闘前ポーズ</h3>
+  <p>
+    第一形態<br>
+    体術主体で攻撃してくるため、武器は持っていない。<br>
+    <Image src={pose_form1} width="500" alt="pose_form1" /><br>
+    <br>
+    第二形態<br>
+    剣術主体で攻撃してくるため、剣を持っている。<br>
+    <Image src={pose_form2} width="500" alt="pose_form2" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="enemy_book">エネミー図鑑</h3>
+  <p>
+    第一形態<br>
+    <Image src={図鑑第一形態ノエル} width="500" alt="図鑑第一形態ノエル" /><br>
+    <br>
+    第二形態<br>
+    <Image src={図鑑第二形態ノエル} width="500" alt="図鑑第二形態ノエル" /><br>
+    <br>
+    古代人<br>
+    <Image src={図鑑古代人ノエル} width="500" alt="図鑑古代人ノエル" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="before_battle">戦闘開始前</h3>
+  <p>
+    <span style="color: yellow">ここは動画の方がいいかな。</span><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="after_defeat">倒した後</h3>
+  <p>
+    <span style="color: yellow">ここは動画の方がいいかな。</span><br>
+  </p>
+
+  <br>
   <h3 class="title">参考</h3>
   <ul>
     <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E3%83%8E%E3%82%A8%E3%83%AB%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【ノエル】</a></li>
     <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%B8%E5%8F%8E%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【吸収の法】</a></li>
+    <li><a href="https://www.jp.square-enix.com/rs2r/character/noel/" target="_blank" rel="noopener noreferrer">SQUARE ENIX ノエル</a></li>
   </ul>
 </MainLayout>

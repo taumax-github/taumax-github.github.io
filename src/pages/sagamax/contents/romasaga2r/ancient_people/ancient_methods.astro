@@ -5,6 +5,36 @@ import { rightsEnum } from '../../../../../components/Footer.astro';
 import type { index } from '../../../../../components/HeaderIndex.astro';
 import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../index_romasaga2r.astro';
 import short_lived from './img/ancient_methods/短命種について.jpg';
+import assimilation_method1 from './img/ancient_methods/同化の法/同化の法1.jpg';
+import assimilation_method2 from './img/ancient_methods/同化の法/同化の法2.jpg';
+import assimilation_method3 from './img/ancient_methods/同化の法/同化の法3.jpg';
+import suction_method from './img/ancient_methods/吸収の法/吸収の法.jpg';
+import 人間を超える力を1 from './img/ancient_methods/吸収の法/人間を超える力を1_七英雄の記憶6.jpg';
+import 人間を超える力を2 from './img/ancient_methods/吸収の法/人間を超える力を2_七英雄の記憶6.jpg';
+import 吸収の法1 from './img/ancient_methods/吸収の法/吸収の法1_七英雄の記憶8.jpg';
+import 吸収の法2 from './img/ancient_methods/吸収の法/吸収の法2_七英雄の記憶8.jpg';
+import 吸収の法3 from './img/ancient_methods/吸収の法/吸収の法3_七英雄の記憶8.jpg';
+import 吸収の法4 from './img/ancient_methods/吸収の法/吸収の法4_七英雄の記憶8.jpg';
+import 吸収の法5 from './img/ancient_methods/吸収の法/吸収の法5_七英雄の記憶8.jpg';
+import 吸収の法6 from './img/ancient_methods/吸収の法/吸収の法6_七英雄の記憶8.jpg';
+import 吸収の法7 from './img/ancient_methods/吸収の法/吸収の法7_七英雄の記憶8.jpg';
+import 吸収の法8 from './img/ancient_methods/吸収の法/吸収の法8_七英雄の記憶8.jpg';
+import 吸収の法9 from './img/ancient_methods/吸収の法/吸収の法9_七英雄の記憶8.jpg';
+import 吸収の法10 from './img/ancient_methods/吸収の法/吸収の法10_七英雄の記憶8.jpg';
+import 吸収の法11 from './img/ancient_methods/吸収の法/吸収の法11_七英雄の記憶8.jpg';
+import 吸収の法12 from './img/ancient_methods/吸収の法/吸収の法12_七英雄の記憶8.jpg';
+import 吸収の法13 from './img/ancient_methods/吸収の法/吸収の法13_七英雄の記憶8.jpg';
+import 吸収の法14 from './img/ancient_methods/吸収の法/吸収の法14_七英雄の記憶8.jpg';
+import 吸収の法15 from './img/ancient_methods/吸収の法/吸収の法15_七英雄の記憶8.jpg';
+import 吸収の法16 from './img/ancient_methods/吸収の法/吸収の法16_七英雄の記憶8.jpg';
+import オアイーブ from './img/ancient_methods/吸収の法/オアイーブ.jpg';
+import レオン from './img/ancient_methods/伝承法/レオン.jpg';
+import 伝承法の限界 from './img/ancient_methods/伝承法/伝承法の限界.jpg';
+import 伝承法の限界1 from './img/ancient_methods/伝承法/伝承法の限界1.jpg';
+import 伝承法の限界2 from './img/ancient_methods/伝承法/伝承法の限界2.jpg';
+import 人形でも驚かないオアイーブ1 from './img/ancient_methods/伝承法/人形でも驚かないオアイーブ1.jpg';
+import 人形でも驚かないオアイーブ2 from './img/ancient_methods/伝承法/人形でも驚かないオアイーブ2.jpg';
+
 import { Image } from 'astro:assets';
 
 export const roma2rAncientMethodPagebc: Breadcrumb = {
@@ -13,7 +43,7 @@ export const roma2rAncientMethodPagebc: Breadcrumb = {
 };
 const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc, roma2rAncientMethodPagebc];
 const indexList: index[] = [
-  { id: "#summary", name: "同化の法と<br/>吸収の法と<br/>伝承法" },
+  { id: "#summary", name: "同化の法と<br>吸収の法と<br>伝承法" },
   { id: "#assimilation", name: "同化の法" },
   { id: "#suction", name: "吸収の法" },
   { id: "#inherit", name: "伝承法" },
@@ -29,60 +59,110 @@ const indexList: index[] = [
   background={bgEnum.roma2r}
   rights={rightsEnum.roma2r}>
 
-  <br/>
+  <br>
   <span id="summary"></span>
   <h3 class="title">同化の法と吸収の法と伝承法</h3>
   <p>
-    ロマサガ2の世界では<span style="color: yellow">？？千年前</span>から生きている古代人<span style="color: yellow">長命種？</span>と、その長命種に召し使われている短命種がいる。<br/>
-    <Image src={short_lived} alt="短命種について" width="300" height="200" /><br/>
-    古代人（長命種）は秘術を使って不老不死を実現しており、ゲーム中には以下3種類の秘術が登場する。<br/>
-    古代人が使っている<a href="#assimilation">同化の法</a>。<br/>
-    同化の法を進化させた<a href="#suction">吸収の法</a>。<br/>
-    同化の法を短命種用に調整した<a href="#inherit">伝承法</a>。<br/>
+    ロマサガ2の世界では<span style="color: yellow">？？千年前</span>から生きている古代人<span style="color: yellow">長命種？</span>と、その長命種に召し使われている短命種がいる。<br>
+    <Image src={short_lived} alt="短命種について" width="500" /><br>
+    <br>
+    古代人（長命種）は秘術を使って不老不死を実現しており、ゲーム中には以下3種類の秘術が登場する。<br>
+    古代人が使っている<a href="#assimilation">同化の法</a>。<br>
+    同化の法を進化させた<a href="#suction">吸収の法</a>。<br>
+    同化の法を短命種用に調整した<a href="#inherit">伝承法</a>。<br>
   </p>
 
-  <br/>
+  <br>
   <span id="assimilation"></span>
   <h3 class="title">同化の法</h3>
   <p>
-    古代人が使っているもの。他者と同化することで肉体を維持し、実質的に不老を実現している。<br/>
-    <span style="color: yellow">解釈あってる？</span><br/>
-    そもそも誰と同化していたのか？短命種？古代人は短命種を召し使っていたのであり得るかも。<br/>
-    <span style="color: yellow">画像が欲しい</span><br/>
-    古代人同士で同化していた可能性もあるが、いずれにしても闇深さを感じる。<br/>
+    古代人が使っているもの。<br>
+    肉体が朽ち果てたら同化の法を使って新しい肉体を得て、魂を他者の肉体に馴染ませることで長生きしている。<br>
+    以下の画像は忘れられた町での古代人との会話。<br>
+    <Image src={assimilation_method1} alt="同化の法1" width="500" /><br>
+    <Image src={assimilation_method2} alt="同化の法2" width="500" /><br>
+    <Image src={assimilation_method3} alt="同化の法3" width="500" /><br>
+    <br>
+    そもそも誰と同化していたのか？短命種？古代人は短命種を召し使っていたのであり得るかも。<br>
+    以下の画像は忘れられた町での古代人との会話。<br>
+    <Image src={short_lived} alt="短命種について" width="500" /><br>
+    <br>
+    古代人同士で同化していた可能性もあるが、いずれにしても闇深さを感じる。<br>
   </p>
 
-  <br/>
+  <br>
   <span id="suction"></span>
   <h3 class="title">吸収の法</h3>
   <p>
-    ノエルが開発した。タームに対抗するためにノエルが開発。同化の法を進化させたもの。<br/>
-    七英雄はモンスターと同化することで力を得、クィーンの討伐に成功したが、そのことを大神官に利用され、異世界に転移させられる。<br/>
-    恐らくその間もモンスターと同化することでちからを得て、<span style="color: yellow">なんやかんやあって</span>現世に帰ってきた。<br/>
-    しかし彼らはモンスターを吸収し続けたことで、力だけでなく見た目や性格も変化。オアイーブは「七匹のモンスター」とまで言っている。<br/>
-    <span style="color: yellow">画像が欲しい</span><br/>
+    タームに対抗するためにワグナスとノエルが開発した秘術。同化の法を強化させたもの。<br>
+    <br>
+    画像は<a href="../ancient_people/seven_heroes/seven_heroes_memory#six">七英雄の記憶6</a>のノエル。<br>
+    クイーンを倒すために人間を超える力を模索し始める。<br>
+    <Image src={人間を超える力を1} alt="人間を超える力を1" width="500" /><br>
+    <Image src={人間を超える力を2} alt="人間を超える力を2" width="500" /><br>
+    <br>
+    画像は忘れられた町の町人との会話。<br>
+    同化の法はワグナスとノエルが研究して得たものと言っている。<br>
+    <Image src={suction_method} alt="吸収の法" width="500" /><br>
+    <br>
+    以下の画像は<a href="../ancient_people/seven_heroes/seven_heroes_memory#eight">七英雄の記憶8</a>のワグナス、ノエル、スービエとの会話。<br>
+    ノエルが吸収の法を考案。副作用があることを承知の上で、ワグナスとスービエは吸収の法を使ってターム討伐を誓う。<br>
+    ノエルとワグナスが協力して開発した。<br>
+    という流れ。<br>
+    <Image src={吸収の法1} alt="吸収の法1" width="500" /><br>
+    <Image src={吸収の法2} alt="吸収の法2" width="500" /><br>
+    <Image src={吸収の法3} alt="吸収の法3" width="500" /><br>
+    <Image src={吸収の法4} alt="吸収の法4" width="500" /><br>
+    <Image src={吸収の法5} alt="吸収の法5" width="500" /><br>
+    <Image src={吸収の法6} alt="吸収の法6" width="500" /><br>
+    <Image src={吸収の法7} alt="吸収の法7" width="500" /><br>
+    <Image src={吸収の法8} alt="吸収の法8" width="500" /><br>
+    <Image src={吸収の法9} alt="吸収の法9" width="500" /><br>
+    <Image src={吸収の法10} alt="吸収の法10" width="500" /><br>
+    <Image src={吸収の法11} alt="吸収の法11" width="500" /><br>
+    <Image src={吸収の法12} alt="吸収の法12" width="500" /><br>
+    <Image src={吸収の法13} alt="吸収の法13" width="500" /><br>
+    <Image src={吸収の法14} alt="吸収の法14" width="500" /><br>
+    <Image src={吸収の法15} alt="吸収の法15" width="500" /><br>
+    <Image src={吸収の法16} alt="吸収の法16" width="500" /><br>
+    <br>
+    七英雄は同化の法を使ってモンスターと同化することで力を得、クィーンの討伐に成功した。<br>
+    しかし彼らはモンスターを吸収し続けたことで、力だけでなく見た目や性格も変化。<br>
+    オアイーブは彼らの事を「7匹の巨大な力を持つモンスター」とまで言っている。<br>
+    <Image src={オアイーブ} alt="オアイーブ" width="500" /><br>
+    <br>
+    <span style="color: yellow">↓ここいるかな↓</span><br>
+    しかしそのことを大神官に利用され、異世界に転移させられる。<br>
+    恐らくその間もモンスターと同化することでちからを得て、<span style="color: yellow">なんやかんやあって</span>現世に帰ってきた。<br>
+    <span style="color: yellow">↑ここいるかな↑</span>
   </p>
 
-  <br/>
+  <br>
   <span id="inherit"></span>
   <h3 class="title">伝承法</h3>
   <p>
-    バレンヌ帝国の皇帝レオンが、謎の女魔道士オアイーブからもたらされた秘法で、己の力と記憶を任意の相手に引き継がせることが出来る。<br/>
-    レオンの弁によれば「己の人生を捨てて戦う覚悟がある、強い意志を持った人間」のみが受け継げるという。<br/>
-    <span style="color: yellow">そうなの？</span><br/>
-    ゲーム中では現在の皇帝が死亡または退位すると後継者を指名し、その者に引き継がせる事になる。<br/>
-    ただし無限に使えるわけではなく、限界が存在することがオアイーブから示されている。<br/>
-    その「限界」として現れ、七英雄との因縁を終わらせる為に彼らとの最後の決戦に向かうのが最終皇帝である。<br/>
-    書籍『ロマンシング サ・ガ大全集』の記述によると、古代人が使う「同化の法」を短命種用に調整したものであり、基本的には同じ物とのこと。<br/>
-    また「全ての皇帝の遺志は伝承法によって繋がっており、全て同一人格である。」とも書いてある。<br/>
-    なお自動人形のコッペリアの継承は独特であり、玉座ではなく発明したヒラガの横で伝承法を引き継ぎ、仲間の時では荒々しかった口調が皇帝の時は丁寧な口調になる。<br/>
-    選択肢のセリフが統一されている関係から元は泥棒であるシティシーフやお調子者な性格である忍者が皇帝になった場合ですら、帝国のためにその身を費す覚悟ガン決まりな性格に変化したように見える。<br/>
-    コッペリアを皇帝にすることができるということから、人間以外にも伝承できるということがわかる。<br/>
-    <span style="color: yellow">画像が欲しい</span><br/>
-    コッペリアを皇帝にしてオアイーブに会いに行ってもオアイーブは特に驚きもしない。人形にも伝承できることは、伝承法は人間以外にも有効であるということをオアイーブは認識していたんだろう（<span style="color: gray">本当かな？知らんけど</span>）。<br/>
-    <span style="color: yellow">画像が欲しい</span><br/>
+    バレンヌ帝国の皇帝レオンが、謎の女魔道士オアイーブからもたらされた秘法で、己の力と記憶を任意の相手に引き継がせることが出来る。<br>
+    レオンの弁によれば「伝える者と受け継ぐ者に、強い意志があれば、志と能力を受け継ぐことができる」という。<br>
+    <Image src={レオン} alt="レオン" width="500" /><br>
+    <br>
+    ゲーム中では現在の皇帝が死亡または退位すると後継者を指名し、その者に引き継がせる事になる。<br>
+    ただし無限に使えるわけではなく、限界が存在することがオアイーブから示されている。<br>
+    その「限界」として現れ、七英雄との因縁を終わらせる為に彼らとの最後の決戦に向かうのが最終皇帝である。<br>
+    <Image src={伝承法の限界} alt="伝承法の限界" width="500" /><br>
+    <Image src={伝承法の限界1} alt="伝承法の限界1" width="500" /><br>
+    <Image src={伝承法の限界2} alt="伝承法の限界2" width="500" /><br>
+    <br>
+    書籍『<a href="https://amzn.to/3ZduUZC" target="_blank" rel="noopener noreferrer">ロマンシング サ・ガ大全集</a>』の記述によると、古代人が使う「<a href="#assimilation">同化の法</a>」を短命種用に調整したものであり、基本的には同じ物とのこと。<br>
+    また「全ての皇帝の遺志は伝承法によって繋がっており、全て同一人格である。」とも書いてある。<br>
+    なお自動人形のコッペリアの継承は独特であり、玉座ではなく発明したヒラガの横で伝承法を引き継ぎ、仲間の時では荒々しかった口調が皇帝の時は丁寧な口調になる。<br>
+    選択肢のセリフが統一されている関係から元は泥棒であるシティシーフやお調子者な性格である忍者が皇帝になった場合ですら、帝国のためにその身を費す覚悟ガン決まりな性格に変化したように見える。<br>
+    コッペリアを皇帝にすることができるということから、人間以外にも伝承できるということがわかる。<br>
+    <span style="color: yellow">画像が欲しい</span><br>
+    コッペリアを皇帝にしてオアイーブに会いに行ってもオアイーブは特に驚きもしない。人形にも伝承できることは、伝承法は人間以外にも有効であるということをオアイーブは認識していたんだろう（<span style="color: gray">本当かな？知らんけど</span>）。<br>
+    <Image src={人形でも驚かないオアイーブ1} alt="人形でも驚かないオアイーブ1" width="500" /><br>
+    <Image src={人形でも驚かないオアイーブ2} alt="人形でも驚かないオアイーブ2" width="500" /><br>
   </p>
-  <br/>
+  <br>
 
   <h3 class="title">参考</h3>
   <ul>
