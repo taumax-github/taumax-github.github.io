@@ -15,7 +15,7 @@ let { indexList } = Astro.props;
 
 <h1 class="logo">
   <a href="https://taumax-github.github.io/sagamax/">
-    <Image src={ICON_TWITTER_CARD} alt="TOP" /><br/>
+    <Image src={ICON_TWITTER_CARD} alt="TOP" /><br>
     <font size="3px">TOP</font>
   </a>
 </h1>
@@ -30,7 +30,7 @@ let { indexList } = Astro.props;
     {indexList?.map((item: index) => {
       let ele = item.id
         ? <li><a href={item.id}><Fragment set:html={item.name} /></a></li>
-        : <br/><p><Fragment set:html={item.name} /></p>
+        : <br><p><Fragment set:html={item.name} /></p>
       return ele
     })}
   </ul>
