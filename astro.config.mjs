@@ -7,5 +7,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://taumax-github.github.io',
   // base: 'sagamax',
+  trailingSlash: 'never',
+  build: {
+    format: 'file'
+  },
   integrations: [mdx(), sitemap()],
 });
