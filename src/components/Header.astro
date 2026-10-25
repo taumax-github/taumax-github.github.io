@@ -1,18 +1,32 @@
 ---
 import HeaderIndex from './HeaderIndex.astro';
+import type { index } from './HeaderIndex.astro';
 let { indexList } = Astro.props;
+export type index_multi = {
+  id: string;
+  name_pc: string;
+  name_sp?: string;
+};
+
+let indexList_pc: index[] = [];
+let indexList_sp: index[] = [];
+for (const ele of indexList as index_multi[]) {
+  indexList_pc.push({id: ele.id, name: ele.name_pc});
+  indexList_sp.push({id: ele.id, name: ele.name_sp ? ele.name_sp : ele.name_pc});
+}
+
 ---
 
 <!--PC用（801px以上端末）メニュー-->
 <header class="pc">
-  <HeaderIndex indexList={indexList}/>
+  <HeaderIndex indexList={indexList_pc}/>
 </header>
 <!--/.pc-->
 
 <!--小さな端末用（800px以下端末）メニュー-->
 <header class="sh">
   <div id="menubar-s">
-    <HeaderIndex indexList={indexList}/>
+    <HeaderIndex indexList={indexList_sp}/>
   </div><!--/#menubar-s-->
 </header>
 <!--/.sh-->

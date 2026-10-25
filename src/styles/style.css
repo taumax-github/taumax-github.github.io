@@ -229,6 +229,7 @@ table {
   border-collapse:collapse;
   font-size: 100%;
   border-spacing: 0;
+  border-color: #ccc; /* 罫線 */
 }
 
 caption {
@@ -531,6 +532,13 @@ a:hover {
 }
 
 #contents li.normal {
+  list-style-type: disc;
+  list-style: inside;
+  background: none;
+  padding-left: 40px;
+}
+
+#contents ul.normal li {
   list-style-type: disc;
   list-style: inside;
   background: none;

@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
 import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
 import { rightsEnum } from '../../../../../../components/Footer.astro';
-import type { index } from '../../../../../../components/HeaderIndex.astro';
+import type { index_multi } from '../../../../../../components/Header.astro';
 import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
 import SevenHeroesAbsorb from '../../seven_heroes_absorb.astro';
 import 古代人から見た七英雄の人物像1 from './img/古代人から見た七英雄の人物像1.jpg';
@@ -14,8 +14,8 @@ export const roma2r7heroesIndexPagebc: Breadcrumb = {
   item: `${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_index`
 };
 const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc, roma2r7heroesIndexPagebc];
-const indexList: index[] = [
-  { id: "#7heroes", name: "七英雄" },
+const indexList: index_multi[] = [
+  { id: "#7heroes", name_pc: "七英雄" },
 ]
 ---
 
@@ -26,7 +26,8 @@ const indexList: index[] = [
   breadcrumbList={breadcrumbList}
   indexList={indexList}
   background={bgEnum.roma2r_seven_heroes}
-  rights={rightsEnum.roma2r}>
+  rights={rightsEnum.roma2r}
+>
 
   <br>
   <span id="7heroes"></span>

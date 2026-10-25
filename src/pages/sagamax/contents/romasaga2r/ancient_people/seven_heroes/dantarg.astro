@@ -3,13 +3,17 @@ import { Image } from 'astro:assets';
 import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
 import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
 import { rightsEnum } from '../../../../../../components/Footer.astro';
-import type { index } from '../../../../../../components/HeaderIndex.astro';
+import type { index_multi } from '../../../../../../components/Header.astro';
 import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
 import { roma2r7heroesIndexPagebc } from './seven_heroes_index.astro';
 import pose_form1 from './img/dantarg/pose_form1.jpg';
 import pose_form2 from './img/dantarg/pose_form2.jpg';
 import pose_form3 from './img/dantarg/pose_form3.jpg';
 import pose_form4 from './img/dantarg/pose_form4.jpg';
+import pose_form1_org from './img/dantarg/pose_form1_org.jpg';
+import pose_form2_org from './img/dantarg/pose_form2_org.jpg';
+import pose_form3_org from './img/dantarg/pose_form3_org.jpg';
+import pose_form4_org from './img/dantarg/pose_form4_org.jpg';
 import 目的は強くなること1 from './img/dantarg/目的は強くなること1.jpg';
 import 目的は強くなること2 from './img/dantarg/目的は強くなること2.jpg';
 import 強者を求める_古代人1 from './img/dantarg/強者を求める_古代人1.jpg';
@@ -49,13 +53,13 @@ const breadcrumbList: Breadcrumb[] = [
   roma2r7heroesIndexPagebc,
   roma2rDantargPagebc
 ];
-const indexList: index[] = [
-  { id: "#personality", name: "人物像" },
-  { id: "#system", name: "システム面" },
-  { id: "#battle_pose", name: "戦闘前ポーズ" },
-  { id: "#enemy_book", name: "エネミー図鑑" },
-  { id: "#before_battle", name: "戦闘開始前" },
-  { id: "#after_defeat", name: "倒した後" },
+const indexList: index_multi[] = [
+  { id: "#personality", name_pc: "人物像" },
+  { id: "#system", name_pc: "システム面" },
+  { id: "#battle_pose", name_pc: "戦闘前ポーズ" },
+  { id: "#enemy_book", name_pc: "エネミー図鑑" },
+  { id: "#before_battle", name_pc: "戦闘開始前" },
+  { id: "#after_defeat", name_pc: "倒した後" },
 ];
 ---
 
@@ -66,7 +70,8 @@ const indexList: index[] = [
   breadcrumbList={breadcrumbList}
   indexList={indexList}
   background={bgEnum.roma2r_dantarg}
-  rights={rightsEnum.roma2r}>
+  rights={rightsEnum.roma2r}
+>
 
   <br>
   <h3 class="title" id="personality">ダンターグの人物像</h3>
@@ -206,18 +211,22 @@ const indexList: index[] = [
     <span style="color: yellow">原作ポーズの画像が欲しい</span><br>
     第一形態<br>
     <Image src={pose_form1} width="500" alt="pose_form1" /><br>
+    <Image src={pose_form1_org} width="500" alt="pose_form1_org" /><br>
 
     <br>
     第二形態<br>
     <Image src={pose_form2} width="500" alt="pose_form2" /><br>
+    <Image src={pose_form2_org} width="500" alt="pose_form2_org" /><br>
 
     <br>
     第三形態<br>
     <Image src={pose_form3} width="500" alt="pose_form3" /><br>
+    <Image src={pose_form3_org} width="500" alt="pose_form3_org" /><br>
 
     <br>
     第四形態<br>
     <Image src={pose_form4} width="500" alt="pose_form4" /><br>
+    <Image src={pose_form4_org} width="500" alt="pose_form4_org" /><br>
   </p>
 
   <br>

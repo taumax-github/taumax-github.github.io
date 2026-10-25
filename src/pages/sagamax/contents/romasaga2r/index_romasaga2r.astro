@@ -3,7 +3,7 @@ import { BASE_URL } from '../../../../consts';
 import { twitterCardEnum } from '../../../../components/BaseHead.astro';
 import MainLayout, { bgEnum, type Breadcrumb } from '../../../../layouts/MainLayout.astro';
 import { rightsEnum } from '../../../../components/Footer.astro';
-import type { index } from '../../../../components/HeaderIndex.astro';
+import type { index_multi } from '../../../../components/Header.astro';
 
 export const BASE_URL_ROMA2R = `${BASE_URL}/contents/romasaga2r`;
 export const roma2rIndexPagebc: Breadcrumb = {
@@ -11,10 +11,10 @@ export const roma2rIndexPagebc: Breadcrumb = {
   item: `${BASE_URL_ROMA2R}/index_romasaga2r`
 };
 const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc];
-const indexList: index[] = [
-  // { id: "#ancient", name: "古代人" },
-  { id: "#list", name: "各種一覧" },
-  { id: "#classes", name: "各クラス詳細" },
+const indexList: index_multi[] = [
+  { id: "#ancient", name_pc: "古代人" },
+  { id: "#list", name_pc: "各種一覧" },
+  { id: "#classes", name_pc: "各クラス詳細" },
 ]
 ---
 
@@ -25,18 +25,19 @@ const indexList: index[] = [
   breadcrumbList={breadcrumbList}
   indexList={indexList}
   background={bgEnum.roma2r}
-  rights={rightsEnum.roma2r}>
+  rights={rightsEnum.roma2r}
+>
 
   <!-- <br/><br/>
   <span id="ancient"></span>
   <h3 class="title">古代人</h3>
   <ul>
-    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/ancient_methods`>同化の法と吸収の法と伝承法</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/ancient_methods`>同化の法、吸収の法、伝承法</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/sank_tower`>沈んだ塔の水龍</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/ancient_bgm`>ダンジョンとBGM</a></li>
     <li><a href=`${BASE_URL_ROMA2R}/ancient_people/ancient_people`>古代人について</a></li>
     <li><a href=`${BASE_URL_ROMA2R}/ancient_people/seven_heroes/seven_heroes_index`>七英雄</a></li>
-    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/sank_tower`>沈んだ塔の水龍</a></li>
-    <li>塔の構造と次元転移装置</li>
-    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/ancient_bgm`>BGMとダンジョン</a></li>
+    <li><a href=`${BASE_URL_ROMA2R}/ancient_people/about_towers`>塔の構造と次元転移装置</a></li>
     <li>大神官</li>
     <li>オアイーブ</li>
     <li>サグザー</li>

@@ -2,7 +2,7 @@
 import { twitterCardEnum } from '../../../../../../components/BaseHead.astro';
 import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../../layouts/MainLayout.astro';
 import { rightsEnum } from '../../../../../../components/Footer.astro';
-import type { index } from '../../../../../../components/HeaderIndex.astro';
+import type { index_multi } from '../../../../../../components/Header.astro';
 import AdUnitLandscape from '../../../../../../components/AdUnitLandscape.astro';
 import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../../index_romasaga2r.astro';
 import { roma2r7heroesIndexPagebc } from './seven_heroes_index.astro';
@@ -16,22 +16,22 @@ const breadcrumbList: Breadcrumb[] = [
   roma2r7heroesIndexPagebc,
   roma2r7HeroesMemoryPagebc
 ];
-const indexList: index[] = [
-  { id: "#one", name: "記憶１" },
-  { id: "#two", name: "記憶２" },
-  { id: "#three", name: "記憶３" },
-  { id: "#four", name: "記憶４" },
-  { id: "#five", name: "記憶５" },
-  { id: "#six", name: "記憶６" },
-  { id: "#seven", name: "記憶７" },
-  { id: "#eight", name: "記憶８" },
-  { id: "#nine", name: "記憶９" },
-  { id: "#ten", name: "記憶１０" },
-  { id: "#eleven", name: "記憶１１" },
-  { id: "#twelve", name: "記憶１２" },
-  { id: "#thirteen", name: "記憶１３" },
-  { id: "#fourteen", name: "記憶１４" },
-  { id: "#fifteen", name: "記憶１５" },
+const indexList: index_multi[] = [
+  { id: "#one", name_pc: "記憶１" },
+  { id: "#two", name_pc: "記憶２" },
+  { id: "#three", name_pc: "記憶３" },
+  { id: "#four", name_pc: "記憶４" },
+  { id: "#five", name_pc: "記憶５" },
+  { id: "#six", name_pc: "記憶６" },
+  { id: "#seven", name_pc: "記憶７" },
+  { id: "#eight", name_pc: "記憶８" },
+  { id: "#nine", name_pc: "記憶９" },
+  { id: "#ten", name_pc: "記憶１０" },
+  { id: "#eleven", name_pc: "記憶１１" },
+  { id: "#twelve", name_pc: "記憶１２" },
+  { id: "#thirteen", name_pc: "記憶１３" },
+  { id: "#fourteen", name_pc: "記憶１４" },
+  { id: "#fifteen", name_pc: "記憶１５" },
 ];
 ---
 
@@ -42,7 +42,8 @@ const indexList: index[] = [
   breadcrumbList={breadcrumbList}
   indexList={indexList}
   background={bgEnum.roma2r_seven_heroes}
-  rights={rightsEnum.roma2r}>
+  rights={rightsEnum.roma2r}
+>
 
   <br>
   <span id="one"></span>

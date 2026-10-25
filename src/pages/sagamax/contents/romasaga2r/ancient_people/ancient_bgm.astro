@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { twitterCardEnum } from '../../../../../components/BaseHead.astro';
 import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../layouts/MainLayout.astro';
 import { rightsEnum } from '../../../../../components/Footer.astro';
-import type { index } from '../../../../../components/HeaderIndex.astro';
+import type { index_multi } from '../../../../../components/Header.astro';
 import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../index_romasaga2r.astro';
 
 import water_dragon_desert from './img/sanked_tower/2.砂漠.jpg';
@@ -13,71 +13,206 @@ import water_dragon_sea from './img/sanked_tower/4.海中に沈み.jpg';
 import real_desert from './img/sanked_tower/6.砂漠_実画像.jpg';
 import real_ice from './img/sanked_tower/7.氷に埋もれ_実画像.jpg';
 import real_sea from './img/sanked_tower/8.ここは沈んだ_実画像.jpg';
+import sound_track from './img/ancient_bgm/sound_track.jpg';
+import forgotten_town_person1 from './img/ancient_bgm/忘れられた町の人1.jpg';
+import forgotten_town_person2 from './img/ancient_bgm/忘れられた町の人2.jpg';
+import floating_island1 from './img/ancient_bgm/浮上島1.jpg';
+import floating_island2 from './img/ancient_bgm/浮上島2.jpg';
+import floating_island3 from './img/ancient_bgm/浮上島3.jpg';
+import water_dragon_ancient_oath1 from './img/水龍_古の誓い1.jpg';
+import water_dragon_ancient_oath2 from './img/水龍_古の誓い2.jpg';
+import fire_dragon from './img/ancient_bgm/dragons/火竜.jpg';
+import gold_dragon from './img/ancient_bgm/dragons/金龍.jpg';
+import black_dragon from './img/ancient_bgm/dragons/黒竜.jpg';
+import water_dragon from './img/ancient_bgm/dragons/水龍.jpg';
+import ice_dragon from './img/ancient_bgm/dragons/氷竜.jpg';
+import thunder_dragon from './img/ancient_bgm/dragons/雷竜.jpg';
 
 export const roma2rAncientBgm: Breadcrumb = {
-  name: "BGMとダンジョン",
+  name: "ダンジョンと BGM",
   item: `${BASE_URL_ROMA2R}/ancient_people/ancient_bgm`
 };
 const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc, roma2rAncientBgm];
-const indexList: index[] = [
-  { id: "#one", name: "BGMとダンジョン" },
+const indexList: index_multi[] = [
+  { id: "#firstly", name_pc: "はじめに" },
+  { id: "#bgm", name_pc: "古代遺跡", name_sp: "古代遺跡という BGM" },
+  { id: "#life", name_pc: "古代人の生活", name_sp: "古代人の生活を想像してみる" },
+  { id: "#wizard", name_pc: "魔道士", name_sp: "魔道士古代人説" },
+  { id: "#reference", name_pc: "参考" },
 ]
 ---
 
 <MainLayout
-  title="BGMとダンジョン"
-  description="ロマサガ2リメイクのBGMとダンジョンについて"
+  title="ダンジョンとBGM"
+  description="ロマサガ2リメイクのダンジョンとBGMについて"
   twitterCardSize={twitterCardEnum.summaryLargeImage}
   breadcrumbList={breadcrumbList}
   indexList={indexList}
   background={bgEnum.roma2r}
-  rights={rightsEnum.roma2r}>
+  rights={rightsEnum.roma2r}
+>
 
   <br>
-  <span id="one"></span>
-  <h3 class="title">古代遺跡というBGM</h3>
+  <h3 class="title" id="firstly">はじめに</h3>
   <p>
-    ロマサガ2には『<a href="https://www.youtube.com/watch?v=csrRA4pEmo0" target="_blank" rel="noopener noreferrer">古代遺跡</a>』という曲名のBMGがあり、これは何かしらの形で古代人が関連している場所で流れる。<br>
+    古代遺跡という BGM から遺跡の雰囲気や背景を想像しつつ、古代人の昔の生活や文化について考察する。<br>
+  </p>
+
+  <br>
+  <h3 class="title" id="bgm">古代遺跡という BGM</h3>
+  <p>
+    ロマサガ2には『古代遺跡』という曲名の BGM があり、これは何かしらの形で古代人が関連している場所で流れる。<br>
+  </p>
+
+  <div class="youtube">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/csrRA4pEmo0?si=V-xYwH6L3ZbWvty3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <br>
+  <p>
     具体的には以下の場所。<br>
   </p>
-  <ul>
-    <li>沈んだ塔</li>
-    <li>テレルテバの塔</li>
-    <li>浮上島</li>
-    <li>忘れられた町</li>
-    <li>雪の遺跡</li>
-    <li>砂の遺跡</li>
-    <li>氷の遺跡</li>
-    <li>移動湖</li>
-    <li>あとは？</li>
-  </ul>
+  <div style="margin-left: 20px;">
+    <ul>
+      <li>忘れられた町</li>
+      <li>雪の遺跡</li>
+      <li>砂の遺跡</li>
+      <li>氷の遺跡</li>
+      <li>浮上島</li>
+      <li>テレルテバの塔</li>
+      <li>移動湖の遺跡</li>
+      <li>エイルネップの塔</li>
+      <li>エイルネップ神殿</li>
+      <li>沈んだ塔</li>
+    </ul>
+  </div>
 
   <br>
   <p>
-    特に砂の遺跡、氷の遺跡、浮上島の3つは、沈んだ塔の水龍が語る際の映像としても出てきている。<br>
+    その他のダンジョン系 BGM のタイトルはダンジョン1、ダンジョン2、ダンジョン3などの汎用的なものや、運河要塞、沈没船などであり、古代遺跡に関連する BGM とは区別されている。<br>
+    ロマサガ2の BGM の曲名に関しては
+    <a href="https://link.amazon/B09yz4otL" target="_blank" rel="noopener noreferrer">
+      こちらのサウンドトラック参照<br>
+      <Image src={sound_track} alt="サウンドトラック" width="300" />
+    </a><br>
 
     <br>
-    水龍が語る砂の遺跡<br>
-    <Image src={water_dragon_desert} alt="水龍が語る砂の遺跡" width="500" /><br>
+    古代遺跡というタイトルからして、これらの場所は古代から存在している場所だと考えられる。<br>
+    特に砂の遺跡、氷の遺跡、浮上島の3つは、沈んだ塔の水龍が語る際の映像としても出てくる。<br>
+    （沈んだ塔の水龍が語る動画は<a href=`${BASE_URL_ROMA2R}/ancient_people/sank_tower`>こちら参照</a>）<br>
+
+    <br>
+    砂の遺跡の映像（水龍の語り）<br>
+    <Image src={water_dragon_desert} alt="水龍が語る砂の遺跡" width="800" /><br>
 
     <br>
     実際の砂の遺跡<br>
-    <Image src={real_desert} alt="砂の遺跡" width="500" /><br>
+    <Image src={real_desert} alt="砂の遺跡" width="800" /><br>
 
     <br>
-    水龍が語る氷の遺跡<br>
-    <Image src={water_dragon_ice} alt="水龍が語る氷の遺跡" width="500" /><br>
+    氷の遺跡の映像（水龍の語り）<br>
+    <Image src={water_dragon_ice} alt="水龍が語る氷の遺跡" width="800" /><br>
 
     <br>
     実際の氷の遺跡<br>
-    <Image src={real_ice} alt="氷の遺跡" width="500" /><br>
+    <Image src={real_ice} alt="氷の遺跡" width="800" /><br>
 
     <br>
-    水龍が語る浮上島<br>
-    <Image src={water_dragon_sea} alt="水龍が語る浮上島" width="500" /><br>
+    浮上島の映像（水龍の語り）<br>
+    <Image src={water_dragon_sea} alt="水龍が語る浮上島" width="800" /><br>
 
     <br>
     実際の浮上島<br>
-    <Image src={real_sea} alt="浮上島" width="500" /><br>
+    <Image src={real_sea} alt="浮上島" width="800" /><br>
   </p>
+
+  <br>
+  <h3 class="title" id="life">古代人の生活を想像してみる</h3>
+  <p>
+    雪の遺跡は忘れられた町の人に話しかけると行けるようになる場所だが、その時の会話の内容から、一部の古代人はここに住んでいたということがわかる。<br>
+    <Image src={forgotten_town_person1} alt="忘れられた町の人1" width="800" /><br>
+    <Image src={forgotten_town_person2} alt="忘れられた町の人2" width="800" /><br>
+
+    <br>
+    雪の遺跡のボスは黒竜。それ以外にも雷竜や火竜などの竜と金龍が出現する。<br>
+
+    <br>
+    余談ですが、ロマサガ2の世界では<span style="color: yellow;">竜</span>と<span style="color: yellow;">龍</span>で見た目が明確に異なっています。<br>
+    <span style="color: yellow;">竜</span>はこのような見た目<br>
+    <Image src={ice_dragon} alt="氷竜" width="400" />
+    <Image src={fire_dragon} alt="火竜" width="400" />
+    <Image src={thunder_dragon} alt="雷竜" width="400" />
+    <Image src={black_dragon} alt="黒竜" width="400" /><br>
+
+    <br>
+    <span style="color: yellow;">龍</span>はこのような見た目<br>
+    <Image src={water_dragon} alt="水龍" width="400" />
+    <Image src={gold_dragon} alt="金龍" width="400" /><br>
+
+    <br>
+    性質的には、<span style="color: yellow;">竜</span>は邪悪で狡猾な存在であり、聖なるものに対して力をふるう『敵』『打ち倒されるもの』として描かれることが多く、<span style="color: yellow;">龍</span>は神聖な獣である瑞獣や水の化身として『幸運の象徴』『恵みを与えるもの』として描かれることが多いらしいです。<br>
+    <a href="https://note.com/sapphia/n/n02773853417a" target="_blank" rel="noopener noreferrer">参考リンク</a><br>
+    ロマサガ2の世界でこの性質まで考えて使い分けているかは不明ですが、見た目は明確に描き分けられていますね。<br>
+
+    <br>
+    閑話休題<br>
+    遺跡内には壊れた檻が転がっており、これらの竜と龍は恐らくこの檻に閉じ込められていた。<br>
+    古代人の「かつて私が住んでいた」という台詞からして、恐らく古代人はこれらの竜を『飼っていた』のだと思われる。<br>
+    <span style="color: yellow;">何のために？何かを守らせたりするため？</span><br>
+    沈んだ塔で水龍が「古の誓いに縛られ、ここを守り続けなければならないのだ。」と言っている。<br>
+    『古の誓い』というものが具体的にどういったものなのかはわからないが、塔のことを調査していたロックブーケがここに辿り着き、散り際に「秘密はここに」と言っていることから、重大な秘密がここにあって、それを水龍に守らせていたのだろう。<br>
+    <Image src={water_dragon_ancient_oath1} alt="水龍の古の誓い1" width="800" /><br>
+    <Image src={water_dragon_ancient_oath2} alt="水龍の古の誓い2" width="800" /><br>
+
+    <br>
+    水龍に最深部を守護させていたのも、古代人が飼っていた龍を都合よく使っていたのだと個人的には想像しています。<br>
+
+    <br>
+    この世界に起きた変動が原因で檻が壊れ、竜が<ruby>跋扈<rt>ばっこ</rt></ruby>するようになったのだと思われる。<br>
+    <span style="color: yellow;">竜の画像と壊れた檻の画像が欲しい</span><br>
+
+    <br>
+    氷の遺跡のボスは巨人。恐らく古代人が作り出した存在だと思われる。<br>
+    <span style="color: yellow;">巨人の画像が欲しい</span><br>
+
+    <br>
+    エイルネップ神殿の守護者も恐らく古代人が作り出した存在。<br>
+    <span style="color: yellow;">守護者の画像が欲しい</span><br>
+
+    <br>
+    沈んだ塔の水龍も恐らく古代人が、塔の秘密を守らせるためにここに配置している。<br>
+    水龍自身が「古の誓い」と言っている。<br>
+    <span style="color: yellow;">水龍の画像、古の誓いの発言の画像が欲しい</span><br>
+
+    <br>
+    砂の遺跡のスフィンクスも、何かを守るために配置している。<br>
+    スフィンクスって確か守護者的になものだったと思う。<br>
+    <span style="color: yellow;">砂の遺跡のスフィンクスの画像が欲しい</span><br>
+
+    <br>
+    浮上島には、昔誰かが住んでいたことを示す痕跡が残されている。<br>
+    以下画像のように、食器やタンス、机などが残されており、恐らくかつて古代人はここにも住んでいたのだろう。<br>
+    <Image src={floating_island1} alt="浮上島1" width="800" /><br>
+    <Image src={floating_island2} alt="浮上島2" width="800" /><br>
+    <Image src={floating_island3} alt="浮上島3" width="800" /><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="wizard">魔道士古代人説</h3>
+  <p>
+    <span style="color: yellow;">この話はここに入れるのが適切なのか？一つの独立したテーマとした方が良い？</span><br>
+    浮上島に古代の魔術書が眠っていることを知っていたり、そもそも島が丸ごと沈んでいることを知っていた魔道士って何者だったんですかね。<br>
+    何百年も眠り続けることで生き続けたりしている辺り、やっぱり古代人なのかなぁ。<br>
+    原作だと（リメイク場合の挙動は私は分かっていません）、こちらのHPが低い状態で魔道士を問い詰めると襲いかかって来て明らかに見下している感じがあり、短命種（およびサラマンダー）の命を軽んじて平気で火山を大爆発させるところからしても古代人っぽい気もしてくるんですよね。<br>
+    サイコパスな短命種とも言えそうですが、実際のところどうなんでしょう。<br>
+    （短命種だとするとやたら寿命が長い点が説明付かないですが。コールドスリープ的な何か？）<br>
+    <span style="color: yellow;">アイスシードの色って、古代人の遺跡やワグナスの浮遊城にある、恐らく動力源と思われる装置の色と似ている気がする。</span><br>
+    <span style="color: yellow;">魔道士の画像、魔道士が寝ている画像、魔道士の部屋に浮上島の場所が書かれている地図がある画像が欲しい。</span><br>
+  </p>
+
+  <br>
+  <h3 class="title" id="reference">参考</h3>
+  <ul>
+    <li><a href="https://note.com/sapphia/n/n02773853417a" target="_blank" rel="noopener noreferrer">ドラゴン学～竜と龍の違い～</a></li>
+  </ul>
 </MainLayout>

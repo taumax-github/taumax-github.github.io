@@ -2,13 +2,14 @@
 import { twitterCardEnum } from '../../../../../components/BaseHead.astro';
 import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../layouts/MainLayout.astro';
 import { rightsEnum } from '../../../../../components/Footer.astro';
-import type { index } from '../../../../../components/HeaderIndex.astro';
+import type { index_multi } from '../../../../../components/Header.astro';
+import SevenHeroesAbsorb from '../seven_heroes_absorb.astro';
+import { Image } from 'astro:assets';
 import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../index_romasaga2r.astro';
 import short_lived from './img/ancient_methods/短命種について.jpg';
 import assimilation_method1 from './img/ancient_methods/同化の法/同化の法1.jpg';
 import assimilation_method2 from './img/ancient_methods/同化の法/同化の法2.jpg';
 import assimilation_method3 from './img/ancient_methods/同化の法/同化の法3.jpg';
-import suction_method from './img/ancient_methods/吸収の法/吸収の法.jpg';
 import 人間を超える力を1 from './img/ancient_methods/吸収の法/人間を超える力を1_七英雄の記憶6.jpg';
 import 人間を超える力を2 from './img/ancient_methods/吸収の法/人間を超える力を2_七英雄の記憶6.jpg';
 import 吸収の法1 from './img/ancient_methods/吸収の法/吸収の法1_七英雄の記憶8.jpg';
@@ -34,138 +35,303 @@ import 伝承法の限界1 from './img/ancient_methods/伝承法/伝承法の限
 import 伝承法の限界2 from './img/ancient_methods/伝承法/伝承法の限界2.jpg';
 import 人形でも驚かないオアイーブ1 from './img/ancient_methods/伝承法/人形でも驚かないオアイーブ1.jpg';
 import 人形でも驚かないオアイーブ2 from './img/ancient_methods/伝承法/人形でも驚かないオアイーブ2.jpg';
-
-import { Image } from 'astro:assets';
+import スービエ from './img/ancient_methods/同化の法/スービエ.jpg';
+import コッペ継承_01 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_01.jpg';
+import コッペ継承_02 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_02.jpg';
+import コッペ継承_03 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_03.jpg';
+import コッペ継承_04 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_04.jpg';
+import コッペ継承_05 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_05.jpg';
+import コッペ継承_06 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_06.jpg';
+import コッペ継承_07 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_07.jpg';
+import コッペ継承_08 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_08.jpg';
+import コッペ継承_09 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_09.jpg';
+import コッペ継承_10 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_10.jpg';
+import コッペ継承_11 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_11.jpg';
+import コッペ継承_12 from './img/ancient_methods/伝承法/コッペ継承/コッペ継承_12.jpg';
+import クィーンを討伐した七英雄 from './img/ancient_methods/吸収の法/クィーンを討伐した七英雄.jpg';
+import 長命なるがゆえに1 from './img/ancient_methods/吸収の法/長命なるがゆえに1.jpg';
+import 長命なるがゆえに2 from './img/ancient_methods/吸収の法/長命なるがゆえに2.jpg';
+import 長命なるがゆえに3 from './img/ancient_methods/吸収の法/長命なるがゆえに3.jpg';
+import 長命なるがゆえに4 from './img/ancient_methods/吸収の法/長命なるがゆえに4.jpg';
+import 罪の記憶_1 from './img/ancient_methods/同化の法/リマスター/罪の記憶_1.jpg';
+import 罪の記憶_2 from './img/ancient_methods/同化の法/リマスター/罪の記憶_2.jpg';
+import 罪の記憶_3 from './img/ancient_methods/同化の法/リマスター/罪の記憶_3.jpg';
+import 罪の記憶_4 from './img/ancient_methods/同化の法/リマスター/罪の記憶_4.jpg';
+import 罪の記憶_5 from './img/ancient_methods/同化の法/リマスター/罪の記憶_5.jpg';
+import 罪の記憶_6 from './img/ancient_methods/同化の法/リマスター/罪の記憶_6.jpg';
+import 破の記憶_1 from './img/ancient_methods/同化の法/リマスター/破の記憶_1.jpg';
+import 破の記憶_2 from './img/ancient_methods/同化の法/リマスター/破の記憶_2.jpg';
+import 破の記憶_3 from './img/ancient_methods/同化の法/リマスター/破の記憶_3.jpg';
+import 邪の記憶_1 from './img/ancient_methods/同化の法/リマスター/邪の記憶_1.jpg';
+import 邪の記憶_2 from './img/ancient_methods/同化の法/リマスター/邪の記憶_2.jpg';
+import 邪の記憶_3 from './img/ancient_methods/同化の法/リマスター/邪の記憶_3.jpg';
+import 邪の記憶_4 from './img/ancient_methods/同化の法/リマスター/邪の記憶_4.jpg';
+import 滅の記憶_1 from './img/ancient_methods/同化の法/リマスター/滅の記憶_1.jpg';
+import 滅の記憶_2 from './img/ancient_methods/同化の法/リマスター/滅の記憶_2.jpg';
+import 滅の記憶_3 from './img/ancient_methods/同化の法/リマスター/滅の記憶_3.jpg';
 
 export const roma2rAncientMethodPagebc: Breadcrumb = {
-  name: "同化の法と吸収の法と伝承法",
+  name: "同化の法、吸収の法、伝承法",
   item: `${BASE_URL_ROMA2R}/ancient_people/ancient_methods`
 };
 const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc, roma2rAncientMethodPagebc];
-const indexList: index[] = [
-  { id: "#summary", name: "同化の法と<br>吸収の法と<br>伝承法" },
-  { id: "#assimilation", name: "同化の法" },
-  { id: "#suction", name: "吸収の法" },
-  { id: "#inherit", name: "伝承法" },
+const indexList: index_multi[] = [
+  { id: "#summary", name_pc: "同化の法、<br>吸収の法、<br>伝承法", name_sp: "同化の法、吸収の法、伝承法" },
+  { id: "#assimilation", name_pc: "同化の法" },
+  { id: "#suction", name_pc: "吸収の法" },
+  { id: "#inherit", name_pc: "伝承法" },
+  { id: "#ethical", name_pc: "倫理的な問題" },
 ]
 ---
 
 <MainLayout
-  title="同化の法と吸収の法と伝承法"
-  description="ロマサガ2リメイクの同化の法と吸収の法と伝承法について"
+  title="同化の法、吸収の法、伝承法"
+  description="ロマサガ2リメイクの同化の法、吸収の法、伝承法について"
   twitterCardSize={twitterCardEnum.summaryLargeImage}
   breadcrumbList={breadcrumbList}
   indexList={indexList}
   background={bgEnum.roma2r}
-  rights={rightsEnum.roma2r}>
+  rights={rightsEnum.roma2r}
+>
 
   <br>
-  <span id="summary"></span>
-  <h3 class="title">同化の法と吸収の法と伝承法</h3>
+  <h3 class="title" id="summary">同化の法、吸収の法、伝承法</h3>
   <p>
-    ロマサガ2の世界では<span style="color: yellow">？？千年前</span>から生きている古代人<span style="color: yellow">長命種？</span>と、その長命種に召し使われている短命種がいる。<br>
-    <Image src={short_lived} alt="短命種について" width="500" /><br>
-    <br>
-    古代人（長命種）は秘術を使って不老不死を実現しており、ゲーム中には以下3種類の秘術が登場する。<br>
-    古代人が使っている<a href="#assimilation">同化の法</a>。<br>
-    同化の法を進化させた<a href="#suction">吸収の法</a>。<br>
-    同化の法を短命種用に調整した<a href="#inherit">伝承法</a>。<br>
+    ロマサガ2の世界に存在する人間は、「古代人」と「短命種」に分けられます。<br>
+    古代人は、七英雄やオアイーブ、サグザー、忘れられた町にいた人達などが該当します。<br>
+    短命種は、我々プレイヤーが操作する人間です（人外は除く）。<br>
+    各人種が使用する秘術が存在し、ロマサガ2の物語の中核の一つを成しています。<br>
+    以下3種類に分類されます。
+  </p>
+  <ul class="normal">
+    <li>古代人が使用する<a href="#assimilation">同化の法</a></li>
+    <li>同化の法を進化させた<a href="#suction">吸収の法</a></li>
+    <li>同化の法を短命種用に調整した<a href="#inherit">伝承法</a></li>
+  </ul>
+  <p>
+    それぞれの特徴と用途を以下に整理した上で、そもそもこれらの秘法は倫理的にどうなのかという点についてまとめてみました。
   </p>
 
   <br>
-  <span id="assimilation"></span>
-  <h3 class="title">同化の法</h3>
+  <h3 class="title" id="assimilation">同化の法</h3>
   <p>
-    古代人が使っているもの。<br>
-    肉体が朽ち果てたら同化の法を使って新しい肉体を得て、魂を他者の肉体に馴染ませることで長生きしている。<br>
+    同化の法は、古代人が自らの肉体を維持するために使用している秘法。<br>
     以下の画像は忘れられた町での古代人との会話。<br>
-    <Image src={assimilation_method1} alt="同化の法1" width="500" /><br>
-    <Image src={assimilation_method2} alt="同化の法2" width="500" /><br>
-    <Image src={assimilation_method3} alt="同化の法3" width="500" /><br>
+    <Image src={assimilation_method1} alt="同化の法1" width="800" /><br>
+    <Image src={assimilation_method2} alt="同化の法2" width="800" /><br>
+    <Image src={assimilation_method3} alt="同化の法3" width="800" /><br>
+
     <br>
-    そもそも誰と同化していたのか？短命種？古代人は短命種を召し使っていたのであり得るかも。<br>
-    以下の画像は忘れられた町での古代人との会話。<br>
-    <Image src={short_lived} alt="短命種について" width="500" /><br>
+    肉体が朽ち果てたら同化の法を使用して新しい肉体を得て、魂を他者の肉体に馴染ませることで長生きしていると言っています。<br>
+    <span style="color: yellow">元々長命だったのか、同化の法を開発することで長命になることができたのかは不明</span>ですが、とにかく肉体は朽ちるが、同化の法で肉体を維持しているということがわかります。<br>
+    <span style="color: silver"><strike>オアイーブずっと同じ見た目で若い肉体のままだったけど・・・まあいいか。</strike></span><br>
+    しかし、そもそも誰と同化していたのか？という疑問が残ります。<br>
+    一つ考えられるのは、短命種。<br>
+    忘れられた町の人の発言やスービエの発言を見ると、古代人は短命種のことを見下している節があるので、あり得なくはないのかなと思っています。<br>
+    以下の画像は忘れられた町での古代人との会話。「あなた方（＝短命種）を召し使えていた」と言っています（画像のコッペリアは人形だけど・・・）。<br>
+    <Image src={short_lived} alt="短命種について" width="800" /><br>
+
     <br>
-    古代人同士で同化していた可能性もあるが、いずれにしても闇深さを感じる。<br>
+    以下の画像はスービエを倒したときの場面。<br>
+    「下劣な短命種に」と言っていますね。<br>
+    <Image src={スービエ} alt="スービエ" width="800" /><br>
+
+    <br>
+    上記から考えると、基本的に古代人は短命種を見下しており、同化の対象として選んでいた可能性も考えられます。自らが生き延びるためには仕方のない犠牲として。<br>
+    下手したら「高貴な我々と同化できるなんてありがたく思え」と思っている人がいてもおかしくなさそうですね。<br>
+    古代人同士で同化していた可能性もありますが、いずれにしても闇深さを感じます。<br>
   </p>
 
   <br>
-  <span id="suction"></span>
-  <h3 class="title">吸収の法</h3>
+  <h3 class="title" id="suction">吸収の法</h3>
   <p>
-    タームに対抗するためにワグナスとノエルが開発した秘術。同化の法を強化させたもの。<br>
+    吸収の法は、ワグナスとノエルがモンスター（ターム）に対抗するために開発した秘術で、同化の法を強化させたもの。<br>
+    そもそも古代人は「長命なるがゆえに、死を恐れる」という特徴があり、強力なモンスターを恐れていました。<br>
+    その強力なモンスターに対抗するために開発された秘術が吸収の法です。<br>
+    以下は忘れられた町での古代人との会話。<br>
+    <Image src={長命なるがゆえに1} alt="長命なるがゆえに1" width="800" /><br>
+    <Image src={長命なるがゆえに2} alt="長命なるがゆえに2" width="800" /><br>
+    <Image src={長命なるがゆえに3} alt="長命なるがゆえに3" width="800" /><br>
+    <Image src={長命なるがゆえに4} alt="長命なるがゆえに4" width="800" /><br>
+
     <br>
-    画像は<a href="../ancient_people/seven_heroes/seven_heroes_memory#six">七英雄の記憶6</a>のノエル。<br>
-    クイーンを倒すために人間を超える力を模索し始める。<br>
-    <Image src={人間を超える力を1} alt="人間を超える力を1" width="500" /><br>
-    <Image src={人間を超える力を2} alt="人間を超える力を2" width="500" /><br>
-    <br>
-    画像は忘れられた町の町人との会話。<br>
-    同化の法はワグナスとノエルが研究して得たものと言っている。<br>
-    <Image src={suction_method} alt="吸収の法" width="500" /><br>
+    以下の画像は<a href="../ancient_people/seven_heroes/seven_heroes_memory#six">七英雄の記憶6</a>のノエル。<br>
+    クィーンを倒すために人間を超える力を模索し始める。<br>
+    <Image src={人間を超える力を1} alt="人間を超える力を1" width="800" /><br>
+    <Image src={人間を超える力を2} alt="人間を超える力を2" width="800" /><br>
+
     <br>
     以下の画像は<a href="../ancient_people/seven_heroes/seven_heroes_memory#eight">七英雄の記憶8</a>のワグナス、ノエル、スービエとの会話。<br>
-    ノエルが吸収の法を考案。副作用があることを承知の上で、ワグナスとスービエは吸収の法を使ってターム討伐を誓う。<br>
-    ノエルとワグナスが協力して開発した。<br>
-    という流れ。<br>
-    <Image src={吸収の法1} alt="吸収の法1" width="500" /><br>
-    <Image src={吸収の法2} alt="吸収の法2" width="500" /><br>
-    <Image src={吸収の法3} alt="吸収の法3" width="500" /><br>
-    <Image src={吸収の法4} alt="吸収の法4" width="500" /><br>
-    <Image src={吸収の法5} alt="吸収の法5" width="500" /><br>
-    <Image src={吸収の法6} alt="吸収の法6" width="500" /><br>
-    <Image src={吸収の法7} alt="吸収の法7" width="500" /><br>
-    <Image src={吸収の法8} alt="吸収の法8" width="500" /><br>
-    <Image src={吸収の法9} alt="吸収の法9" width="500" /><br>
-    <Image src={吸収の法10} alt="吸収の法10" width="500" /><br>
-    <Image src={吸収の法11} alt="吸収の法11" width="500" /><br>
-    <Image src={吸収の法12} alt="吸収の法12" width="500" /><br>
-    <Image src={吸収の法13} alt="吸収の法13" width="500" /><br>
-    <Image src={吸収の法14} alt="吸収の法14" width="500" /><br>
-    <Image src={吸収の法15} alt="吸収の法15" width="500" /><br>
-    <Image src={吸収の法16} alt="吸収の法16" width="500" /><br>
+    ノエルが吸収の法を考案。リスクがあることを承知の上で、ワグナスとスービエは吸収の法を使ってターム討伐を誓う。<br>
+    <Image src={吸収の法1} alt="吸収の法1" width="800" /><br>
+    <Image src={吸収の法2} alt="吸収の法2" width="800" /><br>
+    <Image src={吸収の法3} alt="吸収の法3" width="800" /><br>
+    <Image src={吸収の法4} alt="吸収の法4" width="800" /><br>
+    <Image src={吸収の法5} alt="吸収の法5" width="800" /><br>
+    <Image src={吸収の法6} alt="吸収の法6" width="800" /><br>
+    <Image src={吸収の法7} alt="吸収の法7" width="800" /><br>
+    <Image src={吸収の法8} alt="吸収の法8" width="800" /><br>
+    <Image src={吸収の法9} alt="吸収の法9" width="800" /><br>
+    <Image src={吸収の法10} alt="吸収の法10" width="800" /><br>
+    <Image src={吸収の法11} alt="吸収の法11" width="800" /><br>
+    <Image src={吸収の法12} alt="吸収の法12" width="800" /><br>
+    <Image src={吸収の法13} alt="吸収の法13" width="800" /><br>
+    <Image src={吸収の法14} alt="吸収の法14" width="800" /><br>
+    <Image src={吸収の法15} alt="吸収の法15" width="800" /><br>
+    <Image src={吸収の法16} alt="吸収の法16" width="800" /><br>
+
     <br>
     七英雄は同化の法を使ってモンスターと同化することで力を得、クィーンの討伐に成功した。<br>
+    <Image src={クィーンを討伐した七英雄} alt="クィーンを討伐した七英雄" width="800" /><br>
+
+    <br>
     しかし彼らはモンスターを吸収し続けたことで、力だけでなく見た目や性格も変化。<br>
     オアイーブは彼らの事を「7匹の巨大な力を持つモンスター」とまで言っている。<br>
-    <Image src={オアイーブ} alt="オアイーブ" width="500" /><br>
+    <Image src={オアイーブ} alt="オアイーブ" width="800" /><br>
+
     <br>
-    <span style="color: yellow">↓ここいるかな↓</span><br>
-    しかしそのことを大神官に利用され、異世界に転移させられる。<br>
-    恐らくその間もモンスターと同化することでちからを得て、<span style="color: yellow">なんやかんやあって</span>現世に帰ってきた。<br>
-    <span style="color: yellow">↑ここいるかな↑</span>
+    ゲーム中で七英雄の見た目がモンスター化している（ノエルとロックブーケは除く）のは、吸収の法でモンスターを取り込んだ結果です。<br>
+    誰がどのようなモンスターを主に吸収したのかは以下の通り。
+
+    <div style="padding: 20px;">
+      <SevenHeroesAbsorb />
+    </div>
   </p>
 
   <br>
-  <span id="inherit"></span>
-  <h3 class="title">伝承法</h3>
+  <h3 class="title" id="inherit">伝承法</h3>
   <p>
-    バレンヌ帝国の皇帝レオンが、謎の女魔道士オアイーブからもたらされた秘法で、己の力と記憶を任意の相手に引き継がせることが出来る。<br>
-    レオンの弁によれば「伝える者と受け継ぐ者に、強い意志があれば、志と能力を受け継ぐことができる」という。<br>
-    <Image src={レオン} alt="レオン" width="500" /><br>
+    伝承法は、レオンがオアイーブからもたらされた秘法で、己の力と記憶を任意の相手に引き継がせることが出来るというもの。<br>
+    レオンによると「伝える者と受け継ぐ者に、強い意志があれば、志と能力を受け継ぐことができる」らしい。<br>
+    <Image src={レオン} alt="レオン" width="800" /><br>
+
     <br>
     ゲーム中では現在の皇帝が死亡または退位すると後継者を指名し、その者に引き継がせる事になる。<br>
     ただし無限に使えるわけではなく、限界が存在することがオアイーブから示されている。<br>
-    その「限界」として現れ、七英雄との因縁を終わらせる為に彼らとの最後の決戦に向かうのが最終皇帝である。<br>
-    <Image src={伝承法の限界} alt="伝承法の限界" width="500" /><br>
-    <Image src={伝承法の限界1} alt="伝承法の限界1" width="500" /><br>
-    <Image src={伝承法の限界2} alt="伝承法の限界2" width="500" /><br>
+    その「限界」のときに現れ、七英雄との因縁を終わらせる為に彼らとの最後の決戦に向かうのが最終皇帝です。<br>
+
     <br>
-    書籍『<a href="https://amzn.to/3ZduUZC" target="_blank" rel="noopener noreferrer">ロマンシング サ・ガ大全集</a>』の記述によると、古代人が使う「<a href="#assimilation">同化の法</a>」を短命種用に調整したものであり、基本的には同じ物とのこと。<br>
+    最終皇帝前に忘れられた町でオアイーブに会っていた場合<br>
+    <Image src={伝承法の限界} alt="伝承法の限界" width="800" /><br>
+
+    <br>
+    最終皇帝登場時にオアイーブに会っていない場合<br>
+    <Image src={伝承法の限界1} alt="伝承法の限界1" width="800" /><br>
+    <Image src={伝承法の限界2} alt="伝承法の限界2" width="800" /><br>
+    <br>
+    書籍『<a href="https://amzn.to/3ZduUZC" target="_blank" rel="noopener noreferrer">ロマンシング サ・ガ大全集</a>』の記述によると、伝承法は、古代人が使う「<a href="#assimilation">同化の法</a>」を短命種用に調整したものであり、基本的には同じ物とのこと。<br>
     また「全ての皇帝の遺志は伝承法によって繋がっており、全て同一人格である。」とも書いてある。<br>
-    なお自動人形のコッペリアの継承は独特であり、玉座ではなく発明したヒラガの横で伝承法を引き継ぎ、仲間の時では荒々しかった口調が皇帝の時は丁寧な口調になる。<br>
-    選択肢のセリフが統一されている関係から元は泥棒であるシティシーフやお調子者な性格である忍者が皇帝になった場合ですら、帝国のためにその身を費す覚悟ガン決まりな性格に変化したように見える。<br>
-    コッペリアを皇帝にすることができるということから、人間以外にも伝承できるということがわかる。<br>
-    <span style="color: yellow">画像が欲しい</span><br>
-    コッペリアを皇帝にしてオアイーブに会いに行ってもオアイーブは特に驚きもしない。人形にも伝承できることは、伝承法は人間以外にも有効であるということをオアイーブは認識していたんだろう（<span style="color: gray">本当かな？知らんけど</span>）。<br>
-    <Image src={人形でも驚かないオアイーブ1} alt="人形でも驚かないオアイーブ1" width="500" /><br>
-    <Image src={人形でも驚かないオアイーブ2} alt="人形でも驚かないオアイーブ2" width="500" /><br>
+
+    <br>
+    自動人形のコッペリアにも継承は可能。<br>
+    コッペリアを皇帝に選択した場合、玉座ではなく発明したヒラガの横で皇帝を引き継ぎ、仲間の時では荒々しかった口調が皇帝の時は丁寧な口調になる。<br>
+    <Image src={コッペ継承_01} alt="コッペ継承_01" width="800" /><br>
+    <Image src={コッペ継承_02} alt="コッペ継承_02" width="800" /><br>
+    <Image src={コッペ継承_03} alt="コッペ継承_03" width="800" /><br>
+    <Image src={コッペ継承_04} alt="コッペ継承_04" width="800" /><br>
+    <Image src={コッペ継承_05} alt="コッペ継承_05" width="800" /><br>
+    <Image src={コッペ継承_06} alt="コッペ継承_06" width="800" /><br>
+    <Image src={コッペ継承_07} alt="コッペ継承_07" width="800" /><br>
+    <Image src={コッペ継承_08} alt="コッペ継承_08" width="800" /><br>
+    <Image src={コッペ継承_09} alt="コッペ継承_09" width="800" /><br>
+    <Image src={コッペ継承_10} alt="コッペ継承_10" width="800" /><br>
+    <Image src={コッペ継承_11} alt="コッペ継承_11" width="800" /><br>
+    <Image src={コッペ継承_12} alt="コッペ継承_12" width="800" /><br>
+
+    <br>
+    コッペリアを皇帝にすることができるということから、生物以外にも伝承できるということがわかります。<br>
+    因みに、コッペリアを皇帝にしてオアイーブに会いに行ってもオアイーブは特に驚きもしません。<br>
+    伝承法は人間以外にも有効であるということをオアイーブは認識していたんだろう。<br>
+    <span style="color: silver"><strike>本当かな？知らんけど</strike></span><br>
+    <Image src={人形でも驚かないオアイーブ1} alt="人形でも驚かないオアイーブ1" width="800" /><br>
+    <Image src={人形でも驚かないオアイーブ2} alt="人形でも驚かないオアイーブ2" width="800" /><br>
   </p>
   <br>
 
+  <br>
+  <h3 class="title" id="ethical">倫理的にどうなのか</h3>
+  <p>
+    <span style="color: yellow">ここの記載、方向性はいいがもう少し文章を練りあげたい。</span><br>
+    <a href="#assimilation">同化の法</a>も<a href="#suction">吸収の法</a>も、<span style="color: yellow">倫理的にどうなのか？</span>という問題点があると思っています。<br>
+
+    <br>
+    具体的には以下<br>
+    <ul class="normal">
+      <li>誰と同化しているのか？（恐らく短命種）</li>
+      <li>同化された方の意識はどうなるのか？（恐らく意識は残らない）</li>
+    </ul>
+  </p>
+
+  <br>
+  <p>
+    という疑問はあります。<br>
+    吸収の法の副作用はゲーム中の七英雄を見れば一目瞭然ですね。ワグナスですらあれですから・・・。<br>
+    これらのことを考えると、同化の法、吸収の法は何か『人の道を外れた力』のように思えます。<br>
+
+    <br>
+    このことに対する河津さんなりの一つの答えが、ロマサガ2のリマスター版（リメイクではなくリマスターの方）の『追憶の迷宮』なのかなと思っています。<br>
+    リマスター版では『追憶の迷宮』という追加ダンジョンがあり、そこで同化の法に関して言及されているのでここで紹介してみます。<br>
+    追憶の迷宮には罪の記憶、破の記憶、邪の記憶、滅の記憶の4つがあり、それぞれの記憶に対応するボスとの会話です。このダンジョンではなぜか皇帝が七英雄と誤認されているため、これらは七英雄に向けた言葉です。<br>
+    七英雄に向けた言葉なので、どちらかというと<a href="#suction">吸収の法</a>についての言及かもしれないです。<br>
+    ただ、リマスター版の中では<a href="#assimilation">同化の法</a>という単語は出てくるのですが、<a href="#suction">吸収の法</a>という単語は出てきません。<br>
+    リマスター版の中では「ワグナスとノエルは同化の法を強めるの研究をし、新たな力を得た」ぐらいしか言及されず、言葉として区別されていないので、どちらの事を指しているのかが単語から見ると若干あやふやです。<br>
+    ここでは<a href="#suction">吸収の法</a>ではなく<a href="#assimilation">同化の法</a>を指していると考えます。<br>
+
+    <br>
+    罪の記憶の画像。同化の法を「呪いに見える」と表現している。<br>
+    <Image src={罪の記憶_1} alt="罪の記憶_1" width="800" />
+    <Image src={罪の記憶_2} alt="罪の記憶_2" width="800" />
+    <Image src={罪の記憶_3} alt="罪の記憶_3" width="800" />
+    <Image src={罪の記憶_4} alt="罪の記憶_4" width="800" />
+    <Image src={罪の記憶_5} alt="罪の記憶_5" width="800" />
+    <Image src={罪の記憶_6} alt="罪の記憶_6" width="800" /><br>
+
+    <br>
+    邪の記憶の画像。邪悪な術と言われている。<br>
+    <Image src={邪の記憶_1} alt="邪の記憶_1" width="800" />
+    <Image src={邪の記憶_2} alt="邪の記憶_2" width="800" />
+    <Image src={邪の記憶_3} alt="邪の記憶_3" width="800" />
+    <Image src={邪の記憶_4} alt="邪の記憶_4" width="800" /><br>
+
+    <br>
+    滅の記憶の画像。ここは同化の法に関する言及はありません。<br>
+    <Image src={滅の記憶_1} alt="滅の記憶_1" width="800" />
+    <Image src={滅の記憶_2} alt="滅の記憶_2" width="800" />
+    <Image src={滅の記憶_3} alt="滅の記憶_3" width="800" /><br>
+
+    <br>
+    破の記憶の画像。「魔物の進行も、世界の変動も、自然の理を破り続けるきさまらへの神の裁きと知れ！」と言われている。<br>
+    <Image src={破の記憶_1} alt="破の記憶_1" width="800" />
+    <Image src={破の記憶_2} alt="破の記憶_2" width="800" />
+    <Image src={破の記憶_3} alt="破の記憶_3" width="800" /><br>
+
+    <br>
+    罪の記憶では、同化の法で得た永遠の命を『呪い』と言い、『死をもって解放してやる』とも言っている。<br>
+    邪の記憶では、『他者の命を血肉を我がものとする邪悪な術』や、『いくつの生命を食らってきたのだ！？』と言っている。<br>
+    最後の破の記憶の内容を見ると、モンスター（ターム）の進行も、かつてロマサガ2の世界を襲ったとされる変動も、『<span style="color: yellow;">自然の理を破り続けるきさまらへの神の裁き</span>』だと言われている。<br>
+    自然の理とは『人はいずれ死ぬ』ということを指していて、同化の法で他者を犠牲にしながらその理に逆らい続けてきたから、より大きな災厄という形で返ってきたと言っているのかもしれません。<br>
+    古代人は異世界への転移という形で、変動やモンスターからも逃れることで死を避け、もはやどこに行ったのかすらわからない状態ですが、転移した先でより大きな災厄に見舞われているのかもしれませんね。<br>
+    結局すべて古代人の自業自得だったということなのかもしれません。<br>
+    <br>
+    そういう意味では、<a href="#inherit">伝承法</a>に限界があるというのはある意味で都合がいいのかもいしれません。<br>
+    使い続けると古代人のように災厄に見舞われるのかもしれないので。<br>
+  </p>
+
+  <span style="color: yellow;">以下の考察が参考にならないか検討</span><br>
+  <ul>
+    <li>参考になりそうなオアイーブの考察: <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3361439385" target="_blank" rel="noopener noreferrer">リンク</a></li>
+    <li>レビュー考察編 『涙を拭いて』の意味と理由: <a href="https://steamcommunity.com/id/prettytail/recommended/2455640/" target="_blank" rel="noopener noreferrer">リンク</a></li>
+  </ul>
+
+  <br>
   <h3 class="title">参考</h3>
   <ul>
     <li><a href="https://dic.pixiv.net/a/%E4%BC%9D%E6%89%BF%E6%B3%95%28%E3%83%AD%E3%83%9E%E3%82%B5%E3%82%AC%29" target="_blank" rel="noopener noreferrer">ピクシブ百科事典 伝承法(ロマサガ)</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E5%90%8C%E5%8C%96%E3%81%AE%E6%B3%95%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【同化の法】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E8%BF%BD%E6%86%B6%E3%81%AE%E8%BF%B7%E5%AE%AE%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【追憶の迷宮】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E7%BD%AA%E3%81%AE%E8%A8%98%E6%86%B6%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【罪の記憶】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E9%82%AA%E3%81%AE%E8%A8%98%E6%86%B6%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【邪の記憶】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E7%A0%B4%E3%81%AE%E8%A8%98%E6%86%B6%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【破の記憶】</a></li>
+    <li><a href="https://wikiwiki.jp/sagadic/%E3%80%90%E6%BB%85%E3%81%AE%E8%A8%98%E6%86%B6%E3%80%91" target="_blank" rel="noopener noreferrer">サガ用語辞典 Wiki* 【滅の記憶】</a></li>
   </ul>
 </MainLayout>

@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { twitterCardEnum } from '../../../../../components/BaseHead.astro';
 import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../layouts/MainLayout.astro';
 import { rightsEnum } from '../../../../../components/Footer.astro';
-import type { index } from '../../../../../components/HeaderIndex.astro';
+import type { index_multi } from '../../../../../components/Header.astro';
 import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../index_romasaga2r.astro';
 import ブーケに魅了された水龍 from './img/sanked_tower/ブーケに魅了された水龍.jpg'
 import この世界には大きな変動が from './img/sanked_tower/この世界には大きな変動が.jpg'
@@ -27,14 +27,17 @@ import 七英雄とこの塔の関係_q from './img/sanked_tower/七英雄とこ
 import 七英雄とこの塔の関係_a1 from './img/sanked_tower/七英雄とこの塔の関係_a1.jpg'
 import 七英雄とこの塔の関係_a2 from './img/sanked_tower/七英雄とこの塔の関係_a2.jpg'
 import 七英雄とこの塔の関係_a3 from './img/sanked_tower/七英雄とこの塔の関係_a3.jpg'
+import water_dragon_ancient_oath1 from './img/水龍_古の誓い1.jpg';
+import water_dragon_ancient_oath2 from './img/水龍_古の誓い2.jpg';
 
 export const roma2rSankTowerPagebc: Breadcrumb = {
   name: "沈んだ塔と水龍",
   item: `${BASE_URL_ROMA2R}/ancient_people/sank_tower`
 };
 const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc, roma2rSankTowerPagebc];
-const indexList: index[] = [
-  { id: "#one", name: "沈んだ塔と水龍" },
+const indexList: index_multi[] = [
+  { id: "#firstly", name_pc: "はじめに" },
+  { id: "#sank_tower", name_pc: "沈んだ塔と水龍" },
 ]
 ---
 
@@ -45,17 +48,33 @@ const indexList: index[] = [
   breadcrumbList={breadcrumbList}
   indexList={indexList}
   background={bgEnum.roma2r}
-  rights={rightsEnum.roma2r}>
+  rights={rightsEnum.roma2r}
+>
 
   <br>
-  <span id="one"></span>
-  <h3 class="title">沈んだ塔と水龍</h3>
+  <h3 class="title" id="firstly">はじめに</h3>
   <p>
-    ロックブーケに依頼される前にエイルネップの塔の守護者を倒して沈んだ塔に先回りすると水龍と会話することができます。<br>
-    ブーケがいると魅了されているので戦闘になる（画像はエンディングの画像）。<br>
+    沈んだ塔には水龍がいて、ロックブーケよりも先にここに辿り着くと水龍がこの世界で過去起きた変動や、かつてこの世界に存在していた古代人、七英雄について語ってくれます。<br>
+    そのため、沈んだ塔に先に辿り着くことは、物語の背景を理解する上で重要な意味を持っています。<br>
+    リメイクでは七英雄の記憶で語られるようになった部分もありますが、沈んだ塔での水龍の語りも依然として残っており、原作から多少情報が追加されている部分もあります。<br>
+  </p>
+
+  <br>
+  <h3 class="title" id="sank_tower">沈んだ塔と水龍</h3>
+  <p>
+    ロックブーケに会う前にエイルネップの塔の守護者を倒し、沈んだ塔に先回りすると水龍と会話することができます。<br>
+    ロックブーケに先回りされているとこの水龍は魅了されているので、戦闘になります。<br>
+    画像はエンディングの画像で、水龍がロックブーケに魅了されているように見えます。<br>
+    （何となくこの絵が好きなので載せたかっただけ）<br>
     <Image src={ブーケに魅了された水龍} width="500" alt='ブーケに魅了された水龍' /><br>
 
-    この水龍は、<span style="color: yellow">古の誓いに縛られているため（？）</span>、この塔を守っています。<br>
+    <br>
+    この水龍は、古の誓いに縛られているため、この塔を守っています。<br>
+    <span style="color: yellow">古の誓いとは何か？</span><br>
+    <Image src={water_dragon_ancient_oath1} alt="水龍の古の誓い1" width="800" /><br>
+    <Image src={water_dragon_ancient_oath2} alt="水龍の古の誓い2" width="800" /><br>
+
+    <br>
     まだロックブーケに魅了されていないので、襲いかかってくることはありません。<br>
     暇を持て余しているため、この世界について少し語ってくれます。<br>
   </p>
@@ -134,12 +153,18 @@ const indexList: index[] = [
     <br>
     この選択肢、「七英雄とこの塔の関係は？」を選んだ時だけ、水龍はもう少しだけ話をしてくれます。<br>
     （他の選択肢の場合は「話は終わりと言っただぞ。」と言われて何も教えてくれません）<br>
-    リメイクでは<a href="../seven_heroes/seven_heroes_memory.html">七英雄の記憶</a>を見ればわかることですが、原作及びリマスターでは、ゲーム中ではここでしか語られなかったのでこの話は結構貴重でした。<br>
+    リメイクでは<a href="./seven_heroes/seven_heroes_memory">七英雄の記憶</a>を見ればわかることですが、原作及びリマスターでは、ゲーム中ではここでしか語られなかったのでこの話は結構貴重でした。<br>
     <Image src={七英雄とこの塔の関係_q} width="500" alt="七英雄とこの塔の関係_q" /><br>
     <Image src={七英雄とこの塔の関係_a1} width="500" alt="七英雄とこの塔の関係_a1" /><br>
     <Image src={七英雄とこの塔の関係_a2} width="500" alt="七英雄とこの塔の関係_a2" /><br>
     <Image src={七英雄とこの塔の関係_a3} width="500" alt="七英雄とこの塔の関係_a3" /><br>
 
-    塔の構造の話。複数の塔の内部構造は同じ構造になっている。<br>
+    <br>
+    七英雄の記憶を見ていればわかることですが、「塔が上手く作動せず」というのは正しくなく、大神官の差し金で七英雄は意図的に別の世界へ送られたのです。<br>
   </p>
+  <ul>
+    <li><a href="./seven_heroes/seven_heroes_memory#eleven">七英雄の記憶11</a></li>
+    <li><a href="./seven_heroes/seven_heroes_memory#twelve">七英雄の記憶12</a></li>
+    <li><a href="./seven_heroes/seven_heroes_memory#thirteen">七英雄の記憶13</a></li>
+  </ul>
 </MainLayout>

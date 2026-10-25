@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import { twitterCardEnum } from '../../../../../components/BaseHead.astro';
+import MainLayout, { bgEnum, type Breadcrumb } from '../../../../../layouts/MainLayout.astro';
+import { rightsEnum } from '../../../../../components/Footer.astro';
+import type { index_multi } from '../../../../../components/Header.astro';
+import { BASE_URL_ROMA2R, roma2rIndexPagebc } from '../index_romasaga2r.astro';
+
+export const roma2rSankTowerPagebc: Breadcrumb = {
+  name: "塔の構造と次元転移装置",
+  item: `${BASE_URL_ROMA2R}/ancient_people/about_towers`
+};
+const breadcrumbList: Breadcrumb[] = [roma2rIndexPagebc, roma2rSankTowerPagebc];
+const indexList: index_multi[] = [
+  { id: "#firstly", name_pc: "はじめに" },
+  { id: "#about_towers", name_pc: "塔の構造と次元転移装置" },
+  { id: "#reference", name_pc: "参考" },
+]
+---
+
+<MainLayout
+  title="塔の構造と次元転移装置"
+  description="ロマサガ2リメイクの塔の構造と次元転移装置について"
+  twitterCardSize={twitterCardEnum.summaryLargeImage}
+  breadcrumbList={breadcrumbList}
+  indexList={indexList}
+  background={bgEnum.roma2r}
+  rights={rightsEnum.roma2r}
+>
+
+  <br>
+  <h3 class="title" id="firstly">はじめに</h3>
+  <p>
+    ロマサガ2の世界にあるいくつかの『塔』について。<br>
+    塔の構造は同じになっていること、次元転移装置としての役割を持っていること。<br>
+  </p>
+
+  <br>
+  <h3 class="title" id="about_towers">塔の構造と次元転移装置</h3>
+  <p>
+    ロマサガ2の世界にはいくつか塔があります。<br>
+    これらの塔は同じ構造を持ち、次元転移装置としての役割を果たしています。<br>
+  </p>
+
+  <div style="padding-left: 20px;">
+    <ul>
+      <li>テレルテバの塔</li>
+      <li>沈んだ塔</li>
+      <li>エイルネップの塔</li>
+    </ul>
+  </div>
+
+  <br>
+  <div class="youtube">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/nSJpFpkQXbs?si=ze63PtXRtaS3geSV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <br><br>
+  <h3 class="title" id="reference">参考</h3>
+  <ul>
+  </ul>
+</MainLayout>
